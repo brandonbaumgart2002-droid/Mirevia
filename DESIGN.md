@@ -286,7 +286,8 @@ Quiet-luxury sleep and recovery for the menstrual cycle. Calm, confident, never 
 | Accent | Action Blue `#0066cc` | **Mulberry `#8a2f52`** (`--mv-accent`), and `#f2a9c4` on dark tiles. Still exactly one accent: links, selected options, focus rings, sale badge, "for you" labels. |
 | Primary CTA | Blue pill | **Near-black pill** (`#1d1d1f`, hover `#3a3a3c`), white label, 56px tall, full width in the buy box. This is the Therabody move; it keeps the accent rare. |
 | Secondary CTA | Blue ghost pill | Express checkout styled as an ink-outline pill. |
-| Fonts | SF Pro (proprietary) | System stack only (`-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial`), so Apple devices get SF and nothing proprietary ships. Theme fonts optional via a section setting. |
+| Fonts | SF Pro (proprietary) | System stack first (`-apple-system, BlinkMacSystemFont`), so Apple devices get SF, then Inter from Google Fonts for Android and Windows (only downloaded where SF is missing). Theme fonts optional via a section setting. |
+| Mobile | Left-aligned | Below 750px the buy box, section intros, highlights and personalise copy are centred; accordions and table rows stay left-aligned for scanning. |
 | Press state | `scale(0.95)` | `scale(0.98)`: buttons here are wider, so 0.95 reads as a jolt. |
 | Pure black | Global nav | Not used. Darkest surface is `#272729`. |
 

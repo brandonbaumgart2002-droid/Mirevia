@@ -16,17 +16,15 @@
         {%- if block.settings.link_label != blank and block.settings.link != blank -%}
           <a class="mv-link" href="{{ block.settings.link }}">{{ block.settings.link_label | escape }}</a>
         {%- endif -%}
-        <div class="mv-tile__media{% if block.settings.product_shadow %} mv-tile__media--product{% endif %}">
-          {%- if block.settings.image != blank -%}
+        {%- if block.settings.image != blank -%}
+          <div class="mv-tile__media{% if block.settings.product_shadow %} mv-tile__media--product{% endif %}">
             {{
               block.settings.image
-              | image_url: width: 2000
-              | image_tag: loading: 'lazy', sizes: '(min-width: 1200px) 1100px, 100vw', widths: '600, 900, 1200, 1600, 2000'
+              | image_url: width: 1600
+              | image_tag: loading: 'lazy', sizes: '(min-width: 800px) 760px, 100vw', widths: '600, 900, 1200, 1600'
             }}
-          {%- else -%}
-            {{ 'lifestyle-2' | placeholder_svg_tag: 'mv-placeholder' }}
-          {%- endif -%}
-        </div>
+          </div>
+        {%- endif -%}
       </div>
     </section>
   {%- endfor -%}

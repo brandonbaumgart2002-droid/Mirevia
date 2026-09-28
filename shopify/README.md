@@ -29,11 +29,12 @@ With Shopify CLI instead: `shopify theme pull`, copy these folders into the them
 
 ## Before you publish, check these
 
-- **Perks** (buy box): "Free shipping", "Easy returns" and "Secure checkout" are placeholders. Change them to what you actually offer.
+- **Perks** (buy box): "Free shipping", "30-day money-back guarantee" and "Secure checkout" should match what you actually offer.
 - **What's in the box** and **Specs** accordions: replace with your real contents, heat levels, massage modes, battery life and charge time.
 - **Comparison table**: make sure every tick is true for your product.
 - **FAQ**: the answers are deliberately general. Add your own, especially anything about sleeping with it on, auto shut-off and skin contact, following your product manual.
-- **Images**: add photos in the theme editor to the "Made for you" tabs and the feature panels. For the first panel, use a product cut-out on a plain background (it gets the soft product shadow).
+- **Images**: the "Made for you" tabs and the "long nights" panel use your product photos from Files. Swap in your own in the theme editor. A tab or panel with no image shows as text only; if you add a product cut-out on a plain background, tick "product shadow" for it.
+- **Empty dropdowns are hidden**: "Overview" shows your product description, so it only appears once the product has one.
 - **Colours**: if your colour options don't show the right swatch, set Shopify swatches on the option values, or edit the *Colour swatches* list in the product section settings.
 
 ## Personalised links for ads

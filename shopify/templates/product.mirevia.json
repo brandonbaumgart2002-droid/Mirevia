@@ -12,7 +12,7 @@
         "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to bag", "show_quantity": false, "show_dynamic_checkout": true } },
         "perks": {
           "type": "perks",
-          "settings": { "perk_1": "Free shipping", "perk_2": "Easy returns", "perk_3": "Secure checkout" }
+          "settings": { "perk_1": "Free shipping", "perk_2": "30-day money-back guarantee", "perk_3": "Secure checkout" }
         },
         "description": {
           "type": "accordion",
@@ -52,6 +52,7 @@
           "settings": {
             "label": "Cramps",
             "key": "cramps",
+            "image": "shopify://shop_images/hf_20260829_034203_26a2d95d-b7fc-4907-87ed-b92f77dd500d.png",
             "heading": "Warmth where it hurts",
             "body": "<p>Strap it over your lower belly or lower back. Steady heat settles tight muscles while a slow vibration works on top, so you can keep going instead of curling up.</p>",
             "tip": "Start low and turn the heat up gradually.",
@@ -63,6 +64,7 @@
           "settings": {
             "label": "Sleep",
             "key": "sleep",
+            "image": "shopify://shop_images/hf_20260829_041046_4735d76a-75a2-4f61-8c7c-b7d2f7d4a3a6.png",
             "heading": "Wind down, not wake up",
             "body": "<p>No kettle trip at midnight and no hot water bottle going cold. Settle in with gentle heat and a quiet massage as part of your bedtime routine.</p>",
             "tip": "Put it on 20 minutes before lights out.",
@@ -74,6 +76,7 @@
           "settings": {
             "label": "Endo and PCOS",
             "key": "endo",
+            "image": "shopify://shop_images/hf_20260904_114430_42c6c4bb-21dc-4dc3-936d-b0f3cf4636ad.png",
             "heading": "Comfort on the hard days",
             "body": "<p>Many people living with endometriosis or PCOS keep heat in their comfort routine. Mirevia makes that routine wearable. It isn't a treatment, so keep talking to your doctor about your pain.</p>",
             "tip": "Keep it charged and close for flare days.",
@@ -85,6 +88,7 @@
           "settings": {
             "label": "Work and on the go",
             "key": "on-the-go",
+            "image": "shopify://shop_images/hf_20260827_130107_00144254-6ac2-4a16-bd90-178d9c4d7c2c.png",
             "heading": "Relief that fits your day",
             "body": "<p>Cordless and slim enough to wear at your desk, on the commute or on the couch. No cord to trip on, no socket to sit next to.</p>",
             "tip": "Wear it over a light layer of clothing.",
@@ -118,7 +122,7 @@
             "surface": "canvas",
             "heading": "Heat that stays steady.",
             "text": "No kettle, no cord, no cooling off halfway through.",
-            "product_shadow": true,
+            "product_shadow": false,
             "link_label": "",
             "link": ""
           }
@@ -128,6 +132,7 @@
           "settings": {
             "surface": "dark",
             "heading": "Made for the long nights.",
+            "image": "shopify://shop_images/hf_20260904_114430_42c6c4bb-21dc-4dc3-936d-b0f3cf4636ad.png",
             "text": "Slim enough to lie on. Quiet enough to forget it's there.",
             "product_shadow": false,
             "link_label": "",

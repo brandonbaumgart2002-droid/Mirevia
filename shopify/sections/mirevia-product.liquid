@@ -5,6 +5,12 @@
 
 {{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'mirevia-pdp.js' | asset_url }}" defer></script>
+{%- unless section.settings.use_theme_fonts -%}
+  {%- comment -%} Only downloaded on devices without SF (Android, Windows). {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+{%- endunless -%}
 
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
@@ -244,7 +250,7 @@
                     <button
                       type="submit"
                       name="add"
-                      class="mv-btn mv-btn--primary mv-btn--block"
+                      class="mv-btn mv-btn--primary mv-btn--block disable-global-button-styling"
                       data-mv-add
                       data-mv-label="{{ block.settings.add_label | escape }}"
                       {% unless current_variant.available %}disabled{% endunless %}
@@ -290,16 +296,21 @@
               <div class="mv-rte mv-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
 
             {%- when 'accordion' -%}
-              <details class="mv-acc" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
-                <summary class="mv-acc__summary">{{ block.settings.heading | escape }}</summary>
-                <div class="mv-acc__body mv-rte">
-                  {%- if block.settings.use_description -%}
-                    {{ product.description }}
-                  {%- else -%}
-                    {{ block.settings.content }}
-                  {%- endif -%}
-                </div>
-              </details>
+              {%- liquid
+                if block.settings.use_description
+                  assign acc_body = product.description
+                else
+                  assign acc_body = block.settings.content
+                endif
+                assign acc_text = acc_body | strip_html | strip
+              -%}
+              {%- comment -%} An empty accordion reads as broken, so skip it. {%- endcomment -%}
+              {%- if acc_text != blank -%}
+                <details class="mv-acc" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                  <summary class="mv-acc__summary">{{ block.settings.heading | escape }}</summary>
+                  <div class="mv-acc__body mv-rte">{{ acc_body }}</div>
+                </details>
+              {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -316,7 +327,7 @@
           <p class="mv-sticky__title">{{ product.title | escape }}</p>
           <p class="mv-sticky__price" data-mv-price>{{ current_variant.price | money }}</p>
         </div>
-        <button type="button" class="mv-btn mv-btn--primary" data-mv-sticky-add data-mv-label="{{ section.settings.sticky_label | escape }}" {% unless current_variant.available %}disabled{% endunless %}>
+        <button type="button" class="mv-btn mv-btn--primary disable-global-button-styling" data-mv-sticky-add data-mv-label="{{ section.settings.sticky_label | escape }}" {% unless current_variant.available %}disabled{% endunless %}>
           <span data-mv-add-label>{% if current_variant.available %}{{ section.settings.sticky_label | escape }}{% else %}Sold out{% endif %}</span>
         </button>
       </div>

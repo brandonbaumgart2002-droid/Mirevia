@@ -36,24 +36,22 @@
 
       {%- for block in section.blocks -%}
         <div
-          class="mv-personalise__panel"
+          class="mv-personalise__panel{% if block.settings.image == blank %} mv-personalise__panel--text{% endif %}"
           role="tabpanel"
           id="mv-panel-{{ block.id }}"
           aria-labelledby="mv-tab-{{ block.id }}"
           data-note="{{ block.settings.note | escape }}"
           {% unless forloop.first %}hidden{% endunless %}
         >
-          <div class="mv-personalise__media">
-            {%- if block.settings.image != blank -%}
+          {%- if block.settings.image != blank -%}
+            <div class="mv-personalise__media">
               {{
                 block.settings.image
                 | image_url: width: 1400
                 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1400'
               }}
-            {%- else -%}
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'mv-placeholder' }}
-            {%- endif -%}
-          </div>
+            </div>
+          {%- endif -%}
           <div class="mv-personalise__copy">
             <h3 class="mv-h3">{{ block.settings.heading | escape }}</h3>
             <div class="mv-rte mv-body-muted">{{ block.settings.body }}</div>
