@@ -37,7 +37,7 @@
         },
         "shipping": {
           "type": "accordion",
-          "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Delivery times and our <a href=\"/policies/refund-policy\">returns policy</a>.</p>", "open": false }
+          "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Free shipping on every order.</p><p>Covered by our 30-day money-back guarantee. See the <a href=\"/policies/refund-policy\">refund policy</a> for details.</p>", "open": false }
         }
       },
       "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "perks", "description", "box", "specs", "shipping"],
@@ -61,7 +61,7 @@
           "settings": {
             "label": "Cramps",
             "key": "cramps",
-            "image": "shopify://shop_images/hf_20260829_034203_26a2d95d-b7fc-4907-87ed-b92f77dd500d.png",
+            "image": "shopify://shop_images/mirevia-tab-cramps.png",
             "heading": "Warmth where it hurts",
             "body": "<p>Strap it over your lower belly or lower back. Steady heat settles tight muscles while a slow vibration works on top, so you can keep going instead of curling up.</p>",
             "tip": "Start low and turn the heat up gradually.",
@@ -73,7 +73,7 @@
           "settings": {
             "label": "Sleep",
             "key": "sleep",
-            "image": "shopify://shop_images/hf_20260829_041046_4735d76a-75a2-4f61-8c7c-b7d2f7d4a3a6.png",
+            "image": "shopify://shop_images/mirevia-tab-sleep.png",
             "heading": "Wind down, not wake up",
             "body": "<p>No kettle trip at midnight and no hot water bottle going cold. Settle in with gentle heat and a quiet massage as part of your bedtime routine.</p>",
             "tip": "Put it on 20 minutes before lights out.",
@@ -85,7 +85,7 @@
           "settings": {
             "label": "Endo and PCOS",
             "key": "endo",
-            "image": "shopify://shop_images/hf_20260904_114430_42c6c4bb-21dc-4dc3-936d-b0f3cf4636ad.png",
+            "image": "shopify://shop_images/mirevia-tab-endo.png",
             "heading": "Comfort on the hard days",
             "body": "<p>Many people living with endometriosis or PCOS keep heat in their comfort routine. Mirevia makes that routine wearable. It isn't a treatment, so keep talking to your doctor about your pain.</p>",
             "tip": "Keep it charged and close for flare days.",
@@ -97,7 +97,7 @@
           "settings": {
             "label": "Work and on the go",
             "key": "on-the-go",
-            "image": "shopify://shop_images/hf_20260827_130107_00144254-6ac2-4a16-bd90-178d9c4d7c2c.png",
+            "image": "shopify://shop_images/mirevia-on-the-go.png",
             "heading": "Relief that fits your day",
             "body": "<p>Cordless and slim enough to wear at your desk, on the commute or on the couch. No cord to trip on, no socket to sit next to.</p>",
             "tip": "Wear it over a light layer of clothing.",
@@ -115,12 +115,12 @@
     "highlights": {
       "type": "mirevia-highlights",
       "blocks": {
-        "cordless": { "type": "highlight", "settings": { "value": "Cordless", "label": "Wear it on the couch, at your desk or in bed." } },
-        "dual": { "type": "highlight", "settings": { "value": "Heat + massage", "label": "Warmth and vibration working together." } },
-        "sleep": { "type": "highlight", "settings": { "value": "Built for rest", "label": "Designed for the nights your period keeps you up." } }
+        "cordless": { "type": "highlight", "settings": { "value": "Built for rest", "label": "Designed for the nights your period keeps you up." } },
+        "dual": { "type": "highlight", "settings": { "value": "Auto shut-off", "label": "It switches itself off, so you can drift off with it on." } },
+        "sleep": { "type": "highlight", "settings": { "value": "30-day guarantee", "label": "Try it through a full cycle. If it's not for you, get your money back." } }
       },
       "block_order": ["cordless", "dual", "sleep"],
-      "settings": { "heading": "Relief that goes where you go" }
+      "settings": { "heading": "Relief you can rest with" }
     },
     "tiles": {
       "type": "mirevia-feature-tiles",
@@ -130,6 +130,7 @@
           "settings": {
             "surface": "canvas",
             "heading": "Heat that stays steady.",
+            "image": "shopify://shop_images/mirevia-steady-cutout.png",
             "text": "No kettle, no cord, no cooling off halfway through.",
             "product_shadow": false,
             "link_label": "",
@@ -141,7 +142,7 @@
           "settings": {
             "surface": "dark",
             "heading": "Made for the long nights.",
-            "image": "shopify://shop_images/hf_20260904_114430_42c6c4bb-21dc-4dc3-936d-b0f3cf4636ad.png",
+            "image": "shopify://shop_images/mirevia-long-nights.png",
             "text": "Slim enough to lie on. Quiet enough to forget it's there.",
             "product_shadow": false,
             "link_label": "",
@@ -198,7 +199,7 @@
           "type": "question",
           "settings": {
             "question": "What if it's not right for me?",
-            "answer": "<p>See our <a href=\"/policies/refund-policy\">returns policy</a> for the full details.</p>"
+            "answer": "<p>Every order comes with a 30-day money-back guarantee. Try it through a full cycle, and if it doesn't ease your cramps, contact us within 30 days for a full refund. The details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
         }
       },

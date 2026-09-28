@@ -508,6 +508,8 @@
 .mv-tile { padding-bottom: var(--mv-section-y); }
 .mv-tile__media { width: min(100%, 760px); margin-top: 24px; border-radius: var(--mv-radius-card); overflow: hidden; }
 .mv-tile__media--product { border-radius: 0; overflow: visible; }
+/* Lifts near-white packshot backgrounds to pure white so they melt into a white tile. */
+.mv-surface--canvas .mv-tile__media img { filter: brightness(1.05); }
 .mv-tile__media img, .mv-tile__media svg { width: 100%; height: auto; border-radius: var(--mv-radius-card); }
 .mv-tile__media--product img { border-radius: 0; filter: drop-shadow(var(--mv-shadow-product)); }
 @media (min-width: 750px) {
@@ -643,6 +645,63 @@
   text-transform: none !important;
 }
 .mv:not(#mv) .shopify-payment-button__button--unbranded:hover:not([disabled]) { background: var(--mv-parchment) !important; }
+
+/* ---------- Kaching bundle picker ----------
+   Kaching sets its colours as inline custom properties; these bring it onto the
+   page's neutrals (DESIGN.md: one accent, cool greys, near-black selection). */
+
+.mv:not(#mv) .kaching-bundles__block {
+  --block-title-color: var(--mv-ink-muted) !important;
+  --block-block-title-color: var(--mv-ink-muted) !important;
+  --bar-background-color: var(--mv-canvas) !important;
+  --bar-selected-background-color: var(--mv-parchment) !important;
+  --bar-border-color: var(--mv-hairline) !important;
+  --bar-selected-border-color: var(--mv-ink) !important;
+  --bar-title-color: var(--mv-ink) !important;
+  --bar-title-font-size: 17px !important;
+  --bar-subtitle-color: var(--mv-ink-muted) !important;
+  --bar-subtitle-font-size: 14px !important;
+  --bar-price-color: var(--mv-ink) !important;
+  --bar-full-price-color: #86868b !important;
+  --bar-label-background-color: var(--mv-parchment) !important;
+  --bar-label-color: var(--mv-ink) !important;
+  --bar-most-popular-background-color: var(--mv-ink) !important;
+  --bar-most-popular-color: #fff !important;
+  --bar-border-radius: 14px !important;
+}
+.mv:not(#mv) .kaching-bundles__block-title {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  color: var(--mv-ink-muted) !important;
+}
+.mv:not(#mv) .kaching-bundles__block-title::before,
+.mv:not(#mv) .kaching-bundles__block-title::after { background: var(--mv-hairline) !important; border-color: var(--mv-hairline) !important; }
+.mv:not(#mv) .kaching-bundles__bar-container {
+  background: var(--mv-canvas) !important;
+  border: 1px solid var(--mv-hairline) !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s var(--mv-ease), background-color 0.2s var(--mv-ease);
+}
+.mv:not(#mv) .kaching-bundles__bar--selected .kaching-bundles__bar-container {
+  background: var(--mv-parchment) !important;
+  border-color: var(--mv-ink) !important;
+  box-shadow: inset 0 0 0 1px var(--mv-ink) !important;
+}
+.mv:not(#mv) .kaching-bundles__bar-first-line { color: var(--mv-ink) !important; font-weight: 600 !important; }
+.mv:not(#mv) .kaching-bundles__bar-second-line { color: var(--mv-ink-muted) !important; }
+.mv:not(#mv) .kaching-bundles__bar-price { color: var(--mv-ink) !important; font-weight: 600 !important; font-variant-numeric: tabular-nums; }
+.mv:not(#mv) .kaching-bundles__bar-full-price { color: #86868b !important; font-variant-numeric: tabular-nums; }
+.mv:not(#mv) .kaching-bundles__bar-most-popular__content {
+  background: var(--mv-ink) !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+}
+.mv:not(#mv) .kaching-bundles__free-gift { background: var(--mv-canvas) !important; border-top: 1px solid var(--mv-hairline); }
+.mv:not(#mv) .kaching-bundles__free-gift__text { color: var(--mv-ink) !important; font-size: 13px !important; font-weight: 400 !important; }
+.mv:not(#mv) .kaching-bundles__free-gift__full-price { color: #86868b !important; font-size: 13px !important; }
 
 /* ---------- Motion ---------- */
 

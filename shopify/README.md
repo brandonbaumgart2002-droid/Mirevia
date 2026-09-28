@@ -34,7 +34,7 @@ With Shopify CLI instead: `shopify theme pull`, copy these folders into the them
 - **What's in the box** and **Specs** accordions: replace with your real contents, heat levels, massage modes, battery life and charge time.
 - **Comparison table**: make sure every tick is true for your product.
 - **FAQ**: the answers are deliberately general. Add your own, especially anything about sleeping with it on, auto shut-off and skin contact, following your product manual.
-- **Images**: the "Made for you" tabs and the "long nights" panel use your product photos from Files. Swap in your own in the theme editor. A tab or panel with no image shows as text only; if you add a product cut-out on a plain background, tick "product shadow" for it.
+- **Images**: the "Made for you" tabs and both feature panels use the `mirevia-*.png` images in Files (see `IMAGE-BRIEF.md`). Swap in your own in the theme editor. A tab or panel with no image shows as text only; if you add a product cut-out on a plain background, tick "product shadow" for it.
 - **Empty dropdowns are hidden**: "Overview" shows your product description, so it only appears once the product has one.
 - **Colours**: if your colour options don't show the right swatch, set Shopify swatches on the option values, or edit the *Colour swatches* list in the product section settings.
 
@@ -50,6 +50,10 @@ Add `?for=` to the product link in each ad so the page opens on the matching sto
 | Work and on the go | `?for=on-the-go` |
 
 The page opens on that tab, shows a one-line "For you:" note in the buy box, and remembers the choice on that device. Logged-in customers also see "Welcome back, [first name]." Add, rename or remove tabs in the theme editor; each tab's **Link key** is what goes after `?for=`.
+
+## Bundle picker (Kaching)
+
+The Kaching bundle box inside the buy box is restyled by `mirevia-pdp.css` to the page's neutrals (white cards, ink selection, grey compare-at prices). Its wording, the "LOW STOCK — SELLING FAST" line and the free-gift offers are set in the Kaching app.
 
 ## Reviews
 
