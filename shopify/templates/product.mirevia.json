@@ -19,6 +19,7 @@
         "note": { "type": "personal_note", "settings": { "label": "For you:" } },
         "variants": { "type": "variant_picker", "settings": {} },
         "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to bag", "show_quantity": false, "show_dynamic_checkout": true } },
+        "payments": { "type": "payment_icons", "settings": { "label": "" } },
         "perks": {
           "type": "perks",
           "settings": { "perk_1": "Free shipping", "perk_2": "30-day money-back guarantee", "perk_3": "Secure checkout" }
@@ -40,7 +41,7 @@
           "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Free shipping on every order.</p><p>Covered by our 30-day money-back guarantee. See the <a href=\"/policies/refund-policy\">refund policy</a> for details.</p>", "open": false }
         }
       },
-      "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "perks", "description", "box", "how-to", "shipping"],
+      "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "payments", "perks", "description", "box", "how-to", "shipping"],
       "settings": {
         "accent": "#8a2f52",
         "accent_on_dark": "#f2a9c4",

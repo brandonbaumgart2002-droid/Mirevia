@@ -367,6 +367,12 @@
 .mv-form__status:empty { display: none; }
 .mv-form__status a { color: var(--mv-accent); }
 
+/* Payment icons */
+.mv-payments { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: -4px; }
+.mv-payments__label { font-size: 13px; color: var(--mv-ink-muted); }
+.mv-payments__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.mv-payments__icon { display: block; width: 36px; height: 23px; }
+
 /* Perks */
 .mv-perks {
   display: grid;

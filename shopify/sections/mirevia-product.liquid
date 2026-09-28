@@ -282,6 +282,21 @@
                 {%- endform -%}
               </div>
 
+            {%- when 'payment_icons' -%}
+              {%- comment -%} Only the methods switched on in Shopify Payments / checkout settings. {%- endcomment -%}
+              {%- if shop.enabled_payment_types.size > 0 -%}
+                <div class="mv-payments" {{ block.shopify_attributes }}>
+                  {%- if block.settings.label != blank -%}
+                    <p class="mv-payments__label">{{ block.settings.label | escape }}</p>
+                  {%- endif -%}
+                  <ul class="mv-payments__list" role="list">
+                    {%- for type in shop.enabled_payment_types -%}
+                      <li class="mv-payments__item">{{ type | payment_type_svg_tag: class: 'mv-payments__icon' }}</li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+
             {%- when 'perks' -%}
               <ul class="mv-perks" {{ block.shopify_attributes }}>
                 {%- for i in (1..3) -%}
@@ -471,6 +486,13 @@
         { "type": "text", "id": "benefit_2", "label": "Benefit 2", "default": "Cordless, so you can wear it anywhere" },
         { "type": "text", "id": "benefit_3", "label": "Benefit 3" },
         { "type": "text", "id": "benefit_4", "label": "Benefit 4" }
+      ]
+    },
+    {
+      "type": "payment_icons", "name": "Payment icons", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Shows the payment methods enabled in your Shopify checkout settings." },
+        { "type": "text", "id": "label", "label": "Text above the icons" }
       ]
     },
     {
