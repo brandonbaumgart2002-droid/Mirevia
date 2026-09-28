@@ -10,6 +10,7 @@ A premium product page in the style of Therabody's product pages, built on the A
 | `sections/mirevia-personalise.liquid` | "Made for how your cycle feels": one tab per type of customer |
 | `sections/mirevia-highlights.liquid` | Dark strip with 3–4 short claims |
 | `sections/mirevia-feature-tiles.liquid` | Apple-style full-width panels |
+| `sections/mirevia-testimonials.liquid` | "In their words": customer quotes, swipeable on mobile |
 | `sections/mirevia-compare.liquid` | Mirevia vs hot water bottle vs heat patch |
 | `sections/mirevia-faq.liquid` | FAQ, also marked up for Google |
 | `assets/mirevia-pdp.css`, `assets/mirevia-pdp.js` | Styles and behaviour (no extra apps or libraries) |
@@ -66,6 +67,15 @@ The drawer itself is part of your theme, not this folder. Three things were chan
 ## Bundle picker (Kaching)
 
 The Kaching bundle box inside the buy box is restyled by `mirevia-pdp.css` to the page's neutrals (white cards, ink selection, grey compare-at prices). Its wording, the "LOW STOCK — SELLING FAST" line and the free-gift offers are set in the Kaching app.
+
+## Customer quotes
+
+The "In their words" section holds your customers' quotes word for word, with each person's own star rating. It has the id `reviews`, so the rating link in the buy box jumps to it. Per quote you can:
+
+- tick **Verified buyer**, only for people who bought from your store;
+- add a **customer photo**, only a real photo of that customer shared with their permission.
+
+There is deliberately no overall "X ratings" line: add one only when a reviews app supplies the real number.
 
 ## Reviews
 

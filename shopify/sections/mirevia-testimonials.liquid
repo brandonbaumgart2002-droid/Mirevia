@@ -1,0 +1,75 @@
+{%- comment -%}
+  Customer quotes. Swipeable cards on mobile, a grid on desktop.
+  Use real customers' own words only; photos are optional and should be of the customer.
+{%- endcomment -%}
+
+{{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <section class="mv mv-quotes mv-surface--{{ section.settings.surface }}" id="reviews">
+    <div class="mv-container">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="mv-h2 mv-quotes__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="mv-lead mv-quotes__intro">{{ section.settings.intro | escape }}</p>
+      {%- endif -%}
+
+      <ul class="mv-quotes__list" role="list" tabindex="0" aria-label="{{ section.settings.heading | default: 'Customer quotes' | escape }}">
+        {%- for block in section.blocks -%}
+          {%- assign stars = block.settings.rating | times: 20 -%}
+          <li class="mv-quote" {{ block.shopify_attributes }}>
+            <figure class="mv-quote__inner">
+              <p class="mv-quote__stars" style="--mv-rating: {{ stars }}%;">
+                <span class="mv-visually-hidden">{{ block.settings.rating }} out of 5 stars</span>
+              </p>
+              <blockquote class="mv-quote__text">{{ block.settings.quote | escape }}</blockquote>
+              <figcaption class="mv-quote__author">
+                {%- if block.settings.photo != blank -%}
+                  {{ block.settings.photo | image_url: width: 96 | image_tag: loading: 'lazy', width: 40, height: 40, alt: '', class: 'mv-quote__photo' }}
+                {%- endif -%}
+                <span class="mv-quote__name">{{ block.settings.name | escape }}</span>
+                {%- if block.settings.verified -%}
+                  <span class="mv-quote__verified">Verified buyer</span>
+                {%- endif -%}
+              </figcaption>
+            </figure>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mirevia: customer quotes",
+  "tag": "div",
+  "class": "mv-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "In their words" },
+    { "type": "text", "id": "intro", "label": "Intro" },
+    {
+      "type": "select", "id": "surface", "label": "Background", "default": "parchment",
+      "options": [
+        { "value": "canvas", "label": "White" },
+        { "value": "parchment", "label": "Light grey" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quote", "name": "Quote",
+      "settings": [
+        { "type": "paragraph", "content": "Use a real customer's own words, with their permission." },
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Name", "info": "First name and last initial, e.g. Holly C." },
+        { "type": "range", "id": "rating", "label": "Their star rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "checkbox", "id": "verified", "label": "Show \"Verified buyer\"", "default": false, "info": "Only if this person bought from your store." },
+        { "type": "image_picker", "id": "photo", "label": "Customer photo (optional)", "info": "A real photo of this customer, shared with their permission." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Mirevia: customer quotes" }]
+}
+{% endschema %}

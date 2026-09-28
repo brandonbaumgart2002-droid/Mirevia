@@ -123,6 +123,108 @@
       "block_order": ["cordless", "dual", "sleep"],
       "settings": { "heading": "Relief you can rest with" }
     },
+    "reviews": {
+      "type": "mirevia-testimonials",
+      "blocks": {
+        "quote-1": {
+          "type": "quote",
+          "settings": {
+            "quote": "Pairing the heat with the vibration is what made the difference between enduring the night and sleeping through it. I thought heat alone would do what it's always done for me — barely touch the pain.",
+            "name": "Fiona N.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-2": {
+          "type": "quote",
+          "settings": {
+            "quote": "I just fall asleep now and don't wake up in pain needing to reset anything. I expected the auto shut-off to be annoying, like I'd have to keep turning it back on.",
+            "name": "Holly C.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-3": {
+          "type": "quote",
+          "settings": {
+            "quote": "This is honestly the first period product that's let me get through the day without feeling like I have to just push through the pain.",
+            "name": "Maria D.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-4": {
+          "type": "quote",
+          "settings": {
+            "quote": "You genuinely can't tell I'm wearing it under my clothes. I've worn it to work without anyone noticing.",
+            "name": "Brittany F.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-5": {
+          "type": "quote",
+          "settings": {
+            "quote": "It's stayed warm every single time I've used it. I thought it'd be like my hot water bottle, helpful for a bit until it went cold and I was back to gritting my teeth.",
+            "name": "Claire W.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-6": {
+          "type": "quote",
+          "settings": {
+            "quote": "This is the first non-medicated thing that's actually made a real difference. I thought I'd basically accepted that nothing short of medication could touch pain this excruciating.",
+            "name": "Timera L.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-7": {
+          "type": "quote",
+          "settings": {
+            "quote": "It's the only thing that's kept up with how bad my cramps get. I assumed it'd be another product that looks good in the ad and does nothing once you're actually curled up in pain.",
+            "name": "Jenny M.",
+            "rating": 4,
+            "verified": false
+          }
+        },
+        "quote-8": {
+          "type": "quote",
+          "settings": {
+            "quote": "I used to lie awake in pain most nights during my period. Now I put this on, and the auto shut-off means I don't even have to think about it — I just fall asleep.",
+            "name": "Sasha K.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-9": {
+          "type": "quote",
+          "settings": {
+            "quote": "My cramps are usually bad enough that I'm curled up unable to move. Being able to turn the intensity right up made a real difference on my worst days.",
+            "name": "Sierra R.",
+            "rating": 5,
+            "verified": false
+          }
+        }
+      },
+      "block_order": [
+        "quote-1",
+        "quote-2",
+        "quote-3",
+        "quote-4",
+        "quote-5",
+        "quote-6",
+        "quote-7",
+        "quote-8",
+        "quote-9"
+      ],
+      "settings": {
+        "heading": "In their words",
+        "intro": "",
+        "surface": "parchment"
+      }
+    },
     "tiles": {
       "type": "mirevia-feature-tiles",
       "blocks": {
@@ -213,5 +315,5 @@
       }
     }
   },
-  "order": ["main", "for-you", "highlights", "tiles", "compare", "faq"]
+  "order": ["main", "for-you", "highlights", "reviews", "tiles", "compare", "faq"]
 }

@@ -524,6 +524,71 @@
   .mv-tile__media { margin-top: 40px; }
 }
 
+/* ---------- Customer quotes ---------- */
+
+.mv-quotes { padding: var(--mv-section-y) 0; }
+.mv-quotes__intro { margin-top: 8px; max-width: 46ch; }
+.mv-quotes__list {
+  display: flex;
+  gap: 12px;
+  margin: 24px calc(var(--mv-gutter) * -1) 0;
+  padding: 2px var(--mv-gutter) 4px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--mv-gutter);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.mv-quotes__list::-webkit-scrollbar { display: none; }
+/* position: relative keeps the hidden rating text inside the scroller instead of widening the page */
+.mv-quote { position: relative; flex: 0 0 84%; scroll-snap-align: start; }
+.mv-quote__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  margin: 0;
+  padding: 20px;
+  border-radius: var(--mv-radius-card);
+  background: var(--mv-canvas);
+}
+.mv-surface--canvas .mv-quote__inner { background: var(--mv-parchment); }
+.mv-quote__stars {
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--mv-accent) var(--mv-rating), #d2d2d7 var(--mv-rating));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  align-self: flex-start;
+}
+.mv-quote__stars::before { content: "\2605\2605\2605\2605\2605"; }
+.mv .mv-quote__text { flex: 1 1 auto; margin: 0 !important; padding: 0 !important; border: 0 !important; font-style: normal !important; font-size: 16px; line-height: 1.5; color: var(--mv-ink); text-wrap: pretty; }
+.mv-quote__author { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; font-size: 14px; }
+.mv-quote__photo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.mv-quote__name { font-weight: 600; }
+.mv-quote__verified { color: var(--mv-ink-muted); font-size: 13px; }
+.mv-quote__verified::before { content: "\2713  "; color: var(--mv-accent); }
+
+@media (min-width: 750px) {
+  .mv-quotes__list {
+    display: block;
+    columns: 2;
+    column-gap: 16px;
+    margin: 36px 0 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .mv-quote { break-inside: avoid; margin-bottom: 16px; }
+  .mv-quote__inner { padding: 28px; }
+  .mv .mv-quote__text { font-size: 17px; }
+}
+@media (min-width: 1069px) {
+  .mv-quotes__list { columns: 3; }
+}
+
 /* ---------- Comparison ---------- */
 
 .mv-compare { padding: var(--mv-section-y) 0; }
@@ -590,6 +655,7 @@
   .mv-highlights__label { margin-left: auto; margin-right: auto; }
 
   .mv-faq__intro { align-items: center; text-align: center; }
+  .mv-quotes__heading, .mv-quotes__intro { text-align: center; margin-left: auto; margin-right: auto; }
 
   /* Comparison fits the screen instead of scrolling sideways */
   .mv-compare__table { min-width: 0; table-layout: fixed; font-size: 14px; }
