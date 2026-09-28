@@ -47,7 +47,7 @@
         "use_theme_fonts": false,
         "media_ratio": "1",
         "media_fit": "cover",
-        "after_add": "cart",
+        "after_add": "drawer",
         "sticky_bar": true,
         "sticky_label": "Add to bag",
         "sticky_offset": 96

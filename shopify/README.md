@@ -52,6 +52,17 @@ Add `?for=` to the product link in each ad so the page opens on the matching sto
 
 The page opens on that tab, shows a one-line "For you:" note in the buy box, and remembers the choice on that device. Logged-in customers also see "Welcome back, [first name]." Add, rename or remove tabs in the theme editor; each tab's **Link key** is what goes after `?for=`.
 
+## Cart drawer
+
+Add to bag opens your theme's cart drawer on the same page (product section setting **After add to bag → Open the cart drawer**). If the theme has no compatible drawer, it falls back to the cart page. Kaching bundles and free gifts are added exactly as before.
+
+The drawer itself is part of your theme, not this folder. Three things were changed on the theme:
+
+1. `assets/mirevia-cart.css` (in this folder) is uploaded to the theme and loaded by one line added to the top of the theme's `sections/cart-drawer.liquid`:
+   `{{ 'mirevia-cart.css' | asset_url | stylesheet_tag }}`
+2. Cart drawer settings (theme editor → Cart drawer): white and light-grey colours, near-black "Secure checkout" button, mulberry for savings and free-gift labels.
+3. Cart drawer blocks: the countdown timer, the free-shipping progress bar (shipping is always free) and the hard-coded "Excellent 4.8 out of 5" rating are switched off; the top line reads "Free shipping on every order"; the guarantee line reads "30-day money-back guarantee". Switch the rating back on only once it shows real reviews.
+
 ## Bundle picker (Kaching)
 
 The Kaching bundle box inside the buy box is restyled by `mirevia-pdp.css` to the page's neutrals (white cards, ink selection, grey compare-at prices). Its wording, the "LOW STOCK — SELLING FAST" line and the free-gift offers are set in the Kaching app.

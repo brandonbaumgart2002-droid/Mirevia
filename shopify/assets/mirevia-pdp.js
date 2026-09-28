@@ -46,7 +46,7 @@
       this.moneyFormat = data.moneyFormat;
       this.form = qs('[data-mv-form]', root);
       this.addButton = qs('[data-mv-add]', root);
-      this.stayOnPage = root.dataset.afterAdd === 'stay';
+      this.afterAdd = root.dataset.afterAdd || 'cart';
 
       qsa('[data-mv-option] input', root).forEach((input) => {
         input.addEventListener('change', () => this.onOptionChange());
@@ -160,19 +160,32 @@
         error.hidden = true;
         this.addButton.setAttribute('aria-busy', 'true');
         label.textContent = 'Adding…';
-        if (!this.stayOnPage) return; // native submit goes to the cart page
+        // The theme's cart drawer, when it has one with the render hook we need.
+        const drawer = document.querySelector('cart-drawer');
+        const useDrawer = this.afterAdd === 'drawer' && drawer && typeof drawer.renderContents === 'function';
+        if (this.afterAdd === 'cart' || (this.afterAdd === 'drawer' && !useDrawer)) return; // native submit goes to the cart page
 
         event.preventDefault();
         const root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+        const data = new FormData(this.form);
+        if (useDrawer) {
+          // Ask Shopify to render the drawer in the same request, so it opens already up to date.
+          data.append('sections', 'cart-drawer,cart-icon-bubble');
+          data.append('sections_url', window.location.pathname);
+        }
         try {
           const response = await fetch(`${root}cart/add.js`, {
             method: 'POST',
             headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-            body: new FormData(this.form),
+            body: data,
           });
           const body = await response.json();
           if (!response.ok) throw new Error(body.description || body.message || 'Could not add to bag.');
-          status.innerHTML = `Added to your bag. <a href="${root}cart">View bag</a>`;
+          if (useDrawer && body.sections) {
+            drawer.renderContents(body); // also opens the drawer
+          } else {
+            status.innerHTML = `Added to your bag. <a href="${root}cart">View bag</a>`;
+          }
           document.dispatchEvent(new CustomEvent('mirevia:cart:added', { detail: body }));
         } catch (err) {
           error.textContent = `${err.message} Please try again.`;

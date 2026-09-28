@@ -408,8 +408,9 @@
     { "type": "textarea", "id": "swatches", "label": "Colour swatches", "default": "Navy: #1f2a44\nBlush: #e7c3c6\nBlack: #1d1d1f\nSand: #d8c8b4", "info": "One per line, as Colour name: #hex. Only needed if your colour options don't have Shopify swatches set." },
     { "type": "header", "content": "Buying" },
     {
-      "type": "select", "id": "after_add", "label": "After add to bag", "default": "cart",
+      "type": "select", "id": "after_add", "label": "After add to bag", "default": "drawer",
       "options": [
+        { "value": "drawer", "label": "Open the cart drawer" },
         { "value": "cart", "label": "Go to cart page" },
         { "value": "stay", "label": "Stay on this page" }
       ]
