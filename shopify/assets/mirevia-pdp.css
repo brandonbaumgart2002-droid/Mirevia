@@ -77,8 +77,10 @@
   .mv-display { font-size: 56px; line-height: 1.07; }
 }
 
-.mv-rte > * + * { margin-top: 12px; }
+.mv .mv-rte > * + * { margin-top: 12px; }
 .mv-rte ul, .mv-rte ol { padding-left: 20px; margin: 0; }
+.mv-rte li + li { margin-top: 6px; }
+.mv-rte ol li::marker { color: var(--mv-accent); font-weight: 600; }
 .mv-rte a { color: var(--mv-accent); }
 
 .mv-link {

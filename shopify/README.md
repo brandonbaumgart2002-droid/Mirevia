@@ -31,7 +31,8 @@ With Shopify CLI instead: `shopify theme pull`, copy these folders into the them
 
 - **Benefits** (under the title): the four feature lines come from your comparison image (3 heat levels, 3 massage modes, auto shut-off, fast warm-up). Check they match the product manual.
 - **Perks** (buy box): "Free shipping", "30-day money-back guarantee" and "Secure checkout" should match what you actually offer.
-- **What's in the box** and **Specs** accordions: replace with your real contents, heat levels, massage modes, battery life and charge time.
+- **What's in the box** accordion: replace with your real contents.
+- **How to use it** accordion: check the steps match your quick-start guide.
 - **Comparison table**: make sure every tick is true for your product.
 - **FAQ**: the answers are deliberately general. Add your own, especially anything about sleeping with it on, auto shut-off and skin contact, following your product manual.
 - **Images**: the "Made for you" tabs and both feature panels use the `mirevia-*.png` images in Files (see `IMAGE-BRIEF.md`). Swap in your own in the theme editor. A tab or panel with no image shows as text only; if you add a product cut-out on a plain background, tick "product shadow" for it.

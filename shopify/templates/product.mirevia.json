@@ -31,16 +31,16 @@
           "type": "accordion",
           "settings": { "heading": "What's in the box", "use_description": false, "content": "<ul><li>Mirevia pad</li><li>Adjustable strap</li><li>Charging cable</li><li>Quick-start guide</li></ul>", "open": false }
         },
-        "specs": {
+        "how-to": {
           "type": "accordion",
-          "settings": { "heading": "Specs", "use_description": false, "content": "<p>Heat settings, massage modes, battery life and charge time go here.</p>", "open": false }
+          "settings": { "heading": "How to use it", "use_description": false, "content": "<ol><li>Charge it fully before your first use.</li><li>Strap it low on your belly or lower back, over a light layer of clothing.</li><li>Turn it on and start on the lowest heat setting.</li><li>Add massage if you like, and turn the heat up gradually.</li><li>Relax. It switches itself off automatically, so you can rest with it on.</li></ol><p>Always follow the quick-start guide in the box.</p>", "open": false }
         },
         "shipping": {
           "type": "accordion",
           "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Free shipping on every order.</p><p>Covered by our 30-day money-back guarantee. See the <a href=\"/policies/refund-policy\">refund policy</a> for details.</p>", "open": false }
         }
       },
-      "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "perks", "description", "box", "specs", "shipping"],
+      "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "perks", "description", "box", "how-to", "shipping"],
       "settings": {
         "accent": "#8a2f52",
         "accent_on_dark": "#f2a9c4",
