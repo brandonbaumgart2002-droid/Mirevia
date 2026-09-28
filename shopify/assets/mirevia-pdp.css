@@ -690,8 +690,8 @@
   border-color: var(--mv-ink) !important;
   box-shadow: inset 0 0 0 1px var(--mv-ink) !important;
 }
-.mv:not(#mv) .kaching-bundles__bar-first-line { color: var(--mv-ink) !important; font-weight: 600 !important; }
-.mv:not(#mv) .kaching-bundles__bar-second-line { color: var(--mv-ink-muted) !important; }
+.mv:not(#mv) .kaching-bundles__bar-first-line { color: var(--mv-ink) !important; font-size: 17px !important; font-weight: 600 !important; line-height: 1.2 !important; }
+.mv:not(#mv) .kaching-bundles__bar-second-line { color: var(--mv-ink-muted) !important; font-size: 14px !important; line-height: 1.35 !important; margin-top: 2px; }
 .mv:not(#mv) .kaching-bundles__bar-price { color: var(--mv-ink) !important; font-weight: 600 !important; font-variant-numeric: tabular-nums; }
 .mv:not(#mv) .kaching-bundles__bar-full-price { color: #86868b !important; font-variant-numeric: tabular-nums; }
 .mv:not(#mv) .kaching-bundles__bar-most-popular__content {
