@@ -586,6 +586,10 @@
 }
 .mv:not(#mv) :is(h1, h2, h3, h4, [class*="title"], [class*="heading"]) { color: inherit !important; }
 .mv:not(#mv) .mv-title__tagline { color: var(--mv-ink-muted) !important; font-weight: 400 !important; }
+@media (max-width: 749px) {
+  /* The theme zeroes heading margins with !important, which leaves these width-capped headings off-centre. */
+  .mv:not(#mv) :is(.mv-personalise__heading, .mv-highlights__heading) { margin-left: auto !important; margin-right: auto !important; }
+}
 .mv:not(#mv) .mv-sticky__title { font-weight: 600 !important; }
 
 .mv:not(#mv) .mv-btn {
