@@ -26,6 +26,7 @@
   --mv-gutter: 20px;
   --mv-section-y: 44px;
   --mv-sticky-offset: 96px;
+  --mv-tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 @media (min-width: 750px) {
@@ -282,6 +283,21 @@
 }
 .mv-note__label { font-weight: 600; color: var(--mv-accent); }
 
+/* Benefits: short feature lines under the title */
+.mv-benefits { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.mv-benefits__item { display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 1.35; letter-spacing: -0.224px; }
+.mv-benefits__item::before {
+  content: "";
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--mv-accent);
+  -webkit-mask: var(--mv-tick) center / 12px no-repeat, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: var(--mv-tick) center / 12px no-repeat exclude, linear-gradient(#000 0 0);
+}
+
 /* Options */
 .mv-options-group { display: flex; flex-direction: column; gap: 20px; }
 .mv-options { margin: 0; padding: 0; border: 0; min-width: 0; }
@@ -367,8 +383,8 @@
   width: 16px;
   height: 16px;
   background: var(--mv-accent);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: var(--mv-tick) center / contain no-repeat;
+  mask: var(--mv-tick) center / contain no-repeat;
 }
 
 /* Accordion (buy box + FAQ) */
@@ -540,6 +556,7 @@
   .mv-buybox__inner { gap: 12px; }
   .mv-title__tagline { margin-top: 4px; font-size: 16px; }
   .mv-greeting, .mv-title, .mv-price, .mv-note { text-align: center; }
+  .mv-benefits { justify-content: center; }
   .mv-title__tagline { margin-left: auto; margin-right: auto; }
   .mv-rating { align-self: center; }
   .mv-price__row { justify-content: center; }

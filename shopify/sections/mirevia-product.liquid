@@ -173,6 +173,16 @@
                 {%- endif -%}
               </div>
 
+            {%- when 'benefits' -%}
+              <ul class="mv-benefits" {{ block.shopify_attributes }}>
+                {%- for i in (1..4) -%}
+                  {%- assign key = 'benefit_' | append: i -%}
+                  {%- if block.settings[key] != blank -%}
+                    <li class="mv-benefits__item">{{ block.settings[key] | escape }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+
             {%- when 'personal_note' -%}
               <p class="mv-note" data-mv-personal-note hidden {{ block.shopify_attributes }}>
                 <span class="mv-note__label">{{ block.settings.label | escape }}</span>
@@ -450,6 +460,16 @@
         { "type": "text", "id": "add_label", "label": "Button label", "default": "Add to bag" },
         { "type": "checkbox", "id": "show_quantity", "label": "Show quantity", "default": false },
         { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show express checkout", "default": true }
+      ]
+    },
+    {
+      "type": "benefits", "name": "Benefits", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Short feature lines with a tick. Keep each one to a few words." },
+        { "type": "text", "id": "benefit_1", "label": "Benefit 1", "default": "Heat and vibration massage in one" },
+        { "type": "text", "id": "benefit_2", "label": "Benefit 2", "default": "Cordless, so you can wear it anywhere" },
+        { "type": "text", "id": "benefit_3", "label": "Benefit 3" },
+        { "type": "text", "id": "benefit_4", "label": "Benefit 4" }
       ]
     },
     {

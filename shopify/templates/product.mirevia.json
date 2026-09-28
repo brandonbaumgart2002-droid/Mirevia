@@ -6,7 +6,16 @@
         "greeting": { "type": "greeting", "settings": { "text": "Welcome back, [name]." } },
         "title": { "type": "title", "settings": { "tagline": "Heat and gentle massage for period cramps. Cordless, so you can keep your day." } },
         "rating": { "type": "rating", "settings": { "reviews_anchor": "#reviews" } },
-        "price": { "type": "price", "settings": { "show_saving": true, "show_installments": true } },
+        "price": { "type": "price", "settings": { "show_saving": true, "show_installments": true }, "disabled": true },
+        "benefits": {
+          "type": "benefits",
+          "settings": {
+            "benefit_1": "Heat and vibration massage in one",
+            "benefit_2": "3 heat levels and 3 massage modes",
+            "benefit_3": "Cordless and slim enough to wear anywhere",
+            "benefit_4": "Warms up fast, with auto shut-off"
+          }
+        },
         "note": { "type": "personal_note", "settings": { "label": "For you:" } },
         "variants": { "type": "variant_picker", "settings": {} },
         "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to bag", "show_quantity": false, "show_dynamic_checkout": true } },
@@ -31,7 +40,7 @@
           "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Delivery times and our <a href=\"/policies/refund-policy\">returns policy</a>.</p>", "open": false }
         }
       },
-      "block_order": ["greeting", "title", "rating", "price", "note", "variants", "buy", "perks", "description", "box", "specs", "shipping"],
+      "block_order": ["greeting", "title", "rating", "price", "benefits", "note", "variants", "buy", "perks", "description", "box", "specs", "shipping"],
       "settings": {
         "accent": "#8a2f52",
         "accent_on_dark": "#f2a9c4",

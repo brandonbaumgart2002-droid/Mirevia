@@ -29,6 +29,7 @@ With Shopify CLI instead: `shopify theme pull`, copy these folders into the them
 
 ## Before you publish, check these
 
+- **Benefits** (under the title): the four feature lines come from your comparison image (3 heat levels, 3 massage modes, auto shut-off, fast warm-up). Check they match the product manual.
 - **Perks** (buy box): "Free shipping", "30-day money-back guarantee" and "Secure checkout" should match what you actually offer.
 - **What's in the box** and **Specs** accordions: replace with your real contents, heat levels, massage modes, battery life and charge time.
 - **Comparison table**: make sure every tick is true for your product.
