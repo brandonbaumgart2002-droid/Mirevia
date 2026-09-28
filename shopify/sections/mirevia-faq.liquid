@@ -1,0 +1,73 @@
+{{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="mv mv-faq mv-surface--{{ section.settings.surface }}" id="faq">
+  <div class="mv-container mv-faq__grid">
+    <div class="mv-faq__intro">
+      <h2 class="mv-h2">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.contact_text != blank and section.settings.contact_link != blank -%}
+        <p class="mv-body-muted">
+          <a class="mv-link" href="{{ section.settings.contact_link }}">{{ section.settings.contact_text | escape }}</a>
+        </p>
+      {%- endif -%}
+    </div>
+    <div class="mv-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="mv-acc" {{ block.shopify_attributes }}>
+          <summary class="mv-acc__summary">{{ block.settings.question | escape }}</summary>
+          <div class="mv-acc__body mv-rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mirevia FAQ",
+  "tag": "div",
+  "class": "mv-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered" },
+    { "type": "text", "id": "contact_text", "label": "Contact link text", "default": "Still unsure? Talk to us" },
+    { "type": "url", "id": "contact_link", "label": "Contact link" },
+    {
+      "type": "select", "id": "surface", "label": "Background", "default": "parchment",
+      "options": [
+        { "value": "canvas", "label": "White" },
+        { "value": "parchment", "label": "Soft grey" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Which heat setting should I start with?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Start on the lowest setting and turn it up gradually.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Mirevia FAQ", "blocks": [{ "type": "question" }] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,201 @@
+{
+  "sections": {
+    "main": {
+      "type": "mirevia-product",
+      "blocks": {
+        "greeting": { "type": "greeting", "settings": { "text": "Welcome back, [name]." } },
+        "title": { "type": "title", "settings": { "tagline": "Heat and gentle massage for period cramps. Cordless, so you can keep your day." } },
+        "rating": { "type": "rating", "settings": { "reviews_anchor": "#reviews" } },
+        "price": { "type": "price", "settings": { "show_saving": true, "show_installments": true } },
+        "note": { "type": "personal_note", "settings": { "label": "For you:" } },
+        "variants": { "type": "variant_picker", "settings": {} },
+        "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to bag", "show_quantity": false, "show_dynamic_checkout": true } },
+        "perks": {
+          "type": "perks",
+          "settings": { "perk_1": "Free shipping", "perk_2": "Easy returns", "perk_3": "Secure checkout" }
+        },
+        "description": {
+          "type": "accordion",
+          "settings": { "heading": "Overview", "use_description": true, "content": "", "open": true }
+        },
+        "box": {
+          "type": "accordion",
+          "settings": { "heading": "What's in the box", "use_description": false, "content": "<ul><li>Mirevia pad</li><li>Adjustable strap</li><li>Charging cable</li><li>Quick-start guide</li></ul>", "open": false }
+        },
+        "specs": {
+          "type": "accordion",
+          "settings": { "heading": "Specs", "use_description": false, "content": "<p>Heat settings, massage modes, battery life and charge time go here.</p>", "open": false }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": { "heading": "Shipping and returns", "use_description": false, "content": "<p>Delivery times and our <a href=\"/policies/refund-policy\">returns policy</a>.</p>", "open": false }
+        }
+      },
+      "block_order": ["greeting", "title", "rating", "price", "note", "variants", "buy", "perks", "description", "box", "specs", "shipping"],
+      "settings": {
+        "accent": "#8a2f52",
+        "accent_on_dark": "#f2a9c4",
+        "use_theme_fonts": false,
+        "media_ratio": "1",
+        "media_fit": "cover",
+        "after_add": "cart",
+        "sticky_bar": true,
+        "sticky_label": "Add to bag",
+        "sticky_offset": 96
+      }
+    },
+    "for-you": {
+      "type": "mirevia-personalise",
+      "blocks": {
+        "cramps": {
+          "type": "need",
+          "settings": {
+            "label": "Cramps",
+            "key": "cramps",
+            "heading": "Warmth where it hurts",
+            "body": "<p>Strap it over your lower belly or lower back. Steady heat settles tight muscles while a slow vibration works on top, so you can keep going instead of curling up.</p>",
+            "tip": "Start low and turn the heat up gradually.",
+            "note": "Wear it low on your belly or back on day one and two."
+          }
+        },
+        "sleep": {
+          "type": "need",
+          "settings": {
+            "label": "Sleep",
+            "key": "sleep",
+            "heading": "Wind down, not wake up",
+            "body": "<p>No kettle trip at midnight and no hot water bottle going cold. Settle in with gentle heat and a quiet massage as part of your bedtime routine.</p>",
+            "tip": "Put it on 20 minutes before lights out.",
+            "note": "Make it part of your wind-down on heavy nights."
+          }
+        },
+        "endo": {
+          "type": "need",
+          "settings": {
+            "label": "Endo and PCOS",
+            "key": "endo",
+            "heading": "Comfort on the hard days",
+            "body": "<p>Many people living with endometriosis or PCOS keep heat in their comfort routine. Mirevia makes that routine wearable. It isn't a treatment, so keep talking to your doctor about your pain.</p>",
+            "tip": "Keep it charged and close for flare days.",
+            "note": "Keep it charged for flare days."
+          }
+        },
+        "on-the-go": {
+          "type": "need",
+          "settings": {
+            "label": "Work and on the go",
+            "key": "on-the-go",
+            "heading": "Relief that fits your day",
+            "body": "<p>Cordless and slim enough to wear at your desk, on the commute or on the couch. No cord to trip on, no socket to sit next to.</p>",
+            "tip": "Wear it over a light layer of clothing.",
+            "note": "Wear it at your desk over a light layer."
+          }
+        }
+      },
+      "block_order": ["cramps", "sleep", "endo", "on-the-go"],
+      "settings": {
+        "heading": "Made for how your cycle feels",
+        "intro": "Pick what you need most. We'll show you how to use it.",
+        "surface": "parchment"
+      }
+    },
+    "highlights": {
+      "type": "mirevia-highlights",
+      "blocks": {
+        "cordless": { "type": "highlight", "settings": { "value": "Cordless", "label": "Wear it on the couch, at your desk or in bed." } },
+        "dual": { "type": "highlight", "settings": { "value": "Heat + massage", "label": "Warmth and vibration working together." } },
+        "sleep": { "type": "highlight", "settings": { "value": "Built for rest", "label": "Designed for the nights your period keeps you up." } }
+      },
+      "block_order": ["cordless", "dual", "sleep"],
+      "settings": { "heading": "Relief that goes where you go" }
+    },
+    "tiles": {
+      "type": "mirevia-feature-tiles",
+      "blocks": {
+        "steady": {
+          "type": "tile",
+          "settings": {
+            "surface": "canvas",
+            "heading": "Heat that stays steady.",
+            "text": "No kettle, no cord, no cooling off halfway through.",
+            "product_shadow": true,
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "night": {
+          "type": "tile",
+          "settings": {
+            "surface": "dark",
+            "heading": "Made for the long nights.",
+            "text": "Slim enough to lie on. Quiet enough to forget it's there.",
+            "product_shadow": false,
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["steady", "night"],
+      "settings": {}
+    },
+    "compare": {
+      "type": "mirevia-compare",
+      "blocks": {
+        "cordless": { "type": "row", "settings": { "feature": "Cordless and wearable", "col_1": "yes", "col_2": "no", "col_3": "yes" } },
+        "adjustable": { "type": "row", "settings": { "feature": "Adjustable heat", "col_1": "yes", "col_2": "no", "col_3": "no" } },
+        "massage": { "type": "row", "settings": { "feature": "Built-in massage", "col_1": "yes", "col_2": "no", "col_3": "no" } },
+        "steady": { "type": "row", "settings": { "feature": "Stays warm, doesn't cool off", "col_1": "yes", "col_2": "no", "col_3": "yes" } },
+        "reusable": { "type": "row", "settings": { "feature": "Reusable", "col_1": "yes", "col_2": "yes", "col_3": "no" } }
+      },
+      "block_order": ["cordless", "adjustable", "massage", "steady", "reusable"],
+      "settings": {
+        "heading": "Why it beats a hot water bottle",
+        "col_1": "Mirevia",
+        "col_2": "Hot water bottle",
+        "col_3": "Heat patch",
+        "surface": "canvas"
+      }
+    },
+    "faq": {
+      "type": "mirevia-faq",
+      "blocks": {
+        "how": {
+          "type": "question",
+          "settings": {
+            "question": "How does it help with period cramps?",
+            "answer": "<p>It combines gentle heat with vibration massage over your lower belly or lower back. Heat helps tight muscles relax, and the massage adds a soothing rhythm on top.</p>"
+          }
+        },
+        "where": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I wear it?",
+            "answer": "<p>Anywhere. It's cordless, so wear it on your lower belly or lower back at home, at work or on the go, over a light layer of clothing.</p>"
+          }
+        },
+        "setting": {
+          "type": "question",
+          "settings": {
+            "question": "Which heat setting should I start with?",
+            "answer": "<p>Start on the lowest setting and turn it up gradually. If you have sensitive skin, reduced feeling or a medical condition, check with your doctor before use.</p>"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's not right for me?",
+            "answer": "<p>See our <a href=\"/policies/refund-policy\">returns policy</a> for the full details.</p>"
+          }
+        }
+      },
+      "block_order": ["how", "where", "setting", "returns"],
+      "settings": {
+        "heading": "Questions, answered",
+        "contact_text": "Still unsure? Talk to us",
+        "contact_link": "/pages/contact",
+        "surface": "parchment"
+      }
+    }
+  },
+  "order": ["main", "for-you", "highlights", "tiles", "compare", "faq"]
+}

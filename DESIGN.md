@@ -273,6 +273,47 @@ components:
     padding: 64px
 ---
 
+## Mirevia layer (read first)
+
+Everything below this section is the Apple base system and still applies. This layer adds the Therabody product-page structure and Mirevia's brand on top. **Where the two conflict, this layer wins.** The live implementation is in `shopify/` (sections, `assets/mirevia-pdp.css`, `templates/product.mirevia.json`).
+
+### Brand read
+Quiet-luxury sleep and recovery for the menstrual cycle. Calm, confident, never shouty. No pink-bubblegum, no TikTok gimmicks, no clinical blue. The product and real people carry the page; the UI stays out of the way.
+
+### Overrides to the Apple base
+| Topic | Apple base | Mirevia |
+|---|---|---|
+| Accent | Action Blue `#0066cc` | **Mulberry `#8a2f52`** (`--mv-accent`), and `#f2a9c4` on dark tiles. Still exactly one accent: links, selected options, focus rings, sale badge, "for you" labels. |
+| Primary CTA | Blue pill | **Near-black pill** (`#1d1d1f`, hover `#3a3a3c`), white label, 56px tall, full width in the buy box. This is the Therabody move; it keeps the accent rare. |
+| Secondary CTA | Blue ghost pill | Express checkout styled as an ink-outline pill. |
+| Fonts | SF Pro (proprietary) | System stack only (`-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial`), so Apple devices get SF and nothing proprietary ships. Theme fonts optional via a section setting. |
+| Press state | `scale(0.95)` | `scale(0.98)`: buttons here are wider, so 0.95 reads as a jolt. |
+| Pure black | Global nav | Not used. Darkest surface is `#272729`. |
+
+Kept as-is from Apple: 17px body at 1.47, weight 600 headlines with negative tracking, weight ladder 300/400/600/700 (no 500), alternating light/parchment/dark full-bleed tiles as section dividers, pill radius for actions, 18px radius for cards and gallery, 8px for thumbnails, no decorative gradients, and the single product shadow (`3px 5px 30px rgba(0,0,0,.22)`) only on product cut-outs.
+
+### Product page structure (Therabody pattern)
+1. **Gallery + buy box**: 7/5 split on desktop, buy box sticky under the header; gallery is swipeable with a thumbnail strip. Mobile stacks gallery first, full-bleed.
+2. **Buy box order**: returning-customer greeting → title + one-line tagline → star rating (from review metafields only) → price, compare-at, saving badge, instalments → "For you" note → colour swatches / option chips → Add to bag → express checkout → perks row → accordions (Overview, What's in the box, Specs, Shipping and returns).
+3. **Floating add-to-bag bar**: Apple's frosted sticky bar (parchment 80% + blur), appears once the main button scrolls away.
+4. **Made for you**: one tab per sub-avatar, split image + copy. Rule of One: each tab is one person, one need, one message.
+5. **Highlights**: dark strip, 3–4 short claims separated by hairlines, not cards.
+6. **Feature tiles**: Apple full-bleed tiles, centred, one message each, alternate light and dark.
+7. **Comparison**: Mirevia vs the alternatives, Mirevia column tinted, ticks in the accent.
+8. **FAQ**: heading left (sticky), accordions right.
+
+### Personalisation rules
+- Every ad links to the product page with `?for=<key>` (`cramps`, `sleep`, `endo`, `on-the-go`). The page opens on that tab and shows the matching one-line note in the buy box. The choice is remembered on that device.
+- Logged-in customers are greeted by first name. Never show anything personal to a logged-out visitor.
+- Copy stays in second person, plain and specific. No medical claims: heat and massage "help tight muscles relax"; they don't "treat" or "cure". Endo/PCOS copy always says it isn't a treatment.
+- Never invent numbers, reviews or ratings. Specs and ratings come from the product and its metafields.
+
+### Don't
+- Don't add a second accent or recolour the CTA with the accent.
+- Don't put the section eyebrow label over every heading; headlines stand alone.
+- Don't use three identical feature cards; use the highlights strip or tiles.
+- Don't use beige/cream + brass palettes; the neutrals are Apple's cool greys.
+
 ## Overview
 
 Apple's web presence is a masterclass in **reverent product photography framed by near-invisible UI**. Every page is a stack of edge-to-edge product "tiles" — alternating light and dark canvases, each centered on a hero headline, a one-line tagline, two tiny blue pill CTAs, and an impossibly crisp product render. Nothing competes with the product. Typography is confident but quiet; color is either pure white, an off-white parchment, or a near-black tile; interactive elements are a single, quiet blue.
