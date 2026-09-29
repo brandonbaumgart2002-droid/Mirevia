@@ -14,6 +14,21 @@
       {%- if section.settings.intro != blank -%}
         <p class="mv-lead mv-quotes__intro">{{ section.settings.intro | escape }}</p>
       {%- endif -%}
+      {%- if section.settings.show_summary -%}
+        {%- liquid
+          # Worked out from the quotes below, so it always matches what's shown.
+          assign total = 0
+          for block in section.blocks
+            assign total = total | plus: block.settings.rating
+          endfor
+          assign average = total | times: 1.0 | divided_by: section.blocks.size
+          assign average_pct = average | divided_by: 5 | times: 100
+        -%}
+        <p class="mv-quotes__summary">
+          <span class="mv-rating__stars" style="--mv-rating: {{ average_pct }}%;" aria-hidden="true"></span>
+          <span><strong>{{ average | round: 1 }}</strong> out of 5 · {{ section.blocks.size }} reviews</span>
+        </p>
+      {%- endif -%}
 
       <ul class="mv-quotes__list" role="list" tabindex="0" aria-label="{{ section.settings.heading | default: 'Customer quotes' | escape }}">
         {%- for block in section.blocks -%}
@@ -49,6 +64,7 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "In their words" },
     { "type": "text", "id": "intro", "label": "Intro" },
+    { "type": "checkbox", "id": "show_summary", "label": "Show average rating", "default": true, "info": "Worked out from the quotes in this section." },
     {
       "type": "select", "id": "surface", "label": "Background", "default": "parchment",
       "options": [

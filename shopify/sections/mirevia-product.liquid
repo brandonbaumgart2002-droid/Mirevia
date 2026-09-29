@@ -128,18 +128,29 @@
               </div>
 
             {%- when 'rating' -%}
-              {%- if has_rating -%}
-                {%- liquid
-                  assign rating = product.metafields.reviews.rating.value
-                  assign rating_pct = rating.rating | divided_by: rating.scale_max | times: 100
+              {%- liquid
+                # A review app's metafields win; otherwise the numbers typed into the block (from reviews shown on this page).
+                assign show_rating = false
+                if has_rating
+                  assign rating_value = product.metafields.reviews.rating.value.rating
+                  assign rating_max = product.metafields.reviews.rating.value.scale_max
                   assign rating_count = product.metafields.reviews.rating_count.value | default: 0
-                -%}
+                  assign show_rating = true
+                elsif block.settings.manual_rating != blank and block.settings.manual_count > 0
+                  assign rating_value = block.settings.manual_rating | plus: 0
+                  assign rating_max = 5
+                  assign rating_count = block.settings.manual_count
+                  assign show_rating = true
+                endif
+              -%}
+              {%- if show_rating -%}
+                {%- assign rating_pct = rating_value | times: 1.0 | divided_by: rating_max | times: 100 -%}
                 <a class="mv-rating" href="{{ block.settings.reviews_anchor | default: '#reviews' }}" {{ block.shopify_attributes }}>
                   <span class="mv-rating__stars" style="--mv-rating: {{ rating_pct }}%;" aria-hidden="true"></span>
                   <span class="mv-rating__text">
-                    {{ rating.rating | round: 1 }}
-                    <span class="mv-visually-hidden">out of {{ rating.scale_max }} stars,</span>
-                    {%- if rating_count > 0 %} · {{ rating_count }} reviews{% endif -%}
+                    <strong>{{ rating_value | round: 1 }}</strong>
+                    <span class="mv-visually-hidden">out of {{ rating_max }} stars,</span>
+                    {%- if rating_count > 0 %} · {{ rating_count }} {% if rating_count == 1 %}review{% else %}reviews{% endif %}{% endif -%}
                   </span>
                 </a>
               {%- endif -%}
@@ -451,7 +462,9 @@
     {
       "type": "rating", "name": "Star rating", "limit": 1,
       "settings": [
-        { "type": "paragraph", "content": "Reads the product's reviews.rating and reviews.rating_count metafields, which most review apps fill in. Hidden when there are no reviews." },
+        { "type": "paragraph", "content": "Uses your review app's rating when one is installed (reviews.rating metafields). Until then it uses the numbers below." },
+        { "type": "text", "id": "manual_rating", "label": "Average rating (out of 5)", "info": "Only the real average of reviews shown on this page, e.g. 4.9. Leave blank to hide." },
+        { "type": "number", "id": "manual_count", "label": "Number of reviews", "info": "How many real reviews that average comes from." },
         { "type": "text", "id": "reviews_anchor", "label": "Link to reviews", "default": "#reviews" }
       ]
     },

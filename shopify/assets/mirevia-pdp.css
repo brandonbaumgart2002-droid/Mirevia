@@ -254,13 +254,16 @@
   font-size: var(--mv-star-size);
   line-height: 1;
   letter-spacing: 2px;
-  background: linear-gradient(90deg, var(--mv-ink) var(--mv-rating), #e6d6d3 var(--mv-rating));
+  background: linear-gradient(90deg, var(--mv-accent) var(--mv-rating), #e6d6d3 var(--mv-rating));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .mv-rating__stars::before { content: "\2605\2605\2605\2605\2605"; }
-.mv-rating__text { font-variant-numeric: tabular-nums; }
+.mv-rating__text { font-variant-numeric: tabular-nums; color: var(--mv-ink-muted); }
+.mv-rating__text strong { color: var(--mv-ink); font-weight: 600; }
+.mv-quotes__summary { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 15px; color: var(--mv-ink-muted); }
+.mv-quotes__summary strong { color: var(--mv-ink); font-weight: 600; }
 
 .mv-price__row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
 .mv-price__current { font-size: 26px; font-weight: 600; letter-spacing: -0.4px; font-variant-numeric: tabular-nums; }
@@ -658,6 +661,7 @@
 
   .mv-faq__intro { align-items: center; text-align: center; }
   .mv-quotes__heading, .mv-quotes__intro { text-align: center; margin-left: auto; margin-right: auto; }
+  .mv-quotes__summary { justify-content: center; }
 
   /* Comparison fits the screen instead of scrolling sideways */
   .mv-compare__table { min-width: 0; table-layout: fixed; font-size: 14px; }

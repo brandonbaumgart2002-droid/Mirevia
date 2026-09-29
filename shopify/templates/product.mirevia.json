@@ -5,7 +5,7 @@
       "blocks": {
         "greeting": { "type": "greeting", "settings": { "text": "Welcome back, [name]." } },
         "title": { "type": "title", "settings": { "tagline": "Soothing heat and gentle massage for period cramps. Cordless, so your day doesn't have to stop." } },
-        "rating": { "type": "rating", "settings": { "reviews_anchor": "#reviews" } },
+        "rating": { "type": "rating", "settings": { "reviews_anchor": "#reviews", "manual_rating": "4.9", "manual_count": 9 } },
         "price": { "type": "price", "settings": { "show_saving": true, "show_installments": true }, "disabled": true },
         "benefits": {
           "type": "benefits",
