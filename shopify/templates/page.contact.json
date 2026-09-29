@@ -1,0 +1,113 @@
+{
+  "sections": {
+    "header": {
+      "type": "mirevia-page-header",
+      "settings": {
+        "eyebrow": "Contact",
+        "heading": "We're here to help",
+        "text": "Questions about your order, or not sure which set is right for you? Send us a note and a real person will write back.",
+        "surface": "parchment"
+      }
+    },
+    "form": {
+      "type": "mirevia-contact",
+      "settings": {
+        "button_label": "Send message",
+        "success_text": "Thank you. We've got your message and will be in touch soon.",
+        "small_print": "We only use your details to reply to you.",
+        "aside_heading": "Before you write",
+        "surface": "canvas"
+      },
+      "blocks": {
+        "returns": {
+          "type": "link",
+          "settings": {
+            "title": "Returns and refunds",
+            "text": "30 days to try it. Love it, or your money back.",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "order": {
+          "type": "link",
+          "settings": {
+            "title": "Your order",
+            "text": "Sign in to see your orders and their status.",
+            "link": "/account/login"
+          }
+        },
+        "faq": {
+          "type": "link",
+          "settings": {
+            "title": "Common questions",
+            "text": "How it works, where to wear it, which setting to start on.",
+            "link": "#faq"
+          }
+        },
+        "shop": {
+          "type": "link",
+          "settings": {
+            "title": "Choosing your set",
+            "text": "Just for you, or The Pair to share.",
+            "link": "shopify://products/mirevia™-the-cramp-ease"
+          }
+        }
+      },
+      "block_order": [
+        "returns",
+        "order",
+        "faq",
+        "shop"
+      ]
+    },
+    "faq": {
+      "type": "mirevia-faq",
+      "blocks": {
+        "how": {
+          "type": "question",
+          "settings": {
+            "question": "How does it help with period cramps?",
+            "answer": "<p>It combines gentle heat with vibration massage over your lower belly or lower back. Heat helps tight muscles relax, and the massage adds a soothing rhythm on top.</p>"
+          }
+        },
+        "where": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I wear it?",
+            "answer": "<p>Anywhere. It's cordless, so wear it on your lower belly or lower back at home, at work or on the go, over a light layer of clothing.</p>"
+          }
+        },
+        "setting": {
+          "type": "question",
+          "settings": {
+            "question": "Which heat setting should I start with?",
+            "answer": "<p>Start on the lowest setting and turn it up gradually. If you have sensitive skin, reduced feeling or a medical condition, check with your doctor before use.</p>"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's not right for me?",
+            "answer": "<p>Every order comes with a 30-day money-back guarantee. Try it through a full cycle, and if it doesn't ease your cramps, contact us within 30 days for a full refund. The details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "how",
+        "where",
+        "setting",
+        "returns"
+      ],
+      "settings": {
+        "heading": "Quick answers, gently given",
+        "contact_text": "",
+        "contact_link": "/pages/contact",
+        "surface": "parchment"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "form",
+    "faq"
+  ]
+}

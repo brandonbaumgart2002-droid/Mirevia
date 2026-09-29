@@ -15,6 +15,10 @@ A premium product page in the style of Therabody's product pages, built on the A
 | `sections/mirevia-featured-product.liquid` | Home page: The Melter with rating, benefits, price and a link to its page |
 | `sections/mirevia-collection.liquid` | Home page: hand-picked product shelf |
 | `templates/index.json` | The home page, built from the sections above plus the product page's tabs, highlights, reviews, comparison, story tile and FAQ |
+| `sections/mirevia-page-header.liquid` | Calm opener for inner pages (catalogue, contact) |
+| `sections/mirevia-product-grid.liquid` + `snippets/mirevia-card.liquid` | Catalogue grid; "Show this product first" pins The Melter with its own card photo |
+| `sections/mirevia-contact.liquid` | Contact page: Shopify's contact form plus quick links |
+| `templates/collection.json`, `templates/page.contact.json` | Catalogue and Contact pages |
 | `sections/mirevia-compare.liquid` | Mirevia vs hot water bottle vs heat patch |
 | `sections/mirevia-faq.liquid` | FAQ, also marked up for Google |
 | `assets/mirevia-pdp.css`, `assets/mirevia-pdp.js` | Styles and behaviour (no extra apps or libraries) |
@@ -60,6 +64,12 @@ The page opens on that tab, shows a one-line "For you:" note in the buy box, and
 ## Home page
 
 `templates/index.json` replaces the theme's demo home page (skin cream, vacuum and sewing content with made-up review counts). Order: hero → The Melter → "Made for how your cycle feels" (with a "Find your set" button) → highlights → customer quotes → "Made for the long nights" shelf (The Melter, Sweet Slumber Mask, Cosy Cloud Blanket, Leak-Proof Sleep Liner) → comparison → "Made for day one, and every night after." → FAQ. The old home page is still on your live theme if you ever need it.
+
+## Catalogue and Contact
+
+- **Catalogue** (`/collections/all`): page header "Everything for your cycle", the product grid with The Melter first, then the highlights strip. The header text applies to every collection that uses the default template.
+- **Contact** (`/pages/contact`): "We're here to help", Shopify's contact form (name, email, optional order number, message; messages reach your store's sender email as before), four quick links (returns, your order, common questions, choosing your set) and the FAQ. The old page wrongly opened with the "Refund & Returns Policy" text block; that is gone.
+- Footer links that went to pages that don't exist now point to real ones: Help Center and FAQs → Contact, Shipping Info → Contact FAQ, Returns → refund policy.
 
 ## Cart drawer
 

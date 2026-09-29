@@ -1,0 +1,58 @@
+{%- comment -%}
+  Collection page grid (e.g. /collections/all). Same cards as the home page shelf.
+{%- endcomment -%}
+
+{{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="mv mv-grid-section mv-surface--{{ section.settings.surface }}">
+  <div class="mv-container">
+    {%- paginate collection.products by section.settings.per_page -%}
+      {%- if collection.products.size > 0 -%}
+        <ul class="mv-grid" role="list">
+          {%- liquid
+            assign pinned = section.settings.pinned
+            assign show_pinned = false
+            if pinned != blank and paginate.current_page == 1
+              assign show_pinned = true
+            endif
+          -%}
+          {%- if show_pinned -%}
+            {%- render 'mirevia-card', p: pinned, image: section.settings.pinned_image, loading: 'eager', collection: collection -%}
+          {%- endif -%}
+          {%- for p in collection.products -%}
+            {%- if show_pinned and p.id == pinned.id -%}{%- continue -%}{%- endif -%}
+            {%- if forloop.index <= 4 %}{% assign img_loading = 'eager' %}{% else %}{% assign img_loading = 'lazy' %}{% endif -%}
+            {%- render 'mirevia-card', p: p, loading: img_loading, collection: collection -%}
+          {%- endfor -%}
+        </ul>
+        {%- if paginate.pages > 1 -%}
+          <nav class="mv-grid__pages" aria-label="Pages">
+            {%- if paginate.previous -%}<a class="mv-link" href="{{ paginate.previous.url }}">Previous</a>{%- endif -%}
+            <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+            {%- if paginate.next -%}<a class="mv-link" href="{{ paginate.next.url }}">Next</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <p class="mv-lead mv-grid__empty">Nothing here just yet.</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mirevia: product grid",
+  "tag": "div",
+  "class": "mv-section",
+  "settings": [
+    { "type": "product", "id": "pinned", "label": "Show this product first" },
+    { "type": "image_picker", "id": "pinned_image", "label": "Card photo for that product", "info": "Optional. A calm photo reads better at card size than a text graphic." },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 4, "max": 48, "step": 4, "default": 24 },
+    {
+      "type": "select", "id": "surface", "label": "Background", "default": "canvas",
+      "options": [ { "value": "canvas", "label": "White" }, { "value": "parchment", "label": "Blush cream" } ]
+    }
+  ],
+  "enabled_on": { "templates": ["collection"] }
+}
+{% endschema %}

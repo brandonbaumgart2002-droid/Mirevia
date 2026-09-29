@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "header": {
+      "type": "mirevia-page-header",
+      "settings": {
+        "eyebrow": "Shop Mirevia",
+        "heading": "Everything for your cycle",
+        "text": "Warmth for the hard days, and soft things for the long nights.",
+        "surface": "parchment"
+      }
+    },
+    "grid": {
+      "type": "mirevia-product-grid",
+      "settings": {
+        "per_page": 24,
+        "surface": "canvas",
+        "pinned": "mirevia™-the-cramp-ease",
+        "pinned_image": "shopify://shop_images/mirevia-still-life.png"
+      }
+    },
+    "highlights": {
+      "type": "mirevia-highlights",
+      "blocks": {
+        "cordless": {
+          "type": "highlight",
+          "settings": {
+            "value": "Built for rest",
+            "label": "Designed for the nights your period keeps you up."
+          }
+        },
+        "dual": {
+          "type": "highlight",
+          "settings": {
+            "value": "Auto shut-off",
+            "label": "It switches itself off, so you can drift off with it on."
+          }
+        },
+        "sleep": {
+          "type": "highlight",
+          "settings": {
+            "value": "30-day guarantee",
+            "label": "Try it through a full cycle. If it's not for you, get your money back."
+          }
+        }
+      },
+      "block_order": [
+        "cordless",
+        "dual",
+        "sleep"
+      ],
+      "settings": {
+        "heading": "Relief you can rest with"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "grid",
+    "highlights"
+  ]
+}

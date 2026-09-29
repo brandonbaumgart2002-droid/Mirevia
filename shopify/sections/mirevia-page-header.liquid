@@ -1,0 +1,44 @@
+{%- comment -%}
+  A calm page opener for inner pages (catalogue, contact): small line, heading, one sentence.
+{%- endcomment -%}
+
+{{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank and collection
+    assign heading = collection.title
+  elsif heading == blank and page
+    assign heading = page.title
+  endif
+-%}
+
+<section class="mv mv-pagehead mv-surface--{{ section.settings.surface }}">
+  <div class="mv-container mv-pagehead__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="mv-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    <h1 class="mv-display mv-pagehead__heading">{{ heading | escape }}</h1>
+    {%- if section.settings.text != blank -%}
+      <p class="mv-lead mv-pagehead__text">{{ section.settings.text | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mirevia: page header",
+  "tag": "div",
+  "class": "mv-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line above the heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Uses the page or collection title when empty." },
+    { "type": "text", "id": "text", "label": "Text" },
+    {
+      "type": "select", "id": "surface", "label": "Background", "default": "parchment",
+      "options": [ { "value": "canvas", "label": "White" }, { "value": "parchment", "label": "Blush cream" } ]
+    }
+  ],
+  "presets": [{ "name": "Mirevia: page header" }]
+}
+{% endschema %}
