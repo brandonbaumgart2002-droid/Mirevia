@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,50..100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,50..100&family=Inter:wght@400;600&display=swap");
 
 /* Mirevia site layer: brings the theme's own sections (announcement bar, newsletter, footer)
    onto DESIGN.md "warm & tender". Loaded once from layout/theme.liquid. The theme styles

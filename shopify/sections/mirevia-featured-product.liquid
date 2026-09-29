@@ -1,0 +1,83 @@
+{%- comment -%}
+  Home page: introduces the hero product and sends shoppers to its page, where the
+  bundle choice lives. Price and image come from the product, so they stay current.
+{%- endcomment -%}
+
+{{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- assign fp = section.settings.product -%}
+<section class="mv mv-feature mv-surface--{{ section.settings.surface }}">
+  <div class="mv-container mv-feature__grid">
+    <a class="mv-feature__media" href="{{ fp.url | default: '#' }}" tabindex="-1" aria-hidden="true">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1400', alt: '' }}
+      {%- elsif fp.featured_media -%}
+        {{ fp.featured_media | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1400', alt: '' }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'mv-placeholder' }}
+      {%- endif -%}
+    </a>
+
+    <div class="mv-feature__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="mv-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h2 class="mv-h2">{{ section.settings.heading | default: fp.title | escape }}</h2>
+
+      {%- if section.settings.rating != blank -%}
+        {%- assign r = section.settings.rating | plus: 0 -%}
+        {%- assign r_pct = r | times: 1.0 | divided_by: 5 | times: 100 -%}
+        <a class="mv-rating" href="{{ fp.url }}#reviews">
+          <span class="mv-rating__stars" style="--mv-rating: {{ r_pct }}%;" aria-hidden="true"></span>
+          <span class="mv-rating__text"><strong>{{ r }}</strong><span class="mv-visually-hidden"> out of 5 stars</span></span>
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.text != blank -%}
+        <p class="mv-lead">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+      <ul class="mv-benefits">
+        {%- for i in (1..4) -%}
+          {%- assign key = 'benefit_' | append: i -%}
+          {%- if section.settings[key] != blank -%}
+            <li class="mv-benefits__item">{{ section.settings[key] | escape }}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if fp != blank -%}
+        <p class="mv-feature__price">
+          {%- if fp.price_varies %}From {% endif -%}{{ fp.price | money }}
+        </p>
+      {%- endif -%}
+      <a class="mv-btn mv-btn--primary mv-btn--block" href="{{ fp.url | default: '#' }}">{{ section.settings.button_label | escape }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mirevia: featured product",
+  "tag": "div",
+  "class": "mv-section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Optional. Uses the product's main image when empty." },
+    { "type": "text", "id": "eyebrow", "label": "Small line above the heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Uses the product title when empty." },
+    { "type": "text", "id": "rating", "label": "Star rating (out of 5)", "info": "Only the real average from reviews shown on the product page. Leave blank to hide." },
+    { "type": "text", "id": "text", "label": "Text" },
+    { "type": "text", "id": "benefit_1", "label": "Benefit 1" },
+    { "type": "text", "id": "benefit_2", "label": "Benefit 2" },
+    { "type": "text", "id": "benefit_3", "label": "Benefit 3" },
+    { "type": "text", "id": "benefit_4", "label": "Benefit 4" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Choose your set" },
+    {
+      "type": "select", "id": "surface", "label": "Background", "default": "canvas",
+      "options": [ { "value": "canvas", "label": "White" }, { "value": "parchment", "label": "Blush cream" } ]
+    }
+  ],
+  "presets": [{ "name": "Mirevia: featured product" }]
+}
+{% endschema %}

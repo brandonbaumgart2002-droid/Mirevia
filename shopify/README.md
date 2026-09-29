@@ -11,6 +11,10 @@ A premium product page in the style of Therabody's product pages, built on the A
 | `sections/mirevia-highlights.liquid` | Dark strip with 3–4 short claims |
 | `sections/mirevia-feature-tiles.liquid` | Apple-style full-width panels |
 | `sections/mirevia-testimonials.liquid` | "In their words": customer quotes, swipeable on mobile |
+| `sections/mirevia-hero.liquid` | Home page hero: photo, promise, one button (split layout on desktop) |
+| `sections/mirevia-featured-product.liquid` | Home page: The Melter with rating, benefits, price and a link to its page |
+| `sections/mirevia-collection.liquid` | Home page: hand-picked product shelf |
+| `templates/index.json` | The home page, built from the sections above plus the product page's tabs, highlights, reviews, comparison, story tile and FAQ |
 | `sections/mirevia-compare.liquid` | Mirevia vs hot water bottle vs heat patch |
 | `sections/mirevia-faq.liquid` | FAQ, also marked up for Google |
 | `assets/mirevia-pdp.css`, `assets/mirevia-pdp.js` | Styles and behaviour (no extra apps or libraries) |
@@ -52,6 +56,10 @@ Add `?for=` to the product link in each ad so the page opens on the matching sto
 | Work and on the go | `?for=on-the-go` |
 
 The page opens on that tab, shows a one-line "For you:" note in the buy box, and remembers the choice on that device. Logged-in customers also see "Welcome back, [first name]." Add, rename or remove tabs in the theme editor; each tab's **Link key** is what goes after `?for=`.
+
+## Home page
+
+`templates/index.json` replaces the theme's demo home page (skin cream, vacuum and sewing content with made-up review counts). Order: hero → The Melter → "Made for how your cycle feels" (with a "Find your set" button) → highlights → customer quotes → "Made for the long nights" shelf (The Melter, Sweet Slumber Mask, Cosy Cloud Blanket, Leak-Proof Sleep Liner) → comparison → "Made for day one, and every night after." → FAQ. The old home page is still on your live theme if you ever need it.
 
 ## Cart drawer
 

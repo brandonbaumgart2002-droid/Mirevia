@@ -1,0 +1,392 @@
+{
+  "sections": {
+    "hero": {
+      "type": "mirevia-hero",
+      "settings": {
+        "image": "shopify://shop_images/mirevia-gallery-07-lifestyle.png",
+        "focal": "50% 0%",
+        "eyebrow": "Mirevia · The Melter",
+        "heading": "Melt cramps,\nnot your day.",
+        "text": "Soothing heat and gentle massage for period cramps. Cordless, so your day doesn't have to stop.",
+        "button_label": "Shop The Melter",
+        "button_link": "shopify://products/mirevia™-the-cramp-ease",
+        "reassurance": "Free shipping · 30-day money-back guarantee",
+        "card_side": "left"
+      }
+    },
+    "feature": {
+      "type": "mirevia-featured-product",
+      "settings": {
+        "product": "mirevia™-the-cramp-ease",
+        "image": "shopify://shop_images/mirevia-still-life.png",
+        "eyebrow": "The Melter",
+        "heading": "Warmth that works with you",
+        "rating": "4.9",
+        "text": "Heat and gentle massage in one soft, cordless pad. You choose the warmth; it does the rest.",
+        "benefit_1": "Heat and vibration massage in one",
+        "benefit_2": "3 heat levels and 3 massage modes",
+        "benefit_3": "Cordless and slim enough to wear anywhere",
+        "benefit_4": "Warms up fast, with auto shut-off",
+        "button_label": "Choose your set",
+        "surface": "canvas"
+      }
+    },
+    "for-you": {
+      "type": "mirevia-personalise",
+      "blocks": {
+        "cramps": {
+          "type": "need",
+          "settings": {
+            "label": "Cramps",
+            "key": "cramps",
+            "image": "shopify://shop_images/mirevia-tab-cramps.png",
+            "heading": "Warmth where it hurts",
+            "body": "<p>Day one, and it's already a lot. Strap it low over your belly or back and let steady warmth settle tight muscles while a slow, gentle massage works on top. Less curling up, more carrying on.</p>",
+            "tip": "Start low and turn the heat up gradually.",
+            "note": "Wear it low on your belly or back on day one and two."
+          }
+        },
+        "sleep": {
+          "type": "need",
+          "settings": {
+            "label": "Sleep",
+            "key": "sleep",
+            "image": "shopify://shop_images/mirevia-tab-sleep.png",
+            "heading": "Wind down, not wake up",
+            "body": "<p>No 2am kettle trips, no hot water bottle going cold beside you. Settle in with gentle warmth and a soft massage, and let it switch itself off once you've drifted off.</p>",
+            "tip": "Put it on 20 minutes before lights out.",
+            "note": "Make it part of your wind-down on heavy nights."
+          }
+        },
+        "endo": {
+          "type": "need",
+          "settings": {
+            "label": "Endo and PCOS",
+            "key": "endo",
+            "image": "shopify://shop_images/mirevia-tab-endo.png",
+            "heading": "Comfort for the hard days",
+            "body": "<p>If you live with endometriosis or PCOS, you already know warmth is part of getting through. Mirevia makes that comfort wearable, so it can come with you. It isn't a treatment, so keep talking to your doctor about your pain.</p>",
+            "tip": "Keep it charged and close for flare days.",
+            "note": "Keep it charged for flare days."
+          }
+        },
+        "on-the-go": {
+          "type": "need",
+          "settings": {
+            "label": "Work and on the go",
+            "key": "on-the-go",
+            "image": "shopify://shop_images/mirevia-on-the-go.png",
+            "heading": "Relief that keeps up with you",
+            "body": "<p>Slim and cordless, so it sits quietly under a loose top at your desk, on the commute or on the couch. No cord, no socket, and no one needs to know.</p>",
+            "tip": "Wear it over a light layer of clothing.",
+            "note": "Wear it at your desk over a light layer."
+          }
+        }
+      },
+      "block_order": [
+        "cramps",
+        "sleep",
+        "endo",
+        "on-the-go"
+      ],
+      "settings": {
+        "heading": "Made for how your cycle feels",
+        "intro": "Every period is different. Pick what you need most and we'll show you how to use it.",
+        "surface": "parchment",
+        "button_label": "Find your set",
+        "button_link": "shopify://products/mirevia™-the-cramp-ease"
+      }
+    },
+    "highlights": {
+      "type": "mirevia-highlights",
+      "blocks": {
+        "cordless": {
+          "type": "highlight",
+          "settings": {
+            "value": "Built for rest",
+            "label": "Designed for the nights your period keeps you up."
+          }
+        },
+        "dual": {
+          "type": "highlight",
+          "settings": {
+            "value": "Auto shut-off",
+            "label": "It switches itself off, so you can drift off with it on."
+          }
+        },
+        "sleep": {
+          "type": "highlight",
+          "settings": {
+            "value": "30-day guarantee",
+            "label": "Try it through a full cycle. If it's not for you, get your money back."
+          }
+        }
+      },
+      "block_order": [
+        "cordless",
+        "dual",
+        "sleep"
+      ],
+      "settings": {
+        "heading": "Relief you can rest with"
+      }
+    },
+    "reviews": {
+      "type": "mirevia-testimonials",
+      "blocks": {
+        "quote-1": {
+          "type": "quote",
+          "settings": {
+            "quote": "Pairing the heat with the vibration is what made the difference between enduring the night and sleeping through it. I thought heat alone would do what it's always done for me — barely touch the pain.",
+            "name": "Fiona N.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-2": {
+          "type": "quote",
+          "settings": {
+            "quote": "I just fall asleep now and don't wake up in pain needing to reset anything. I expected the auto shut-off to be annoying, like I'd have to keep turning it back on.",
+            "name": "Holly C.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-3": {
+          "type": "quote",
+          "settings": {
+            "quote": "This is honestly the first period product that's let me get through the day without feeling like I have to just push through the pain.",
+            "name": "Maria D.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-4": {
+          "type": "quote",
+          "settings": {
+            "quote": "You genuinely can't tell I'm wearing it under my clothes. I've worn it to work without anyone noticing.",
+            "name": "Brittany F.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-5": {
+          "type": "quote",
+          "settings": {
+            "quote": "It's stayed warm every single time I've used it. I thought it'd be like my hot water bottle, helpful for a bit until it went cold and I was back to gritting my teeth.",
+            "name": "Claire W.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-6": {
+          "type": "quote",
+          "settings": {
+            "quote": "This is the first non-medicated thing that's actually made a real difference. I thought I'd basically accepted that nothing short of medication could touch pain this excruciating.",
+            "name": "Timera L.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-7": {
+          "type": "quote",
+          "settings": {
+            "quote": "It's the only thing that's kept up with how bad my cramps get. I assumed it'd be another product that looks good in the ad and does nothing once you're actually curled up in pain.",
+            "name": "Jenny M.",
+            "rating": 4,
+            "verified": false
+          }
+        },
+        "quote-8": {
+          "type": "quote",
+          "settings": {
+            "quote": "I used to lie awake in pain most nights during my period. Now I put this on, and the auto shut-off means I don't even have to think about it — I just fall asleep.",
+            "name": "Sasha K.",
+            "rating": 5,
+            "verified": false
+          }
+        },
+        "quote-9": {
+          "type": "quote",
+          "settings": {
+            "quote": "My cramps are usually bad enough that I'm curled up unable to move. Being able to turn the intensity right up made a real difference on my worst days.",
+            "name": "Sierra R.",
+            "rating": 5,
+            "verified": false
+          }
+        }
+      },
+      "block_order": [
+        "quote-1",
+        "quote-2",
+        "quote-3",
+        "quote-4",
+        "quote-5",
+        "quote-6",
+        "quote-7",
+        "quote-8",
+        "quote-9"
+      ],
+      "settings": {
+        "heading": "From people who get it",
+        "intro": "",
+        "surface": "parchment"
+      }
+    },
+    "shelf": {
+      "type": "mirevia-collection",
+      "settings": {
+        "heading": "Made for the long nights",
+        "intro": "The Melter, and a few soft things to go with it.",
+        "products": [
+          "mirevia™-the-cramp-ease",
+          "mirevia™-dream-veil",
+          "mirevia™-cloud-wrap",
+          "mirevia™-washable-sleep-liner"
+        ],
+        "surface": "canvas"
+      }
+    },
+    "compare": {
+      "type": "mirevia-compare",
+      "blocks": {
+        "cordless": {
+          "type": "row",
+          "settings": {
+            "feature": "Cordless and wearable",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "yes"
+          }
+        },
+        "adjustable": {
+          "type": "row",
+          "settings": {
+            "feature": "Adjustable heat",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "no"
+          }
+        },
+        "massage": {
+          "type": "row",
+          "settings": {
+            "feature": "Built-in massage",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "no"
+          }
+        },
+        "steady": {
+          "type": "row",
+          "settings": {
+            "feature": "Stays warm, doesn't cool off",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "yes"
+          }
+        },
+        "reusable": {
+          "type": "row",
+          "settings": {
+            "feature": "Reusable",
+            "col_1": "yes",
+            "col_2": "yes",
+            "col_3": "no"
+          }
+        }
+      },
+      "block_order": [
+        "cordless",
+        "adjustable",
+        "massage",
+        "steady",
+        "reusable"
+      ],
+      "settings": {
+        "heading": "Your hot water bottle, retired.",
+        "col_1": "Mirevia",
+        "col_2": "Hot water bottle",
+        "col_3": "Heat patch",
+        "surface": "canvas"
+      }
+    },
+    "story": {
+      "type": "mirevia-feature-tiles",
+      "blocks": {
+        "night": {
+          "type": "tile",
+          "settings": {
+            "surface": "dark",
+            "heading": "Made for day one, and every night after.",
+            "image": "shopify://shop_images/mirevia-long-nights.png",
+            "text": "Slim enough to lie on. Quiet enough to forget it's there.",
+            "product_shadow": false,
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "night"
+      ],
+      "settings": {}
+    },
+    "faq": {
+      "type": "mirevia-faq",
+      "blocks": {
+        "how": {
+          "type": "question",
+          "settings": {
+            "question": "How does it help with period cramps?",
+            "answer": "<p>It combines gentle heat with vibration massage over your lower belly or lower back. Heat helps tight muscles relax, and the massage adds a soothing rhythm on top.</p>"
+          }
+        },
+        "where": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I wear it?",
+            "answer": "<p>Anywhere. It's cordless, so wear it on your lower belly or lower back at home, at work or on the go, over a light layer of clothing.</p>"
+          }
+        },
+        "setting": {
+          "type": "question",
+          "settings": {
+            "question": "Which heat setting should I start with?",
+            "answer": "<p>Start on the lowest setting and turn it up gradually. If you have sensitive skin, reduced feeling or a medical condition, check with your doctor before use.</p>"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's not right for me?",
+            "answer": "<p>Every order comes with a 30-day money-back guarantee. Try it through a full cycle, and if it doesn't ease your cramps, contact us within 30 days for a full refund. The details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "how",
+        "where",
+        "setting",
+        "returns"
+      ],
+      "settings": {
+        "heading": "Questions, gently answered",
+        "contact_text": "Not sure yet? Talk to us",
+        "contact_link": "/pages/contact",
+        "surface": "parchment"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "feature",
+    "for-you",
+    "highlights",
+    "reviews",
+    "shelf",
+    "compare",
+    "story",
+    "faq"
+  ]
+}

@@ -62,6 +62,11 @@
         </div>
       {%- endfor -%}
     {%- endif -%}
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <div class="mv-personalise__cta">
+        <a class="mv-btn mv-btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label | escape }}</a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -73,6 +78,8 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Made for how your cycle feels" },
     { "type": "text", "id": "intro", "label": "Intro", "default": "Pick what you need most. We'll show you how to use it." },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Optional, e.g. on the home page. Leave empty on the product page." },
+    { "type": "url", "id": "button_link", "label": "Button link" },
     {
       "type": "select", "id": "surface", "label": "Background", "default": "parchment",
       "options": [
