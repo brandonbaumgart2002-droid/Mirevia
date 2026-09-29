@@ -69,6 +69,8 @@ The drawer itself is part of your theme, not this folder. Three things were chan
 `assets/mirevia-theme.css` restyles the theme's own announcement bar, newsletter and footer to the warm palette and Fraunces headings. It is uploaded to the theme and loaded by one line added to `layout/theme.liquid` after `custom.css`:
 `{{ 'mirevia-theme.css' | asset_url | stylesheet_tag }}`
 
+Announcement bar (theme editor → Header → announcement bar): three sentence-case slides, "Free shipping on every order", "30 days to try it. Love it, or your money back." and "Made for day one, and every night after.", rotating every 5 seconds. "Trusted by 2,000+ customers" was taken out; add it back only if your order count supports it.
+
 Footer settings changed in the theme editor: warm colours (plum-brown footer, blush-cream newsletter), newsletter copy ("Notes for your next cycle"), and the empty "Products" and "Company" columns hidden until they have menus.
 
 ## Bundle picker (Kaching)
