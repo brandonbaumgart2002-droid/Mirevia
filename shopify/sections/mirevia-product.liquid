@@ -149,8 +149,8 @@
                   <span class="mv-rating__stars" style="--mv-rating: {{ rating_pct }}%;" aria-hidden="true"></span>
                   <span class="mv-rating__text">
                     <strong>{{ rating_value | round: 1 }}</strong>
-                    <span class="mv-visually-hidden">out of {{ rating_max }} stars,</span>
-                    {%- if rating_count > 0 %} · {{ rating_count }} {% if rating_count == 1 %}review{% else %}reviews{% endif %}{% endif -%}
+                    <span class="mv-visually-hidden">out of {{ rating_max }} stars{% if block.settings.show_count and rating_count > 0 %},{% endif %}</span>
+                    {%- if block.settings.show_count and rating_count > 0 %} · {{ rating_count }} {% if rating_count == 1 %}review{% else %}reviews{% endif %}{% endif -%}
                   </span>
                 </a>
               {%- endif -%}
@@ -465,6 +465,7 @@
         { "type": "paragraph", "content": "Uses your review app's rating when one is installed (reviews.rating metafields). Until then it uses the numbers below." },
         { "type": "text", "id": "manual_rating", "label": "Average rating (out of 5)", "info": "Only the real average of reviews shown on this page, e.g. 4.9. Leave blank to hide." },
         { "type": "number", "id": "manual_count", "label": "Number of reviews", "info": "How many real reviews that average comes from." },
+        { "type": "checkbox", "id": "show_count", "label": "Show number of reviews", "default": false },
         { "type": "text", "id": "reviews_anchor", "label": "Link to reviews", "default": "#reviews" }
       ]
     },

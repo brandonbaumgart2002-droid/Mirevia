@@ -84,7 +84,7 @@ The "In their words" section holds your customers' quotes word for word, with ea
 
 The section shows its own average ("4.9 out of 5 · 9 reviews"), worked out from the quotes in it, so it always matches what's on the page.
 
-The star rating under the product title uses your review app's numbers once one is installed. Until then it uses the **Average rating** and **Number of reviews** typed into the Star rating block (currently 4.9 from the 9 quotes on the page). Update both whenever you add or remove quotes, and never enter numbers you can't show.
+The star rating under the product title uses your review app's numbers once one is installed. Until then it uses the **Average rating** and **Number of reviews** typed into the Star rating block (currently 4.9 from the 9 quotes on the page). The review count is hidden in both places by default; tick "Show number of reviews" to show it. The number of reviews is hidden by default; tick "Show number of reviews" in either place to show it. Update both whenever you add or remove quotes, and never enter numbers you can't show.
 
 ## Reviews
 
