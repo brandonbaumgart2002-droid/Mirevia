@@ -64,6 +64,13 @@ The drawer itself is part of your theme, not this folder. Three things were chan
 2. Cart drawer settings (theme editor → Cart drawer): white and light-grey colours, near-black "Secure checkout" button, mulberry for savings and free-gift labels.
 3. Cart drawer blocks: the countdown timer, the free-shipping progress bar (shipping is always free) and the hard-coded "Excellent 4.8 out of 5" rating are switched off; the top line reads "Free shipping on every order"; the guarantee line reads "30-day money-back guarantee". Switch the rating back on only once it shows real reviews.
 
+## Site layer (announcement bar, newsletter, footer)
+
+`assets/mirevia-theme.css` restyles the theme's own announcement bar, newsletter and footer to the warm palette and Fraunces headings. It is uploaded to the theme and loaded by one line added to `layout/theme.liquid` after `custom.css`:
+`{{ 'mirevia-theme.css' | asset_url | stylesheet_tag }}`
+
+Footer settings changed in the theme editor: warm colours (plum-brown footer, blush-cream newsletter), newsletter copy ("Notes for your next cycle"), and the empty "Products" and "Company" columns hidden until they have menus.
+
 ## Bundle picker (Kaching)
 
 The Kaching bundle box inside the buy box is restyled by `mirevia-pdp.css` to the page's neutrals (white cards, ink selection, grey compare-at prices). Its wording, the "LOW STOCK — SELLING FAST" line and the free-gift offers are set in the Kaching app.

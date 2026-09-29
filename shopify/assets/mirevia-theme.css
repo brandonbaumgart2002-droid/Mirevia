@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,50..100&display=swap");
+
+/* Mirevia site layer: brings the theme's own sections (announcement bar, newsletter, footer)
+   onto DESIGN.md "warm & tender". Loaded once from layout/theme.liquid. The theme styles
+   these with !important and inline <style>, hence the section-scoped !important here. */
+
+:root {
+  --mvs-ink: #3b2a2e;
+  --mvs-muted: #7d6b6e;
+  --mvs-canvas: #fffcfa;
+  --mvs-parchment: #f8f0ec;
+  --mvs-hairline: #ecdfda;
+  --mvs-on-dark: #fff8f5;
+  --mvs-on-dark-muted: #dcc9cb;
+  --mvs-accent-on-dark: #f3b9cb;
+  --mvs-display: "Fraunces", Georgia, serif;
+  --mvs-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Announcement bar */
+.announcement-bar-section .announcement-slide-text,
+.announcement-bar-section .announcement-slide-text * {
+  font-family: var(--mvs-body) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Newsletter */
+.section-custom-footer .newsletter-section { background: var(--mvs-parchment) !important; }
+.section-custom-footer .newsletter-title {
+  font-family: var(--mvs-display) !important;
+  font-variation-settings: "SOFT" 100;
+  font-size: 34px !important;
+  font-weight: 450 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+  color: var(--mvs-ink) !important;
+  text-wrap: balance;
+}
+.section-custom-footer .newsletter-subtitle {
+  max-width: 44ch;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: var(--mvs-body) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--mvs-muted) !important;
+}
+.section-custom-footer .newsletter-form .field__input {
+  border: 1px solid var(--mvs-hairline) !important;
+  border-radius: 9999px !important;
+  background: var(--mvs-canvas) !important;
+  box-shadow: none !important;
+  font-family: var(--mvs-body) !important;
+}
+.section-custom-footer .newsletter-form .field::before,
+.section-custom-footer .newsletter-form .field::after { box-shadow: none !important; border-radius: 9999px !important; }
+.section-custom-footer .newsletter-form .field__label { font-family: var(--mvs-body) !important; color: var(--mvs-muted) !important; font-weight: 400 !important; }
+.section-custom-footer .newsletter-form__button {
+  border-radius: 9999px !important;
+  background: var(--mvs-ink) !important;
+  color: var(--mvs-on-dark) !important;
+}
+.section-custom-footer .newsletter-form__button svg { color: var(--mvs-on-dark) !important; fill: currentColor; }
+
+@media (min-width: 750px) {
+  .section-custom-footer .newsletter-title { font-size: 46px !important; }
+}
+
+/* Footer */
+.section-custom-footer .footer-main { background: var(--mvs-ink) !important; }
+.section-custom-footer .footer-main,
+.section-custom-footer .footer-main :is(p, a, li, span, div) { font-family: var(--mvs-body) !important; }
+.section-custom-footer .footer-main .footer-logo,
+.section-custom-footer .footer-main .footer-logo * {
+  font-family: var(--mvs-display) !important;
+  font-variation-settings: "SOFT" 100;
+  font-weight: 450 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--mvs-on-dark) !important;
+}
+.section-custom-footer .footer-main h3 {
+  font-family: var(--mvs-display) !important;
+  font-variation-settings: "SOFT" 100;
+  font-size: 18px !important;
+  font-weight: 450 !important;
+  text-transform: none !important;
+  color: var(--mvs-on-dark) !important;
+}
+.section-custom-footer .footer-main a { color: var(--mvs-on-dark-muted) !important; text-decoration: none !important; }
+.section-custom-footer .footer-main a:hover { color: var(--mvs-on-dark) !important; }
+.section-custom-footer .footer-copyright { color: var(--mvs-on-dark-muted) !important; }

@@ -95,3 +95,24 @@
   font-weight: 400 !important;
   text-transform: none !important;
 }
+
+/* Empty cart */
+#CartDrawer .cart__empty-text {
+  font-family: var(--mvc-display) !important;
+  font-variation-settings: "SOFT" 100;
+  font-size: 28px !important;
+  font-weight: 450 !important;
+  color: var(--mvc-ink) !important;
+  text-transform: none !important;
+}
+#CartDrawer .drawer__inner-empty .button {
+  border: 0 !important;
+  border-radius: 9999px !important;
+  background: var(--mvc-ink) !important;
+  color: #fff8f5 !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+}
+#CartDrawer .cart__login-title { font-family: var(--mvc-display) !important; font-weight: 450 !important; font-size: 20px !important; color: var(--mvc-ink) !important; }
+#CartDrawer .cart__login-paragraph { color: var(--mvc-muted) !important; font-weight: 400 !important; }
