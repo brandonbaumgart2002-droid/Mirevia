@@ -6,10 +6,10 @@
 {{ 'mirevia-pdp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'mirevia-pdp.js' | asset_url }}" defer></script>
 {%- unless section.settings.use_theme_fonts -%}
-  {%- comment -%} Only downloaded on devices without SF (Android, Windows). {%- endcomment -%}
+  {%- comment -%} Fraunces for headlines. Inter is only downloaded on devices without SF (Android, Windows). {%- endcomment -%}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,50..100&family=Inter:wght@400;600&display=swap">
 {%- endunless -%}
 
 {%- liquid
@@ -403,7 +403,7 @@
     { "type": "header", "content": "Brand" },
     { "type": "color", "id": "accent", "label": "Accent colour", "default": "#8a2f52", "info": "Used for links, selected options and focus rings. Keep one accent across the page." },
     { "type": "color", "id": "accent_on_dark", "label": "Accent on dark backgrounds", "default": "#f2a9c4" },
-    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use my theme's fonts", "default": false, "info": "Off: uses the Apple system font stack from DESIGN.md." },
+    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use my theme's fonts", "default": false, "info": "Off: Fraunces headlines with the system font for body text (DESIGN.md)." },
     { "type": "header", "content": "Gallery" },
     {
       "type": "select", "id": "media_ratio", "label": "Image shape", "default": "1",

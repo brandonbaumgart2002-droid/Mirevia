@@ -277,21 +277,31 @@ components:
 
 Everything below this section is the Apple base system and still applies. This layer adds the Therabody product-page structure and Mirevia's brand on top. **Where the two conflict, this layer wins.** The live implementation is in `shopify/` (sections, `assets/mirevia-pdp.css`, `templates/product.mirevia.json`).
 
-### Brand read
-Quiet-luxury sleep and recovery for the menstrual cycle. Calm, confident, never shouty. No pink-bubblegum, no TikTok gimmicks, no clinical blue. The product and real people carry the page; the UI stays out of the way.
+### Brand read: warm & tender
+Quiet-luxury sleep and recovery for the menstrual cycle, made for the women who live with period pain. It should feel like a friend who's been there: warm, calm, a little intimate, never clinical and never shouty. No pink-bubblegum, no TikTok gimmicks, no clinical blue. The product and real people carry the page.
+
+Learned from Rhode, Glossier, Mecca and Gisou (studied Sept 2026): warm off-white canvases instead of cool greys; a soft plum-brown ink instead of black (Rhode `#67645e`, Gisou `#5d331b`); one gentle pink (Glossier `#faf2f4`, Gisou `#f5c1c5`); rounded, tactile cards; sentence-case copy that talks to her by name of the moment ("every bit of butter", "you smell good.").
+
+### Voice
+- Second person, sentence case, short. Name the real moment: day one, 2am, the desk, the commute.
+- Warm and a little wry, never cutesy: "Your hot water bottle, retired." "Less curling up, more carrying on."
+- Comfort before specs: say how it feels, then what it does.
+- Still no medical claims, and endo/PCOS copy always says it isn't a treatment.
 
 ### Overrides to the Apple base
 | Topic | Apple base | Mirevia |
 |---|---|---|
-| Accent | Action Blue `#0066cc` | **Mulberry `#8a2f52`** (`--mv-accent`), and `#f2a9c4` on dark tiles. Still exactly one accent: links, selected options, focus rings, sale badge, "for you" labels. |
-| Primary CTA | Blue pill | **Near-black pill** (`#1d1d1f`, hover `#3a3a3c`), white label, 56px tall, full width in the buy box. This is the Therabody move; it keeps the accent rare. |
+| Palette | Cool greys, `#1d1d1f` ink | **Warm neutrals.** Ink plum-brown `#3b2a2e` (muted `#7d6b6e`), canvas warm white `#fffcfa`, parchment `#f8f0ec`, blush `#f3dcdc` for soft fills (tips, the "ours" comparison column), hairline `#ecdfda`, dark tile plum-brown `#3b2a2e`. |
+| Accent | Action Blue `#0066cc` | **Mulberry `#8a2f52`** (`--mv-accent`), and `#f3b9cb` on dark tiles. Still exactly one accent: links, selected options, focus rings, ticks, stars, "for you" labels. |
+| Primary CTA | Blue pill | **Plum-brown pill** (`#3b2a2e`, hover `#56404a`), warm-white label, 56px tall, full width in the buy box. Softer than black; keeps the accent rare. |
 | Secondary CTA | Blue ghost pill | Express checkout styled as an ink-outline pill. |
-| Fonts | SF Pro (proprietary) | System stack first (`-apple-system, BlinkMacSystemFont`), so Apple devices get SF, then Inter from Google Fonts for Android and Windows (only downloaded where SF is missing). Theme fonts optional via a section setting. |
+| Fonts | SF Pro (proprietary) | **Headlines: Fraunces** (Google Fonts, soft editorial serif) at weight 450 with the `SOFT` axis at 100, tracking −0.02em. Customer quotes are set in Fraunces too, like pull quotes. **Body and UI:** system stack (SF on Apple devices), Inter on Android and Windows. Theme fonts optional via a section setting. |
 | Mobile | Left-aligned | Below 750px the buy box, section intros, highlights and personalise copy are centred; accordions and table rows stay left-aligned for scanning. |
 | Press state | `scale(0.95)` | `scale(0.98)`: buttons here are wider, so 0.95 reads as a jolt. |
-| Pure black | Global nav | Not used. Darkest surface is `#272729`. |
+| Pure black | Global nav | Not used anywhere. Darkest surface is plum-brown `#3b2a2e`. |
+| Shape | 18px cards | Softer: 22px cards and gallery, 10px small radius, pills for actions and chips. |
 
-Kept as-is from Apple: 17px body at 1.47, weight 600 headlines with negative tracking, weight ladder 300/400/600/700 (no 500), alternating light/parchment/dark full-bleed tiles as section dividers, pill radius for actions, 18px radius for cards and gallery, 8px for thumbnails, no decorative gradients, and the single product shadow (`3px 5px 30px rgba(0,0,0,.22)`) only on product cut-outs.
+Kept from Apple: 17px body at 1.47, alternating light/parchment/dark full-bleed tiles as section dividers, pill radius for actions, no decorative gradients, and a single product shadow (now tinted `3px 8px 30px rgba(59,42,46,.18)`) only on product cut-outs.
 
 ### Product page structure (Therabody pattern)
 1. **Gallery + buy box**: 7/5 split on desktop, buy box sticky under the header; gallery is swipeable with a thumbnail strip. Mobile stacks gallery first, full-bleed.
@@ -313,7 +323,8 @@ Kept as-is from Apple: 17px body at 1.47, weight 600 headlines with negative tra
 - Don't add a second accent or recolour the CTA with the accent.
 - Don't put the section eyebrow label over every heading; headlines stand alone.
 - Don't use three identical feature cards; use the highlights strip or tiles.
-- Don't use beige/cream + brass palettes; the neutrals are Apple's cool greys.
+- Don't slide into beige-and-brass or pink-overload: warm whites, plum-brown ink, one blush and one mulberry is the whole palette.
+- Don't use cool greys or pure black next to the warm palette; they read as a different brand.
 
 ## Overview
 

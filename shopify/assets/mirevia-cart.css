@@ -1,14 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,50..100&display=swap");
+
 /* Mirevia cart drawer: puts the theme's drawer on the same system as the product page
-   (DESIGN.md: cool neutrals, one mulberry accent, near-black pill CTA, no discount-store noise).
+   (DESIGN.md "warm & tender": warm whites, plum-brown ink, one mulberry accent, no discount-store noise).
    Loaded from sections/cart-drawer.liquid. #CartDrawer scoping plus !important because the
    theme and its drawer blocks style these elements with !important and inline <style> tags. */
 
 #CartDrawer {
-  --mvc-ink: #1d1d1f;
-  --mvc-muted: #6e6e73;
-  --mvc-parchment: #f5f5f7;
-  --mvc-hairline: #e0e0e0;
+  --mvc-ink: #3b2a2e;
+  --mvc-muted: #7d6b6e;
+  --mvc-parchment: #f8f0ec;
+  --mvc-hairline: #ecdfda;
   --mvc-accent: #8a2f52;
+  --mvc-display: "Fraunces", Georgia, serif;
   --mvc-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 #CartDrawer .drawer__inner,
@@ -19,7 +22,14 @@
 
 /* Header */
 #CartDrawer .drawer__header { border-bottom: 1px solid var(--mvc-hairline); }
-#CartDrawer .drawer__heading { color: var(--mvc-ink) !important; font-size: 22px !important; font-weight: 600 !important; text-transform: none !important; }
+#CartDrawer .drawer__inner .drawer__heading {
+  color: var(--mvc-ink) !important;
+  font-family: var(--mvc-display) !important;
+  font-variation-settings: "SOFT" 100;
+  font-size: 24px !important;
+  font-weight: 450 !important;
+  text-transform: none !important;
+}
 #CartDrawer .gb-cart-total-item { background: var(--mvc-ink) !important; color: #fff !important; font-weight: 600 !important; }
 
 /* Reassurance line under the header */
@@ -36,7 +46,7 @@
   text-transform: none !important;
 }
 #CartDrawer .cart-item__final-price { color: var(--mvc-ink) !important; font-weight: 600 !important; font-variant-numeric: tabular-nums; }
-#CartDrawer .cart-item__old-price { color: #86868b !important; font-variant-numeric: tabular-nums; }
+#CartDrawer .cart-item__old-price { color: #a08a8e !important; font-variant-numeric: tabular-nums; }
 #CartDrawer .gb-price-drawer-saving {
   background: none !important;
   padding: 0 !important;
@@ -44,11 +54,11 @@
   font-size: 12px !important;
   font-weight: 600 !important;
 }
-#CartDrawer .discount-tag { background: #fff !important; color: var(--mvc-ink) !important; border: 1px solid var(--mvc-hairline) !important; }
+#CartDrawer .discount-tag { background: #fffcfa !important; color: var(--mvc-ink) !important; border: 1px solid var(--mvc-hairline) !important; }
 #CartDrawer .discount-tag * { color: var(--mvc-ink) !important; fill: var(--mvc-ink) !important; }
 
 /* Free gifts: one calm "Free gift" label, not three badges per line */
-#CartDrawer .cartitem-free-product-label { background: #fff !important; color: var(--mvc-accent) !important; border: 1px solid var(--mvc-hairline) !important; font-weight: 600 !important; }
+#CartDrawer .cartitem-free-product-label { background: #fffcfa !important; color: var(--mvc-accent) !important; border: 1px solid var(--mvc-hairline) !important; font-weight: 600 !important; }
 #CartDrawer .cart-item:has(.cartitem-free-product-label) .gb-price-drawer-saving,
 #CartDrawer .cart-item:has(.cartitem-free-product-label) .cart-item__discount-allocations { display: none !important; }
 #CartDrawer .cart-item:has(.cartitem-free-product-label) .cart-item__final-price { color: var(--mvc-accent) !important; text-transform: none !important; }
@@ -73,7 +83,7 @@
   font-weight: 600 !important;
   text-transform: none !important;
 }
-#CartDrawer .cart__checkout-button:hover { background: #3a3a3c !important; }
+#CartDrawer .cart__checkout-button:hover { background: #56404a !important; }
 #CartDrawer .cart__checkout-button:active { transform: scale(0.98); }
 #CartDrawer .cart__checkout-button * { color: #fff !important; fill: #fff !important; text-transform: none !important; }
 #CartDrawer .cart__checkout-button::before,
