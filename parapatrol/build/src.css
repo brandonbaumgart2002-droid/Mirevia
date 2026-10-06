@@ -187,3 +187,7 @@
 .pp.pp .kaching-bundles .kaching-bundles__bar-most-popular__content { font-weight: 700 !important; letter-spacing: .06em !important; }
 .pp.pp .kaching-bundles .kaching-bundles__free-gift__text { font-weight: 700 !important; }
 .pp .kaching-bundles__bar-radio { border-color: var(--brand-primary) !important; }
+
+/* Payment icons under the buy box (Shopify's own SVGs) */
+.pp .pp-payments .pp-payment-icon { display: block; height: 24px; width: auto; max-width: none; }
+

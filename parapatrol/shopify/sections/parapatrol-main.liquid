@@ -189,7 +189,7 @@
       </ul>
 
       <div id="pp-buy" class="order-3 lg:order-4 mt-4 scroll-mt-28" data-pp-hero-box>
-        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, subscribe_note: section.settings.subscribe_note -%}
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
       </div>
 
       {%- if section.settings.fda_text != blank -%}
@@ -244,6 +244,8 @@
 
     { "type": "header", "content": "Purchase box" },
     { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
+    { "type": "textarea", "id": "trust", "label": "Trust badges under the button", "info": "One per line as icon|text. Icons: lock, truck, shield, leaf, heart, check. Only claims you can back up. Clear to show the guarantee line instead.", "default": "lock|Secure checkout\ntruck|Free shipping\nshield|30-day money-back\nleaf|Alcohol & sugar-free" },
+    { "type": "checkbox", "id": "payment_icons", "label": "Show payment icons", "info": "Shows the payment methods switched on in Shopify Payments / your checkout.", "default": true },
     { "type": "text", "id": "guarantee", "label": "Guarantee line", "default": "30-day money-back guarantee. Love it or your money back." },
     { "type": "number", "id": "free_shipping", "label": "Free shipping threshold ($)", "info": "0 = free shipping on every order (the buy box says so).", "default": 0 },
     { "type": "select", "id": "after_add", "label": "After adding to bag", "info": "If the theme has no cart drawer, a message is shown instead.", "default": "drawer", "options": [
