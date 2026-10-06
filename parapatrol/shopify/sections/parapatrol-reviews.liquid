@@ -20,15 +20,28 @@
       <div class="mt-8 grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-10">
         {%- if section.settings.show_breakdown -%}
           <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
-            {%- if rating != blank -%}
-              <p class="font-display font-semibold text-[44px] leading-none">{{ rating.rating | round: 1 }}</p>
-              <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
-              <p class="text-sm text-muted mt-1">{{ rating.rating | round: 1 }} out of {{ rating.scale_max }} · Rated by parents</p>
-            {%- else -%}
-              <p class="font-display font-semibold text-[20px] leading-none">[VERIFY: rating]</p>
-              <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
-              <p class="text-sm text-muted mt-1">Rated by parents</p>
+            {%- liquid
+              if rating != blank
+                assign score = rating.rating | round: 1
+                assign review_count = product.metafields.reviews.rating_count.value
+              else
+                assign score = section.settings.score_fallback
+                assign review_count = section.settings.count_fallback
+              endif
+              assign has_bars = false
+              for p in percents
+                assign pv = p | strip | plus: 0
+                if pv > 0
+                  assign has_bars = true
+                endif
+              endfor
+            -%}
+            {%- if score != blank -%}
+              <p class="font-display font-semibold text-[44px] leading-none">{{ score }}<span class="text-[20px] text-muted"> / 5</span></p>
+              <div class="mt-2">{%- render 'parapatrol-stars', score: score, size: 22 -%}</div>
+              <p class="text-sm text-muted mt-2">{% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.count_label }}</p>
             {%- endif -%}
+            {%- if has_bars -%}
             <dl class="mt-5 grid gap-2 text-sm">
               {%- for i in (1..5) -%}
                 {%- liquid
@@ -44,7 +57,8 @@
                 </div>
               {%- endfor -%}
             </dl>
-            {%- if section.settings.breakdown_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.breakdown_note }}</p>{%- endif -%}
+            {%- endif -%}
+            {%- if has_bars and section.settings.breakdown_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.breakdown_note }}</p>{%- endif -%}
           </div>
         {%- endif -%}
 
@@ -75,7 +89,7 @@
                 -%}
                 <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
                   {%- if block.settings.stars > 0 -%}
-                    <p class="text-berry tracking-[2px]"><span aria-hidden="true">{% for s in (1..block.settings.stars) %}★{% endfor %}</span><span class="sr-only">{{ block.settings.stars }} out of 5 stars</span></p>
+                    <div>{%- render 'parapatrol-stars', score: block.settings.stars, size: 16 -%}</div>
                   {%- endif -%}
                   <blockquote class="mt-3 text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
                   <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
@@ -100,7 +114,10 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "What parents say" },
     { "type": "checkbox", "id": "show_breakdown", "label": "Show rating summary + breakdown", "default": true },
-    { "type": "text", "id": "bar_percents", "label": "Breakdown bar widths, 5★ to 1★ (%)", "default": "0,0,0,0,0" },
+    { "type": "text", "id": "score_fallback", "label": "Star score when no reviews app data", "info": "Must match your real reviews.", "default": "4.8" },
+    { "type": "text", "id": "count_fallback", "label": "Review count when no reviews app data", "default": "237+" },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "parent reviews" },
+    { "type": "text", "id": "bar_percents", "label": "Breakdown bar widths, 5★ to 1★ (%)", "info": "The breakdown stays hidden until at least one bar is above 0.", "default": "0,0,0,0,0" },
     { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★", "default": "[VERIFY],[VERIFY],[VERIFY],[VERIFY],[VERIFY]" },
     { "type": "text", "id": "breakdown_note", "label": "Breakdown note", "default": "Replace the bar widths and counts with your review app's numbers." },
     { "type": "textarea", "id": "filters", "label": "Filter topics (one per line: key|Label)", "default": "easy|Easy to give\ntaste|Taste\ntummy|Tummy & appetite\nroutine|Routine" },

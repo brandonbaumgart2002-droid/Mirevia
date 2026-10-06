@@ -12,6 +12,8 @@
   --ink: #1e2d4f;
   --ink-muted: #4f5b72;
   --line: #ece1e5;
+  --pp-star: #e27aa3;       /* mascot pink, deepened so the stars read */
+  --pp-star-empty: #f7d6e3;
   /* Baloo 2 echoes the chunky rounded ParaPatrol lettering on the pack; Nunito Sans is a soft, very legible body face */
   --pp-font-display: 'Baloo 2', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
   --pp-font-body: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -69,6 +71,12 @@
 .pp .pp-qty { -moz-appearance: textfield; appearance: textfield; border: 0; }
 .pp .media-fill img { width: 100%; height: 100%; } /* fit comes from the img class (object-cover / object-contain) */
 
+.pp .pp-stars { position: relative; display: inline-block; flex-shrink: 0; vertical-align: middle; }
+.pp .pp-stars__row { position: absolute; top: 0; left: 0; display: flex; gap: var(--pp-stars-gap, 3px); height: 100%; white-space: nowrap; }
+.pp .pp-stars__empty { color: var(--pp-star-empty); }
+.pp .pp-stars__fill { color: var(--pp-star); overflow: hidden; }
+.pp .pp-stars svg { display: block; flex-shrink: 0; max-width: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
 }
@@ -92,3 +100,12 @@
 .pp.pp .font-semibold { font-weight: 600 !important; }
 .pp.pp .font-bold, .pp.pp b, .pp.pp strong { font-weight: 700 !important; }
 .pp.pp .font-display.font-semibold { font-weight: 700 !important; }
+/* ...and for heading colour (Elixir forces a brown on every h1-h6 with !important) and the body's negative letter-spacing */
+.pp.pp { letter-spacing: normal; }
+.pp.pp h1, .pp.pp h2, .pp.pp h3, .pp.pp h4 { color: inherit !important; }
+.pp.pp .text-ink { color: var(--ink) !important; }
+.pp.pp .text-muted { color: var(--ink-muted) !important; }
+.pp.pp .text-primary { color: var(--brand-primary) !important; }
+.pp.pp .text-primary-dark { color: var(--brand-primary-dark) !important; }
+.pp.pp .text-berry { color: var(--brand-berry) !important; }
+.pp.pp .text-white { color: #fff !important; }

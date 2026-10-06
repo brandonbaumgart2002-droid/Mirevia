@@ -1,0 +1,26 @@
+{%- comment -%}
+  Star rating as rounded SVG stars in the brand pink, with the last star partly filled (4.8 shows 4 full + 80%).
+  Params: score (number or text like "4.8"), size (px, default 18), gap (px, default 3)
+  Colours: --pp-star and --pp-star-empty (set in parapatrol.css).
+  The stars are one image for screen readers ("Rated 4.8 out of 5"); keep the score in visible text as well.
+{%- endcomment -%}
+{%- liquid
+  assign pp_score = score | times: 1.0 | at_least: 0 | at_most: 5
+  assign pp_size = size | default: 18
+  assign pp_gap = gap | default: 3
+  assign pp_full = pp_score | floor
+  assign pp_frac = pp_score | minus: pp_full
+  assign pp_step = pp_size | plus: pp_gap
+  assign pp_fill = pp_full | times: pp_step | plus: 0.0
+  assign pp_part = pp_frac | times: pp_size
+  assign pp_fill = pp_fill | plus: pp_part
+  assign pp_total = pp_step | times: 5 | minus: pp_gap
+  assign pp_fill = pp_fill | at_most: pp_total
+-%}
+{%- capture pp_row -%}
+  {%- for i in (1..5) -%}<svg width="{{ pp_size }}" height="{{ pp_size }}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8l2.75 5.6 6.15.9-4.45 4.35 1.05 6.12L12 16.88l-5.5 2.89 1.05-6.12L3.1 9.3l6.15-.9z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>{%- endfor -%}
+{%- endcapture -%}
+<span class="pp-stars" role="img" aria-label="Rated {{ pp_score | round: 1 }} out of 5" style="--pp-stars-gap: {{ pp_gap }}px; width: {{ pp_total }}px; height: {{ pp_size }}px;">
+  <span class="pp-stars__row pp-stars__empty">{{ pp_row }}</span>
+  <span class="pp-stars__row pp-stars__fill" style="width: {{ pp_fill | round: 1 }}px;">{{ pp_row }}</span>
+</span>

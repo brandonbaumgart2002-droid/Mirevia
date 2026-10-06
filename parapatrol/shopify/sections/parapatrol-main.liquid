@@ -110,17 +110,21 @@
 
         {%- liquid
           assign score = blank
+          assign review_count = blank
           if rating != blank
             assign score = rating.rating | round: 1
+            assign review_count = product.metafields.reviews.rating_count.value
           elsif section.settings.rating_score_fallback != blank
             assign score = section.settings.rating_score_fallback
+            assign review_count = section.settings.rating_count_fallback
           endif
         -%}
         {%- if score != blank -%}
-          <a href="#reviews" class="inline-flex flex-wrap items-center gap-x-2 gap-y-1 mt-1.5 text-[14px] text-muted hover:text-ink">
-            <span class="text-berry tracking-[2px] text-[16px] leading-none" aria-hidden="true">★★★★★</span>
-            <span><span class="font-bold text-ink">{{ score }}/5</span>{% if section.settings.rating_label != blank %} · {{ section.settings.rating_label }}{% endif %}</span>
-          </a>
+          <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
+            {%- render 'parapatrol-stars', score: score, size: 18 -%}
+            <span class="font-bold text-ink">{{ score }}</span>
+            <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">({% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.rating_label }})</a>
+          </div>
         {%- endif -%}
 
         <p class="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1" data-pp-hero-price-row>
@@ -229,8 +233,9 @@
     { "type": "select", "id": "headline_default", "label": "Default headline", "default": "a", "options": [ { "value": "a", "label": "A" }, { "value": "b", "label": "B" }, { "value": "c", "label": "C" } ] },
     { "type": "textarea", "id": "subhead", "label": "Subhead", "info": "Every * links to the FDA disclaimer.", "default": "A gentle 11-herb drop made for kids, not adults. One dropper in juice or milk supports gut comfort, healthy digestion and regularity.*" },
     { "type": "text", "id": "badges", "label": "Badges (comma separated)", "default": "Kids 3+, Alcohol-free, Sugar-free, Third-party tested" },
-    { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "[VERIFY: 4.8]" },
-    { "type": "text", "id": "rating_label", "label": "Rating label", "default": "Rated by parents" },
+    { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "4.8" },
+    { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
+    { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
     { "type": "text", "id": "authority", "label": "Expert line under the price", "info": "Links to the Expert section. Only use if a real practitioner recommends it. Clear to hide.", "default": "Paediatrician recommended" },
     { "type": "text", "id": "tick_1", "label": "Benefit 1", "default": "Settles tummies*" },
     { "type": "text", "id": "tick_2", "label": "Benefit 2", "default": "Supports a healthy appetite*" },
