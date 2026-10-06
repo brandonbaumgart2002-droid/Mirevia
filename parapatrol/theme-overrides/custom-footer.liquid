@@ -42,13 +42,19 @@
 -%}
 
 {%- comment -%}
-  ParaPatrol product page only (template product.parapatrol): its own newsletter copy and a footer in the
-  ParaPatrol palette (navy, sage, soft pink). Every other page keeps the settings above.
+  ParaPatrol palette (navy, sage, soft pink) on every page except Mirevia product pages, which keep the
+  settings above. The ParaPatrol newsletter copy is used on the ParaPatrol product page only (pp_copy).
 {%- endcomment -%}
 {%- liquid
-  assign pp_footer = false
+  assign pp_footer = true
+  assign pp_copy = false
   if template.suffix == 'parapatrol'
-    assign pp_footer = true
+    assign pp_copy = true
+  endif
+  if template.name == 'product' and template.suffix != 'parapatrol'
+    assign pp_footer = false
+  endif
+  if pp_footer
     assign newsletter_bg_color = '#ffffff'
     assign newsletter_text_color = '#1e2d4f'
     assign newsletter_button_color = '#3b7560'
@@ -377,7 +383,7 @@
             class="newsletter-title"
             style="text-align: {{ section.settings.newsletter_title_alignment | default: 'center' }};{% if section.settings.newsletter_title_color != blank %} color: {{ section.settings.newsletter_title_color }} !important;{% endif %}"
           >
-            {%- if pp_footer -%}Gentle tips for little tummies{%- else -%}{{ section.settings.newsletter_title }}{%- endif -%}
+            {%- if pp_copy -%}Gentle tips for little tummies{%- else -%}{{ section.settings.newsletter_title }}{%- endif -%}
           </h2>
         {%- endif -%}
         {%- if section.settings.newsletter_subtitle != blank -%}
@@ -385,7 +391,7 @@
             class="newsletter-subtitle"
             style="text-align: {{ section.settings.newsletter_subtitle_alignment | default: 'center' }};{% if section.settings.newsletter_subtitle_color != blank %} color: {{ section.settings.newsletter_subtitle_color }} !important;{% endif %} margin-top: {{ section.settings.newsletter_subtitle_margin_top | default: 16 }}px;"
           >
-            {%- if pp_footer -%}School-season routines, picky-eater wins and first dibs on offers. One or two emails a month, never spam.{%- else -%}{{ section.settings.newsletter_subtitle }}{%- endif -%}
+            {%- if pp_copy -%}School-season routines, picky-eater wins and first dibs on offers. One or two emails a month, never spam.{%- else -%}{{ section.settings.newsletter_subtitle }}{%- endif -%}
           </p>
         {%- endif -%}
         {%- form 'customer', class: 'newsletter-form' -%}

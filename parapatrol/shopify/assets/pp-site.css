@@ -1,0 +1,199 @@
+/* ParaPatrol site layer: puts the home page, catalogue, content and policy pages and the cart drawer on the
+   ParaPatrol product page's look (sage green, navy ink, soft pink; Baloo 2 headings, Nunito Sans text).
+   Loaded once from layout/theme.liquid. Page rules hang off body.pp-site, which the layout adds on every page
+   except Mirevia product pages. The cart drawer rules (#CartDrawer) apply everywhere.
+   The Mirevia layer (mirevia-pdp.css, mirevia-theme.css, mirevia-cart.css) is built on CSS variables, so most
+   of the change is new values for those variables. The rest beats the theme's own !important rules. */
+
+/* ---------- Tokens: Mirevia sections, site layer and drawer ---------- */
+
+body.pp-site,
+html #CartDrawer {
+  --mv-ink: #1e2d4f;
+  --mv-ink-muted: #4f5b72;
+  --mv-canvas: #ffffff;
+  --mv-parchment: #fdf6f3;
+  --mv-blush: #fbe3ea;
+  --mv-tile: #2c5a4a;
+  --mv-on-dark: #ffffff;
+  --mv-on-dark-muted: #d3e6dc;
+  --mv-hairline: #ece1e5;
+  --mv-hairline-dark: rgba(255, 255, 255, 0.2);
+  --mv-accent: #a83f66;
+  --mv-accent-on-dark: #f4c7d5;
+  --mv-btn: #3b7560;
+  --mv-btn-hover: #2c5a4a;
+  --mv-font-display: "Baloo 2", ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+  --mv-font-body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mv-shadow-product: 3px 8px 30px rgba(30, 45, 79, 0.14);
+
+  --mvs-ink: #1e2d4f;
+  --mvs-muted: #4f5b72;
+  --mvs-canvas: #ffffff;
+  --mvs-parchment: #fdf6f3;
+  --mvs-hairline: #ece1e5;
+  --mvs-on-dark: #ffffff;
+  --mvs-on-dark-muted: #c9d1e2;
+  --mvs-accent-on-dark: #f4c7d5;
+  --mvs-display: var(--mv-font-display);
+  --mvs-body: var(--mv-font-body);
+
+  --pp-green: #3b7560;
+  --pp-green-dark: #2c5a4a;
+  --pp-mint: #ebf4ef;
+  --pp-pink: #f4c7d5;
+  --pp-star: #e27aa3;
+  --pp-star-empty: #f7d6e3;
+}
+
+body.pp-site { background-color: #ffffff; color: #1e2d4f; }
+
+/* ---------- Mirevia sections (home page, catalogue, contact) ---------- */
+
+/* Rounded type sits at normal tracking; the Mirevia layer's tight negative tracking was for SF and Fraunces. */
+body.pp-site .mv:not(#mv),
+body.pp-site .mv:not(#mv) * { letter-spacing: 0 !important; }
+body.pp-site .mv:not(#mv) :is(h1, h2, h3, h4, .mv-display, .mv-h2, .mv-h3, .mv-highlights__value, .mv-title__heading) {
+  font-weight: 700 !important;
+  font-variation-settings: normal !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.12 !important;
+}
+body.pp-site .mv:not(#mv) .mv-quote__text { font-family: var(--mv-font-body) !important; font-size: 16px; line-height: 1.55; }
+body.pp-site .mv:not(#mv) .mv-btn { font-weight: 800 !important; }
+body.pp-site .mv:not(#mv) .mv-btn--primary { box-shadow: 0 6px 16px -6px rgba(44, 90, 74, 0.55); }
+
+/* Pink stars, as on the product page */
+body.pp-site :is(.mv-rating__stars, .mv-quote__stars) {
+  background: linear-gradient(90deg, var(--pp-star) var(--mv-rating), var(--pp-star-empty) var(--mv-rating));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Small details that had the old colours written in */
+body.pp-site .mv-compare__table .mv-compare__ours { background: var(--pp-mint); }
+body.pp-site .mv-compare__no { color: #b7bfcd; }
+body.pp-site .mv-faq .mv-acc { border-color: var(--mv-hairline); }
+body.pp-site .mv-placeholder { fill: #c9d9cf; }
+body.pp-site .mv:not(#mv) .mv-field__input:focus { box-shadow: 0 0 0 3px rgba(59, 117, 96, 0.18) !important; border-color: var(--pp-green) !important; }
+
+/* ---------- Content and policy pages ---------- */
+
+body.pp-site :is(.shopify-policy__container, .main-page-title, .page-width--narrow .rte) { color: #1e2d4f; }
+body.pp-site .shopify-policy__container {
+  max-width: 760px !important;
+  padding: 40px 20px 64px !important;
+  font-family: var(--mv-font-body) !important;
+  font-size: 16px;
+  line-height: 1.65;
+}
+body.pp-site .shopify-policy__container :is(p, li, span, div, strong, a) { font-family: var(--mv-font-body) !important; }
+body.pp-site .shopify-policy__title { margin-bottom: 28px !important; padding-bottom: 20px; border-bottom: 1px solid var(--mv-hairline); text-align: left !important; }
+body.pp-site :is(.shopify-policy__title h1, .main-page-title) {
+  font-family: var(--mv-font-display) !important;
+  font-weight: 700 !important;
+  font-size: clamp(32px, 6vw, 44px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.01em !important;
+  color: #1e2d4f !important;
+  text-transform: none !important;
+}
+body.pp-site .shopify-policy__body :is(strong, b) { color: #1e2d4f; font-weight: 800; }
+body.pp-site .shopify-policy__body :is(h2, h3, h4) { font-family: var(--mv-font-display) !important; font-weight: 700 !important; color: #1e2d4f !important; }
+body.pp-site :is(.shopify-policy__container, .rte) a {
+  color: var(--pp-green) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+body.pp-site :is(.shopify-policy__container, .rte) a:hover { color: var(--pp-green-dark) !important; }
+
+/* ---------- Cart drawer (every page) ---------- */
+
+html #CartDrawer {
+  --mvc-ink: #1e2d4f;
+  --mvc-muted: #4f5b72;
+  --mvc-parchment: #ebf4ef;
+  --mvc-hairline: #ece1e5;
+  --mvc-accent: #a83f66;
+  --mvc-display: "Baloo 2", ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+  --mvc-font: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+html #CartDrawer .drawer__inner,
+html #CartDrawer .drawer__inner :is(h1, h2, h3, p, a, span, div, button, strong, s, small, td, input) { letter-spacing: 0 !important; }
+html #CartDrawer .drawer__inner,
+html #CartDrawer .drawer__header,
+html #CartDrawer .drawer__footer { background: #ffffff !important; color: #1e2d4f !important; }
+
+html #CartDrawer .drawer__inner .drawer__heading {
+  font-weight: 700 !important;
+  font-variation-settings: normal !important;
+  font-size: 26px !important;
+  letter-spacing: -0.01em !important;
+}
+html #CartDrawer .gb-cart-total-item { background: var(--pp-green) !important; color: #fff !important; font-weight: 800 !important; }
+html #CartDrawer .drawer__close { color: #1e2d4f !important; }
+
+/* Free shipping line */
+html #CartDrawer .social-proof-bar { background: var(--pp-mint) !important; }
+html #CartDrawer .social-proof-bar__text { color: var(--pp-green-dark) !important; font-weight: 700 !important; }
+html #CartDrawer .social-proof-bar__icon,
+html #CartDrawer .social-proof-bar__icon * { color: var(--pp-green) !important; fill: currentColor; stroke: currentColor; }
+
+/* Line items: white cards on a hairline, like the product page buy box */
+html #CartDrawer .cart-item {
+  background: #ffffff !important;
+  border: 1px solid var(--mvc-hairline) !important;
+  border-radius: 16px !important;
+}
+html #CartDrawer .cart-item__media img,
+html #CartDrawer .cart-item__image { border-radius: 12px !important; background: #fdf6f3; }
+html #CartDrawer .cart-item__name { font-weight: 800 !important; font-size: 15px !important; }
+html #CartDrawer .cart-item__final-price { font-weight: 800 !important; }
+html #CartDrawer .cart-item__old-price { color: #8a93a6 !important; }
+html #CartDrawer .gb-price-drawer-saving { color: var(--mvc-accent) !important; font-weight: 800 !important; }
+
+html #CartDrawer .quantity {
+  background: #ffffff !important;
+  border: 1px solid var(--mvc-hairline) !important;
+  border-radius: 9999px !important;
+  overflow: hidden;
+}
+html #CartDrawer .quantity::before,
+html #CartDrawer .quantity::after { display: none !important; }
+html #CartDrawer .quantity__button { color: #1e2d4f !important; border-radius: 9999px !important; }
+html #CartDrawer .quantity__button:hover { background: var(--pp-mint) !important; }
+html #CartDrawer .quantity__input { color: #1e2d4f !important; font-weight: 800 !important; background: transparent !important; }
+html #CartDrawer .cart-remove-button,
+html #CartDrawer .cart-remove-button * { color: #8a93a6 !important; }
+html #CartDrawer .cart-remove-button:hover,
+html #CartDrawer .cart-remove-button:hover * { color: var(--mvc-accent) !important; }
+html #CartDrawer .gb-cart-del-img svg,
+html #CartDrawer .gb-cart-del-img svg * { fill: #8a93a6 !important; }
+
+/* Free gifts in soft pink */
+html #CartDrawer .cartitem-free-product-label {
+  background: #fdeef3 !important;
+  border-color: #f4c7d5 !important;
+  color: var(--mvc-accent) !important;
+  font-weight: 800 !important;
+}
+html #CartDrawer .cartitem-free-product-label * { color: var(--mvc-accent) !important; fill: currentColor !important; }
+html #CartDrawer .cart-item:has(.cartitem-free-product-label) .cart-item__final-price { font-weight: 800 !important; }
+
+/* Totals and checkout */
+html #CartDrawer .totals__total-value { font-family: var(--mvc-display) !important; font-size: 24px !important; font-weight: 700 !important; }
+html #CartDrawer .cart__checkout-button {
+  background: var(--pp-green) !important;
+  font-weight: 800 !important;
+  font-size: 18px !important;
+  box-shadow: 0 8px 20px -8px rgba(44, 90, 74, 0.6) !important;
+}
+html #CartDrawer .cart__checkout-button:hover { background: var(--pp-green-dark) !important; }
+html #CartDrawer .gb-30day-back { color: var(--mvc-muted) !important; font-weight: 600 !important; }
+
+/* Empty cart */
+html #CartDrawer .cart__empty-text { font-weight: 700 !important; font-variation-settings: normal !important; letter-spacing: -0.01em !important; }
+html #CartDrawer .drawer__inner-empty .button { background: var(--pp-green) !important; color: #fff !important; font-weight: 800 !important; }
+html #CartDrawer .drawer__inner-empty .button:hover { background: var(--pp-green-dark) !important; }
+html #CartDrawer .cart__login-title { font-weight: 700 !important; }
