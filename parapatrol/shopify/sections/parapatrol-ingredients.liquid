@@ -11,7 +11,7 @@
         {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h2 id="pp-ing-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
         {%- if section.settings.intro != blank -%}<p class="text-muted mt-3 max-w-md">{{ section.settings.intro }}</p>{%- endif -%}
-        {%- render 'parapatrol-media', image: section.settings.image, label: section.settings.image_label, alt: 'Flat lay of fennel, anise, licorice root and other herbs', class: 'mt-6 aspect-[4/3] rounded-3xl', sizes: '(min-width: 1024px) 520px, 100vw' -%}
+        {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, label: section.settings.image_label, alt: section.settings.image_alt, class: 'mt-6 aspect-square rounded-3xl', sizes: '(min-width: 1152px) 500px, (min-width: 1024px) 44vw, calc(100vw - 32px)' -%}
         {%- if section.settings.allergen != blank -%}
           <p class="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-soft border border-line text-[14px] font-bold">
             {%- render 'parapatrol-icon', name: 'info', icon_size: 18 -%}{{ section.settings.allergen }}
@@ -70,6 +70,8 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "11 herbs. The gentle ones first." },
     { "type": "textarea", "id": "intro", "label": "Intro", "default": "A balanced blend of soothing kitchen herbs and traditional botanicals, in an alcohol-free glycerin base with natural raspberry." },
     { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_asset", "label": "Built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-ingredients-flatlay.jpg" },
+    { "type": "text", "id": "image_alt", "label": "Image description (for screen readers)", "default": "ParaPatrol surrounded by its 11 herbs: fennel, anise, licorice root, aloe vera, black walnut, clove, pumpkin seed, wormwood, pau d'arco, thyme and oregano" },
     { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "herb flat lay, fennel + anise up front" },
     { "type": "text", "id": "allergen", "label": "Allergen line", "default": "Contains tree nut (black walnut)." }
   ],
