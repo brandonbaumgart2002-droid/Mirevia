@@ -70,7 +70,7 @@
       </div>
     {%- endunless -%}
 
-    <fieldset>
+    <fieldset data-pp-plans>
       <legend class="sr-only">Purchase option</legend>
       <div class="grid gap-2.5">
         {%- if has_plans -%}
@@ -123,7 +123,7 @@
     {%- endif -%}
 
     <div class="mt-4 flex items-stretch gap-3">
-      <div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity">
+      <div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity" data-pp-qty-group>
         <button type="button" data-pp-qty="-1" class="disable-global-button-styling w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity" disabled>&minus;</button>
         <label for="pp-qty-{{ uid }}" class="sr-only">Quantity</label>
         <input id="pp-qty-{{ uid }}" name="quantity" data-pp-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="pp-qty w-10 text-center font-bold text-[16px] bg-transparent">

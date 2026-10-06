@@ -139,3 +139,51 @@
 .pp.pp .bg-soft { background-color: var(--bg-soft) !important; }
 
 .pp.bg-white { background-color: #fff !important; }
+
+/* ===== Kaching Bundles inside the buy box =====
+   Kaching sets the quantity and the price, so our own purchase options and stepper step aside.
+   Its colours are CSS variables it writes inline; !important custom properties here re-skin it in the ParaPatrol palette. */
+.pp .pp-has-bundles [data-pp-plans], .pp .pp-has-bundles [data-pp-qty-group],
+.pp .pp-buybox:has(kaching-bundle) [data-pp-plans], .pp .pp-buybox:has(kaching-bundle) [data-pp-qty-group] { display: none !important; }
+.pp .pp-has-bundles form > .mt-4.flex, .pp .pp-buybox:has(kaching-bundle) form > .mt-4.flex { margin-top: 12px; }
+
+.pp .kaching-bundles__block {
+  --block-title-color: var(--ink-muted) !important;
+  --block-block-title-color: var(--ink-muted) !important;
+  --block-title-font-size: 12px !important;
+  --bar-border-radius: 16px !important;
+  --bar-background-color: #ffffff !important;
+  --bar-selected-background-color: var(--bg-mint) !important;
+  --bar-border-color: var(--line) !important;
+  --bar-selected-border-color: var(--brand-primary) !important;
+  --bar-title-color: var(--ink) !important;
+  --bar-title-font-weight: 700 !important;
+  --bar-subtitle-color: var(--ink-muted) !important;
+  --bar-price-color: var(--ink) !important;
+  --bar-full-price-color: var(--ink-muted) !important;
+  --bar-label-background-color: var(--brand-berry) !important;
+  --bar-label-color: #ffffff !important;
+  --bar-label-font-weight: 700 !important;
+  --bar-label-font-size: 11px !important;
+  --bar-most-popular-background-color: var(--brand-primary) !important;
+  --bar-most-popular-color: #ffffff !important;
+}
+.pp .kaching-bundles__bar-most-popular { --bar-most-popular-background-color: var(--brand-primary) !important; --bar-most-popular-color: #ffffff !important; }
+.pp .kaching-bundles__free-gift {
+  --kaching-free-gift-background-color: #f4f9f6 !important;
+  --kaching-free-gift-text-color: var(--brand-primary-dark) !important;
+  --kaching-free-gift-selected-background-color: #d9ebe2 !important;
+  --kaching-free-gift-selected-text-color: var(--ink) !important;
+  --kaching-free-gift-font-weight: 700 !important;
+}
+/* The theme forces its font and letter-spacing on [class*="title"] / [class*="bundle"] with !important;
+   these selectors are stronger and only apply inside .pp */
+.pp.pp .kaching-bundles, .pp.pp .kaching-bundles * { font-family: var(--pp-font-body) !important; letter-spacing: normal !important; }
+.pp.pp .kaching-bundles .kaching-bundles__block-title { letter-spacing: .14em !important; text-transform: uppercase !important; font-weight: 700 !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-title { font-weight: 700 !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-price { font-family: var(--pp-font-display) !important; font-weight: 700 !important; font-size: 20px !important; color: var(--ink) !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-full-price { color: var(--ink-muted) !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-label { font-weight: 700 !important; letter-spacing: .02em !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-most-popular__content { font-weight: 700 !important; letter-spacing: .06em !important; }
+.pp.pp .kaching-bundles .kaching-bundles__free-gift__text { font-weight: 700 !important; }
+.pp .kaching-bundles__bar-radio { border-color: var(--brand-primary) !important; }

@@ -180,6 +180,8 @@
     }
 
     $$('[data-pp-buybox]').forEach(function (box) {
+      var bundled = hasBundles(box);
+      box.classList.toggle('pp-has-bundles', bundled);
       var vi = $('[data-pp-variant-input]', box); if (vi) vi.value = v.id;
       var vs = $('[data-pp-variant]', box); if (vs) vs.value = v.id;
 
@@ -204,6 +206,7 @@
         sv.textContent = 'SAVE ' + pct + '%'; sv.hidden = pct <= 0;
       }
 
+      if (bundled) { syncBundle(box); return; } // quantity, label and shipping come from the bundle
       var qi = $('[data-pp-qty-input]', box); if (qi) qi.value = state.qty;
       var dec = $('[data-pp-qty="-1"]', box); if (dec) dec.disabled = state.qty <= 1;
       var inc = $('[data-pp-qty="1"]', box); if (inc) inc.disabled = state.qty >= MAX_QTY;
@@ -221,7 +224,8 @@
     });
 
     var meta = $('[data-pp-sticky-meta]');
-    if (meta) {
+    var heroBox = $('[data-pp-hero-box] [data-pp-buybox]');
+    if (meta && !(heroBox && hasBundles(heroBox))) {
       var freqLabel = '';
       var fq0 = $('[data-pp-freq]');
       if (sub && fq0 && fq0.selectedIndex > -1) freqLabel = ' · ' + fq0.options[fq0.selectedIndex].text;
@@ -264,8 +268,60 @@
     var sAdd = $('[data-pp-sticky-add]');
     if (sAdd && !sAdd.__ppBound) {
       sAdd.__ppBound = true;
-      sAdd.addEventListener('click', function () { addFromState($('[data-pp-hero-box] [data-pp-buybox]') || boxes[0]); });
+      sAdd.addEventListener('click', function () {
+        var hero = $('[data-pp-hero-box] [data-pp-buybox]') || boxes[0];
+        // A bundle app (Kaching) adds the chosen bundle on the main button's click, so go through it
+        if (hasBundles(hero)) { var main = $('[data-pp-add]', hero); if (main) main.click(); return; }
+        addFromState(hero);
+      });
     }
+  }
+
+  /* ---------------- bundle app (Kaching Bundles) inside the buy box ----------------
+     Kaching sets the quantity, adds the bundle on click and writes the bundle price into our button.
+     We hide our own purchase options (CSS: .pp-has-bundles), keep the "Add to Bag ·" label,
+     and work out the free-shipping line and the sticky bar text from the bundle price. */
+  function hasBundles(box) { return !!(box && box.querySelector('kaching-bundle, .kaching-bundles')); }
+  function priceCents(text) {
+    var m = (text || '').match(/\d[\d,]*(?:\.\d{1,2})?/g);
+    return m ? Math.round(parseFloat(m[m.length - 1].replace(/,/g, '')) * 100) : null;
+  }
+  function syncBundle(box) {
+    var add = $('[data-pp-add]', box); if (!add || add.__ppBusy) return;
+    var label = add.textContent.trim();
+    var cents = priceCents(label);
+    if (cents !== null && label.indexOf('Add to Bag') !== 0) add.textContent = 'Add to Bag · ' + money(cents);
+    var ship = $('[data-pp-ship]', box);
+    if (ship && data && data.freeShipping > 0 && cents !== null) {
+      var gap = data.freeShipping - cents;
+      var t = gap > 0 ? 'You’re ' + money(gap) + ' away from free shipping.' : 'You’ve unlocked free shipping.';
+      if (ship.textContent !== t) ship.textContent = t;
+      ship.hidden = false;
+    }
+    if (box.closest('[data-pp-hero-box]')) {
+      var meta = $('[data-pp-sticky-meta]');
+      var sel = box.querySelector('.kaching-bundles__bar--selected .kaching-bundles__bar-title');
+      if (meta && cents !== null) {
+        var mt = (sel ? sel.textContent.trim() : 'Bundle') + ' · ' + money(cents);
+        if (meta.textContent !== mt) meta.textContent = mt;
+      }
+    }
+  }
+  function watchBundles() {
+    $$('[data-pp-buybox]').forEach(function (box) {
+      if (box.__ppBundleObs || !('MutationObserver' in window)) return;
+      var queued = false;
+      box.__ppBundleObs = new MutationObserver(function () {
+        if (queued) return; queued = true;
+        requestAnimationFrame(function () {
+          queued = false;
+          var bundled = hasBundles(box);
+          if (bundled !== box.classList.contains('pp-has-bundles')) renderBoxes();
+          else if (bundled) syncBundle(box);
+        });
+      });
+      box.__ppBundleObs.observe(box, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class'] });
+    });
   }
 
   /* ---------------- sticky bar ---------------- */
@@ -488,6 +544,7 @@
     initBundle(root);
     initStats(root);
     initBuyBoxes();
+    watchBundles();
     initSticky();
   }
 
