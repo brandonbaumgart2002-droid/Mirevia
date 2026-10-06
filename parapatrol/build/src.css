@@ -2,15 +2,16 @@
 
 /* ===== Brand tokens: defaults. The main ParaPatrol section can override them in the theme editor. ===== */
 :root {
-  --brand-primary: #1d6b57;
-  --brand-primary-dark: #14513f;
-  --brand-accent: #f6b941;
-  --brand-berry: #b3325a;
-  --bg-soft: #fff6ec;
-  --bg-mint: #eaf5ef;
-  --ink: #1f2a2e;
-  --ink-muted: #52616a;
-  --line: #eadfd2;
+  /* Matched to the ParaPatrol pack: sage label, navy lettering, soft pink mascot. All text pairs pass WCAG AA. */
+  --brand-primary: #3b7560;
+  --brand-primary-dark: #2c5a4a;
+  --brand-accent: #f4c7d5;
+  --brand-berry: #a83f66;
+  --bg-soft: #fdf6f3;
+  --bg-mint: #ebf4ef;
+  --ink: #1e2d4f;
+  --ink-muted: #4f5b72;
+  --line: #ece1e5;
   --pp-font-display: 'Fredoka', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
   --pp-font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
@@ -46,8 +47,8 @@
 .pp .pp-herbs li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 9999px; background: var(--brand-primary); }
 .pp .ph {
   position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
-  background: repeating-linear-gradient(135deg, rgba(29,107,87,.06) 0 12px, rgba(29,107,87,.02) 12px 24px), var(--bg-mint);
-  border: 2px dashed rgba(29,107,87,.35); color: var(--brand-primary-dark);
+  background: repeating-linear-gradient(135deg, rgba(59,117,96,.06) 0 12px, rgba(59,117,96,.02) 12px 24px), var(--bg-mint);
+  border: 2px dashed rgba(59,117,96,.35); color: var(--brand-primary-dark);
   font: 500 13px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 12px;
 }
 .pp .verify {
@@ -67,8 +68,34 @@
 .pp .pp-qty { -moz-appearance: textfield; appearance: textfield; border: 0; }
 .pp .media-fill img { width: 100%; height: 100%; } /* fit comes from the img class (object-cover / object-contain) */
 
+/* Scrolling announcement bar. Only transform animates, so it stays on the compositor. */
+.pp .pp-marquee { position: relative; display: flex; align-items: center; overflow: hidden; min-height: 38px; }
+.pp .pp-marquee-track { display: flex; width: max-content; animation: pp-marquee var(--pp-marquee-duration, 28s) linear infinite; will-change: transform; }
+.pp .pp-marquee-group { display: flex; flex-shrink: 0; align-items: center; }
+.pp .pp-marquee-item { display: inline-flex; align-items: center; white-space: nowrap; padding: 9px 0; }
+.pp .pp-marquee-item::after { content: ""; width: 5px; height: 5px; margin: 0 22px; border-radius: 9999px; background: currentColor; opacity: .55; }
+.pp .pp-marquee:hover .pp-marquee-track,
+.pp .pp-marquee:focus-within .pp-marquee-track,
+.pp .pp-marquee.is-paused .pp-marquee-track { animation-play-state: paused; }
+.pp .pp-marquee-toggle { position: absolute; right: 0; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 44px; color: inherit; background: inherit; box-shadow: -16px 0 16px 0 var(--pp-marquee-fade, transparent); }
+.pp .bg-primary.pp-marquee { --pp-marquee-fade: var(--brand-primary); }
+.pp .bg-ink.pp-marquee { --pp-marquee-fade: var(--ink); }
+.pp .bg-mint.pp-marquee { --pp-marquee-fade: var(--bg-mint); }
+.pp .pp-marquee-toggle .pp-marquee-play,
+.pp .pp-marquee.is-paused .pp-marquee-toggle .pp-marquee-pause { display: none; }
+.pp .pp-marquee.is-paused .pp-marquee-toggle .pp-marquee-play { display: block; }
+@keyframes pp-marquee { to { transform: translateX(calc(-100% / var(--pp-marquee-copies, 4))); } }
+
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
+  /* Announcement: no motion, show the items once, wrapped and centred */
+  .pp .pp-marquee { justify-content: center; }
+  .pp .pp-marquee-track { animation: none; width: auto; max-width: 100%; justify-content: center; padding: 0 16px; }
+  .pp .pp-marquee-group { flex-wrap: wrap; justify-content: center; flex-shrink: 1; }
+  .pp .pp-marquee-group[aria-hidden="true"], .pp .pp-marquee-toggle { display: none; }
+  .pp .pp-marquee-item { padding: 4px 0; }
+  .pp .pp-marquee-item:last-child::after { display: none; }
+  .pp .pp-marquee-item::after { margin: 0 12px; }
 }
 
 @tailwind components;

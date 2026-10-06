@@ -42,8 +42,8 @@ module.exports = {
         sans: ['var(--pp-font-body)']
       },
       boxShadow: {
-        soft: '0 1px 2px rgba(31,42,46,.04), 0 8px 24px -8px rgba(31,42,46,.12)',
-        lift: '0 2px 4px rgba(31,42,46,.05), 0 18px 40px -12px rgba(31,42,46,.18)'
+        soft: '0 1px 2px rgba(30,45,79,.04), 0 8px 24px -8px rgba(30,45,79,.12)',
+        lift: '0 2px 4px rgba(30,45,79,.05), 0 18px 40px -12px rgba(30,45,79,.18)'
       }
     }
   }

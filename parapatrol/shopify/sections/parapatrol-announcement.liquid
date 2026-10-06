@@ -1,19 +1,51 @@
-{%- comment -%} Offer strip. If your theme already has an announcement bar, you can use that instead and remove this section. {%- endcomment -%}
+{%- comment -%}
+  Scrolling announcement bar. If your theme already has an announcement bar, you can use that instead and remove this section.
+  The items are repeated so the loop is seamless on wide screens; only the first copy is read by screen readers.
+  It pauses on hover, on keyboard focus and with the pause button, and stays still when the visitor prefers reduced motion.
+{%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
-{%- assign items = section.settings.text | split: '|' -%}
+{%- liquid
+  assign items = section.settings.text | split: '|'
+  assign copies = 4
+  assign bar_class = 'bg-primary text-white'
+  if section.settings.style == 'ink'
+    assign bar_class = 'bg-ink text-white'
+  elsif section.settings.style == 'soft'
+    assign bar_class = 'bg-mint text-primary-dark'
+  endif
+-%}
+{%- if items.size > 0 -%}
 <div class="pp">
-  <div class="bg-primary text-white text-[12px] sm:text-sm font-medium text-center px-4 py-2 leading-snug">
-    {%- for item in items -%}
-      {{ item | strip }}{% unless forloop.last %} <span aria-hidden="true" class="opacity-60 mx-1">·</span> {% endunless %}
-    {%- endfor -%}
+  <div class="pp-marquee {{ bar_class }} text-[13px] sm:text-sm font-medium leading-snug" data-pp-marquee role="region" aria-label="Offers" style="--pp-marquee-duration: {{ section.settings.speed }}s; --pp-marquee-copies: {{ copies }};">
+    <div class="pp-marquee-track">
+      {%- for copy in (1..copies) -%}
+        <ul class="pp-marquee-group"{% unless forloop.first %} aria-hidden="true"{% endunless %}>
+          {%- for item in items -%}
+            {%- assign t = item | strip -%}
+            {%- if t != blank -%}<li class="pp-marquee-item">{{ t }}</li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+    <button type="button" class="pp-marquee-toggle" data-pp-marquee-toggle aria-pressed="false" aria-label="Pause scrolling offers">
+      <svg class="pp-marquee-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7.5" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/></svg>
+      <svg class="pp-marquee-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
+    </button>
   </div>
 </div>
+{%- endif -%}
 {% schema %}
 {
-  "name": "ParaPatrol: offer strip",
+  "name": "ParaPatrol: announcement",
   "settings": [
-    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee" }
+    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee" },
+    { "type": "range", "id": "speed", "label": "Seconds per loop", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
+    { "type": "select", "id": "style", "label": "Colour", "default": "primary", "options": [
+      { "value": "primary", "label": "Brand green" },
+      { "value": "ink", "label": "Navy" },
+      { "value": "soft", "label": "Soft sage" }
+    ] }
   ],
-  "presets": [ { "name": "ParaPatrol: offer strip" } ]
+  "presets": [ { "name": "ParaPatrol: announcement" } ]
 }
 {% endschema %}

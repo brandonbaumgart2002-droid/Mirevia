@@ -423,6 +423,16 @@
     if (target) setTimeout(function () { target.focus({ preventScroll: true }); }, 0);
   });
 
+  /* ---------------- announcement bar: pause / play ---------------- */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-pp-marquee-toggle]');
+    if (!btn) return;
+    var bar = btn.closest('[data-pp-marquee]');
+    var paused = bar.classList.toggle('is-paused');
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Play scrolling offers' : 'Pause scrolling offers');
+  });
+
   /* ---------------- boot ---------------- */
   function initAll(root) {
     root = root || document;
