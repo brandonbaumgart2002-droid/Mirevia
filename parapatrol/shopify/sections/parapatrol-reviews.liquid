@@ -17,6 +17,21 @@
       {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 id="pp-rev-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
 
+      {%- comment -%} Lifestyle photo strip. Kept apart from the quotes so it never reads as a reviewer's photo. {%- endcomment -%}
+      {%- assign photo_count = 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'photo' -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+      {%- if photo_count > 0 -%}
+        <ul class="mt-8 -mx-4 px-4 scroll-px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible" role="list" aria-label="ParaPatrol in family life">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'photo' -%}
+              <li class="snap-start shrink-0 w-[62%] sm:w-auto" {{ block.shopify_attributes }}>
+                {%- render 'parapatrol-media', image: block.settings.image, asset: block.settings.asset, label: block.settings.alt, alt: block.settings.alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 270px, (min-width: 640px) 24vw, 62vw' -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
       <div class="mt-8 grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-10">
         {%- if section.settings.show_breakdown -%}
           <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
@@ -88,6 +103,9 @@
                   endfor
                 -%}
                 <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
+                  {%- if block.settings.customer_photo != blank -%}
+                    {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-square rounded-2xl mb-4', sizes: '(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw' -%}
+                  {%- endif -%}
                   {%- if block.settings.stars > 0 -%}
                     <div>{%- render 'parapatrol-stars', score: block.settings.stars, size: 16 -%}</div>
                   {%- endif -%}
@@ -130,7 +148,15 @@
       { "type": "text", "id": "author", "label": "Name", "default": "Verified Buyer" },
       { "type": "text", "id": "badge", "label": "Badge", "default": "Verified Buyer" },
       { "type": "range", "id": "stars", "label": "Stars (0 hides)", "min": 0, "max": 5, "step": 1, "default": 5 },
-      { "type": "text", "id": "tags", "label": "Filter keys (comma separated)", "info": "Use keys from the section's filter list, e.g. easy, taste" }
+      { "type": "text", "id": "tags", "label": "Filter keys (comma separated)", "info": "Use keys from the section's filter list, e.g. easy, taste" },
+      { "type": "image_picker", "id": "customer_photo", "label": "Customer photo (optional)", "info": "Only a real photo from this customer, used with their permission. Never a stock or AI image." },
+      { "type": "text", "id": "photo_alt", "label": "Customer photo description" }
+    ] },
+    { "type": "photo", "name": "Lifestyle photo", "settings": [
+      { "type": "paragraph", "content": "Shown in a row above the reviews, separate from the quotes." },
+      { "type": "image_picker", "id": "image", "label": "Image (square)" },
+      { "type": "text", "id": "asset", "label": "Built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder." },
+      { "type": "text", "id": "alt", "label": "Image description (for screen readers)" }
     ] }
   ],
   "presets": [ { "name": "ParaPatrol: reviews" } ]

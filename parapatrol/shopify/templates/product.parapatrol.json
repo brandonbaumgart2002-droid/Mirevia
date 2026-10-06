@@ -310,9 +310,41 @@
             "stars": 5,
             "tags": "routine"
           }
+        },
+        "ph1": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-couch.jpg",
+            "alt": "A mum and daughter reading on the sofa, ParaPatrol on the side table"
+          }
+        },
+        "ph2": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-dad-smoothie.jpg",
+            "alt": "A dad and son pouring a berry smoothie, ParaPatrol on the counter"
+          }
+        },
+        "ph3": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-school-door.jpg",
+            "alt": "A mum zips up her son's jacket before school, ParaPatrol on the hall table"
+          }
+        },
+        "ph4": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-breakfast.jpg",
+            "alt": "A family laughing over pancakes, ParaPatrol on the table"
+          }
         }
       },
       "block_order": [
+        "ph1",
+        "ph2",
+        "ph3",
+        "ph4",
         "rev_1",
         "rev_2",
         "rev_3",
