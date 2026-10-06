@@ -2,7 +2,8 @@
   Image, or a clearly labelled placeholder box when no image is set.
   Params: image (image object, optional), label (placeholder text), alt, class, sizes, loading,
   fit ('contain' keeps the whole image, e.g. gallery images with text; default 'cover'),
-  priority (true on the LCP image: adds fetchpriority="high")
+  priority (true on the LCP image: adds fetchpriority="high"),
+  asset (optional: a square image in the theme's assets folder, used when no image is chosen)
 {%- endcomment -%}
 {%- liquid
   assign pp_alt = alt | default: label
@@ -19,6 +20,10 @@
 {%- if image != blank -%}
   <div class="media-fill overflow-hidden bg-mint {{ class }}">
     {{- image | image_url: width: 1600 | image_tag: alt: pp_alt, loading: pp_loading, fetchpriority: pp_priority, sizes: sizes, widths: '375, 550, 750, 1100, 1500', class: pp_img_class -}}
+  </div>
+{%- elsif asset != blank -%}
+  <div class="media-fill overflow-hidden bg-mint {{ class }}">
+    <img src="{{ asset | asset_img_url: '900x' }}" srcset="{{ asset | asset_img_url: '450x' }} 450w, {{ asset | asset_img_url: '700x' }} 700w, {{ asset | asset_img_url: '900x' }} 900w, {{ asset | asset_img_url: '1200x' }} 1200w" sizes="{{ sizes | default: '100vw' }}" width="1200" height="1200" alt="{{ pp_alt | escape }}" loading="{{ pp_loading }}" decoding="async" class="{{ pp_img_class }}">
   </div>
 {%- else -%}
   <div class="ph {{ class }}" role="img" aria-label="{{ pp_alt | escape }} (image placeholder)">[IMG: {{ label }}]</div>

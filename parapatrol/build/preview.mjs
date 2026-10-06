@@ -13,6 +13,7 @@ engine.registerTag('form', class extends Tag { constructor(t,r,l){ super(t,r,l);
 const fmt = c => '$' + (c/100).toFixed(2);
 engine.registerFilter('money', fmt);
 engine.registerFilter('asset_url', f => '/assets/' + f);
+engine.registerFilter('asset_img_url', f => '/assets/' + f);
 engine.registerFilter('stylesheet_tag', u => `<link rel="stylesheet" href="${u}">`);
 engine.registerFilter('json', v => JSON.stringify(v === undefined ? null : v));
 engine.registerFilter('handleize', v => String(v).toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''));
@@ -59,6 +60,6 @@ h1,h2,h3{font-size:4rem;margin:3rem 0;letter-spacing:.2rem} p{margin:1.5rem 0} u
 <body><header class="theme-header">THEME HEADER <span class="cart-count-bubble" style="margin-left:auto"><span aria-hidden="true">0</span></span></header>${html}<footer style="padding:40px">THEME FOOTER</footer></body></html>`;
 fs.writeFileSync(path.join(OUT,'index.html'), page);
 fs.mkdirSync(path.join(OUT,'assets'),{recursive:true});
-for (const f of ['parapatrol.css','parapatrol.js']) fs.copyFileSync(path.join(ROOT,'assets',f), path.join(OUT,'assets',f));
+for (const f of fs.readdirSync(path.join(ROOT,'assets'))) fs.copyFileSync(path.join(ROOT,'assets',f), path.join(OUT,'assets',f));
 if (media.length) { fs.mkdirSync(path.join(OUT,'gallery'),{recursive:true}); for (const m of media) { const f = path.basename(m.preview_image.src); fs.copyFileSync(path.join(GALLERY,f), path.join(OUT,'gallery',f)); } }
 console.log('rendered', html.length);

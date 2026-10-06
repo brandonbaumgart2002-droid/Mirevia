@@ -426,17 +426,113 @@
     "expert": {
       "type": "parapatrol-expert",
       "settings": {}
+    },
+    "kidlife": {
+      "type": "parapatrol-kid-life",
+      "blocks": {
+        "life1": {
+          "type": "tile",
+          "settings": {
+            "asset": "pp-kids-school-morning.jpg",
+            "alt": "A girl with her school backpack laughs while drinking orange juice, ParaPatrol on the counter",
+            "caption": "School-run mornings",
+            "subcaption": "One drop in their juice before the bag goes on."
+          }
+        },
+        "life2": {
+          "type": "tile",
+          "settings": {
+            "asset": "pp-kids-park.jpg",
+            "alt": "A boy plays in a park sandpit with a ParaPatrol bottle by the parent's tote bag",
+            "caption": "Sandpits and playgrounds",
+            "subcaption": "For the kid who touches everything."
+          }
+        },
+        "life3": {
+          "type": "tile",
+          "settings": {
+            "asset": "pp-kids-picnic.jpg",
+            "alt": "Two kids and a dog at a picnic, ParaPatrol on the blanket",
+            "caption": "Picnics, pets and holidays",
+            "subcaption": "A gentle reset after a run of treats.*"
+          }
+        }
+      },
+      "block_order": [
+        "life1",
+        "life2",
+        "life3"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "parapatrol-stats",
+      "blocks": {
+        "st1": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "say giving it became an easy, no-fuss part of the day"
+          }
+        },
+        "st2": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "noticed a happier, more settled tummy*"
+          }
+        },
+        "st3": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "came back for another bottle"
+          }
+        },
+        "st4": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "feel calmer knowing they have a gentle plan"
+          }
+        },
+        "st5": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "saw their kid finishing meals again*"
+          }
+        },
+        "st6": {
+          "type": "stat",
+          "settings": {
+            "number": "[VERIFY]%",
+            "label": "would recommend it to another parent"
+          }
+        }
+      },
+      "block_order": [
+        "st1",
+        "st2",
+        "st3",
+        "st4",
+        "st5",
+        "st6"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "main",
     "expert",
     "familiar",
+    "kidlife",
     "compare",
     "how",
     "ingredients",
     "use",
     "safety",
+    "stats",
     "reviews",
     "founder",
     "bundle",

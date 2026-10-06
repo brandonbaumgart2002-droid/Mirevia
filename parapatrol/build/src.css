@@ -109,3 +109,9 @@
 .pp.pp .text-primary-dark { color: var(--brand-primary-dark) !important; }
 .pp.pp .text-berry { color: var(--brand-berry) !important; }
 .pp.pp .text-white { color: #fff !important; }
+/* ...and rounded corners (Elixir resets border-radius on anything with "media" in its class name) */
+.pp.pp .rounded-lg { border-radius: 8px !important; }
+.pp.pp .rounded-xl { border-radius: 12px !important; }
+.pp.pp .rounded-2xl { border-radius: 16px !important; }
+.pp.pp .rounded-3xl { border-radius: 24px !important; }
+.pp.pp .rounded-full { border-radius: 9999px !important; }

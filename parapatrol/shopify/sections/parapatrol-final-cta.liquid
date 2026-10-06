@@ -8,10 +8,10 @@
       <div>
         <h2 id="pp-fin-{{ section.id }}" class="font-display font-semibold text-[34px] sm:text-[46px] leading-[1.05]">{{ section.settings.heading }}</h2>
         {%- if section.settings.text != blank -%}<p class="mt-3 text-white/90 text-[17px] max-w-md">{{ section.settings.text }}</p>{%- endif -%}
-        {%- if section.settings.image != blank -%}
-          {%- render 'parapatrol-media', image: section.settings.image, alt: 'Kids playing by a pool on a sunny day', class: 'mt-6 aspect-[16/10] rounded-3xl', sizes: '(min-width: 768px) 480px, 100vw' -%}
+        {%- if section.settings.image != blank or section.settings.image_asset != blank -%}
+          {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, alt: section.settings.image_alt, class: 'mt-6 aspect-square rounded-3xl', sizes: '(min-width: 1024px) 470px, (min-width: 768px) 45vw, calc(100vw - 32px)' -%}
         {%- else -%}
-          <div class="ph mt-6 aspect-[16/10] rounded-3xl !bg-white/10 !border-white/40 !text-white" role="img" aria-label="Kids playing by a pool on a sunny day (image placeholder)">[IMG: {{ section.settings.image_label }}]</div>
+          <div class="ph mt-6 aspect-square rounded-3xl !bg-white/10 !border-white/40 !text-white" role="img" aria-label="{{ section.settings.image_alt | escape }} (image placeholder)">[IMG: {{ section.settings.image_label }}]</div>
         {%- endif -%}
       </div>
       <div class="bg-white text-ink rounded-3xl p-5 sm:p-6 shadow-lift">
@@ -30,6 +30,8 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Back on track, the gentle way." },
     { "type": "textarea", "id": "text", "label": "Text", "default": "One dropper in their favourite drink. Made for kids 3+, alcohol-free and sugar-free." },
     { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_asset", "label": "Built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-kids-pool.jpg" },
+    { "type": "text", "id": "image_alt", "label": "Image description (for screen readers)", "default": "Two kids splashing at the pool, with ParaPatrol on the table beside them" },
     { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "kids at the pool, lifestyle" },
     { "type": "text", "id": "product_line", "label": "Line after product name", "default": "1 oz (30 mL) · ~30 servings" },
     { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
