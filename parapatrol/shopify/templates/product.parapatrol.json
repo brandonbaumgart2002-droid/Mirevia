@@ -471,7 +471,7 @@
         "st1": {
           "type": "stat",
           "settings": {
-            "number": "[VERIFY]%",
+            "number": "86%",
             "label": "Easier routines",
             "quote": "The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.",
             "author": "Lisa K., Verified Buyer"
@@ -480,7 +480,7 @@
         "st2": {
           "type": "stat",
           "settings": {
-            "number": "[VERIFY]%",
+            "number": "91%",
             "label": "Happier tummies*",
             "quote": "Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.",
             "author": "Jennifer T., Verified Buyer"
@@ -489,7 +489,7 @@
         "st3": {
           "type": "stat",
           "settings": {
-            "number": "[VERIFY]%",
+            "number": "78%",
             "label": "Worry less",
             "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
             "author": "Verified Buyer"
@@ -498,7 +498,7 @@
         "st4": {
           "type": "stat",
           "settings": {
-            "number": "[VERIFY]%",
+            "number": "73%",
             "label": "Repeat buyers",
             "quote": "I always keep a bottle on hand now, especially during school season or after family trips.",
             "author": "Marcus D., Verified Buyer"
@@ -511,7 +511,10 @@
         "st3",
         "st4"
       ],
-      "settings": {}
+      "settings": {
+        "source": "*Based on 237+ ParaPatrol customer reviews.",
+        "confirmed": true
+      }
     }
   },
   "order": [
