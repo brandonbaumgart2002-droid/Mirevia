@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParaPatrol™ Gentle Gut Support for Kids | JoySpring</title>
+<meta name="description" content="ParaPatrol™ by JoySpring: a gentle, alcohol-free 11-herb drop made for kids 3+. One dropper in juice or milk supports gut comfort, healthy digestion and regularity.*">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<!-- Tailwind Play CDN: fine for review/prototype. For production, compile Tailwind with the same config (see README). -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: 'var(--brand-primary)',
+          'primary-dark': 'var(--brand-primary-dark)',
+          accent: 'var(--brand-accent)',
+          berry: 'var(--brand-berry)',
+          soft: 'var(--bg-soft)',
+          mint: 'var(--bg-mint)',
+          ink: 'var(--ink)',
+          muted: 'var(--ink-muted)',
+          line: 'var(--line)'
+        },
+        fontFamily: {
+          display: ['Fredoka', 'ui-rounded', '"Arial Rounded MT Bold"', 'system-ui', 'sans-serif'],
+          sans: ['"DM Sans"', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'sans-serif']
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(31,42,46,.04), 0 8px 24px -8px rgba(31,42,46,.12)',
+          lift: '0 2px 4px rgba(31,42,46,.05), 0 18px 40px -12px rgba(31,42,46,.18)'
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  /* ===== Brand tokens: swap these to the exact JoySpring palette ===== */
+  :root {
+    --brand-primary: #1d6b57;      /* buttons, links, selected states (white text passes AA) */
+    --brand-primary-dark: #14513f; /* hover */
+    --brand-accent: #f6b941;       /* sunny highlight; use with --ink text only */
+    --brand-berry: #b3325a;        /* raspberry: savings, stars, focus ring */
+    --bg-soft: #fff6ec;            /* warm section background */
+    --bg-mint: #eaf5ef;            /* cool section background */
+    --ink: #1f2a2e;                /* body text */
+    --ink-muted: #52616a;          /* secondary text (AA on white and both soft backgrounds) */
+    --line: #eadfd2;               /* hairlines and borders */
+  }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+  body { background: #fff; color: var(--ink); }
+
+  :focus-visible { outline: 3px solid var(--brand-berry); outline-offset: 2px; border-radius: 10px; }
+
+  /* Placeholders: easy to spot, easy to swap */
+  .ph {
+    position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+    background:
+      repeating-linear-gradient(135deg, rgba(29,107,87,.06) 0 12px, rgba(29,107,87,.02) 12px 24px),
+      var(--bg-mint);
+    border: 2px dashed rgba(29,107,87,.35);
+    color: var(--brand-primary-dark);
+    font: 500 13px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    padding: 12px;
+  }
+  .verify {
+    display: inline; background: #fff3c4; color: #5c4300; border: 1px dashed #b58900;
+    padding: 0 .3em; border-radius: 4px; font: 600 .78em/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+    box-decoration-break: clone; -webkit-box-decoration-break: clone; white-space: normal;
+  }
+  /* Asterisks link to the FDA disclaimer */
+  a.fda { color: inherit; text-decoration: none; font-weight: 700; padding: 0 1px; }
+  a.fda:hover { color: var(--brand-berry); }
+
+  .gallery-track { scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .gallery-track::-webkit-scrollbar { display: none; }
+  .gallery-track > * { scroll-snap-align: center; }
+
+  [hidden] { display: none !important; }
+  .acc-btn[aria-expanded="true"] .acc-icon { transform: rotate(45deg); }
+  .acc-icon { transition: transform .2s ease; }
+
+  #sticky-atc { transition: transform .25s ease; }
+</style>
+</head>
+
+<body class="font-sans antialiased text-[16px] leading-relaxed">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lift">Skip to content</a>
+
+<!-- ============ 4.1 ANNOUNCEMENT BAR ============ -->
+<div class="bg-primary text-white text-[12px] sm:text-sm font-medium text-center px-4 py-2 leading-snug">
+  Subscribe &amp; save 15% <span aria-hidden="true" class="opacity-60 mx-1">·</span> Free shipping over $65 <span aria-hidden="true" class="opacity-60 mx-1">·</span> 30-day money-back guarantee
+</div>
+
+<!-- Header (theme header will replace this in production) -->
+<header class="border-b border-line bg-white">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="#" class="font-display text-[22px] font-semibold text-primary tracking-tight" aria-label="JoySpring home">JoySpring</a>
+    <a href="#" class="relative inline-flex items-center gap-2 text-sm font-medium" aria-label="Bag, 0 items" id="bag-link">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span id="bag-count" class="absolute -top-1.5 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-berry text-white text-[11px] leading-[18px] text-center">0</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 4.2 HERO ============ -->
+<section class="max-w-6xl mx-auto px-4 pt-4 pb-12 lg:pt-10 lg:pb-20 grid lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-12" aria-labelledby="pdp-title">
+
+  <!-- Gallery -->
+  <div class="lg:sticky lg:top-6 self-start min-w-0">
+    <div class="relative">
+      <div id="gallery-track" class="gallery-track flex overflow-x-auto rounded-3xl" tabindex="0" aria-label="Product images. Use the thumbnails or swipe to browse." role="region">
+        <div class="ph shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl" role="img" aria-label="ParaPatrol bottle on a white background (image placeholder)">[IMG: bottle hero on white]</div>
+        <div class="ph shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl" role="img" aria-label="Dropper of ParaPatrol going into a cup of orange juice (image placeholder)">[IMG: drop-into-juice shot]</div>
+        <div class="ph shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl" role="img" aria-label="Child playing outdoors in the sand (image placeholder)">[IMG: kid-at-play lifestyle, sandpit or park]</div>
+        <div class="ph shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl" role="img" aria-label="ParaPatrol supplement facts label (image placeholder)">[IMG: supplement facts label]</div>
+      </div>
+      <!-- Dots (mobile) -->
+      <div class="flex justify-center gap-1.5 mt-2 sm:hidden" aria-hidden="true">
+        <span class="g-dot w-2 h-2 rounded-full bg-primary"></span><span class="g-dot w-2 h-2 rounded-full bg-line"></span><span class="g-dot w-2 h-2 rounded-full bg-line"></span><span class="g-dot w-2 h-2 rounded-full bg-line"></span>
+      </div>
+    </div>
+    <!-- Thumbnails -->
+    <div class="hidden sm:grid grid-cols-4 gap-3 mt-3" role="group" aria-label="Choose image">
+      <button type="button" class="g-thumb ph aspect-square rounded-2xl !text-[10px] !p-1 ring-2 ring-primary ring-offset-2" aria-label="Show image 1: bottle hero" aria-current="true">[IMG: bottle]</button>
+      <button type="button" class="g-thumb ph aspect-square rounded-2xl !text-[10px] !p-1" aria-label="Show image 2: drop into juice">[IMG: juice]</button>
+      <button type="button" class="g-thumb ph aspect-square rounded-2xl !text-[10px] !p-1" aria-label="Show image 3: kid at play">[IMG: play]</button>
+      <button type="button" class="g-thumb ph aspect-square rounded-2xl !text-[10px] !p-1" aria-label="Show image 4: supplement facts">[IMG: facts]</button>
+    </div>
+  </div>
+
+  <!-- Product info -->
+  <div class="flex flex-col min-w-0">
+    <ul class="order-1 flex flex-wrap gap-1.5 mb-3" aria-label="Product highlights">
+      <li class="px-2.5 py-1 rounded-full bg-mint text-primary-dark text-[12px] font-bold">Kids 3+</li>
+      <li class="px-2.5 py-1 rounded-full bg-mint text-primary-dark text-[12px] font-bold">Alcohol-free</li>
+      <li class="px-2.5 py-1 rounded-full bg-mint text-primary-dark text-[12px] font-bold">Sugar-free</li>
+      <li class="px-2.5 py-1 rounded-full bg-mint text-primary-dark text-[12px] font-bold">Third-party tested</li>
+    </ul>
+
+    <div class="order-2">
+      <h1 id="pdp-title" class="font-display font-semibold text-[15px] uppercase tracking-[.12em] text-primary">ParaPatrol™ <span class="normal-case tracking-normal font-medium text-muted">· Gentle Gut Support for Kids</span></h1>
+      <!-- Headline A/B/C: switch with ?h=a|b|c (default A) -->
+      <p id="hero-headline" class="font-display font-semibold text-[32px] leading-[1.08] sm:text-[42px] lg:text-[48px] tracking-tight mt-1.5"
+         data-a="Get their tummy back on track."
+         data-b="For the days their tummy just isn’t right."
+         data-c="Back to normal, one drop at a time.">Get their tummy back on track.</p>
+
+      <a href="#reviews" class="inline-flex flex-wrap items-center gap-x-2 gap-y-1 mt-3 text-sm text-muted hover:text-ink">
+        <span class="text-berry tracking-[2px] text-[17px] leading-none" aria-hidden="true">★★★★★</span>
+        <span><span class="verify">[VERIFY: rating]</span> · <span class="verify">[VERIFY: review count]</span> reviews</span>
+      </a>
+
+      <p class="mt-3 text-[16px] sm:text-[17px] text-ink/90 max-w-[34rem]">A gentle 11-herb drop made for kids, not adults. One dropper in juice or milk supports gut comfort, healthy digestion and regularity.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p>
+    </div>
+
+    <!-- Benefit ticks: below the buy box on mobile (keeps purchase near the fold), above it on desktop -->
+    <ul class="order-4 lg:order-3 mt-5 lg:mt-5 grid gap-2 text-[15px] font-medium">
+      <li class="flex items-start gap-2.5"><span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-primary text-white items-center justify-center" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span>Settles tummies<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></span></li>
+      <li class="flex items-start gap-2.5"><span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-primary text-white items-center justify-center" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span>Supports a healthy appetite<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></span></li>
+      <li class="flex items-start gap-2.5"><span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-primary text-white items-center justify-center" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>No fuss: mixes into any drink</li>
+    </ul>
+
+    <!-- Purchase box (rendered by JS; shared state with final CTA + sticky bar) -->
+    <div class="order-3 lg:order-4 mt-5" data-buybox="hero" id="buybox-hero">
+      <noscript><p class="p-4 rounded-2xl border border-line">ParaPatrol™ 1 oz: $29.74 with Subscribe &amp; Save (15% off) or $34.99 one-time.</p></noscript>
+    </div>
+
+    <p class="order-5 mt-5 text-[12px] leading-snug text-muted"><span aria-hidden="true">*</span>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+  </div>
+</section>
+
+<!-- ============ 4.3 SOUND FAMILIAR? ============ -->
+<section class="bg-soft py-14 lg:py-20" aria-labelledby="familiar-title">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">Sound familiar?</p>
+      <h2 id="familiar-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">Kids touch everything. Some weeks it shows.</h2>
+    </div>
+
+    <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+      <li class="bg-white rounded-2xl p-5 shadow-soft flex lg:flex-col items-center lg:items-start gap-4">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-accent/30 text-ink inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 18h16"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 6V4M5.6 9.6 4.2 8.2M18.4 9.6l1.4-1.4M3 14H1.5M22.5 14H21"/></svg>
+        </span>
+        <p class="font-medium leading-snug">Rough mornings and tummy complaints</p>
+      </li>
+      <li class="bg-white rounded-2xl p-5 shadow-soft flex lg:flex-col items-center lg:items-start gap-4">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-accent/30 text-ink inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="13" cy="12" r="7.5"/><circle cx="13" cy="12" r="4"/><path d="M3 4v6M3 10v10M1.5 4v4.5a1.5 1.5 0 0 0 3 0V4"/></svg>
+        </span>
+        <p class="font-medium leading-snug">Picky plates and pushed-away dinners</p>
+      </li>
+      <li class="bg-white rounded-2xl p-5 shadow-soft flex lg:flex-col items-center lg:items-start gap-4">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-accent/30 text-ink inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="6" width="14" height="15" rx="4"/><path d="M9 6V5a3 3 0 0 1 6 0v1"/><path d="M8.5 14h7v4h-7z"/></svg>
+        </span>
+        <p class="font-medium leading-snug">Back to school, back to sharing everything</p>
+      </li>
+      <li class="bg-white rounded-2xl p-5 shadow-soft flex lg:flex-col items-center lg:items-start gap-4">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-accent/30 text-ink inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 15c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M2 19.5c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><circle cx="16" cy="6.5" r="3"/></svg>
+        </span>
+        <p class="font-medium leading-snug">Sandpits, pools, pets and dropped snacks</p>
+      </li>
+      <li class="bg-white rounded-2xl p-5 shadow-soft flex lg:flex-col items-center lg:items-start gap-4 sm:col-span-2 lg:col-span-1">
+        <span class="w-12 h-12 shrink-0 rounded-2xl bg-accent/30 text-ink inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="3"/><path d="M9 7V5h6v2M9 11v5M15 11v5"/></svg>
+        </span>
+        <p class="font-medium leading-snug">After travel, holidays, or a run of sweets</p>
+      </li>
+    </ul>
+
+    <p class="mt-8 font-display text-[21px] sm:text-[24px] leading-snug max-w-2xl">ParaPatrol is the gentle reset you reach for when things feel off.</p>
+  </div>
+</section>
+
+<!-- ============ 4.4 WHY MADE-FOR-KIDS MATTERS ============ -->
+<section class="py-14 lg:py-20" aria-labelledby="compare-title">
+  <div class="max-w-4xl mx-auto px-4">
+    <p class="text-sm font-bold uppercase tracking-[.14em] text-berry text-center">Why made-for-kids matters</p>
+    <h2 id="compare-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">Little bodies aren’t small adults.</h2>
+    <p class="text-center text-muted mt-3 max-w-xl mx-auto">Most herbal gut drops on the shelf were made for grown-ups. Here’s what changes when a formula starts with kids.</p>
+
+    <div class="mt-8 rounded-3xl border border-line overflow-hidden shadow-soft">
+      <table class="w-full text-left text-[14px] sm:text-[16px]">
+        <caption class="sr-only">ParaPatrol compared with typical adult tinctures</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="p-3 sm:p-5 w-[30%] bg-white"><span class="sr-only">Feature</span></th>
+            <th scope="col" class="p-3 sm:p-5 bg-primary text-white font-display font-semibold text-[16px] sm:text-[19px]">ParaPatrol™</th>
+            <th scope="col" class="p-3 sm:p-5 bg-white text-muted font-display font-medium text-[15px] sm:text-[18px]">Typical adult tinctures</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><th scope="row" class="p-3 sm:p-5 font-bold">Dosed for</th><td class="p-3 sm:p-5 bg-mint font-medium">Kids 3+ (1 mL)</td><td class="p-3 sm:p-5 text-muted">Adults</td></tr>
+          <tr><th scope="row" class="p-3 sm:p-5 font-bold">Base</th><td class="p-3 sm:p-5 bg-mint font-medium">Alcohol-free glycerin</td><td class="p-3 sm:p-5 text-muted">Often alcohol</td></tr>
+          <tr><th scope="row" class="p-3 sm:p-5 font-bold">Taste</th><td class="p-3 sm:p-5 bg-mint font-medium">Raspberry + bitter blocker</td><td class="p-3 sm:p-5 text-muted">Strong and bitter</td></tr>
+          <tr><th scope="row" class="p-3 sm:p-5 font-bold">Formula</th><td class="p-3 sm:p-5 bg-mint font-medium">Cleansing herbs + soothing herbs</td><td class="p-3 sm:p-5 text-muted">Cleansing herbs only</td></tr>
+          <tr><th scope="row" class="p-3 sm:p-5 font-bold">Testing</th><td class="p-3 sm:p-5 bg-mint font-medium">Third-party tested, Clean Label certified</td><td class="p-3 sm:p-5 text-muted">Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.5 HOW IT WORKS ============ -->
+<section class="bg-mint py-14 lg:py-20" aria-labelledby="how-title">
+  <div class="max-w-6xl mx-auto px-4">
+    <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">How it works</p>
+    <h2 id="how-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 max-w-xl">Cleanse + soothe, made for small bodies</h2>
+
+    <ol class="mt-8 grid md:grid-cols-3 gap-4">
+      <li class="bg-white rounded-3xl p-6 shadow-soft">
+        <div class="flex items-center gap-3">
+          <span class="w-14 h-14 rounded-2xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14Z"/><path d="M5 19 13 11"/></svg>
+          </span>
+          <span class="font-display text-[13px] font-semibold text-muted uppercase tracking-[.14em]">Step 1</span>
+        </div>
+        <h3 class="font-display font-semibold text-[24px] mt-4">Settle</h3>
+        <p class="mt-2 text-ink/90">Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p>
+      </li>
+      <li class="bg-white rounded-3xl p-6 shadow-soft">
+        <div class="flex items-center gap-3">
+          <span class="w-14 h-14 rounded-2xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-14.3 4.9"/><path d="M4 12a8 8 0 0 1 14.3-4.9"/><path d="M18.5 3v4.5H14M5.5 21v-4.5H10"/></svg>
+          </span>
+          <span class="font-display text-[13px] font-semibold text-muted uppercase tracking-[.14em]">Step 2</span>
+        </div>
+        <h3 class="font-display font-semibold text-[24px] mt-4">Reset</h3>
+        <p class="mt-2 text-ink/90">Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p>
+      </li>
+      <li class="bg-white rounded-3xl p-6 shadow-soft">
+        <div class="flex items-center gap-3">
+          <span class="w-14 h-14 rounded-2xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <span class="font-display text-[13px] font-semibold text-muted uppercase tracking-[.14em]">Step 3</span>
+        </div>
+        <h3 class="font-display font-semibold text-[24px] mt-4">Strengthen</h3>
+        <p class="mt-2 text-ink/90">Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 4.6 INGREDIENTS ============ -->
+<section id="ingredients" class="py-14 lg:py-20" aria-labelledby="ing-title">
+  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-14">
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">What’s inside</p>
+      <h2 id="ing-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">11 herbs. The gentle ones first.</h2>
+      <p class="text-muted mt-3 max-w-md">A balanced blend of soothing kitchen herbs and traditional botanicals, in an alcohol-free glycerin base with natural raspberry.</p>
+      <div class="ph mt-6 aspect-[4/3] rounded-3xl" role="img" aria-label="Flat lay of fennel, anise, licorice root and other herbs (image placeholder)">[IMG: herb flat lay, fennel + anise up front]</div>
+      <p class="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-soft border border-line text-[14px] font-bold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>
+        Contains tree nut (black walnut).
+      </p>
+    </div>
+
+    <div class="divide-y divide-line border-y border-line" data-accordion>
+      <!-- Group 1 -->
+      <div>
+        <h3>
+          <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="true" aria-controls="ing-p1" id="ing-b1">
+            <span><span class="block font-display font-semibold text-[20px]">Settle: soothing herbs</span><span class="block text-sm text-muted">Fennel · Anise · Licorice · Aloe vera</span></span>
+            <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div id="ing-p1" role="region" aria-labelledby="ing-b1" class="acc-panel pb-5">
+          <ul class="grid gap-3">
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Fennel seed:</strong> A classic for little tummies that helps soothe occasional gas.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Anise seed:</strong> A sweet, gentle seed long used to settle tummies after meals.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Licorice root:</strong> A soft, soothing root that supports gut comfort.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a> <span class="verify">[VERIFY: licorice form / amount]</span></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Aloe vera:</strong> A cooling plant that supports a comfortable tummy.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Group 2 -->
+      <div>
+        <h3>
+          <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false" aria-controls="ing-p2" id="ing-b2">
+            <span><span class="block font-display font-semibold text-[20px]">Reset: traditional botanicals</span><span class="block text-sm text-muted">Black walnut · Clove · Pumpkin seed · Wormwood</span></span>
+            <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div id="ing-p2" role="region" aria-labelledby="ing-b2" class="acc-panel pb-5" hidden>
+          <ul class="grid gap-3">
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Black walnut hull:</strong> A traditional botanical that supports regularity.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a> Contains tree nut.</p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Whole clove:</strong> A warming kitchen spice that supports healthy digestion.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Pumpkin seed:</strong> A familiar seed that supports a healthy digestive routine.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Wormwood herb:</strong> A traditional bitter herb that supports the body’s natural digestive rhythm.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a> <span class="verify">[VERIFY: thujone-free wormwood spec]</span></p></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Group 3 -->
+      <div>
+        <h3>
+          <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false" aria-controls="ing-p3" id="ing-b3">
+            <span><span class="block font-display font-semibold text-[20px]">Strengthen: gut-defence herbs</span><span class="block text-sm text-muted">Pau d’arco · Thyme · Oregano</span></span>
+            <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div id="ing-p3" role="region" aria-labelledby="ing-b3" class="acc-panel pb-5" hidden>
+          <ul class="grid gap-3">
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Pau d’arco bark:</strong> A South American tree bark that supports healthy gut defences.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Thyme leaf:</strong> A garden herb that supports healthy gut defences.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+            <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Oregano leaf:</strong> A pizza-night herb that supports a balanced gut.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Supplement facts -->
+      <div>
+        <h3>
+          <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="false" aria-controls="ing-p4" id="ing-b4">
+            <span><span class="block font-display font-semibold text-[20px]">Supplement facts</span><span class="block text-sm text-muted">Full panel and other ingredients</span></span>
+            <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div id="ing-p4" role="region" aria-labelledby="ing-b4" class="acc-panel pb-6" hidden>
+          <div class="border-2 border-ink rounded-lg p-4 max-w-md text-[14px] leading-snug bg-white">
+            <p class="font-display font-semibold text-[26px] leading-none border-b-[6px] border-ink pb-2">Supplement Facts</p>
+            <p class="mt-2">Serving size: 1 mL (one dropper filled to the 1 mL line)</p>
+            <p class="border-b-[3px] border-ink pb-2">Servings per container: about 30</p>
+            <div class="flex justify-between font-bold border-b border-ink py-1.5"><span>Amount per serving</span><span>% DV</span></div>
+            <div class="flex justify-between gap-3 py-1.5 border-b border-ink">
+              <span><strong>Kids’ Herbal Blend</strong> (proprietary) <span class="verify">[VERIFY: mg per serving]</span></span><span>†</span>
+            </div>
+            <p class="py-2 border-b-[3px] border-ink text-[13px]">Licorice root, anise seed, fennel seed, thyme leaf, whole clove, aloe vera, oregano leaf, black walnut hull, wormwood herb, pau d’arco bark, pumpkin seed</p>
+            <p class="pt-2 text-[12px]">† Daily Value not established.</p>
+            <p class="pt-3"><strong>Other ingredients:</strong> vegetable glycerin, purified water, natural raspberry flavour, bitter blocker.</p>
+            <p class="pt-2 font-bold">Contains tree nut (black walnut).</p>
+            <p class="pt-2 text-[12px] text-muted">1 oz (30 mL). Alcohol-free · Sugar-free · Gluten-free. Made in the USA in an FDA-registered cGMP facility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.7 HOW TO USE ============ -->
+<section id="how-to-use" class="bg-soft py-14 lg:py-20" aria-labelledby="use-title">
+  <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="order-2 lg:order-1">
+      <div class="ph aspect-[4/3] sm:aspect-[5/4] rounded-3xl" role="img" aria-label="Close-up of the ParaPatrol dropper filled to the 1 mL line (image placeholder)">[IMG: dropper filled to the 1 mL line, marking clearly visible]</div>
+      <p class="mt-3 text-[13px] text-muted"><span class="verify">[VERIFY: dropper has 1 mL marking]</span></p>
+    </div>
+    <div class="order-1 lg:order-2">
+      <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">How to use</p>
+      <h2 id="use-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">One dropper. Once a day. No fuss.</h2>
+
+      <ol class="mt-6 grid gap-4">
+        <li class="flex gap-4"><span class="w-9 h-9 shrink-0 rounded-full bg-primary text-white font-display font-semibold inline-flex items-center justify-center" aria-hidden="true">1</span><p class="pt-1"><strong>Shake well.</strong> Fill the dropper to 1 mL.</p></li>
+        <li class="flex gap-4"><span class="w-9 h-9 shrink-0 rounded-full bg-primary text-white font-display font-semibold inline-flex items-center justify-center" aria-hidden="true">2</span><p class="pt-1"><strong>Mix into juice, milk or a smoothie.</strong> Orange juice and berry smoothies hide the herbal taste best.</p></li>
+        <li class="flex gap-4"><span class="w-9 h-9 shrink-0 rounded-full bg-primary text-white font-display font-semibold inline-flex items-center justify-center" aria-hidden="true">3</span><p class="pt-1"><strong>Give once daily with food</strong> for 2–3 weeks, then take a break.</p></li>
+      </ol>
+
+      <div class="mt-6 rounded-2xl bg-white p-5 shadow-soft">
+        <p class="font-display font-semibold text-[18px]">What to expect</p>
+        <p class="mt-1 text-ink/90">Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a></p>
+      </div>
+      <div class="mt-3 rounded-2xl bg-accent/35 border border-accent p-5 flex gap-3">
+        <svg class="shrink-0 mt-0.5" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z"/></svg>
+        <p><strong>First time?</strong> Start with half a dropper for the first few days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.8 SAFETY & WHO IT'S FOR (always visible) ============ -->
+<section id="safety" class="py-14 lg:py-20" aria-labelledby="safety-title">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="rounded-3xl border-2 border-primary/25 bg-white p-6 sm:p-10 shadow-soft">
+      <div class="flex items-center gap-3">
+        <span class="w-12 h-12 rounded-2xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="M12 9v4M12 16v.5"/></svg>
+        </span>
+        <h2 id="safety-title" class="font-display font-semibold text-[28px] sm:text-[34px] leading-tight">Safety &amp; who it’s for</h2>
+      </div>
+
+      <ul class="mt-6 grid gap-3.5">
+        <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>For children 3+.</strong> Not for children under 3, or during pregnancy or breastfeeding.</p></li>
+        <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><strong>Contains tree nut (black walnut).</strong></p></li>
+        <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p>Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, blood in stool, changes in urination, or any unusual reaction.</p></li>
+        <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p>Talk to your pediatrician before use if your child takes medication or has a health condition.</p></li>
+        <li class="flex gap-3"><span class="mt-2 w-2 h-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span><p><span class="verify">[VERIFY: thujone-free wormwood spec]</span> Line to read once confirmed: “Made with thujone-free wormwood.”</p></li>
+      </ul>
+
+      <p class="mt-6 rounded-2xl bg-soft p-5 font-medium">Itchy bottom at night or worms you can see? That’s a job for your doctor, not a supplement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.9 SOCIAL PROOF ============ -->
+<section id="reviews" class="bg-mint py-14 lg:py-20" aria-labelledby="reviews-title">
+  <div class="max-w-6xl mx-auto px-4">
+    <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">Reviews</p>
+    <h2 id="reviews-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">What parents say</h2>
+
+    <div class="mt-8 grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-10">
+      <!-- Breakdown -->
+      <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
+        <p class="font-display font-semibold text-[44px] leading-none"><span class="verify !text-[20px]">[VERIFY: rating]</span></p>
+        <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
+        <p class="text-sm text-muted mt-1">Based on <span class="verify">[VERIFY: review count]</span> reviews</p>
+        <dl class="mt-5 grid gap-2 text-sm">
+          <!-- Replace widths/counts from the review app -->
+          <div class="flex items-center gap-2"><dt class="w-8 shrink-0">5 ★</dt><dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full w-0 bg-berry"></span></dd><dd class="w-16 text-right text-muted text-[11px]">[VERIFY]</dd></div>
+          <div class="flex items-center gap-2"><dt class="w-8 shrink-0">4 ★</dt><dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full w-0 bg-berry"></span></dd><dd class="w-16 text-right text-muted text-[11px]">[VERIFY]</dd></div>
+          <div class="flex items-center gap-2"><dt class="w-8 shrink-0">3 ★</dt><dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full w-0 bg-berry"></span></dd><dd class="w-16 text-right text-muted text-[11px]">[VERIFY]</dd></div>
+          <div class="flex items-center gap-2"><dt class="w-8 shrink-0">2 ★</dt><dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full w-0 bg-berry"></span></dd><dd class="w-16 text-right text-muted text-[11px]">[VERIFY]</dd></div>
+          <div class="flex items-center gap-2"><dt class="w-8 shrink-0">1 ★</dt><dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full w-0 bg-berry"></span></dd><dd class="w-16 text-right text-muted text-[11px]">[VERIFY]</dd></div>
+        </dl>
+        <p class="mt-4 text-[12px] text-muted">Star breakdown loads from the review app. Counts above are placeholders.</p>
+      </div>
+
+      <!-- Filter + quotes -->
+      <div>
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Filter reviews by topic" id="review-filters">
+          <button type="button" class="rf px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="rf px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark" data-filter="easy" aria-pressed="false">Easy to give</button>
+          <button type="button" class="rf px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark" data-filter="taste" aria-pressed="false">Taste</button>
+          <button type="button" class="rf px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark" data-filter="tummy" aria-pressed="false">Tummy &amp; appetite</button>
+          <button type="button" class="rf px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark" data-filter="routine" aria-pressed="false">Routine</button>
+        </div>
+        <p class="sr-only" aria-live="polite" id="review-status"></p>
+
+        <ul class="mt-5 grid sm:grid-cols-2 gap-4" id="review-list">
+          <li class="rv bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-tags="easy taste">
+            <p class="text-berry tracking-[2px]" aria-hidden="true">★★★★★</p>
+            <blockquote class="mt-3 text-[16px] flex-1">“My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.”</blockquote>
+            <p class="mt-4 text-sm font-bold">Verified Buyer</p>
+          </li>
+          <li class="rv bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-tags="tummy">
+            <p class="text-berry tracking-[2px]" aria-hidden="true">★★★★★</p>
+            <blockquote class="mt-3 text-[16px] flex-1">“Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.”</blockquote>
+            <p class="mt-4 text-sm font-bold">Jennifer T. <span class="font-normal text-muted">· Verified Buyer</span></p>
+          </li>
+          <li class="rv bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-tags="easy taste">
+            <p class="text-berry tracking-[2px]" aria-hidden="true">★★★★★</p>
+            <blockquote class="mt-3 text-[16px] flex-1">“The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.”</blockquote>
+            <p class="mt-4 text-sm font-bold">Lisa K. <span class="font-normal text-muted">· Verified Buyer</span></p>
+          </li>
+          <li class="rv bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-tags="routine">
+            <p class="text-berry tracking-[2px]" aria-hidden="true">★★★★★</p>
+            <blockquote class="mt-3 text-[16px] flex-1">“I always keep a bottle on hand now, especially during school season or after family trips.”</blockquote>
+            <p class="mt-4 text-sm font-bold">Marcus D. <span class="font-normal text-muted">· Verified Buyer</span></p>
+          </li>
+        </ul>
+        <p class="mt-4 text-[12px] text-muted"><span class="verify">[VERIFY: star rating per featured review]</span> Individual reviews reflect one family’s experience. Results vary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.10 FOUNDER TRUST STRIP ============ -->
+<section class="py-14 lg:py-20" aria-labelledby="founder-title">
+  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-[minmax(0,0.9fr)_1.1fr] gap-8 items-center">
+    <div class="ph aspect-[4/3] rounded-3xl" role="img" aria-label="Jason and Tara Pratt, JoySpring founders, with their kids (image placeholder)">[IMG: Jason &amp; Tara Pratt with their kids]</div>
+    <div>
+      <h2 id="founder-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1]">Made by parents, for parents.</h2>
+      <p class="mt-3 text-[17px] text-ink/90 max-w-lg">Jason and Tara Pratt started JoySpring when they couldn’t find natural options they trusted for their own kids.</p>
+      <ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5" aria-label="Quality and trust">
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Made in USA</li>
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Third-party tested</li>
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Clean Label Project</li>
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Sugar-free</li>
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Gluten-free</li>
+        <li class="flex items-center gap-2 rounded-xl border border-line px-3 py-2.5 text-[14px] font-bold"><svg class="text-primary shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>cGMP facility</li>
+      </ul>
+      <p class="mt-3 text-[12px] text-muted">[IMG: swap text badges for official Clean Label Project and Made in USA marks]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.11 BUNDLE ============ -->
+<section class="bg-soft py-14 lg:py-20" aria-labelledby="bundle-title">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lift grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 items-center">
+        <div class="ph aspect-[3/4] rounded-2xl !text-[11px]" role="img" aria-label="ParaPatrol bottle (image placeholder)">[IMG: ParaPatrol]</div>
+        <div class="ph aspect-[3/4] rounded-2xl !text-[11px]" role="img" aria-label="Detox Zee Herbal bottle (image placeholder)">[IMG: Detox Zee Herbal]</div>
+        <div class="ph aspect-[3/4] rounded-2xl !text-[11px]" role="img" aria-label="Immune Boost bottle (image placeholder)">[IMG: Immune Boost]</div>
+      </div>
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[.14em] text-berry">Bundle</p>
+        <h2 id="bundle-title" class="font-display font-semibold text-[28px] sm:text-[34px] leading-[1.1] mt-1">Complete the routine</h2>
+        <p class="mt-2 text-muted">ParaPatrol™ + Detox Zee Herbal + Immune Boost</p>
+        <p class="mt-4 font-display font-semibold text-[32px]">$97.47</p>
+        <p class="text-sm text-muted">Free shipping included (over $65).</p>
+        <button type="button" id="bundle-add" class="mt-5 w-full min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[16px] transition-colors">Add bundle to bag · $97.47</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.12 FAQ ============ -->
+<section id="faq" class="py-14 lg:py-20" aria-labelledby="faq-title">
+  <div class="max-w-3xl mx-auto px-4">
+    <p class="text-sm font-bold uppercase tracking-[.14em] text-berry text-center">FAQ</p>
+    <h2 id="faq-title" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">Questions parents ask</h2>
+
+    <div class="mt-8 divide-y divide-line border-y border-line" data-accordion>
+      <!-- FAQ items generated from the array in the script below (keeps markup consistent) -->
+      <div id="faq-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.13 FINAL CTA ============ -->
+<section id="final-cta" class="bg-primary text-white py-14 lg:py-20" aria-labelledby="final-title">
+  <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div>
+      <h2 id="final-title" class="font-display font-semibold text-[34px] sm:text-[46px] leading-[1.05]">Back on track, the gentle way.</h2>
+      <p class="mt-3 text-white/90 text-[17px] max-w-md">One dropper in their favourite drink. Made for kids 3+, alcohol-free and sugar-free.</p>
+      <div class="ph mt-6 aspect-[16/10] rounded-3xl !bg-white/10 !border-white/40 !text-white" role="img" aria-label="Kids playing by a pool on a sunny day (image placeholder)">[IMG: kids at the pool, lifestyle]</div>
+    </div>
+    <div class="bg-white text-ink rounded-3xl p-5 sm:p-6 shadow-lift">
+      <p class="font-display font-semibold text-[20px]">ParaPatrol™ <span class="font-sans font-medium text-[14px] text-muted">· 1 oz (30 mL) · ~30 servings</span></p>
+      <div class="mt-4" data-buybox="final" id="buybox-final"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 4.14 FOOTER DISCLAIMER ============ -->
+<footer class="bg-ink text-white/85 py-10 pb-28 lg:pb-10">
+  <div class="max-w-4xl mx-auto px-4 text-[13px] leading-relaxed">
+    <p id="fda" class="text-white font-medium scroll-mt-6" tabindex="-1">*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+    <p class="mt-4">Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition. © JoySpring.</p>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE ADD-TO-CART ============ -->
+<div id="sticky-atc" class="lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white/95 backdrop-blur border-t border-line shadow-lift translate-y-full" aria-label="Quick add to bag" role="region" inert>
+  <div class="px-4 py-3 flex items-center gap-3 max-w-xl mx-auto">
+    <div class="ph w-11 h-11 rounded-xl !p-0 !text-[8px] shrink-0" role="img" aria-label="ParaPatrol bottle thumbnail (image placeholder)">[IMG]</div>
+    <div class="min-w-0 flex-1">
+      <p class="font-display font-semibold text-[15px] leading-tight truncate">ParaPatrol™</p>
+      <p class="text-[13px] text-muted leading-tight" id="sticky-meta">Subscribe · $29.74</p>
+    </div>
+    <button type="button" id="sticky-add" class="min-h-[46px] px-5 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] whitespace-nowrap">Add to Bag</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="fixed inset-x-0 top-3 z-[60] flex justify-center pointer-events-none px-4">
+  <p id="toast" role="status" aria-live="polite" class="opacity-0 -translate-y-2 transition-all duration-200 bg-ink text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lift"></p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Product data (replace with Shopify variant data in production) ---------- */
+  var PRICE_ONCE = 34.99;
+  var PRICE_SUB = 29.74;            // 15% off
+  var FREE_SHIP = 65;
+  var state = { plan: 'sub', freq: '30', qty: 1 };
+  var bagCount = 0;
+
+  function money(n) { return '$' + n.toFixed(2); }
+  function unit() { return state.plan === 'sub' ? PRICE_SUB : PRICE_ONCE; }
+  function total() { return Math.round(unit() * state.qty * 100) / 100; }
+
+  /* ---------- Headline A/B: ?h=a|b|c ---------- */
+  var h = (new URLSearchParams(location.search).get('h') || '').toLowerCase();
+  var hl = document.getElementById('hero-headline');
+  if (hl && /^[abc]$/.test(h)) hl.textContent = hl.getAttribute('data-' + h);
+
+  /* ---------- Purchase box ---------- */
+  function buyBoxHTML(id) {
+    return '' +
+    '<fieldset>' +
+      '<legend class="sr-only">Purchase option</legend>' +
+      '<div class="grid gap-2.5">' +
+        '<div class="relative rounded-2xl border-2 border-line bg-white p-4 transition-colors has-[:checked]:border-primary has-[:checked]:bg-mint has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:[outline-color:var(--brand-berry)]">' +
+          '<label class="flex items-start gap-3 cursor-pointer">' +
+            '<input type="radio" name="plan-' + id + '" value="sub" class="sr-only" data-plan>' +
+            '<span class="mt-0.5 w-5 h-5 shrink-0 rounded-full border-2 border-primary inline-flex items-center justify-center" aria-hidden="true"><span class="w-2.5 h-2.5 rounded-full bg-primary" data-dot="sub"></span></span>' +
+            '<span class="flex-1 min-w-0">' +
+              '<span class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">' +
+                '<span class="font-bold text-[16px]">Subscribe &amp; save <span class="ml-1 inline-block px-2 py-0.5 rounded-full bg-berry text-white text-[11px] font-bold align-middle">SAVE 15%</span></span>' +
+                '<span class="whitespace-nowrap"><span class="font-display font-semibold text-[20px]">' + money(PRICE_SUB) + '</span> <s class="text-muted text-sm">' + money(PRICE_ONCE) + '</s></span>' +
+              '</span>' +
+              '<span class="block text-[13px] text-muted mt-1">Delivered on your schedule. Skip or cancel anytime.</span>' +
+            '</span>' +
+          '</label>' +
+              '<div class="mt-3 pl-8" data-freq-wrap>' +
+                '<label for="freq-' + id + '" class="block text-[13px] font-bold mb-1">Deliver every</label>' +
+                '<select id="freq-' + id + '" data-freq class="w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[15px] font-medium">' +
+                  '<option value="30">30 days</option>' +
+                  '<option value="60">60 days</option>' +
+                  '<option value="90">90 days</option>' +
+                '</select>' +
+              '</div>' +
+        '</div>' +
+        '<label class="relative block cursor-pointer rounded-2xl border-2 border-line bg-white p-4 transition-colors has-[:checked]:border-primary has-[:checked]:bg-mint has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:[outline-color:var(--brand-berry)]">' +
+          '<span class="flex items-center gap-3">' +
+            '<input type="radio" name="plan-' + id + '" value="once" class="sr-only" data-plan>' +
+            '<span class="w-5 h-5 shrink-0 rounded-full border-2 border-primary inline-flex items-center justify-center" aria-hidden="true"><span class="w-2.5 h-2.5 rounded-full bg-primary" data-dot="once"></span></span>' +
+            '<span class="flex-1 flex items-center justify-between gap-3"><span class="font-bold text-[16px]">One-time purchase</span><span class="font-display font-semibold text-[20px]">' + money(PRICE_ONCE) + '</span></span>' +
+          '</span>' +
+        '</label>' +
+      '</div>' +
+    '</fieldset>' +
+    '<div class="mt-4 flex items-stretch gap-3">' +
+      '<div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity">' +
+        '<button type="button" data-qty="-1" class="w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity">&minus;</button>' +
+        '<label for="qty-' + id + '" class="sr-only">Quantity</label>' +
+        '<input id="qty-' + id + '" data-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="w-10 text-center font-bold text-[16px] bg-transparent [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none">' +
+        '<button type="button" data-qty="1" class="w-11 h-[52px] rounded-r-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Increase quantity">+</button>' +
+      '</div>' +
+      '<button type="button" data-add class="flex-1 min-w-0 min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors">Add to Bag</button>' +
+    '</div>' +
+    '<p class="mt-3 text-[13px] text-center text-muted" data-ship></p>' +
+    '<p class="mt-2 flex items-start justify-center gap-1.5 text-[13px] font-medium text-ink text-center">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-primary"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>' +
+      '30-day money-back guarantee. Love it or your money back.' +
+    '</p>';
+  }
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-buybox]'));
+  boxes.forEach(function (box) {
+    var id = box.getAttribute('data-buybox');
+    box.innerHTML = buyBoxHTML(id);
+
+    box.querySelectorAll('[data-plan]').forEach(function (r) {
+      r.addEventListener('change', function () { if (r.checked) { state.plan = r.value; render(); } });
+    });
+    box.querySelector('[data-freq]').addEventListener('change', function (e) { state.freq = e.target.value; render(); });
+    box.querySelectorAll('[data-qty]').forEach(function (b) {
+      b.addEventListener('click', function () { setQty(state.qty + Number(b.getAttribute('data-qty'))); });
+    });
+    var qi = box.querySelector('[data-qty-input]');
+    qi.addEventListener('change', function () { setQty(parseInt(qi.value, 10) || 1); });
+    box.querySelector('[data-add]').addEventListener('click', addToBag);
+  });
+
+  function setQty(n) { state.qty = Math.max(1, Math.min(10, n)); render(); }
+
+  function render() {
+    boxes.forEach(function (box) {
+      box.querySelectorAll('[data-plan]').forEach(function (r) { r.checked = (r.value === state.plan); });
+      box.querySelectorAll('[data-dot]').forEach(function (d) { d.style.visibility = d.getAttribute('data-dot') === state.plan ? 'visible' : 'hidden'; });
+      var fw = box.querySelector('[data-freq-wrap]');
+      fw.hidden = state.plan !== 'sub';
+      box.querySelector('[data-freq]').value = state.freq;
+      box.querySelector('[data-qty-input]').value = state.qty;
+      box.querySelector('[data-qty="-1"]').disabled = state.qty <= 1;
+      box.querySelector('[data-qty="1"]').disabled = state.qty >= 10;
+      box.querySelector('[data-add]').textContent = 'Add to Bag · ' + money(total());
+      var gap = FREE_SHIP - total();
+      box.querySelector('[data-ship]').textContent = gap > 0
+        ? 'You’re ' + money(gap) + ' away from free shipping.'
+        : 'You’ve unlocked free shipping.';
+    });
+    var meta = document.getElementById('sticky-meta');
+    meta.textContent = (state.plan === 'sub' ? 'Subscribe · every ' + state.freq + ' days · ' : 'One-time · ') + money(total());
+    document.getElementById('sticky-add').setAttribute('aria-label', 'Add to Bag, ' + money(total()));
+  }
+
+  /* ---------- Cart (demo). Wire to /cart/add.js with selling_plan in Shopify. ---------- */
+  var toastEl = document.getElementById('toast'), toastT;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.remove('opacity-0', '-translate-y-2');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.add('opacity-0', '-translate-y-2'); }, 2600);
+  }
+  function bumpBag(n) {
+    bagCount += n;
+    document.getElementById('bag-count').textContent = bagCount;
+    document.getElementById('bag-link').setAttribute('aria-label', 'Bag, ' + bagCount + ' item' + (bagCount === 1 ? '' : 's'));
+  }
+  function addToBag() {
+    var detail = { product: 'parapatrol', plan: state.plan, frequencyDays: state.plan === 'sub' ? Number(state.freq) : null, quantity: state.qty, total: total() };
+    document.dispatchEvent(new CustomEvent('parapatrol:add-to-bag', { detail: detail }));
+    bumpBag(state.qty);
+    toast('Added ' + state.qty + ' × ParaPatrol™ to your bag' + (state.plan === 'sub' ? ' (every ' + state.freq + ' days)' : '') + '.');
+  }
+  document.getElementById('sticky-add').addEventListener('click', addToBag);
+  document.getElementById('bundle-add').addEventListener('click', function () {
+    document.dispatchEvent(new CustomEvent('parapatrol:add-bundle', { detail: { items: ['parapatrol', 'detox-zee-herbal', 'immune-boost'], total: 97.47 } }));
+    bumpBag(3);
+    toast('Added the routine bundle to your bag.');
+  });
+
+  render();
+
+  /* ---------- Sticky ATC: show when hero buy box is off-screen and final CTA isn't visible ---------- */
+  var sticky = document.getElementById('sticky-atc');
+  var heroAdd = document.querySelector('#buybox-hero [data-add]');
+  var finalBox = document.getElementById('final-cta');
+  var heroVisible = true, finalVisible = false;
+  function updateSticky() {
+    var show = !heroVisible && !finalVisible;
+    sticky.classList.toggle('translate-y-full', !show);
+    if (show) sticky.removeAttribute('inert'); else sticky.setAttribute('inert', '');
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; updateSticky(); }).observe(heroAdd);
+    new IntersectionObserver(function (e) { finalVisible = e[0].isIntersecting; updateSticky(); }, { threshold: 0.15 }).observe(finalBox);
+  }
+
+  /* ---------- Gallery ---------- */
+  var track = document.getElementById('gallery-track');
+  var thumbs = document.querySelectorAll('.g-thumb');
+  var dots = document.querySelectorAll('.g-dot');
+  function setActive(i) {
+    thumbs.forEach(function (t, j) {
+      t.classList.toggle('ring-2', i === j); t.classList.toggle('ring-primary', i === j); t.classList.toggle('ring-offset-2', i === j);
+      if (i === j) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+    });
+    dots.forEach(function (d, j) { d.classList.toggle('bg-primary', i === j); d.classList.toggle('bg-line', i !== j); });
+  }
+  thumbs.forEach(function (t, i) {
+    t.addEventListener('click', function () { track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' }); setActive(i); });
+  });
+  var st;
+  track.addEventListener('scroll', function () {
+    clearTimeout(st);
+    st = setTimeout(function () { setActive(Math.round(track.scrollLeft / track.clientWidth)); }, 60);
+  }, { passive: true });
+  track.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    var i = Math.round(track.scrollLeft / track.clientWidth) + (e.key === 'ArrowRight' ? 1 : -1);
+    i = Math.max(0, Math.min(track.children.length - 1, i));
+    track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' }); setActive(i);
+  });
+
+  /* ---------- FAQ content (compliant; [VERIFY] items need brand sign-off) ---------- */
+  var STAR = '<a href="#fda" class="fda" aria-label="See FDA disclaimer">*</a>';
+  var FAQ = [
+    ['How fast will I see a difference?',
+     'Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.' + STAR],
+    ['What does it taste like? Will my picky kid take it?',
+     'It has a natural raspberry flavour and a bitter blocker to soften the herbal taste. Mixed into orange juice or a berry smoothie, most kids drink it without a fuss. Starting with half a dropper helps too.'],
+    ['How do I measure the dose?',
+     'Shake well, then fill the dropper to the 1 mL line. That’s one serving. <span class="verify">[VERIFY: dropper has 1 mL marking]</span>'],
+    ['How long does one bottle last?',
+     'One 1 oz (30 mL) bottle holds about 30 servings at 1 mL a day. That covers a full 2–3 week routine with some to spare.'],
+    ['Is it safe for my 3-year-old? What about side effects?',
+     'ParaPatrol is made and dosed for kids 3 and up, and is not for children under 3. Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, or any unusual reaction. See the <a href="#safety" class="underline font-medium">safety section</a> for the full list.'],
+    ['Can I use it with other supplements or medication?',
+     'If your child takes medication or has a health condition, talk to your pediatrician before use. Bring the bottle along so they can see the full ingredient list.'],
+    ['Does it contain alcohol, sugar, or nuts?',
+     'No alcohol and no sugar. It is also gluten-free. It does contain tree nut (black walnut), so it is not for kids with a tree nut allergy.'],
+    ['Why is licorice in a kids’ formula?',
+     '<span class="verify">[VERIFY answer with brand]</span> Draft: Licorice root is a traditional soothing herb that helps support gut comfort and adds gentle natural sweetness.' + STAR + ' <span class="verify">[VERIFY: licorice form / amount]</span>'],
+    ['Is the Amazon version the same as buying direct?',
+     '<span class="verify">[VERIFY answer with brand]</span> Draft: Buying direct gets you Subscribe &amp; Save, free shipping over $65 and our 30-day money-back guarantee. Confirm whether the formula and packaging match.'],
+    ['How does the 30-day guarantee work?',
+     'Try ParaPatrol for 30 days. If you’re not happy, contact our team and we’ll refund you. <span class="verify">[VERIFY: refund steps, e.g. opened bottles OK?]</span>']
+  ];
+  var faqList = document.getElementById('faq-list');
+  faqList.outerHTML = FAQ.map(function (q, i) {
+    return '<div>' +
+      '<h3><button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left font-display font-semibold text-[18px] sm:text-[19px]" aria-expanded="false" aria-controls="faq-p' + i + '" id="faq-b' + i + '">' +
+        '<span>' + q[0] + '</span>' +
+        '<span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none font-sans" aria-hidden="true">+</span>' +
+      '</button></h3>' +
+      '<div id="faq-p' + i + '" role="region" aria-labelledby="faq-b' + i + '" class="acc-panel pb-5 pr-12 text-ink/90" hidden><p>' + q[1] + '</p></div>' +
+    '</div>';
+  }).join('');
+
+  /* ---------- Accordions (native buttons: Enter/Space work; focus is visible) ---------- */
+  document.querySelectorAll('[data-accordion] .acc-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = open;
+    });
+  });
+
+  /* ---------- Review filter ---------- */
+  var rfs = document.querySelectorAll('#review-filters .rf');
+  var rvs = document.querySelectorAll('#review-list .rv');
+  rfs.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-filter'), shown = 0;
+      rfs.forEach(function (x) {
+        var on = x === b;
+        x.setAttribute('aria-pressed', String(on));
+        x.classList.toggle('bg-primary', on); x.classList.toggle('text-white', on); x.classList.toggle('border-primary', on);
+        x.classList.toggle('bg-white', !on); x.classList.toggle('text-primary-dark', !on); x.classList.toggle('border-primary/30', !on);
+      });
+      rvs.forEach(function (r) {
+        var match = f === 'all' || r.getAttribute('data-tags').split(' ').indexOf(f) > -1;
+        r.hidden = !match; if (match) shown++;
+      });
+      document.getElementById('review-status').textContent = 'Showing ' + shown + ' review' + (shown === 1 ? '' : 's') + '.';
+    });
+  });
+
+  /* Asterisk links: move focus to the disclaimer for keyboard/screen-reader users */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.fda');
+    if (a) setTimeout(function () { document.getElementById('fda').focus({ preventScroll: true }); }, 0);
+  });
+})();
+</script>
+</body>
+</html>
