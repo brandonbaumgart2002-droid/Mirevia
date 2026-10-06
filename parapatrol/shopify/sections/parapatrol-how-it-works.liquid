@@ -5,19 +5,22 @@
     <div class="max-w-6xl mx-auto px-4">
       {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 id="pp-how-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 max-w-xl">{{ section.settings.heading }}</h2>
-      <ol class="mt-8 grid md:grid-cols-3 gap-4">
+      <ol class="mt-8 -mx-4 px-4 scroll-px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible">
         {%- for block in section.blocks -%}
-          <li class="bg-white rounded-3xl p-6 shadow-soft" {{ block.shopify_attributes }}>
-            <div class="flex items-center gap-3">
+          <li class="snap-start shrink-0 w-[82%] md:w-auto bg-white rounded-3xl p-4 sm:p-5 shadow-soft flex flex-col" {{ block.shopify_attributes }}>
+            {%- if block.settings.photo != blank or block.settings.asset != blank -%}
+              {%- render 'parapatrol-media', image: block.settings.photo, asset: block.settings.asset, alt: block.settings.alt, class: 'aspect-square rounded-2xl', sizes: '(min-width: 1152px) 340px, (min-width: 768px) 30vw, calc(82vw - 32px)' -%}
+            {%- endif -%}
+            <div class="flex items-center gap-3 mt-5 px-1">
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 160 | image_tag: alt: '', class: 'w-14 h-14 rounded-2xl object-cover', loading: 'lazy' }}
+                {{ block.settings.image | image_url: width: 160 | image_tag: alt: '', class: 'w-12 h-12 rounded-2xl object-cover', loading: 'lazy' }}
               {%- else -%}
-                <span class="w-14 h-14 rounded-2xl bg-mint text-primary inline-flex items-center justify-center">{%- render 'parapatrol-icon', name: block.settings.icon, icon_size: 30 -%}</span>
+                <span class="w-12 h-12 rounded-2xl bg-mint text-primary inline-flex items-center justify-center">{%- render 'parapatrol-icon', name: block.settings.icon, icon_size: 26 -%}</span>
               {%- endif -%}
               <span class="font-display text-[13px] font-semibold text-muted uppercase tracking-[.14em]">Step {{ forloop.index }}</span>
             </div>
-            <h3 class="font-display font-semibold text-[24px] mt-4">{{ block.settings.title }}</h3>
-            <p class="mt-2 text-ink/90">{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
+            <h3 class="font-display font-semibold text-[24px] mt-3 px-1">{{ block.settings.title }}</h3>
+            <p class="mt-2 mb-2 px-1 text-ink/90">{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
           </li>
         {%- endfor -%}
       </ol>
@@ -36,7 +39,10 @@
       { "type": "select", "id": "icon", "label": "Icon", "default": "leaf", "options": [
         { "value": "leaf", "label": "Leaf" }, { "value": "reset", "label": "Reset" }, { "value": "shield", "label": "Shield" }, { "value": "heart", "label": "Heart" }
       ] },
-      { "type": "image_picker", "id": "image", "label": "Illustration (replaces icon)" },
+      { "type": "image_picker", "id": "photo", "label": "Photo (square, top of card)" },
+      { "type": "text", "id": "asset", "label": "Built-in photo file", "info": "Used when no photo is chosen. A file in the theme's assets folder." },
+      { "type": "text", "id": "alt", "label": "Photo description (for screen readers)" },
+      { "type": "image_picker", "id": "image", "label": "Small illustration (replaces icon)" },
       { "type": "text", "id": "title", "label": "Title", "default": "Step" },
       { "type": "textarea", "id": "text", "label": "Text", "info": "Every * links to the FDA disclaimer." }
     ] }

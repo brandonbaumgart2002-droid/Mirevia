@@ -114,7 +114,9 @@
           "settings": {
             "icon": "leaf",
             "title": "Settle",
-            "text": "Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.*"
+            "text": "Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.*",
+            "asset": "pp-how-settle.jpg",
+            "alt": "ParaPatrol with fennel seed, anise seed, licorice root and aloe vera"
           }
         },
         "step_2": {
@@ -122,7 +124,9 @@
           "settings": {
             "icon": "reset",
             "title": "Reset",
-            "text": "Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.*"
+            "text": "Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.*",
+            "asset": "pp-how-reset.jpg",
+            "alt": "ParaPatrol with black walnuts, cloves, pumpkin seeds and wormwood"
           }
         },
         "step_3": {
@@ -130,7 +134,9 @@
           "settings": {
             "icon": "shield",
             "title": "Strengthen",
-            "text": "Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.*"
+            "text": "Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.*",
+            "asset": "pp-how-strengthen.jpg",
+            "alt": "ParaPatrol with pau d'arco bark, thyme and oregano"
           }
         }
       },
