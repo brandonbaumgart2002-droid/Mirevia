@@ -77,6 +77,10 @@
 .pp .pp-stars__fill { color: var(--pp-star); overflow: hidden; }
 .pp .pp-stars svg { display: block; flex-shrink: 0; max-width: none; }
 
+/* Stats rings fill up the first time the section scrolls into view (JS adds the classes; without JS they just show) */
+.pp [data-pp-stats].is-armed .pp-ring__bar { stroke-dasharray: 0 276.46; }
+.pp [data-pp-stats].is-armed.is-in .pp-ring__bar { stroke-dasharray: var(--pp-ring-dash) 276.46; transition: stroke-dasharray 1.1s cubic-bezier(.22,1,.36,1); }
+
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
 }

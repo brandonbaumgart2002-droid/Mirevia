@@ -432,6 +432,24 @@
     if (target) setTimeout(function () { target.focus({ preventScroll: true }); }, 0);
   });
 
+  /* ---------------- stats rings: fill on first view ---------------- */
+  function initStats(root) {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    $$('[data-pp-stats]', root).forEach(function (sec) {
+      if (sec.__ppStats) return;
+      sec.__ppStats = true;
+      sec.classList.add('is-armed');
+      var o = new IntersectionObserver(function (e) {
+        if (!e[0].isIntersecting) return;
+        // next frame so the empty state paints before the fill transition starts
+        requestAnimationFrame(function () { sec.classList.add('is-in'); });
+        o.disconnect();
+      }, { threshold: 0.3 });
+      o.observe(sec);
+    });
+  }
+
   /* ---------------- boot ---------------- */
   function initAll(root) {
     root = root || document;
@@ -440,6 +458,7 @@
     initAccordions(root);
     initReviews(root);
     initBundle(root);
+    initStats(root);
     initBuyBoxes();
     initSticky();
   }
