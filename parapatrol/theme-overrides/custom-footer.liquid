@@ -43,12 +43,12 @@
 
 {%- comment -%}
   ParaPatrol palette (navy, sage, soft pink) on every page except Mirevia product pages, which keep the
-  settings above. The ParaPatrol newsletter copy is used on the ParaPatrol product page only (pp_copy).
+  settings above. The ParaPatrol newsletter copy is used on the ParaPatrol product page and the home page (pp_copy).
 {%- endcomment -%}
 {%- liquid
   assign pp_footer = true
   assign pp_copy = false
-  if template.suffix == 'parapatrol'
+  if template.suffix == 'parapatrol' or template.name == 'index'
     assign pp_copy = true
   endif
   if template.name == 'product' and template.suffix != 'parapatrol'

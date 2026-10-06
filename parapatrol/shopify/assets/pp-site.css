@@ -197,3 +197,7 @@ html #CartDrawer .cart__empty-text { font-weight: 700 !important; font-variation
 html #CartDrawer .drawer__inner-empty .button { background: var(--pp-green) !important; color: #fff !important; font-weight: 800 !important; }
 html #CartDrawer .drawer__inner-empty .button:hover { background: var(--pp-green-dark) !important; }
 html #CartDrawer .cart__login-title { font-weight: 700 !important; }
+
+/* Featured product: the benefit list stays left-aligned when the section centres on phones */
+body.pp-site .mv-feature .mv-benefits { text-align: left; }
+body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
