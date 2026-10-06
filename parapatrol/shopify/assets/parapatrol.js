@@ -169,6 +169,7 @@
     var plan = currentPlan(v);
     var sub = state.plan === 'sub' && plan;
     var gap = data.freeShipping > 0 ? data.freeShipping - total() : null;
+    var FREE_ALL = 'Free shipping on every order.';
 
     // Hero price line under the title follows the chosen plan
     var hp = $('[data-pp-hero-price]');
@@ -218,8 +219,8 @@
       }
       var ship = $('[data-pp-ship]', box);
       if (ship) {
-        ship.hidden = gap === null;
-        if (gap !== null) ship.textContent = gap > 0 ? 'You’re ' + money(gap) + ' away from free shipping.' : 'You’ve unlocked free shipping.';
+        ship.hidden = false;
+        ship.textContent = gap === null ? FREE_ALL : (gap > 0 ? 'You’re ' + money(gap) + ' away from free shipping.' : 'You’ve unlocked free shipping.');
       }
     });
 
@@ -292,9 +293,9 @@
     var cents = priceCents(label);
     if (cents !== null && label.indexOf('Add to Bag') !== 0) add.textContent = 'Add to Bag · ' + money(cents);
     var ship = $('[data-pp-ship]', box);
-    if (ship && data && data.freeShipping > 0 && cents !== null) {
-      var gap = data.freeShipping - cents;
-      var t = gap > 0 ? 'You’re ' + money(gap) + ' away from free shipping.' : 'You’ve unlocked free shipping.';
+    if (ship && data && (cents !== null || !(data.freeShipping > 0))) {
+      var gap = data.freeShipping > 0 ? data.freeShipping - cents : null;
+      var t = gap === null ? 'Free shipping on every order.' : (gap > 0 ? 'You’re ' + money(gap) + ' away from free shipping.' : 'You’ve unlocked free shipping.');
       if (ship.textContent !== t) ship.textContent = t;
       ship.hidden = false;
     }

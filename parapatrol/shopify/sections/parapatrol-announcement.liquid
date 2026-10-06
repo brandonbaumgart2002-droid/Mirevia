@@ -26,6 +26,7 @@
   .pp-bar__group { display: flex; flex-shrink: 0; align-items: center; margin: 0; padding: 0; list-style: none; }
   .pp-bar__item { display: inline-flex; align-items: center; margin: 0; padding: 9px 0; white-space: nowrap; }
   .pp-bar__item::after { content: ""; width: 5px; height: 5px; margin: 0 22px; border-radius: 50%; background: currentColor; opacity: .55; }
+  .pp-bar__pill { display: inline-flex; align-items: center; padding: 3px 12px; border-radius: 999px; background: #f4c7d5; color: #1e2d4f; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
   .pp-bar:hover .pp-bar__track, .pp-bar:focus-within .pp-bar__track, .pp-bar.is-paused .pp-bar__track { animation-play-state: paused; }
   .pp-bar__toggle { all: unset; box-sizing: border-box; position: absolute; top: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 44px; cursor: pointer; color: inherit; background: var(--pp-bar-bg); box-shadow: -16px 0 16px 0 var(--pp-bar-bg); }
   .pp-bar__toggle:focus-visible { outline: 2px solid currentColor; outline-offset: -6px; border-radius: 8px; }
@@ -50,7 +51,14 @@
         <ul class="pp-bar__group"{% unless forloop.first %} aria-hidden="true"{% endunless %}>
           {%- for item in items -%}
             {%- assign t = item | strip -%}
-            {%- if t != blank -%}<li class="pp-bar__item">{{ t }}</li>{%- endif -%}
+            {%- if t != blank -%}
+              {%- assign first = t | slice: 0 -%}
+              {%- if first == '!' -%}
+                <li class="pp-bar__item pp-bar__item--hi"><span class="pp-bar__pill">{{ t | remove_first: '!' | strip }}</span></li>
+              {%- else -%}
+                <li class="pp-bar__item">{{ t }}</li>
+              {%- endif -%}
+            {%- endif -%}
           {%- endfor -%}
         </ul>
       {%- endfor -%}
@@ -78,7 +86,7 @@
 {
   "name": "ParaPatrol: announcement",
   "settings": [
-    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Free shipping over $65 | 30-day money-back guarantee" },
+    { "type": "text", "id": "text", "label": "Text (separate items with |)", "info": "Start an item with ! to show it as a highlighted pill, e.g. !Back to School Sale", "default": "!Back to School Sale | Free shipping on all orders | 30-day money-back guarantee" },
     { "type": "range", "id": "speed", "label": "Seconds per loop", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
     { "type": "select", "id": "style", "label": "Colour", "default": "primary", "options": [
       { "value": "primary", "label": "Brand green" },
