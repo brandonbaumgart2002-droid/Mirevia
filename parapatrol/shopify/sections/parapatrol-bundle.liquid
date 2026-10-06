@@ -1,0 +1,83 @@
+{%- comment -%}
+  "Complete the routine" bundle. One click adds the first available variant of each product.
+  The bundle price shown here is a label: create the matching discount in Shopify
+  (Discounts → Buy X get Y / amount off products, or a bundles app) so checkout charges it.
+{%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+{%- liquid
+  assign fallback_names = section.settings.fallback_names | split: ','
+  assign ids = ''
+  assign sum = 0
+  for p in section.settings.products
+    assign pv = p.selected_or_first_available_variant
+    if pv.available
+      assign ids = ids | append: pv.id | append: ','
+      assign sum = sum | plus: pv.price
+    endif
+  endfor
+  assign ids = ids | remove_last: ','
+-%}
+<div class="pp">
+  <section class="bg-soft py-14 lg:py-20" aria-labelledby="pp-bdl-{{ section.id }}">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lift grid md:grid-cols-[1.2fr_1fr] gap-8 items-center" data-pp-bundle data-ids="{{ ids }}">
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 items-center">
+          {%- if section.settings.products.count > 0 -%}
+            {%- for p in section.settings.products limit: 3 -%}
+              <a href="{{ p.url }}" class="block">
+                {%- render 'parapatrol-media', image: p.featured_image, label: p.title, alt: p.title, class: 'aspect-[3/4] rounded-2xl !text-[11px]', sizes: '200px' -%}
+              </a>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for n in fallback_names limit: 3 -%}
+              {%- assign n_clean = n | strip -%}
+              {%- render 'parapatrol-media', label: n_clean, alt: n_clean, class: 'aspect-[3/4] rounded-2xl !text-[11px]' -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+        <div>
+          {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-bdl-{{ section.id }}" class="font-display font-semibold text-[28px] sm:text-[34px] leading-[1.1] mt-1">{{ section.settings.heading }}</h2>
+          <p class="mt-2 text-muted">
+            {%- if section.settings.products.count > 0 -%}
+              {%- for p in section.settings.products limit: 3 -%}{{ p.title }}{% unless forloop.last %} + {% endunless %}{%- endfor -%}
+            {%- else -%}
+              {{ section.settings.fallback_names | replace: ',', ' +' }}
+            {%- endif -%}
+          </p>
+          {%- liquid
+            assign price_label = section.settings.price_label
+            if price_label == blank and sum > 0
+              assign price_label = sum | money
+            endif
+          -%}
+          {%- if price_label != blank -%}<p class="mt-4 font-display font-semibold text-[32px]">{{ price_label }}</p>{%- endif -%}
+          {%- if section.settings.note != blank -%}<p class="text-sm text-muted">{{ section.settings.note }}</p>{%- endif -%}
+          <button type="button" data-pp-bundle-add class="mt-5 w-full min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[16px] transition-colors disabled:opacity-60"{% if ids == blank %} disabled{% endif %}>
+            {{- section.settings.button_label -}}{%- if price_label != blank %} · {{ price_label }}{% endif -%}
+          </button>
+          {%- if request.design_mode and ids == blank -%}
+            <p class="mt-3 rounded-xl bg-soft p-3 text-[13px]"><span class="verify">[SETUP]</span> Pick the three bundle products in this section's settings to turn the button on.</p>
+          {%- endif -%}
+          <p class="mt-2 text-[13px] text-center text-red-700 font-medium" data-pp-bundle-error role="alert" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: bundle",
+  "settings": [
+    { "type": "product_list", "id": "products", "label": "Bundle products", "limit": 3 },
+    { "type": "text", "id": "fallback_names", "label": "Names shown before products are picked", "default": "ParaPatrol™, Detox Zee Herbal, Immune Boost" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Bundle" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Complete the routine" },
+    { "type": "text", "id": "price_label", "label": "Bundle price label", "info": "Leave blank to show the products' combined price. Set up the matching discount in Shopify.", "default": "$97.47" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Free shipping included (over $65)." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add bundle to bag" }
+  ],
+  "presets": [ { "name": "ParaPatrol: bundle" } ]
+}
+{% endschema %}

@@ -1,0 +1,145 @@
+{%- comment -%}
+  ParaPatrol purchase box: Subscribe & save (default) vs one-time, delivery frequency,
+  quantity stepper, Add to Bag, free-shipping nudge and guarantee line.
+  Every box on the page shares one state (see parapatrol.js), so the hero box,
+  the final CTA box and the sticky bar always match.
+
+  Params:
+    product           product object
+    uid               unique id for this box (e.g. section.id)
+    free_shipping     free-shipping threshold in cents (0 hides the nudge)
+    guarantee         guarantee line under the button
+    subscribe_note    small line under the subscribe price
+
+  Subscriptions come from the product's selling plans (Shopify Subscriptions,
+  Recharge, Skio, Loop, etc.). Without selling plans, only one-time purchase shows.
+{%- endcomment -%}
+{%- liquid
+  assign v = product.selected_or_first_available_variant
+  assign group = product.selling_plan_groups.first
+  assign has_plans = false
+  if group and v.selling_plan_allocations.size > 0
+    assign has_plans = true
+  endif
+  assign sub_alloc = v.selling_plan_allocations.first
+  assign start_price = v.price
+  if has_plans
+    assign start_price = sub_alloc.price
+  endif
+-%}
+
+<div class="pp-buybox" data-pp-buybox data-uid="{{ uid }}">
+  <script type="application/json" data-pp-buybox-json>
+    {
+      "productId": {{ product.id | json }},
+      "title": {{ product.title | json }},
+      "moneyFormat": {{ shop.money_format | json }},
+      "freeShipping": {{ free_shipping | default: 0 | json }},
+      "requiresPlan": {{ product.requires_selling_plan | json }},
+      "variants": [
+        {%- for variant in product.variants -%}
+          {
+            "id": {{ variant.id | json }},
+            "title": {{ variant.title | json }},
+            "available": {{ variant.available | json }},
+            "price": {{ variant.price | json }},
+            "plans": [
+              {%- for alloc in variant.selling_plan_allocations -%}
+                {%- if alloc.selling_plan.group_id == group.id -%}
+                  { "id": {{ alloc.selling_plan.id | json }}, "name": {{ alloc.selling_plan.name | json }}, "price": {{ alloc.price | json }} }{%- unless forloop.last -%},{%- endunless -%}
+                {%- endif -%}
+              {%- endfor -%}
+            ]
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
+  {%- form 'product', product, data-pp-form: '', novalidate: 'novalidate' -%}
+    <input type="hidden" name="id" value="{{ v.id }}" data-pp-variant-input>
+
+    {%- unless product.has_only_default_variant -%}
+      <div class="mb-3">
+        <label for="pp-variant-{{ uid }}" class="block text-[13px] font-bold mb-1">{{ product.options.first }}</label>
+        <select id="pp-variant-{{ uid }}" data-pp-variant class="w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[15px] font-medium">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}"{% if variant.id == v.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title }}{% unless variant.available %} (sold out){% endunless %}</option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {%- endunless -%}
+
+    <fieldset>
+      <legend class="sr-only">Purchase option</legend>
+      <div class="grid gap-2.5">
+        {%- if has_plans -%}
+          {%- liquid
+            assign save_pct = v.price | minus: sub_alloc.price | times: 100 | divided_by: v.price
+          -%}
+          <div class="relative rounded-2xl border-2 border-line bg-white p-4 transition-colors has-[:checked]:border-primary has-[:checked]:bg-mint has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:[outline-color:var(--brand-berry)]">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="radio" name="selling_plan" value="{{ sub_alloc.selling_plan.id }}" class="sr-only" data-pp-plan="sub" checked>
+              <span class="mt-0.5 w-5 h-5 shrink-0 rounded-full border-2 border-primary inline-flex items-center justify-center" aria-hidden="true"><span class="w-2.5 h-2.5 rounded-full bg-primary" data-pp-dot="sub"></span></span>
+              <span class="flex-1 min-w-0">
+                <span class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                  <span class="font-bold text-[16px]">Subscribe &amp; save
+                    {%- if save_pct > 0 %} <span class="ml-1 inline-block px-2 py-0.5 rounded-full bg-berry text-white text-[11px] font-bold align-middle" data-pp-save>SAVE {{ save_pct }}%</span>{% endif -%}
+                  </span>
+                  <span class="whitespace-nowrap"><span class="font-display font-semibold text-[20px]" data-pp-sub-price>{{ sub_alloc.price | money }}</span> <s class="text-muted text-sm" data-pp-compare>{{ v.price | money }}</s></span>
+                </span>
+                {%- if subscribe_note != blank -%}
+                  <span class="block text-[13px] text-muted mt-1">{{ subscribe_note }}</span>
+                {%- endif -%}
+              </span>
+            </label>
+            {%- if group.selling_plans.size > 1 -%}
+              <div class="mt-3 pl-8" data-pp-freq-wrap>
+                <label for="pp-freq-{{ uid }}" class="block text-[13px] font-bold mb-1">Deliver every</label>
+                <select id="pp-freq-{{ uid }}" data-pp-freq class="w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[15px] font-medium">
+                  {%- for plan in group.selling_plans -%}
+                    <option value="{{ plan.id }}">{{ plan.options.first.value | default: plan.name }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- unless product.requires_selling_plan -%}
+          <div class="relative rounded-2xl border-2 border-line bg-white p-4 transition-colors has-[:checked]:border-primary has-[:checked]:bg-mint has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:[outline-color:var(--brand-berry)]">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="selling_plan" value="" class="sr-only" data-pp-plan="once"{% unless has_plans %} checked{% endunless %}>
+              <span class="w-5 h-5 shrink-0 rounded-full border-2 border-primary inline-flex items-center justify-center" aria-hidden="true"><span class="w-2.5 h-2.5 rounded-full bg-primary{% if has_plans %} invisible{% endif %}" data-pp-dot="once"></span></span>
+              <span class="flex-1 flex items-center justify-between gap-3"><span class="font-bold text-[16px]">One-time purchase</span><span class="font-display font-semibold text-[20px]" data-pp-once-price>{{ v.price | money }}</span></span>
+            </label>
+          </div>
+        {%- endunless -%}
+      </div>
+    </fieldset>
+
+    {%- if request.design_mode and has_plans == false -%}
+      <p class="mt-3 rounded-xl bg-soft p-3 text-[13px]"><span class="verify">[SETUP]</span> No subscription (selling plan) is attached to this product yet, so Subscribe &amp; save is hidden. Add one with Shopify Subscriptions or your subscription app. Only you see this note in the theme editor.</p>
+    {%- endif -%}
+
+    <div class="mt-4 flex items-stretch gap-3">
+      <div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity">
+        <button type="button" data-pp-qty="-1" class="w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity" disabled>&minus;</button>
+        <label for="pp-qty-{{ uid }}" class="sr-only">Quantity</label>
+        <input id="pp-qty-{{ uid }}" name="quantity" data-pp-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="pp-qty w-10 text-center font-bold text-[16px] bg-transparent">
+        <button type="button" data-pp-qty="1" class="w-11 h-[52px] rounded-r-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Increase quantity">+</button>
+      </div>
+      <button type="submit" name="add" data-pp-add class="flex-1 min-w-0 min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors disabled:opacity-60"{% unless v.available %} disabled{% endunless %}>
+        {%- if v.available -%}Add to Bag · {{ start_price | money }}{%- else -%}Sold out{%- endif -%}
+      </button>
+    </div>
+    <p class="mt-3 text-[13px] text-center text-muted" data-pp-ship aria-live="polite"></p>
+    <p class="mt-2 text-[13px] text-center text-red-700 font-medium" data-pp-error role="alert" hidden></p>
+    {%- if guarantee != blank -%}
+      <p class="mt-2 flex items-start justify-center gap-1.5 text-[13px] font-medium text-ink text-center">
+        <span class="text-primary mt-0.5">{%- render 'parapatrol-icon', name: 'shield', icon_size: 16 -%}</span>
+        <span>{{ guarantee }}</span>
+      </p>
+    {%- endif -%}
+  {%- endform -%}
+</div>

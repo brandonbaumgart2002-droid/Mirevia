@@ -1,0 +1,6 @@
+{%- comment -%}
+  Outputs merchant text and turns every * into a link to the FDA disclaimer (#pp-fda).
+  Usage: {% render 'parapatrol-claim', text: block.settings.text %}
+{%- endcomment -%}
+{%- capture pp_star -%}<a href="#pp-fda" class="fda" aria-label="See FDA disclaimer">*</a>{%- endcapture -%}
+{{- text | replace: '*', pp_star -}}

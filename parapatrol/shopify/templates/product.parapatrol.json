@@ -1,0 +1,449 @@
+{
+  "sections": {
+    "offer": {
+      "type": "parapatrol-announcement",
+      "settings": {
+        "text": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee"
+      }
+    },
+    "main": {
+      "type": "parapatrol-main",
+      "settings": {}
+    },
+    "familiar": {
+      "type": "parapatrol-familiar",
+      "settings": {},
+      "blocks": {
+        "moment_1": {
+          "type": "moment",
+          "settings": {
+            "icon": "sun",
+            "text": "Rough mornings and tummy complaints"
+          }
+        },
+        "moment_2": {
+          "type": "moment",
+          "settings": {
+            "icon": "plate",
+            "text": "Picky plates and pushed-away dinners"
+          }
+        },
+        "moment_3": {
+          "type": "moment",
+          "settings": {
+            "icon": "backpack",
+            "text": "Back to school, back to sharing everything"
+          }
+        },
+        "moment_4": {
+          "type": "moment",
+          "settings": {
+            "icon": "wave",
+            "text": "Sandpits, pools, pets and dropped snacks"
+          }
+        },
+        "moment_5": {
+          "type": "moment",
+          "settings": {
+            "icon": "suitcase",
+            "text": "After travel, holidays, or a run of sweets"
+          }
+        }
+      },
+      "block_order": [
+        "moment_1",
+        "moment_2",
+        "moment_3",
+        "moment_4",
+        "moment_5"
+      ]
+    },
+    "compare": {
+      "type": "parapatrol-compare",
+      "settings": {},
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Dosed for",
+            "ours": "Kids 3+ (1 mL)",
+            "theirs": "Adults"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "Base",
+            "ours": "Alcohol-free glycerin",
+            "theirs": "Often alcohol"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Taste",
+            "ours": "Raspberry + bitter blocker",
+            "theirs": "Strong and bitter"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Formula",
+            "ours": "Cleansing herbs + soothing herbs",
+            "theirs": "Cleansing herbs only"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Testing",
+            "ours": "Third-party tested, Clean Label certified",
+            "theirs": "Varies"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ]
+    },
+    "how": {
+      "type": "parapatrol-how-it-works",
+      "settings": {},
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "icon": "leaf",
+            "title": "Settle",
+            "text": "Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.*"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "icon": "reset",
+            "title": "Reset",
+            "text": "Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.*"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "icon": "shield",
+            "title": "Strengthen",
+            "text": "Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.*"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ]
+    },
+    "ingredients": {
+      "type": "parapatrol-ingredients",
+      "settings": {},
+      "blocks": {
+        "ing_1": {
+          "type": "group",
+          "settings": {
+            "title": "Settle: soothing herbs",
+            "subtitle": "Fennel · Anise · Licorice · Aloe vera",
+            "open": true,
+            "items": "<ul><li><strong>Fennel seed:</strong> A classic for little tummies that helps soothe occasional gas.*</li><li><strong>Anise seed:</strong> A sweet, gentle seed long used to settle tummies after meals.*</li><li><strong>Licorice root:</strong> A soft, soothing root that supports gut comfort.* [VERIFY: licorice form / amount]</li><li><strong>Aloe vera:</strong> A cooling plant that supports a comfortable tummy.*</li></ul>"
+          }
+        },
+        "ing_2": {
+          "type": "group",
+          "settings": {
+            "title": "Reset: traditional botanicals",
+            "subtitle": "Black walnut · Clove · Pumpkin seed · Wormwood",
+            "open": false,
+            "items": "<ul><li><strong>Black walnut hull:</strong> A traditional botanical that supports regularity.* Contains tree nut.</li><li><strong>Whole clove:</strong> A warming kitchen spice that supports healthy digestion.*</li><li><strong>Pumpkin seed:</strong> A familiar seed that supports a healthy digestive routine.*</li><li><strong>Wormwood herb:</strong> A traditional bitter herb that supports the body’s natural digestive rhythm.* [VERIFY: thujone-free wormwood spec]</li></ul>"
+          }
+        },
+        "ing_3": {
+          "type": "group",
+          "settings": {
+            "title": "Strengthen: gut-defence herbs",
+            "subtitle": "Pau d’arco · Thyme · Oregano",
+            "open": false,
+            "items": "<ul><li><strong>Pau d’arco bark:</strong> A South American tree bark that supports healthy gut defences.*</li><li><strong>Thyme leaf:</strong> A garden herb that supports healthy gut defences.*</li><li><strong>Oregano leaf:</strong> A pizza-night herb that supports a balanced gut.*</li></ul>"
+          }
+        },
+        "ing_4": {
+          "type": "facts",
+          "settings": {
+            "blend_list": "Licorice root, anise seed, fennel seed, thyme leaf, whole clove, aloe vera, oregano leaf, black walnut hull, wormwood herb, pau d’arco bark, pumpkin seed",
+            "note": "1 oz (30 mL). Alcohol-free · Sugar-free · Gluten-free. Made in the USA in an FDA-registered cGMP facility.",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4"
+      ]
+    },
+    "use": {
+      "type": "parapatrol-how-to-use",
+      "settings": {},
+      "blocks": {
+        "use_1": {
+          "type": "step",
+          "settings": {
+            "lead": "Shake well.",
+            "text": "Fill the dropper to 1 mL."
+          }
+        },
+        "use_2": {
+          "type": "step",
+          "settings": {
+            "lead": "Mix into juice, milk or a smoothie.",
+            "text": "Orange juice and berry smoothies hide the herbal taste best."
+          }
+        },
+        "use_3": {
+          "type": "step",
+          "settings": {
+            "lead": "Give once daily with food",
+            "text": "for 2–3 weeks, then take a break."
+          }
+        }
+      },
+      "block_order": [
+        "use_1",
+        "use_2",
+        "use_3"
+      ]
+    },
+    "safety": {
+      "type": "parapatrol-safety",
+      "settings": {},
+      "blocks": {
+        "safe_1": {
+          "type": "item",
+          "settings": {
+            "lead": "For children 3+.",
+            "text": "Not for children under 3, or during pregnancy or breastfeeding."
+          }
+        },
+        "safe_2": {
+          "type": "item",
+          "settings": {
+            "lead": "Contains tree nut (black walnut).",
+            "text": ""
+          }
+        },
+        "safe_3": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, blood in stool, changes in urination, or any unusual reaction."
+          }
+        },
+        "safe_4": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "Talk to your pediatrician before use if your child takes medication or has a health condition."
+          }
+        },
+        "safe_5": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "[VERIFY: thujone-free wormwood spec] Line to read once confirmed: “Made with thujone-free wormwood.”"
+          }
+        }
+      },
+      "block_order": [
+        "safe_1",
+        "safe_2",
+        "safe_3",
+        "safe_4",
+        "safe_5"
+      ]
+    },
+    "reviews": {
+      "type": "parapatrol-reviews",
+      "settings": {},
+      "blocks": {
+        "rev_1": {
+          "type": "quote",
+          "settings": {
+            "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
+            "author": "Verified Buyer",
+            "badge": "",
+            "stars": 5,
+            "tags": "easy, taste"
+          }
+        },
+        "rev_2": {
+          "type": "quote",
+          "settings": {
+            "quote": "Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.",
+            "author": "Jennifer T.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy"
+          }
+        },
+        "rev_3": {
+          "type": "quote",
+          "settings": {
+            "quote": "The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.",
+            "author": "Lisa K.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, taste"
+          }
+        },
+        "rev_4": {
+          "type": "quote",
+          "settings": {
+            "quote": "I always keep a bottle on hand now, especially during school season or after family trips.",
+            "author": "Marcus D.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine"
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4"
+      ]
+    },
+    "founder": {
+      "type": "parapatrol-founder",
+      "settings": {}
+    },
+    "bundle": {
+      "type": "parapatrol-bundle",
+      "settings": {}
+    },
+    "faq": {
+      "type": "parapatrol-faq",
+      "settings": {},
+      "blocks": {
+        "q_1": {
+          "type": "question",
+          "settings": {
+            "question": "How fast will I see a difference?",
+            "answer": "<p>Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.*</p>"
+          }
+        },
+        "q_2": {
+          "type": "question",
+          "settings": {
+            "question": "What does it taste like? Will my picky kid take it?",
+            "answer": "<p>It has a natural raspberry flavour and a bitter blocker to soften the herbal taste. Mixed into orange juice or a berry smoothie, most kids drink it without a fuss. Starting with half a dropper helps too.</p>"
+          }
+        },
+        "q_3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I measure the dose?",
+            "answer": "<p>Shake well, then fill the dropper to the 1 mL line. That’s one serving. [VERIFY: dropper has 1 mL marking]</p>"
+          }
+        },
+        "q_4": {
+          "type": "question",
+          "settings": {
+            "question": "How long does one bottle last?",
+            "answer": "<p>One 1 oz (30 mL) bottle holds about 30 servings at 1 mL a day. That covers a full 2–3 week routine with some to spare.</p>"
+          }
+        },
+        "q_5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe for my 3-year-old? What about side effects?",
+            "answer": "<p>ParaPatrol is made and dosed for kids 3 and up, and is not for children under 3. Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, or any unusual reaction. See the <a href=\"#safety\">safety section</a> for the full list.</p>"
+          }
+        },
+        "q_6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use it with other supplements or medication?",
+            "answer": "<p>If your child takes medication or has a health condition, talk to your pediatrician before use. Bring the bottle along so they can see the full ingredient list.</p>"
+          }
+        },
+        "q_7": {
+          "type": "question",
+          "settings": {
+            "question": "Does it contain alcohol, sugar, or nuts?",
+            "answer": "<p>No alcohol and no sugar. It is also gluten-free. It does contain tree nut (black walnut), so it is not for kids with a tree nut allergy.</p>"
+          }
+        },
+        "q_8": {
+          "type": "question",
+          "settings": {
+            "question": "Why is licorice in a kids’ formula?",
+            "answer": "<p>[VERIFY answer with brand] Draft: Licorice root is a traditional soothing herb that helps support gut comfort and adds gentle natural sweetness.* [VERIFY: licorice form / amount]</p>"
+          }
+        },
+        "q_9": {
+          "type": "question",
+          "settings": {
+            "question": "Is the Amazon version the same as buying direct?",
+            "answer": "<p>[VERIFY answer with brand] Draft: Buying direct gets you Subscribe &amp; Save, free shipping over $65 and our 30-day money-back guarantee. Confirm whether the formula and packaging match.</p>"
+          }
+        },
+        "q_10": {
+          "type": "question",
+          "settings": {
+            "question": "How does the 30-day guarantee work?",
+            "answer": "<p>Try ParaPatrol for 30 days. If you’re not happy, contact our team and we’ll refund you. [VERIFY: refund steps, e.g. opened bottles OK?]</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_1",
+        "q_2",
+        "q_3",
+        "q_4",
+        "q_5",
+        "q_6",
+        "q_7",
+        "q_8",
+        "q_9",
+        "q_10"
+      ]
+    },
+    "final": {
+      "type": "parapatrol-final-cta",
+      "settings": {}
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "offer",
+    "main",
+    "familiar",
+    "compare",
+    "how",
+    "ingredients",
+    "use",
+    "safety",
+    "reviews",
+    "founder",
+    "bundle",
+    "faq",
+    "final",
+    "disclaimer"
+  ]
+}

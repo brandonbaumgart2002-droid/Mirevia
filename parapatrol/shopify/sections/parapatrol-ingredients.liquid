@@ -1,0 +1,99 @@
+{%- comment -%}
+  Ingredients: herb groups as accessible accordions (soothing herbs first), plus a
+  supplement facts panel block. Every * links to the FDA disclaimer.
+{%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+<div class="pp" id="ingredients">
+  <section class="py-14 lg:py-20" aria-labelledby="pp-ing-{{ section.id }}">
+    <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-14">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 id="pp-ing-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+        {%- if section.settings.intro != blank -%}<p class="text-muted mt-3 max-w-md">{{ section.settings.intro }}</p>{%- endif -%}
+        {%- render 'parapatrol-media', image: section.settings.image, label: section.settings.image_label, alt: 'Flat lay of fennel, anise, licorice root and other herbs', class: 'mt-6 aspect-[4/3] rounded-3xl', sizes: '(min-width: 1024px) 520px, 100vw' -%}
+        {%- if section.settings.allergen != blank -%}
+          <p class="mt-4 inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-soft border border-line text-[14px] font-bold">
+            {%- render 'parapatrol-icon', name: 'info', icon_size: 18 -%}{{ section.settings.allergen }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="divide-y divide-line border-y border-line" data-pp-accordion>
+        {%- for block in section.blocks -%}
+          {%- assign bid = section.id | append: '-' | append: forloop.index -%}
+          <div {{ block.shopify_attributes }}>
+            <h3>
+              <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="{{ block.settings.open }}" aria-controls="pp-ing-p-{{ bid }}" id="pp-ing-b-{{ bid }}">
+                <span>
+                  <span class="block font-display font-semibold text-[20px]">{{ block.settings.title }}</span>
+                  {%- if block.settings.subtitle != blank -%}<span class="block text-sm text-muted">{{ block.settings.subtitle }}</span>{%- endif -%}
+                </span>
+                <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div id="pp-ing-p-{{ bid }}" role="region" aria-labelledby="pp-ing-b-{{ bid }}" class="pb-5"{% unless block.settings.open %} hidden{% endunless %}>
+              {%- case block.type -%}
+                {%- when 'group' -%}
+                  <div class="pp-herbs rte">{%- render 'parapatrol-claim', text: block.settings.items -%}</div>
+                {%- when 'facts' -%}
+                  <div class="border-2 border-ink rounded-lg p-4 max-w-md text-[14px] leading-snug bg-white">
+                    <p class="font-display font-semibold text-[26px] leading-none border-b-[6px] border-ink pb-2">Supplement Facts</p>
+                    <p class="mt-2">Serving size: {{ block.settings.serving_size }}</p>
+                    <p class="border-b-[3px] border-ink pb-2">Servings per container: {{ block.settings.servings }}</p>
+                    <div class="flex justify-between font-bold border-b border-ink py-1.5"><span>Amount per serving</span><span>% DV</span></div>
+                    <div class="flex justify-between gap-3 py-1.5 border-b border-ink">
+                      <span><strong>{{ block.settings.blend_name }}</strong> {{ block.settings.blend_amount }}</span><span>†</span>
+                    </div>
+                    <p class="py-2 border-b-[3px] border-ink text-[13px]">{{ block.settings.blend_list }}</p>
+                    <p class="pt-2 text-[12px]">† Daily Value not established.</p>
+                    <p class="pt-3"><strong>Other ingredients:</strong> {{ block.settings.other }}</p>
+                    {%- if section.settings.allergen != blank -%}<p class="pt-2 font-bold">{{ section.settings.allergen }}</p>{%- endif -%}
+                    {%- if block.settings.note != blank -%}<p class="pt-2 text-[12px] text-muted">{{ block.settings.note }}</p>{%- endif -%}
+                  </div>
+                  {%- if block.settings.label_image != blank -%}
+                    {{ block.settings.label_image | image_url: width: 900 | image_tag: alt: 'ParaPatrol supplement facts label', class: 'mt-4 max-w-md w-full rounded-lg', loading: 'lazy' }}
+                  {%- endif -%}
+              {%- endcase -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: ingredients",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What’s inside" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "11 herbs. The gentle ones first." },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "A balanced blend of soothing kitchen herbs and traditional botanicals, in an alcohol-free glycerin base with natural raspberry." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "herb flat lay, fennel + anise up front" },
+    { "type": "text", "id": "allergen", "label": "Allergen line", "default": "Contains tree nut (black walnut)." }
+  ],
+  "blocks": [
+    { "type": "group", "name": "Herb group", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Herb group" },
+      { "type": "text", "id": "subtitle", "label": "Herbs in this group" },
+      { "type": "richtext", "id": "items", "label": "Herbs (bulleted list)", "info": "Every * links to the FDA disclaimer." },
+      { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+    ] },
+    { "type": "facts", "name": "Supplement facts", "limit": 1, "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Supplement facts" },
+      { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Full panel and other ingredients" },
+      { "type": "text", "id": "serving_size", "label": "Serving size", "default": "1 mL (one dropper filled to the 1 mL line)" },
+      { "type": "text", "id": "servings", "label": "Servings per container", "default": "about 30" },
+      { "type": "text", "id": "blend_name", "label": "Blend name", "default": "Kids’ Herbal Blend" },
+      { "type": "text", "id": "blend_amount", "label": "Blend amount", "default": "(proprietary) [VERIFY: mg per serving]" },
+      { "type": "textarea", "id": "blend_list", "label": "Blend ingredients" },
+      { "type": "textarea", "id": "other", "label": "Other ingredients", "default": "vegetable glycerin, purified water, natural raspberry flavour, bitter blocker." },
+      { "type": "textarea", "id": "note", "label": "Small print" },
+      { "type": "image_picker", "id": "label_image", "label": "Label photo (optional)" },
+      { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: ingredients" } ]
+}
+{% endschema %}

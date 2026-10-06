@@ -27,3 +27,6 @@ Search the file for `[VERIFY` and `[IMG:`. They are styled yellow (VERIFY) and d
 - The scan for banned words (§5) and claims (§2) is clean, with three exceptions. Each is required wording: the FDA disclaimer, the safety line "worms you can see", and the product name "Detox Zee Herbal". "Cleanse" appears only in brief-supplied copy ("Cleanse + soothe" and the comparison table).
 - No stats, review counts or ratings have been invented. The only reviews used are the four supplied ones.
 - Tested at 375, 768 and 1280 px: no horizontal scroll and no console errors. The toggle, frequency, stepper, sticky bar, accordions (keyboard) and review filter all work.
+
+## Shopify theme version
+`shopify/` holds the same page as Online Store 2.0 sections, snippets, assets and a `product.parapatrol.json` template, all editable in the theme editor. Install steps and setup are in `shopify/README.md`. The build, preview and Theme Check tooling is in `build/`.

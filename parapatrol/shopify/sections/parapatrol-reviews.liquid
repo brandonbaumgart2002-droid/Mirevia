@@ -1,0 +1,122 @@
+{%- comment -%}
+  Reviews: rating summary + star breakdown, topic filter, featured quotes.
+  Add your review app's widget as an app block (it appears under the quotes).
+  Featured quotes must stay compliant: no behaviour, no worms seen, no medical conditions.
+{%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value
+  assign percents = section.settings.bar_percents | split: ','
+  assign bar_labels = section.settings.bar_labels | split: ','
+  assign filter_lines = section.settings.filters | newline_to_br | split: '<br />'
+-%}
+<div class="pp" id="reviews">
+  <section class="bg-mint py-14 lg:py-20" aria-labelledby="pp-rev-{{ section.id }}">
+    <div class="max-w-6xl mx-auto px-4">
+      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 id="pp-rev-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+
+      <div class="mt-8 grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-10">
+        {%- if section.settings.show_breakdown -%}
+          <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
+            {%- if rating != blank -%}
+              <p class="font-display font-semibold text-[44px] leading-none">{{ rating.rating | round: 1 }}</p>
+              <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
+              <p class="text-sm text-muted mt-1">{{ rating.rating | round: 1 }} out of {{ rating.scale_max }}{% if rating_count != blank %}, based on {{ rating_count }} reviews{% endif %}</p>
+            {%- else -%}
+              <p class="font-display font-semibold text-[20px] leading-none">[VERIFY: rating]</p>
+              <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
+              <p class="text-sm text-muted mt-1">Based on [VERIFY: review count] reviews</p>
+            {%- endif -%}
+            <dl class="mt-5 grid gap-2 text-sm">
+              {%- for i in (1..5) -%}
+                {%- liquid
+                  assign idx = forloop.index0
+                  assign stars = 6 | minus: forloop.index
+                  assign pct = percents[idx] | strip | default: '0' | plus: 0 | at_most: 100 | at_least: 0
+                  assign lbl = bar_labels[idx] | strip
+                -%}
+                <div class="flex items-center gap-2">
+                  <dt class="w-8 shrink-0">{{ stars }} <span aria-hidden="true">★</span><span class="sr-only">stars</span></dt>
+                  <dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full bg-berry" style="width: {{ pct }}%"></span></dd>
+                  <dd class="w-16 text-right text-muted text-[11px]">{{ lbl }}</dd>
+                </div>
+              {%- endfor -%}
+            </dl>
+            {%- if section.settings.breakdown_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.breakdown_note }}</p>{%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div data-pp-reviews>
+          {%- if filter_lines.size > 0 and section.settings.filters != blank -%}
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter reviews by topic">
+              <button type="button" data-pp-filter="all" aria-pressed="true" class="px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
+              {%- for line in filter_lines -%}
+                {%- assign parts = line | strip | split: '|' -%}
+                {%- if parts.size == 2 -%}
+                  <button type="button" data-pp-filter="{{ parts[0] | strip | handleize }}" aria-pressed="false" class="px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark">{{ parts[1] | strip }}</button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <p class="sr-only" aria-live="polite" data-pp-filter-status></p>
+          {%- endif -%}
+
+          <ul class="mt-5 grid sm:grid-cols-2 gap-4">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'quote' -%}
+                {%- liquid
+                  assign tag_list = ''
+                  assign raw_tags = block.settings.tags | split: ','
+                  for t in raw_tags
+                    assign t_clean = t | strip | handleize
+                    assign tag_list = tag_list | append: ' ' | append: t_clean
+                  endfor
+                -%}
+                <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
+                  {%- if block.settings.stars > 0 -%}
+                    <p class="text-berry tracking-[2px]"><span aria-hidden="true">{% for s in (1..block.settings.stars) %}★{% endfor %}</span><span class="sr-only">{{ block.settings.stars }} out of 5 stars</span></p>
+                  {%- endif -%}
+                  <blockquote class="mt-3 text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
+                  <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+          {%- if section.settings.quotes_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.quotes_note }}</p>{%- endif -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}<div class="mt-8">{% render block %}</div>{%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: reviews",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What parents say" },
+    { "type": "checkbox", "id": "show_breakdown", "label": "Show rating summary + breakdown", "default": true },
+    { "type": "text", "id": "bar_percents", "label": "Breakdown bar widths, 5★ to 1★ (%)", "default": "0,0,0,0,0" },
+    { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★", "default": "[VERIFY],[VERIFY],[VERIFY],[VERIFY],[VERIFY]" },
+    { "type": "text", "id": "breakdown_note", "label": "Breakdown note", "default": "Replace the bar widths and counts with your review app's numbers." },
+    { "type": "textarea", "id": "filters", "label": "Filter topics (one per line: key|Label)", "default": "easy|Easy to give\ntaste|Taste\ntummy|Tummy & appetite\nroutine|Routine" },
+    { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "[VERIFY: star rating per featured review] Individual reviews reflect one family’s experience. Results vary." }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "quote", "name": "Featured review", "settings": [
+      { "type": "textarea", "id": "quote", "label": "Quote" },
+      { "type": "text", "id": "author", "label": "Name", "default": "Verified Buyer" },
+      { "type": "text", "id": "badge", "label": "Badge", "default": "Verified Buyer" },
+      { "type": "range", "id": "stars", "label": "Stars (0 hides)", "min": 0, "max": 5, "step": 1, "default": 5 },
+      { "type": "text", "id": "tags", "label": "Filter keys (comma separated)", "info": "Use keys from the section's filter list, e.g. easy, taste" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: reviews" } ]
+}
+{% endschema %}

@@ -1,0 +1,75 @@
+/* ParaPatrol PDP — source for assets/parapatrol.css. Run `npm run build` in parapatrol/build. */
+
+/* ===== Brand tokens: defaults. The main ParaPatrol section can override them in the theme editor. ===== */
+:root {
+  --brand-primary: #1d6b57;
+  --brand-primary-dark: #14513f;
+  --brand-accent: #f6b941;
+  --brand-berry: #b3325a;
+  --bg-soft: #fff6ec;
+  --bg-mint: #eaf5ef;
+  --ink: #1f2a2e;
+  --ink-muted: #52616a;
+  --line: #eadfd2;
+  --pp-font-display: 'Fredoka', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --pp-font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== Scoped reset (theme preflight stays untouched outside .pp) ===== */
+.pp { font-family: var(--pp-font-body); font-size: 16px; line-height: 1.625; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.pp *, .pp ::before, .pp ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--line); }
+.pp h1, .pp h2, .pp h3, .pp h4, .pp p, .pp blockquote, .pp figure, .pp dl, .pp dd, .pp ol, .pp ul, .pp fieldset, .pp legend {
+  margin: 0; padding: 0; font-size: inherit; font-weight: inherit; letter-spacing: normal; line-height: inherit; color: inherit;
+}
+.pp h1, .pp h2, .pp h3, .pp h4 { font-family: inherit; text-transform: none; }
+.pp ul, .pp ol { list-style: none; }
+.pp fieldset { border: 0; min-width: 0; }
+.pp a { color: inherit; text-decoration: inherit; }
+.pp img, .pp svg { display: block; max-width: 100%; }
+.pp img { height: auto; }
+.pp button, .pp input, .pp select { font: inherit; color: inherit; margin: 0; letter-spacing: normal; text-transform: none; box-shadow: none; }
+.pp button { background: transparent; padding: 0; cursor: pointer; border-radius: 0; min-width: 0; min-height: 0; }
+.pp button::before, .pp button::after { content: none; }
+.pp button:disabled { cursor: default; }
+.pp table { border-collapse: collapse; text-indent: 0; border-color: inherit; }
+.pp th, .pp td { border: 0; }
+.pp strong, .pp b { font-weight: 700; }
+.pp [hidden] { display: none !important; }
+.pp .rte p + p { margin-top: 8px; }
+.pp .rte a { text-decoration: underline; }
+
+.pp :focus-visible { outline: 3px solid var(--brand-berry); outline-offset: 2px; border-radius: 10px; box-shadow: none; }
+
+/* ===== Components ===== */
+.pp .pp-herbs ul { display: grid; gap: 12px; }
+.pp .pp-herbs li { position: relative; padding-left: 20px; }
+.pp .pp-herbs li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 9999px; background: var(--brand-primary); }
+.pp .ph {
+  position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+  background: repeating-linear-gradient(135deg, rgba(29,107,87,.06) 0 12px, rgba(29,107,87,.02) 12px 24px), var(--bg-mint);
+  border: 2px dashed rgba(29,107,87,.35); color: var(--brand-primary-dark);
+  font: 500 13px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 12px;
+}
+.pp .verify {
+  display: inline; background: #fff3c4; color: #5c4300; border: 1px dashed #b58900;
+  padding: 0 .3em; border-radius: 4px; font: 600 .78em/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.pp a.fda { color: inherit; text-decoration: none; font-weight: 700; padding: 0 1px; }
+.pp a.fda:hover { color: var(--brand-berry); }
+.pp .gallery-track { scroll-snap-type: x mandatory; scrollbar-width: none; }
+.pp .gallery-track::-webkit-scrollbar { display: none; }
+.pp .gallery-track > * { scroll-snap-align: center; }
+.pp .acc-icon { transition: transform .2s ease; }
+.pp .acc-btn[aria-expanded="true"] .acc-icon { transform: rotate(45deg); }
+.pp .pp-sticky { transition: transform .25s ease; }
+.pp .pp-qty::-webkit-inner-spin-button, .pp .pp-qty::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.pp .pp-qty { -moz-appearance: textfield; appearance: textfield; border: 0; }
+.pp .media-fill img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+@tailwind components;
+@tailwind utilities;

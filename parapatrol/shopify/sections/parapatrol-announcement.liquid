@@ -1,0 +1,19 @@
+{%- comment -%} Offer strip. If your theme already has an announcement bar, you can use that instead and remove this section. {%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+{%- assign items = section.settings.text | split: '|' -%}
+<div class="pp">
+  <div class="bg-primary text-white text-[12px] sm:text-sm font-medium text-center px-4 py-2 leading-snug">
+    {%- for item in items -%}
+      {{ item | strip }}{% unless forloop.last %} <span aria-hidden="true" class="opacity-60 mx-1">·</span> {% endunless %}
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: offer strip",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee" }
+  ],
+  "presets": [ { "name": "ParaPatrol: offer strip" } ]
+}
+{% endschema %}

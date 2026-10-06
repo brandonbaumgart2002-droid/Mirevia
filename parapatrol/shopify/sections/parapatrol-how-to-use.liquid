@@ -1,0 +1,60 @@
+{%- comment -%} Dosing: dropper visual, steps, what to expect, first-time tip. {%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp" id="how-to-use">
+  <section class="bg-soft py-14 lg:py-20" aria-labelledby="pp-use-{{ section.id }}">
+    <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+      <div class="order-2 lg:order-1">
+        {%- render 'parapatrol-media', image: section.settings.image, label: section.settings.image_label, alt: 'Close-up of the ParaPatrol dropper filled to the 1 mL line', class: 'aspect-[4/3] sm:aspect-[5/4] rounded-3xl', sizes: '(min-width: 1024px) 560px, 100vw' -%}
+        {%- if section.settings.image_note != blank -%}<p class="mt-3 text-[13px] text-muted">{{ section.settings.image_note }}</p>{%- endif -%}
+      </div>
+      <div class="order-1 lg:order-2">
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 id="pp-use-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+        <ol class="mt-6 grid gap-4">
+          {%- for block in section.blocks -%}
+            <li class="flex gap-4" {{ block.shopify_attributes }}>
+              <span class="w-9 h-9 shrink-0 rounded-full bg-primary text-white font-display font-semibold inline-flex items-center justify-center" aria-hidden="true">{{ forloop.index }}</span>
+              <p class="pt-1">{% if block.settings.lead != blank %}<strong>{{ block.settings.lead }}</strong> {% endif %}{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
+            </li>
+          {%- endfor -%}
+        </ol>
+        {%- if section.settings.expect_text != blank -%}
+          <div class="mt-6 rounded-2xl bg-white p-5 shadow-soft">
+            <p class="font-display font-semibold text-[18px]">{{ section.settings.expect_heading }}</p>
+            <p class="mt-1 text-ink/90">{%- render 'parapatrol-claim', text: section.settings.expect_text -%}</p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.tip != blank -%}
+          <div class="mt-3 rounded-2xl bg-accent/35 border border-accent p-5 flex gap-3">
+            <span class="shrink-0 mt-0.5">{%- render 'parapatrol-icon', name: 'bulb', icon_size: 22 -%}</span>
+            <p>{% if section.settings.tip_lead != blank %}<strong>{{ section.settings.tip_lead }}</strong> {% endif %}{{ section.settings.tip }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: how to use",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How to use" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One dropper. Once a day. No fuss." },
+    { "type": "image_picker", "id": "image", "label": "Dropper image" },
+    { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "dropper filled to the 1 mL line, marking clearly visible" },
+    { "type": "text", "id": "image_note", "label": "Note under image", "default": "[VERIFY: dropper has 1 mL marking]" },
+    { "type": "text", "id": "expect_heading", "label": "What to expect: heading", "default": "What to expect" },
+    { "type": "textarea", "id": "expect_text", "label": "What to expect: text", "default": "Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.*" },
+    { "type": "text", "id": "tip_lead", "label": "Tip: bold start", "default": "First time?" },
+    { "type": "text", "id": "tip", "label": "Tip", "default": "Start with half a dropper for the first few days." }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "lead", "label": "Bold start" },
+      { "type": "textarea", "id": "text", "label": "Text" }
+    ] }
+  ],
+  "max_blocks": 5,
+  "presets": [ { "name": "ParaPatrol: how to use" } ]
+}
+{% endschema %}

@@ -1,0 +1,16 @@
+{
+  "name": "parapatrol-theme-build",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -c tailwind.config.cjs -i src.css -o ../shopify/assets/parapatrol.css --minify",
+    "watch": "tailwindcss -c tailwind.config.cjs -i src.css -o ../shopify/assets/parapatrol.css --watch",
+    "preview": "node preview.mjs && npx http-server preview -p 8080 -c-1",
+    "check": "node check.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19",
+    "liquidjs": "^10",
+    "@shopify/theme-check-node": "^3"
+  },
+  "type": "module"
+}

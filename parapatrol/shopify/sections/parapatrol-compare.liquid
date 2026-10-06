@@ -1,0 +1,52 @@
+{%- comment -%} ParaPatrol vs typical adult tinctures. {%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp">
+  <section class="py-14 lg:py-20" aria-labelledby="pp-cmp-{{ section.id }}">
+    <div class="max-w-4xl mx-auto px-4">
+      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry text-center">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 id="pp-cmp-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}<p class="text-center text-muted mt-3 max-w-xl mx-auto">{{ section.settings.intro }}</p>{%- endif -%}
+      <div class="mt-8 rounded-3xl border border-line overflow-hidden shadow-soft bg-white">
+        <table class="w-full text-left text-[14px] sm:text-[16px]">
+          <caption class="sr-only">{{ section.settings.col_ours }} compared with {{ section.settings.col_theirs }}</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="p-3 sm:p-5 w-[30%] bg-white"><span class="sr-only">Feature</span></th>
+              <th scope="col" class="p-3 sm:p-5 bg-primary text-white font-display font-semibold text-[16px] sm:text-[19px]">{{ section.settings.col_ours }}</th>
+              <th scope="col" class="p-3 sm:p-5 bg-white text-muted font-display font-medium text-[15px] sm:text-[18px]">{{ section.settings.col_theirs }}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-line">
+            {%- for block in section.blocks -%}
+              <tr {{ block.shopify_attributes }}>
+                <th scope="row" class="p-3 sm:p-5 font-bold">{{ block.settings.label }}</th>
+                <td class="p-3 sm:p-5 bg-mint font-medium">{{ block.settings.ours }}</td>
+                <td class="p-3 sm:p-5 text-muted">{{ block.settings.theirs }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: comparison",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why made-for-kids matters" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Little bodies aren’t small adults." },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "Most herbal gut drops on the shelf were made for grown-ups. Here’s what changes when a formula starts with kids." },
+    { "type": "text", "id": "col_ours", "label": "Our column", "default": "ParaPatrol™" },
+    { "type": "text", "id": "col_theirs", "label": "Their column", "default": "Typical adult tinctures" }
+  ],
+  "blocks": [
+    { "type": "row", "name": "Row", "settings": [
+      { "type": "text", "id": "label", "label": "Feature", "default": "Feature" },
+      { "type": "text", "id": "ours", "label": "ParaPatrol", "default": "" },
+      { "type": "text", "id": "theirs", "label": "Adult tinctures", "default": "" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: comparison" } ]
+}
+{% endschema %}

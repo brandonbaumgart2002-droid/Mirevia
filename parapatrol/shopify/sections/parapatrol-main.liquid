@@ -1,0 +1,238 @@
+{%- comment -%}
+  ParaPatrol hero: gallery, badges, title, headline (A/B/C), rating, subhead,
+  benefit ticks, purchase box, sticky mobile add-to-cart. Also holds the brand
+  colour tokens and font loading for every ParaPatrol section on the page.
+{%- endcomment -%}
+
+{%- if section.settings.load_google_fonts -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+{%- endif -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+
+<style>
+  :root {
+    --brand-primary: {{ section.settings.brand_primary }};
+    --brand-primary-dark: {{ section.settings.brand_primary_dark }};
+    --brand-accent: {{ section.settings.brand_accent }};
+    --brand-berry: {{ section.settings.brand_berry }};
+    --bg-soft: {{ section.settings.bg_soft }};
+    --bg-mint: {{ section.settings.bg_mint }};
+    --ink: {{ section.settings.ink }};
+    --ink-muted: {{ section.settings.ink_muted }};
+    --line: {{ section.settings.line }};
+    {%- if section.settings.use_theme_fonts %}
+      --pp-font-display: var(--font-heading-family);
+      --pp-font-body: var(--font-body-family);
+    {%- endif %}
+  }
+</style>
+
+{%- liquid
+  assign free_ship = section.settings.free_shipping | times: 100
+  assign badges = section.settings.badges | split: ','
+  assign images = product.media | where: 'media_type', 'image'
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count.value
+-%}
+
+<div class="pp" id="pp-main-{{ section.id }}" data-pp-main data-after-add="{{ section.settings.after_add }}" data-cart-url="{{ routes.cart_url }}" data-cart-add-url="{{ routes.cart_add_url }}">
+  <section class="max-w-6xl mx-auto px-4 pt-4 pb-12 lg:pt-10 lg:pb-20 grid lg:grid-cols-[1.05fr_1fr] gap-6 lg:gap-12" aria-labelledby="pp-title-{{ section.id }}">
+
+    {%- comment -%} Gallery {%- endcomment -%}
+    <div class="lg:sticky lg:top-6 self-start min-w-0" data-pp-gallery>
+      <div class="gallery-track flex overflow-x-auto rounded-3xl" data-pp-gallery-track tabindex="0" role="region" aria-label="Product images. Use the thumbnails or swipe to browse.">
+        {%- if images.size > 0 -%}
+          {%- for media in images limit: 8 -%}
+            {%- liquid
+              assign loading = 'lazy'
+              assign media_alt = media.alt | default: product.title
+              if forloop.first
+                assign loading = 'eager'
+              endif
+            -%}
+            {%- render 'parapatrol-media', image: media.preview_image, label: 'product image', alt: media_alt, class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl', sizes: '(min-width: 1024px) 560px, 100vw', loading: loading -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_1, alt: 'ParaPatrol bottle on a white background', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_2, alt: 'Dropper of ParaPatrol going into a cup of orange juice', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_3, alt: 'Child playing outdoors in the sand', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_4, alt: 'ParaPatrol supplement facts label', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
+        {%- endif -%}
+      </div>
+      {%- liquid
+        assign slide_count = images.size | at_most: 8
+        if images.size == 0
+          assign slide_count = 4
+        endif
+      -%}
+      {%- if slide_count > 1 -%}
+        <div class="flex justify-center gap-1.5 mt-2 sm:hidden" aria-hidden="true">
+          {%- for i in (1..slide_count) -%}<span data-pp-dot-nav class="w-2 h-2 rounded-full {% if forloop.first %}bg-primary{% else %}bg-line{% endif %}"></span>{%- endfor -%}
+        </div>
+        <div class="hidden sm:grid grid-cols-4 gap-3 mt-3" role="group" aria-label="Choose image">
+          {%- if images.size > 0 -%}
+            {%- for media in images limit: 8 -%}
+              <button type="button" data-pp-thumb class="block overflow-hidden aspect-square rounded-2xl bg-mint{% if forloop.first %} ring-2 ring-primary ring-offset-2{% endif %}" aria-label="Show image {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}>
+                {{- media.preview_image | image_url: width: 240 | image_tag: alt: '', loading: 'lazy', class: 'w-full h-full object-cover' -}}
+              </button>
+            {%- endfor -%}
+          {%- else -%}
+            {%- assign thumb_labels = 'bottle,juice,play,facts' | split: ',' -%}
+            {%- for t in thumb_labels -%}
+              <button type="button" data-pp-thumb class="ph aspect-square rounded-2xl !text-[10px] !p-1{% if forloop.first %} ring-2 ring-primary ring-offset-2{% endif %}" aria-label="Show image {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}>[IMG: {{ t }}]</button>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product info {%- endcomment -%}
+    <div class="flex flex-col min-w-0">
+      {%- if badges.size > 0 -%}
+        <ul class="order-1 flex flex-wrap gap-1.5 mb-3" aria-label="Product highlights">
+          {%- for b in badges -%}
+            <li class="px-2.5 py-1 rounded-full bg-mint text-primary-dark text-[12px] font-bold">{{ b | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="order-2">
+        <h1 id="pp-title-{{ section.id }}" class="font-display font-semibold text-[15px] uppercase tracking-[.12em] text-primary">
+          {{- product.title -}}
+          {%- if section.settings.sub_label != blank %} <span class="normal-case tracking-normal font-medium text-muted">· {{ section.settings.sub_label }}</span>{% endif -%}
+        </h1>
+        {%- liquid
+          case section.settings.headline_default
+            when 'b'
+              assign headline = section.settings.headline_b
+            when 'c'
+              assign headline = section.settings.headline_c
+            else
+              assign headline = section.settings.headline_a
+          endcase
+        -%}
+        <p class="font-display font-semibold text-[32px] leading-[1.08] sm:text-[42px] lg:text-[48px] tracking-tight mt-1.5" data-pp-headline
+           data-a="{{ section.settings.headline_a | escape }}" data-b="{{ section.settings.headline_b | escape }}" data-c="{{ section.settings.headline_c | escape }}">{{ headline }}</p>
+
+        {%- if rating != blank -%}
+          <a href="#reviews" class="inline-flex flex-wrap items-center gap-x-2 gap-y-1 mt-3 text-sm text-muted hover:text-ink">
+            <span class="text-berry tracking-[2px] text-[17px] leading-none" aria-hidden="true">★★★★★</span>
+            <span>{{ rating.rating | round: 1 }} out of {{ rating.scale_max }}{% if rating_count != blank %} · {{ rating_count }} reviews{% endif %}</span>
+          </a>
+        {%- elsif section.settings.rating_fallback != blank -%}
+          <a href="#reviews" class="inline-flex flex-wrap items-center gap-x-2 gap-y-1 mt-3 text-sm text-muted hover:text-ink">
+            <span class="text-berry tracking-[2px] text-[17px] leading-none" aria-hidden="true">★★★★★</span>
+            <span>{{ section.settings.rating_fallback }}</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.subhead != blank -%}
+          <p class="mt-3 text-[16px] sm:text-[17px] text-ink/90 max-w-[544px]">{%- render 'parapatrol-claim', text: section.settings.subhead -%}</p>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Ticks sit under the buy box on mobile (keeps purchase near the fold), above it on desktop {%- endcomment -%}
+      <ul class="order-4 lg:order-3 mt-5 grid gap-2 text-[15px] font-medium">
+        {%- for i in (1..3) -%}
+          {%- assign key = 'tick_' | append: i -%}
+          {%- assign tick = section.settings[key] -%}
+          {%- if tick != blank -%}
+            <li class="flex items-start gap-2.5">
+              <span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-primary text-white items-center justify-center">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span>
+              <span>{%- render 'parapatrol-claim', text: tick -%}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      <div class="order-3 lg:order-4 mt-5" data-pp-hero-box>
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, subscribe_note: section.settings.subscribe_note -%}
+      </div>
+
+      {%- if section.settings.fda_text != blank -%}
+        <p class="order-5 mt-5 text-[12px] leading-snug text-muted">{{ section.settings.fda_text }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- if section.settings.show_sticky -%}
+    <div class="pp-sticky lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white/95 backdrop-blur border-t border-line shadow-lift translate-y-full" data-pp-sticky role="region" aria-label="Quick add to bag" inert>
+      <div class="px-4 py-3 flex items-center gap-3 max-w-xl mx-auto">
+        {%- if images.size > 0 -%}
+          <div class="w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-mint">{{ images.first.preview_image | image_url: width: 120 | image_tag: alt: '', loading: 'lazy', class: 'w-full h-full object-cover' }}</div>
+        {%- else -%}
+          <div class="ph w-11 h-11 rounded-xl !p-0 !text-[8px] shrink-0" aria-hidden="true">[IMG]</div>
+        {%- endif -%}
+        <div class="min-w-0 flex-1">
+          <p class="font-display font-semibold text-[15px] leading-tight truncate">{{ product.title }}</p>
+          <p class="text-[13px] text-muted leading-tight" data-pp-sticky-meta></p>
+        </div>
+        <button type="button" data-pp-sticky-add class="min-h-[46px] px-5 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] whitespace-nowrap">Add to Bag</button>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="fixed inset-x-0 top-3 z-[60] flex justify-center pointer-events-none px-4">
+    <p data-pp-toast role="status" aria-live="polite" class="opacity-0 -translate-y-2 transition-all duration-200 bg-ink text-white text-sm font-medium px-4 py-2.5 rounded-full shadow-lift"></p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ParaPatrol: product",
+  "tag": "section",
+  "class": "pp-section",
+  "settings": [
+    { "type": "header", "content": "Headline (A/B test with ?h=a, ?h=b or ?h=c)" },
+    { "type": "text", "id": "sub_label", "label": "Sub-label", "default": "Gentle Gut Support for Kids" },
+    { "type": "text", "id": "headline_a", "label": "Headline A", "default": "Get their tummy back on track." },
+    { "type": "text", "id": "headline_b", "label": "Headline B", "default": "For the days their tummy just isn’t right." },
+    { "type": "text", "id": "headline_c", "label": "Headline C", "default": "Back to normal, one drop at a time." },
+    { "type": "select", "id": "headline_default", "label": "Default headline", "default": "a", "options": [ { "value": "a", "label": "A" }, { "value": "b", "label": "B" }, { "value": "c", "label": "C" } ] },
+    { "type": "textarea", "id": "subhead", "label": "Subhead", "info": "Every * links to the FDA disclaimer.", "default": "A gentle 11-herb drop made for kids, not adults. One dropper in juice or milk supports gut comfort, healthy digestion and regularity.*" },
+    { "type": "text", "id": "badges", "label": "Badges (comma separated)", "default": "Kids 3+, Alcohol-free, Sugar-free, Third-party tested" },
+    { "type": "text", "id": "rating_fallback", "label": "Rating text when no reviews app data", "info": "Shown only if the product has no reviews.rating metafield. Clear it to hide.", "default": "[VERIFY: rating] · [VERIFY: review count] reviews" },
+    { "type": "text", "id": "tick_1", "label": "Benefit 1", "default": "Settles tummies*" },
+    { "type": "text", "id": "tick_2", "label": "Benefit 2", "default": "Supports a healthy appetite*" },
+    { "type": "text", "id": "tick_3", "label": "Benefit 3", "default": "No fuss: mixes into any drink" },
+
+    { "type": "header", "content": "Purchase box" },
+    { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
+    { "type": "text", "id": "guarantee", "label": "Guarantee line", "default": "30-day money-back guarantee. Love it or your money back." },
+    { "type": "number", "id": "free_shipping", "label": "Free shipping threshold ($)", "info": "0 hides the free-shipping nudge.", "default": 65 },
+    { "type": "select", "id": "after_add", "label": "After adding to bag", "default": "drawer", "options": [
+      { "value": "drawer", "label": "Open the theme's cart drawer (falls back to a message)" },
+      { "value": "message", "label": "Show a message" },
+      { "value": "cart", "label": "Go to the cart page" }
+    ] },
+    { "type": "checkbox", "id": "show_sticky", "label": "Sticky add-to-bag bar on mobile", "default": true },
+    { "type": "textarea", "id": "fda_text", "label": "Disclaimer under the buy box", "default": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease." },
+
+    { "type": "header", "content": "Image placeholders", "info": "Shown only until product images are added." },
+    { "type": "text", "id": "ph_1", "label": "Image 1", "default": "bottle hero on white" },
+    { "type": "text", "id": "ph_2", "label": "Image 2", "default": "drop-into-juice shot" },
+    { "type": "text", "id": "ph_3", "label": "Image 3", "default": "kid-at-play lifestyle, sandpit or park" },
+    { "type": "text", "id": "ph_4", "label": "Image 4", "default": "supplement facts label" },
+
+    { "type": "header", "content": "Brand colours (all ParaPatrol sections)" },
+    { "type": "color", "id": "brand_primary", "label": "Primary (buttons, white text on it)", "default": "#1d6b57" },
+    { "type": "color", "id": "brand_primary_dark", "label": "Primary hover", "default": "#14513f" },
+    { "type": "color", "id": "brand_accent", "label": "Accent (sunny highlight)", "default": "#f6b941" },
+    { "type": "color", "id": "brand_berry", "label": "Berry (savings, stars, focus ring)", "default": "#b3325a" },
+    { "type": "color", "id": "bg_soft", "label": "Warm background", "default": "#fff6ec" },
+    { "type": "color", "id": "bg_mint", "label": "Cool background", "default": "#eaf5ef" },
+    { "type": "color", "id": "ink", "label": "Text", "default": "#1f2a2e" },
+    { "type": "color", "id": "ink_muted", "label": "Secondary text", "default": "#52616a" },
+    { "type": "color", "id": "line", "label": "Borders", "default": "#eadfd2" },
+
+    { "type": "header", "content": "Fonts" },
+    { "type": "checkbox", "id": "load_google_fonts", "label": "Load Fredoka + DM Sans from Google Fonts", "default": true },
+    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use the theme's fonts instead", "default": false }
+  ],
+  "presets": [ { "name": "ParaPatrol: product" } ],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}
