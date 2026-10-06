@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="min-w-0">
-          {%- if s.eyebrow != blank -%}<p class="hidden sm:block text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ s.eyebrow }}</p>{%- endif -%}
+          {%- if s.eyebrow != blank -%}<p class="max-sm:hidden sm:block text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ s.eyebrow }}</p>{%- endif -%}
           <blockquote id="pp-expert-{{ section.id }}" class="font-display font-semibold text-[22px] sm:text-[28px] leading-[1.2] tracking-tight sm:mt-2">
             {%- if s.quote != blank -%}“{%- render 'parapatrol-claim', text: s.quote -%}”{%- else -%}Add their approved quote in the section settings.{%- endif -%}
           </blockquote>

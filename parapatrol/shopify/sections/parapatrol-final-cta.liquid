@@ -1,23 +1,25 @@
-{%- comment -%} Final CTA: headline + repeat purchase box (shares state with the hero box) + guarantee. {%- endcomment -%}
+{%- comment -%} Final CTA: headline, lifestyle image and one button that scrolls back up to the main Add to Bag. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
-{%- assign free_ship = section.settings.free_shipping | times: 100 -%}
 <div class="pp">
   <section class="bg-primary text-white py-14 lg:py-20" data-pp-final aria-labelledby="pp-fin-{{ section.id }}">
-    <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8 lg:gap-14 items-center">
-      <div>
+    {%- comment -%} minmax(0, 1fr) keeps the column inside the page margins on phones {%- endcomment -%}
+    <div class="max-w-5xl mx-auto px-4 grid grid-cols-[minmax(0,1fr)] md:grid-cols-2 gap-8 lg:gap-14 items-center">
+      <div class="min-w-0 text-center md:text-left">
         <h2 id="pp-fin-{{ section.id }}" class="font-display font-semibold text-[34px] sm:text-[46px] leading-[1.05]">{{ section.settings.heading }}</h2>
-        {%- if section.settings.text != blank -%}<p class="mt-3 text-white/90 text-[17px] max-w-md">{{ section.settings.text }}</p>{%- endif -%}
-        {%- if section.settings.image != blank or section.settings.image_asset != blank -%}
-          {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, alt: section.settings.image_alt, class: 'mt-6 aspect-square rounded-3xl', sizes: '(min-width: 1024px) 470px, (min-width: 768px) 45vw, calc(100vw - 32px)' -%}
-        {%- else -%}
-          <div class="ph mt-6 aspect-square rounded-3xl !bg-white/10 !border-white/40 !text-white" role="img" aria-label="{{ section.settings.image_alt | escape }} (image placeholder)">[IMG: {{ section.settings.image_label }}]</div>
-        {%- endif -%}
+        {%- if section.settings.text != blank -%}<p class="mt-3 text-white/90 text-[17px] max-w-md mx-auto md:mx-0">{{ section.settings.text }}</p>{%- endif -%}
+        <div class="max-md:hidden md:block">
+          {%- render 'parapatrol-final-button', label: section.settings.button_label, note: section.settings.guarantee -%}
+        </div>
       </div>
-      <div class="bg-white text-ink rounded-3xl p-5 sm:p-6 shadow-lift">
-        <p class="font-display font-semibold text-[20px]">{{ product.title }}{% if section.settings.product_line != blank %} <span class="font-sans font-medium text-[14px] text-muted">· {{ section.settings.product_line }}</span>{% endif %}</p>
-        <div class="mt-4">
-          {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, subscribe_note: section.settings.subscribe_note -%}
+      <div class="min-w-0 w-full max-w-md mx-auto md:max-w-none">
+        {%- if section.settings.image != blank or section.settings.image_asset != blank -%}
+          {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, alt: section.settings.image_alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1024px) 470px, (min-width: 768px) 45vw, min(448px, calc(100vw - 32px))' -%}
+        {%- else -%}
+          <div class="ph aspect-square rounded-3xl !bg-white/10 !border-white/40 !text-white" role="img" aria-label="{{ section.settings.image_alt | escape }} (image placeholder)">[IMG: {{ section.settings.image_label }}]</div>
+        {%- endif -%}
+        <div class="md:hidden text-center">
+          {%- render 'parapatrol-final-button', label: section.settings.button_label, note: section.settings.guarantee -%}
         </div>
       </div>
     </div>
@@ -33,10 +35,8 @@
     { "type": "text", "id": "image_asset", "label": "Built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-kids-pool.jpg" },
     { "type": "text", "id": "image_alt", "label": "Image description (for screen readers)", "default": "Two kids splashing at the pool, with ParaPatrol on the table beside them" },
     { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "kids at the pool, lifestyle" },
-    { "type": "text", "id": "product_line", "label": "Line after product name", "default": "1 oz (30 mL) · ~30 servings" },
-    { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
-    { "type": "text", "id": "guarantee", "label": "Guarantee line", "default": "30-day money-back guarantee. Love it or your money back." },
-    { "type": "number", "id": "free_shipping", "label": "Free shipping threshold ($)", "default": 65 }
+    { "type": "text", "id": "button_label", "label": "Button", "info": "Scrolls back up to the main Add to Bag.", "default": "Shop ParaPatrol" },
+    { "type": "text", "id": "guarantee", "label": "Line under the button", "default": "30-day money-back guarantee. Love it or your money back." }
   ],
   "presets": [ { "name": "ParaPatrol: final CTA" } ],
   "enabled_on": { "templates": ["product"] }

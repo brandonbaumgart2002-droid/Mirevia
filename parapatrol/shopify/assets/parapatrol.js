@@ -450,6 +450,34 @@
     });
   }
 
+  /* ---------------- final CTA: back up to the main buy box ---------------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-pp-to-buy]');
+    if (!a) return;
+    var box = document.getElementById('pp-buy');
+    if (!box) return; // no hero buy box on this page: let the link do nothing harmful
+    e.preventDefault();
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Land below whatever the theme pins to the top (sticky header, announcement bar)
+    function headerOffset() {
+      var h = 0;
+      document.querySelectorAll('header, sticky-header, .shopify-section-group-header-group, [id^="shopify-section"][id*="header"]').forEach(function (el) {
+        var cs = getComputedStyle(el), r = el.getBoundingClientRect();
+        if ((cs.position === 'sticky' || cs.position === 'fixed') && r.top <= 1 && r.bottom > h && r.height < innerHeight / 3) h = r.bottom;
+      });
+      return h;
+    }
+    function target() { return box.getBoundingClientRect().top + window.pageYOffset - Math.max(headerOffset(), 70) - 16; }
+    window.scrollTo({ top: target(), behavior: reduce ? 'auto' : 'smooth' });
+    var add = box.querySelector('[data-pp-add]');
+    setTimeout(function () {
+      // the header can reappear while scrolling up: correct once the scroll settles
+      var off = box.getBoundingClientRect().top - Math.max(headerOffset(), 70) - 16;
+      if (Math.abs(off) > 8) window.scrollTo({ top: window.pageYOffset + off, behavior: 'auto' });
+      if (add) add.focus({ preventScroll: true });
+    }, reduce ? 0 : 900);
+  });
+
   /* ---------------- boot ---------------- */
   function initAll(root) {
     root = root || document;
