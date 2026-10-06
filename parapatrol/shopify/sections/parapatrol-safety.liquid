@@ -1,12 +1,12 @@
 {%- comment -%} Safety & who it's for. Required trust section: always visible, never in an accordion. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <div class="pp" id="safety">
-  <section class="py-14 lg:py-20" aria-labelledby="pp-safe-{{ section.id }}">
+  <section class="bg-soft py-14 lg:py-20" aria-labelledby="pp-safe-{{ section.id }}">
     <div class="max-w-4xl mx-auto px-4">
       <div class="rounded-3xl border-2 border-primary/25 bg-white p-6 sm:p-10 shadow-soft">
         <div class="flex items-center gap-3">
           <span class="w-12 h-12 shrink-0 rounded-2xl bg-mint text-primary inline-flex items-center justify-center">{%- render 'parapatrol-icon', name: 'shield-alert' -%}</span>
-          <h2 id="pp-safe-{{ section.id }}" class="font-display font-semibold text-[28px] sm:text-[34px] leading-tight">{{ section.settings.heading }}</h2>
+          <h2 id="pp-safe-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1]">{{ section.settings.heading }}</h2>
         </div>
         <ul class="mt-6 grid gap-3.5">
           {%- for block in section.blocks -%}

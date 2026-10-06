@@ -55,7 +55,7 @@
         </ul>
       {%- endfor -%}
     </div>
-    <button type="button" class="pp-bar__toggle" data-pp-bar-toggle aria-pressed="false" aria-label="Pause scrolling offers">
+    <button type="button" class="disable-global-button-styling pp-bar__toggle" data-pp-bar-toggle aria-pressed="false" aria-label="Pause scrolling offers">
       <svg class="pp-bar__pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect x="2" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7.5" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/></svg>
       <svg class="pp-bar__play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
     </button>
@@ -78,7 +78,7 @@
 {
   "name": "ParaPatrol: announcement",
   "settings": [
-    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee" },
+    { "type": "text", "id": "text", "label": "Text (separate items with |)", "default": "Free shipping over $65 | 30-day money-back guarantee" },
     { "type": "range", "id": "speed", "label": "Seconds per loop", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
     { "type": "select", "id": "style", "label": "Colour", "default": "primary", "options": [
       { "value": "primary", "label": "Brand green" },

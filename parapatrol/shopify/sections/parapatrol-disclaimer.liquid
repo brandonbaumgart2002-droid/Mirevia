@@ -1,9 +1,9 @@
 {%- comment -%} FDA disclaimer. Every * on the page links here (#pp-fda). Keep this section on the template. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <div class="pp">
-  <div class="bg-ink text-white/85 py-10 pb-28 lg:pb-10">
+  <div class="bg-mint text-muted py-8 pb-28 lg:pb-8 border-t border-line">
     <div class="max-w-4xl mx-auto px-4 text-[13px] leading-relaxed">
-      <p id="pp-fda" class="text-white font-medium scroll-mt-6" tabindex="-1">{{ section.settings.fda_text }}</p>
+      <p id="pp-fda" class="text-ink font-medium scroll-mt-6" tabindex="-1">{{ section.settings.fda_text }}</p>
       {%- if section.settings.small_print != blank -%}<p class="mt-4">{{ section.settings.small_print }}</p>{%- endif -%}
     </div>
   </div>

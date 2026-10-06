@@ -34,11 +34,11 @@
         <div class="min-w-0">
           {%- if s.eyebrow != blank -%}<p class="hidden sm:block text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ s.eyebrow }}</p>{%- endif -%}
           <blockquote id="pp-expert-{{ section.id }}" class="font-display font-semibold text-[22px] sm:text-[28px] leading-[1.2] tracking-tight sm:mt-2">
-            {%- if s.quote != blank -%}“{%- render 'parapatrol-claim', text: s.quote -%}”{%- else -%}[VERIFY: their exact approved quote]{%- endif -%}
+            {%- if s.quote != blank -%}“{%- render 'parapatrol-claim', text: s.quote -%}”{%- else -%}Add their approved quote in the section settings.{%- endif -%}
           </blockquote>
           <figcaption class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span class="font-bold text-[16px]">{{ s.name | default: '[VERIFY: name]' }}</span>
-            <span class="text-muted text-[14px]">{{ s.credentials | default: '[VERIFY: credentials]' }}</span>
+            <span class="font-bold text-[16px]">{{ s.name | default: 'Paediatrician name' }}</span>
+            <span class="text-muted text-[14px]">{{ s.credentials | default: 'Credentials' }}</span>
             {%- if s.credential_link != blank -%}
               <a href="{{ s.credential_link }}" class="inline-flex items-center gap-1 text-[13px] font-bold text-primary underline" target="_blank" rel="noopener">
                 {%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%} Verify credentials<span class="sr-only"> (opens in a new tab)</span>
@@ -65,7 +65,7 @@
     { "type": "text", "id": "credentials", "label": "Credentials", "info": "e.g. MBBS, FRACP, Paediatrician" },
     { "type": "textarea", "id": "quote", "label": "Quote", "info": "Their exact approved words. Keep it to gut comfort and digestion, and add * to any claim so it links to the FDA disclaimer." },
     { "type": "url", "id": "credential_link", "label": "Credential lookup link (optional)", "info": "e.g. their state medical board or registry listing." },
-    { "type": "text", "id": "disclosure", "label": "Disclosure", "info": "Required if they are paid, an advisor, or get free product.", "default": "[VERIFY: e.g. Dr. Smith is a paid advisor to ParaPatrol.]" },
+    { "type": "text", "id": "disclosure", "label": "Disclosure", "info": "Required if they are paid, an advisor, or get free product." },
     { "type": "checkbox", "id": "confirmed", "label": "This person approved this quote and their credentials are accurate", "default": false }
   ],
   "presets": [ { "name": "ParaPatrol: expert" } ]

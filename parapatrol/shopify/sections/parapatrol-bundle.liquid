@@ -37,7 +37,7 @@
           {%- endif -%}
         </div>
         <div>
-          {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+          {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
           <h2 id="pp-bdl-{{ section.id }}" class="font-display font-semibold text-[28px] sm:text-[34px] leading-[1.1] mt-1">{{ section.settings.heading }}</h2>
           <p class="mt-2 text-muted">
             {%- if section.settings.products.count > 0 -%}
@@ -54,7 +54,7 @@
           -%}
           {%- if price_label != blank -%}<p class="mt-4 font-display font-semibold text-[32px]">{{ price_label }}</p>{%- endif -%}
           {%- if section.settings.note != blank -%}<p class="text-sm text-muted">{{ section.settings.note }}</p>{%- endif -%}
-          <button type="button" data-pp-bundle-add class="mt-5 w-full min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[16px] transition-colors disabled:opacity-60"{% if ids == blank %} disabled{% endif %}>
+          <button type="button" data-pp-bundle-add class="disable-global-button-styling mt-5 w-full min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[16px] transition-colors disabled:opacity-60"{% if ids == blank %} disabled{% endif %}>
             {{- section.settings.button_label -}}{%- if price_label != blank %} · {{ price_label }}{% endif -%}
           </button>
           {%- if request.design_mode and ids == blank -%}

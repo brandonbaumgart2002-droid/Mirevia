@@ -1,14 +1,14 @@
 {%- comment -%} Dosing: dropper visual, steps, what to expect, first-time tip. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <div class="pp" id="how-to-use">
-  <section class="bg-soft py-14 lg:py-20" aria-labelledby="pp-use-{{ section.id }}">
+  <section class="bg-mint py-14 lg:py-20" aria-labelledby="pp-use-{{ section.id }}">
     <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
       <div class="order-2 lg:order-1">
         {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, label: section.settings.image_label, alt: section.settings.image_alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 560px, (min-width: 1024px) 48vw, calc(100vw - 32px)' -%}
         {%- if section.settings.image_note != blank -%}<p class="mt-3 text-[13px] text-muted">{{ section.settings.image_note }}</p>{%- endif -%}
       </div>
       <div class="order-1 lg:order-2">
-        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h2 id="pp-use-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
         <ol class="mt-6 grid gap-4">
           {%- for block in section.blocks -%}
@@ -44,7 +44,7 @@
     { "type": "text", "id": "image_asset", "label": "Built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-kids-dropper-juice.jpg" },
     { "type": "text", "id": "image_alt", "label": "Image description (for screen readers)", "default": "A parent adds one drop of ParaPatrol to a child's orange juice at breakfast" },
     { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "dropper filled to the 1 mL line, marking clearly visible" },
-    { "type": "text", "id": "image_note", "label": "Note under image", "default": "[VERIFY: dropper has 1 mL marking]" },
+    { "type": "text", "id": "image_note", "label": "Note under image" },
     { "type": "text", "id": "expect_heading", "label": "What to expect: heading", "default": "What to expect" },
     { "type": "textarea", "id": "expect_text", "label": "What to expect: text", "default": "Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.*" },
     { "type": "text", "id": "tip_lead", "label": "Tip: bold start", "default": "First time?" },

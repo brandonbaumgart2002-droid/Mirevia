@@ -31,15 +31,15 @@
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 <div class="pp">
-  <section class="bg-mint py-12 lg:py-20" aria-labelledby="pp-stats-{{ section.id }}" data-pp-stats>
+  <section class="bg-soft pt-12 pb-4 lg:pt-20 lg:pb-6" aria-labelledby="pp-stats-{{ section.id }}" data-pp-stats>
     <div class="max-w-6xl mx-auto px-4">
       {%- unless ready -%}
         <p class="mb-6 text-[13px]">[SETUP] Stats are hidden from shoppers until every number is real, the source line is filled in and the confirmation box is ticked.</p>
       {%- endunless -%}
       <div class="grid lg:grid-cols-[minmax(0,.8fr)_minmax(0,2fr)] gap-8 lg:gap-12 lg:items-center">
         <div>
-          {%- if s.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ s.eyebrow }}</p>{%- endif -%}
-          <h2 id="pp-stats-{{ section.id }}" class="font-display font-semibold text-[34px] sm:text-[46px] leading-[1.02] tracking-tight mt-2">{{ s.heading }}</h2>
+          {%- if s.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ s.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-stats-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ s.heading }}</h2>
           {%- if s.text != blank -%}<p class="mt-4 text-[16px] sm:text-[17px] leading-relaxed text-ink/90 max-w-md">{{ s.text }}</p>{%- endif -%}
           {%- if s.source != blank -%}<p class="mt-4 text-[13px] leading-snug text-muted">{{ s.source }}</p>{%- endif -%}
         </div>
@@ -52,8 +52,8 @@
               assign dash = pct | times: 2.7646
             -%}
             {%- comment -%} Ring: r = 44 on a 100 x 100 box, so the circumference is 276.46 {%- endcomment -%}
-            <li class="grid grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-1 content-start gap-x-4 items-start sm:text-center" {{ block.shopify_attributes }}>
-              <div class="pp-ring relative w-24 h-24 sm:w-36 sm:h-36 sm:mx-auto">
+            <li class="grid grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-1 content-start gap-x-4 items-start" {{ block.shopify_attributes }}>
+              <div class="pp-ring relative w-24 h-24 sm:w-32 sm:h-32">
                 <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90" aria-hidden="true" focusable="false">
                   <circle cx="50" cy="50" r="44" fill="none" stroke="var(--pp-star-empty)" stroke-width="9"/>
                   <circle class="pp-ring__bar" cx="50" cy="50" r="44" fill="none" stroke="var(--pp-star)" stroke-width="9" stroke-linecap="round" stroke-dasharray="{{ dash | round: 2 }} 276.46" style="--pp-ring-dash: {{ dash | round: 2 }};"/>
@@ -61,7 +61,7 @@
                 <span class="absolute inset-0 flex items-center justify-center font-display font-semibold text-[24px] sm:text-[34px] leading-none text-ink">{{ num }}</span>
               </div>
               <div class="min-w-0">
-                <p class="sm:mt-4 font-display font-semibold uppercase tracking-[.08em] text-[15px] sm:text-[16px] leading-snug text-ink">{%- render 'parapatrol-claim', text: block.settings.label -%}</p>
+                <p class="sm:mt-4 font-display font-semibold text-[19px] sm:text-[20px] leading-snug text-ink">{%- render 'parapatrol-claim', text: block.settings.label -%}</p>
                 {%- if block.settings.text != blank -%}
                   <div class="mt-3 pt-3 border-t-2 border-ink">
                     <p class="text-[14px] sm:text-[15px] leading-relaxed text-ink/90">{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
@@ -84,7 +84,7 @@
     { "type": "text", "id": "eyebrow", "label": "Small heading" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Numbers that speak for themselves" },
     { "type": "textarea", "id": "text", "label": "Text", "default": "Small daily habit, big difference. Here's what parents tell us after adding ParaPatrol to their routine." },
-    { "type": "text", "id": "source", "label": "Source line", "info": "e.g. *Based on a survey of 212 ParaPatrol parents, March 2026.", "default": "[VERIFY: *Based on a survey of ___ ParaPatrol parents, month year.]" },
+    { "type": "text", "id": "source", "label": "Source line", "info": "e.g. *Based on a survey of 212 ParaPatrol parents, March 2026." },
     { "type": "checkbox", "id": "confirmed", "label": "These numbers are from our own customers and the source is accurate", "default": false }
   ],
   "blocks": [

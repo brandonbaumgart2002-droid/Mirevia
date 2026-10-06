@@ -5,10 +5,10 @@
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 <div class="pp" id="ingredients">
-  <section class="py-14 lg:py-20" aria-labelledby="pp-ing-{{ section.id }}">
+  <section class="bg-white py-14 lg:py-20" aria-labelledby="pp-ing-{{ section.id }}">
     <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-14">
       <div>
-        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h2 id="pp-ing-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
         {%- if section.settings.intro != blank -%}<p class="text-muted mt-3 max-w-md">{{ section.settings.intro }}</p>{%- endif -%}
         {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, label: section.settings.image_label, alt: section.settings.image_alt, class: 'mt-6 aspect-square rounded-3xl', sizes: '(min-width: 1152px) 500px, (min-width: 1024px) 44vw, calc(100vw - 32px)' -%}
@@ -24,7 +24,7 @@
           {%- assign bid = section.id | append: '-' | append: forloop.index -%}
           <div {{ block.shopify_attributes }}>
             <h3>
-              <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="{{ block.settings.open }}" aria-controls="pp-ing-p-{{ bid }}" id="pp-ing-b-{{ bid }}">
+              <button type="button" class="disable-global-button-styling acc-btn w-full flex items-center justify-between gap-4 py-5 text-left" aria-expanded="{{ block.settings.open }}" aria-controls="pp-ing-p-{{ bid }}" id="pp-ing-b-{{ bid }}">
                 <span>
                   <span class="block font-display font-semibold text-[20px]">{{ block.settings.title }}</span>
                   {%- if block.settings.subtitle != blank -%}<span class="block text-sm text-muted">{{ block.settings.subtitle }}</span>{%- endif -%}
@@ -88,7 +88,7 @@
       { "type": "text", "id": "serving_size", "label": "Serving size", "default": "1 mL (one dropper filled to the 1 mL line)" },
       { "type": "text", "id": "servings", "label": "Servings per container", "default": "about 30" },
       { "type": "text", "id": "blend_name", "label": "Blend name", "default": "Kids’ Herbal Blend" },
-      { "type": "text", "id": "blend_amount", "label": "Blend amount", "default": "(proprietary) [VERIFY: mg per serving]" },
+      { "type": "text", "id": "blend_amount", "label": "Blend amount", "default": "(proprietary)" },
       { "type": "textarea", "id": "blend_list", "label": "Blend ingredients" },
       { "type": "textarea", "id": "other", "label": "Other ingredients", "default": "vegetable glycerin, purified water, natural raspberry flavour, bitter blocker." },
       { "type": "textarea", "id": "note", "label": "Small print" },

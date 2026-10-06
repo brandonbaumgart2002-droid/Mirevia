@@ -1,11 +1,11 @@
 {%- comment -%} ParaPatrol vs typical adult tinctures. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <div class="pp">
-  <section class="py-14 lg:py-20" aria-labelledby="pp-cmp-{{ section.id }}">
+  <section class="bg-white py-14 lg:py-20" aria-labelledby="pp-cmp-{{ section.id }}">
     <div class="max-w-4xl mx-auto px-4">
-      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry text-center">{{ section.settings.eyebrow }}</p>{%- endif -%}
-      <h2 id="pp-cmp-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">{{ section.settings.heading }}</h2>
-      {%- if section.settings.intro != blank -%}<p class="text-center text-muted mt-3 max-w-xl mx-auto">{{ section.settings.intro }}</p>{%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 id="pp-cmp-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}<p class="text-muted mt-3 max-w-xl">{{ section.settings.intro }}</p>{%- endif -%}
       <div class="mt-8 rounded-3xl border border-line overflow-hidden shadow-soft bg-white">
         <table class="w-full text-left text-[14px] sm:text-[16px]">
           <caption class="sr-only">{{ section.settings.col_ours }} compared with {{ section.settings.col_theirs }}</caption>

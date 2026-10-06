@@ -8,7 +8,7 @@
   <section class="bg-white py-12 lg:py-20" aria-labelledby="pp-life-{{ section.id }}">
     <div class="max-w-6xl mx-auto px-4">
       <div class="max-w-2xl">
-        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h2 id="pp-life-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
         {%- if section.settings.text != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink/90">{%- render 'parapatrol-claim', text: section.settings.text -%}</p>{%- endif -%}
       </div>

@@ -1,0 +1,56 @@
+{%- comment -%}
+  Results timeline: what parents can expect, stage by stage. Soft, honest wording ("many parents notice"),
+  every tummy or appetite claim keeps its * so it links to the FDA disclaimer.
+  Desktop: stages across with a connecting line. Phones: stacked down a vertical line.
+{%- endcomment -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp">
+  <section class="bg-white py-12 lg:py-20" aria-labelledby="pp-time-{{ section.id }}">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-2xl">
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 id="pp-time-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+        {%- if section.settings.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink/90">{{ section.settings.intro }}</p>{%- endif -%}
+      </div>
+
+      <ol class="pp-timeline mt-10 grid gap-8 md:grid-cols-4 md:gap-6" role="list">
+        {%- for block in section.blocks -%}
+          <li class="relative pl-12 md:pl-0 md:pt-12" {{ block.shopify_attributes }}>
+            <span class="pp-timeline__dot absolute left-0 top-0 md:top-0 w-7 h-7 rounded-full bg-primary text-white inline-flex items-center justify-center text-[13px] font-bold" aria-hidden="true">{{ forloop.index }}</span>
+            <p class="text-[13px] font-bold uppercase tracking-[.14em] text-primary">{{ block.settings.when }}</p>
+            <h3 class="mt-1 font-display font-semibold text-[21px] sm:text-[22px] leading-snug">{{ block.settings.title }}</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-ink/90">{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
+          </li>
+        {%- endfor -%}
+      </ol>
+
+      {%- if section.settings.note != blank -%}
+        <p class="mt-8 text-[13px] leading-snug text-muted max-w-2xl">{%- render 'parapatrol-claim', text: section.settings.note -%}</p>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: timeline",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "What to expect" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your first three weeks" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "A gentle routine, not an overnight fix. Here's how it usually goes." },
+    { "type": "textarea", "id": "note", "label": "Small print", "default": "Every child is different. This reflects what parents commonly tell us, not a guaranteed result.*" }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Stage",
+      "settings": [
+        { "type": "text", "id": "when", "label": "When", "info": "e.g. Day 1, Weeks 1–2" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text", "info": "Keep a * on anything about tummy or appetite." }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [ { "name": "ParaPatrol: timeline", "blocks": [ { "type": "stage" }, { "type": "stage" }, { "type": "stage" }, { "type": "stage" } ] } ]
+}
+{% endschema %}

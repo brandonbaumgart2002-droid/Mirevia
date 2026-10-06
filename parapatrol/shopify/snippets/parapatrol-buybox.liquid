@@ -124,12 +124,12 @@
 
     <div class="mt-4 flex items-stretch gap-3">
       <div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity">
-        <button type="button" data-pp-qty="-1" class="w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity" disabled>&minus;</button>
+        <button type="button" data-pp-qty="-1" class="disable-global-button-styling w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity" disabled>&minus;</button>
         <label for="pp-qty-{{ uid }}" class="sr-only">Quantity</label>
         <input id="pp-qty-{{ uid }}" name="quantity" data-pp-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="pp-qty w-10 text-center font-bold text-[16px] bg-transparent">
-        <button type="button" data-pp-qty="1" class="w-11 h-[52px] rounded-r-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Increase quantity">+</button>
+        <button type="button" data-pp-qty="1" class="disable-global-button-styling w-11 h-[52px] rounded-r-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Increase quantity">+</button>
       </div>
-      <button type="submit" name="add" data-pp-add class="flex-1 min-w-0 min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors disabled:opacity-60"{% unless v.available %} disabled{% endunless %}>
+      <button type="submit" name="add" data-pp-add class="disable-global-button-styling flex-1 min-w-0 min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors disabled:opacity-60"{% unless v.available %} disabled{% endunless %}>
         {%- if v.available -%}Add to Bag · {{ start_price | money }}{%- else -%}Sold out{%- endif -%}
       </button>
     </div>

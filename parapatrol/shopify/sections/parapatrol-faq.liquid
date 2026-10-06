@@ -5,16 +5,16 @@
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 <div class="pp" id="faq">
-  <section class="py-14 lg:py-20" aria-labelledby="pp-faq-{{ section.id }}">
+  <section class="bg-white py-14 lg:py-20" aria-labelledby="pp-faq-{{ section.id }}">
     <div class="max-w-3xl mx-auto px-4">
-      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry text-center">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary text-center">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 id="pp-faq-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">{{ section.settings.heading }}</h2>
       <div class="mt-8 divide-y divide-line border-y border-line" data-pp-accordion>
         {%- for block in section.blocks -%}
           {%- assign bid = section.id | append: '-' | append: forloop.index -%}
           <div {{ block.shopify_attributes }}>
             <h3>
-              <button type="button" class="acc-btn w-full flex items-center justify-between gap-4 py-5 text-left font-display font-semibold text-[18px] sm:text-[19px]" aria-expanded="false" aria-controls="pp-faq-p-{{ bid }}" id="pp-faq-b-{{ bid }}">
+              <button type="button" class="disable-global-button-styling acc-btn w-full flex items-center justify-between gap-4 py-5 text-left font-display font-semibold text-[18px] sm:text-[19px]" aria-expanded="false" aria-controls="pp-faq-p-{{ bid }}" id="pp-faq-b-{{ bid }}">
                 <span>{{ block.settings.question }}</span>
                 <span class="acc-icon w-9 h-9 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[22px] leading-none font-sans" aria-hidden="true">+</span>
               </button>

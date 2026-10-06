@@ -12,9 +12,9 @@
   assign filter_lines = section.settings.filters | newline_to_br | split: '<br />'
 -%}
 <div class="pp" id="reviews">
-  <section class="bg-mint py-14 lg:py-20" aria-labelledby="pp-rev-{{ section.id }}">
+  <section class="bg-soft pt-10 pb-14 lg:pt-14 lg:pb-20" aria-labelledby="pp-rev-{{ section.id }}">
     <div class="max-w-6xl mx-auto px-4">
-      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 id="pp-rev-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
 
       {%- comment -%} Lifestyle photo strip. Kept apart from the quotes so it never reads as a reviewer's photo. {%- endcomment -%}
@@ -80,11 +80,11 @@
         <div data-pp-reviews>
           {%- if filter_lines.size > 0 and section.settings.filters != blank -%}
             <div class="flex flex-wrap gap-2" role="group" aria-label="Filter reviews by topic">
-              <button type="button" data-pp-filter="all" aria-pressed="true" class="px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
+              <button type="button" data-pp-filter="all" aria-pressed="true" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
               {%- for line in filter_lines -%}
                 {%- assign parts = line | strip | split: '|' -%}
                 {%- if parts.size == 2 -%}
-                  <button type="button" data-pp-filter="{{ parts[0] | strip | handleize }}" aria-pressed="false" class="px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark">{{ parts[1] | strip }}</button>
+                  <button type="button" data-pp-filter="{{ parts[0] | strip | handleize }}" aria-pressed="false" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark">{{ parts[1] | strip }}</button>
                 {%- endif -%}
               {%- endfor -%}
             </div>
@@ -136,10 +136,10 @@
     { "type": "text", "id": "count_fallback", "label": "Review count when no reviews app data", "default": "237+" },
     { "type": "text", "id": "count_label", "label": "Count label", "default": "parent reviews" },
     { "type": "text", "id": "bar_percents", "label": "Breakdown bar widths, 5★ to 1★ (%)", "info": "The breakdown stays hidden until at least one bar is above 0.", "default": "0,0,0,0,0" },
-    { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★", "default": "[VERIFY],[VERIFY],[VERIFY],[VERIFY],[VERIFY]" },
+    { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★" },
     { "type": "text", "id": "breakdown_note", "label": "Breakdown note", "default": "Replace the bar widths and counts with your review app's numbers." },
     { "type": "textarea", "id": "filters", "label": "Filter topics (one per line: key|Label)", "default": "easy|Easy to give\ntaste|Taste\ntummy|Tummy & appetite\nroutine|Routine" },
-    { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "[VERIFY: star rating per featured review] Individual reviews reflect one family’s experience. Results vary." }
+    { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "Individual reviews reflect one family’s experience. Results vary." }
   ],
   "blocks": [
     { "type": "@app" },

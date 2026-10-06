@@ -81,6 +81,15 @@
 .pp [data-pp-stats].is-armed .pp-ring__bar { stroke-dasharray: 0 276.46; }
 .pp [data-pp-stats].is-armed.is-in .pp-ring__bar { stroke-dasharray: var(--pp-ring-dash) 276.46; transition: stroke-dasharray 1.1s cubic-bezier(.22,1,.36,1); }
 
+/* Results timeline: connecting line behind the numbered dots (vertical on phones, horizontal from tablet) */
+.pp .pp-timeline { position: relative; }
+.pp .pp-timeline::before { content: ""; position: absolute; left: 13px; top: 14px; bottom: 14px; width: 2px; background: linear-gradient(var(--brand-primary), var(--pp-star)); opacity: .35; }
+@media (min-width: 768px) { .pp .pp-timeline::before { left: 14px; right: 14px; top: 13px; bottom: auto; width: auto; height: 2px; background: linear-gradient(90deg, var(--brand-primary), var(--pp-star)); } }
+.pp .pp-timeline__dot { box-shadow: 0 0 0 5px #fff; }
+
+/* Headings: even line breaks instead of a lone last word */
+.pp h1, .pp h2, .pp h3, .pp [data-pp-headline] { text-wrap: balance; }
+
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
 }
@@ -119,3 +128,14 @@
 .pp.pp .rounded-2xl { border-radius: 16px !important; }
 .pp.pp .rounded-3xl { border-radius: 24px !important; }
 .pp.pp .rounded-full { border-radius: 9999px !important; }
+/* ...and buttons: Elixir styles every submit button (gold fill, uppercase, its own padding and borders) with !important */
+.pp.pp button { text-transform: none !important; letter-spacing: normal !important; box-shadow: none !important; }
+.pp.pp button[type="submit"] { border: 0 !important; padding-left: 24px !important; padding-right: 24px !important; }
+.pp.pp .bg-primary { background-color: var(--brand-primary) !important; }
+.pp.pp .hover\:bg-primary-dark:hover { background-color: var(--brand-primary-dark) !important; }
+.pp.pp .bg-white { background-color: #fff !important; }
+.pp.pp .bg-berry { background-color: var(--brand-berry) !important; }
+.pp.pp .bg-mint { background-color: var(--bg-mint) !important; }
+.pp.pp .bg-soft { background-color: var(--bg-soft) !important; }
+
+.pp.bg-white { background-color: #fff !important; }
