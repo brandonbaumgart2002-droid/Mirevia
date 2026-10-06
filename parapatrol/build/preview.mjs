@@ -17,13 +17,22 @@ engine.registerFilter('stylesheet_tag', u => `<link rel="stylesheet" href="${u}"
 engine.registerFilter('json', v => JSON.stringify(v === undefined ? null : v));
 engine.registerFilter('handleize', v => String(v).toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''));
 engine.registerFilter('image_url', (i) => i && i.src || '');
-engine.registerFilter('image_tag', (u, ...a) => `<img src="${u}" alt="">`);
+// keyword args arrive as [key, value] pairs; keep the ones the browser cares about
+engine.registerFilter('image_tag', (u, ...a) => { const at = Object.fromEntries(a.filter(Array.isArray));
+  const keep = ['alt','loading','fetchpriority','sizes','class'].filter(k => at[k] != null).map(k => `${k}="${String(at[k]).replace(/"/g,'&quot;')}"`);
+  if (!('alt' in at)) keep.unshift('alt=""');
+  return `<img src="${u}" width="2048" height="2048" ${keep.join(' ')}>`; });
 
 // mock product
 const plansMeta = [30,60,90].map((d,i)=>({ id: 1000+i, name: `Delivery every ${d} days`, group_id: 'g1', options:[{value:`${d} days`}] }));
 const variant = { id: 42, title: 'Default Title', available: true, price: 3499,
   selling_plan_allocations: MODE==='plans' ? plansMeta.map(p=>({ selling_plan: p, price: 2974 })) : [] };
-const product = { id: 7, title: 'ParaPatrol™', variants:[variant], selected_or_first_available_variant: variant, media: [],
+// PP_GALLERY=1 uses ../images/gallery/image1-7.png as the product media
+const GALLERY = path.resolve('../images/gallery');
+const media = process.env.PP_GALLERY && fs.existsSync(GALLERY)
+  ? fs.readdirSync(GALLERY).filter(f => /\.(png|jpe?g|webp)$/.test(f)).sort().map((f, i) => ({ media_type: 'image', alt: `ParaPatrol image ${i + 1}`, preview_image: { src: '/gallery/' + f } }))
+  : [];
+const product = { id: 7, title: 'ParaPatrol™', variants:[variant], selected_or_first_available_variant: variant, media,
   selling_plan_groups: MODE==='plans' ? [{ id:'g1', selling_plans: plansMeta }] : [], requires_selling_plan:false,
   has_only_default_variant:true, options:['Title'], metafields:{ reviews:{ rating:{}, rating_count:{} } }, url:'/products/parapatrol', featured_image:null };
 const globals = { product, shop:{ money_format:'${{amount}}' }, routes:{ cart_url:'/cart', cart_add_url:'/cart/add' }, request:{ design_mode: MODE!=='plans' } };
@@ -51,4 +60,5 @@ h1,h2,h3{font-size:4rem;margin:3rem 0;letter-spacing:.2rem} p{margin:1.5rem 0} u
 fs.writeFileSync(path.join(OUT,'index.html'), page);
 fs.mkdirSync(path.join(OUT,'assets'),{recursive:true});
 for (const f of ['parapatrol.css','parapatrol.js']) fs.copyFileSync(path.join(ROOT,'assets',f), path.join(OUT,'assets',f));
+if (media.length) { fs.mkdirSync(path.join(OUT,'gallery'),{recursive:true}); for (const m of media) { const f = path.basename(m.preview_image.src); fs.copyFileSync(path.join(GALLERY,f), path.join(OUT,'gallery',f)); } }
 console.log('rendered', html.length);

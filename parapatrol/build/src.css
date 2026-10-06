@@ -65,7 +65,7 @@
 .pp .pp-sticky { transition: transform .25s ease; }
 .pp .pp-qty::-webkit-inner-spin-button, .pp .pp-qty::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .pp .pp-qty { -moz-appearance: textfield; appearance: textfield; border: 0; }
-.pp .media-fill img { width: 100%; height: 100%; object-fit: cover; }
+.pp .media-fill img { width: 100%; height: 100%; } /* fit comes from the img class (object-cover / object-contain) */
 
 @media (prefers-reduced-motion: reduce) {
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }

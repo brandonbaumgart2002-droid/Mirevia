@@ -7,7 +7,9 @@
 {%- if section.settings.load_google_fonts -%}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  {%- comment -%} Loaded without blocking first paint; text shows in the fallback font until it arrives {%- endcomment -%}
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet"></noscript>
 {%- endif -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
@@ -48,18 +50,20 @@
           {%- for media in images limit: 8 -%}
             {%- liquid
               assign loading = 'lazy'
+              assign priority = false
               assign media_alt = media.alt | default: product.title
               if forloop.first
                 assign loading = 'eager'
+                assign priority = true
               endif
             -%}
-            {%- render 'parapatrol-media', image: media.preview_image, label: 'product image', alt: media_alt, class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl', sizes: '(min-width: 1024px) 560px, 100vw', loading: loading -%}
+            {%- render 'parapatrol-media', image: media.preview_image, label: 'product image', alt: media_alt, class: 'shrink-0 w-full aspect-square rounded-3xl', sizes: '(min-width: 1152px) 560px, (min-width: 1024px) 48vw, calc(100vw - 32px)', loading: loading, priority: priority, fit: 'contain' -%}
           {%- endfor -%}
         {%- else -%}
-          {%- render 'parapatrol-media', label: section.settings.ph_1, alt: 'ParaPatrol bottle on a white background', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
-          {%- render 'parapatrol-media', label: section.settings.ph_2, alt: 'Dropper of ParaPatrol going into a cup of orange juice', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
-          {%- render 'parapatrol-media', label: section.settings.ph_3, alt: 'Child playing outdoors in the sand', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
-          {%- render 'parapatrol-media', label: section.settings.ph_4, alt: 'ParaPatrol supplement facts label', class: 'shrink-0 w-full aspect-[16/10] sm:aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_1, alt: 'ParaPatrol bottle on a white background', class: 'shrink-0 w-full aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_2, alt: 'Dropper of ParaPatrol going into a cup of orange juice', class: 'shrink-0 w-full aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_3, alt: 'Child playing outdoors in the sand', class: 'shrink-0 w-full aspect-square rounded-3xl' -%}
+          {%- render 'parapatrol-media', label: section.settings.ph_4, alt: 'ParaPatrol supplement facts label', class: 'shrink-0 w-full aspect-square rounded-3xl' -%}
         {%- endif -%}
       </div>
       {%- liquid
@@ -159,7 +163,7 @@
   </section>
 
   {%- if section.settings.show_sticky -%}
-    <div class="pp-sticky lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white/95 backdrop-blur border-t border-line shadow-lift translate-y-full" data-pp-sticky role="region" aria-label="Quick add to bag" inert>
+    <div class="pp-sticky lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white border-t border-line shadow-lift translate-y-full" data-pp-sticky role="region" aria-label="Quick add to bag" inert>
       <div class="px-4 py-3 flex items-center gap-3 max-w-xl mx-auto">
         {%- if images.size > 0 -%}
           <div class="w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-mint">{{ images.first.preview_image | image_url: width: 120 | image_tag: alt: '', loading: 'lazy', class: 'w-full h-full object-cover' }}</div>
