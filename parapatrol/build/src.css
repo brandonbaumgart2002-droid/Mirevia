@@ -78,3 +78,17 @@
 
 /* Display headings sit one weight heavier, like the logo lettering on the pack */
 .pp .font-display.font-semibold { font-weight: 700; }
+
+/* Some themes (Elixir among them) force their body font on every span/div/p/button with !important.
+   These selectors are one class stronger than that, and only apply inside .pp. */
+.pp, .pp.pp * { font-family: var(--pp-font-body) !important; }
+.pp.pp .font-display, .pp.pp .font-display * { font-family: var(--pp-font-display) !important; }
+.pp.pp .ph, .pp.pp .verify { font-family: ui-monospace, SFMono-Regular, Menlo, monospace !important; }
+/* Same for font-weight: some themes force a regular weight on every p/div with !important */
+.pp.pp { font-weight: 400 !important; }
+.pp.pp p, .pp.pp div { font-weight: inherit !important; }
+.pp.pp .font-normal { font-weight: 400 !important; }
+.pp.pp .font-medium { font-weight: 500 !important; }
+.pp.pp .font-semibold { font-weight: 600 !important; }
+.pp.pp .font-bold, .pp.pp b, .pp.pp strong { font-weight: 700 !important; }
+.pp.pp .font-display.font-semibold { font-weight: 700 !important; }

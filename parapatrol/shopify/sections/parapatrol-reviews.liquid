@@ -7,7 +7,6 @@
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 {%- liquid
   assign rating = product.metafields.reviews.rating.value
-  assign rating_count = product.metafields.reviews.rating_count.value
   assign percents = section.settings.bar_percents | split: ','
   assign bar_labels = section.settings.bar_labels | split: ','
   assign filter_lines = section.settings.filters | newline_to_br | split: '<br />'
@@ -24,11 +23,11 @@
             {%- if rating != blank -%}
               <p class="font-display font-semibold text-[44px] leading-none">{{ rating.rating | round: 1 }}</p>
               <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
-              <p class="text-sm text-muted mt-1">{{ rating.rating | round: 1 }} out of {{ rating.scale_max }}{% if rating_count != blank %}, based on {{ rating_count }} reviews{% endif %}</p>
+              <p class="text-sm text-muted mt-1">{{ rating.rating | round: 1 }} out of {{ rating.scale_max }} · Rated by parents</p>
             {%- else -%}
               <p class="font-display font-semibold text-[20px] leading-none">[VERIFY: rating]</p>
               <p class="text-berry tracking-[2px] text-[20px] mt-2" aria-hidden="true">★★★★★</p>
-              <p class="text-sm text-muted mt-1">Based on [VERIFY: review count] reviews</p>
+              <p class="text-sm text-muted mt-1">Rated by parents</p>
             {%- endif -%}
             <dl class="mt-5 grid gap-2 text-sm">
               {%- for i in (1..5) -%}

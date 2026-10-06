@@ -13,7 +13,7 @@
 -%}
 {%- if ready or request.design_mode -%}
 <div class="pp">
-  <section class="bg-white py-10 lg:py-14" aria-labelledby="pp-expert-{{ section.id }}">
+  <section id="pp-expert" class="bg-white py-10 lg:py-14 scroll-mt-6" aria-labelledby="pp-expert-{{ section.id }}">
     <div class="max-w-4xl mx-auto px-4">
       {%- unless ready -%}
         <p class="mb-3 text-[13px]">[SETUP] Expert endorsement is hidden from shoppers until name, credentials and quote are filled in and the confirmation box is ticked.</p>
@@ -59,10 +59,10 @@
   "name": "ParaPatrol: expert",
   "settings": [
     { "type": "paragraph", "content": "Use a real, licensed practitioner who has read and approved this exact quote, and keep their written approval on file. Hidden from shoppers until the box at the bottom is ticked." },
-    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Expert approved", "info": "Must match the quote: only say \"recommended\" if they actually recommend it." },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Paediatrician recommended", "info": "Must match the quote and the person: only say \"recommended\" if they actually recommend it." },
     { "type": "image_picker", "id": "image", "label": "Headshot" },
     { "type": "text", "id": "name", "label": "Name", "info": "e.g. Dr. Jane Smith" },
-    { "type": "text", "id": "credentials", "label": "Credentials", "info": "e.g. MD, Board-certified Pediatrician" },
+    { "type": "text", "id": "credentials", "label": "Credentials", "info": "e.g. MBBS, FRACP, Paediatrician" },
     { "type": "textarea", "id": "quote", "label": "Quote", "info": "Their exact approved words. Keep it to gut comfort and digestion, and add * to any claim so it links to the FDA disclaimer." },
     { "type": "url", "id": "credential_link", "label": "Credential lookup link (optional)", "info": "e.g. their state medical board or registry listing." },
     { "type": "text", "id": "disclosure", "label": "Disclosure", "info": "Required if they are paid, an advisor, or get free product.", "default": "[VERIFY: e.g. Dr. Smith is a paid advisor to ParaPatrol.]" },

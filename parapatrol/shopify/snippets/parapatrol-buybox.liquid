@@ -75,7 +75,7 @@
       <div class="grid gap-2.5">
         {%- if has_plans -%}
           {%- liquid
-            assign save_pct = v.price | minus: sub_alloc.price | times: 100 | divided_by: v.price
+            assign save_pct = v.price | minus: sub_alloc.price | times: 100 | divided_by: v.price | floor
           -%}
           <div class="relative rounded-2xl border-2 border-line bg-white p-4 transition-colors has-[:checked]:border-primary has-[:checked]:bg-mint has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:[outline-color:var(--brand-berry)]">
             <label class="flex items-start gap-3 cursor-pointer">

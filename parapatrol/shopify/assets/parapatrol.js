@@ -170,6 +170,15 @@
     var sub = state.plan === 'sub' && plan;
     var gap = data.freeShipping > 0 ? data.freeShipping - total() : null;
 
+    // Hero price line under the title follows the chosen plan
+    var hp = $('[data-pp-hero-price]');
+    if (hp) {
+      hp.textContent = money(sub ? plan.price : v.price);
+      var hc = $('[data-pp-hero-compare]'), hs = $('[data-pp-hero-save]'), hn = $('[data-pp-hero-note]');
+      [hc, hs, hn].forEach(function (el) { if (el) el.hidden = !sub; });
+      if (hc) hc.textContent = money(v.price);
+    }
+
     $$('[data-pp-buybox]').forEach(function (box) {
       var vi = $('[data-pp-variant-input]', box); if (vi) vi.value = v.id;
       var vs = $('[data-pp-variant]', box); if (vs) vs.value = v.id;
