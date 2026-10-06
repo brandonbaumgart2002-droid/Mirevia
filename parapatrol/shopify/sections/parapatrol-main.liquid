@@ -199,18 +199,18 @@
   </section>
 
   {%- if section.settings.show_sticky -%}
-    <div class="pp-sticky lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white border-t border-line shadow-lift translate-y-full" data-pp-sticky role="region" aria-label="Quick add to bag" inert>
-      <div class="px-4 py-3 flex items-center gap-3 max-w-xl mx-auto">
+    <div class="pp-sticky fixed inset-x-0 bottom-0 z-50 bg-white border-t border-line shadow-lift translate-y-full" data-pp-sticky role="region" aria-label="Quick add to bag" inert>
+      <div class="px-4 py-3 flex items-center gap-3 max-w-xl lg:max-w-6xl mx-auto">
         {%- if images.size > 0 -%}
           <div class="w-11 h-11 rounded-xl overflow-hidden shrink-0 bg-mint">{{ images.first.preview_image | image_url: width: 120 | image_tag: alt: '', loading: 'lazy', class: 'w-full h-full object-cover' }}</div>
         {%- else -%}
           <div class="ph w-11 h-11 rounded-xl !p-0 !text-[8px] shrink-0" aria-hidden="true">[IMG]</div>
         {%- endif -%}
         <div class="min-w-0 flex-1">
-          <p class="font-display font-semibold text-[15px] leading-tight truncate">{{ product.title }}</p>
+          <p class="font-display font-semibold text-[15px] lg:text-[18px] leading-tight truncate">{{ product.title }}</p>
           <p class="text-[13px] text-muted leading-tight" data-pp-sticky-meta></p>
         </div>
-        <button type="button" data-pp-sticky-add class="disable-global-button-styling min-h-[46px] px-5 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] whitespace-nowrap">Add to Bag</button>
+        <button type="button" data-pp-sticky-add class="disable-global-button-styling min-h-[46px] px-5 lg:min-h-[50px] lg:px-10 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] lg:text-[16px] whitespace-nowrap">Add to Bag</button>
       </div>
     </div>
   {%- endif -%}
@@ -253,7 +253,7 @@
       { "value": "message", "label": "Show a message" },
       { "value": "cart", "label": "Go to the cart page" }
     ] },
-    { "type": "checkbox", "id": "show_sticky", "label": "Sticky add-to-bag bar on mobile", "default": true },
+    { "type": "checkbox", "id": "show_sticky", "label": "Sticky add-to-bag bar", "default": true },
     { "type": "textarea", "id": "fda_text", "label": "Disclaimer under the buy box", "default": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease." },
 
     { "type": "header", "content": "Image placeholders", "info": "Shown only until product images are added." },

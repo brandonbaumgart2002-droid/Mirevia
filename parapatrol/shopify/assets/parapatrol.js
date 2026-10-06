@@ -215,7 +215,7 @@
       var add = $('[data-pp-add]', box);
       if (add && !add.__ppBusy) {
         add.disabled = !v.available;
-        add.textContent = v.available ? 'Add to Bag · ' + money(total()) : 'Sold out';
+        add.textContent = v.available ? 'Add to Bag' : 'Sold out';
       }
       var ship = $('[data-pp-ship]', box);
       if (ship) {
@@ -280,7 +280,7 @@
 
   /* ---------------- bundle app (Kaching Bundles) inside the buy box ----------------
      Kaching sets the quantity, adds the bundle on click and writes the bundle price into our button.
-     We hide our own purchase options (CSS: .pp-has-bundles), keep the "Add to Bag ·" label,
+     We hide our own purchase options (CSS: .pp-has-bundles), keep a plain "Add to Bag" label,
      and work out the free-shipping line and the sticky bar text from the bundle price. */
   function hasBundles(box) { return !!(box && box.querySelector('kaching-bundle, .kaching-bundles')); }
   function priceCents(text) {
@@ -289,9 +289,14 @@
   }
   function syncBundle(box) {
     var add = $('[data-pp-add]', box); if (!add || add.__ppBusy) return;
+    // Kaching writes the bundle price into the button; read it, then put back a plain label (no price on the button)
     var label = add.textContent.trim();
     var cents = priceCents(label);
-    if (cents !== null && label.indexOf('Add to Bag') !== 0) add.textContent = 'Add to Bag · ' + money(cents);
+    if (cents === null) {
+      var selPrice = box.querySelector('.kaching-bundles__bar--selected .kaching-bundles__bar-price');
+      cents = selPrice ? priceCents(selPrice.textContent) : null;
+    }
+    if (label !== 'Add to Bag' && !/adding/i.test(label)) add.textContent = 'Add to Bag';
     var ship = $('[data-pp-ship]', box);
     if (ship && data && (cents !== null || !(data.freeShipping > 0))) {
       var gap = data.freeShipping > 0 ? data.freeShipping - cents : null;
@@ -333,13 +338,15 @@
     var sticky = $('[data-pp-sticky]');
     var heroAdd = $('[data-pp-hero-box] [data-pp-add]');
     if (!sticky || !heroAdd || !('IntersectionObserver' in window)) return;
-    var heroVisible = true, finalVisible = false;
+    // Shown once the main Add to Bag has scrolled up past the top of the screen (not before the visitor reaches it),
+    // and hidden again while the closing call to action is on screen.
+    var pastHero = false, finalVisible = false;
     function update() {
-      var show = !heroVisible && !finalVisible;
+      var show = pastHero && !finalVisible;
       sticky.classList.toggle('translate-y-full', !show);
       if (show) sticky.removeAttribute('inert'); else sticky.setAttribute('inert', '');
     }
-    var o1 = new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); });
+    var o1 = new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.bottom < 0; update(); });
     o1.observe(heroAdd); stickyObs.push(o1);
     var fin = $('[data-pp-final]');
     if (fin) {
