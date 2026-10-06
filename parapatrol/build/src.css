@@ -85,7 +85,7 @@
 .pp .pp-timeline { position: relative; }
 .pp .pp-timeline::before { content: ""; position: absolute; left: 13px; top: 14px; bottom: 14px; width: 2px; background: linear-gradient(var(--brand-primary), var(--pp-star)); opacity: .35; }
 @media (min-width: 768px) { .pp .pp-timeline::before { left: 14px; right: 14px; top: 13px; bottom: auto; width: auto; height: 2px; background: linear-gradient(90deg, var(--brand-primary), var(--pp-star)); } }
-.pp .pp-timeline__dot { box-shadow: 0 0 0 5px #fff; }
+.pp .pp-timeline__dot { box-shadow: 0 0 0 5px var(--pp-timeline-bg, #fff); }
 
 /* Headings: even line breaks instead of a lone last word */
 .pp h1, .pp h2, .pp h3, .pp [data-pp-headline] { text-wrap: balance; }

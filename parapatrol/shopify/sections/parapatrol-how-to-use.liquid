@@ -1,7 +1,7 @@
 {%- comment -%} Dosing: dropper visual, steps, what to expect, first-time tip. {%- endcomment -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <div class="pp" id="how-to-use">
-  <section class="bg-mint py-14 lg:py-20" aria-labelledby="pp-use-{{ section.id }}">
+  <section class="bg-white py-14 lg:py-20" aria-labelledby="pp-use-{{ section.id }}">
     <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
       <div class="order-2 lg:order-1">
         {%- render 'parapatrol-media', image: section.settings.image, asset: section.settings.image_asset, label: section.settings.image_label, alt: section.settings.image_alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 560px, (min-width: 1024px) 48vw, calc(100vw - 32px)' -%}

@@ -40,58 +40,6 @@
         "use_theme_fonts": false
       }
     },
-    "familiar": {
-      "type": "parapatrol-familiar",
-      "blocks": {
-        "moment_1": {
-          "type": "moment",
-          "settings": {
-            "icon": "sun",
-            "text": "Rough mornings and tummy complaints"
-          }
-        },
-        "moment_2": {
-          "type": "moment",
-          "settings": {
-            "icon": "plate",
-            "text": "Picky plates and pushed-away dinners"
-          }
-        },
-        "moment_3": {
-          "type": "moment",
-          "settings": {
-            "icon": "backpack",
-            "text": "Back to school, back to sharing everything"
-          }
-        },
-        "moment_4": {
-          "type": "moment",
-          "settings": {
-            "icon": "wave",
-            "text": "Sandpits, pools, pets and dropped snacks"
-          }
-        },
-        "moment_5": {
-          "type": "moment",
-          "settings": {
-            "icon": "suitcase",
-            "text": "After travel, holidays, or a run of sweets"
-          }
-        }
-      },
-      "block_order": [
-        "moment_1",
-        "moment_2",
-        "moment_3",
-        "moment_4",
-        "moment_5"
-      ],
-      "settings": {
-        "eyebrow": "Sound familiar?",
-        "heading": "Kids touch everything. Some weeks it shows.",
-        "closing": "ParaPatrol is the gentle reset you reach for when things feel off."
-      }
-    },
     "kidlife": {
       "type": "parapatrol-kid-life",
       "blocks": {
@@ -200,30 +148,30 @@
           "type": "step",
           "settings": {
             "icon": "leaf",
-            "title": "Settle",
-            "text": "Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.*",
             "asset": "pp-how-settle.jpg",
-            "alt": "ParaPatrol with fennel seed, anise seed, licorice root and aloe vera"
+            "alt": "ParaPatrol with fennel seed, anise seed, licorice root and aloe vera",
+            "title": "Settle",
+            "text": "Fennel, anise and licorice, herbs parents have trusted for little tummies for generations, help soothe occasional gas and rumbles.*"
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
             "icon": "reset",
-            "title": "Reset",
-            "text": "Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.*",
             "asset": "pp-how-reset.jpg",
-            "alt": "ParaPatrol with black walnuts, cloves, pumpkin seeds and wormwood"
+            "alt": "ParaPatrol with black walnuts, cloves, pumpkin seeds and wormwood",
+            "title": "Reset",
+            "text": "Traditional botanicals like black walnut, clove and wormwood support the body’s natural digestive rhythm and regularity.*"
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
             "icon": "shield",
-            "title": "Strengthen",
-            "text": "Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.*",
             "asset": "pp-how-strengthen.jpg",
-            "alt": "ParaPatrol with pau d'arco bark, thyme and oregano"
+            "alt": "ParaPatrol with pau d'arco bark, thyme and oregano",
+            "title": "Strengthen",
+            "text": "Pau d’arco, thyme and oregano support healthy gut defences during busy school seasons.*"
           }
         }
       },
@@ -235,66 +183,6 @@
       "settings": {
         "eyebrow": "How it works",
         "heading": "Settle. Reset. Strengthen."
-      }
-    },
-    "ingredients": {
-      "type": "parapatrol-ingredients",
-      "blocks": {
-        "ing_1": {
-          "type": "group",
-          "settings": {
-            "title": "Settle: soothing herbs",
-            "subtitle": "Fennel · Anise · Licorice · Aloe vera",
-            "items": "<ul><li><strong>Fennel seed:</strong> A classic for little tummies that helps soothe occasional gas.*</li><li><strong>Anise seed:</strong> A sweet, gentle seed long used to settle tummies after meals.*</li><li><strong>Licorice root:</strong> A soft, soothing root that supports gut comfort.*&nbsp;</li><li><strong>Aloe vera:</strong> A cooling plant that supports a comfortable tummy.*</li></ul>",
-            "open": true
-          }
-        },
-        "ing_2": {
-          "type": "group",
-          "settings": {
-            "title": "Reset: traditional botanicals",
-            "subtitle": "Black walnut · Clove · Pumpkin seed · Wormwood",
-            "items": "<ul><li><strong>Black walnut hull:</strong> A traditional botanical that supports regularity.* Contains tree nut.</li><li><strong>Whole clove:</strong> A warming kitchen spice that supports healthy digestion.*</li><li><strong>Pumpkin seed:</strong> A familiar seed that supports a healthy digestive routine.*</li><li><strong>Wormwood herb:</strong> A traditional bitter herb that supports the body’s natural digestive rhythm.* </li></ul>",
-            "open": false
-          }
-        },
-        "ing_3": {
-          "type": "group",
-          "settings": {
-            "title": "Strengthen: gut-defence herbs",
-            "subtitle": "Pau d’arco · Thyme · Oregano",
-            "items": "<ul><li><strong>Pau d’arco bark:</strong> A South American tree bark that supports healthy gut defences.*</li><li><strong>Thyme leaf:</strong> A garden herb that supports healthy gut defences.*</li><li><strong>Oregano leaf:</strong> A pizza-night herb that supports a balanced gut.*</li></ul>",
-            "open": false
-          }
-        },
-        "ing_4": {
-          "type": "facts",
-          "settings": {
-            "title": "Supplement facts",
-            "subtitle": "Full panel and other ingredients",
-            "serving_size": "1 mL (one dropper filled to the 1 mL line)",
-            "servings": "about 30",
-            "blend_name": "Kids’ Herbal Blend",
-            "blend_amount": "(proprietary)",
-            "blend_list": "Licorice root, anise seed, fennel seed, thyme leaf, whole clove, aloe vera, oregano leaf, black walnut hull, wormwood herb, pau d’arco bark, pumpkin seed",
-            "other": "vegetable glycerin, purified water, natural raspberry flavour, bitter blocker.",
-            "note": "1 oz (30 mL). Alcohol-free · Sugar-free · Gluten-free. Made in the USA in an FDA-registered cGMP facility.",
-            "open": false
-          }
-        }
-      },
-      "block_order": [
-        "ing_1",
-        "ing_2",
-        "ing_3",
-        "ing_4"
-      ],
-      "settings": {
-        "eyebrow": "What’s inside",
-        "heading": "11 herbs. The gentle ones first.",
-        "intro": "A balanced blend of soothing kitchen herbs and traditional botanicals, in an alcohol-free glycerin base with natural raspberry.",
-        "image_label": "herb flat lay, fennel + anise up front",
-        "allergen": "Contains tree nut (black walnut)."
       }
     },
     "use": {
@@ -340,55 +228,53 @@
         "tip": "Start with half a dropper for the first few days."
       }
     },
-    "safety": {
-      "type": "parapatrol-safety",
+    "timeline": {
+      "type": "parapatrol-timeline",
       "blocks": {
-        "safe_1": {
-          "type": "item",
+        "t1": {
+          "type": "stage",
           "settings": {
-            "lead": "For children 3+.",
-            "text": "Not for children under 3, or during pregnancy or breastfeeding."
+            "when": "Day 1",
+            "title": "An easy start",
+            "text": "One dropper in their morning juice. First time? Start with half a dropper for the first few days."
           }
         },
-        "safe_2": {
-          "type": "item",
+        "t2": {
+          "type": "stage",
           "settings": {
-            "lead": "Contains tree nut (black walnut).",
-            "text": ""
+            "when": "Days 3–7",
+            "title": "Settling in",
+            "text": "Many parents notice calmer mornings and fewer tummy complaints.*"
           }
         },
-        "safe_3": {
-          "type": "item",
+        "t3": {
+          "type": "stage",
           "settings": {
-            "lead": "",
-            "text": "Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, blood in stool, changes in urination, or any unusual reaction."
+            "when": "Weeks 1–2",
+            "title": "Happier mealtimes",
+            "text": "Appetites often pick up and dinner plates come back cleaner.*"
           }
         },
-        "safe_4": {
-          "type": "item",
+        "t4": {
+          "type": "stage",
           "settings": {
-            "lead": "",
-            "text": "Talk to your pediatrician before use if your child takes medication or has a health condition."
-          }
-        },
-        "safe_5": {
-          "type": "item",
-          "settings": {
-            "lead": "",
-            "text": "Made with thujone-free wormwood."
+            "when": "Week 3",
+            "title": "Routine complete",
+            "text": "Finish the 2–3 week routine, then take a break. Keep a bottle on hand for school terms and trips."
           }
         }
       },
       "block_order": [
-        "safe_1",
-        "safe_2",
-        "safe_3",
-        "safe_4",
-        "safe_5"
+        "t1",
+        "t2",
+        "t3",
+        "t4"
       ],
       "settings": {
-        "heading": "Safety & who it’s for",
-        "callout": "Itchy bottom at night or worms you can see? That’s a job for your doctor, not a supplement."
+        "eyebrow": "What to expect",
+        "heading": "Your first three weeks",
+        "intro": "A gentle routine, not an overnight fix. Here's how it usually goes.",
+        "note": "Every child is different. This reflects what parents commonly tell us, not a guaranteed result.*"
       }
     },
     "stats": {
@@ -476,8 +362,8 @@
           "type": "quote",
           "settings": {
             "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
-            "author": "Verified Buyer",
-            "badge": "",
+            "author": "Steph G.",
+            "badge": "Verified Buyer",
             "stars": 5,
             "tags": "easy, taste",
             "photo_alt": ""
@@ -539,6 +425,126 @@
         "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
         "filters": "",
         "quotes_note": "Individual reviews reflect one family’s experience. Results vary."
+      }
+    },
+    "ingredients": {
+      "type": "parapatrol-ingredients",
+      "blocks": {
+        "ing_1": {
+          "type": "group",
+          "settings": {
+            "title": "Settle: soothing herbs",
+            "subtitle": "Fennel · Anise · Licorice · Aloe vera",
+            "items": "<ul><li><strong>Fennel seed:</strong> A classic for little tummies that helps soothe occasional gas.*</li><li><strong>Anise seed:</strong> A sweet, gentle seed long used to settle tummies after meals.*</li><li><strong>Licorice root:</strong> A soft, soothing root that supports gut comfort.*&nbsp;</li><li><strong>Aloe vera:</strong> A cooling plant that supports a comfortable tummy.*</li></ul>",
+            "open": true
+          }
+        },
+        "ing_2": {
+          "type": "group",
+          "settings": {
+            "title": "Reset: traditional botanicals",
+            "subtitle": "Black walnut · Clove · Pumpkin seed · Wormwood",
+            "items": "<ul><li><strong>Black walnut hull:</strong> A traditional botanical that supports regularity.* Contains tree nut.</li><li><strong>Whole clove:</strong> A warming kitchen spice that supports healthy digestion.*</li><li><strong>Pumpkin seed:</strong> A familiar seed that supports a healthy digestive routine.*</li><li><strong>Wormwood herb:</strong> A traditional bitter herb that supports the body’s natural digestive rhythm.* </li></ul>",
+            "open": false
+          }
+        },
+        "ing_3": {
+          "type": "group",
+          "settings": {
+            "title": "Strengthen: gut-defence herbs",
+            "subtitle": "Pau d’arco · Thyme · Oregano",
+            "items": "<ul><li><strong>Pau d’arco bark:</strong> A South American tree bark that supports healthy gut defences.*</li><li><strong>Thyme leaf:</strong> A garden herb that supports healthy gut defences.*</li><li><strong>Oregano leaf:</strong> A pizza-night herb that supports a balanced gut.*</li></ul>",
+            "open": false
+          }
+        },
+        "ing_4": {
+          "type": "facts",
+          "settings": {
+            "title": "Supplement facts",
+            "subtitle": "Full panel and other ingredients",
+            "serving_size": "1 mL (one dropper filled to the 1 mL line)",
+            "servings": "about 30",
+            "blend_name": "Kids’ Herbal Blend",
+            "blend_amount": "(proprietary)",
+            "blend_list": "Licorice root, anise seed, fennel seed, thyme leaf, whole clove, aloe vera, oregano leaf, black walnut hull, wormwood herb, pau d’arco bark, pumpkin seed",
+            "other": "vegetable glycerin, purified water, natural raspberry flavour, bitter blocker.",
+            "note": "1 oz (30 mL). Alcohol-free · Sugar-free · Gluten-free. Made in the USA in an FDA-registered cGMP facility.",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4"
+      ],
+      "settings": {
+        "eyebrow": "What’s inside",
+        "heading": "11 herbs. The gentle ones first.",
+        "intro": "A balanced blend of soothing kitchen herbs and traditional botanicals, in an alcohol-free glycerin base with natural raspberry.",
+        "image_asset": "pp-ingredients-flatlay.jpg",
+        "image_alt": "ParaPatrol surrounded by its 11 herbs: fennel, anise, licorice root, aloe vera, black walnut, clove, pumpkin seed, wormwood, pau d'arco, thyme and oregano",
+        "image_label": "herb flat lay, fennel + anise up front",
+        "allergen": "Contains tree nut (black walnut)."
+      }
+    },
+    "safety": {
+      "type": "parapatrol-safety",
+      "blocks": {
+        "safe_1": {
+          "type": "item",
+          "settings": {
+            "lead": "For children 3+.",
+            "text": "Not for children under 3, or during pregnancy or breastfeeding."
+          }
+        },
+        "safe_2": {
+          "type": "item",
+          "settings": {
+            "lead": "Contains tree nut (black walnut).",
+            "text": ""
+          }
+        },
+        "safe_3": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, blood in stool, changes in urination, or any unusual reaction."
+          }
+        },
+        "safe_4": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "Talk to your pediatrician before use if your child takes medication or has a health condition."
+          }
+        },
+        "safe_5": {
+          "type": "item",
+          "settings": {
+            "lead": "",
+            "text": "Made with thujone-free wormwood."
+          }
+        }
+      },
+      "block_order": [
+        "safe_1",
+        "safe_2",
+        "safe_3",
+        "safe_4",
+        "safe_5"
+      ],
+      "settings": {
+        "heading": "Safety & who it’s for",
+        "callout": "Itchy bottom at night or worms you can see? That’s a job for your doctor, not a supplement."
+      }
+    },
+    "guarantee": {
+      "type": "parapatrol-guarantee",
+      "settings": {
+        "heading": "Try it for 30 days, risk-free.",
+        "text": "If ParaPatrol isn't right for your family, contact our team within 30 days and we'll refund you. No awkward questions."
       }
     },
     "faq": {
@@ -625,82 +631,36 @@
         "schema": true
       }
     },
+    "final": {
+      "type": "parapatrol-final-cta",
+      "settings": {
+        "heading": "Back on track, the gentle way.",
+        "text": "One dropper in their favourite drink. Made for kids 3+, alcohol-free and sugar-free.",
+        "image_asset": "pp-kids-pool.jpg",
+        "image_alt": "Two kids splashing at the pool, with ParaPatrol on the table beside them",
+        "image_label": "kids at the pool, lifestyle",
+        "button_label": "Shop ParaPatrol",
+        "guarantee": "30-day money-back guarantee. Love it or your money back."
+      }
+    },
     "disclaimer": {
       "type": "parapatrol-disclaimer",
       "settings": {
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
       }
-    },
-    "expert": {
-      "type": "parapatrol-expert",
-      "settings": {}
-    },
-    "final": {
-      "type": "parapatrol-final-cta",
-      "settings": {}
-    },
-    "timeline": {
-      "type": "parapatrol-timeline",
-      "settings": {},
-      "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
-      ],
-      "blocks": {
-        "t1": {
-          "type": "stage",
-          "settings": {
-            "when": "Day 1",
-            "title": "An easy start",
-            "text": "One dropper in their morning juice. First time? Start with half a dropper for the first few days."
-          }
-        },
-        "t2": {
-          "type": "stage",
-          "settings": {
-            "when": "Days 3–7",
-            "title": "Settling in",
-            "text": "Many parents notice calmer mornings and fewer tummy complaints.*"
-          }
-        },
-        "t3": {
-          "type": "stage",
-          "settings": {
-            "when": "Weeks 1–2",
-            "title": "Happier mealtimes",
-            "text": "Appetites often pick up and dinner plates come back cleaner.*"
-          }
-        },
-        "t4": {
-          "type": "stage",
-          "settings": {
-            "when": "Week 3",
-            "title": "Routine complete",
-            "text": "Finish the 2–3 week routine, then take a break. Keep a bottle on hand for school terms and trips."
-          }
-        }
-      }
-    },
-    "guarantee": {
-      "type": "parapatrol-guarantee",
-      "settings": {}
     }
   },
   "order": [
     "main",
-    "familiar",
     "kidlife",
+    "compare",
     "how",
+    "use",
     "timeline",
     "stats",
     "reviews",
-    "expert",
     "ingredients",
-    "use",
-    "compare",
     "safety",
     "guarantee",
     "faq",
