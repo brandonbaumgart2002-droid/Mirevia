@@ -422,10 +422,15 @@
     "disclaimer": {
       "type": "parapatrol-disclaimer",
       "settings": {}
+    },
+    "expert": {
+      "type": "parapatrol-expert",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "expert",
     "familiar",
     "compare",
     "how",

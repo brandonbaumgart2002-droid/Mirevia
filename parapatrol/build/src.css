@@ -12,8 +12,9 @@
   --ink: #1e2d4f;
   --ink-muted: #4f5b72;
   --line: #ece1e5;
-  --pp-font-display: 'Fredoka', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
-  --pp-font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Baloo 2 echoes the chunky rounded ParaPatrol lettering on the pack; Nunito Sans is a soft, very legible body face */
+  --pp-font-display: 'Baloo 2', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --pp-font-body: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* ===== Scoped reset (theme preflight stays untouched outside .pp) ===== */
@@ -74,3 +75,6 @@
 
 @tailwind components;
 @tailwind utilities;
+
+/* Display headings sit one weight heavier, like the logo lettering on the pack */
+.pp .font-display.font-semibold { font-weight: 700; }
