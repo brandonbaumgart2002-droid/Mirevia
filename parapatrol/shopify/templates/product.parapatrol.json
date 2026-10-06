@@ -1,11 +1,5 @@
 {
   "sections": {
-    "offer": {
-      "type": "parapatrol-announcement",
-      "settings": {
-        "text": "Subscribe & save 15% | Free shipping over $65 | 30-day money-back guarantee"
-      }
-    },
     "main": {
       "type": "parapatrol-main",
       "settings": {}
@@ -431,7 +425,6 @@
     }
   },
   "order": [
-    "offer",
     "main",
     "familiar",
     "compare",

@@ -1,38 +1,78 @@
 {%- comment -%}
-  Scrolling announcement bar. If your theme already has an announcement bar, you can use that instead and remove this section.
+  Scrolling announcement bar. Self-contained (inline CSS + a few lines of JS) so it can sit in the
+  header group on every page without loading the PDP stylesheet or script.
   The items are repeated so the loop is seamless on wide screens; only the first copy is read by screen readers.
   It pauses on hover, on keyboard focus and with the pause button, and stays still when the visitor prefers reduced motion.
 {%- endcomment -%}
-{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign items = section.settings.text | split: '|'
   assign copies = 4
-  assign bar_class = 'bg-primary text-white'
-  if section.settings.style == 'ink'
-    assign bar_class = 'bg-ink text-white'
-  elsif section.settings.style == 'soft'
-    assign bar_class = 'bg-mint text-primary-dark'
-  endif
+  case section.settings.style
+    when 'ink'
+      assign bar_bg = '#1e2d4f'
+      assign bar_fg = '#ffffff'
+    when 'soft'
+      assign bar_bg = '#ebf4ef'
+      assign bar_fg = '#2c5a4a'
+    else
+      assign bar_bg = '#3b7560'
+      assign bar_fg = '#ffffff'
+  endcase
 -%}
+<style>
+  .pp-bar { --pp-bar-bg: {{ bar_bg }}; --pp-bar-fg: {{ bar_fg }}; position: relative; display: flex; align-items: center; overflow: hidden; min-height: 38px; background: var(--pp-bar-bg); color: var(--pp-bar-fg); font-size: 13px; font-weight: 500; line-height: 1.35; letter-spacing: .01em; }
+  @media (min-width: 640px) { .pp-bar { font-size: 14px; } }
+  .pp-bar__track { display: flex; width: max-content; animation: pp-bar var(--pp-bar-duration, 28s) linear infinite; will-change: transform; }
+  .pp-bar__group { display: flex; flex-shrink: 0; align-items: center; margin: 0; padding: 0; list-style: none; }
+  .pp-bar__item { display: inline-flex; align-items: center; margin: 0; padding: 9px 0; white-space: nowrap; }
+  .pp-bar__item::after { content: ""; width: 5px; height: 5px; margin: 0 22px; border-radius: 50%; background: currentColor; opacity: .55; }
+  .pp-bar:hover .pp-bar__track, .pp-bar:focus-within .pp-bar__track, .pp-bar.is-paused .pp-bar__track { animation-play-state: paused; }
+  .pp-bar__toggle { all: unset; box-sizing: border-box; position: absolute; top: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: 44px; cursor: pointer; color: inherit; background: var(--pp-bar-bg); box-shadow: -16px 0 16px 0 var(--pp-bar-bg); }
+  .pp-bar__toggle:focus-visible { outline: 2px solid currentColor; outline-offset: -6px; border-radius: 8px; }
+  .pp-bar__toggle svg { display: block; }
+  .pp-bar__toggle .pp-bar__play, .pp-bar.is-paused .pp-bar__toggle .pp-bar__pause { display: none; }
+  .pp-bar.is-paused .pp-bar__toggle .pp-bar__play { display: block; }
+  @keyframes pp-bar { to { transform: translateX(calc(-100% / {{ copies }})); } }
+  @media (prefers-reduced-motion: reduce) {
+    .pp-bar { justify-content: center; }
+    .pp-bar__track { animation: none; width: auto; max-width: 100%; justify-content: center; padding: 0 16px; }
+    .pp-bar__group { flex-wrap: wrap; justify-content: center; flex-shrink: 1; }
+    .pp-bar__group[aria-hidden="true"], .pp-bar__toggle { display: none; }
+    .pp-bar__item { padding: 4px 0; }
+    .pp-bar__item::after { margin: 0 12px; }
+    .pp-bar__item:last-child::after { display: none; }
+  }
+</style>
 {%- if items.size > 0 -%}
-<div class="pp">
-  <div class="pp-marquee {{ bar_class }} text-[13px] sm:text-sm font-medium leading-snug" data-pp-marquee role="region" aria-label="Offers" style="--pp-marquee-duration: {{ section.settings.speed }}s; --pp-marquee-copies: {{ copies }};">
-    <div class="pp-marquee-track">
+  <div class="pp-bar" data-pp-bar role="region" aria-label="Offers" style="--pp-bar-duration: {{ section.settings.speed }}s;">
+    <div class="pp-bar__track">
       {%- for copy in (1..copies) -%}
-        <ul class="pp-marquee-group"{% unless forloop.first %} aria-hidden="true"{% endunless %}>
+        <ul class="pp-bar__group"{% unless forloop.first %} aria-hidden="true"{% endunless %}>
           {%- for item in items -%}
             {%- assign t = item | strip -%}
-            {%- if t != blank -%}<li class="pp-marquee-item">{{ t }}</li>{%- endif -%}
+            {%- if t != blank -%}<li class="pp-bar__item">{{ t }}</li>{%- endif -%}
           {%- endfor -%}
         </ul>
       {%- endfor -%}
     </div>
-    <button type="button" class="pp-marquee-toggle" data-pp-marquee-toggle aria-pressed="false" aria-label="Pause scrolling offers">
-      <svg class="pp-marquee-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7.5" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/></svg>
-      <svg class="pp-marquee-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
+    <button type="button" class="pp-bar__toggle" data-pp-bar-toggle aria-pressed="false" aria-label="Pause scrolling offers">
+      <svg class="pp-bar__pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect x="2" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7.5" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/></svg>
+      <svg class="pp-bar__play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
     </button>
   </div>
-</div>
+  <script>
+    (function () {
+      if (window.__ppBar) return;
+      window.__ppBar = true;
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest && e.target.closest('[data-pp-bar-toggle]');
+        if (!btn) return;
+        var paused = btn.closest('[data-pp-bar]').classList.toggle('is-paused');
+        btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        btn.setAttribute('aria-label', paused ? 'Play scrolling offers' : 'Pause scrolling offers');
+      });
+    })();
+  </script>
 {%- endif -%}
 {% schema %}
 {

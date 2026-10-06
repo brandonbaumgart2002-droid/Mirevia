@@ -7,7 +7,7 @@ This is the ParaPatrol page from `../index.html`, rebuilt as Shopify theme secti
 | File | What it is |
 |---|---|
 | `templates/product.parapatrol.json` | The whole page in brief order, filled in with the approved copy |
-| `sections/parapatrol-announcement.liquid` | Offer strip |
+| `sections/parapatrol-announcement.liquid` | Scrolling announcement bar. Self-contained, so it can sit in the theme's **Header** group above the logo on every page (add it there and hide the theme's own announcement bar). It isn't part of the product template. |
 | `sections/parapatrol-main.liquid` | Gallery, badges, headline A/B/C, rating, buy box, sticky mobile bar. Also holds the **brand colours and fonts** for every ParaPatrol section |
 | `sections/parapatrol-familiar.liquid` | "Sound familiar?" moments |
 | `sections/parapatrol-compare.liquid` | ParaPatrol vs adult tinctures table |
