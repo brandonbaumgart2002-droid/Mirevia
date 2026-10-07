@@ -175,7 +175,7 @@
       </div>
 
       {%- comment -%} Ticks sit under the buy box on mobile (keeps purchase near the fold), above it on desktop {%- endcomment -%}
-      <ul class="order-4 lg:order-3 mt-4 grid gap-2 text-[15px] font-medium">
+      <ul class="order-3 mt-4 grid gap-2 text-[15px] font-medium">
         {%- for i in (1..3) -%}
           {%- assign key = 'tick_' | append: i -%}
           {%- assign tick = section.settings[key] -%}
@@ -188,7 +188,7 @@
         {%- endfor -%}
       </ul>
 
-      <div id="pp-buy" class="order-3 lg:order-4 mt-4 scroll-mt-28" data-pp-hero-box>
+      <div id="pp-buy" class="order-4 mt-4 scroll-mt-28" data-pp-hero-box>
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
       </div>
 

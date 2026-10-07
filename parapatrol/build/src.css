@@ -94,6 +94,14 @@
   .pp *, .pp *::before, .pp *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; scroll-behavior: auto !important; }
 }
 
+/* Tailwind's transform utilities read these variables, which normally come from @tailwind base.
+   We skip base (theme preflight stays untouched), so define them here, scoped to .pp.
+   Without them every translate/rotate/scale class computed to "none" (the sticky bar never hid). */
+.pp, .pp *, .pp ::before, .pp ::after {
+  --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0;
+  --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1;
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -191,3 +199,7 @@
 /* Payment icons under the buy box (Shopify's own SVGs) */
 .pp .pp-payments .pp-payment-icon { display: block; height: 24px; width: auto; max-width: none; }
 
+
+/* Kaching's "Most popular / Best value" tags sit at z-index 3, the same as the theme's sticky header,
+   so they slid over the header on scroll. 1 keeps them above their own bar. */
+.pp.pp .kaching-bundles__bar-most-popular { z-index: 1 !important; }
