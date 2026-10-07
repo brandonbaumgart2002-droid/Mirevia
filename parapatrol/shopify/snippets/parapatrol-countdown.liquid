@@ -1,0 +1,60 @@
+{%- comment -%}
+  Sale countdown to a real end date, in the store's timezone. Shows days, hours, minutes and seconds,
+  and removes itself when the sale ends: hidden by the server once the date has passed, and by the script
+  the moment it hits zero. It never restarts or resets per visitor.
+  Params: label (e.g. "Back to School Sale ends in"), end_date ("2026-10-31"), end_time ("23:59"),
+  note (small line under the timer, optional)
+{%- endcomment -%}
+{%- liquid
+  assign cd_time = end_time | default: '23:59'
+  assign cd_local = end_date | append: ' ' | append: cd_time
+  assign cd_end_epoch = cd_local | date: '%s' | plus: 0
+  assign cd_now_epoch = 'now' | date: '%s' | plus: 0
+  assign cd_tz = 'now' | date: '%z'
+  assign cd_tz_h = cd_tz | slice: 0, 3
+  assign cd_tz_m = cd_tz | slice: 3, 2
+  assign cd_iso = end_date | append: 'T' | append: cd_time | append: ':00' | append: cd_tz_h | append: ':' | append: cd_tz_m
+-%}
+{%- if end_date != blank and cd_end_epoch > cd_now_epoch -%}
+  <div class="pp-countdown rounded-2xl bg-[#fdeef3] border border-accent px-4 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2" data-pp-countdown="{{ cd_iso }}" role="timer" aria-live="off">
+    <p class="font-display font-bold text-[16px] sm:text-[17px] leading-tight text-ink">
+      {{- label | default: 'Sale ends in' -}}
+      {%- if note != blank -%}<span class="block font-semibold text-[12px] text-muted mt-0.5">{{ note }}</span>{%- endif -%}
+    </p>
+    <div class="flex items-start gap-1.5" aria-hidden="true">
+      {%- for unit in (1..4) -%}
+        {%- case unit -%}
+          {%- when 1 -%}{%- assign u_key = 'd' -%}{%- assign u_label = 'days' -%}
+          {%- when 2 -%}{%- assign u_key = 'h' -%}{%- assign u_label = 'hrs' -%}
+          {%- when 3 -%}{%- assign u_key = 'm' -%}{%- assign u_label = 'min' -%}
+          {%- else -%}{%- assign u_key = 's' -%}{%- assign u_label = 'sec' -%}
+        {%- endcase -%}
+        <span class="flex flex-col items-center">
+          <span class="min-w-[44px] rounded-lg bg-white px-1.5 py-1 text-center font-display font-bold text-[20px] leading-none tabular-nums text-ink shadow-soft" data-pp-cd="{{ u_key }}">--</span>
+          <span class="mt-1 text-[10px] font-bold uppercase tracking-[.08em] text-muted">{{ u_label }}</span>
+        </span>
+      {%- endfor -%}
+    </div>
+    <span class="sr-only" data-pp-cd-sr>{{ label | default: 'Sale ends in' }} {{ end_date | date: '%-d %B %Y' }}</span>
+  </div>
+  <script>
+    (function () {
+      if (window.__ppCountdown) return;
+      window.__ppCountdown = true;
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function tick() {
+        var els = document.querySelectorAll('[data-pp-countdown]');
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i], end = Date.parse(el.getAttribute('data-pp-countdown'));
+          if (isNaN(end)) { el.hidden = true; continue; }
+          var left = Math.floor((end - Date.now()) / 1000);
+          if (left <= 0) { el.remove(); continue; }
+          var v = { d: Math.floor(left / 86400), h: Math.floor(left % 86400 / 3600), m: Math.floor(left % 3600 / 60), s: left % 60 };
+          for (var k in v) { var n = el.querySelector('[data-pp-cd="' + k + '"]'); if (n) n.textContent = pad(v[k]); }
+        }
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+{%- endif -%}

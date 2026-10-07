@@ -189,6 +189,9 @@
       </ul>
 
       <div id="pp-buy" class="order-4 mt-4 scroll-mt-28" data-pp-hero-box>
+        {%- if section.settings.sale_end_date != blank -%}
+          <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
+        {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
       </div>
 
@@ -253,6 +256,11 @@
       { "value": "message", "label": "Show a message" },
       { "value": "cart", "label": "Go to the cart page" }
     ] },
+    { "type": "header", "content": "Sale countdown" },
+    { "type": "text", "id": "sale_label", "label": "Countdown label", "default": "Back to School Sale ends in" },
+    { "type": "text", "id": "sale_end_date", "label": "Sale end date (YYYY-MM-DD)", "info": "Your store's timezone. The timer disappears when the sale ends. Leave blank to hide it.", "default": "2026-10-31" },
+    { "type": "text", "id": "sale_end_time", "label": "Sale end time (24h, HH:MM)", "default": "23:59" },
+    { "type": "text", "id": "sale_note", "label": "Small line under the label", "default": "Ends 31 October" },
     { "type": "checkbox", "id": "show_sticky", "label": "Sticky add-to-bag bar", "default": true },
     { "type": "textarea", "id": "fda_text", "label": "Disclaimer under the buy box", "default": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease." },
 
