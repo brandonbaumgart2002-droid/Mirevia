@@ -2,7 +2,8 @@
   Problem → solution: names what parents are already seeing, what it costs the family when it drags on,
   and what changes with ParaPatrol. Everyday signs only (no symptoms, worms or behaviour claims), every
   outcome keeps its * so it links to the FDA disclaimer, and a pediatrician line for anything more serious.
-  Two cards: "What you might be noticing" (soft pink) and "What parents notice with ParaPatrol" (mint).
+  Two cards, each topped with a photo: "What you might be noticing" (soft pink, the before) and
+  "What parents notice with ParaPatrol" (mint, the after).
   The button scrolls back up to the main buy box (#pp-buy), like the final call to action.
 {%- endcomment -%}
 {%- liquid
@@ -22,7 +23,11 @@
       </div>
 
       <div class="mt-8 grid gap-4 lg:gap-6 md:grid-cols-2">
-        <div class="rounded-3xl bg-soft border border-line p-6 sm:p-8">
+        <div class="rounded-3xl bg-soft border border-line overflow-hidden flex flex-col">
+          {%- if s.problems_image != blank or s.problems_asset != blank -%}
+            {%- render 'parapatrol-media', image: s.problems_image, asset: s.problems_asset, label: 'Before photo', alt: s.problems_alt, class: 'aspect-[4/3]', sizes: '(min-width: 1152px) 548px, (min-width: 768px) 48vw, 100vw' -%}
+          {%- endif -%}
+          <div class="p-6 sm:p-8">
           <h3 class="font-display font-semibold text-[21px] sm:text-[23px] leading-snug">{{ s.problems_title }}</h3>
           <ul class="mt-5 grid gap-4" role="list">
             {%- for p in problems -%}
@@ -40,9 +45,14 @@
           {%- if s.cost != blank -%}
             <p class="mt-6 pt-5 border-t border-line text-[15px] leading-relaxed text-ink/90">{{ s.cost }}</p>
           {%- endif -%}
+          </div>
         </div>
 
-        <div class="rounded-3xl bg-mint p-6 sm:p-8">
+        <div class="rounded-3xl bg-mint overflow-hidden flex flex-col">
+          {%- if s.wins_image != blank or s.wins_asset != blank -%}
+            {%- render 'parapatrol-media', image: s.wins_image, asset: s.wins_asset, label: 'After photo', alt: s.wins_alt, class: 'aspect-[4/3]', sizes: '(min-width: 1152px) 548px, (min-width: 768px) 48vw, 100vw' -%}
+          {%- endif -%}
+          <div class="p-6 sm:p-8">
           <h3 class="font-display font-semibold text-[21px] sm:text-[23px] leading-snug">{%- render 'parapatrol-claim', text: s.wins_title -%}</h3>
           <ul class="mt-5 grid gap-4" role="list">
             {%- for w in wins -%}
@@ -58,6 +68,7 @@
           {%- if s.how != blank -%}
             <p class="mt-6 pt-5 border-t border-primary/20 text-[15px] leading-relaxed text-ink/90">{%- render 'parapatrol-claim', text: s.how -%}</p>
           {%- endif -%}
+          </div>
         </div>
       </div>
 
@@ -83,9 +94,15 @@
     { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Sound familiar?" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "When their tummy’s off, the whole family feels it." },
     { "type": "textarea", "id": "intro", "label": "Intro", "default": "It starts small. A few picked-at dinners, a “my tummy hurts” on a school morning. Then it’s most weeks, and you’re left wondering how to get them back to their normal, happy self." },
+    { "type": "image_picker", "id": "problems_image", "label": "Left card image" },
+    { "type": "text", "id": "problems_asset", "label": "Left card built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-problem-before.jpg" },
+    { "type": "text", "id": "problems_alt", "label": "Left card image description", "default": "A boy pushes peas around a full dinner plate while his mum watches, worried" },
     { "type": "text", "id": "problems_title", "label": "Left card title", "default": "What you might be noticing" },
     { "type": "textarea", "id": "problems", "label": "Left card list (one per line)", "default": "Pushing food around the plate, then hungry for snacks an hour later\n“My tummy hurts” on school mornings\nTummy not quite right after parties, sweets or a holiday\nDinner turning into a nightly negotiation" },
     { "type": "textarea", "id": "cost", "label": "Left card closing line", "default": "When it drags on, meals become a battle, mornings run late, and you spend the week guessing." },
+    { "type": "image_picker", "id": "wins_image", "label": "Right card image" },
+    { "type": "text", "id": "wins_asset", "label": "Right card built-in image file", "info": "Used when no image is chosen. A file in the theme's assets folder.", "default": "pp-problem-after.jpg" },
+    { "type": "text", "id": "wins_alt", "label": "Right card image description", "default": "The same boy happily eating breakfast with his mum, ParaPatrol on the table" },
     { "type": "text", "id": "wins_title", "label": "Right card title", "default": "What parents notice with ParaPatrol*" },
     { "type": "textarea", "id": "wins", "label": "Right card list (one per line)", "info": "Keep a * on anything about tummy or appetite.", "default": "Settled, comfortable tummies*\nBigger appetites and cleaner plates*\nEasier mornings: one dropper in their juice, no pills, no fuss\nA gentle routine for school season and after trips" },
     { "type": "textarea", "id": "how", "label": "Right card closing line", "default": "Fennel, anise and licorice soothe occasional tummy upsets, while black walnut, clove and pau d’arco support their natural digestive rhythm.*" },
