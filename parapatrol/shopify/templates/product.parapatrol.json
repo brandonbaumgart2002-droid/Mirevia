@@ -682,10 +682,15 @@
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
       }
+    },
+    "problem": {
+      "type": "parapatrol-problem",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "problem",
     "kidlife",
     "compare",
     "how",

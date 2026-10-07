@@ -1,0 +1,97 @@
+{%- comment -%}
+  Problem → solution: names what parents are already seeing, what it costs the family when it drags on,
+  and what changes with ParaPatrol. Everyday signs only (no symptoms, worms or behaviour claims), every
+  outcome keeps its * so it links to the FDA disclaimer, and a pediatrician line for anything more serious.
+  Two cards: "What you might be noticing" (soft pink) and "What parents notice with ParaPatrol" (mint).
+  The button scrolls back up to the main buy box (#pp-buy), like the final call to action.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign problems = s.problems | newline_to_br | split: '<br />'
+  assign wins = s.wins | newline_to_br | split: '<br />'
+-%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+<div class="pp">
+  <section class="bg-white py-12 lg:py-20" aria-labelledby="pp-prob-{{ section.id }}">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-2xl">
+        {%- if s.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ s.eyebrow }}</p>{%- endif -%}
+        <h2 id="pp-prob-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ s.heading }}</h2>
+        {%- if s.intro != blank -%}<p class="mt-4 text-[16px] sm:text-[17px] leading-relaxed text-ink/90">{%- render 'parapatrol-claim', text: s.intro -%}</p>{%- endif -%}
+      </div>
+
+      <div class="mt-8 grid gap-4 lg:gap-6 md:grid-cols-2">
+        <div class="rounded-3xl bg-soft border border-line p-6 sm:p-8">
+          <h3 class="font-display font-semibold text-[21px] sm:text-[23px] leading-snug">{{ s.problems_title }}</h3>
+          <ul class="mt-5 grid gap-4" role="list">
+            {%- for p in problems -%}
+              {%- assign t = p | strip -%}
+              {%- if t != blank -%}
+                <li class="flex items-start gap-3 text-[16px] leading-snug">
+                  <span class="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-accent text-berry inline-flex items-center justify-center" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" focusable="false"><path d="M3 3l6 6M9 3l-6 6"/></svg>
+                  </span>
+                  <span>{{ t }}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+          {%- if s.cost != blank -%}
+            <p class="mt-6 pt-5 border-t border-line text-[15px] leading-relaxed text-ink/90">{{ s.cost }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="rounded-3xl bg-mint p-6 sm:p-8">
+          <h3 class="font-display font-semibold text-[21px] sm:text-[23px] leading-snug">{%- render 'parapatrol-claim', text: s.wins_title -%}</h3>
+          <ul class="mt-5 grid gap-4" role="list">
+            {%- for w in wins -%}
+              {%- assign t = w | strip -%}
+              {%- if t != blank -%}
+                <li class="flex items-start gap-3 text-[16px] leading-snug">
+                  <span class="mt-0.5 w-6 h-6 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 14 -%}</span>
+                  <span>{%- render 'parapatrol-claim', text: t -%}</span>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+          {%- if s.how != blank -%}
+            <p class="mt-6 pt-5 border-t border-primary/20 text-[15px] leading-relaxed text-ink/90">{%- render 'parapatrol-claim', text: s.how -%}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        {%- if s.button_label != blank -%}
+          <a href="#pp-buy" data-pp-to-buy class="inline-flex items-center justify-center gap-2 min-h-[56px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors">
+            {{- s.button_label -}}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if s.note != blank -%}
+          <p class="text-[13px] leading-snug text-muted max-w-md">{{ s.note }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: problem",
+  "settings": [
+    { "type": "paragraph", "content": "Everyday signs only. No symptoms, worms or behaviour claims, and keep a * on anything about tummy or appetite." },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Sound familiar?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "When their tummy’s off, the whole family feels it." },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "It starts small. A few picked-at dinners, a “my tummy hurts” on a school morning. Then it’s most weeks, and you’re left wondering how to get them back to their normal, happy self." },
+    { "type": "text", "id": "problems_title", "label": "Left card title", "default": "What you might be noticing" },
+    { "type": "textarea", "id": "problems", "label": "Left card list (one per line)", "default": "Pushing food around the plate, then hungry for snacks an hour later\n“My tummy hurts” on school mornings\nTummy not quite right after parties, sweets or a holiday\nDinner turning into a nightly negotiation" },
+    { "type": "textarea", "id": "cost", "label": "Left card closing line", "default": "When it drags on, meals become a battle, mornings run late, and you spend the week guessing." },
+    { "type": "text", "id": "wins_title", "label": "Right card title", "default": "What parents notice with ParaPatrol*" },
+    { "type": "textarea", "id": "wins", "label": "Right card list (one per line)", "info": "Keep a * on anything about tummy or appetite.", "default": "Settled, comfortable tummies*\nBigger appetites and cleaner plates*\nEasier mornings: one dropper in their juice, no pills, no fuss\nA gentle routine for school season and after trips" },
+    { "type": "textarea", "id": "how", "label": "Right card closing line", "default": "Fennel, anise and licorice soothe occasional tummy upsets, while black walnut, clove and pau d’arco support their natural digestive rhythm.*" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get them back on track" },
+    { "type": "textarea", "id": "note", "label": "Small print", "default": "Every child is different. If tummy pain is severe, ongoing or comes with other symptoms, talk to your pediatrician." }
+  ],
+  "presets": [ { "name": "ParaPatrol: problem" } ]
+}
+{% endschema %}
