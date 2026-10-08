@@ -524,6 +524,78 @@
             "tags": "routine, tummy",
             "photo_alt": ""
           }
+        },
+        "rev_14": {
+          "type": "quote",
+          "settings": {
+            "title": "Her appetite has greatly increased",
+            "quote": "This is the second bottle I’ve purchased… We are now in week three… she sleeps through the night, her appetite has greatly increased, and even her siblings have noticed a major positive change… so far our experience has been very positive.",
+            "author": "Alex",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, routine",
+            "photo_alt": ""
+          }
+        },
+        "rev_15": {
+          "type": "quote",
+          "settings": {
+            "title": "No more upset-belly complaints",
+            "quote": "We are only on day five, and I cannot believe the difference. She no longer complains of upset belly… her taste buds are expanding… I am so thankful I bought it!!",
+            "author": "Tina",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy",
+            "photo_alt": ""
+          }
+        },
+        "rev_16": {
+          "type": "quote",
+          "settings": {
+            "title": "She takes it right down",
+            "quote": "She has a taste. She takes it right down. She has no problem with it and I am so glad.",
+            "author": "Martin A.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, easy",
+            "photo_alt": ""
+          }
+        },
+        "rev_17": {
+          "type": "quote",
+          "settings": {
+            "title": "Easy to give in the morning",
+            "quote": "The kids take the droppers down easily in the morning so it must not taste bad. Very easy to administer. Kids energy levels seem good and they are sleeping well as always!",
+            "author": "Jeraldith G.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, routine",
+            "photo_alt": ""
+          }
+        },
+        "rev_18": {
+          "type": "quote",
+          "settings": {
+            "title": "They remind me to give it",
+            "quote": "My children reminded me daily to take their “medicine”, they enjoyed the taste.",
+            "author": "Laina",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, routine",
+            "photo_alt": ""
+          }
+        },
+        "rev_19": {
+          "type": "quote",
+          "settings": {
+            "title": "USA made, clean ingredients",
+            "quote": "Love this brand as it’s USA made, uses clean ingredients and works amazing!",
+            "author": "Kelsey",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine",
+            "photo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -534,8 +606,10 @@
         "rev_3",
         "rev_2",
         "rev_7",
+        "rev_14",
         "rev_5",
         "rev_8",
+        "rev_15",
         "rev_9",
         "rev_10",
         "rev_11",
@@ -543,7 +617,11 @@
         "rev_12",
         "rev_13",
         "rev_4",
-        "rev_6"
+        "rev_6",
+        "rev_16",
+        "rev_17",
+        "rev_18",
+        "rev_19"
       ],
       "settings": {
         "eyebrow": "Reviews",
