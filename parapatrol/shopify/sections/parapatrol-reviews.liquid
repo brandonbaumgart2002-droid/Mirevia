@@ -109,7 +109,10 @@
                   {%- if block.settings.stars > 0 -%}
                     <div>{%- render 'parapatrol-stars', score: block.settings.stars, size: 16 -%}</div>
                   {%- endif -%}
-                  <blockquote class="mt-3 text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
+                  {%- if block.settings.title != blank -%}
+                    <p class="mt-3 font-display font-bold text-[19px] leading-snug text-primary">{{ block.settings.title }}</p>
+                  {%- endif -%}
+                  <blockquote class="{% if block.settings.title != blank %}mt-1.5{% else %}mt-3{% endif %} text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
                   <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
                 </li>
               {%- endif -%}
@@ -144,6 +147,7 @@
   "blocks": [
     { "type": "@app" },
     { "type": "quote", "name": "Featured review", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "info": "The moment that changed for this family, in a few words, e.g. Calmer mornings. Must match what the review actually says." },
       { "type": "textarea", "id": "quote", "label": "Quote" },
       { "type": "text", "id": "author", "label": "Name", "default": "Verified Buyer" },
       { "type": "text", "id": "badge", "label": "Badge", "default": "Verified Buyer" },
