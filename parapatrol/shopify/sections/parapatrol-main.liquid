@@ -207,6 +207,46 @@
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
+
+        {%- comment -%} Quick answers: the three biggest objections, for shoppers who never reach the full FAQ {%- endcomment -%}
+        {%- if section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank -%}
+          <div class="mt-5" data-pp-accordion>
+            {%- if section.settings.quick_heading != blank -%}
+              <p class="mb-2 text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.quick_heading }}</p>
+            {%- endif -%}
+            <div class="grid gap-2">
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign q_key = 'quick_q' | append: i
+                  assign a_key = 'quick_a' | append: i
+                  assign q = section.settings[q_key]
+                  assign a = section.settings[a_key]
+                  case i
+                    when 1
+                      assign q_icon = 'shield'
+                    when 2
+                      assign q_icon = 'heart'
+                    else
+                      assign q_icon = 'reset'
+                  endcase
+                -%}
+                {%- if q != blank and a != blank -%}
+                  {%- assign qid = section.id | append: '-q' | append: i -%}
+                  <div class="rounded-2xl bg-soft border border-line">
+                    <button type="button" class="disable-global-button-styling acc-btn w-full flex items-center gap-3 px-3 py-3 text-left" aria-expanded="false" aria-controls="pp-qa-p-{{ qid }}" id="pp-qa-b-{{ qid }}">
+                      <span class="w-9 h-9 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: q_icon, icon_size: 18 -%}</span>
+                      <span class="flex-1 min-w-0 font-display font-bold text-[16px] leading-snug text-ink">{{ q }}</span>
+                      <span class="acc-icon w-7 h-7 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[18px] leading-none" aria-hidden="true">+</span>
+                    </button>
+                    <div id="pp-qa-p-{{ qid }}" role="region" aria-labelledby="pp-qa-b-{{ qid }}" class="px-4 pb-4 pl-[60px] text-[14px] leading-relaxed text-ink" hidden>
+                      {%- render 'parapatrol-claim', text: a -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
       </div>
 
       {%- if section.settings.fda_text != blank -%}
@@ -272,6 +312,14 @@
       { "value": "message", "label": "Show a message" },
       { "value": "cart", "label": "Go to the cart page" }
     ] },
+    { "type": "header", "content": "Quick answers under the buy box" },
+    { "type": "text", "id": "quick_heading", "label": "Small heading", "default": "Quick answers" },
+    { "type": "text", "id": "quick_q1", "label": "Question 1", "default": "Is it safe for my child?" },
+    { "type": "textarea", "id": "quick_a1", "label": "Answer 1", "default": "ParaPatrol is made and dosed for kids 3 and up: alcohol-free, sugar-free, made in the USA and third-party tested, with a simple 1 mL daily dose. Not for children under 3. If your child takes medication or has a health condition, check with your paediatrician first." },
+    { "type": "text", "id": "quick_q2", "label": "Question 2", "default": "Will my picky eater actually take it?" },
+    { "type": "textarea", "id": "quick_a2", "label": "Answer 2", "default": "It has a natural raspberry flavour and mixes straight into orange juice, milk or a smoothie, so most kids drink it without a fuss. First time? Start with half a dropper for a few days." },
+    { "type": "text", "id": "quick_q3", "label": "Question 3", "default": "What if it doesn't work for us?" },
+    { "type": "textarea", "id": "quick_a3", "label": "Answer 3", "default": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions." },
     { "type": "header", "content": "Sale countdown" },
     { "type": "text", "id": "sale_label", "label": "Countdown label", "default": "Back to School Sale ends in" },
     { "type": "text", "id": "sale_end_date", "label": "Sale end date (YYYY-MM-DD)", "info": "Your store's timezone. The timer disappears when the sale ends. Leave blank to hide it.", "default": "2026-10-31" },
