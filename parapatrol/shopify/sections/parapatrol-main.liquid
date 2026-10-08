@@ -208,14 +208,14 @@
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
 
-        {%- comment -%} Quick answers: the three biggest objections, for shoppers who never reach the full FAQ {%- endcomment -%}
-        {%- if section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank -%}
+        {%- comment -%} Quick answers: the biggest objections (safety, taste, dosing and results, guarantee), for shoppers who never reach the full FAQ {%- endcomment -%}
+        {%- if section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
           <div class="mt-5" data-pp-accordion>
             {%- if section.settings.quick_heading != blank -%}
               <p class="mb-2 text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.quick_heading }}</p>
             {%- endif -%}
             <div class="grid gap-2">
-              {%- for i in (1..3) -%}
+              {%- for i in (1..4) -%}
                 {%- liquid
                   assign q_key = 'quick_q' | append: i
                   assign a_key = 'quick_a' | append: i
@@ -226,6 +226,8 @@
                       assign q_icon = 'shield'
                     when 2
                       assign q_icon = 'heart'
+                    when 3
+                      assign q_icon = 'sun'
                     else
                       assign q_icon = 'reset'
                   endcase
@@ -318,8 +320,10 @@
     { "type": "textarea", "id": "quick_a1", "label": "Answer 1", "default": "ParaPatrol is made and dosed for kids 3 and up: alcohol-free, sugar-free, made in the USA and third-party tested, with a simple 1 mL daily dose. Not for children under 3. If your child takes medication or has a health condition, check with your paediatrician first." },
     { "type": "text", "id": "quick_q2", "label": "Question 2", "default": "Will my picky eater actually take it?" },
     { "type": "textarea", "id": "quick_a2", "label": "Answer 2", "default": "It has a natural raspberry flavour and mixes straight into orange juice, milk or a smoothie, so most kids drink it without a fuss. First time? Start with half a dropper for a few days." },
-    { "type": "text", "id": "quick_q3", "label": "Question 3", "default": "What if it doesn't work for us?" },
-    { "type": "textarea", "id": "quick_a3", "label": "Answer 3", "default": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions." },
+    { "type": "text", "id": "quick_q3", "label": "Question 3", "default": "How often do they take it, and when will we see results?" },
+    { "type": "textarea", "id": "quick_a3", "label": "Answer 3", "default": "One dropper (1 mL) a day in their morning juice or milk. Many parents notice a more settled tummy and a better appetite within 1 to 2 weeks.* Follow the 2 to 3 week routine, then take a break, and keep a bottle on hand for school terms and after trips." },
+    { "type": "text", "id": "quick_q4", "label": "Question 4", "default": "What if it doesn't work for us?" },
+    { "type": "textarea", "id": "quick_a4", "label": "Answer 4", "default": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions." },
     { "type": "header", "content": "Sale countdown" },
     { "type": "text", "id": "sale_label", "label": "Countdown label", "default": "Back to School Sale ends in" },
     { "type": "text", "id": "sale_end_date", "label": "Sale end date (YYYY-MM-DD)", "info": "Your store's timezone. The timer disappears when the sale ends. Leave blank to hide it.", "default": "2026-10-31" },
