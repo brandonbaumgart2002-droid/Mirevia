@@ -1,0 +1,237 @@
+{%- comment -%}
+  Advertorial / listicle for cold traffic: a parent guide that names the problem, numbers the signs,
+  explains the mechanism and closes on the product, with every button going to the product page.
+  Blocks: item (numbered sign), text (plain paragraphs), note (highlighted box), quote (customer review),
+  product (product card with CTA), cta (closing call to action).
+  Claims keep their * so they link to the FDA disclaimer (#pp-fda): keep the disclaimer section on the template.
+  Copy rules: everyday gut comfort, digestion, appetite and regularity only. No parasite removal, "detox",
+  worm, behaviour or condition claims, and no fake bylines, doctors or "as seen on" logos.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign lp = s.product
+  assign lp_url = s.product_link | default: lp.url | default: routes.all_products_collection_url
+  assign item_n = 0
+-%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp">
+  <article class="bg-white" aria-labelledby="pp-adv-{{ section.id }}">
+    <header class="bg-soft">
+      <div class="max-w-[720px] mx-auto px-4 pt-7 pb-8 sm:pt-12 sm:pb-12">
+        {%- if s.eyebrow != blank -%}
+          <p class="inline-flex items-center rounded-full bg-mint px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.12em] text-primary-dark">{{ s.eyebrow }}</p>
+        {%- endif -%}
+        <h1 id="pp-adv-{{ section.id }}" class="mt-3 font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-ink">{{ s.headline }}</h1>
+        {%- if s.dek != blank -%}
+          <p class="mt-3 text-[17px] sm:text-[19px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: s.dek -%}</p>
+        {%- endif -%}
+        <div class="mt-5 flex items-center gap-3 text-[13px] text-muted">
+          <span class="w-10 h-10 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'leaf', icon_size: 18 -%}</span>
+          <span class="leading-snug">
+            <span class="block font-bold text-ink">{{ s.byline }}</span>
+            <span>Updated {{ 'now' | date: '%B %Y' }}{% if s.read_time != blank %} · {{ s.read_time }}{% endif %}</span>
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-[720px] mx-auto px-4 pb-14">
+      {%- if s.hero_image != blank or s.hero_asset != blank -%}
+        <div class="-mt-2 sm:mt-0 pt-6">
+          {%- render 'parapatrol-media', image: s.hero_image, asset: s.hero_asset, alt: s.hero_alt, label: 'Hero photo', class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 760px) 688px, 100vw', loading: 'eager', priority: true -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.intro != blank -%}
+        <div class="pp-adv-copy mt-7">{%- render 'parapatrol-claim', text: s.intro -%}</div>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- assign bs = block.settings -%}
+        {%- case block.type -%}
+
+          {%- when 'item' -%}
+            {%- assign item_n = item_n | plus: 1 -%}
+            <section class="pp-adv-sec mt-12" {{ block.shopify_attributes }} aria-labelledby="pp-adv-i-{{ block.id }}">
+              <div class="flex items-start gap-3">
+                <span class="w-11 h-11 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center font-display font-bold text-[20px]" aria-hidden="true">{{ item_n }}</span>
+                <h2 id="pp-adv-i-{{ block.id }}" class="font-display font-bold text-[24px] sm:text-[30px] leading-[1.15] text-ink pt-1">{{ bs.title }}</h2>
+              </div>
+              {%- if bs.image != blank or bs.asset != blank -%}
+                <div class="mt-5">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.title, class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 760px) 688px, 100vw' -%}</div>
+              {%- endif -%}
+              <div class="pp-adv-copy mt-5">{%- render 'parapatrol-claim', text: bs.text -%}</div>
+            </section>
+
+          {%- when 'text' -%}
+            <section class="pp-adv-sec mt-12" {{ block.shopify_attributes }}>
+              {%- if bs.title != blank -%}<h2 class="font-display font-bold text-[24px] sm:text-[30px] leading-[1.15] text-ink">{{ bs.title }}</h2>{%- endif -%}
+              {%- if bs.image != blank or bs.asset != blank -%}
+                <div class="mt-5">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.title, class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 760px) 688px, 100vw' -%}</div>
+              {%- endif -%}
+              <div class="pp-adv-copy {% if bs.title != blank %}mt-4{% endif %}">{%- render 'parapatrol-claim', text: bs.text -%}</div>
+            </section>
+
+          {%- when 'note' -%}
+            <aside class="mt-12 rounded-3xl bg-mint border-l-4 border-primary p-5 sm:p-7" {{ block.shopify_attributes }}>
+              <p class="flex items-center gap-2 font-display font-bold text-[20px] sm:text-[22px] text-ink">
+                <span class="text-primary">{%- render 'parapatrol-icon', name: 'info', icon_size: 20 -%}</span>{{ bs.title }}
+              </p>
+              <div class="pp-adv-copy pp-adv-copy--sm mt-3">{%- render 'parapatrol-claim', text: bs.text -%}</div>
+            </aside>
+
+          {%- when 'quote' -%}
+            <figure class="mt-10 rounded-3xl bg-soft p-6 sm:p-8" {{ block.shopify_attributes }}>
+              <div>{%- render 'parapatrol-stars', score: bs.stars, size: 18 -%}</div>
+              {%- if bs.title != blank -%}<p class="mt-3 font-display font-bold text-[20px] leading-snug text-primary">{{ bs.title }}</p>{%- endif -%}
+              <blockquote class="mt-2 text-[17px] leading-relaxed text-ink">“{{ bs.quote }}”</blockquote>
+              <figcaption class="mt-4 text-[14px] font-bold text-ink">{{ bs.author }} <span class="font-normal text-muted">· Verified Buyer</span></figcaption>
+            </figure>
+
+          {%- when 'product' -%}
+            <section class="mt-12 rounded-3xl border-2 border-primary bg-white overflow-hidden shadow-lift" {{ block.shopify_attributes }} aria-labelledby="pp-adv-p-{{ block.id }}">
+              {%- if bs.badge != blank -%}<p class="bg-primary text-white text-center text-[13px] font-extrabold uppercase tracking-[.1em] py-2">{{ bs.badge }}</p>{%- endif -%}
+              <div class="p-5 sm:p-7 grid gap-5 sm:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] sm:items-center">
+                <div>
+                  {%- if bs.image != blank or bs.asset != blank -%}
+                    {%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: 'ParaPatrol', class: 'aspect-square rounded-2xl', sizes: '(min-width: 640px) 300px, 100vw' -%}
+                  {%- elsif lp.featured_image -%}
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-mint">{{ lp.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '(min-width: 640px) 300px, 100vw', class: 'w-full h-full object-cover', alt: lp.title }}</div>
+                  {%- endif -%}
+                </div>
+                <div>
+                  <h2 id="pp-adv-p-{{ block.id }}" class="font-display font-bold text-[26px] sm:text-[30px] leading-[1.1] text-ink">{{ bs.title }}</h2>
+                  {%- if bs.rating != blank -%}
+                    <p class="mt-2 flex flex-wrap items-center gap-x-2 text-[14px]">{%- render 'parapatrol-stars', score: bs.rating, size: 16 -%}<span class="font-bold">{{ bs.rating }}</span>{% if bs.rating_note != blank %}<span class="text-muted">· {{ bs.rating_note }}</span>{% endif %}</p>
+                  {%- endif -%}
+                  {%- assign p_lines = bs.bullets | newline_to_br | split: '<br />' -%}
+                  <ul class="mt-4 grid gap-2.5" role="list">
+                    {%- for l in p_lines -%}
+                      {%- assign lt = l | strip -%}
+                      {%- if lt != blank -%}
+                        <li class="flex items-start gap-2.5 text-[16px] leading-snug"><span class="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span><span>{%- render 'parapatrol-claim', text: lt -%}</span></li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                  <a href="{{ lp_url }}" class="mt-6 flex w-full items-center justify-center gap-2 min-h-[56px] px-6 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors" data-pp-adv-cta>
+                    {{- bs.button_label | default: s.cta_label -}}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                  </a>
+                  {%- if bs.small != blank -%}<p class="mt-2.5 text-center text-[13px] text-muted">{{ bs.small }}</p>{%- endif -%}
+                </div>
+              </div>
+            </section>
+
+          {%- when 'cta' -%}
+            <section class="mt-12 rounded-3xl bg-primary text-white p-6 sm:p-10 text-center" {{ block.shopify_attributes }}>
+              <h2 class="font-display font-bold text-[26px] sm:text-[34px] leading-[1.1] pp-adv-light-h">{{ bs.title }}</h2>
+              {%- if bs.text != blank -%}<div class="pp-adv-copy pp-adv-copy--light mt-3 mx-auto max-w-[520px]">{%- render 'parapatrol-claim', text: bs.text -%}</div>{%- endif -%}
+              <a href="{{ lp_url }}" class="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 min-h-[56px] px-8 rounded-full bg-white text-primary-dark font-extrabold text-[17px] shadow-lift hover:bg-soft transition-colors" data-pp-adv-cta>
+                {{- bs.button_label | default: s.cta_label -}}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              {%- if bs.small != blank -%}<p class="mt-3 text-[13px] text-white/90">{{ bs.small }}</p>{%- endif -%}
+            </section>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </article>
+
+  {%- if s.sticky_cta -%}
+    <div class="pp-adv-sticky lg:hidden fixed inset-x-0 bottom-0 z-50 bg-white border-t border-line shadow-lift translate-y-full" data-pp-adv-sticky aria-hidden="true">
+      <div class="px-4 py-3 flex items-center gap-3">
+        <p class="flex-1 min-w-0 text-[13px] leading-tight"><span class="block font-display font-bold text-[15px] text-ink truncate">{{ s.sticky_title | default: lp.title }}</span><span class="text-muted">{{ s.sticky_note }}</span></p>
+        <a href="{{ lp_url }}" tabindex="-1" class="shrink-0 inline-flex items-center justify-center min-h-[46px] px-5 rounded-full bg-primary text-white font-extrabold text-[15px]">{{ s.sticky_label | default: 'Shop now' }}</a>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var bar = document.querySelector('[data-pp-adv-sticky]');
+        if (!bar) return;
+        var ctas = document.querySelectorAll('[data-pp-adv-cta]');
+        var ctaVisible = false, past = false;
+        function update() {
+          var show = past && !ctaVisible;
+          bar.classList.toggle('translate-y-full', !show);
+          bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+          var a = bar.querySelector('a'); if (a) a.tabIndex = show ? 0 : -1;
+        }
+        window.addEventListener('scroll', function () { past = window.scrollY > 700; update(); }, { passive: true });
+        if ('IntersectionObserver' in window) {
+          var seen = new Set();
+          var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? seen.add(e.target) : seen.delete(e.target); }); ctaVisible = seen.size > 0; update(); });
+          ctas.forEach(function (c) { io.observe(c); });
+        }
+      })();
+    </script>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: listicle",
+  "settings": [
+    { "type": "paragraph", "content": "Everyday gut comfort, digestion, appetite and regularity only. No parasite removal, detox, worm, behaviour or condition claims. Keep a * on claims and keep the disclaimer section on this template." },
+    { "type": "product", "id": "product", "label": "Product (buttons link here)" },
+    { "type": "url", "id": "product_link", "label": "Button link (optional)", "info": "Uses the product's page when empty. Add UTM tags here if you like." },
+    { "type": "text", "id": "cta_label", "label": "Default button label", "default": "See if ParaPatrol is right for your child" },
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Parent guide" },
+    { "type": "textarea", "id": "headline", "label": "Headline", "default": "5 signs your child's tummy is out of rhythm" },
+    { "type": "textarea", "id": "dek", "label": "Subheadline" },
+    { "type": "text", "id": "byline", "label": "Byline", "default": "From the makers of ParaPatrol" },
+    { "type": "text", "id": "read_time", "label": "Read time", "default": "5 min read" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "hero_asset", "label": "Hero built-in image file", "default": "pp-problem-before.jpg" },
+    { "type": "text", "id": "hero_alt", "label": "Hero image description" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "checkbox", "id": "sticky_cta", "label": "Sticky button on phones", "default": true },
+    { "type": "text", "id": "sticky_title", "label": "Sticky bar title", "default": "ParaPatrol™ for kids 3+" },
+    { "type": "text", "id": "sticky_note", "label": "Sticky bar small line", "default": "Free shipping · 30-day guarantee" },
+    { "type": "text", "id": "sticky_label", "label": "Sticky bar button", "default": "Shop now" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Numbered item", "settings": [
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "richtext", "id": "text", "label": "Text" }
+    ] },
+    { "type": "text", "name": "Text", "settings": [
+      { "type": "text", "id": "title", "label": "Heading" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "richtext", "id": "text", "label": "Text" }
+    ] },
+    { "type": "note", "name": "Highlighted note", "settings": [
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "richtext", "id": "text", "label": "Text" }
+    ] },
+    { "type": "quote", "name": "Customer review", "settings": [
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "textarea", "id": "quote", "label": "Quote", "info": "A real customer's words only." },
+      { "type": "text", "id": "author", "label": "Name" },
+      { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 }
+    ] },
+    { "type": "product", "name": "Product card", "settings": [
+      { "type": "text", "id": "badge", "label": "Top banner" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file", "info": "Uses the product's main image when both are empty." },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "text", "id": "rating", "label": "Star rating", "info": "Your real average only. Blank hides it." },
+      { "type": "text", "id": "rating_note", "label": "Rating note" },
+      { "type": "textarea", "id": "bullets", "label": "Bullets (one per line)" },
+      { "type": "text", "id": "button_label", "label": "Button label" },
+      { "type": "text", "id": "small", "label": "Small line under the button" }
+    ] },
+    { "type": "cta", "name": "Closing call to action", "settings": [
+      { "type": "text", "id": "title", "label": "Heading" },
+      { "type": "richtext", "id": "text", "label": "Text" },
+      { "type": "text", "id": "button_label", "label": "Button label" },
+      { "type": "text", "id": "small", "label": "Small line under the button" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: listicle" } ]
+}
+{% endschema %}

@@ -210,3 +210,18 @@
 
 /* Reviews beyond the first few wait behind "Show more reviews" */
 .pp .pp-more-hidden { display: none !important; }
+
+/* Advertorial / listicle body copy */
+.pp .pp-adv-copy { font-size: 18px; line-height: 1.7; color: var(--ink); }
+.pp .pp-adv-copy p + p { margin-top: 16px; }
+.pp .pp-adv-copy strong, .pp .pp-adv-copy b { font-weight: 800; }
+.pp .pp-adv-copy em { font-style: italic; }
+.pp .pp-adv-copy a:not(.fda) { color: var(--brand-primary-dark); text-decoration: underline; text-underline-offset: 3px; }
+.pp .pp-adv-copy ul { list-style: disc; padding-left: 1.3em; margin-top: 12px; }
+.pp .pp-adv-copy li + li { margin-top: 6px; }
+.pp .pp-adv-copy--sm { font-size: 16px; line-height: 1.65; }
+.pp .pp-adv-copy--light, .pp .pp-adv-copy--light * { color: #fff; }
+.pp.pp .pp-adv-light-h { color: #fff !important; }
+.pp .pp-adv-sticky { transition: transform .25s ease; }
+@media (max-width: 639px) { .pp .pp-adv-copy { font-size: 17px; } }
+.pp.pp .pp-adv-sec { background: transparent !important; }

@@ -1,0 +1,169 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-listicle",
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "title": "They pick at dinner, then want snacks an hour later",
+            "asset": "pp-problem-before.jpg",
+            "alt": "A boy pushes peas around a full dinner plate while his mum watches",
+            "text": "<p>Some pickiness is normal. But when a child who used to eat well starts pushing food around the plate, then raids the pantry an hour later, it’s often a sign their tummy just isn’t feeling settled.</p><p>A comfortable gut and a healthy appetite go hand in hand. When digestion feels off, kids don’t feel like eating, and dinner turns into a nightly negotiation.*</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "title": "“My tummy hurts” on school mornings",
+            "asset": "pp-school-door.jpg",
+            "alt": "A mum zips up her son’s jacket at the front door before school",
+            "text": "<p>Occasional tummy aches are one of the most common things kids complain about, and they love to show up right when you’re trying to get out the door.</p><p>Gas, bloating and an irregular routine can all leave a little tummy uncomfortable. Gentle, time-tested herbs like <strong>fennel, anise and licorice</strong> have been used for generations to help soothe occasional tummy upsets.*</p>"
+          }
+        },
+        "q1": {
+          "type": "quote",
+          "settings": {
+            "title": "Calmer mornings, no pill battles",
+            "quote": "The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.",
+            "author": "Lisa K.",
+            "stars": 5
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "title": "A weekend of sweets throws everything off",
+            "asset": "pp-kids-picnic.jpg",
+            "alt": "Two kids and a dog at a picnic with snacks and juice",
+            "text": "<p>Birthday parties, holidays, Halloween, the school bake sale. A run of sugar and processed snacks can leave a child’s tummy feeling out of sorts for days afterwards.</p><p>You can’t (and shouldn’t) ban every treat. What you can do is give their digestion a little support to get back to its normal rhythm afterwards.*</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "title": "Bathroom trips are all over the place",
+            "asset": "pp-family-couch.jpg",
+            "alt": "A mum and daughter reading together on the sofa",
+            "text": "<p>Regularity is one of the clearest windows into how a child’s tummy is doing. A few days of nothing, then the opposite, usually means their digestion isn’t in a steady rhythm.</p><p>Traditional botanicals like <strong>black walnut and clove</strong> have long been used to support the body’s natural digestive rhythm and regularity.*</p>"
+          }
+        },
+        "i5": {
+          "type": "item",
+          "settings": {
+            "title": "They touch everything (and everything ends up in their mouth)",
+            "asset": "pp-kids-park.jpg",
+            "alt": "A boy playing in a park sandpit",
+            "text": "<p>Sandpits, playgrounds, pets, shared crayons, the classroom. Kids are little explorers, and that’s a good thing. It just means their tummies are busy every single day, especially in school season.</p><p>Herbs like <strong>pau d’arco, thyme and oregano</strong> are traditionally used to support healthy gut defences through busy school terms.*</p>"
+          }
+        },
+        "n1": {
+          "type": "note",
+          "settings": {
+            "title": "A quick, honest word on worms",
+            "text": "<p>You may have seen parents online talking about parasite cleanses for kids. Here’s the honest version: pinworms are very common in school-age children. If your child has an itchy bottom (especially at night) or you spot tiny white threads, <strong>see your doctor</strong>. It’s quick and easy to treat with the right medicine.</p><p>ParaPatrol isn’t a worm treatment and doesn’t replace your doctor. It’s a gentle daily herbal routine for the everyday stuff: tummy comfort, digestion and appetite.*</p>"
+          }
+        },
+        "t1": {
+          "type": "text",
+          "settings": {
+            "title": "Why the usual fixes don’t stick",
+            "asset": "pp-how-settle.jpg",
+            "alt": "ParaPatrol with fennel, anise, licorice root and aloe vera",
+            "text": "<p>Adult tinctures are dosed for grown-ups and are often made with alcohol. Pills turn into a battle. And anything that tastes “healthy” gets pushed straight back across the table.</p><p>That’s why ParaPatrol was made for kids from the start: a gentle <strong>11-herb blend</strong> in an alcohol-free glycerin base with natural raspberry, dosed for ages 3 and up, in one easy dropper that disappears into their morning juice.</p><ul><li><strong>Settle:</strong> fennel, anise, licorice and aloe for occasional tummy upsets.*</li><li><strong>Reset:</strong> black walnut, clove, pumpkin seed and wormwood for a steady digestive rhythm.*</li><li><strong>Strengthen:</strong> pau d’arco, thyme and oregano for healthy gut defences.*</li></ul>"
+          }
+        },
+        "q2": {
+          "type": "quote",
+          "settings": {
+            "title": "Finishing her meals again",
+            "quote": "Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.",
+            "author": "Jennifer T.",
+            "stars": 5
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "badge": "Back to School Sale · Buy 1, Get 1 Free",
+            "asset": "pp-kids-dropper-juice.jpg",
+            "alt": "A parent adds a dropper of ParaPatrol to a child’s orange juice",
+            "title": "Meet ParaPatrol™",
+            "rating": "4.8",
+            "rating_note": "237+ parent reviews",
+            "bullets": "Settles occasional tummy upsets*\nSupports a healthy appetite*\nSupports regular digestion*\nOne dropper a day in juice, milk or a smoothie\nAlcohol-free, sugar-free, made in the USA",
+            "button_label": "Get ParaPatrol for my child",
+            "small": "Free shipping on all orders · 30-day money-back guarantee"
+          }
+        },
+        "t2": {
+          "type": "text",
+          "settings": {
+            "title": "What to expect",
+            "text": "<p><strong>Day 1:</strong> one dropper in their morning juice. First time? Start with half a dropper for a few days.</p><p><strong>Weeks 1–2:</strong> many parents notice a more settled tummy and a better appetite.*</p><p><strong>Week 3:</strong> finish the 2–3 week routine, take a break, and keep a bottle on hand for school terms and after trips.</p><p>Every child is different, so every order is covered by our 30-day money-back guarantee. If it isn’t right for your family, contact us within 30 days and we’ll refund you.</p>"
+          }
+        },
+        "q3": {
+          "type": "quote",
+          "settings": {
+            "title": "Asked for lunch (rare!)",
+            "quote": "He asked for lunch (RARE). He ate every bit of his green beans, Mac n cheese and beef jerky… I mixed it up in his juice and water and he drank every bit. He’s a very picky eater too and didn’t notice it.",
+            "author": "Esther",
+            "stars": 5
+          }
+        },
+        "c1": {
+          "type": "cta",
+          "settings": {
+            "title": "Ready to get them back to their happy, hungry selves?",
+            "text": "<p>Try ParaPatrol risk-free for 30 days. Back to School Sale: Buy 1, Get 1 Free while it lasts.</p>",
+            "button_label": "Shop ParaPatrol now",
+            "small": "Free shipping on all orders · 30-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "q1",
+        "i3",
+        "i4",
+        "i5",
+        "n1",
+        "t1",
+        "q2",
+        "p1",
+        "t2",
+        "q3",
+        "c1"
+      ],
+      "settings": {
+        "product": "parapatrol™",
+        "cta_label": "See if ParaPatrol is right for your child",
+        "eyebrow": "Parent guide",
+        "headline": "5 signs your child’s tummy is out of rhythm (and the gentle daily habit parents are switching to)",
+        "dek": "If dinners have become a battle and “my tummy hurts” is on repeat, here’s what might be going on, and what actually helps.",
+        "byline": "From the makers of ParaPatrol",
+        "read_time": "5 min read",
+        "hero_asset": "pp-family-breakfast.jpg",
+        "hero_alt": "A family laughing together over pancakes at breakfast",
+        "intro": "<p>It usually starts small. A dinner pushed around the plate. A “my tummy hurts” just as you’re trying to get out the door. A kid who isn’t quite their usual, happy self, and you can’t put your finger on why.</p><p>If that sounds familiar, you’re not imagining it, and you’re not alone. Little tummies are busy. Between school, snacks, sweets and everything they touch, a child’s gut has a lot going on, and when it falls out of rhythm, the whole family feels it.</p><p>Here are five signs parents notice most, and the simple daily habit more families are adding to their morning routine.*</p>",
+        "sticky_cta": true,
+        "sticky_title": "ParaPatrol™ for kids 3+",
+        "sticky_note": "Back to School Sale · Free shipping",
+        "sticky_label": "Shop now"
+      }
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "This article is for general information and isn’t medical advice. Talk to your pediatrician before use if your child takes medication, has a health condition, or has tummy pain that is severe, ongoing or comes with other symptoms."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclaimer"
+  ]
+}

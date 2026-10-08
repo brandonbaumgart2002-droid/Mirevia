@@ -48,7 +48,7 @@
 {%- liquid
   assign pp_footer = true
   assign pp_copy = false
-  if template.suffix == 'parapatrol' or template.name == 'index'
+  if template.suffix contains 'parapatrol' or template.name == 'index'
     assign pp_copy = true
   endif
   if template.name == 'product' and template.suffix != 'parapatrol'
