@@ -207,3 +207,6 @@
 
 /* Delivery timeline: a line joining the three steps, behind the icons */
 .pp .pp-deliv li + li::before { content: ""; position: absolute; top: 15px; right: 50%; width: 100%; height: 2px; background: var(--brand-primary); opacity: .35; }
+
+/* Reviews beyond the first few wait behind "Show more reviews" */
+.pp .pp-more-hidden { display: none !important; }

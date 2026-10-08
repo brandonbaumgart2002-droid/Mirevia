@@ -91,9 +91,12 @@
             <p class="sr-only" aria-live="polite" data-pp-filter-status></p>
           {%- endif -%}
 
-          <ul class="mt-5 grid sm:grid-cols-2 gap-4">
+          {%- assign q_shown = section.settings.quotes_visible | default: 0 -%}
+          {%- assign q_i = 0 -%}
+          <ul class="mt-5 grid sm:grid-cols-2 gap-4" data-pp-more-list>
             {%- for block in section.blocks -%}
               {%- if block.type == 'quote' -%}
+                {%- assign q_i = q_i | plus: 1 -%}
                 {%- liquid
                   assign tag_list = ''
                   assign raw_tags = block.settings.tags | split: ','
@@ -102,7 +105,7 @@
                     assign tag_list = tag_list | append: ' ' | append: t_clean
                   endfor
                 -%}
-                <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
+                <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col{% if q_shown > 0 and q_i > q_shown %} pp-more-hidden{% endif %}" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
                   {%- if block.settings.customer_photo != blank -%}
                     {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-square rounded-2xl mb-4', sizes: '(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw' -%}
                   {%- endif -%}
@@ -118,6 +121,11 @@
               {%- endif -%}
             {%- endfor -%}
           </ul>
+          {%- if q_shown > 0 and q_i > q_shown -%}
+            <div class="mt-5 text-center">
+              <button type="button" data-pp-more-btn class="disable-global-button-styling inline-flex items-center justify-center min-h-[48px] px-7 rounded-full border-2 border-primary text-primary-dark font-extrabold text-[15px] hover:bg-mint transition-colors">Show {{ q_i | minus: q_shown }} more reviews</button>
+            </div>
+          {%- endif -%}
           {%- if section.settings.quotes_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.quotes_note }}</p>{%- endif -%}
 
           {%- for block in section.blocks -%}
@@ -142,6 +150,7 @@
     { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★" },
     { "type": "text", "id": "breakdown_note", "label": "Breakdown note", "default": "Replace the bar widths and counts with your review app's numbers." },
     { "type": "textarea", "id": "filters", "label": "Filter topics (one per line: key|Label)", "default": "easy|Easy to give\ntaste|Taste\ntummy|Tummy & appetite\nroutine|Routine" },
+    { "type": "number", "id": "quotes_visible", "label": "Reviews shown before \"Show more\"", "info": "0 shows them all.", "default": 6 },
     { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "Individual reviews reflect one family’s experience. Results vary." }
   ],
   "blocks": [

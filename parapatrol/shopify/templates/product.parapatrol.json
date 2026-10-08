@@ -373,7 +373,7 @@
           "type": "quote",
           "settings": {
             "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
-            "author": "Steph G.",
+            "author": "Adelna E.",
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "easy, taste",
@@ -440,6 +440,90 @@
             "photo_alt": "",
             "title": "Easy once it’s mixed in"
           }
+        },
+        "rev_7": {
+          "type": "quote",
+          "settings": {
+            "title": "Asked for lunch (rare!)",
+            "quote": "Right after washing our hands, he asked for lunch (RARE). He ate every bit of his green beans, Mac n cheese and beef jerky… I mixed it up in his juice and water and he drank every bit. He’s a very picky eater too and didn’t notice it.",
+            "author": "Esther",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, taste",
+            "photo_alt": ""
+          }
+        },
+        "rev_8": {
+          "type": "quote",
+          "settings": {
+            "title": "Eating more and trying new foods",
+            "quote": "The dropper makes it super easy to measure the right amount… The taste is mild and not overpowering, and it blends well with water or juice. After using it consistently, my kids are more balanced and overall better in their daily routine, and it helps them eat more and try new foods.",
+            "author": "Thaina",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, easy",
+            "photo_alt": ""
+          }
+        },
+        "rev_9": {
+          "type": "quote",
+          "settings": {
+            "title": "Actually eating their food",
+            "quote": "I absolutely fell in love with this brand so easy to use clean ingredients, great value… my littles didn’t notice the taste as much, no sensitive tummies, after 2 weeks I noticed… actually eating their food.",
+            "author": "Ashley R.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, taste",
+            "photo_alt": ""
+          }
+        },
+        "rev_10": {
+          "type": "quote",
+          "settings": {
+            "title": "“It tastes great,” says our 5-year-old",
+            "quote": "The taste isn’t bad at all. I administered this in apple juice to myself and my 5 year old he said “it tastes great” and water to my 7 year old (per his request) he said “he tastes cloves”.",
+            "author": "Caterina Z.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste",
+            "photo_alt": ""
+          }
+        },
+        "rev_11": {
+          "type": "quote",
+          "settings": {
+            "title": "In her school water bottle, zero complaints",
+            "quote": "Let me start by saying that you need to be consistent. This is a slow process that takes time… I already bought my second bottle. My Daughter is very picky, but I always put this in the water she takes to school, and she never complains of flavor or anything weird… It mixes well with water.",
+            "author": "Matt R.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, taste, routine",
+            "photo_alt": ""
+          }
+        },
+        "rev_12": {
+          "type": "quote",
+          "settings": {
+            "title": "Can’t taste it in their milk",
+            "quote": "Great for kids… Just one dropper in a cup of milk, kids can’t taste anything. Kids never have any problems with it at all… Highly recommend.",
+            "author": "Tiffany",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, easy",
+            "photo_alt": ""
+          }
+        },
+        "rev_13": {
+          "type": "quote",
+          "settings": {
+            "title": "Our go-to when things feel off",
+            "quote": "I turn to this to get his gut back on track. Very mild, not noticed in his smoothies… Good value for the money. I don’t buy it back to back, just when I notice things are off.",
+            "author": "Yandra L.",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine, tummy",
+            "photo_alt": ""
+          }
         }
       },
       "block_order": [
@@ -447,11 +531,18 @@
         "ph2",
         "ph3",
         "ph4",
-        "rev_1",
-        "rev_2",
         "rev_3",
-        "rev_4",
+        "rev_2",
+        "rev_7",
         "rev_5",
+        "rev_8",
+        "rev_9",
+        "rev_10",
+        "rev_11",
+        "rev_1",
+        "rev_12",
+        "rev_13",
+        "rev_4",
         "rev_6"
       ],
       "settings": {
@@ -465,7 +556,8 @@
         "bar_labels": "",
         "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
         "filters": "",
-        "quotes_note": "Individual reviews reflect one family’s experience. Results vary."
+        "quotes_note": "Individual reviews reflect one family’s experience. Results vary.",
+        "quotes_visible": 6
       }
     },
     "ingredients": {

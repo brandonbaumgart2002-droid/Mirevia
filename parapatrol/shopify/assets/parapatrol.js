@@ -409,6 +409,17 @@
     });
   }
 
+  /* ---------------- "Show more reviews" ---------------- */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-pp-more-btn]');
+    if (!btn) return;
+    var wrap = btn.closest('section') || document;
+    var first = null;
+    $$('.pp-more-hidden', wrap).forEach(function (li) { li.classList.remove('pp-more-hidden'); if (!first) first = li; });
+    btn.parentNode.removeChild(btn);
+    if (first) { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
+  });
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
