@@ -22,7 +22,7 @@
         "rating_score_fallback": "4.8",
         "rating_count_fallback": "237+",
         "rating_label": "parent reviews",
-        "authority": "",
+        "authority": "Paediatrician-approved formula",
         "tick_1": "Settles tummies*",
         "tick_2": "Supports a healthy appetite*",
         "tick_3": "No fuss: mixes into any drink",
@@ -46,7 +46,9 @@
         "ink_muted": "#4f5b72",
         "line": "#ece1e5",
         "load_google_fonts": true,
-        "use_theme_fonts": false
+        "use_theme_fonts": false,
+        "show_hero_price": false,
+        "authority_note": "Gentle, kid-dosed herbal blend for ages 3+"
       }
     },
     "kidlife": {

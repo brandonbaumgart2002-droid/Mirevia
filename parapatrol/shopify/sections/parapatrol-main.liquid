@@ -128,22 +128,36 @@
           </div>
         {%- endif -%}
 
-        <p class="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1" data-pp-hero-price-row>
-          {%- if hero_sub -%}
-            <span class="font-display font-semibold text-[28px] leading-none" data-pp-hero-price>{{ hero_sub.price | money }}</span>
-            <s class="text-muted text-[15px]" data-pp-hero-compare>{{ hero_v.price | money }}</s>
-            {%- if hero_save > 0 %}<span class="px-2 py-0.5 rounded-full bg-berry text-white text-[11px] font-bold self-center" data-pp-hero-save>SAVE {{ hero_save }}%</span>{% endif -%}
-            <span class="text-[13px] text-muted" data-pp-hero-note>with Subscribe &amp; save</span>
-          {%- else -%}
-            <span class="font-display font-semibold text-[28px] leading-none" data-pp-hero-price>{{ hero_v.price | money }}</span>
-          {%- endif -%}
-        </p>
+        {%- if section.settings.show_hero_price -%}
+          <p class="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1" data-pp-hero-price-row>
+            {%- if hero_sub -%}
+              <span class="font-display font-semibold text-[28px] leading-none" data-pp-hero-price>{{ hero_sub.price | money }}</span>
+              <s class="text-muted text-[15px]" data-pp-hero-compare>{{ hero_v.price | money }}</s>
+              {%- if hero_save > 0 %}<span class="px-2 py-0.5 rounded-full bg-berry text-white text-[11px] font-bold self-center" data-pp-hero-save>SAVE {{ hero_save }}%</span>{% endif -%}
+              <span class="text-[13px] text-muted" data-pp-hero-note>with Subscribe &amp; save</span>
+            {%- else -%}
+              <span class="font-display font-semibold text-[28px] leading-none" data-pp-hero-price>{{ hero_v.price | money }}</span>
+            {%- endif -%}
+          </p>
+
+        {%- endif -%}
 
         {%- if section.settings.authority != blank -%}
-          <p class="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-mint text-primary-dark text-[13px] font-bold px-3 py-1">
-            {%- render 'parapatrol-icon', name: 'shield', icon_size: 15 -%}
-            <span>{{ section.settings.authority }}</span>
-          </p>
+          {%- if section.settings.show_hero_price -%}
+            <p class="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-mint text-primary-dark text-[13px] font-bold px-3 py-1">
+              {%- render 'parapatrol-icon', name: 'shield', icon_size: 15 -%}
+              <span>{{ section.settings.authority }}</span>
+            </p>
+          {%- else -%}
+            {%- comment -%} Price hidden: the expert line takes its place as a fuller badge {%- endcomment -%}
+            <div class="mt-3 inline-flex items-center gap-3 rounded-2xl bg-mint border border-[#cfe3d8] pl-2 pr-4 py-2">
+              <span class="w-10 h-10 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 20 -%}</span>
+              <span class="leading-tight">
+                <span class="block font-display font-bold text-[17px] sm:text-[18px] text-primary-dark">{{ section.settings.authority }}</span>
+                {%- if section.settings.authority_note != blank -%}<span class="block text-[13px] font-semibold text-muted mt-0.5">{{ section.settings.authority_note }}</span>{%- endif -%}
+              </span>
+            </div>
+          {%- endif -%}
         {%- endif -%}
       </div>
 
@@ -240,7 +254,9 @@
     { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "4.8" },
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
+    { "type": "checkbox", "id": "show_hero_price", "label": "Show price under the title", "info": "Off: the expert line below shows as a larger badge in its place. Prices still show in the buy box.", "default": true },
     { "type": "text", "id": "authority", "label": "Expert line under the price", "info": "Links to the Expert section. Only use if a real practitioner recommends it. Clear to hide.", "default": "Paediatrician recommended" },
+    { "type": "text", "id": "authority_note", "label": "Small line under the expert badge", "info": "Shows when the price under the title is hidden.", "default": "Gentle, kid-dosed herbal blend for ages 3+" },
     { "type": "text", "id": "tick_1", "label": "Benefit 1", "default": "Settles tummies*" },
     { "type": "text", "id": "tick_2", "label": "Benefit 2", "default": "Supports a healthy appetite*" },
     { "type": "text", "id": "tick_3", "label": "Benefit 3", "default": "No fuss: mixes into any drink" },
