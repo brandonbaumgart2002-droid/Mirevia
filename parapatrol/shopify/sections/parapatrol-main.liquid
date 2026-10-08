@@ -206,7 +206,7 @@
         {%- if section.settings.sale_end_date != blank -%}
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
-        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note -%}
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
 
         {%- comment -%} Quick answers: the biggest objections (safety, taste, dosing and results, guarantee), for shoppers who never reach the full FAQ {%- endcomment -%}
         {%- if section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
@@ -314,6 +314,13 @@
       { "value": "message", "label": "Show a message" },
       { "value": "cart", "label": "Go to the cart page" }
     ] },
+    { "type": "header", "content": "Delivery estimate" },
+    { "type": "checkbox", "id": "show_delivery", "label": "Show delivery estimate under Add to Bag", "info": "Replaces the trust badges. Dates are worked out from today.", "default": true },
+    { "type": "number", "id": "proc_min", "label": "Processing: fewest business days", "default": 1 },
+    { "type": "number", "id": "proc_max", "label": "Processing: most business days", "default": 2 },
+    { "type": "number", "id": "del_min", "label": "Delivery: fewest days from order", "default": 7 },
+    { "type": "number", "id": "del_max", "label": "Delivery: most days from order", "default": 15 },
+    { "type": "text", "id": "delivery_note", "label": "Small line under the estimate", "default": "Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days." },
     { "type": "header", "content": "Quick answers under the buy box" },
     { "type": "text", "id": "quick_heading", "label": "Small heading", "default": "Quick answers" },
     { "type": "text", "id": "quick_q1", "label": "Question 1", "default": "Is it safe for my child?" },

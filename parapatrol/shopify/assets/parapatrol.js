@@ -389,6 +389,26 @@
     });
   }
 
+  /* ---------------- delivery estimate ----------------
+     "Order today, arrives X – Y": processing counts business days (no weekends), delivery counts calendar
+     days from today. Recalculated in the visitor's own timezone and date format. */
+  function initDelivery(root) {
+    $$('[data-pp-delivery]', root).forEach(function (box) {
+      function num(k, d) { var n = parseInt(box.getAttribute(k), 10); return isNaN(n) ? d : n; }
+      function addDays(n) { var d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + n); return d; }
+      function addBusiness(n) {
+        var d = new Date(); d.setHours(12, 0, 0, 0);
+        while (n > 0) { d.setDate(d.getDate() + 1); var w = d.getDay(); if (w !== 0 && w !== 6) n--; }
+        return d;
+      }
+      function fmt(d) { try { return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return d.toDateString().slice(4, 10); } }
+      var shipA = fmt(addBusiness(num('data-proc-min', 1))), shipB = fmt(addBusiness(num('data-proc-max', 2)));
+      var delA = fmt(addDays(num('data-del-min', 7))), delB = fmt(addDays(num('data-del-max', 15)));
+      [['[data-pp-ship-a]', shipA], ['[data-pp-ship-b]', shipB], ['[data-pp-del-a]', delA], ['[data-pp-del-b]', delB], ['[data-pp-del-a2]', delA], ['[data-pp-del-b2]', delB]]
+        .forEach(function (p) { var el = $(p[0], box); if (el) el.textContent = p[1]; });
+    });
+  }
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
@@ -548,6 +568,7 @@
     highlight(root);
     initGallery(root);
     initAccordions(root);
+    initDelivery(root);
     initReviews(root);
     initBundle(root);
     initStats(root);

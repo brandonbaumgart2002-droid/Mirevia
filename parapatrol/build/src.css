@@ -204,3 +204,6 @@
 /* Kaching's "Most popular / Best value" tags sit at z-index 3, the same as the theme's sticky header,
    so they slid over the header on scroll. 1 keeps them above their own bar. */
 .pp.pp .kaching-bundles__bar-most-popular { z-index: 1 !important; }
+
+/* Delivery timeline: a line joining the three steps, behind the icons */
+.pp .pp-deliv li + li::before { content: ""; position: absolute; top: 15px; right: 50%; width: 100%; height: 2px; background: var(--brand-primary); opacity: .35; }

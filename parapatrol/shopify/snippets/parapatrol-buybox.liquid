@@ -11,6 +11,10 @@
     guarantee         guarantee line under the button (used only when no trust badges are passed)
     trust             trust badges, one per line as icon|text (icons: lock, truck, shield, leaf, heart, check)
     payment_icons     true to show the store's enabled payment methods
+    delivery          true to show the delivery estimate in place of the trust badges and guarantee line
+    proc_min/proc_max business days to process an order (e.g. 1 and 2)
+    del_min/del_max   days from order to delivery (e.g. 7 and 15)
+    delivery_note     small line under the delivery estimate
     subscribe_note    small line under the subscribe price
 
   Subscriptions come from the product's selling plans (Shopify Subscriptions,
@@ -137,8 +141,43 @@
     </div>
     <p class="mt-3 text-[13px] text-center text-muted" data-pp-ship aria-live="polite"></p>
     <p class="mt-2 text-[13px] text-center text-red-700 font-medium" data-pp-error role="alert" hidden></p>
+    {%- if delivery -%}
+      {%- liquid
+        assign d_now = 'now' | date: '%s' | plus: 0
+        assign d_ship_a = proc_min | default: 1 | times: 86400 | plus: d_now | date: '%b %-d'
+        assign d_ship_b = proc_max | default: 2 | times: 86400 | plus: d_now | date: '%b %-d'
+        assign d_del_a = del_min | default: 7 | times: 86400 | plus: d_now | date: '%b %-d'
+        assign d_del_b = del_max | default: 15 | times: 86400 | plus: d_now | date: '%b %-d'
+      -%}
+      <div class="mt-4 rounded-2xl bg-mint px-4 py-3.5" data-pp-delivery data-proc-min="{{ proc_min | default: 1 }}" data-proc-max="{{ proc_max | default: 2 }}" data-del-min="{{ del_min | default: 7 }}" data-del-max="{{ del_max | default: 15 }}">
+        <p class="flex items-center gap-2 text-[14px] sm:text-[15px] text-ink">
+          <span class="text-primary shrink-0">{%- render 'parapatrol-icon', name: 'truck', icon_size: 18 -%}</span>
+          <span>Order today, arrives <strong class="font-extrabold"><span data-pp-del-a>{{ d_del_a }}</span> – <span data-pp-del-b>{{ d_del_b }}</span></strong></span>
+        </p>
+        <ol class="pp-deliv mt-3 grid grid-cols-3 text-center" role="list">
+          <li class="relative">
+            <span class="relative z-[1] mx-auto w-8 h-8 rounded-full bg-primary text-white inline-flex items-center justify-center">{%- render 'parapatrol-icon', name: 'check', icon_size: 16 -%}</span>
+            <span class="block mt-1 text-[12px] font-extrabold text-ink">Ordered</span>
+            <span class="block text-[11px] text-muted">Today</span>
+          </li>
+          <li class="relative">
+            <span class="relative z-[1] mx-auto w-8 h-8 rounded-full bg-white text-primary inline-flex items-center justify-center border-2 border-primary">{%- render 'parapatrol-icon', name: 'truck', icon_size: 16 -%}</span>
+            <span class="block mt-1 text-[12px] font-extrabold text-ink">Shipped</span>
+            <span class="block text-[11px] text-muted"><span data-pp-ship-a>{{ d_ship_a }}</span> – <span data-pp-ship-b>{{ d_ship_b }}</span></span>
+          </li>
+          <li class="relative">
+            <span class="relative z-[1] mx-auto w-8 h-8 rounded-full bg-white text-primary inline-flex items-center justify-center border-2 border-primary">{%- render 'parapatrol-icon', name: 'heart', icon_size: 16 -%}</span>
+            <span class="block mt-1 text-[12px] font-extrabold text-ink">Delivered</span>
+            <span class="block text-[11px] text-muted"><span data-pp-del-a2>{{ d_del_a }}</span> – <span data-pp-del-b2>{{ d_del_b }}</span></span>
+          </li>
+        </ol>
+        {%- if delivery_note != blank -%}
+          <p class="mt-3 pt-2.5 border-t border-[#cfe3d8] text-[12px] leading-snug text-muted text-center">{{ delivery_note }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
     {%- assign trust_lines = trust | newline_to_br | split: '<br />' -%}
-    {%- if trust != blank -%}
+    {%- if trust != blank and delivery != true -%}
       <ul class="mt-4 grid grid-cols-4 gap-1.5 sm:gap-2" role="list" aria-label="Why parents buy with confidence">
         {%- for line in trust_lines -%}
           {%- assign parts = line | strip | split: '|' -%}
@@ -162,7 +201,7 @@
         </ul>
       </div>
     {%- endif -%}
-    {%- if guarantee != blank and trust == blank -%}
+    {%- if guarantee != blank and trust == blank and delivery != true -%}
       <p class="mt-2 flex items-start justify-center gap-1.5 text-[13px] font-medium text-ink text-center">
         <span class="text-primary mt-0.5">{%- render 'parapatrol-icon', name: 'shield', icon_size: 16 -%}</span>
         <span>{{ guarantee }}</span>
