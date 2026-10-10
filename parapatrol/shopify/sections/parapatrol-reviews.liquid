@@ -15,6 +15,7 @@
       <div class="text-center">
         {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <h2 id="pp-rev-{{ section.id }}" class="font-display font-bold text-[32px] sm:text-[44px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+        {%- if section.settings.subheading != blank -%}<p class="mt-3 mx-auto max-w-2xl text-[16px] sm:text-[18px] leading-relaxed text-muted">{{ section.settings.subheading }}</p>{%- endif -%}
         {%- if section.settings.show_breakdown -%}
           {%- liquid
             if rating != blank
@@ -123,6 +124,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "What parents say" },
+    { "type": "textarea", "id": "subheading", "label": "Line under the heading" },
     { "type": "checkbox", "id": "show_breakdown", "label": "Show rating summary + breakdown", "default": true },
     { "type": "text", "id": "score_fallback", "label": "Star score when no reviews app data", "info": "Must match your real reviews.", "default": "4.8" },
     { "type": "text", "id": "count_fallback", "label": "Review count when no reviews app data", "default": "237+" },
