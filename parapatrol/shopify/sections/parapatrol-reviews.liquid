@@ -21,15 +21,23 @@
       {%- assign photo_count = 0 -%}
       {%- for block in section.blocks -%}{%- if block.type == 'photo' -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
       {%- if photo_count > 0 -%}
-        <ul class="mt-8 -mx-4 px-4 scroll-px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 sm:mx-0 sm:px-0 sm:grid {% if photo_count >= 5 %}sm:grid-cols-5{% else %}sm:grid-cols-4{% endif %} sm:gap-4 sm:overflow-visible" role="list" aria-label="ParaPatrol in family life">
+        <div class="relative mt-8" data-pp-slider>
+        <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2" data-pp-slider-track role="list" aria-label="ParaPatrol in family life">
           {%- for block in section.blocks -%}
             {%- if block.type == 'photo' -%}
-              <li class="snap-start shrink-0 w-[62%] sm:w-auto" {{ block.shopify_attributes }}>
+              <li class="snap-start shrink-0 w-[62%] sm:w-[calc(20%-12.8px)]" {{ block.shopify_attributes }}>
                 {%- render 'parapatrol-media', image: block.settings.image, asset: block.settings.asset, label: block.settings.alt, alt: block.settings.alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 230px, (min-width: 640px) 20vw, 62vw' -%}
               </li>
             {%- endif -%}
           {%- endfor -%}
         </ul>
+        {%- if photo_count > 5 -%}
+          <div class="mt-3 hidden sm:flex justify-end gap-2">
+            <button type="button" data-pp-slider-prev class="disable-global-button-styling w-10 h-10 rounded-full bg-white border-2 border-primary text-primary-dark inline-flex items-center justify-center hover:bg-mint disabled:opacity-40" aria-label="Previous photos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button type="button" data-pp-slider-next class="disable-global-button-styling w-10 h-10 rounded-full bg-primary text-white inline-flex items-center justify-center hover:bg-primary-dark disabled:opacity-40" aria-label="More photos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        {%- endif -%}
+        </div>
       {%- endif -%}
 
       <div class="mt-8 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] gap-6 lg:gap-10">
@@ -108,6 +116,11 @@
                 <li class="snap-start shrink-0 w-[86%] sm:w-[calc(50%-8px)] bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
                   {%- if block.settings.customer_photo != blank -%}
                     {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-square rounded-2xl mb-4', sizes: '(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw' -%}
+                  {%- elsif block.settings.illus_image != blank or block.settings.illus_asset != blank -%}
+                    <div class="relative mb-4">
+                      {%- render 'parapatrol-media', image: block.settings.illus_image, asset: block.settings.illus_asset, label: block.settings.illus_alt, alt: block.settings.illus_alt, class: 'aspect-[4/3] rounded-2xl', sizes: '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 86vw' -%}
+                      <span class="absolute left-2 bottom-2 rounded-full bg-white px-2 py-0.5 text-[11px] font-bold text-muted">Illustrative photo</span>
+                    </div>
                   {%- endif -%}
                   {%- if block.settings.stars > 0 -%}
                     <div>{%- render 'parapatrol-stars', score: block.settings.stars, size: 16 -%}</div>
@@ -161,12 +174,15 @@
       { "type": "text", "id": "title", "label": "Title", "info": "The moment that changed for this family, in a few words, e.g. Calmer mornings. Must match what the review actually says." },
       { "type": "textarea", "id": "quote", "label": "Quote" },
       { "type": "text", "id": "author", "label": "Name", "default": "Verified Buyer" },
-      { "type": "text", "id": "detail", "label": "Detail next to the name", "info": "Only what the customer told you, e.g. Parent of a 5-year-old. Shown in brackets." },
+      { "type": "text", "id": "detail", "label": "Detail next to the name", "info": "e.g. Parent of Leo, age 5. Use a changed name for the child; only use an age the customer gave. Shown in brackets." },
       { "type": "text", "id": "badge", "label": "Badge", "default": "Verified Buyer" },
       { "type": "range", "id": "stars", "label": "Stars (0 hides)", "min": 0, "max": 5, "step": 1, "default": 5 },
       { "type": "text", "id": "tags", "label": "Filter keys (comma separated)", "info": "Use keys from the section's filter list, e.g. easy, taste" },
       { "type": "image_picker", "id": "customer_photo", "label": "Customer photo (optional)", "info": "Only a real photo from this customer, used with their permission. Never a stock or AI image." },
-      { "type": "text", "id": "photo_alt", "label": "Customer photo description" }
+      { "type": "text", "id": "photo_alt", "label": "Customer photo description" },
+      { "type": "image_picker", "id": "illus_image", "label": "Illustrative photo (optional)", "info": "Shown with an 'Illustrative photo' tag. Used only when there's no customer photo." },
+      { "type": "text", "id": "illus_asset", "label": "Illustrative photo: built-in image file" },
+      { "type": "text", "id": "illus_alt", "label": "Illustrative photo description" }
     ] },
     { "type": "photo", "name": "Lifestyle photo", "settings": [
       { "type": "paragraph", "content": "Shown in a row above the reviews, separate from the quotes." },

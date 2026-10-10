@@ -363,7 +363,9 @@
             "tags": "tummy",
             "photo_alt": "",
             "title": "Finishing her meals again",
-            "detail": "Parent of a daughter"
+            "detail": "Parent of Ava",
+            "illus_asset": "pp-family-ugc-3.jpg",
+            "illus_alt": "A mum and daughter smile with a ParaPatrol box"
           }
         },
         "rev_3": {
@@ -376,7 +378,7 @@
             "tags": "easy, taste",
             "photo_alt": "",
             "title": "Calmer mornings, no pill battles",
-            "detail": "Parent of a son"
+            "detail": "Parent of Leo"
           }
         },
         "rev_4": {
@@ -388,7 +390,9 @@
             "stars": 5,
             "tags": "routine",
             "photo_alt": "",
-            "title": "Our school-season go-to"
+            "title": "Our school-season go-to",
+            "illus_asset": "pp-family-ugc-5.jpg",
+            "illus_alt": "A dad and son on the sofa with ParaPatrol"
           }
         },
         "rev_5": {
@@ -401,7 +405,9 @@
             "tags": "tummy",
             "photo_alt": "",
             "title": "A bigger appetite for our picky eater",
-            "detail": "Parent of a son"
+            "detail": "Parent of Jack",
+            "illus_asset": "pp-family-ugc-2.jpg",
+            "illus_alt": "A boy holds up a ParaPatrol bottle"
           }
         },
         "rev_6": {
@@ -426,7 +432,9 @@
             "stars": 5,
             "tags": "tummy, taste",
             "photo_alt": "",
-            "detail": "Parent of a picky eater"
+            "detail": "Parent of Noah, a picky eater",
+            "illus_asset": "pp-family-ugc-6.jpg",
+            "illus_alt": "A mum holds a ParaPatrol bottle while her son laughs on the swing"
           }
         },
         "rev_8": {
@@ -452,7 +460,9 @@
             "stars": 5,
             "tags": "tummy, taste",
             "photo_alt": "",
-            "detail": "Parent of little ones"
+            "detail": "Parent of little ones",
+            "illus_asset": "pp-family-ugc-1.jpg",
+            "illus_alt": "A mum takes a garden selfie with her two kids and a ParaPatrol bottle"
           }
         },
         "rev_10": {
@@ -465,7 +475,9 @@
             "stars": 5,
             "tags": "taste",
             "photo_alt": "",
-            "detail": "Parent of a 5- and 7-year-old"
+            "detail": "Parent of Max, 5, and Sam, 7",
+            "illus_asset": "pp-family-ugc-8.jpg",
+            "illus_alt": "A boy laughs at the breakfast table next to a ParaPatrol bottle"
           }
         },
         "rev_11": {
@@ -478,7 +490,9 @@
             "stars": 5,
             "tags": "easy, taste, routine",
             "photo_alt": "",
-            "detail": "Parent of a school-age daughter"
+            "detail": "Parent of Lily, school age",
+            "illus_asset": "pp-family-ugc-4.jpg",
+            "illus_alt": "A girl watches a dropper of ParaPatrol go into her orange juice"
           }
         },
         "rev_12": {
@@ -503,7 +517,9 @@
             "stars": 5,
             "tags": "routine, tummy",
             "photo_alt": "",
-            "detail": "Parent of a son"
+            "detail": "Parent of Ethan",
+            "illus_asset": "pp-family-ugc-7.jpg",
+            "illus_alt": "A mum and her son take a car selfie with a ParaPatrol box"
           }
         },
         "rev_14": {
@@ -516,7 +532,9 @@
             "stars": 5,
             "tags": "tummy, routine",
             "photo_alt": "",
-            "detail": "Parent of an 8-year-old"
+            "detail": "Parent of Mia, age 8",
+            "illus_asset": "pp-family-ugc-10.jpg",
+            "illus_alt": "A mum and daughter in bed with a ParaPatrol bottle and box"
           }
         },
         "rev_15": {
@@ -529,7 +547,7 @@
             "stars": 5,
             "tags": "tummy",
             "photo_alt": "",
-            "detail": "Parent of two daughters"
+            "detail": "Parent of Ella and Grace"
           }
         },
         "rev_16": {
@@ -542,7 +560,7 @@
             "stars": 5,
             "tags": "taste, easy",
             "photo_alt": "",
-            "detail": "Parent of a 9-year-old"
+            "detail": "Parent of Chloe, age 9"
           }
         },
         "rev_17": {
@@ -554,7 +572,9 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "easy, routine",
-            "photo_alt": ""
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-9.jpg",
+            "illus_alt": "A grandmother and grandson in the garden with ParaPatrol"
           }
         },
         "rev_18": {
@@ -567,7 +587,7 @@
             "stars": 5,
             "tags": "taste, routine",
             "photo_alt": "",
-            "detail": "Parent of two boys"
+            "detail": "Parent of Oliver and Henry"
           }
         },
         "rev_19": {
@@ -581,49 +601,9 @@
             "tags": "routine",
             "photo_alt": ""
           }
-        },
-        "ugc1": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-ugc-1.jpg",
-            "alt": "A mum takes a garden selfie with her two kids, holding a ParaPatrol bottle and box"
-          }
-        },
-        "ugc2": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-ugc-2.jpg",
-            "alt": "A smiling boy holds a ParaPatrol bottle out to the camera on a sunny footpath"
-          }
-        },
-        "ugc3": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-ugc-3.jpg",
-            "alt": "A mum and her young daughter smile with a ParaPatrol box at home"
-          }
-        },
-        "ugc4": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-ugc-4.jpg",
-            "alt": "A parent adds a dropper of ParaPatrol to a girl’s orange juice at breakfast"
-          }
-        },
-        "ugc5": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-ugc-5.jpg",
-            "alt": "A dad and his son smile on the sofa, the boy holding a ParaPatrol bottle"
-          }
         }
       },
       "block_order": [
-        "ugc1",
-        "ugc2",
-        "ugc3",
-        "ugc4",
-        "ugc5",
         "rev_3",
         "rev_2",
         "rev_7",
@@ -655,7 +635,7 @@
         "bar_labels": "",
         "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
         "filters": "",
-        "quotes_note": "Individual reviews reflect one family’s experience. Results vary."
+        "quotes_note": "Individual reviews reflect one family’s experience. Results vary. Children’s names have been changed for privacy. Photos are illustrative and don’t show the reviewers or their families."
       }
     },
     "ingredients": {
