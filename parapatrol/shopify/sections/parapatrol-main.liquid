@@ -242,6 +242,9 @@
                     </button>
                     <div id="pp-qa-p-{{ qid }}" role="region" aria-labelledby="pp-qa-b-{{ qid }}" class="px-4 pb-4 pl-[60px] text-[14px] leading-relaxed text-ink" hidden>
                       {%- render 'parapatrol-claim', text: a -%}
+                      {%- if i == 1 and section.settings.quick_safety_link != blank -%}
+                        <a href="#safety" data-pp-scroll class="mt-2 flex w-fit items-center gap-1 font-extrabold text-primary-dark underline underline-offset-4 hover:text-primary">{{ section.settings.quick_safety_link }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+                      {%- endif -%}
                     </div>
                   </div>
                 {%- endif -%}
@@ -325,6 +328,7 @@
     { "type": "text", "id": "quick_heading", "label": "Small heading", "default": "Quick answers" },
     { "type": "text", "id": "quick_q1", "label": "Question 1", "default": "Is it safe for my child?" },
     { "type": "textarea", "id": "quick_a1", "label": "Answer 1", "default": "ParaPatrol is made and dosed for kids 3 and up: alcohol-free, sugar-free, made in the USA and third-party tested, with a simple 1 mL daily dose. Not for children under 3. If your child takes medication or has a health condition, check with your paediatrician first." },
+    { "type": "text", "id": "quick_safety_link", "label": "Answer 1: link to the safety section", "info": "Blank hides the link.", "default": "Read the full safety profile" },
     { "type": "text", "id": "quick_q2", "label": "Question 2", "default": "Will my picky eater actually take it?" },
     { "type": "textarea", "id": "quick_a2", "label": "Answer 2", "default": "It has a natural raspberry flavour and mixes straight into orange juice, milk or a smoothie, so most kids drink it without a fuss. First time? Start with half a dropper for a few days." },
     { "type": "text", "id": "quick_q3", "label": "Question 3", "default": "How often do they take it, and when will we see results?" },

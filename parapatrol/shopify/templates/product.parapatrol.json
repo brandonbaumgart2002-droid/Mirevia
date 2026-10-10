@@ -703,52 +703,186 @@
     "safety": {
       "type": "parapatrol-safety",
       "blocks": {
-        "safe_1": {
-          "type": "item",
+        "p1": {
+          "type": "pillar",
           "settings": {
-            "lead": "For children 3+.",
-            "text": "Not for children under 3, or during pregnancy or breastfeeding."
+            "icon": "shield",
+            "title": "Dosed for ages 3+",
+            "text": "One 1 mL dropper a day, measured for children, not a halved adult dose. First time? Start with half a dropper."
           }
         },
-        "safe_2": {
-          "type": "item",
+        "p2": {
+          "type": "pillar",
           "settings": {
-            "lead": "Contains tree nut (black walnut).",
-            "text": ""
+            "icon": "leaf",
+            "title": "Nothing they don’t need",
+            "text": "Alcohol-free glycerin base, no sugar, gluten-free and vegan friendly. Just 11 herbs, natural raspberry flavor and a bitter blocker."
           }
         },
-        "safe_3": {
-          "type": "item",
+        "p3": {
+          "type": "pillar",
           "settings": {
-            "lead": "",
-            "text": "Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain, blood in stool, changes in urination, or any unusual reaction."
+            "icon": "check",
+            "title": "Made and tested properly",
+            "text": "Made in the USA to cGMP standards, and every batch is third-party tested."
           }
         },
-        "safe_4": {
-          "type": "item",
+        "p4": {
+          "type": "pillar",
           "settings": {
-            "lead": "",
-            "text": "Talk to your pediatrician before use if your child takes medication or has a health condition."
+            "icon": "reset",
+            "title": "A short routine, not forever",
+            "text": "Use it for 2–3 weeks, then take a break. Keep a bottle on hand for school terms and after trips."
           }
         },
-        "safe_5": {
+        "g1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Wormwood",
+            "tag": "Reset",
+            "text": "<p>Search “wormwood” and you’ll see warnings about <strong>thujone</strong>, a natural compound that can be a concern in large amounts. ParaPatrol uses <strong>thujone-free wormwood</strong>, as a small part of a 1 mL, kid-sized serving.</p>"
+          }
+        },
+        "g2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Licorice root",
+            "tag": "Settle",
+            "text": "<p>Used for little tummies for generations.* Large amounts taken every day for a long time can raise blood pressure, which is why ParaPatrol uses licorice as one part of a 1 mL blend, in a short 2–3 week routine with breaks.</p>"
+          }
+        },
+        "g3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Black walnut hull",
+            "tag": "Reset",
+            "text": "<p>A traditional botanical used to support a steady digestive rhythm.* It’s a tree nut, so ParaPatrol isn’t suitable for children with a tree nut allergy, and it’s clearly marked on the label.</p>"
+          }
+        },
+        "g4": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Clove",
+            "tag": "Reset",
+            "text": "<p>A familiar kitchen spice that supports regular digestion.* Clove is strong when concentrated as an oil; in ParaPatrol it’s a small part of a diluted, alcohol-free blend (it’s why some kids say they can “taste cloves”).</p>"
+          }
+        },
+        "g5": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Fennel, anise & aloe vera",
+            "tag": "Settle",
+            "text": "<p>Gentle, time-tested herbs for occasional gas and tummy upsets.* Fennel and anise are the same seeds you’ll find in many children’s tummy teas.</p>"
+          }
+        },
+        "g6": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Pau d’arco, thyme & oregano",
+            "tag": "Strengthen",
+            "text": "<p>Thyme and oregano are everyday kitchen herbs; pau d’arco is a traditional bark used alongside them to support healthy gut defences.* All three are small parts of the 1 mL blend.</p>"
+          }
+        },
+        "g7": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Pumpkin seed",
+            "tag": "Reset",
+            "text": "<p>A food-based ingredient (yes, the same seeds) traditionally used to support digestion.*</p>"
+          }
+        },
+        "w1": {
           "type": "item",
           "settings": {
-            "lead": "",
-            "text": "Made with thujone-free wormwood."
+            "lead": "For children 3 and up.",
+            "text": "Not for children under 3."
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "lead": "Contains tree nuts (black walnut).",
+            "text": "Not suitable for children with a tree nut allergy."
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "lead": "Taking medication or have a health condition?",
+            "text": "Talk to your pediatrician first, especially for heart, kidney or liver conditions."
+          }
+        },
+        "w4": {
+          "type": "item",
+          "settings": {
+            "lead": "Grown-ups:",
+            "text": "not for use during pregnancy or breastfeeding."
+          }
+        },
+        "x1": {
+          "type": "stop",
+          "settings": {
+            "text": "Vomiting or diarrhea"
+          }
+        },
+        "x2": {
+          "type": "stop",
+          "settings": {
+            "text": "Stomach pain that gets worse or doesn’t settle"
+          }
+        },
+        "x3": {
+          "type": "stop",
+          "settings": {
+            "text": "Blood in the stool"
+          }
+        },
+        "x4": {
+          "type": "stop",
+          "settings": {
+            "text": "Changes in urination"
+          }
+        },
+        "x5": {
+          "type": "stop",
+          "settings": {
+            "text": "A rash, swelling or any other unusual reaction"
           }
         }
       },
       "block_order": [
-        "safe_1",
-        "safe_2",
-        "safe_3",
-        "safe_4",
-        "safe_5"
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "w1",
+        "w2",
+        "w3",
+        "w4",
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
       ],
       "settings": {
-        "heading": "Safety & who it’s for",
-        "callout": "Itchy bottom at night or worms you can see? That’s a job for your doctor, not a supplement."
+        "eyebrow": "Safety profile",
+        "heading": "Is it gentle enough for my child?",
+        "intro": "<p>Anything with “herbal” and “gut” on the label can sound intimidating for a little one. Most of that reputation comes from strong adult tinctures that were never made for children.</p><p><strong>ParaPatrol was made for kids from day one</strong>, so every choice in the formula starts with one question: is this right for a 3-year-old?</p>",
+        "ing_heading": "Ingredient by ingredient",
+        "ing_intro": "If you Google some of these herbs, you’ll find warnings. Here’s what each one is doing in ParaPatrol, and the honest context behind the headlines.",
+        "who_heading": "Who it’s for",
+        "stop_heading": "Stop and call your doctor if",
+        "callout": "Itchy bottom at night or worms you can see? That’s a job for your doctor, not a supplement.",
+        "button_label": "Choose your bundle",
+        "button_note": "30-day money-back guarantee · Free shipping on all orders"
       }
     },
     "guarantee": {

@@ -547,9 +547,11 @@
 
   /* ---------------- final CTA: back up to the main buy box ---------------- */
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('[data-pp-to-buy]');
+    // [data-pp-to-buy] scrolls to the buy box; [data-pp-scroll] scrolls to the section its href points at (e.g. #safety)
+    var a = e.target.closest && e.target.closest('[data-pp-to-buy], [data-pp-scroll]');
     if (!a) return;
-    var box = document.getElementById('pp-buy');
+    var toBuy = a.hasAttribute('data-pp-to-buy');
+    var box = document.getElementById(toBuy ? 'pp-buy' : (a.getAttribute('href') || '').replace(/^.*#/, ''));
     if (!box) return; // no hero buy box on this page: let the link do nothing harmful
     e.preventDefault();
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -564,7 +566,7 @@
     }
     function target() { return box.getBoundingClientRect().top + window.pageYOffset - Math.max(headerOffset(), 70) - 16; }
     window.scrollTo({ top: target(), behavior: reduce ? 'auto' : 'smooth' });
-    var add = box.querySelector('[data-pp-add]');
+    var add = toBuy ? box.querySelector('[data-pp-add]') : null;
     setTimeout(function () {
       // the header can reappear while scrolling up: correct once the scroll settles
       var off = box.getBoundingClientRect().top - Math.max(headerOffset(), 70) - 16;
