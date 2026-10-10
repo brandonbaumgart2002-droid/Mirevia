@@ -1,0 +1,5 @@
+{%- comment -%} Landing-page button to the product page. Params: url, label, note, left (align left on desktop) {%- endcomment -%}
+<div class="mt-8 {% if left %}text-center lg:text-left{% else %}text-center{% endif %}">
+  <a href="{{ url }}" class="flex w-full sm:inline-flex sm:w-auto sm:min-w-[360px] items-center justify-center gap-2 min-h-[58px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors" data-pp-adv-cta>{{ label }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+  {%- if note != blank -%}<p class="mt-2.5 text-[13px] font-semibold text-muted">✓ {{ note }}</p>{%- endif -%}
+</div>

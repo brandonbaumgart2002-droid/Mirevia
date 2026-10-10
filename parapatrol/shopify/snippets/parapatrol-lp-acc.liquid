@@ -1,0 +1,27 @@
+{%- comment -%}
+  Dropdown list for the landing page. lines: one item per line, "Question | Answer"
+  (or "emoji | title | text" when emoji: true). Uses <details>, so it works without JavaScript.
+{%- endcomment -%}
+{%- if lines != blank -%}
+  {%- assign acc_lines = lines | newline_to_br | split: '<br />' -%}
+  <div class="mt-6 border-t border-[#d6e7dd]">
+    {%- for l in acc_lines -%}
+      {%- assign f = l | strip | split: '|' -%}
+      {%- if emoji -%}
+        {%- assign a_icon = f[0] | strip -%}{%- assign a_q = f[1] | strip -%}{%- assign a_a = f[2] | strip -%}
+      {%- else -%}
+        {%- assign a_icon = '' -%}{%- assign a_q = f[0] | strip -%}{%- assign a_a = f[1] | strip -%}
+      {%- endif -%}
+      {%- if a_q != blank -%}
+        <details class="pp-lp-acc group border-b border-[#d6e7dd]">
+          <summary class="flex items-center gap-3 py-4 cursor-pointer list-none text-[16px] sm:text-[17px] font-bold text-ink">
+            {%- if a_icon != blank -%}<span class="w-9 h-9 shrink-0 rounded-xl bg-mint inline-flex items-center justify-center text-[18px]" aria-hidden="true">{{ a_icon }}</span>{%- endif -%}
+            <span class="flex-1">{{ a_q }}</span>
+            <span class="shrink-0 text-primary transition-transform group-open:rotate-180" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          {%- if a_a != blank -%}<div class="pb-4 {% if a_icon != blank %}pl-12{% endif %} text-[15px] sm:text-[16px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: a_a -%}</div>{%- endif -%}
+        </details>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
