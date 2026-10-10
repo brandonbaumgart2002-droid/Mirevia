@@ -7,22 +7,38 @@
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 {%- liquid
   assign rating = product.metafields.reviews.rating.value
-  assign percents = section.settings.bar_percents | split: ','
-  assign bar_labels = section.settings.bar_labels | split: ','
   assign filter_lines = section.settings.filters | newline_to_br | split: '<br />'
 -%}
 <div class="pp" id="reviews">
-  <section class="bg-soft pt-10 pb-14 lg:pt-14 lg:pb-20" aria-labelledby="pp-rev-{{ section.id }}">
-    <div class="max-w-6xl mx-auto px-4">
-      {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
-      <h2 id="pp-rev-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+  <section class="bg-soft pt-10 pb-14 lg:pt-16 lg:pb-20" aria-labelledby="pp-rev-{{ section.id }}">
+    <div class="max-w-[1240px] mx-auto px-4">
+      <div class="text-center">
+        {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 id="pp-rev-{{ section.id }}" class="font-display font-bold text-[32px] sm:text-[44px] leading-[1.1] mt-2">{{ section.settings.heading }}</h2>
+        {%- if section.settings.show_breakdown -%}
+          {%- liquid
+            if rating != blank
+              assign score = rating.rating | round: 1
+              assign review_count = product.metafields.reviews.rating_count.value
+            else
+              assign score = section.settings.score_fallback
+              assign review_count = section.settings.count_fallback
+            endif
+          -%}
+          {%- if score != blank -%}
+            <div class="mt-3 inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+              {%- render 'parapatrol-stars', score: score, size: 20 -%}
+              <p class="text-[16px] font-bold text-ink">{{ score }} / 5 <span class="font-semibold text-muted">· {% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.count_label }}</span></p>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
 
-      {%- comment -%} Lifestyle photo strip. Kept apart from the quotes so it never reads as a reviewer's photo. {%- endcomment -%}
+      {%- comment -%} Optional lifestyle photo row, kept apart from the reviews. {%- endcomment -%}
       {%- assign photo_count = 0 -%}
       {%- for block in section.blocks -%}{%- if block.type == 'photo' -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
       {%- if photo_count > 0 -%}
-        <div class="relative mt-8" data-pp-slider>
-        <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2" data-pp-slider-track role="list" aria-label="ParaPatrol in family life">
+        <ul class="pp-slider--bar mt-8 -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory" role="list" aria-label="ParaPatrol in family life">
           {%- for block in section.blocks -%}
             {%- if block.type == 'photo' -%}
               <li class="snap-start shrink-0 w-[62%] sm:w-[calc(20%-12.8px)]" {{ block.shopify_attributes }}>
@@ -31,123 +47,72 @@
             {%- endif -%}
           {%- endfor -%}
         </ul>
-        {%- if photo_count > 5 -%}
-          <div class="mt-3 hidden sm:flex justify-end gap-2">
-            <button type="button" data-pp-slider-prev class="disable-global-button-styling w-10 h-10 rounded-full bg-white border-2 border-primary text-primary-dark inline-flex items-center justify-center hover:bg-mint disabled:opacity-40" aria-label="Previous photos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button type="button" data-pp-slider-next class="disable-global-button-styling w-10 h-10 rounded-full bg-primary text-white inline-flex items-center justify-center hover:bg-primary-dark disabled:opacity-40" aria-label="More photos"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg></button>
-          </div>
-        {%- endif -%}
-        </div>
       {%- endif -%}
 
-      <div class="mt-8 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] gap-6 lg:gap-10">
-        {%- if section.settings.show_breakdown -%}
-          <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
-            {%- liquid
-              if rating != blank
-                assign score = rating.rating | round: 1
-                assign review_count = product.metafields.reviews.rating_count.value
-              else
-                assign score = section.settings.score_fallback
-                assign review_count = section.settings.count_fallback
-              endif
-              assign has_bars = false
-              for p in percents
-                assign pv = p | strip | plus: 0
-                if pv > 0
-                  assign has_bars = true
-                endif
-              endfor
-            -%}
-            {%- if score != blank -%}
-              <p class="font-display font-semibold text-[44px] leading-none">{{ score }}<span class="text-[20px] text-muted"> / 5</span></p>
-              <div class="mt-2">{%- render 'parapatrol-stars', score: score, size: 22 -%}</div>
-              <p class="text-sm text-muted mt-2">{% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.count_label }}</p>
-            {%- endif -%}
-            {%- if has_bars -%}
-            <dl class="mt-5 grid gap-2 text-sm">
-              {%- for i in (1..5) -%}
-                {%- liquid
-                  assign idx = forloop.index0
-                  assign stars = 6 | minus: forloop.index
-                  assign pct = percents[idx] | strip | default: '0' | plus: 0 | at_most: 100 | at_least: 0
-                  assign lbl = bar_labels[idx] | strip
-                -%}
-                <div class="flex items-center gap-2">
-                  <dt class="w-8 shrink-0">{{ stars }} <span aria-hidden="true">★</span><span class="sr-only">stars</span></dt>
-                  <dd class="flex-1 h-2 rounded-full bg-line overflow-hidden"><span class="block h-full bg-berry" style="width: {{ pct }}%"></span></dd>
-                  <dd class="w-16 text-right text-muted text-[11px]">{{ lbl }}</dd>
-                </div>
-              {%- endfor -%}
-            </dl>
-            {%- endif -%}
-            {%- if has_bars and section.settings.breakdown_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.breakdown_note }}</p>{%- endif -%}
-          </div>
-        {%- endif -%}
-
-        <div class="min-w-0" data-pp-reviews>
-          {%- if filter_lines.size > 0 and section.settings.filters != blank -%}
-            <div class="flex flex-wrap gap-2" role="group" aria-label="Filter reviews by topic">
-              <button type="button" data-pp-filter="all" aria-pressed="true" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
-              {%- for line in filter_lines -%}
-                {%- assign parts = line | strip | split: '|' -%}
-                {%- if parts.size == 2 -%}
-                  <button type="button" data-pp-filter="{{ parts[0] | strip | handleize }}" aria-pressed="false" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary/30 bg-white text-primary-dark">{{ parts[1] | strip }}</button>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-            <p class="sr-only" aria-live="polite" data-pp-filter-status></p>
-          {%- endif -%}
-
-          {%- assign q_i = 0 -%}
-          <div class="relative mt-5" data-pp-slider>
-          <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" data-pp-slider-track role="list" aria-label="Parent reviews">
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'quote' -%}
-                {%- assign q_i = q_i | plus: 1 -%}
-                {%- liquid
-                  assign tag_list = ''
-                  assign raw_tags = block.settings.tags | split: ','
-                  for t in raw_tags
-                    assign t_clean = t | strip | handleize
-                    assign tag_list = tag_list | append: ' ' | append: t_clean
-                  endfor
-                -%}
-                <li class="snap-start shrink-0 w-[86%] sm:w-[calc(50%-8px)] bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
-                  {%- if block.settings.customer_photo != blank -%}
-                    {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-square rounded-2xl mb-4', sizes: '(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw' -%}
-                  {%- elsif block.settings.illus_image != blank or block.settings.illus_asset != blank -%}
-                    <div class="relative mb-4">
-                      {%- render 'parapatrol-media', image: block.settings.illus_image, asset: block.settings.illus_asset, label: block.settings.illus_alt, alt: block.settings.illus_alt, class: 'aspect-[4/3] rounded-2xl', sizes: '(min-width: 1024px) 380px, (min-width: 640px) 45vw, 86vw' -%}
-                      <span class="absolute left-2 bottom-2 rounded-full bg-white px-2 py-0.5 text-[11px] font-bold text-muted">Illustrative photo</span>
-                    </div>
-                  {%- endif -%}
-                  {%- if block.settings.stars > 0 -%}
-                    <div>{%- render 'parapatrol-stars', score: block.settings.stars, size: 16 -%}</div>
-                  {%- endif -%}
-                  {%- if block.settings.title != blank -%}
-                    <p class="mt-3 font-display font-bold text-[19px] leading-snug text-primary">{{ block.settings.title }}</p>
-                  {%- endif -%}
-                  <blockquote class="{% if block.settings.title != blank %}mt-1.5{% else %}mt-3{% endif %} text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
-                  <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.detail != blank %} <span class="font-semibold text-ink">({{ block.settings.detail }})</span>{% endif %}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
-                </li>
+      <div class="mt-8 lg:mt-10" data-pp-reviews>
+        {%- if filter_lines.size > 0 and section.settings.filters != blank -%}
+          <div class="mb-5 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter reviews by topic">
+            <button type="button" data-pp-filter="all" aria-pressed="true" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
+            {%- for line in filter_lines -%}
+              {%- assign parts = line | strip | split: '|' -%}
+              {%- if parts.size == 2 -%}
+                <button type="button" data-pp-filter="{{ parts[0] | strip | handleize }}" aria-pressed="false" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary bg-white text-primary-dark">{{ parts[1] | strip }}</button>
               {%- endif -%}
             {%- endfor -%}
-          </ul>
-          <div class="mt-3 flex items-center justify-between gap-3">
-            <p class="text-[13px] font-bold text-muted" aria-hidden="true"><span data-pp-slider-pos>1</span> / {{ q_i }}</p>
-            <div class="flex gap-2">
-              <button type="button" data-pp-slider-prev class="disable-global-button-styling w-11 h-11 rounded-full bg-white border-2 border-primary text-primary-dark inline-flex items-center justify-center hover:bg-mint disabled:opacity-40" aria-label="Previous reviews"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg></button>
-              <button type="button" data-pp-slider-next class="disable-global-button-styling w-11 h-11 rounded-full bg-primary text-white inline-flex items-center justify-center hover:bg-primary-dark disabled:opacity-40" aria-label="Next reviews"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg></button>
-            </div>
           </div>
-          </div>
-          {%- if section.settings.quotes_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.quotes_note }}</p>{%- endif -%}
+          <p class="sr-only" aria-live="polite" data-pp-filter-status></p>
+        {%- endif -%}
 
+        {%- comment -%} Horizontal scroller: 4 cards across on desktop, a visible scrollbar underneath. {%- endcomment -%}
+        <div data-pp-scrollbar>
+        <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2" data-pp-scrollbar-track role="list" aria-label="Parent reviews" tabindex="0">
           {%- for block in section.blocks -%}
-            {%- if block.type == '@app' -%}<div class="mt-8">{% render block %}</div>{%- endif -%}
+            {%- if block.type == 'quote' -%}
+              {%- liquid
+                assign tag_list = ''
+                assign raw_tags = block.settings.tags | split: ','
+                for t in raw_tags
+                  assign t_clean = t | strip | handleize
+                  assign tag_list = tag_list | append: ' ' | append: t_clean
+                endfor
+              -%}
+              <li class="snap-start shrink-0 w-[84%] sm:w-[calc(50%-10px)] lg:w-[calc(25%-15px)] bg-white rounded-3xl p-4 sm:p-5 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.customer_photo != blank -%}
+                  {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-[5/4] rounded-2xl', sizes: '(min-width: 1024px) 280px, (min-width: 640px) 45vw, 84vw' -%}
+                {%- elsif block.settings.illus_image != blank or block.settings.illus_asset != blank -%}
+                  <div class="relative">
+                    {%- render 'parapatrol-media', image: block.settings.illus_image, asset: block.settings.illus_asset, label: block.settings.illus_alt, alt: block.settings.illus_alt, class: 'aspect-[5/4] rounded-2xl', sizes: '(min-width: 1024px) 280px, (min-width: 640px) 45vw, 84vw' -%}
+                    <span class="absolute left-2 bottom-2 rounded-full bg-white px-2 py-0.5 text-[11px] font-bold text-muted">Illustrative photo</span>
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.stars > 0 -%}
+                  <div class="mt-4">{%- render 'parapatrol-stars', score: block.settings.stars, size: 18 -%}</div>
+                {%- endif -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="mt-3 font-display font-bold text-[18px] leading-snug text-primary">{{ block.settings.title }}</p>
+                {%- endif -%}
+                <blockquote class="mt-2 text-[15px] leading-relaxed flex-1">“{{ block.settings.quote }}”</blockquote>
+                <div class="mt-4">
+                  <p class="font-display font-bold text-[16px] text-ink">{{ block.settings.author }}{% if block.settings.detail != blank %} <span class="font-sans font-semibold text-[14px] text-muted">({{ block.settings.detail }})</span>{% endif %}</p>
+                  {%- if block.settings.badge != blank -%}
+                    <p class="mt-1 flex items-center gap-1.5 text-[14px] font-semibold text-primary-dark">
+                      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3b7560" d="M12 1.5l2.6 1.9 3.2-.1 1 3.1 2.6 1.9-1 3.1 1 3.1-2.6 1.9-1 3.1-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3.1-2.6-1.9 1-3.1-1-3.1 2.6-1.9 1-3.1 3.2.1z"/><path d="m8 12.2 2.7 2.7L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      {{- block.settings.badge -}}
+                    </p>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
           {%- endfor -%}
+        </ul>
+        <div class="pp-sbar mt-4 mx-auto max-w-[640px]" data-pp-scrollbar-rail aria-hidden="true"><span class="pp-sbar__thumb" data-pp-scrollbar-thumb></span></div>
         </div>
+        <p class="mt-2 text-center text-[13px] font-bold text-muted" aria-hidden="true">Scroll for more reviews →</p>
+        {%- if section.settings.quotes_note != blank -%}<p class="mt-4 text-center text-[12px] text-muted">{{ section.settings.quotes_note }}</p>{%- endif -%}
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}<div class="mt-8">{% render block %}</div>{%- endif -%}
+        {%- endfor -%}
       </div>
     </div>
   </section>

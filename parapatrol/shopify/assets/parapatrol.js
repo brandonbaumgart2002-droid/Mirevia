@@ -443,6 +443,40 @@
     });
   }
 
+  /* ---------------- custom scrollbar (review scroller) ---------------- */
+  function initScrollbars(root) {
+    $$('[data-pp-scrollbar]', root).forEach(function (wrap) {
+      if (wrap.__ppBound) return; wrap.__ppBound = true;
+      var track = $('[data-pp-scrollbar-track]', wrap), rail = $('[data-pp-scrollbar-rail]', wrap), thumb = $('[data-pp-scrollbar-thumb]', wrap);
+      if (!track || !rail || !thumb) return;
+      function update() {
+        var max = track.scrollWidth - track.clientWidth;
+        rail.hidden = max <= 2;
+        var tw = Math.max(40, rail.clientWidth * track.clientWidth / track.scrollWidth);
+        thumb.style.width = tw + 'px';
+        thumb.style.transform = 'translateX(' + (max > 0 ? (rail.clientWidth - tw) * track.scrollLeft / max : 0) + 'px)';
+      }
+      function scrollToX(x, grab) {
+        var tw = thumb.offsetWidth, r = rail.getBoundingClientRect();
+        var ratio = Math.min(1, Math.max(0, (x - r.left - grab) / (r.width - tw)));
+        track.scrollLeft = ratio * (track.scrollWidth - track.clientWidth);
+      }
+      rail.addEventListener('pointerdown', function (e) {
+        var tr = thumb.getBoundingClientRect();
+        var grab = (e.clientX >= tr.left && e.clientX <= tr.right) ? e.clientX - tr.left : thumb.offsetWidth / 2;
+        rail.setPointerCapture(e.pointerId); wrap.classList.add('is-drag'); rail.classList.add('is-drag');
+        scrollToX(e.clientX, grab);
+        function move(ev) { scrollToX(ev.clientX, grab); }
+        function up() { rail.removeEventListener('pointermove', move); rail.removeEventListener('pointerup', up); rail.removeEventListener('pointercancel', up); wrap.classList.remove('is-drag'); rail.classList.remove('is-drag'); }
+        rail.addEventListener('pointermove', move); rail.addEventListener('pointerup', up); rail.addEventListener('pointercancel', up);
+        e.preventDefault();
+      });
+      track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  }
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
@@ -606,6 +640,7 @@
     initAccordions(root);
     initDelivery(root);
     initSliders(root);
+    initScrollbars(root);
     initReviews(root);
     initBundle(root);
     initStats(root);
