@@ -49,7 +49,8 @@
         "use_theme_fonts": false,
         "show_hero_price": false,
         "authority_note": "Gentle, kid-dosed herbal blend for ages 3+",
-        "sale_end_date": ""
+        "sale_end_date": "",
+        "stock_manual": 12
       }
     },
     "kidlife": {

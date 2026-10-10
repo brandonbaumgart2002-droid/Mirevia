@@ -204,7 +204,7 @@
 
       <div id="pp-buy" class="order-4 mt-4 scroll-mt-28" data-pp-hero-box>
         {%- if section.settings.show_stock -%}
-          {%- capture pp_stock -%}{%- render 'parapatrol-stock', variant: product.selected_or_first_available_variant, threshold: section.settings.stock_threshold, label: section.settings.stock_label, suffix: section.settings.stock_suffix -%}{%- endcapture -%}
+          {%- capture pp_stock -%}{%- render 'parapatrol-stock', variant: product.selected_or_first_available_variant, manual: section.settings.stock_manual, threshold: section.settings.stock_threshold, label: section.settings.stock_label, suffix: section.settings.stock_suffix -%}{%- endcapture -%}
           {%- if pp_stock != blank -%}<div class="mb-3">{{ pp_stock }}</div>{%- endif -%}
         {%- endif -%}
         {%- if section.settings.sale_end_date != blank -%}
@@ -364,6 +364,7 @@
     { "type": "textarea", "id": "quick_a4", "label": "Answer 4", "default": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions." },
     { "type": "header", "content": "Low-stock alert" },
     { "type": "checkbox", "id": "show_stock", "label": "Show low-stock alert", "default": true, "info": "Uses the product's real Shopify inventory. Shows only when inventory is tracked and stock is at or below the threshold." },
+    { "type": "number", "id": "stock_manual", "label": "Units left (manual)", "info": "Update this as orders come in so it always matches your real stock. Set to 0 to hide the alert. Leave blank to use Shopify inventory instead." },
     { "type": "number", "id": "stock_threshold", "label": "Show when stock is at or below", "default": 15 },
     { "type": "text", "id": "stock_label", "label": "Text before the number", "default": "Hurry! Only" },
     { "type": "text", "id": "stock_suffix", "label": "Text after the number", "default": "left in stock" },
