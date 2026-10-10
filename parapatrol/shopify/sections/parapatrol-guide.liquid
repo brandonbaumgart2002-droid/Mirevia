@@ -1,0 +1,254 @@
+{%- comment -%}
+  Parent Guide: everything about dosage, ingredients, safety and shipping on one page, in soft colour bands
+  with wavy dividers. Blocks: dose (dosage card), ingredient (ingredient card), safety (safety tile),
+  faq (question, set to the product or shipping list), chip (small badge under Other ingredients).
+  Claims keep their * (keep the disclaimer section on the template). Only facts from the label and policies.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign gp = s.product
+  assign gp_url = s.button_link | default: gp.url | default: routes.all_products_collection_url
+  assign doses = section.blocks | where: 'type', 'dose'
+  assign ings = section.blocks | where: 'type', 'ingredient'
+  assign chips = section.blocks | where: 'type', 'chip'
+  assign safes = section.blocks | where: 'type', 'safety'
+  assign faqs = section.blocks | where: 'type', 'faq'
+-%}
+{%- capture wave_down -%}<svg class="block w-full h-[34px] sm:h-[52px]" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v28c-90 22-180 22-270 0s-180-22-270 0-180 22-270 0-180-22-270 0-180 22-270 0-90-11-90-11V0Z" fill="currentColor"/></svg>{%- endcapture -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+<div class="pp">
+  {%- comment -%} Hero {%- endcomment -%}
+  <header class="bg-mint text-center">
+    <div class="max-w-3xl mx-auto px-4 pt-10 pb-8 sm:pt-16 sm:pb-12">
+      {%- if s.eyebrow != blank -%}<p class="inline-flex rounded-full bg-white px-3.5 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">{{ s.eyebrow }}</p>{%- endif -%}
+      <h1 class="mt-4 font-display font-bold text-[38px] sm:text-[56px] leading-[1.04] text-ink">{{ s.title }} <span class="text-berry">{{ s.title_accent }}</span></h1>
+      {%- if s.intro != blank -%}<p class="mt-4 text-[17px] sm:text-[19px] leading-relaxed text-ink">{{ s.intro }}</p>{%- endif -%}
+      {%- if s.jump_links -%}
+        <nav class="mt-6 flex flex-wrap justify-center gap-2" aria-label="On this page">
+          {%- for j in (1..5) -%}
+            {%- case j -%}
+              {%- when 1 -%}{%- assign jid = 'dosage' -%}{%- assign jl = 'Dosage' -%}
+              {%- when 2 -%}{%- assign jid = 'ingredients' -%}{%- assign jl = 'Ingredients' -%}
+              {%- when 3 -%}{%- assign jid = 'guide-safety' -%}{%- assign jl = 'Safety' -%}
+              {%- when 4 -%}{%- assign jid = 'faqs' -%}{%- assign jl = 'FAQs' -%}
+              {%- else -%}{%- assign jid = 'shipping' -%}{%- assign jl = 'Shipping' -%}
+            {%- endcase -%}
+            <a href="#{{ jid }}" data-pp-scroll class="rounded-full bg-white px-4 py-2 text-[14px] font-extrabold text-primary-dark shadow-soft hover:bg-soft">{{ jl }}</a>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    </div>
+  </header>
+  <div class="text-mint bg-white">{{ wave_down }}</div>
+
+  {%- comment -%} Dosage {%- endcomment -%}
+  <section id="dosage" class="bg-white pt-8 pb-14 sm:pt-10 sm:pb-20" aria-labelledby="pp-g-dose-{{ section.id }}">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="inline-flex rounded-full bg-mint px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">Dosage guide</p>
+      <h2 id="pp-g-dose-{{ section.id }}" class="mt-3 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ s.dose_heading }}</h2>
+      {%- if s.dose_intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-muted max-w-2xl mx-auto">{{ s.dose_intro }}</p>{%- endif -%}
+      <div class="mt-7 grid gap-3 {% if doses.size >= 3 %}sm:grid-cols-3{% elsif doses.size == 2 %}sm:grid-cols-2{% endif %} max-w-3xl mx-auto">
+        {%- for block in doses -%}
+          <div class="rounded-3xl bg-white border-2 border-[#cfe3d8] p-6 shadow-soft" {{ block.shopify_attributes }}>
+            <p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-muted">{{ block.settings.label }}</p>
+            <p class="mt-1 font-display font-bold text-[48px] leading-none text-primary">{{ block.settings.amount }}</p>
+            <p class="mt-1 font-extrabold text-ink">{{ block.settings.freq }}</p>
+            {%- if block.settings.note != blank -%}<p class="mt-2 text-[14px] leading-snug text-muted">{{ block.settings.note }}</p>{%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if s.dose_small != blank -%}<p class="mt-5 text-[14px] text-muted">{{ s.dose_small }}</p>{%- endif -%}
+      {%- if s.dose_warning != blank -%}
+        <div class="mt-6 max-w-3xl mx-auto rounded-3xl bg-[#fdeef3] border border-accent p-5 text-left flex gap-3">
+          <span class="text-berry shrink-0 mt-0.5">{%- render 'parapatrol-icon', name: 'info', icon_size: 22 -%}</span>
+          <p class="text-[15px] leading-relaxed text-ink"><strong class="font-extrabold block">{{ s.dose_warning_title }}</strong>{{ s.dose_warning }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- comment -%} Ingredients {%- endcomment -%}
+  <div class="text-white bg-mint">{{ wave_down }}</div>
+  <section id="ingredients" class="bg-mint pt-8 pb-14 sm:pt-10 sm:pb-20" aria-labelledby="pp-g-ing-{{ section.id }}">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="inline-flex rounded-full bg-white px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">Our ingredients</p>
+      <h2 id="pp-g-ing-{{ section.id }}" class="mt-3 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ s.ing_heading }} <span class="text-berry">{{ s.ing_accent }}</span></h2>
+      {%- if s.ing_intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-ink max-w-3xl">{{ s.ing_intro }}</p>{%- endif -%}
+      <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {%- for block in ings -%}
+          <article class="rounded-3xl bg-white p-5 sm:p-6 shadow-soft" {{ block.shopify_attributes }}>
+            <span class="w-10 h-10 rounded-2xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: block.settings.icon, icon_size: 20 -%}</span>
+            <h3 class="mt-3 font-display font-bold text-[20px] leading-snug text-ink">{{ block.settings.name }}</h3>
+            {%- if block.settings.role != blank -%}<p class="text-[13px] font-extrabold text-primary">{{ block.settings.role }}</p>{%- endif -%}
+            <p class="mt-2 text-[15px] leading-relaxed text-ink">{%- render 'parapatrol-claim', text: block.settings.text -%}</p>
+            {%- if block.settings.note != blank -%}<p class="mt-3 pt-3 border-t border-line text-[13px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: block.settings.note -%}</p>{%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {%- if s.other != blank -%}
+        <h3 class="mt-12 font-display font-bold text-[24px] sm:text-[30px] leading-tight text-ink">{{ s.other_heading }}</h3>
+        {%- if s.other_intro != blank -%}<p class="mt-2 text-[16px] text-ink">{{ s.other_intro }}</p>{%- endif -%}
+        <p class="mt-4 rounded-3xl bg-white p-5 text-[15px] leading-relaxed text-ink">{{ s.other }}</p>
+        {%- if chips.size > 0 -%}
+          <ul class="mt-4 flex flex-wrap gap-2" role="list">
+            {%- for block in chips -%}
+              <li class="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-[13px] font-extrabold text-ink shadow-soft" {{ block.shopify_attributes }}><span class="text-primary">{%- render 'parapatrol-icon', name: block.settings.icon, icon_size: 15 -%}</span>{{ block.settings.text }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- comment -%} Safety {%- endcomment -%}
+  <div class="text-mint bg-soft">{{ wave_down }}</div>
+  <section id="guide-safety" class="bg-soft pt-8 pb-14 sm:pt-10 sm:pb-20" aria-labelledby="pp-g-safe-{{ section.id }}">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="inline-flex rounded-full bg-white px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">Safety information</p>
+      <h2 id="pp-g-safe-{{ section.id }}" class="mt-3 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ s.safe_heading }} <span class="text-berry">{{ s.safe_accent }}</span> {{ s.safe_heading_end }}</h2>
+      {%- if s.safe_intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-ink max-w-3xl">{{ s.safe_intro }}</p>{%- endif -%}
+      <div class="mt-7 grid gap-3 sm:grid-cols-2">
+        {%- for block in safes -%}
+          <div class="rounded-3xl bg-white p-5 sm:p-6 shadow-soft flex gap-4" {{ block.shopify_attributes }}>
+            <span class="w-11 h-11 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: block.settings.icon, icon_size: 20 -%}</span>
+            <div>
+              <h3 class="font-display font-bold text-[18px] leading-snug text-ink">{{ block.settings.title }}</h3>
+              <p class="mt-1 text-[15px] leading-relaxed text-ink">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if s.safe_link_label != blank -%}
+        <a href="{{ gp_url }}#safety" class="mt-6 inline-flex items-center gap-1.5 font-extrabold text-primary-dark underline underline-offset-4 hover:text-primary">{{ s.safe_link_label }}<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- comment -%} FAQs: product, then shipping {%- endcomment -%}
+  <div class="text-soft bg-white">{{ wave_down }}</div>
+  {%- for grp in (1..2) -%}
+    {%- if grp == 1 -%}{%- assign g_key = 'product' -%}{%- assign g_id = 'faqs' -%}{%- assign g_eyebrow = 'Frequently asked questions' -%}{%- assign g_h = s.faq_heading -%}{%- assign g_bg = 'bg-white' -%}
+    {%- else -%}{%- assign g_key = 'shipping' -%}{%- assign g_id = 'shipping' -%}{%- assign g_eyebrow = 'Shipping & orders' -%}{%- assign g_h = s.ship_heading -%}{%- assign g_bg = 'bg-white' -%}{%- endif -%}
+    <section id="{{ g_id }}" class="{{ g_bg }} {% if grp == 1 %}pt-8 pb-10{% else %}pt-6 pb-14 sm:pb-20{% endif %}" aria-labelledby="pp-g-{{ g_id }}-{{ section.id }}">
+      <div class="max-w-3xl mx-auto px-4">
+        <p class="text-center"><span class="inline-flex rounded-full bg-mint px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">{{ g_eyebrow }}</span></p>
+        <h2 id="pp-g-{{ g_id }}-{{ section.id }}" class="mt-3 text-center font-display font-bold text-[30px] sm:text-[38px] leading-[1.1] text-ink">{{ g_h }}</h2>
+        <div class="mt-6 divide-y divide-line border-y border-line" data-pp-accordion>
+          {%- for block in faqs -%}
+            {%- if block.settings.group == g_key -%}
+              {%- assign fid = section.id | append: '-' | append: block.id -%}
+              <div {{ block.shopify_attributes }}>
+                <h3>
+                  <button type="button" class="disable-global-button-styling acc-btn w-full flex items-center justify-between gap-4 py-4 text-left font-display font-bold text-[17px] sm:text-[18px] text-ink" aria-expanded="false" aria-controls="pp-g-p-{{ fid }}" id="pp-g-b-{{ fid }}">
+                    <span>{{ block.settings.question }}</span>
+                    <span class="acc-icon w-8 h-8 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[20px] leading-none" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="pp-g-p-{{ fid }}" role="region" aria-labelledby="pp-g-b-{{ fid }}" class="pp-adv-copy pp-adv-copy--sm pb-5 pr-10" hidden>{%- render 'parapatrol-claim', text: block.settings.answer -%}</div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+  {%- endfor -%}
+
+  {%- comment -%} Closing call to action {%- endcomment -%}
+  {%- if s.cta_heading != blank -%}
+    <section class="bg-white pb-14 sm:pb-20">
+      <div class="max-w-3xl mx-auto px-4">
+        <div class="rounded-3xl bg-primary text-white p-7 sm:p-10 text-center">
+          <h2 class="font-display font-bold text-[28px] sm:text-[36px] leading-[1.1] pp-adv-light-h">{{ s.cta_heading }}</h2>
+          {%- if s.cta_text != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-white">{{ s.cta_text }}</p>{%- endif -%}
+          <a href="{{ gp_url }}" class="mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 min-h-[56px] px-8 rounded-full bg-white text-primary-dark font-extrabold text-[17px] shadow-lift hover:bg-soft transition-colors">
+            {{- s.cta_label | default: 'Shop ParaPatrol' -}}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          {%- if s.cta_small != blank -%}<p class="mt-3 text-[13px] text-white">{{ s.cta_small }}</p>{%- endif -%}
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: parent guide",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product (buttons link here)" },
+    { "type": "url", "id": "button_link", "label": "Button link (optional)" },
+    { "type": "header", "content": "Top" },
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Everything you need to know" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The ParaPatrol" },
+    { "type": "text", "id": "title_accent", "label": "Title (pink part)", "default": "Parent Guide" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "checkbox", "id": "jump_links", "label": "Show jump links", "default": true },
+    { "type": "header", "content": "Dosage" },
+    { "type": "text", "id": "dose_heading", "label": "Heading", "default": "How much do I give my child?" },
+    { "type": "textarea", "id": "dose_intro", "label": "Intro" },
+    { "type": "text", "id": "dose_small", "label": "Small line under the cards" },
+    { "type": "text", "id": "dose_warning_title", "label": "Warning title", "default": "Please don’t exceed 1 mL a day" },
+    { "type": "textarea", "id": "dose_warning", "label": "Warning text" },
+    { "type": "header", "content": "Ingredients" },
+    { "type": "text", "id": "ing_heading", "label": "Heading", "default": "What’s inside" },
+    { "type": "text", "id": "ing_accent", "label": "Heading (pink part)", "default": "every drop?" },
+    { "type": "textarea", "id": "ing_intro", "label": "Intro" },
+    { "type": "text", "id": "other_heading", "label": "Other ingredients heading", "default": "What else is in the bottle?" },
+    { "type": "text", "id": "other_intro", "label": "Other ingredients intro" },
+    { "type": "textarea", "id": "other", "label": "Other ingredients list" },
+    { "type": "header", "content": "Safety" },
+    { "type": "text", "id": "safe_heading", "label": "Heading start", "default": "Is it" },
+    { "type": "text", "id": "safe_accent", "label": "Heading (pink part)", "default": "safe" },
+    { "type": "text", "id": "safe_heading_end", "label": "Heading end", "default": "for my child?" },
+    { "type": "textarea", "id": "safe_intro", "label": "Intro" },
+    { "type": "text", "id": "safe_link_label", "label": "Link to the product page safety profile", "default": "Read the full safety profile" },
+    { "type": "header", "content": "FAQs" },
+    { "type": "text", "id": "faq_heading", "label": "Product FAQs heading", "default": "ParaPatrol FAQs" },
+    { "type": "text", "id": "ship_heading", "label": "Shipping FAQs heading", "default": "Shipping FAQs" },
+    { "type": "header", "content": "Closing call to action" },
+    { "type": "text", "id": "cta_heading", "label": "Heading", "default": "Ready to get started?" },
+    { "type": "text", "id": "cta_text", "label": "Text" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop ParaPatrol" },
+    { "type": "text", "id": "cta_small", "label": "Small line" }
+  ],
+  "blocks": [
+    { "type": "dose", "name": "Dosage card", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "info": "e.g. Ages 3+" },
+      { "type": "text", "id": "amount", "label": "Amount", "info": "e.g. 1 mL" },
+      { "type": "text", "id": "freq", "label": "How often" },
+      { "type": "text", "id": "note", "label": "Note" }
+    ] },
+    { "type": "ingredient", "name": "Ingredient", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "leaf", "options": [
+        { "value": "leaf", "label": "Leaf" }, { "value": "reset", "label": "Cycle" }, { "value": "shield", "label": "Shield" },
+        { "value": "heart", "label": "Heart" }, { "value": "sun", "label": "Sun" }, { "value": "check", "label": "Tick" }
+      ] },
+      { "type": "text", "id": "name", "label": "Name" },
+      { "type": "text", "id": "role", "label": "Role line", "info": "e.g. Settle · part of the 1 mL blend" },
+      { "type": "textarea", "id": "text", "label": "What it is" },
+      { "type": "textarea", "id": "note", "label": "Why it's in ParaPatrol" }
+    ] },
+    { "type": "chip", "name": "Badge", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "check", "options": [
+        { "value": "check", "label": "Tick" }, { "value": "leaf", "label": "Leaf" }, { "value": "heart", "label": "Heart" }, { "value": "shield", "label": "Shield" }
+      ] },
+      { "type": "text", "id": "text", "label": "Text" }
+    ] },
+    { "type": "safety", "name": "Safety tile", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "shield", "options": [
+        { "value": "shield", "label": "Shield" }, { "value": "shield-alert", "label": "Alert" }, { "value": "info", "label": "Info" },
+        { "value": "heart", "label": "Heart" }, { "value": "reset", "label": "Cycle" }, { "value": "leaf", "label": "Leaf" }
+      ] },
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "textarea", "id": "text", "label": "Text" }
+    ] },
+    { "type": "faq", "name": "Question", "settings": [
+      { "type": "select", "id": "group", "label": "List", "default": "product", "options": [ { "value": "product", "label": "Product FAQs" }, { "value": "shipping", "label": "Shipping FAQs" } ] },
+      { "type": "text", "id": "question", "label": "Question" },
+      { "type": "richtext", "id": "answer", "label": "Answer" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: parent guide" } ]
+}
+{% endschema %}

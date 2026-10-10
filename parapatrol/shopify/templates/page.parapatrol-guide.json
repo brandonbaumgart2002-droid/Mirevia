@@ -1,0 +1,385 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-guide",
+      "blocks": {
+        "d1": {
+          "type": "dose",
+          "settings": {
+            "label": "Ages 3+",
+            "amount": "1 mL",
+            "freq": "Once a day",
+            "note": "One full dropper in their morning juice, milk or a smoothie"
+          }
+        },
+        "d2": {
+          "type": "dose",
+          "settings": {
+            "label": "First few days",
+            "amount": "½ mL",
+            "freq": "Once a day",
+            "note": "Starting with half a dropper helps little tummies (and taste buds) get used to it"
+          }
+        },
+        "g1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Fennel seed",
+            "role": "Settle · part of the 1 mL blend",
+            "text": "A classic for little tummies, used for generations to help soothe occasional gas and bloating.*",
+            "note": "Fennel is the same seed you’ll find in many children’s tummy teas."
+          }
+        },
+        "g2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Anise seed",
+            "role": "Settle · part of the 1 mL blend",
+            "text": "A sweet, gentle seed long used to settle tummies after meals.*",
+            "note": "It also softens the herbal taste of the blend."
+          }
+        },
+        "g3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Licorice root",
+            "role": "Settle · part of the 1 mL blend",
+            "text": "A soft, soothing root that supports gut comfort.*",
+            "note": "Used as one small part of the blend in a short 2–3 week routine with breaks, because large daily amounts over a long time can raise blood pressure."
+          }
+        },
+        "g4": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Aloe vera",
+            "role": "Settle · part of the 1 mL blend",
+            "text": "A cooling plant that supports a comfortable tummy.*",
+            "note": ""
+          }
+        },
+        "g5": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "reset",
+            "name": "Black walnut hull",
+            "role": "Reset · part of the 1 mL blend",
+            "text": "A traditional botanical used to support a steady digestive rhythm.*",
+            "note": "A tree nut: not suitable for children with a tree nut allergy."
+          }
+        },
+        "g6": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "reset",
+            "name": "Clove",
+            "role": "Reset · part of the 1 mL blend",
+            "text": "A familiar kitchen spice that supports regular digestion.*",
+            "note": "A small part of a diluted, alcohol-free blend, which is why some kids say they can “taste cloves”."
+          }
+        },
+        "g7": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "reset",
+            "name": "Wormwood herb",
+            "role": "Reset · part of the 1 mL blend",
+            "text": "A traditional bitter herb used to support the body’s natural digestive rhythm.*",
+            "note": "ParaPatrol uses thujone-free wormwood, in a small amount within a kid-sized serving."
+          }
+        },
+        "g8": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "reset",
+            "name": "Pumpkin seed",
+            "role": "Reset · part of the 1 mL blend",
+            "text": "A food-based ingredient (yes, the same seeds) traditionally used to support digestion.*",
+            "note": ""
+          }
+        },
+        "g9": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shield",
+            "name": "Pau d’arco bark",
+            "role": "Strengthen · part of the 1 mL blend",
+            "text": "A traditional bark used to support healthy gut defences.*",
+            "note": ""
+          }
+        },
+        "g10": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shield",
+            "name": "Thyme leaf",
+            "role": "Strengthen · part of the 1 mL blend",
+            "text": "An everyday kitchen herb, traditionally used to support healthy gut defences.*",
+            "note": ""
+          }
+        },
+        "g11": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "shield",
+            "name": "Oregano leaf",
+            "role": "Strengthen · part of the 1 mL blend",
+            "text": "Another kitchen favourite, used alongside thyme to support healthy gut defences through busy school terms.*",
+            "note": ""
+          }
+        },
+        "c1": {
+          "type": "chip",
+          "settings": {
+            "icon": "heart",
+            "text": "Natural raspberry flavor"
+          }
+        },
+        "c2": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "No sugar"
+          }
+        },
+        "c3": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "Alcohol-free"
+          }
+        },
+        "c4": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "Gluten-free"
+          }
+        },
+        "c5": {
+          "type": "chip",
+          "settings": {
+            "icon": "leaf",
+            "text": "Vegan friendly"
+          }
+        },
+        "c6": {
+          "type": "chip",
+          "settings": {
+            "icon": "shield",
+            "text": "Made in the USA"
+          }
+        },
+        "s1": {
+          "type": "safety",
+          "settings": {
+            "icon": "shield",
+            "title": "Minimum age",
+            "text": "ParaPatrol is made and dosed for children 3 and up. Please don’t give it to children under 3."
+          }
+        },
+        "s2": {
+          "type": "safety",
+          "settings": {
+            "icon": "info",
+            "title": "Don’t exceed 1 mL a day",
+            "text": "More isn’t better. Stick to one dropper a day, and follow the 2–3 week routine with a break afterwards."
+          }
+        },
+        "s3": {
+          "type": "safety",
+          "settings": {
+            "icon": "heart",
+            "title": "Medication or health conditions",
+            "text": "If your child takes medication or has a health condition (especially heart, kidney or liver), check with your pediatrician first."
+          }
+        },
+        "s4": {
+          "type": "safety",
+          "settings": {
+            "icon": "shield-alert",
+            "title": "Contains tree nuts",
+            "text": "Black walnut is a tree nut, so ParaPatrol isn’t suitable for children with a tree nut allergy."
+          }
+        },
+        "s5": {
+          "type": "safety",
+          "settings": {
+            "icon": "reset",
+            "title": "Stop if anything seems off",
+            "text": "Stop and call your doctor if your child has vomiting, diarrhea, stomach pain, blood in the stool, changes in urination or any unusual reaction."
+          }
+        },
+        "s6": {
+          "type": "safety",
+          "settings": {
+            "icon": "leaf",
+            "title": "Not a medicine",
+            "text": "ParaPatrol is a herbal supplement, not a medicine or a worm treatment. If you think your child has worms, see your doctor."
+          }
+        },
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "What does it taste like?",
+            "answer": "<p>A natural raspberry flavor with a bitter blocker to soften the herbal taste. Some kids notice a hint of clove. Mixed into orange juice, milk or a berry smoothie, most kids drink it without a fuss.</p>"
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "How long does a bottle last?",
+            "answer": "<p>Each 30 mL (1 fl oz) bottle holds about 30 servings at 1 mL a day, enough for a full 2–3 week routine with some to spare.</p>"
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "When is the best time to give it?",
+            "answer": "<p>Most families use it in the morning juice or milk, but consistency matters more than the time of day. Pick a moment that fits your routine and stick with it.</p>"
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "When will we notice a difference?",
+            "answer": "<p>Every child is different. Many parents notice a more settled tummy and a better appetite within 1–2 weeks of daily use.*</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "Can my child take it with other supplements or medication?",
+            "answer": "<p>If your child takes any medication or other supplements, please check with your pediatrician or pharmacist before adding ParaPatrol.</p>"
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "Is there a money-back guarantee?",
+            "answer": "<p>Yes. Every order is covered by our 30-day money-back guarantee. If ParaPatrol isn’t right for your family, contact us within 30 days at <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> and we’ll refund you.</p>"
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days. Shipping is free on all orders.</p>"
+          }
+        },
+        "f8": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "Will I get a tracking number?",
+            "answer": "<p>Yes. Once your order ships you’ll get a confirmation email with your tracking number.</p>"
+          }
+        },
+        "f9": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "What is your returns policy?",
+            "answer": "<p>We offer a 30-day money-back guarantee. If you’re not happy, email <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> and we’ll arrange a refund. See our <a href=\"/policies/refund-policy\">refund policy</a> for the details.</p>"
+          }
+        },
+        "f10": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "I put the wrong address. What do I do?",
+            "answer": "<p>Email <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> as soon as possible with the correct address. Once an order has shipped we may not be able to change it, so please get in touch straight away.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "g5",
+        "g6",
+        "g7",
+        "g8",
+        "g9",
+        "g10",
+        "g11",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9",
+        "f10"
+      ],
+      "settings": {
+        "product": "parapatrol™",
+        "eyebrow": "Everything you need to know",
+        "title": "The ParaPatrol",
+        "title_accent": "Parent Guide",
+        "intro": "Everything you need to know about our ingredients, dosage, safety and shipping, so you can make a fully informed decision for your family.",
+        "jump_links": true,
+        "dose_heading": "How much do I give my child?",
+        "dose_intro": "Shake the bottle well, then fill the dropper to the 1 mL line and stir it into juice, milk or a smoothie (or straight onto the tongue). Here’s the recommended daily serving:",
+        "dose_small": "Each bottle holds 30 mL (1 fl oz): about 30 servings at 1 mL a day. Use it for 2–3 weeks, then take a break.",
+        "dose_warning_title": "Please don’t exceed 1 mL a day",
+        "dose_warning": "The serving is set for children for a reason. If you think your child needs more, or they already take another supplement or medication, speak to your pediatrician or pharmacist first.",
+        "ing_heading": "What’s inside",
+        "ing_accent": "every drop?",
+        "ing_intro": "11 herbs in one 1 mL proprietary blend, grouped by the job they do: Settle, Reset and Strengthen. Exact amounts per herb are part of the proprietary blend shown on the label.",
+        "other_heading": "What else is in the bottle?",
+        "other_intro": "The rest of the formula is what carries and flavours the drops:",
+        "other": "Vegetable Glycerin · Purified Water · Natural Raspberry Flavor · Bitter Blocker. Allergens: may contain tree nuts (walnuts).",
+        "safe_heading": "Is it",
+        "safe_accent": "safe",
+        "safe_heading_end": "for my child?",
+        "safe_intro": "Your child’s safety comes first. Here’s what you need to know before you start:",
+        "safe_link_label": "Read the full safety profile",
+        "faq_heading": "ParaPatrol FAQs",
+        "ship_heading": "Shipping FAQs",
+        "cta_heading": "Ready to get started?",
+        "cta_text": "Every order is backed by our 30-day money-back guarantee. Nothing to lose.",
+        "cta_label": "Shop ParaPatrol",
+        "cta_small": "Free shipping on all orders · 30-day guarantee"
+      }
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclaimer"
+  ]
+}
