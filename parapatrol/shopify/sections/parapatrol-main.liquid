@@ -209,12 +209,29 @@
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
 
         {%- comment -%} Quick answers: the biggest objections (safety, taste, dosing and results, guarantee), for shoppers who never reach the full FAQ {%- endcomment -%}
-        {%- if section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
+        {%- if section.settings.ing_tile_label != blank or section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
           <div class="mt-5" data-pp-accordion>
             {%- if section.settings.quick_heading != blank -%}
               <p class="mb-2 text-[12px] font-bold uppercase tracking-[.14em] text-primary">{{ section.settings.quick_heading }}</p>
             {%- endif -%}
             <div class="grid gap-2">
+              {%- if section.settings.ing_tile_label != blank -%}
+                {%- assign iid = section.id | append: '-ing' -%}
+                <div class="rounded-2xl bg-soft border border-line">
+                  <button type="button" class="disable-global-button-styling acc-btn w-full flex items-center gap-3 px-3 py-3 text-left" aria-expanded="false" aria-controls="pp-qa-p-{{ iid }}" id="pp-qa-b-{{ iid }}">
+                    <span class="w-9 h-9 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'leaf', icon_size: 18 -%}</span>
+                    <span class="flex-1 min-w-0 font-display font-bold text-[16px] leading-snug text-ink">{{ section.settings.ing_tile_label }}</span>
+                    <span class="acc-icon w-7 h-7 shrink-0 rounded-full bg-mint text-primary inline-flex items-center justify-center text-[18px] leading-none" aria-hidden="true">+</span>
+                  </button>
+                  <div id="pp-qa-p-{{ iid }}" role="region" aria-labelledby="pp-qa-b-{{ iid }}" class="px-3 pb-4 text-[14px] leading-relaxed text-ink" hidden>
+                    {%- if section.settings.ing_tile_text != blank -%}<p class="px-1 mb-3">{{ section.settings.ing_tile_text }}</p>{%- endif -%}
+                    {%- render 'parapatrol-media', image: section.settings.ing_tile_image, asset: section.settings.ing_tile_asset, alt: 'ParaPatrol Supplement Facts: 1 dropper (1 mL) serving, about 30 servings. Proprietary blend of licorice root, anise seed, fennel seed, thyme leaf, whole clove, aloe vera, oregano leaf, black walnut hull, wormwood herb, pau d’arco bark and pumpkin seed extracts. Other ingredients: vegetable glycerin, purified water, natural raspberry flavor, bitter blocker. May contain tree nuts (walnuts).', label: 'Supplement Facts', class: 'aspect-square rounded-2xl', fit: 'contain', sizes: '(min-width: 1024px) 480px, 92vw' -%}
+                    {%- if section.settings.ing_tile_link_label != blank -%}
+                      <a href="{{ section.settings.ing_tile_link | default: '/pages/parent-guide' }}" class="mt-3 mx-1 flex w-fit items-center gap-1 font-extrabold text-primary-dark underline underline-offset-4 hover:text-primary">{{ section.settings.ing_tile_link_label }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
               {%- for i in (1..4) -%}
                 {%- liquid
                   assign q_key = 'quick_q' | append: i
@@ -326,6 +343,12 @@
     { "type": "text", "id": "delivery_note", "label": "Small line under the estimate", "default": "Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days." },
     { "type": "header", "content": "Quick answers under the buy box" },
     { "type": "text", "id": "quick_heading", "label": "Small heading", "default": "Quick answers" },
+    { "type": "text", "id": "ing_tile_label", "label": "Ingredients tile: title", "info": "Shows first. Blank hides it.", "default": "Ingredients" },
+    { "type": "text", "id": "ing_tile_text", "label": "Ingredients tile: intro", "default": "11 gentle herbs in one 1 mL serving. Alcohol-free, no sugar, gluten-free and vegan friendly." },
+    { "type": "image_picker", "id": "ing_tile_image", "label": "Ingredients tile: image" },
+    { "type": "text", "id": "ing_tile_asset", "label": "Ingredients tile: built-in image file", "default": "pp-supplement-facts.jpg" },
+    { "type": "text", "id": "ing_tile_link_label", "label": "Ingredients tile: link text", "default": "See every ingredient in the Parent Guide" },
+    { "type": "url", "id": "ing_tile_link", "label": "Ingredients tile: link", "info": "Defaults to /pages/parent-guide." },
     { "type": "text", "id": "quick_q1", "label": "Question 1", "default": "Is it safe for my child?" },
     { "type": "textarea", "id": "quick_a1", "label": "Answer 1", "default": "ParaPatrol is made and dosed for kids 3 and up: alcohol-free, sugar-free, made in the USA and third-party tested, with a simple 1 mL daily dose. Not for children under 3. If your child takes medication or has a health condition, check with your paediatrician first." },
     { "type": "text", "id": "quick_safety_link", "label": "Answer 1: link to the safety section", "info": "Blank hides the link.", "default": "Read the full safety profile" },
