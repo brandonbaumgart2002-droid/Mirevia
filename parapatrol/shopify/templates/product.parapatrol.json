@@ -423,7 +423,9 @@
             "stars": 5,
             "tags": "taste, easy",
             "photo_alt": "",
-            "title": "Easy once it’s mixed in"
+            "title": "Easy once it’s mixed in",
+            "illus_asset": "pp-family-ugc-19.jpg",
+            "illus_alt": "A dad takes a selfie with his two daughters and ParaPatrol"
           }
         },
         "rev_7": {
@@ -510,7 +512,9 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "taste, easy",
-            "photo_alt": ""
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-17.jpg",
+            "illus_alt": "A girl doing homework holds up a ParaPatrol bottle"
           }
         },
         "rev_13": {
@@ -597,7 +601,9 @@
             "stars": 5,
             "tags": "taste, routine",
             "photo_alt": "",
-            "detail": "Parent of Oliver and Henry"
+            "detail": "Parent of Oliver and Henry",
+            "illus_asset": "pp-family-ugc-16.jpg",
+            "illus_alt": "A mum and her son at the beach with a ParaPatrol bottle and box"
           }
         },
         "rev_19": {
@@ -609,7 +615,9 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "routine",
-            "photo_alt": ""
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-18.jpg",
+            "illus_alt": "A boy watches a ParaPatrol box come out of a delivery parcel"
           }
         }
       },
