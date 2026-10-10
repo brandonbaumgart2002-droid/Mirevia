@@ -420,6 +420,29 @@
     if (first) { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
   });
 
+  /* ---------------- sliders (reviews) ----------------
+     Native scroll-snap does the sliding; the buttons scroll one card at a time and the counter follows. */
+  function initSliders(root) {
+    $$('[data-pp-slider]', root).forEach(function (wrap) {
+      if (wrap.__ppBound) return; wrap.__ppBound = true;
+      var track = $('[data-pp-slider-track]', wrap);
+      var prev = $('[data-pp-slider-prev]', wrap), next = $('[data-pp-slider-next]', wrap), pos = $('[data-pp-slider-pos]', wrap);
+      if (!track) return;
+      function step() { var c = track.children[0]; return c ? c.getBoundingClientRect().width + 16 : track.clientWidth; }
+      function update() {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft >= max;
+        if (pos) pos.textContent = Math.min(track.children.length, Math.round(track.scrollLeft / step()) + 1);
+      }
+      if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  }
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
@@ -582,6 +605,7 @@
     initGallery(root);
     initAccordions(root);
     initDelivery(root);
+    initSliders(root);
     initReviews(root);
     initBundle(root);
     initStats(root);

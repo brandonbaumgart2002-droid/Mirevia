@@ -341,34 +341,6 @@
     "reviews": {
       "type": "parapatrol-reviews",
       "blocks": {
-        "ph1": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-couch.jpg",
-            "alt": "A mum and daughter reading on the sofa, ParaPatrol on the side table"
-          }
-        },
-        "ph2": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-dad-smoothie.jpg",
-            "alt": "A dad and son pouring a berry smoothie, ParaPatrol on the counter"
-          }
-        },
-        "ph3": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-school-door.jpg",
-            "alt": "A mum zips up her son's jacket before school, ParaPatrol on the hall table"
-          }
-        },
-        "ph4": {
-          "type": "photo",
-          "settings": {
-            "asset": "pp-family-breakfast.jpg",
-            "alt": "A family laughing over pancakes, ParaPatrol on the table"
-          }
-        },
         "rev_1": {
           "type": "quote",
           "settings": {
@@ -390,7 +362,8 @@
             "stars": 5,
             "tags": "tummy",
             "photo_alt": "",
-            "title": "Finishing her meals again"
+            "title": "Finishing her meals again",
+            "detail": "Parent of a daughter"
           }
         },
         "rev_3": {
@@ -402,7 +375,8 @@
             "stars": 5,
             "tags": "easy, taste",
             "photo_alt": "",
-            "title": "Calmer mornings, no pill battles"
+            "title": "Calmer mornings, no pill battles",
+            "detail": "Parent of a son"
           }
         },
         "rev_4": {
@@ -426,7 +400,8 @@
             "stars": 5,
             "tags": "tummy",
             "photo_alt": "",
-            "title": "A bigger appetite for our picky eater"
+            "title": "A bigger appetite for our picky eater",
+            "detail": "Parent of a son"
           }
         },
         "rev_6": {
@@ -450,7 +425,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "tummy, taste",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of a picky eater"
           }
         },
         "rev_8": {
@@ -462,7 +438,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "tummy, easy",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of picky eaters"
           }
         },
         "rev_9": {
@@ -474,7 +451,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "tummy, taste",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of little ones"
           }
         },
         "rev_10": {
@@ -486,7 +464,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "taste",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of a 5- and 7-year-old"
           }
         },
         "rev_11": {
@@ -498,7 +477,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "easy, taste, routine",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of a school-age daughter"
           }
         },
         "rev_12": {
@@ -522,7 +502,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "routine, tummy",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of a son"
           }
         },
         "rev_14": {
@@ -534,7 +515,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "tummy, routine",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of an 8-year-old"
           }
         },
         "rev_15": {
@@ -546,7 +528,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "tummy",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of two daughters"
           }
         },
         "rev_16": {
@@ -558,7 +541,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "taste, easy",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of a 9-year-old"
           }
         },
         "rev_17": {
@@ -582,7 +566,8 @@
             "badge": "Verified Buyer",
             "stars": 5,
             "tags": "taste, routine",
-            "photo_alt": ""
+            "photo_alt": "",
+            "detail": "Parent of two boys"
           }
         },
         "rev_19": {
@@ -596,13 +581,49 @@
             "tags": "routine",
             "photo_alt": ""
           }
+        },
+        "ugc1": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-ugc-1.jpg",
+            "alt": "A mum takes a garden selfie with her two kids, holding a ParaPatrol bottle and box"
+          }
+        },
+        "ugc2": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-ugc-2.jpg",
+            "alt": "A smiling boy holds a ParaPatrol bottle out to the camera on a sunny footpath"
+          }
+        },
+        "ugc3": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-ugc-3.jpg",
+            "alt": "A mum and her young daughter smile with a ParaPatrol box at home"
+          }
+        },
+        "ugc4": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-ugc-4.jpg",
+            "alt": "A parent adds a dropper of ParaPatrol to a girl’s orange juice at breakfast"
+          }
+        },
+        "ugc5": {
+          "type": "photo",
+          "settings": {
+            "asset": "pp-family-ugc-5.jpg",
+            "alt": "A dad and his son smile on the sofa, the boy holding a ParaPatrol bottle"
+          }
         }
       },
       "block_order": [
-        "ph1",
-        "ph2",
-        "ph3",
-        "ph4",
+        "ugc1",
+        "ugc2",
+        "ugc3",
+        "ugc4",
+        "ugc5",
         "rev_3",
         "rev_2",
         "rev_7",
@@ -634,8 +655,7 @@
         "bar_labels": "",
         "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
         "filters": "",
-        "quotes_note": "Individual reviews reflect one family’s experience. Results vary.",
-        "quotes_visible": 6
+        "quotes_note": "Individual reviews reflect one family’s experience. Results vary."
       }
     },
     "ingredients": {

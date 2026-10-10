@@ -225,3 +225,7 @@
 .pp .pp-adv-sticky { transition: transform .25s ease; }
 @media (max-width: 639px) { .pp .pp-adv-copy { font-size: 17px; } }
 .pp.pp .pp-adv-sec { background: transparent !important; }
+
+/* Review slider: hide the scrollbar, keep swipe and keyboard scrolling */
+.pp .pp-slider { scrollbar-width: none; }
+.pp .pp-slider::-webkit-scrollbar { display: none; }

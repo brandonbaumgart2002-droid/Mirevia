@@ -21,18 +21,18 @@
       {%- assign photo_count = 0 -%}
       {%- for block in section.blocks -%}{%- if block.type == 'photo' -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
       {%- if photo_count > 0 -%}
-        <ul class="mt-8 -mx-4 px-4 scroll-px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible" role="list" aria-label="ParaPatrol in family life">
+        <ul class="mt-8 -mx-4 px-4 scroll-px-4 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 sm:mx-0 sm:px-0 sm:grid {% if photo_count >= 5 %}sm:grid-cols-5{% else %}sm:grid-cols-4{% endif %} sm:gap-4 sm:overflow-visible" role="list" aria-label="ParaPatrol in family life">
           {%- for block in section.blocks -%}
             {%- if block.type == 'photo' -%}
               <li class="snap-start shrink-0 w-[62%] sm:w-auto" {{ block.shopify_attributes }}>
-                {%- render 'parapatrol-media', image: block.settings.image, asset: block.settings.asset, label: block.settings.alt, alt: block.settings.alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 270px, (min-width: 640px) 24vw, 62vw' -%}
+                {%- render 'parapatrol-media', image: block.settings.image, asset: block.settings.asset, label: block.settings.alt, alt: block.settings.alt, class: 'aspect-square rounded-3xl', sizes: '(min-width: 1152px) 230px, (min-width: 640px) 20vw, 62vw' -%}
               </li>
             {%- endif -%}
           {%- endfor -%}
         </ul>
       {%- endif -%}
 
-      <div class="mt-8 grid lg:grid-cols-[320px_1fr] gap-6 lg:gap-10">
+      <div class="mt-8 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] gap-6 lg:gap-10">
         {%- if section.settings.show_breakdown -%}
           <div class="bg-white rounded-3xl p-6 shadow-soft self-start">
             {%- liquid
@@ -77,7 +77,7 @@
           </div>
         {%- endif -%}
 
-        <div data-pp-reviews>
+        <div class="min-w-0" data-pp-reviews>
           {%- if filter_lines.size > 0 and section.settings.filters != blank -%}
             <div class="flex flex-wrap gap-2" role="group" aria-label="Filter reviews by topic">
               <button type="button" data-pp-filter="all" aria-pressed="true" class="disable-global-button-styling px-4 py-2 rounded-full text-sm font-bold border border-primary bg-primary text-white">All</button>
@@ -91,9 +91,9 @@
             <p class="sr-only" aria-live="polite" data-pp-filter-status></p>
           {%- endif -%}
 
-          {%- assign q_shown = section.settings.quotes_visible | default: 0 -%}
           {%- assign q_i = 0 -%}
-          <ul class="mt-5 grid sm:grid-cols-2 gap-4" data-pp-more-list>
+          <div class="relative mt-5" data-pp-slider>
+          <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" data-pp-slider-track role="list" aria-label="Parent reviews">
             {%- for block in section.blocks -%}
               {%- if block.type == 'quote' -%}
                 {%- assign q_i = q_i | plus: 1 -%}
@@ -105,7 +105,7 @@
                     assign tag_list = tag_list | append: ' ' | append: t_clean
                   endfor
                 -%}
-                <li class="bg-white rounded-3xl p-6 shadow-soft flex flex-col{% if q_shown > 0 and q_i > q_shown %} pp-more-hidden{% endif %}" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
+                <li class="snap-start shrink-0 w-[86%] sm:w-[calc(50%-8px)] bg-white rounded-3xl p-6 shadow-soft flex flex-col" data-pp-review data-tags="{{ tag_list | strip }}" {{ block.shopify_attributes }}>
                   {%- if block.settings.customer_photo != blank -%}
                     {%- render 'parapatrol-media', image: block.settings.customer_photo, alt: block.settings.photo_alt, class: 'aspect-square rounded-2xl mb-4', sizes: '(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw' -%}
                   {%- endif -%}
@@ -116,16 +116,19 @@
                     <p class="mt-3 font-display font-bold text-[19px] leading-snug text-primary">{{ block.settings.title }}</p>
                   {%- endif -%}
                   <blockquote class="{% if block.settings.title != blank %}mt-1.5{% else %}mt-3{% endif %} text-[16px] flex-1">“{{ block.settings.quote }}”</blockquote>
-                  <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
+                  <p class="mt-4 text-sm font-bold">{{ block.settings.author }}{% if block.settings.detail != blank %} <span class="font-semibold text-ink">({{ block.settings.detail }})</span>{% endif %}{% if block.settings.badge != blank %} <span class="font-normal text-muted">· {{ block.settings.badge }}</span>{% endif %}</p>
                 </li>
               {%- endif -%}
             {%- endfor -%}
           </ul>
-          {%- if q_shown > 0 and q_i > q_shown -%}
-            <div class="mt-5 text-center">
-              <button type="button" data-pp-more-btn class="disable-global-button-styling inline-flex items-center justify-center min-h-[48px] px-7 rounded-full border-2 border-primary text-primary-dark font-extrabold text-[15px] hover:bg-mint transition-colors">Show {{ q_i | minus: q_shown }} more reviews</button>
+          <div class="mt-3 flex items-center justify-between gap-3">
+            <p class="text-[13px] font-bold text-muted" aria-hidden="true"><span data-pp-slider-pos>1</span> / {{ q_i }}</p>
+            <div class="flex gap-2">
+              <button type="button" data-pp-slider-prev class="disable-global-button-styling w-11 h-11 rounded-full bg-white border-2 border-primary text-primary-dark inline-flex items-center justify-center hover:bg-mint disabled:opacity-40" aria-label="Previous reviews"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button type="button" data-pp-slider-next class="disable-global-button-styling w-11 h-11 rounded-full bg-primary text-white inline-flex items-center justify-center hover:bg-primary-dark disabled:opacity-40" aria-label="Next reviews"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg></button>
             </div>
-          {%- endif -%}
+          </div>
+          </div>
           {%- if section.settings.quotes_note != blank -%}<p class="mt-4 text-[12px] text-muted">{{ section.settings.quotes_note }}</p>{%- endif -%}
 
           {%- for block in section.blocks -%}
@@ -150,8 +153,7 @@
     { "type": "text", "id": "bar_labels", "label": "Breakdown counts, 5★ to 1★" },
     { "type": "text", "id": "breakdown_note", "label": "Breakdown note", "default": "Replace the bar widths and counts with your review app's numbers." },
     { "type": "textarea", "id": "filters", "label": "Filter topics (one per line: key|Label)", "default": "easy|Easy to give\ntaste|Taste\ntummy|Tummy & appetite\nroutine|Routine" },
-    { "type": "number", "id": "quotes_visible", "label": "Reviews shown before \"Show more\"", "info": "0 shows them all.", "default": 6 },
-    { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "Individual reviews reflect one family’s experience. Results vary." }
+        { "type": "text", "id": "quotes_note", "label": "Note under quotes", "default": "Individual reviews reflect one family’s experience. Results vary." }
   ],
   "blocks": [
     { "type": "@app" },
@@ -159,6 +161,7 @@
       { "type": "text", "id": "title", "label": "Title", "info": "The moment that changed for this family, in a few words, e.g. Calmer mornings. Must match what the review actually says." },
       { "type": "textarea", "id": "quote", "label": "Quote" },
       { "type": "text", "id": "author", "label": "Name", "default": "Verified Buyer" },
+      { "type": "text", "id": "detail", "label": "Detail next to the name", "info": "Only what the customer told you, e.g. Parent of a 5-year-old. Shown in brackets." },
       { "type": "text", "id": "badge", "label": "Badge", "default": "Verified Buyer" },
       { "type": "range", "id": "stars", "label": "Stars (0 hides)", "min": 0, "max": 5, "step": 1, "default": 5 },
       { "type": "text", "id": "tags", "label": "Filter keys (comma separated)", "info": "Use keys from the section's filter list, e.g. easy, taste" },
