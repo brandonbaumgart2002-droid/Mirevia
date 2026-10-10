@@ -350,7 +350,9 @@
             "stars": 5,
             "tags": "easy, taste",
             "photo_alt": "",
-            "title": "No more fuss at dose time"
+            "title": "No more fuss at dose time",
+            "illus_asset": "pp-family-ugc-14.jpg",
+            "illus_alt": "A girl brushing her teeth next to a ParaPatrol bottle and box"
           }
         },
         "rev_2": {
@@ -378,7 +380,9 @@
             "tags": "easy, taste",
             "photo_alt": "",
             "title": "Calmer mornings, no pill battles",
-            "detail": "Parent of Leo"
+            "detail": "Parent of Leo",
+            "illus_asset": "pp-family-ugc-15.jpg",
+            "illus_alt": "A boy in school uniform gives a thumbs up with a ParaPatrol bottle"
           }
         },
         "rev_4": {
@@ -447,7 +451,9 @@
             "stars": 5,
             "tags": "tummy, easy",
             "photo_alt": "",
-            "detail": "Parent of picky eaters"
+            "detail": "Parent of picky eaters",
+            "illus_asset": "pp-family-ugc-12.jpg",
+            "illus_alt": "A brother and sister on the front steps in school uniform with ParaPatrol"
           }
         },
         "rev_9": {
@@ -547,7 +553,9 @@
             "stars": 5,
             "tags": "tummy",
             "photo_alt": "",
-            "detail": "Parent of Ella and Grace"
+            "detail": "Parent of Ella and Grace",
+            "illus_asset": "pp-family-ugc-13.jpg",
+            "illus_alt": "A little girl at the playground points at the ParaPatrol box"
           }
         },
         "rev_16": {
@@ -560,7 +568,9 @@
             "stars": 5,
             "tags": "taste, easy",
             "photo_alt": "",
-            "detail": "Parent of Chloe, age 9"
+            "detail": "Parent of Chloe, age 9",
+            "illus_asset": "pp-family-ugc-11.jpg",
+            "illus_alt": "A girl in the garden holds up a ParaPatrol bottle and box"
           }
         },
         "rev_17": {
