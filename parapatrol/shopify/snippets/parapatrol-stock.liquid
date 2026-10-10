@@ -1,0 +1,20 @@
+{%- comment -%}
+  Low-stock alert driven by the variant's real Shopify inventory. Shows only when inventory is tracked
+  and the count is between 1 and the threshold, so the number is always the true stock level.
+  Params: variant, threshold (number), label (text before the count), suffix (text after)
+{%- endcomment -%}
+{%- liquid
+  assign st_qty = variant.inventory_quantity | default: 0
+  assign st_max = threshold | default: 15 | plus: 0
+-%}
+{%- if variant.inventory_management == 'shopify' and st_qty > 0 and st_qty <= st_max -%}
+  <div class="flex items-center gap-3 rounded-2xl bg-[#fdeef3] border border-accent px-4 py-3" role="status">
+    <span class="relative flex h-3 w-3 shrink-0" aria-hidden="true">
+      <span class="pp-stock-ping absolute inline-flex h-full w-full rounded-full bg-berry"></span>
+      <span class="relative inline-flex h-3 w-3 rounded-full bg-berry"></span>
+    </span>
+    <p class="font-display font-bold text-[16px] sm:text-[17px] leading-tight text-ink">
+      {{- label | default: 'Hurry! Only' }} <span class="text-berry">{{ st_qty }}</span> {{ suffix | default: 'left in stock' -}}
+    </p>
+  </div>
+{%- endif -%}

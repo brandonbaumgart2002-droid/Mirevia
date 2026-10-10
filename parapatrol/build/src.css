@@ -244,3 +244,8 @@
 .pp .pp-sbar__thumb:hover, .pp .pp-sbar.is-drag .pp-sbar__thumb { background: #2c5a4a; }
 .pp .pp-sbar.is-drag .pp-sbar__thumb { cursor: grabbing; }
 .pp [data-pp-scrollbar].is-drag .pp-slider { scroll-snap-type: none; }
+
+/* Low-stock dot pulse */
+@keyframes pp-ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+.pp .pp-stock-ping { animation: pp-ping 1.6s cubic-bezier(0,0,.2,1) infinite; opacity: .6; }
+@media (prefers-reduced-motion: reduce) { .pp .pp-stock-ping { animation: none; } }

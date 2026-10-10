@@ -203,6 +203,10 @@
       </ul>
 
       <div id="pp-buy" class="order-4 mt-4 scroll-mt-28" data-pp-hero-box>
+        {%- if section.settings.show_stock -%}
+          {%- capture pp_stock -%}{%- render 'parapatrol-stock', variant: product.selected_or_first_available_variant, threshold: section.settings.stock_threshold, label: section.settings.stock_label, suffix: section.settings.stock_suffix -%}{%- endcapture -%}
+          {%- if pp_stock != blank -%}<div class="mb-3">{{ pp_stock }}</div>{%- endif -%}
+        {%- endif -%}
         {%- if section.settings.sale_end_date != blank -%}
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
@@ -358,9 +362,14 @@
     { "type": "textarea", "id": "quick_a3", "label": "Answer 3", "default": "One dropper (1 mL) a day in their morning juice or milk. Many parents notice a more settled tummy and a better appetite within 1 to 2 weeks.* Follow the 2 to 3 week routine, then take a break, and keep a bottle on hand for school terms and after trips." },
     { "type": "text", "id": "quick_q4", "label": "Question 4", "default": "What if it doesn't work for us?" },
     { "type": "textarea", "id": "quick_a4", "label": "Answer 4", "default": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions." },
+    { "type": "header", "content": "Low-stock alert" },
+    { "type": "checkbox", "id": "show_stock", "label": "Show low-stock alert", "default": true, "info": "Uses the product's real Shopify inventory. Shows only when inventory is tracked and stock is at or below the threshold." },
+    { "type": "number", "id": "stock_threshold", "label": "Show when stock is at or below", "default": 15 },
+    { "type": "text", "id": "stock_label", "label": "Text before the number", "default": "Hurry! Only" },
+    { "type": "text", "id": "stock_suffix", "label": "Text after the number", "default": "left in stock" },
     { "type": "header", "content": "Sale countdown" },
     { "type": "text", "id": "sale_label", "label": "Countdown label", "default": "Back to School Sale ends in" },
-    { "type": "text", "id": "sale_end_date", "label": "Sale end date (YYYY-MM-DD)", "info": "Your store's timezone. The timer disappears when the sale ends. Leave blank to hide it.", "default": "2026-10-31" },
+    { "type": "text", "id": "sale_end_date", "label": "Sale end date (YYYY-MM-DD)", "info": "Your store's timezone. The timer disappears when the sale ends. Leave blank to hide it." },
     { "type": "text", "id": "sale_end_time", "label": "Sale end time (24h, HH:MM)", "default": "23:59" },
     { "type": "text", "id": "sale_note", "label": "Small line under the label", "default": "Ends 31 October" },
     { "type": "checkbox", "id": "show_sticky", "label": "Sticky add-to-bag bar", "default": true },
