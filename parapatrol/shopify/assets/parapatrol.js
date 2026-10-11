@@ -479,8 +479,8 @@
 
   /* ---------------- Kaching free-gift images (swap app defaults for brand art) ---------------- */
   function initGiftImages() {
-    var map = window.ppGiftImages;
-    if (!map || window.__ppGiftObs) return;
+    var map = window.ppGiftImages || {};
+    if (window.__ppGiftObs) return;
     function swap() {
       $$('.kaching-bundles__progressive-gifts__gift').forEach(function (g) {
         var t = $('.kaching-bundles__progressive-gifts__gift__title', g);
@@ -488,6 +488,26 @@
         if (!t || !img) return;
         var src = map[t.textContent.trim().toLowerCase()];
         if (src && img.getAttribute('src') !== src) { img.setAttribute('src', src); img.removeAttribute('srcset'); }
+      });
+      // Tier cards: bottle count from the tier's own title ("Duo", "Buy 2, Get 2 Free"...), so the
+      // image and the size line stay right whichever Kaching deal is showing.
+      var tiers = window.ppTierImages || {};
+      $$('.kaching-bundles__bar').forEach(function (bar, i) {
+        var t = ($('.kaching-bundles__bar-title', bar) || {}).textContent || '';
+        t = t.toLowerCase();
+        var m = t.match(/buy\s*(\d+)[^\d]+get\s*(\d+)/), n;
+        if (m) n = +m[1] + +m[2];
+        else if (/single|one|^1\b/.test(t)) n = 1;
+        else if (/duo|two|^2\b/.test(t)) n = 2;
+        else if (/trio|three|^3\b/.test(t)) n = 3;
+        else { m = t.match(/(\d+)/); n = m ? +m[1] : i + 1; }
+        var size = n + ' \u00d7 30 mL\n' + (n * 30) + ' days';
+        if (bar.getAttribute('data-pp-size') !== size) bar.setAttribute('data-pp-size', size);
+        var sl = $('.kaching-bundles__bar-second-line', bar);
+        if (sl && sl.getAttribute('data-pp-size') !== size) sl.setAttribute('data-pp-size', size);
+        var src = tiers[n];
+        var img = $('img.kaching-bundles__bar-image', bar);
+        if (img && src && img.getAttribute('src') !== src) { img.setAttribute('src', src); img.removeAttribute('srcset'); }
       });
     }
     var queued = false;

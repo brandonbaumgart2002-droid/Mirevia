@@ -292,3 +292,34 @@
 .pp.pp .kaching-bundles__progressive-gifts__title, .pp.pp .kaching-bundles__progressive-gifts__gift__title:not(.kaching-bundles__progressive-gifts__gift__title--locked) { color: var(--ink) !important; }
 .pp.pp .kaching-bundles__progressive-gifts__gift__label { background: var(--brand-primary) !important; }
 .pp.pp .kaching-bundles__progressive-gifts__gift__label__text { color: #fff !important; }
+
+/* Kaching tiers as side-by-side cards (layout like the reference; pricing still from Kaching) */
+.pp.pp .kaching-bundles__bars { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; align-items: stretch; margin-top: 14px; }
+.pp.pp .kaching-bundles__bar { margin: 0 !important; height: 100%; }
+.pp.pp .kaching-bundles__bar-container { height: 100%; padding: 14px 8px 12px !important; border-radius: 16px !important; box-shadow: 0 6px 16px -12px rgba(30,45,79,.45); }
+.pp.pp .kaching-bundles__bar--selected .kaching-bundles__bar-container { box-shadow: 0 0 0 2px #fff inset, 0 0 0 4px var(--brand-primary) inset, 0 8px 20px -12px rgba(30,45,79,.5); }
+.pp.pp .kaching-bundles__bar-wrapper, .pp.pp .kaching-bundles__bar-main { height: 100%; }
+.pp.pp .kaching-bundles__bar-main { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 8px !important; text-align: center; }
+.pp.pp .kaching-bundles__bar-image { width: auto !important; max-width: 100% !important; height: 84px !important; min-height: 0 !important; object-fit: contain !important; margin: 4px auto 0 !important; border-radius: 0 !important; background: none !important; }
+@media (min-width: 640px) { .pp.pp .kaching-bundles__bar-image { height: 104px !important; } }
+.pp.pp .kaching-bundles__bar-content { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 6px !important; width: 100%; flex: 1; }
+.pp.pp .kaching-bundles__bar-content-left { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.pp.pp .kaching-bundles__bar-first-line { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 5px !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-title { font-family: var(--pp-font-display) !important; font-size: 17px !important; line-height: 1.15 !important; color: var(--brand-primary-dark) !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-label { font-size: 10.5px !important; line-height: 1.25 !important; padding: 3px 8px !important; border-radius: 999px !important; white-space: normal !important; max-width: 100%; }
+.pp.pp .kaching-bundles__bar-second-line { font-size: 12px !important; color: var(--ink-muted) !important; margin-top: 2px; }
+.pp.pp .kaching-bundles__bar-second-line[data-pp-size]::after { content: attr(data-pp-size); white-space: pre-line; line-height: 1.35; }
+.pp.pp .kaching-bundles__bar-pricing { display: flex !important; flex-direction: row !important; flex-wrap: wrap; justify-content: center !important; align-items: baseline !important; gap: 2px 6px !important; margin-top: auto; text-align: center !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-price { font-size: 18px !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-full-price { font-size: 13px !important; }
+.pp.pp .kaching-bundles__bar-radio, .pp.pp .kaching-bundles__bar input[type="radio"] + * .kaching-bundles__bar-radio { display: none !important; }
+.pp.pp .kaching-bundles__bar-most-popular { top: -11px !important; left: 50% !important; right: auto !important; transform: translateX(-50%); border-radius: 999px !important; padding: 0 !important; white-space: nowrap; }
+.pp.pp .kaching-bundles__bar-most-popular::before, .pp.pp .kaching-bundles__bar-most-popular::after { display: none !important; }
+.pp.pp .kaching-bundles .kaching-bundles__bar-most-popular__content { font-size: 10px !important; padding: 3px 10px !important; border-radius: 999px !important; }
+@media (min-width: 640px) {
+  .pp.pp .kaching-bundles__bars { gap: 12px !important; }
+  .pp.pp .kaching-bundles .kaching-bundles__bar-title { font-size: 19px !important; }
+  .pp.pp .kaching-bundles .kaching-bundles__bar-price { font-size: 20px !important; }
+  .pp.pp .kaching-bundles .kaching-bundles__bar-label { font-size: 11px !important; }
+}
+.pp.pp .kaching-bundles__bar[data-pp-size] .kaching-bundles__bar-second-line { display: block !important; visibility: visible !important; height: auto !important; opacity: 1 !important; }
