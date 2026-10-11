@@ -20,23 +20,8 @@
   endif
 -%}
 {%- if st_show -%}
-  <div class="rounded-2xl bg-white border-2 border-primary px-3.5 py-3 sm:px-4 flex items-center gap-3 shadow-soft" role="status">
-    <span class="relative shrink-0 w-11 h-11 rounded-xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>
-      <span class="absolute -top-1 -right-1 flex h-3 w-3">
-        <span class="pp-stock-ping absolute inline-flex h-full w-full rounded-full bg-berry"></span>
-        <span class="relative inline-flex h-3 w-3 rounded-full bg-berry border-2 border-white"></span>
-      </span>
-    </span>
-    <div class="min-w-0 flex-1">
-      <p class="font-display font-bold text-[17px] sm:text-[18px] leading-tight text-primary-dark">
-        {{- label | default: 'Hurry! Only' }} <span class="inline-flex items-center justify-center min-w-[30px] px-1.5 rounded-full bg-berry text-white text-[15px] leading-[22px] align-[1px]">{{ st_qty }}</span> {{ suffix | default: 'left in stock' -}}
-      </p>
-      {%- if st_qty <= 30 -%}
-        <span class="mt-1.5 flex flex-wrap gap-[3px]" aria-hidden="true">
-          {%- for i in (1..st_qty) -%}<span class="w-[9px] h-[9px] rounded-full bg-primary"></span>{%- endfor -%}
-        </span>
-      {%- endif -%}
-    </div>
-  </div>
+  <p class="flex items-center gap-2.5 text-[15px] sm:text-[16px] font-semibold text-ink" role="status">
+    <span class="pp-stock-dot shrink-0" aria-hidden="true"></span>
+    <span>{{ label | default: 'Hurry! Only' }} <strong class="font-extrabold text-[#d92d3a]">{{ st_qty }}</strong> {{ suffix | default: 'left in stock' }}</span>
+  </p>
 {%- endif -%}

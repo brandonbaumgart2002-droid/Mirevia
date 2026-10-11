@@ -257,3 +257,8 @@
 .pp .pp-lp-acc > summary::-webkit-details-marker { display: none; }
 .pp .pp-lp-acc > summary:focus-visible { outline: 2px solid #3b7560; outline-offset: 2px; border-radius: 8px; }
 .pp .pp-adv-copy ul + p { margin-top: 16px; }
+
+/* Low-stock alert: glowing red dot */
+@keyframes pp-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(229,57,70,.55), 0 0 6px 1px rgba(229,57,70,.7); } 50% { box-shadow: 0 0 0 6px rgba(229,57,70,0), 0 0 10px 3px rgba(229,57,70,.45); } }
+.pp .pp-stock-dot { width: 10px; height: 10px; border-radius: 999px; background: #e53946; animation: pp-glow 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pp .pp-stock-dot { animation: none; box-shadow: 0 0 6px 1px rgba(229,57,70,.6); } }
