@@ -377,8 +377,40 @@
           </div>
         </section>
 
+      {%- when 'videos' -%}
+        {%- assign vids = bs.items | newline_to_br | split: '<br />' -%}
+        {%- assign v_count = 0 -%}
+        {%- for l in vids -%}{%- assign f = l | strip | split: '|' -%}{%- assign v_src = f[1] | strip -%}{%- if v_src != blank -%}{%- assign v_count = v_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+        {%- if v_count > 0 -%}
+        <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto">
+              <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
+              {%- if bs.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: bs.intro -%}</p>{%- endif -%}
+            </div>
+            <ol class="mt-8 grid gap-5 grid-cols-1 sm:grid-cols-3" role="list">
+              {%- for l in vids -%}
+                {%- assign f = l | strip | split: '|' -%}
+                {%- assign v_src = f[1] | strip -%}
+                {%- if v_src != blank -%}
+                  {%- assign v_poster = f[2] | strip -%}
+                  <li class="flex flex-col items-center">
+                    <div class="w-full max-w-[320px] mx-auto aspect-[9/16] rounded-3xl overflow-hidden bg-ink shadow-lift">
+                      <video class="w-full h-full object-cover" src="{{ v_src }}" {% if v_poster != blank %}poster="{{ v_poster | asset_url }}"{% endif %} controls playsinline preload="metadata"></video>
+                    </div>
+                    <p class="mt-3 font-display font-bold text-[20px] text-primary-dark">{{ f[0] | strip }}</p>
+                    {%- assign v_cap = f[3] | strip -%}{%- if v_cap != blank -%}<p class="mt-0.5 text-center text-[14px] text-muted max-w-[300px]">{{ v_cap }}</p>{%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
+            {%- if bs.note != blank -%}<p class="mt-5 text-center text-[12px] text-muted">{{ bs.note }}</p>{%- endif -%}
+          </div>
+        </section>
+        {%- endif -%}
+
       {%- when 'progress' -%}
-        <section class="pp-adv-sec py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
+        <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
           <div class="max-w-6xl mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto">
               <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
@@ -540,6 +572,12 @@
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "asset", "label": "Built-in image file" },
       { "type": "text", "id": "alt", "label": "Image description" }
+    ] },
+    { "type": "videos", "name": "Video timeline", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Videos", "info": "Day label | video link (Shopify Files URL) | poster image file (optional) | caption (optional). Section stays hidden until a link is added." },
+      { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "progress", "name": "Progress story", "settings": [
       { "type": "text", "id": "heading", "label": "Heading" },

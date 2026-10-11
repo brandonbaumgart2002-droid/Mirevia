@@ -183,6 +183,15 @@
           "settings": {
             "items": "leaf | Natural herbal ingredients\nheart | Kid-approved taste\nshield | 30-day guarantee\ncheck | cGMP facility\nlock | Third-party tested\ntruck | Free shipping"
           }
+        },
+        "videos": {
+          "type": "videos",
+          "settings": {
+            "heading": "Watch one family’s first three weeks",
+            "intro": "Real ParaPatrol parents, filmed at home.",
+            "items": "Day 4 |  |  | \nDay 10 |  |  | \nDay 20 |  |  | ",
+            "note": "Individual results vary."
+          }
         }
       },
       "block_order": [
@@ -193,6 +202,7 @@
         "ingredients",
         "routine",
         "timeline",
+        "videos",
         "progress",
         "see",
         "reviews",
