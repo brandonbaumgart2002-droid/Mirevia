@@ -190,7 +190,8 @@
             {% when 'cart-social_proof_bar' %}
               {% if cart != empty %}
                 <div {{ block.shopify_attributes }}>
-                  {% render 'cart-social_proof_bar', block: block %}
+                  {%- comment -%} ParaPatrol: trust line replaces the social proof (free shipping) bar {%- endcomment -%}
+                  {% render 'pp-cart-trust', count: section.settings.pp_trust_count, label: section.settings.pp_trust_label, fallback: section.settings.pp_trust_fallback, top: true %}
                 </div>
               {% endif %}
             {% when 'cart_timer_bar' %}
@@ -846,7 +847,6 @@
             </span>
           </button>
         </div>
-        {% render 'pp-cart-trust', count: section.settings.pp_trust_count, label: section.settings.pp_trust_label, fallback: section.settings.pp_trust_fallback %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'cart_money_back_guarantee' %}
@@ -886,7 +886,7 @@
   "name": "Cart Drawer",
   "tag": "section",
   "settings": [
-    { "type": "header", "content": "Trust line under checkout" },
+    { "type": "header", "content": "Trust line (top of cart)" },
     { "type": "text", "id": "pp_trust_count", "label": "Happy parents count", "info": "Your real number of customers, e.g. 2000. Leave blank until you have it: the line below shows instead." },
     { "type": "text", "id": "pp_trust_label", "label": "Text with the count", "default": "Join [count]+ happy parents", "info": "[count] is replaced by the number above." },
     { "type": "text", "id": "pp_trust_fallback", "label": "Text while the count is blank", "default": "Loved by parents" },

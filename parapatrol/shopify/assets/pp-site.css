@@ -206,3 +206,5 @@ body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
 #CartDrawer .pp-cart-trust { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 8px; margin-top: 10px; text-align: center; }
 #CartDrawer .pp-cart-trust__stars { display: inline-flex; gap: 1px; }
 #CartDrawer .pp-cart-trust__text { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; color: #1e2d4f; }
+#CartDrawer .pp-cart-trust--top { margin: 0; padding: 10px 16px; background: #ebf4ef; border-bottom: 1px solid #d6e7dd; }
+#CartDrawer .pp-cart-trust--top .pp-cart-trust__text { font-size: 14px; color: #2c5a4a; }

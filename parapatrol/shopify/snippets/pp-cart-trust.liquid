@@ -1,5 +1,5 @@
 {%- comment -%}
-  Trust line under the cart drawer's checkout button.
+  Trust line at the top of the cart drawer (replaces the free-shipping bar). top: true for the banner style.
   count: real customer number (blank shows the fallback line instead), label: text with [count], fallback: text without a number.
 {%- endcomment -%}
 {%- liquid
@@ -11,7 +11,7 @@
   endif
 -%}
 {%- if t_text != blank -%}
-  <div class="pp-cart-trust">
+  <div class="pp-cart-trust{% if top %} pp-cart-trust--top{% endif %}">
     <span class="pp-cart-trust__stars" aria-hidden="true">
       {%- for i in (1..5) -%}<svg width="14" height="14" viewBox="0 0 24 24" fill="#e27aa3"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>{%- endfor -%}
     </span>
