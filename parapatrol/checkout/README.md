@@ -3,9 +3,9 @@
 Shopify's checkout isn't part of the theme, so these settings are made by hand in **Settings → Checkout → Customize**. They match the ParaPatrol product page: sage green, navy ink, soft mint and pink, Nunito Sans text.
 
 ## Header
-- **Logo:** upload `mirevia-checkout-header.png` (1200 × 260, transparent). It's the wordmark plus three trust chips: 30-day money-back, Secure checkout, Free shipping.
-- **Logo position:** centre. **Size:** the largest that fits without cropping (about 360–400 px wide).
-- This replaces the current banner. That banner's "+4,000 Happy Customers" and stock faces don't match the 237+ reviews shown on the product page, so remove it unless you can back the number up.
+- **Logo:** `mirevia-checkout-header-v3.png` (1800 × 946, transparent), already set in the checkout at 300 px (Shopify's maximum). It has the new Mirevia wordmark, then "30-Day Money Back Guarantee" and "Secure Checkout", then "2,000+ Happy Parents" and five pink star tiles with "Excellent 4.8/5".
+- **Logo position:** centre.
+- To rebuild it, edit `header.html` (it loads `mirevia-logo.png` and the Google fonts) and re-run the Playwright screenshot of `#b` with a transparent background. The first version is kept as `header-v1.html` / `mirevia-checkout-header.png`.
 
 ## Colours
 | Setting | Value | Why |
