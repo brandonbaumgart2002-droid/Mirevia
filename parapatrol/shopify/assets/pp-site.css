@@ -216,3 +216,50 @@ body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
 #CartDrawer [id^="cart-timer-bar-"] .cart-timer-text .cart-timer-countdown { color: #d92d3a !important; font-weight: 800; font-variant-numeric: tabular-nums; }
 @keyframes pp-cart-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(229,57,70,.55), 0 0 5px 1px rgba(229,57,70,.7); } 50% { box-shadow: 0 0 0 5px rgba(229,57,70,0), 0 0 9px 3px rgba(229,57,70,.45); } }
 @media (prefers-reduced-motion: reduce) { #CartDrawer [id^="cart-timer-bar-"] .cart-timer-text::before { animation: none; } }
+
+/* ===== Cart drawer redesign (ParaPatrol) ===== */
+#CartDrawer .drawer__heading { font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 26px !important; color: #1e2d4f !important; letter-spacing: 0 !important; }
+#CartDrawer .gb-cart-total-item { background: #3b7560 !important; color: #fff !important; }
+/* shipping progress + banner */
+#CartDrawer .pp-ctop { background: #f4f6f5; padding: 14px 18px 16px; text-align: center; }
+#CartDrawer .pp-ctop__ship { margin: 0 0 10px; font-family: 'Nunito Sans', sans-serif !important; font-size: 16px; font-weight: 700; color: #1e2d4f; }
+#CartDrawer .pp-ctop__green { color: #3b7560; font-weight: 800; }
+#CartDrawer .pp-ctop__red { color: #d92d3a; font-weight: 800; }
+#CartDrawer .pp-ctop__bar { height: 10px; border-radius: 999px; background: #dfe5e2; overflow: hidden; }
+#CartDrawer .pp-ctop__bar span { display: block; height: 100%; border-radius: 999px; background: #3b7560; }
+#CartDrawer .pp-ctop__banner { margin: 0; padding: 11px 16px; background: #3b7560; color: #fff; text-align: center; font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 18px !important; letter-spacing: 0 !important; color: #fff !important; }
+/* items label */
+#CartDrawer .pp-cart-label { display: flex; align-items: center; gap: 12px; margin: 16px 16px 6px; font-family: 'Nunito Sans', sans-serif !important; font-weight: 800; font-size: 15px; color: #1e2d4f; }
+#CartDrawer .pp-cart-label::after { content: ""; flex: 1; height: 1px; background: #ece1e5; }
+/* item card */
+#CartDrawer .cart-item__media img, #CartDrawer .cart-item__image { border-radius: 14px !important; }
+#CartDrawer .cart-item__media { border: 2px solid #3b7560; border-radius: 16px; overflow: hidden; background: #ebf4ef; }
+#CartDrawer .cart-item__name { font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 19px !important; color: #1e2d4f !important; letter-spacing: 0 !important; }
+#CartDrawer .cart-item__final-price { font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; color: #1e2d4f !important; }
+#CartDrawer .cart-item__old-price { color: #4f5b72 !important; }
+#CartDrawer .quantity.cart-quantity { border: 1.5px solid #d6e7dd !important; border-radius: 999px !important; overflow: hidden; }
+#CartDrawer .quantity.cart-quantity::before, #CartDrawer .quantity.cart-quantity::after { display: none !important; }
+#CartDrawer .discount-tag { border: 1.5px dashed #a7b0c0 !important; border-radius: 8px !important; background: #fff !important; color: #4f5b72 !important; font-weight: 700 !important; }
+/* upgrade box */
+#CartDrawer .pp-cup { position: relative; margin: 22px 16px 8px; padding: 26px 18px 18px; border-radius: 18px; background: #ebf4ef; text-align: center; font-family: 'Nunito Sans', sans-serif !important; }
+#CartDrawer .pp-cup__badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 3px 14px; border-radius: 999px; background: #f4c7d5; color: #7a2a4a; font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700; font-size: 15px; white-space: nowrap; }
+#CartDrawer .pp-cup__title { margin: 0; font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 22px !important; line-height: 1.15 !important; color: #1e2d4f !important; letter-spacing: 0 !important; text-transform: none !important; }
+#CartDrawer .pp-cup__sub { margin: 4px 0 0; font-size: 14px; font-weight: 600; color: #4f5b72; }
+#CartDrawer .pp-cup__list { list-style: none; margin: 12px auto 0; padding: 0; display: grid; gap: 6px; width: fit-content; text-align: left; }
+#CartDrawer .pp-cup__list li { display: flex; align-items: center; gap: 8px; font-size: 15px; color: #1e2d4f; }
+#CartDrawer .pp-cup__list svg { color: #3b7560; flex-shrink: 0; }
+#CartDrawer .pp-cup__btn { margin-top: 14px; width: 100%; min-height: 50px; border: 0; border-radius: 999px; background: #3b7560; color: #fff; font-family: 'Nunito Sans', sans-serif !important; font-weight: 800; font-size: 16px; cursor: pointer; box-shadow: 0 3px 0 #2c5a4a; }
+#CartDrawer .pp-cup__btn:hover { background: #2c5a4a; }
+#CartDrawer .pp-cup__btn.is-loading { opacity: .6; cursor: wait; }
+/* summary */
+#CartDrawer .pp-cart-summary-h { margin: 4px 0 8px; font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 20px !important; color: #1e2d4f !important; letter-spacing: 0 !important; }
+#CartDrawer .pp-cart-sumrow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-family: 'Nunito Sans', sans-serif !important; font-size: 15px; color: #4f5b72; }
+#CartDrawer .pp-cart-sumrow span:last-child { color: #1e2d4f; }
+#CartDrawer .pp-cart-free { color: #3b7560 !important; font-weight: 800; }
+/* checkout + badges */
+#CartDrawer .cart__checkout-button { min-height: 58px !important; border-radius: 999px !important; background: #3b7560 !important; color: #fff !important; font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 20px !important; letter-spacing: 0 !important; text-transform: none !important; box-shadow: 0 4px 0 #2c5a4a !important; }
+#CartDrawer .cart__checkout-button:hover { background: #2c5a4a !important; }
+#CartDrawer .pp-cbadges { list-style: none; margin: 14px 0 4px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+#CartDrawer .pp-cbadges li { display: flex; align-items: center; gap: 6px; font-family: 'Nunito Sans', sans-serif !important; font-size: 12.5px; font-weight: 700; line-height: 1.25; color: #1e2d4f; }
+#CartDrawer .pp-cbadges svg { flex-shrink: 0; color: #3b7560; }
+#CartDrawer .gb-30day-back { display: none !important; }

@@ -1,0 +1,47 @@
+{%- comment -%}
+  "Upgrade and save" box under the cart items: one click raises the ParaPatrol line to the next bundle size
+  (Kaching then applies that bundle's discount automatically). Hidden once the top tier is reached.
+  Params: product_handle, tiers ("1,2,3"), tiers_b (sizes for Kaching's B deal, e.g. "2,4,6"), badge, bullets (one per line)
+{%- endcomment -%}
+{%- liquid
+  assign u_line = nil
+  assign u_index = 0
+  for item in cart.items
+    if item.product.handle == product_handle
+      assign u_line = item
+      assign u_index = forloop.index
+      break
+    endif
+  endfor
+  assign u_next = 0
+  if u_line
+    assign u_tier_list = tiers | default: '1,2,3'
+    assign u_props = u_line.properties['__kaching_bundles'] | default: ''
+    if tiers_b != blank and u_props contains '"ab":"B"'
+      assign u_tier_list = tiers_b
+    endif
+    assign u_tiers = u_tier_list | split: ','
+    for t in u_tiers
+      assign tn = t | strip | plus: 0
+      if tn > u_line.quantity
+        assign u_next = tn
+        break
+      endif
+    endfor
+  endif
+-%}
+{%- if u_line and u_next > 0 -%}
+  {%- assign u_add = u_next | minus: u_line.quantity -%}
+  <div class="pp-cup">
+    {%- if badge != blank -%}<span class="pp-cup__badge">{{ badge }}</span>{%- endif -%}
+    <p class="pp-cup__title">{% if u_next == 2 %}Make it a Duo &amp; save more{% elsif u_next == 3 and u_line.quantity == 2 %}Go Trio: 3rd bottle FREE{% else %}Upgrade to {{ u_next }} bottles &amp; save{% endif %}</p>
+    <p class="pp-cup__sub">{{ u_next }} bottles = {{ u_next | times: 30 }} days for 1 kid, or 30 days for {{ u_next }} kids</p>
+    {%- assign u_bul = bullets | newline_to_br | split: '<br />' -%}
+    <ul class="pp-cup__list">
+      {%- for b in u_bul -%}{%- assign bt = b | strip -%}{%- if bt != blank -%}
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 5 5 9-10"/></svg>{{ bt }}</li>
+      {%- endif -%}{%- endfor -%}
+    </ul>
+    <button type="button" class="pp-cup__btn" data-pp-cart-upgrade data-key="{{ u_line.key }}" data-line="{{ u_index }}" data-qty="{{ u_next }}">{% if u_add == 1 %}Add 1 more bottle &amp; save{% else %}Add {{ u_add }} more bottles &amp; save{% endif %}</button>
+  </div>
+{%- endif -%}

@@ -190,8 +190,8 @@
             {% when 'cart-social_proof_bar' %}
               {% if cart != empty %}
                 <div {{ block.shopify_attributes }}>
-                  {%- comment -%} ParaPatrol: trust line replaces the social proof (free shipping) bar {%- endcomment -%}
-                  {% render 'pp-cart-trust', count: section.settings.pp_trust_count, label: section.settings.pp_trust_label, fallback: section.settings.pp_trust_fallback, top: true %}
+                  {%- comment -%} ParaPatrol: shipping progress + discount banner (replaces the social proof bar) {%- endcomment -%}
+                  {% render 'pp-cart-top', banner: section.settings.pp_banner, threshold: 0 %}
                 </div>
               {% endif %}
             {% when 'cart_timer_bar' %}
@@ -237,6 +237,7 @@
             {% endfor %}
             <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
               {%- if cart != empty -%}
+                {%- if section.settings.pp_items_label != blank -%}<p class="pp-cart-label"><span>{{ section.settings.pp_items_label }}</span></p>{%- endif -%}
                 {% render 'cart-items',
                   section: section,
                   shipping_protection_id: shipping_protection_id,
@@ -253,6 +254,7 @@
 
             <div id="CartDrawer-CartErrors" role="alert"></div>
           </form>
+          {%- if cart != empty -%}{% render 'pp-cart-upgrade', product_handle: section.settings.pp_upgrade_handle, tiers: section.settings.pp_upgrade_tiers, tiers_b: section.settings.pp_upgrade_tiers_b, badge: section.settings.pp_upgrade_badge, bullets: section.settings.pp_upgrade_bullets %}{%- endif -%}
 
           {%- assign upsell_count = 0 -%}
 
@@ -769,6 +771,7 @@
           assign cart_total_savings = cart_total_compare_at_price | minus: cart.total_price
         -%}
 
+        {%- if cart != empty -%}<p class="pp-cart-summary-h">Order summary</p>{%- endif -%}
         {% if cart_total_savings > 0 %}
           <div
             class="totals gb-discounts-cart-values"
@@ -786,6 +789,10 @@
             </div>
           </div>
         {% endif %}
+        {%- if cart != empty -%}
+          <div class="pp-cart-sumrow"><span>Shipping</span><span class="pp-cart-free">FREE</span></div>
+          <div class="pp-cart-sumrow"><span>Taxes</span><span>Calculated at checkout</span></div>
+        {%- endif -%}
 
         <div
           class="totals gb-discounts-cart-values"
@@ -847,6 +854,15 @@
             </span>
           </button>
         </div>
+        {%- liquid
+          assign pp_tc = section.settings.pp_trust_count | strip
+          if pp_tc != blank
+            assign pp_trust_txt = section.settings.pp_trust_label | default: 'Join [count]+ happy parents' | replace: '[count]', pp_tc
+          else
+            assign pp_trust_txt = section.settings.pp_trust_fallback
+          endif
+        -%}
+        {% render 'pp-cart-badges', trust: pp_trust_txt %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'cart_money_back_guarantee' %}
@@ -869,6 +885,35 @@
     </div>
   </div>
 </cart-drawer>
+<script>
+  (function () {
+    if (window.__ppCartUpgrade) return; window.__ppCartUpgrade = true;
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-pp-cart-upgrade]');
+      if (!btn) return;
+      e.preventDefault();
+      var line = parseInt(btn.getAttribute('data-line'), 10), qty = parseInt(btn.getAttribute('data-qty'), 10);
+      btn.disabled = true; btn.classList.add('is-loading');
+      var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+      fetch(root + 'cart/change.js', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ line: line, quantity: qty, sections: ['cart-drawer', 'cart-icon-bubble'], sections_url: window.location.pathname })
+      }).then(function (r) { return r.json(); }).then(function (state) {
+        var s = state && state.sections;
+        if (!s || !s['cart-drawer']) { window.location.reload(); return; }
+        var doc = new DOMParser().parseFromString(s['cart-drawer'], 'text/html');
+        var fresh = doc.querySelector('#CartDrawer .drawer__inner'), cur = document.querySelector('#CartDrawer .drawer__inner');
+        if (fresh && cur) cur.innerHTML = fresh.innerHTML;
+        if (s['cart-icon-bubble']) {
+          var bubble = document.getElementById('cart-icon-bubble');
+          var bdoc = new DOMParser().parseFromString(s['cart-icon-bubble'], 'text/html').querySelector('.shopify-section');
+          if (bubble && bdoc) bubble.innerHTML = bdoc.innerHTML;
+        }
+        document.dispatchEvent(new CustomEvent('cart:updated', { detail: state }));
+      }).catch(function () { window.location.reload(); });
+    });
+  })();
+</script>
 
 {% render 'cart-drawer_style',
   enabled_upsell_block: enabled_upsell_block,
@@ -886,7 +931,15 @@
   "name": "Cart Drawer",
   "tag": "section",
   "settings": [
-    { "type": "header", "content": "Trust line (top of cart)" },
+    { "type": "header", "content": "ParaPatrol cart layout" },
+    { "type": "text", "id": "pp_banner", "label": "Green banner under the shipping bar", "default": "Back to School Discount Auto-Applied" },
+    { "type": "text", "id": "pp_items_label", "label": "Label above the items", "default": "One-Time Purchase" },
+    { "type": "text", "id": "pp_upgrade_handle", "label": "Upgrade box: product handle", "default": "parapatrol™" },
+    { "type": "text", "id": "pp_upgrade_tiers", "label": "Upgrade box: bundle sizes", "default": "1,2,3", "info": "Bottle counts, comma separated. The box offers the next size up and hides at the top size." },
+    { "type": "text", "id": "pp_upgrade_tiers_b", "label": "Upgrade box: bundle sizes for Kaching's B deal", "default": "2,4,6", "info": "Used when the cart came from Kaching's A/B variant B (Buy 1 Get 1 style deals)." },
+    { "type": "text", "id": "pp_upgrade_badge", "label": "Upgrade box: badge", "default": "Most Popular" },
+    { "type": "textarea", "id": "pp_upgrade_bullets", "label": "Upgrade box: points (one per line)", "default": "Bundle discount applied automatically\nFree shipping on every order\nBacked by our 30-day guarantee" },
+    { "type": "header", "content": "Trust badge (under checkout)" },
     { "type": "text", "id": "pp_trust_count", "label": "Happy parents count", "info": "Your real number of customers, e.g. 2000. Leave blank until you have it: the line below shows instead." },
     { "type": "text", "id": "pp_trust_label", "label": "Text with the count", "default": "Join [count]+ happy parents", "info": "[count] is replaced by the number above." },
     { "type": "text", "id": "pp_trust_fallback", "label": "Text while the count is blank", "default": "Loved by parents" },
