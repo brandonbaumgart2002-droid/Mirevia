@@ -477,6 +477,28 @@
     });
   }
 
+  /* ---------------- Kaching free-gift images (swap app defaults for brand art) ---------------- */
+  function initGiftImages() {
+    var map = window.ppGiftImages;
+    if (!map || window.__ppGiftObs) return;
+    function swap() {
+      $$('.kaching-bundles__progressive-gifts__gift').forEach(function (g) {
+        var t = $('.kaching-bundles__progressive-gifts__gift__title', g);
+        var img = $('img.kaching-bundles__progressive-gifts__gift__image', g);
+        if (!t || !img) return;
+        var src = map[t.textContent.trim().toLowerCase()];
+        if (src && img.getAttribute('src') !== src) { img.setAttribute('src', src); img.removeAttribute('srcset'); }
+      });
+    }
+    var queued = false;
+    window.__ppGiftObs = new MutationObserver(function () {
+      if (queued) return; queued = true;
+      window.requestAnimationFrame(function () { queued = false; swap(); });
+    });
+    window.__ppGiftObs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
+    swap();
+  }
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
@@ -641,6 +663,7 @@
     initDelivery(root);
     initSliders(root);
     initScrollbars(root);
+    initGiftImages();
     initReviews(root);
     initBundle(root);
     initStats(root);

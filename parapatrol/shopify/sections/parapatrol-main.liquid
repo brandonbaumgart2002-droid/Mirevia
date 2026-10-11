@@ -12,6 +12,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800&display=swap" rel="stylesheet"></noscript>
 {%- endif -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script>window.ppGiftImages = { 'free shipping': {{ 'pp-gift-free-shipping.jpg' | asset_url | json }} };</script>
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 
 <style>
