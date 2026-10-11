@@ -1,0 +1,20 @@
+{%- comment -%}
+  Trust line under the cart drawer's checkout button.
+  count: real customer number (blank shows the fallback line instead), label: text with [count], fallback: text without a number.
+{%- endcomment -%}
+{%- liquid
+  assign t_count = count | strip
+  if t_count != blank
+    assign t_text = label | default: 'Join [count]+ happy parents' | replace: '[count]', t_count
+  else
+    assign t_text = fallback | default: 'Loved by parents'
+  endif
+-%}
+{%- if t_text != blank -%}
+  <div class="pp-cart-trust">
+    <span class="pp-cart-trust__stars" aria-hidden="true">
+      {%- for i in (1..5) -%}<svg width="14" height="14" viewBox="0 0 24 24" fill="#e27aa3"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>{%- endfor -%}
+    </span>
+    <span class="pp-cart-trust__text">{{ t_text }}</span>
+  </div>
+{%- endif -%}

@@ -201,3 +201,8 @@ html #CartDrawer .cart__login-title { font-weight: 700 !important; }
 /* Featured product: the benefit list stays left-aligned when the section centres on phones */
 body.pp-site .mv-feature .mv-benefits { text-align: left; }
 body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
+
+/* Cart drawer: trust line under the checkout button */
+#CartDrawer .pp-cart-trust { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 8px; margin-top: 10px; text-align: center; }
+#CartDrawer .pp-cart-trust__stars { display: inline-flex; gap: 1px; }
+#CartDrawer .pp-cart-trust__text { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; color: #1e2d4f; }
