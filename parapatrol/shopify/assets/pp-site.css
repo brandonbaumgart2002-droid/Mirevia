@@ -208,8 +208,11 @@ body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
 #CartDrawer .pp-cart-trust__text { font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; color: #1e2d4f; }
 #CartDrawer .pp-cart-trust--top { margin: 0; padding: 10px 16px; background: #ebf4ef; border-bottom: 1px solid #d6e7dd; }
 #CartDrawer .pp-cart-trust--top .pp-cart-trust__text { font-size: 14px; color: #2c5a4a; }
-#CartDrawer .pp-cart-cd { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; padding: 8px 16px; border-bottom: 1px solid #ece1e5; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; color: #1e2d4f; }
-#CartDrawer .pp-cart-cd__time { color: #d92d3a; font-weight: 800; font-variant-numeric: tabular-nums; }
-#CartDrawer .pp-cart-cd__dot { width: 8px; height: 8px; border-radius: 999px; background: #e53946; flex-shrink: 0; animation: pp-cart-glow 1.6s ease-in-out infinite; }
+/* Cart drawer: theme's cart timer bar restyled (text and behaviour untouched) */
+#CartDrawer [id^="cart-timer-bar-"] { background: #fff !important; padding: 8px 16px !important; min-height: 0 !important; border-top: 0 !important; border-bottom: 1px solid #ece1e5 !important; text-align: center; }
+#CartDrawer [id^="cart-timer-bar-"] .cart-timer-text { display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0 4px; }
+#CartDrawer [id^="cart-timer-bar-"] .cart-timer-text::before { content: ""; width: 8px; height: 8px; margin-right: 6px; border-radius: 999px; background: #e53946; flex-shrink: 0; animation: pp-cart-glow 1.6s ease-in-out infinite; }
+#CartDrawer [id^="cart-timer-bar-"] .cart-timer-text span { font-family: 'Nunito Sans', sans-serif !important; font-size: 13px !important; font-weight: 700; color: #1e2d4f !important; letter-spacing: 0 !important; }
+#CartDrawer [id^="cart-timer-bar-"] .cart-timer-text .cart-timer-countdown { color: #d92d3a !important; font-weight: 800; font-variant-numeric: tabular-nums; }
 @keyframes pp-cart-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(229,57,70,.55), 0 0 5px 1px rgba(229,57,70,.7); } 50% { box-shadow: 0 0 0 5px rgba(229,57,70,0), 0 0 9px 3px rgba(229,57,70,.45); } }
-@media (prefers-reduced-motion: reduce) { #CartDrawer .pp-cart-cd__dot { animation: none; } }
+@media (prefers-reduced-motion: reduce) { #CartDrawer [id^="cart-timer-bar-"] .cart-timer-text::before { animation: none; } }
