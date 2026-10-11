@@ -192,6 +192,7 @@
                 <div {{ block.shopify_attributes }}>
                   {%- comment -%} ParaPatrol: trust line replaces the social proof (free shipping) bar {%- endcomment -%}
                   {% render 'pp-cart-trust', count: section.settings.pp_trust_count, label: section.settings.pp_trust_label, fallback: section.settings.pp_trust_fallback, top: true %}
+                  {% render 'pp-cart-countdown', label: section.settings.pp_cd_label, end_date: section.settings.pp_cd_date, end_time: section.settings.pp_cd_time %}
                 </div>
               {% endif %}
             {% when 'cart_timer_bar' %}
@@ -890,6 +891,10 @@
     { "type": "text", "id": "pp_trust_count", "label": "Happy parents count", "info": "Your real number of customers, e.g. 2000. Leave blank until you have it: the line below shows instead." },
     { "type": "text", "id": "pp_trust_label", "label": "Text with the count", "default": "Join [count]+ happy parents", "info": "[count] is replaced by the number above." },
     { "type": "text", "id": "pp_trust_fallback", "label": "Text while the count is blank", "default": "Loved by parents" },
+    { "type": "header", "content": "Sale countdown (top of cart)" },
+    { "type": "text", "id": "pp_cd_label", "label": "Countdown text", "default": "Back to School pricing ends in" },
+    { "type": "text", "id": "pp_cd_date", "label": "Sale end date (YYYY-MM-DD)", "default": "2026-10-31", "info": "Store timezone. Hides itself when the sale ends. Blank hides it." },
+    { "type": "text", "id": "pp_cd_time", "label": "Sale end time (24h, HH:MM)", "default": "23:59" },
     {
       "type": "checkbox",
       "id": "cart_customization_mode",

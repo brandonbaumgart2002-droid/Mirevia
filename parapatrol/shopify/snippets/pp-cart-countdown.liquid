@@ -1,0 +1,37 @@
+{%- comment -%}
+  Cart drawer countdown to a real sale end date (store timezone). Hidden once the date has passed.
+  Params: label, end_date ("2026-10-31"), end_time ("23:59")
+{%- endcomment -%}
+{%- liquid
+  assign cc_time = end_time | default: '23:59'
+  assign cc_local = end_date | append: ' ' | append: cc_time
+  assign cc_end = cc_local | date: '%s' | plus: 0
+  assign cc_now = 'now' | date: '%s' | plus: 0
+  assign cc_tz = 'now' | date: '%z'
+  assign cc_tz_h = cc_tz | slice: 0, 3
+  assign cc_tz_m = cc_tz | slice: 3, 2
+  assign cc_iso = end_date | append: 'T' | append: cc_time | append: ':00' | append: cc_tz_h | append: ':' | append: cc_tz_m
+-%}
+{%- if end_date != blank and cc_end > cc_now -%}
+  <p class="pp-cart-cd" data-pp-cart-cd="{{ cc_iso }}" role="timer" aria-live="off">
+    <span class="pp-cart-cd__dot" aria-hidden="true"></span>
+    <span>{{ label | default: 'Sale ends in' }} <strong class="pp-cart-cd__time" data-pp-cart-cd-time>&nbsp;</strong></span>
+  </p>
+  <script>
+    (function () {
+      if (window.__ppCartCd) return; window.__ppCartCd = true;
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function tick() {
+        document.querySelectorAll('[data-pp-cart-cd]').forEach(function (el) {
+          var end = Date.parse(el.getAttribute('data-pp-cart-cd'));
+          var left = Math.floor((end - Date.now()) / 1000);
+          if (isNaN(end) || left <= 0) { el.hidden = true; return; }
+          var d = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600), m = Math.floor(left % 3600 / 60), s = left % 60;
+          var t = el.querySelector('[data-pp-cart-cd-time]');
+          if (t) t.textContent = (d > 0 ? d + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+        });
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+  </script>
+{%- endif -%}
