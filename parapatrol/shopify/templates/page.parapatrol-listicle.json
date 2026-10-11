@@ -3,21 +3,6 @@
     "main": {
       "type": "parapatrol-lp",
       "blocks": {
-        "hook": {
-          "type": "hook",
-          "settings": {
-            "eyebrow": "As seen in our video",
-            "headline": "For almost 60 years, Japan checked every young schoolchild for pinworms. Most parents here have never been told to look.",
-            "text": "<p>From 1958 to 2016, Japanese schools ran routine pinworm checks for their youngest students. Here, it’s rarely mentioned at a check-up, so most parents never think about it.</p><p>The common kind is quiet. It doesn’t look like big, scary worms. It looks like a picky, tired, out-of-sorts kid that everyone says is <em>“just going through a phase.”</em></p>",
-            "stat": "Pinworm is the most common worm infection in the United States, and school-aged children are the most commonly affected.",
-            "stat_source": "CDC",
-            "stat_url": "https://www.cdc.gov/pinworm/about/index.html",
-            "scroll_label": "See the gentle routine parents are using",
-            "scroll_to": "solution",
-            "asset": "pp-kids-school-morning.jpg",
-            "alt": "A girl with her school backpack drinking orange juice before school"
-          }
-        },
         "hero": {
           "type": "hero",
           "settings": {
@@ -30,7 +15,7 @@
             "photos": "pp-family-ugc-3.jpg, pp-family-ugc-2.jpg, pp-family-ugc-6.jpg, pp-family-ugc-13.jpg, pp-family-ugc-15.jpg, pp-family-ugc-19.jpg",
             "alt": "ParaPatrol with fennel, anise, licorice root and aloe vera",
             "asset": "pp-how-settle.jpg",
-            "as_h2": true
+            "as_h2": false
           }
         },
         "threat": {
@@ -201,7 +186,6 @@
         }
       },
       "block_order": [
-        "hook",
         "hero",
         "threat",
         "signs",
