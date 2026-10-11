@@ -323,3 +323,17 @@
   .pp.pp .kaching-bundles .kaching-bundles__bar-label { font-size: 11px !important; }
 }
 .pp.pp .kaching-bundles__bar[data-pp-size] .kaching-bundles__bar-second-line { display: block !important; visibility: visible !important; height: auto !important; opacity: 1 !important; }
+
+/* Image zoom dialog (appended to body, so not scoped to .pp) */
+dialog.pp-zoom { width: min(96vw, 900px); height: min(92vh, 960px); max-width: none; max-height: none; padding: 0; border: 0; border-radius: 20px; background: #fff; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(30,45,79,.55); }
+dialog.pp-zoom::backdrop { background: rgba(30,45,79,.6); }
+dialog.pp-zoom[open] { display: flex; flex-direction: column; }
+.pp-zoom__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px 10px 18px; border-bottom: 1px solid #ece1e5; font-family: 'Nunito Sans', sans-serif; }
+.pp-zoom__hint { font-size: 13px; font-weight: 700; color: #4f5b72; }
+.pp-zoom__close { width: 40px; height: 40px; border: 0; border-radius: 999px; background: #ebf4ef; color: #2c5a4a; font-size: 26px; line-height: 1; cursor: pointer; }
+.pp-zoom__close:hover { background: #d6e7dd; }
+.pp-zoom__stage { flex: 1; min-height: 0; overflow: auto; display: flex; align-items: center; justify-content: center; background: #fff; -webkit-overflow-scrolling: touch; }
+.pp-zoom__img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; cursor: zoom-in; }
+.pp-zoom__stage.is-zoomed { display: block; }
+.pp-zoom__stage.is-zoomed .pp-zoom__img { max-width: none; max-height: none; width: 250%; cursor: zoom-out; }
+@media (min-width: 640px) { .pp-zoom__stage.is-zoomed .pp-zoom__img { width: 200%; } }

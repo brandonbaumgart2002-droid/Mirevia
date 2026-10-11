@@ -519,6 +519,40 @@
     swap();
   }
 
+  /* ---------------- image zoom (Supplement Facts) ---------------- */
+  function initZoom(root) {
+    var btns = $$('[data-pp-zoom]', root);
+    if (!btns.length) return;
+    var dlg = document.getElementById('pp-zoom');
+    if (!dlg) {
+      dlg = document.createElement('dialog');
+      dlg.id = 'pp-zoom';
+      dlg.className = 'pp-zoom';
+      dlg.setAttribute('aria-label', 'Zoomed image');
+      dlg.innerHTML = '<div class="pp-zoom__bar"><span class="pp-zoom__hint">Tap the image to zoom in or out</span><button type="button" class="pp-zoom__close" aria-label="Close">\u00d7</button></div><div class="pp-zoom__stage"><img class="pp-zoom__img" alt=""></div>';
+      document.body.appendChild(dlg);
+      var stage = dlg.querySelector('.pp-zoom__stage'), img = dlg.querySelector('.pp-zoom__img');
+      dlg.querySelector('.pp-zoom__close').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      dlg.addEventListener('close', function () { stage.classList.remove('is-zoomed'); document.documentElement.style.overflow = ''; });
+      img.addEventListener('click', function (e) {
+        var r = img.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+        var on = stage.classList.toggle('is-zoomed');
+        if (on) { stage.scrollLeft = fx * img.offsetWidth - stage.clientWidth / 2; stage.scrollTop = fy * img.offsetHeight - stage.clientHeight / 2; }
+      });
+    }
+    btns.forEach(function (b) {
+      if (b.__ppBound) return; b.__ppBound = true;
+      b.addEventListener('click', function () {
+        var img = dlg.querySelector('.pp-zoom__img');
+        img.src = b.getAttribute('data-pp-zoom'); img.alt = b.getAttribute('data-pp-zoom-alt') || '';
+        dlg.querySelector('.pp-zoom__stage').classList.remove('is-zoomed');
+        document.documentElement.style.overflow = 'hidden';
+        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      });
+    });
+  }
+
   /* ---------------- accordions ---------------- */
   function initAccordions(root) {
     $$('[data-pp-accordion] .acc-btn', root).forEach(function (btn) {
@@ -684,6 +718,7 @@
     initSliders(root);
     initScrollbars(root);
     initGiftImages();
+    initZoom(root);
     initReviews(root);
     initBundle(root);
     initStats(root);
