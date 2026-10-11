@@ -39,7 +39,7 @@
               {%- if bs.rating_text != blank -%}
                 <p class="flex flex-wrap items-center gap-2 text-[14px] font-bold text-ink">{%- render 'parapatrol-stars', score: 5, size: 18 -%}<span>{{ bs.rating_text }}</span></p>
               {%- endif -%}
-              <h1 id="pp-lp-h-{{ block.id }}" class="mt-3 font-display font-bold text-[34px] sm:text-[48px] leading-[1.06] text-ink">{{ bs.headline }}{% if bs.highlight != blank %} <span class="text-primary">{{ bs.highlight }}</span>{% endif %}{% if bs.headline_end != blank %} {{ bs.headline_end }}{% endif %}</h1>
+              {%- if bs.as_h2 -%}{%- assign h_tag = "h2" -%}{%- else -%}{%- assign h_tag = "h1" -%}{%- endif -%}<{{ h_tag }} id="pp-lp-h-{{ block.id }}" class="mt-3 font-display font-bold text-[34px] sm:text-[48px] leading-[1.06] text-ink">{{ bs.headline }}{% if bs.highlight != blank %} <span class="text-primary">{{ bs.highlight }}</span>{% endif %}{% if bs.headline_end != blank %} {{ bs.headline_end }}{% endif %}</{{ h_tag }}>
               {%- if bs.subhead != blank -%}<p class="mt-4 text-[17px] sm:text-[19px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: bs.subhead -%}</p>{%- endif -%}
               {%- assign items = bs.benefits | newline_to_br | split: '<br />' -%}
               <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-4" role="list">
@@ -97,6 +97,7 @@
               <div class="mt-6 rounded-2xl border-2 border-primary overflow-hidden">
                 <p class="bg-mint px-5 py-4 text-center font-display font-bold text-[18px] sm:text-[20px] text-primary-dark">{{ bs.stat }}</p>
                 {%- if bs.stat_note != blank -%}<p class="bg-primary px-5 py-2.5 text-center text-[14px] font-bold text-white">{{ bs.stat_note }}</p>{%- endif -%}
+                {%- if bs.stat_source != blank -%}<p class="bg-white px-5 py-2 text-center text-[12px] text-muted">Source: {% if bs.stat_url != blank %}<a href="{{ bs.stat_url }}" target="_blank" rel="noopener" class="underline underline-offset-2">{{ bs.stat_source }}</a>{% else %}{{ bs.stat_source }}{% endif %}</p>{%- endif -%}
               </div>
             {%- endif -%}
             {%- if bs.warn != blank -%}<p class="mt-6 rounded-2xl bg-[#fdeef3] border-l-4 border-berry px-5 py-4 text-[16px] leading-relaxed text-[#7a2a4a]">{%- render 'parapatrol-claim', text: bs.warn -%}</p>{%- endif -%}
@@ -274,9 +275,10 @@
               <table class="w-full text-left border-collapse">
                 <thead>
                   <tr>
-                    <th scope="col" class="p-3 sm:p-4 w-[40%]"><span class="sr-only">Feature</span></th>
+                    <th scope="col" class="p-3 sm:p-4 {% if bs.col_them2 != blank %}w-[31%]{% else %}w-[40%]{% endif %}"><span class="sr-only">Feature</span></th>
                     <th scope="col" class="p-3 sm:p-4 bg-primary text-center font-display font-bold text-[17px] sm:text-[22px] text-white pp-adv-light-h">{{ bs.col_ours }}</th>
                     <th scope="col" class="p-3 sm:p-4 text-center text-[13px] sm:text-[15px] font-bold text-muted">{{ bs.col_them }}</th>
+                    {%- if bs.col_them2 != blank -%}<th scope="col" class="p-3 sm:p-4 text-center text-[13px] sm:text-[15px] font-bold text-muted">{{ bs.col_them2 }}</th>{%- endif -%}
                   </tr>
                 </thead>
                 <tbody>
@@ -290,6 +292,7 @@
                           <span class="block mt-1 text-[12px] sm:text-[13px] font-semibold text-primary-dark">{{ f[1] | strip }}</span>
                         </td>
                         <td class="p-3 sm:p-4 text-center text-[13px] sm:text-[14px] text-muted">{{ f[2] | strip }}</td>
+                        {%- if bs.col_them2 != blank -%}<td class="p-3 sm:p-4 text-center text-[13px] sm:text-[14px] text-muted">{{ f[3] | strip }}</td>{%- endif -%}
                       </tr>
                     {%- endif -%}
                   {%- endfor -%}
@@ -325,6 +328,22 @@
             <div class="order-2 lg:order-1">
               <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
               {%- if bs.subheading != blank -%}<p class="mt-2 font-bold text-[16px] text-berry">{{ bs.subheading }}</p>{%- endif -%}
+              {%- if bs.tiers != blank -%}
+                {%- assign tiers = bs.tiers | newline_to_br | split: '<br />' -%}
+                <div class="mt-5 grid gap-2.5">
+                  {%- for l in tiers -%}
+                    {%- assign f = l | strip | split: '|' -%}
+                    {%- if f.size >= 2 -%}
+                      {%- assign t_badge = f[4] | strip -%}
+                      <a href="{{ lp_url }}" class="relative flex items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3.5 border-2 {% if t_badge != blank %}border-primary bg-mint{% else %}border-line{% endif %} hover:border-primary transition-colors" data-pp-adv-cta>
+                        {%- if t_badge != blank -%}<span class="absolute -top-3 right-4 rounded-md bg-primary px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[.08em] text-white">{{ t_badge }}</span>{%- endif -%}
+                        <span class="min-w-0"><span class="block font-display font-bold text-[18px] text-ink">{{ f[0] | strip }}</span>{% if f[3] and f[3] != blank %}<span class="block text-[13px] font-bold text-berry">{{ f[3] | strip }}</span>{% endif %}</span>
+                        <span class="text-right shrink-0"><span class="block font-display font-bold text-[20px] text-ink">{{ f[1] | strip }}</span>{% if f[2] and f[2] != blank %}<span class="block text-[13px] text-muted line-through">{{ f[2] | strip }}</span>{% endif %}</span>
+                      </a>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
               {%- assign cl = bs.checklist | newline_to_br | split: '<br />' -%}
               <ul class="mt-5 grid gap-2.5" role="list">{%- for x in cl -%}{%- assign xt = x | strip -%}{%- if xt != blank -%}<li class="flex items-start gap-2.5 text-[16px] text-ink"><span class="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span><span>{{ xt }}</span></li>{%- endif -%}{%- endfor -%}</ul>
               {%- if bs.quote != blank -%}<p class="mt-5 rounded-2xl bg-white px-4 py-3 text-[15px] italic leading-relaxed text-ink">💬 “{{ bs.quote }}”{% if bs.quote_author != blank %} <span class="not-italic font-bold">— {{ bs.quote_author }}</span>{% endif %}</p>{%- endif -%}
@@ -337,6 +356,108 @@
                 <div class="aspect-square rounded-3xl overflow-hidden bg-mint">{{ lp.featured_image | image_url: width: 1100 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 560px, 100vw', class: 'w-full h-full object-cover', alt: lp.title }}</div>
               {%- endif -%}
             </div>
+          </div>
+        </section>
+
+      {%- when 'hook' -%}
+        <section class="bg-primary-dark" {{ block.shopify_attributes }} aria-labelledby="pp-lp-hook-{{ block.id }}">
+          <div class="max-w-6xl mx-auto px-4 py-8 lg:py-12 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)] lg:items-center">
+            <div>
+              {%- if bs.eyebrow != blank -%}<p class="inline-flex rounded-full bg-[rgba(255,255,255,.12)] px-3 py-1 text-[12px] font-extrabold uppercase tracking-[.12em] text-[#cfe6da]">{{ bs.eyebrow }}</p>{%- endif -%}
+              <h1 id="pp-lp-hook-{{ block.id }}" class="pp-adv-light-h mt-3 font-display font-bold text-[30px] sm:text-[44px] leading-[1.08]">{{ bs.headline }}</h1>
+              {%- if bs.text != blank -%}<div class="pp-adv-copy pp-adv-copy--light mt-4">{%- render 'parapatrol-claim', text: bs.text -%}</div>{%- endif -%}
+              {%- if bs.stat != blank -%}
+                <p class="mt-5 rounded-2xl bg-white px-4 py-3 text-[15px] font-bold text-primary-dark">{{ bs.stat }}{% if bs.stat_source != blank %} <span class="font-normal text-muted">({% if bs.stat_url != blank %}<a href="{{ bs.stat_url }}" target="_blank" rel="noopener" class="underline underline-offset-2">{{ bs.stat_source }}</a>{% else %}{{ bs.stat_source }}{% endif %})</span>{% endif %}</p>
+              {%- endif -%}
+              {%- if bs.scroll_label != blank -%}<a href="#{{ bs.scroll_to | default: 'solution' }}" class="mt-5 inline-flex items-center gap-2 text-[15px] font-extrabold text-white underline underline-offset-4">{{ bs.scroll_label }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>{%- endif -%}
+            </div>
+            {%- if bs.image != blank or bs.asset != blank -%}
+              <div>{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.headline, class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 1024px) 440px, 100vw', loading: 'eager', priority: true -%}</div>
+            {%- endif -%}
+          </div>
+        </section>
+
+      {%- when 'progress' -%}
+        <section class="pp-adv-sec py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto">
+              <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
+              {%- if bs.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: bs.intro -%}</p>{%- endif -%}
+            </div>
+            {%- assign pg = bs.items | newline_to_br | split: '<br />' -%}
+            <ol class="mt-8 grid gap-4 md:grid-cols-3" role="list">
+              {%- for l in pg -%}
+                {%- assign f = l | strip | split: '|' -%}
+                {%- if f.size >= 4 -%}
+                  <li class="relative rounded-3xl bg-white p-5 sm:p-6 shadow-soft flex flex-col">
+                    <span class="self-start rounded-full bg-primary px-3.5 py-1 font-display font-bold text-[15px] text-white">{{ f[0] | strip }}</span>
+                    {%- assign pp_ph = f[4] | strip -%}
+                    {%- if pp_ph != blank -%}<div class="mt-4">{%- render 'parapatrol-media', asset: pp_ph, alt: '', label: '', class: 'aspect-[4/3] rounded-2xl', sizes: '(min-width: 768px) 340px, 100vw' -%}</div>{%- endif -%}
+                    <p class="mt-4 font-display font-bold text-[19px] leading-snug text-primary">{{ f[1] | strip }}</p>
+                    <blockquote class="mt-2 flex-1 text-[15px] leading-relaxed italic text-ink">“{{ f[2] | strip }}”</blockquote>
+                    <p class="mt-3 text-[14px] font-bold text-ink">{{ f[3] | strip }} <span class="font-semibold text-primary-dark">· Verified Buyer</span></p>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
+            {%- if bs.note != blank -%}<p class="mt-4 text-center text-[12px] text-muted">{{ bs.note }}</p>{%- endif -%}
+          </div>
+        </section>
+
+      {%- when 'stories' -%}
+        <section class="pp-adv-sec py-12 lg:py-16" {{ block.shopify_attributes }}>
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center">
+              {%- if bs.rating_text != blank -%}<p class="inline-flex flex-wrap items-center justify-center gap-2 text-[14px] font-bold text-ink">{%- render 'parapatrol-stars', score: 5, size: 18 -%}{{ bs.rating_text }}</p>{%- endif -%}
+              <h2 class="mt-2 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
+            </div>
+            {%- assign st = bs.items | newline_to_br | split: '<br />' -%}
+            <div class="mt-8 grid gap-5 md:grid-cols-2">
+              {%- for l in st -%}
+                {%- assign f = l | strip | split: '|' -%}
+                {%- if f.size >= 5 -%}
+                  <figure class="rounded-3xl bg-soft p-5 sm:p-6 flex gap-4">
+                    {%- assign pp_ph = f[0] | strip -%}
+                    {%- if pp_ph != blank -%}<div class="w-20 sm:w-24 shrink-0">{%- render 'parapatrol-media', asset: pp_ph, alt: '', label: '', class: 'aspect-square rounded-2xl', sizes: '96px' -%}</div>{%- endif -%}
+                    <div class="min-w-0">
+                      <span class="inline-flex rounded-full bg-white px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[.08em] text-primary-dark">{{ f[2] | strip }}</span>
+                      <p class="mt-2 font-display font-bold text-[18px] leading-snug text-primary">{{ f[3] | strip }}</p>
+                      <blockquote class="mt-1.5 text-[15px] leading-relaxed italic text-ink">“{{ f[4] | strip }}”</blockquote>
+                      <figcaption class="mt-3 text-[14px] font-bold text-ink">– {{ f[1] | strip }}</figcaption>
+                    </div>
+                  </figure>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            {%- if bs.note != blank -%}<p class="mt-4 text-center text-[12px] text-muted">{{ bs.note }}</p>{%- endif -%}
+          </div>
+        </section>
+
+      {%- when 'maintenance' -%}
+        <section class="pp-adv-sec py-12 lg:py-16" {{ block.shopify_attributes }}>
+          <div class="max-w-[860px] mx-auto px-4">
+            <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.image != blank or bs.asset != blank -%}
+              <div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: 'aspect-[16/9] rounded-3xl', sizes: '(min-width: 900px) 828px, 100vw' -%}</div>
+            {%- endif -%}
+            {%- if bs.text != blank -%}<div class="pp-adv-copy mt-6">{%- render 'parapatrol-claim', text: bs.text -%}</div>{%- endif -%}
+            <div class="mt-7 grid gap-4 md:grid-cols-2">
+              {%- assign tr = bs.trap_steps | split: ';' -%}
+              <div class="rounded-3xl border-2 border-[#f2c9d4] bg-[#fdeef3] p-5 sm:p-6">
+                <p class="text-[12px] font-extrabold uppercase tracking-[.12em] text-berry">The trap</p>
+                <p class="mt-1 font-display font-bold text-[21px] text-ink">{{ bs.trap_title }}</p>
+                <ol class="mt-4 grid gap-2.5" role="list">{%- for x in tr -%}<li class="flex items-start gap-3 text-[15px] text-ink"><span class="w-7 h-7 shrink-0 rounded-full bg-white border-2 border-berry text-berry inline-flex items-center justify-center text-[13px] font-extrabold">{{ forloop.index }}</span><span class="pt-0.5">{{ x | strip }}</span></li>{%- endfor -%}</ol>
+                {%- if bs.trap_footer != blank -%}<p class="mt-4 rounded-xl bg-white px-3 py-2 text-center text-[14px] font-bold text-berry">{{ bs.trap_footer }}</p>{%- endif -%}
+              </div>
+              {%- assign wy = bs.way_steps | newline_to_br | split: '<br />' -%}
+              <div class="rounded-3xl border-2 border-primary bg-mint p-5 sm:p-6">
+                <p class="text-[12px] font-extrabold uppercase tracking-[.12em] text-primary">The ParaPatrol way</p>
+                <p class="mt-1 font-display font-bold text-[21px] text-ink">{{ bs.way_title }}</p>
+                <div class="mt-4 grid gap-2.5">{%- for l in wy -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}<div class="flex items-start gap-3 rounded-2xl bg-white px-4 py-3"><span class="w-9 h-9 shrink-0 rounded-xl bg-mint inline-flex items-center justify-center text-[18px]" aria-hidden="true">{{ f[0] | strip }}</span><span><span class="block font-bold text-[15px] text-ink">{{ f[1] | strip }}</span><span class="block text-[14px] text-muted">{%- assign pp_v = f[2] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</span></span></div>{%- endif -%}{%- endfor -%}</div>
+                {%- if bs.way_footer != blank -%}<p class="mt-4 rounded-xl bg-primary px-3 py-2 text-center text-[14px] font-bold text-white">{{ bs.way_footer }}</p>{%- endif -%}
+              </div>
+            </div>
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
           </div>
         </section>
 
@@ -404,7 +525,46 @@
       { "type": "image_picker", "id": "image", "label": "Centre image" },
       { "type": "text", "id": "asset", "label": "Centre built-in image file", "info": "Uses the product's main image when both are empty." },
       { "type": "text", "id": "alt", "label": "Centre image description" },
-      { "type": "textarea", "id": "photos", "label": "Circle photos (built-in files, comma separated, up to 6)" }
+      { "type": "textarea", "id": "photos", "label": "Circle photos (built-in files, comma separated, up to 6)" },
+      { "type": "checkbox", "id": "as_h2", "label": "Use a smaller heading tag (when a hook block sits above)", "default": false }
+    ] },
+    { "type": "hook", "name": "Ad hook opener", "limit": 1, "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small label" },
+      { "type": "textarea", "id": "headline", "label": "Headline (matches the ad's hook)" },
+      { "type": "richtext", "id": "text", "label": "Text" },
+      { "type": "text", "id": "stat", "label": "Stat line" },
+      { "type": "text", "id": "stat_source", "label": "Stat source name" },
+      { "type": "url", "id": "stat_url", "label": "Stat source link" },
+      { "type": "text", "id": "scroll_label", "label": "Scroll link label" },
+      { "type": "text", "id": "scroll_to", "label": "Scroll to anchor id" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" }
+    ] },
+    { "type": "progress", "name": "Progress story", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Stages", "info": "Day label | title | real quote | name | photo file (optional)" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "stories", "name": "Parent stories", "settings": [
+      { "type": "text", "id": "rating_text", "label": "Line beside the stars" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "items", "label": "Stories", "info": "photo file | name | tag | title | real quote" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "maintenance", "name": "Keep it up (maintenance)", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "richtext", "id": "text", "label": "Text" },
+      { "type": "text", "id": "trap_title", "label": "Left card title" },
+      { "type": "textarea", "id": "trap_steps", "label": "Left card steps (split with ;)" },
+      { "type": "text", "id": "trap_footer", "label": "Left card footer" },
+      { "type": "text", "id": "way_title", "label": "Right card title" },
+      { "type": "textarea", "id": "way_steps", "label": "Right card rows", "info": "emoji | title | text" },
+      { "type": "text", "id": "way_footer", "label": "Right card footer" }
     ] },
     { "type": "story", "name": "Story / problem", "settings": [
       { "type": "text", "id": "anchor", "label": "Anchor id" },
@@ -417,6 +577,8 @@
       { "type": "richtext", "id": "text", "label": "Text" },
       { "type": "text", "id": "stat", "label": "Highlight box", "info": "Only a fact you can source." },
       { "type": "text", "id": "stat_note", "label": "Highlight box footer" },
+      { "type": "text", "id": "stat_source", "label": "Highlight source name" },
+      { "type": "url", "id": "stat_url", "label": "Highlight source link" },
       { "type": "textarea", "id": "warn", "label": "Pink callout" },
       { "type": "textarea", "id": "good", "label": "Green callout" },
       { "type": "textarea", "id": "accordions", "label": "Dropdowns", "info": "Question | Answer" },
@@ -477,7 +639,8 @@
       { "type": "text", "id": "intro", "label": "Intro" },
       { "type": "text", "id": "col_ours", "label": "Our column", "default": "ParaPatrol" },
       { "type": "text", "id": "col_them", "label": "Other column", "default": "Adult herbal cleanses" },
-      { "type": "textarea", "id": "rows", "label": "Rows", "info": "Feature | ours | theirs" }
+      { "type": "text", "id": "col_them2", "label": "Third column (optional)" },
+      { "type": "textarea", "id": "rows", "label": "Rows", "info": "Feature | ours | theirs | third column" }
     ] },
     { "type": "promise", "name": "Guarantee / promise", "settings": [
       { "type": "text", "id": "heading", "label": "Heading" },
@@ -491,6 +654,7 @@
     { "type": "offer", "name": "Offer", "settings": [
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "text", "id": "subheading", "label": "Offer line" },
+      { "type": "textarea", "id": "tiers", "label": "Bundle rows", "info": "name | price | was price | saving line | badge (each links to the product page)" },
       { "type": "textarea", "id": "checklist", "label": "Checklist (one per line)" },
       { "type": "textarea", "id": "quote", "label": "Customer quote", "info": "A real customer's words only." },
       { "type": "text", "id": "quote_author", "label": "Quote name" },
