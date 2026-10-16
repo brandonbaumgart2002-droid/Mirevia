@@ -1,0 +1,199 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-lp",
+      "blocks": {
+        "bar": {
+          "type": "topbar",
+          "settings": {
+            "text": "Buy 1, Get 1 Free · Free shipping on every order"
+          }
+        },
+        "hero": {
+          "type": "hero2",
+          "settings": {
+            "headline": "Get your happy, hungry kid back",
+            "subhead": "The gentle herbal kids’ cleanse behind calmer moods, settled tummies and cleaner plates. One raspberry dropper a day, hidden in their juice.*",
+            "rating_text": "4.8/5 · Join 2000+ happy parents",
+            "comments": "We are only on day five, and I cannot believe the difference. She no longer complains of upset belly. | Tina\nMy son is very picky eater, this product boost his appetite a lot. | Megan S.\nJust one dropper in a cup of milk, kids can’t taste anything. Highly recommend. | Tiffany\nHer stomach settled down after about ten days, and she started finishing her meals again. | Jennifer T.\nRight after washing our hands, he asked for lunch (RARE). He ate every bit. | Esther",
+            "asset": "pp-kids-dropper-juice.jpg",
+            "alt": "A dropper of ParaPatrol going into a glass of juice"
+          }
+        },
+        "signs": {
+          "type": "signs2",
+          "settings": {
+            "heading": "The signs most parents miss",
+            "photos": "pp-problem-before.jpg, pp-family-ugc-13.jpg, pp-school-door.jpg, pp-family-ugc-3.jpg",
+            "intro": "If 2 or more of these sound familiar:",
+            "items": "Picky eating, living on crackers and candy | sugar and snack cravings crowd out real meals, and their appetite for dinner disappears\n“My tummy hurts” (again and again) | an unsettled gut shows up as aches, bloating and rumbles*\nMood swings and meltdowns | a gut that feels off makes it hard for little ones to self-regulate\nDark circles under their eyes | looking tired even after a full night in bed\nGrinding their teeth at night | restless, broken sleep you can hear from down the hall",
+            "also": "itchy bottom (especially at night), restless sleep, low energy, irregular bathroom trips",
+            "lines": "<p><strong>Your child isn’t giving you a hard time. They’re having one.</strong></p><p>Their tummy is asking for some attention.</p><p><strong>It’s not your fault.</strong> It’s a gut problem, not a parenting problem.</p>",
+            "asset2": "pp-problem-after.jpg",
+            "alt2": "A happy boy eating dinner with his family",
+            "stat": "Pinworm is the most common worm infection in the U.S., and school-aged and preschool children are the most commonly affected.",
+            "stat_source": "CDC, About Pinworm",
+            "stat_url": "https://www.cdc.gov/pinworm/about/index.html",
+            "text": "<p>Kids pick things up everywhere: sandpits, school bathrooms, shared toys, pets and playgrounds. We deworm our pets on a schedule. <strong>But most of us never think about our kids.</strong></p><p>We couldn’t find a gentle herbal cleanse we’d trust with our own kids. <strong>So we made ParaPatrol.</strong></p>",
+            "link_label": "How does it work? Glad you asked",
+            "link_to": "kit"
+          }
+        },
+        "kit": {
+          "type": "kit",
+          "settings": {
+            "anchor": "kit",
+            "heading": "Meet your child’s gentle cleanse",
+            "pill1": "Tough on the gut invaders.",
+            "pill2": "Gentle on the tummy.",
+            "asset": "pp-ingredients-flatlay.jpg",
+            "alt": "ParaPatrol surrounded by its 11 herbs",
+            "caption": "Three steps in one dropper, so your kid feels all the way better*",
+            "cards": "leaf | Settle | Soothing herbs | Fennel, anise, licorice and aloe soothe occasional gas and rumbles*; No harsh chemicals, no prescription-strength purge\nreset | Reset | Traditional botanicals | Black walnut, clove, pumpkin seed and wormwood support a regular digestive rhythm*; No rough days: school, play, life as normal\nshield | Strengthen | Gut-defence herbs | Pau d’arco, thyme and oregano support healthy gut defences*; Made to repeat every school term",
+            "flow": "leaf | Tummy settles\nreset | Gut resets\nheart | Your kid, back to themselves"
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "rating_text": "Rated 4.8/5 · Join 2000+ happy parents",
+            "heading": "Real parents. Real reviews. Zero edits.",
+            "quotes": "They remind me to give it | My children reminded me daily to take their “medicine”, they enjoyed the taste. | Laina\nCan’t taste it in their milk | Great for kids… Just one dropper in a cup of milk, kids can’t taste anything. Kids never have any problems with it at all… Highly recommend. | Tiffany\nA bigger appetite for our picky eater | My son is very picky eater, this product boost his appetite a lot. | Megan S.\nEating more and trying new foods | The dropper makes it super easy to measure the right amount… The taste is mild and not overpowering, and it blends well with water or juice. After using it consistently, my kids are more balanced and overall better in their daily routine. | Thaina\nActually eating their food | I absolutely fell in love with this brand so easy to use clean ingredients, great value… my littles didn’t notice the taste as much, no sensitive tummies, after 2 weeks I noticed… actually eating their food. | Ashley R.\n“It tastes great,” says our 5-year-old | The taste isn’t bad at all. I administered this in apple juice to myself and my 5 year old he said “it tastes great” and water to my 7 year old. | Caterina Z.\nShe takes it right down | She has a taste. She takes it right down. She has no problem with it and I am so glad. | Martin A.\nOur go-to when things feel off | I turn to this to get his gut back on track. Very mild, not noticed in his smoothies… Good value for the money. | Yandra L.\nEasy to give in the morning | The kids take the droppers down easily in the morning so it must not taste bad. Very easy to administer. Kids energy levels seem good and they are sleeping well as always! | Jeraldith G.\nOur school-season go-to | I always keep a bottle on hand now, especially during school season or after family trips. | Marcus D.",
+            "note": "Individual reviews reflect one family’s experience. Results vary.",
+            "intro": "Pulled straight from ParaPatrol product reviews."
+          }
+        },
+        "monthly": {
+          "type": "monthly",
+          "settings": {
+            "heading": "What parents notice, week by week",
+            "phases": "Settle | Week 1 | soothe the tummy\nReset | Weeks 2–3 | get back to a regular rhythm\nDefend | Every term | repeat to stay on track",
+            "entries": "Days 1–7 | One dropper a day in their morning drink. Start with half a dropper for the first few days. | Fewer tummy complaints – less bloating and rumbling*; No fuss at dose time – raspberry flavour with a bitter blocker\nWeek 2 | With a calmer gut, appetite starts to come back. | Appetite returns – plates come back cleaner*; Bedtimes get easier – fewer wakeups*\nnote | “Will I actually see anything in the toilet?” | Most parents don’t. ParaPatrol is a gentle daily routine with no bathroom emergencies. The real proof is your kid: better moods and a calmer tummy.* If you ever see worms, call your doctor.\nWeek 3 | Finish the 2–3 week routine, then take a break. | Moods even out – fewer meltdowns, easier evenings*; A settled, regular tummy – your happy, hungry kid*\nEvery school term | Kids pick things up at school, sandpits and sleepovers, so parents repeat the routine each term and after trips. | Stays on track – through school, holidays and party season*",
+            "box_title": "Not sure what’s behind it?",
+            "box_text": "Every herb in ParaPatrol supports gut comfort and digestion either way. Whatever the cause, you’ve still supported a healthier tummy.*",
+            "note": "*Timelines reflect what parents commonly report. Every kid moves at their own pace."
+          }
+        },
+        "videos": {
+          "type": "videos",
+          "settings": {
+            "heading": "Watch one family’s first three weeks",
+            "intro": "Real ParaPatrol parents, filmed at home.",
+            "items": "Day 4 |  |  | \nDay 10 |  |  | \nDay 20 |  |  | ",
+            "note": "Individual results vary."
+          }
+        },
+        "dayfit": {
+          "type": "dayfit",
+          "settings": {
+            "heading": "How ParaPatrol fits into your day",
+            "intro": "No prep, no diet changes, no battles. One dropper a day in whatever they already drink.",
+            "rows": "sun | Morning | One dropper | In their juice, milk or smoothie | pp-kids-dropper-juice.jpg\nbackpack | School day | Life as normal | No days off, no bathroom emergencies | pp-kids-school-morning.jpg\nshield | Every term | Stay on track | A 2–3 week routine, repeated each school term | pp-kids-park.jpg"
+          }
+        },
+        "ingredients": {
+          "type": "ingredients2",
+          "settings": {
+            "heading": "Every ingredient, explained",
+            "intro": "Every herb was chosen gentle-first and dosed for a child’s body.",
+            "badges": "Third-party tested | Formulated for kids 3+ | Made in a cGMP facility",
+            "cards": "pp-how-settle.jpg | Settle | Fennel seed & anise seed | Classics for little tummies | Help soothe occasional gas and rumbles*; Sweet, gentle seeds used for generations after meals\npp-how-settle.jpg | Soothe | Licorice root & aloe vera | The comfort pair | Support a comfortable, calm tummy*; Soft, soothing and kid-gentle\npp-how-reset.jpg | Reset | Black walnut hull | A traditional botanical | Supports regularity*; A children’s remedy for generations (contains tree nut)\npp-how-reset.jpg | Reset | Clove, pumpkin seed & wormwood | The rhythm trio | Support healthy digestion and a regular digestive rhythm*; Clove is the same spice in pumpkin pie\npp-how-strengthen.jpg | Strengthen | Pau d’arco, thyme & oregano | Gut-defence herbs | Support healthy gut defences through school season*; Garden herbs you already cook with",
+            "note": "Alcohol-free · Sugar-free · Gluten-free · Made in the USA"
+          }
+        },
+        "compare": {
+          "type": "compare",
+          "settings": {
+            "heading": "Why not just grab something else?",
+            "intro": "Fair question. Here’s what the other routes actually get you.",
+            "col_ours": "ParaPatrol",
+            "col_them": "Adult herbal cleanses",
+            "col_them2": "Prescription dewormers",
+            "rows": "Designed for children | Dosed for ages 3+ | Adult doses | Doctor-dosed\nGentle, no harsh purge | 11 gentle herbs | Often harsh | Medicine\nKid-friendly taste | Raspberry | Strong and bitter | Varies\nSoothing herbs included | Fennel, anise, licorice | Not always | No\nNo prescription needed | Order online | Order online | Prescription only\nEasy to repeat each term | Built for it | Not designed for it | Only when prescribed"
+          }
+        },
+        "offer": {
+          "type": "offer",
+          "settings": {
+            "heading": "Choose your child’s reset",
+            "subheading": "Free shipping · Limited time only",
+            "checklist": "FREE Happy Tummies, Healthy Kids Parent’s Guide e-book ($21.99 value) with bundles\nFREE Pip’s Little Sips Cup ($14.99 value) with bundles\nFree shipping on every order\n30-day money-back guarantee\nMade in the USA in an FDA-registered cGMP facility\nThird-party tested for purity\nGentle for children ages 3+\nJoin 2000+ happy parents",
+            "quote": "Love this brand as it’s USA made, uses clean ingredients and works amazing!",
+            "quote_author": "Kelsey",
+            "asset": "pp-ingredients-flatlay.jpg",
+            "alt": "ParaPatrol surrounded by its 11 herbs",
+            "tiers": "Buy 1 | $52.99 |  | 1 bottle · 30 days | \nBuy 1, Get 1 Free | $52.99 | $105.98 | 2 bottles · 60 days · Save 50% | Most popular\nBuy 2, Get 2 Free | $105.98 | $211.96 | 4 bottles · 120 days · Save 50% | Best value"
+          }
+        },
+        "promise": {
+          "type": "promise2",
+          "settings": {
+            "heading": "Our 30-day promise",
+            "intro": "We’re confident in ParaPatrol, so here’s exactly what happens if it’s not for you.",
+            "steps": "Try ParaPatrol for a full 30 days.\nNot happy for any reason?\nContact our team. Full refund, no awkward questions.",
+            "asset": "pp-family-ugc-6.jpg",
+            "alt": "A happy child"
+          }
+        },
+        "faq": {
+          "type": "faq",
+          "settings": {
+            "heading": "Frequently asked questions",
+            "items": "What age can my child start? | ParaPatrol is made and dosed for kids 3 and up. It is not for children under 3.\nHow fast will I see a difference? | Every child is different. Many parents notice settled tummies and better appetites within 1–2 weeks of daily use.*\nWhat does it taste like? | A natural raspberry flavour with a bitter blocker to soften the herbal taste. Mixed into orange juice or a berry smoothie, most kids drink it without a fuss.\nIs it safe? What about side effects? | Stop use and talk to your doctor if your child has vomiting, diarrhea, stomach pain or any unusual reaction. Start with half a dropper for the first few days if your child has a sensitive tummy.\nCan we use it with other supplements or medication? | If your child takes medication or has a health condition, talk to your pediatrician first. Bring the bottle so they can see the full ingredient list.\nWhat if my child has a nut allergy? | ParaPatrol contains tree nut (black walnut), so it is not for kids with a tree nut allergy.\nDoes it contain alcohol or sugar? | No alcohol and no sugar. It is also gluten-free.\nWhat if we miss a day? | Just carry on the next day with the usual dose. Don’t double up.\nHow does the guarantee work? | Try ParaPatrol for 30 days. If you’re not happy, contact our team and we’ll refund you.\nHow long does shipping take? | Orders are usually processed within 1–2 business days and most arrive within 7–15 days. Shipping is free on every order."
+          }
+        },
+        "stories": {
+          "type": "stories",
+          "settings": {
+            "rating_text": "Real reviews from ParaPatrol parents",
+            "heading": "From parents who got their kids back",
+            "items": "pp-family-ugc-6.jpg | Esther | Picky eater | Asked for lunch (rare!) | Right after washing our hands, he asked for lunch (RARE). He ate every bit of his green beans, Mac n cheese and beef jerky… I mixed it up in his juice and water and he drank every bit. He’s a very picky eater too and didn’t notice it.\npp-family-ugc-4.jpg | Matt R. | School days | In her school water bottle, zero complaints | My Daughter is very picky, but I always put this in the water she takes to school, and she never complains of flavor or anything. I already bought my second bottle.\npp-family-ugc-15.jpg | Lisa K. | Pill refuser | Calmer mornings, no pill battles | The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.\npp-family-ugc-14.jpg | Adelna E. | Easy routine | No more fuss at dose time | My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
+            "note": "Photos are illustrative. Individual results vary."
+          }
+        },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "items": "leaf | Natural herbal ingredients\nheart | Kid-approved taste\nshield | 30-day guarantee\ncheck | cGMP facility\nlock | Third-party tested\ntruck | Free shipping"
+          }
+        }
+      },
+      "block_order": [
+        "bar",
+        "hero",
+        "signs",
+        "kit",
+        "reviews",
+        "monthly",
+        "videos",
+        "dayfit",
+        "ingredients",
+        "compare",
+        "offer",
+        "promise",
+        "faq",
+        "stories",
+        "trust"
+      ],
+      "settings": {
+        "product": "parapatrol™",
+        "cta_label": "Try ParaPatrol risk-free",
+        "cta_note": "30-day money-back guarantee",
+        "marquee": "",
+        "sticky_cta": true,
+        "sticky_label": "Try ParaPatrol risk-free"
+      }
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "This article is for general information and isn’t medical advice. Talk to your pediatrician before use if your child takes medication, has a health condition, or has tummy pain that is severe, ongoing or comes with other symptoms."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclaimer"
+  ]
+}

@@ -493,6 +493,222 @@
           </div>
         </section>
 
+      {%- when 'hero2' -%}
+        <section class="bg-mint" {{ block.shopify_attributes }} aria-labelledby="pp-h2-{{ block.id }}">
+          <div class="max-w-6xl mx-auto px-4 pt-8 pb-10 lg:pt-14 lg:pb-16 grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div class="min-w-0">
+              <h1 id="pp-h2-{{ block.id }}" class="font-display font-bold text-[40px] sm:text-[56px] leading-[1.02] text-primary">{{ bs.headline }}</h1>
+              {%- if bs.subhead != blank -%}<p class="mt-4 text-[18px] sm:text-[20px] leading-relaxed text-ink">{%- render 'parapatrol-claim', text: bs.subhead -%}</p>{%- endif -%}
+              <a href="{{ lp_url }}" class="mt-6 flex w-full sm:inline-flex sm:w-auto sm:min-w-[340px] items-center justify-center gap-2 min-h-[58px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors" data-pp-adv-cta>{{ s.cta_label }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+              <div class="mt-3 grid gap-1 sm:pl-2">
+                {%- if bs.rating_text != blank -%}<p class="flex items-center gap-2 text-[14px] font-bold text-ink">{%- render 'parapatrol-stars', score: 5, size: 16 -%}{{ bs.rating_text }}</p>{%- endif -%}
+                {%- if s.cta_note != blank -%}<p class="flex items-center gap-2 text-[14px] font-bold text-primary-dark"><span class="text-primary" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 16 -%}</span>{{ s.cta_note }}</p>{%- endif -%}
+              </div>
+              {%- assign cm = bs.comments | newline_to_br | split: '<br />' -%}
+              {%- if bs.comments != blank -%}
+                <div class="mt-6" data-pp-scrollbar>
+                  <ul class="pp-slider flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2" data-pp-scrollbar-track role="list" aria-label="Parent comments" tabindex="0">
+                    {%- for l in cm -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                      <li class="snap-start shrink-0 w-[88%] sm:w-[380px] rounded-2xl bg-white p-4 shadow-soft">
+                        <div class="flex gap-3">
+                          <span class="w-10 h-10 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center font-display font-bold text-[17px]" aria-hidden="true">{{ f[1] | strip | slice: 0 }}</span>
+                          <div class="min-w-0 rounded-2xl bg-[#f0f2f5] px-3.5 py-2.5">
+                            <p class="text-[14px] font-extrabold text-ink">{{ f[1] | strip }}</p>
+                            <p class="mt-0.5 text-[15px] leading-snug text-ink">{{ f[0] | strip }}</p>
+                          </div>
+                        </div>
+                        <p class="mt-1.5 pl-[52px] flex items-center gap-1 text-[12px] font-bold text-muted">{%- render 'parapatrol-stars', score: 5, size: 12 -%} Verified Buyer</p>
+                      </li>
+                    {%- endif -%}{%- endfor -%}
+                  </ul>
+                  <div class="pp-sbar mt-2 max-w-[260px]" data-pp-scrollbar-rail aria-hidden="true"><span class="pp-sbar__thumb" data-pp-scrollbar-thumb></span></div>
+                </div>
+              {%- endif -%}
+            </div>
+            <div class="min-w-0">
+              {%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.headline, class: 'aspect-[4/3] rounded-3xl shadow-lift', sizes: '(min-width: 1024px) 560px, 100vw', loading: 'eager', priority: true -%}
+            </div>
+          </div>
+        </section>
+
+      {%- when 'signs2' -%}
+        <section class="pp-adv-sec py-12 lg:py-16" {{ block.shopify_attributes }}>
+          <div class="max-w-[720px] mx-auto px-4">
+            <h2 class="text-center font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- assign ph = bs.photos | split: ',' -%}
+            {%- if bs.photos != blank -%}
+              <div class="mt-6 grid grid-cols-2 gap-2 rounded-3xl overflow-hidden">
+                {%- for x in ph limit: 4 -%}{%- assign pp_v = x | strip -%}{%- render 'parapatrol-media', asset: pp_v, alt: '', label: '', class: 'aspect-square', sizes: '(min-width: 760px) 340px, 50vw' -%}{%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if bs.intro != blank -%}<p class="mt-6 text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
+            {%- assign it = bs.items | newline_to_br | split: '<br />' -%}
+            <ul class="mt-3 grid gap-3 rounded-2xl border-2 border-[#f2c9d4] bg-[#fdeef3] p-5" role="list">
+              {%- for l in it -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 1 and f[0] != blank -%}
+                <li class="flex gap-2.5 text-[16px] leading-snug text-ink"><span class="mt-[7px] w-2 h-2 shrink-0 rounded-full bg-berry" aria-hidden="true"></span><span><strong class="font-extrabold text-berry">{{ f[0] | strip }}</strong>{% if f[1] %} – {% assign pp_v = f[1] | strip %}{% render 'parapatrol-claim', text: pp_v %}{% endif %}</span></li>
+              {%- endif -%}{%- endfor -%}
+            </ul>
+            {%- if bs.also != blank -%}<p class="mt-3 text-[15px] text-ink"><strong class="font-extrabold">Also common:</strong> <em>{{ bs.also }}</em></p>{%- endif -%}
+            {%- if bs.lines != blank -%}<div class="mt-8 text-center pp-adv-copy">{%- render 'parapatrol-claim', text: bs.lines -%}</div>{%- endif -%}
+            {%- if bs.image2 != blank or bs.asset2 != blank -%}<div class="mt-6">{%- render 'parapatrol-media', image: bs.image2, asset: bs.asset2, alt: bs.alt2, label: '', class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 760px) 688px, 100vw' -%}</div>{%- endif -%}
+            {%- if bs.stat != blank -%}
+              <p class="mt-6 rounded-2xl border border-[#d6e7dd] bg-mint px-5 py-4 text-center text-[16px] leading-relaxed text-ink">{{ bs.stat }}{% if bs.stat_source != blank %} <span class="text-[13px] text-muted">({% if bs.stat_url != blank %}<a href="{{ bs.stat_url }}" target="_blank" rel="noopener" class="underline underline-offset-2">{{ bs.stat_source }}</a>{% else %}{{ bs.stat_source }}{% endif %})</span>{% endif %}</p>
+            {%- endif -%}
+            {%- if bs.text != blank -%}<div class="pp-adv-copy mt-6">{%- render 'parapatrol-claim', text: bs.text -%}</div>{%- endif -%}
+            {%- if bs.link_label != blank -%}<a href="#{{ bs.link_to | default: 'kit' }}" class="mt-5 inline-flex items-center gap-1.5 font-extrabold text-primary underline underline-offset-4">{{ bs.link_label }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>{%- endif -%}
+          </div>
+        </section>
+
+      {%- when 'kit' -%}
+        <section class="py-12 lg:py-16 bg-mint" id="{{ bs.anchor | default: 'kit' }}" {{ block.shopify_attributes }}>
+          <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-center font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.pill1 != blank -%}<p class="mt-4 flex flex-wrap justify-center gap-2"><span class="rounded-full bg-ink px-4 py-1.5 text-[14px] font-extrabold text-white">{{ bs.pill1 }}</span><span class="rounded-full bg-primary px-4 py-1.5 text-[14px] font-extrabold text-white">{{ bs.pill2 }}</span></p>{%- endif -%}
+            <div class="mt-8 grid gap-6 lg:grid-cols-2 lg:items-center">
+              <div>
+                {%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: 'aspect-[4/3] rounded-3xl shadow-lift', sizes: '(min-width: 1024px) 560px, 100vw' -%}
+                {%- if bs.caption != blank -%}<p class="mx-auto -mt-5 relative w-[88%] rounded-2xl bg-white px-4 py-3 text-center font-display font-bold text-[18px] text-primary shadow-soft">{{ bs.caption }}</p>{%- endif -%}
+              </div>
+              {%- assign cards = bs.cards | newline_to_br | split: '<br />' -%}
+              <div class="grid gap-3">
+                {%- for l in cards -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 4 -%}
+                  <div class="rounded-2xl bg-white border-2 border-ink p-5">
+                    <p class="flex items-center gap-2.5 font-display font-bold text-[21px] text-ink"><span class="w-9 h-9 rounded-xl bg-mint text-primary inline-flex items-center justify-center" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 18 -%}</span>{{ f[1] | strip }}</p>
+                    <p class="mt-0.5 pl-[46px] text-[12px] font-extrabold uppercase tracking-[.1em] text-muted">{{ f[2] | strip }}</p>
+                    {%- assign bul = f[3] | split: ';' -%}
+                    <ul class="mt-3 grid gap-1.5" role="list">{%- for x in bul -%}<li class="flex items-start gap-2 text-[16px] text-ink"><span class="mt-0.5 text-primary shrink-0" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 18 -%}</span><span>{%- assign pp_v = x | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</span></li>{%- endfor -%}</ul>
+                  </div>
+                {%- endif -%}{%- endfor -%}
+              </div>
+            </div>
+            {%- assign fl = bs.flow | newline_to_br | split: '<br />' -%}
+            {%- if bs.flow != blank -%}
+              <ol class="mt-10 mx-auto max-w-[680px] grid grid-cols-3 gap-2 text-center" role="list">
+                {%- for l in fl -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                  <li class="relative flex flex-col items-center">
+                    <span class="w-14 h-14 rounded-full bg-white border-2 border-[#d6e7dd] text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 24 -%}</span>
+                    <span class="mt-2 text-[14px] font-extrabold {% if forloop.last %}text-primary{% else %}text-ink{% endif %}">{{ f[1] | strip }}</span>
+                    {%- unless forloop.last -%}<span class="absolute top-[18px] -right-[12%] text-primary" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>{%- endunless -%}
+                  </li>
+                {%- endif -%}{%- endfor -%}
+              </ol>
+            {%- endif -%}
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
+          </div>
+        </section>
+
+      {%- when 'monthly' -%}
+        <section class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }}>
+          <div class="max-w-[760px] mx-auto px-4">
+            <h2 class="text-center font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- assign phs = bs.phases | newline_to_br | split: '<br />' -%}
+            {%- if bs.phases != blank -%}
+              <div class="mt-6 grid grid-cols-3 rounded-2xl overflow-hidden border-2 border-ink">
+                {%- for l in phs -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+                  <div class="px-2 py-3 text-center {% cycle 'bg-mint', 'bg-[#fff6dc]', 'bg-[#eaf0fb]' %} {% unless forloop.last %}border-r-2 border-ink{% endunless %}">
+                    <p class="font-display font-bold text-[17px] sm:text-[19px] uppercase tracking-[.04em] {% cycle 'text-primary', 'text-[#b07a12]', 'text-[#3b5a9a]' %}">{{ f[0] | strip }}</p>
+                    <p class="text-[11px] font-extrabold uppercase tracking-[.1em] text-muted">{{ f[1] | strip }}</p>
+                    <p class="mt-1 text-[12px] sm:text-[13px] text-ink">{{ f[2] | strip }}</p>
+                  </div>
+                {%- endif -%}{%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- assign ent = bs.entries | newline_to_br | split: '<br />' -%}
+            <ol class="mt-5 relative grid gap-3 pl-6 before:content-[''] before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-[2px] before:bg-[#d6e7dd]" role="list">
+              {%- for l in ent -%}{%- assign f = l | strip | split: '|' -%}
+                {%- assign kind = f[0] | strip -%}
+                {%- if kind == 'note' and f.size >= 3 -%}
+                  <li class="-ml-6 rounded-2xl border-2 border-[#e9c46a] bg-[#fff6dc] p-4">
+                    <p class="font-extrabold text-[16px] text-ink">{{ f[1] | strip }}</p>
+                    <p class="mt-1 text-[15px] leading-relaxed text-ink">{%- assign pp_v = f[2] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</p>
+                  </li>
+                {%- elsif f.size >= 3 -%}
+                  <li class="relative rounded-2xl bg-white border-2 border-ink p-4 sm:p-5">
+                    <span class="absolute -left-[22px] top-6 w-3.5 h-3.5 rounded-full border-2 border-white bg-primary shadow" aria-hidden="true"></span>
+                    <p class="font-display font-bold text-[20px] text-ink">{{ f[0] | strip }}</p>
+                    <p class="mt-1 text-[15px] leading-relaxed text-ink">{%- assign pp_v = f[1] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</p>
+                    {%- assign bul = f[2] | split: ';' -%}
+                    <ul class="mt-2 grid gap-1.5" role="list">{%- for x in bul -%}{%- assign xp = x | split: '–' -%}<li class="flex items-start gap-2 text-[15px] text-ink"><span class="mt-0.5 text-primary shrink-0" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 17 -%}</span><span><strong class="font-extrabold">{{ xp[0] | strip }}</strong>{% if xp[1] %} – {% assign pp_v = xp[1] | strip %}{% render 'parapatrol-claim', text: pp_v %}{% endif %}</span></li>{%- endfor -%}</ul>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
+            {%- if bs.box_title != blank -%}
+              <div class="mt-4 rounded-2xl border-2 border-ink bg-white p-4 text-center"><p class="font-extrabold text-[16px] text-ink">{{ bs.box_title }}</p><p class="mt-1 text-[15px] text-ink">{%- render 'parapatrol-claim', text: bs.box_text -%}</p></div>
+            {%- endif -%}
+            {%- if bs.note != blank -%}<p class="mt-3 text-center text-[12px] italic text-muted">{{ bs.note }}</p>{%- endif -%}
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
+          </div>
+        </section>
+
+      {%- when 'dayfit' -%}
+        <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
+          <div class="max-w-[860px] mx-auto px-4">
+            <h2 class="text-center font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.intro != blank -%}<p class="mt-3 text-center text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
+            {%- assign rows = bs.rows | newline_to_br | split: '<br />' -%}
+            <div class="mt-8 grid gap-4">
+              {%- for l in rows -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 4 -%}
+                <div class="relative grid grid-cols-[minmax(0,1fr)_minmax(0,.9fr)] rounded-2xl bg-white border border-[#d6e7dd] overflow-hidden shadow-soft">
+                  <div class="p-5 sm:p-6 flex flex-col justify-center">
+                    <span class="w-10 h-10 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 18 -%}</span>
+                    {%- assign tg = f[1] | strip -%}{%- if tg != blank -%}<p class="mt-3 text-[11px] font-extrabold uppercase tracking-[.12em] text-primary">{{ tg }}</p>{%- endif -%}
+                    <p class="mt-1 font-display font-bold text-[21px] text-ink">{{ f[2] | strip }}</p>
+                    <p class="mt-0.5 text-[15px] text-muted">{{ f[3] | strip }}</p>
+                  </div>
+                  {%- assign pp_v = f[4] | strip -%}{%- if pp_v != blank -%}{%- render 'parapatrol-media', asset: pp_v, alt: '', label: '', class: 'h-full min-h-[170px]', sizes: '(min-width: 860px) 380px, 45vw' -%}{%- endif -%}
+                </div>
+              {%- endif -%}{%- endfor -%}
+            </div>
+          </div>
+        </section>
+
+      {%- when 'ingredients2' -%}
+        <section class="pp-adv-sec py-12 lg:py-16" {{ block.shopify_attributes }}>
+          <div class="max-w-[760px] mx-auto px-4">
+            <h2 class="text-center font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.intro != blank -%}<p class="mt-3 text-center text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
+            {%- assign bd = bs.badges | split: '|' -%}
+            {%- if bs.badges != blank -%}<p class="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2">{%- for x in bd -%}<span class="inline-flex items-center gap-1.5 text-[14px] font-bold italic text-ink"><span class="text-primary" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 15 -%}</span>{{ x | strip }}</span>{%- endfor -%}</p>{%- endif -%}
+            {%- assign cards = bs.cards | newline_to_br | split: '<br />' -%}
+            <div class="mt-6 grid gap-3">
+              {%- for l in cards -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 5 -%}
+                <div class="rounded-2xl border-2 border-ink bg-white p-4 sm:p-5">
+                  <div class="flex items-center gap-3">
+                    {%- assign pp_v = f[0] | strip -%}{%- if pp_v != blank -%}<div class="w-14 h-14 shrink-0">{%- render 'parapatrol-media', asset: pp_v, alt: '', label: '', class: 'w-14 h-14 rounded-xl', sizes: '56px' -%}</div>{%- endif -%}
+                    <div class="min-w-0">
+                      <p class="text-[11px] font-extrabold uppercase tracking-[.12em] text-primary">{{ f[1] | strip }}</p>
+                      <p class="font-display font-bold text-[20px] leading-tight text-ink">{{ f[2] | strip }}</p>
+                      {%- assign sb = f[3] | strip -%}{%- if sb != blank -%}<p class="text-[13px] text-muted">{{ sb }}</p>{%- endif -%}
+                    </div>
+                  </div>
+                  {%- assign bul = f[4] | split: ';' -%}
+                  <ul class="mt-3 grid gap-1.5" role="list">{%- for x in bul -%}<li class="flex items-start gap-2 text-[15px] text-ink"><span class="mt-0.5 text-primary shrink-0" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 17 -%}</span><span>{%- assign pp_v = x | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</span></li>{%- endfor -%}</ul>
+                </div>
+              {%- endif -%}{%- endfor -%}
+            </div>
+            {%- if bs.note != blank -%}<p class="mt-4 rounded-2xl bg-mint border-2 border-primary px-4 py-3 text-center text-[15px] font-bold text-primary-dark">{{ bs.note }}</p>{%- endif -%}
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
+          </div>
+        </section>
+
+      {%- when 'promise2' -%}
+        <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }}>
+          <div class="max-w-[640px] mx-auto px-4 text-center">
+            <h2 class="font-display font-bold text-[32px] sm:text-[44px] leading-[1.08] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.intro != blank -%}<p class="mt-3 text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
+            {%- assign stp = bs.steps | newline_to_br | split: '<br />' -%}
+            <ol class="mt-6 mx-auto max-w-[460px] grid gap-4 text-left" role="list">
+              {%- for l in stp -%}{%- assign lt = l | strip -%}{%- if lt != blank -%}<li class="flex items-center gap-3 text-[17px] font-bold text-ink"><span class="w-9 h-9 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center font-display font-bold" aria-hidden="true">{{ forloop.index }}</span>{{ lt }}</li>{%- endif -%}{%- endfor -%}
+            </ol>
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
+            {%- if bs.image != blank or bs.asset != blank -%}<div class="mt-8 mx-auto max-w-[360px]">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: '', class: 'aspect-square rounded-full', sizes: '360px' -%}</div>{%- endif -%}
+          </div>
+        </section>
+
+      {%- when 'topbar' -%}
+        <p class="bg-primary px-4 py-2.5 text-center text-[14px] sm:text-[15px] font-extrabold uppercase tracking-[.08em] text-white" {{ block.shopify_attributes }}>{{ bs.text }}</p>
+
       {%- when 'trust' -%}
         {%- assign tr = bs.items | newline_to_br | split: '<br />' -%}
         <section class="pp-adv-sec py-10 border-t border-line" {{ block.shopify_attributes }}>
@@ -696,6 +912,75 @@
       { "type": "textarea", "id": "checklist", "label": "Checklist (one per line)" },
       { "type": "textarea", "id": "quote", "label": "Customer quote", "info": "A real customer's words only." },
       { "type": "text", "id": "quote_author", "label": "Quote name" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" }
+    ] },
+    { "type": "topbar", "name": "Top bar", "limit": 1, "settings": [
+      { "type": "text", "id": "text", "label": "Text" }
+    ] },
+    { "type": "hero2", "name": "Hero (comments)", "limit": 1, "settings": [
+      { "type": "text", "id": "headline", "label": "Headline" },
+      { "type": "textarea", "id": "subhead", "label": "Subheadline" },
+      { "type": "text", "id": "rating_text", "label": "Line beside the stars" },
+      { "type": "textarea", "id": "comments", "label": "Comment cards", "info": "real customer quote | name" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" }
+    ] },
+    { "type": "signs2", "name": "Signs parents miss", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "photos", "label": "Photo grid (built-in files, comma separated, 4)" },
+      { "type": "text", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Signs", "info": "sign | explanation" },
+      { "type": "text", "id": "also", "label": "Also common" },
+      { "type": "richtext", "id": "lines", "label": "Centred lines" },
+      { "type": "image_picker", "id": "image2", "label": "Second image" },
+      { "type": "text", "id": "asset2", "label": "Second image built-in file" },
+      { "type": "text", "id": "alt2", "label": "Second image description" },
+      { "type": "text", "id": "stat", "label": "Stat box" },
+      { "type": "text", "id": "stat_source", "label": "Stat source" },
+      { "type": "url", "id": "stat_url", "label": "Stat source link" },
+      { "type": "richtext", "id": "text", "label": "Text" },
+      { "type": "text", "id": "link_label", "label": "Link label" },
+      { "type": "text", "id": "link_to", "label": "Link anchor", "default": "kit" }
+    ] },
+    { "type": "kit", "name": "Meet the kit", "settings": [
+      { "type": "text", "id": "anchor", "label": "Anchor id", "default": "kit" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "text", "id": "pill1", "label": "Pill 1" },
+      { "type": "text", "id": "pill2", "label": "Pill 2" },
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "text", "id": "caption", "label": "Image caption" },
+      { "type": "textarea", "id": "cards", "label": "Cards", "info": "icon | title | tag | bullet; bullet" },
+      { "type": "textarea", "id": "flow", "label": "Flow steps", "info": "icon | label (3 lines)" }
+    ] },
+    { "type": "monthly", "name": "Month by month", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "phases", "label": "Phase strip", "info": "label | when | text (3 lines)" },
+      { "type": "textarea", "id": "entries", "label": "Timeline", "info": "title | text | point – detail; point – detail. Callout: note | question | answer" },
+      { "type": "text", "id": "box_title", "label": "Box title" },
+      { "type": "textarea", "id": "box_text", "label": "Box text" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "dayfit", "name": "Fits into your day", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "rows", "label": "Rows", "info": "icon | tag | title | text | photo file" }
+    ] },
+    { "type": "ingredients2", "name": "Ingredients explained", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "text", "id": "badges", "label": "Badges (split with |)" },
+      { "type": "textarea", "id": "cards", "label": "Cards", "info": "photo file | tag | name | sub line | bullet; bullet; bullet" },
+      { "type": "text", "id": "note", "label": "Note under the cards" }
+    ] },
+    { "type": "promise2", "name": "Promise (steps)", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "steps", "label": "Steps (one per line)" },
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "asset", "label": "Built-in image file" },
       { "type": "text", "id": "alt", "label": "Image description" }
