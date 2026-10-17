@@ -41,11 +41,12 @@
           "type": "signs",
           "settings": {
             "heading": "Does this sound like your child?",
-            "asset": "pp-school-door.jpg",
-            "alt": "A mum zips up her son’s jacket at the front door before school",
+            "asset": "pp-signs-gut.jpg",
+            "alt": "A grumpy boy and a girl holding her tummy, with an illustration of an irritated digestive system over each",
             "intro": "Every child’s pattern looks a little different. Here’s the full list parents tell us about.",
             "items": "🍞 | Picky eating | Living on crackers, pasta and snacks, pushing real meals away.\n🍬 | Intense sugar cravings | Begging for sweets first thing and melting down when the answer is no.\n😣 | Random tummy aches | “My tummy hurts,” especially on school mornings.\n💤 | Restless sleep | Waking in the night and tired, grumpy mornings.\n😬 | Teeth grinding at night | You can hear it from down the hall.\n🎈 | Bloating and gas | Puffy, rumbly tummies after meals.\n🚽 | Irregular bathroom trips | Days of nothing, then the opposite.\n😔 | Mood swings | Fine one minute, a full meltdown the next.\n👁️ | Dark circles under the eyes | Looking tired even after a full night in bed.\n🌙 | Itchy bottom at night | A classic sign worth checking with your doctor.",
-            "banner": "<strong>Ticked 3 or more?</strong> Their gut is asking for some attention. A gentle herbal reset is an easy first step.*"
+            "banner": "<strong>Ticked 3 or more?</strong> Their gut is asking for some attention. A gentle herbal reset is an easy first step.*",
+            "square_image": true
           }
         },
         "solution": {

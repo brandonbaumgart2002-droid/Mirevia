@@ -113,7 +113,7 @@
           <div class="max-w-[760px] mx-auto px-4">
             <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
             {%- if bs.image != blank or bs.asset != blank -%}
-              <div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: 'aspect-[4/3] rounded-3xl', sizes: '(min-width: 800px) 728px, 100vw' -%}</div>
+              {%- assign sg_ratio = 'aspect-[4/3] rounded-3xl' -%}{%- if bs.square_image -%}{%- assign sg_ratio = 'aspect-square rounded-3xl' -%}{%- endif -%}<div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: sg_ratio, sizes: '(min-width: 800px) 728px, 100vw' -%}</div>
             {%- endif -%}
             {%- if bs.intro != blank -%}<p class="mt-5 text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
             {%- render 'parapatrol-lp-acc', lines: bs.items, emoji: true -%}
@@ -884,6 +884,7 @@
       { "type": "checkbox", "id": "button", "label": "Show button", "default": false }
     ] },
     { "type": "signs", "name": "Signs checklist", "settings": [
+      { "type": "checkbox", "id": "square_image", "label": "Show the image square (no crop)", "default": false },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "asset", "label": "Built-in image file" },
