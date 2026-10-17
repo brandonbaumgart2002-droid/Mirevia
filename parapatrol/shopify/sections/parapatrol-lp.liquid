@@ -425,7 +425,7 @@
                 <li class="flex flex-col items-center text-center rounded-[22px] sm:rounded-[28px] border-2 border-[#5aa58a] bg-[#f3f8f6] px-2.5 py-5 sm:px-5 sm:py-8 shadow-[5px_7px_0_#5aa58a] sm:shadow-[8px_10px_0_#5aa58a]">
                   {%- assign pp_v = f[0] | strip -%}<img src="{{ pp_v | asset_url }}" alt="" width="240" height="240" loading="lazy" class="w-16 h-16 sm:w-28 sm:h-28 object-contain">
                   <p class="mt-2 sm:mt-4 font-display font-bold text-[34px] sm:text-[54px] leading-none text-ink">{{ f[1] | strip }}</p>
-                  <p class="mt-1.5 sm:mt-2 text-[13px] sm:text-[18px] leading-snug text-ink"><strong class="font-extrabold">{{ f[2] | strip }}</strong></p>
+                  <p class="mt-1.5 sm:mt-2 font-display font-bold text-[15px] sm:text-[21px] leading-[1.15] text-ink">{{ f[2] | strip }}</p>
                 </li>
               {%- endif -%}{%- endfor -%}
             </ul>
