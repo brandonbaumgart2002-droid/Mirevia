@@ -15,7 +15,8 @@
             "photos": "pp-family-ugc-3.jpg, pp-family-ugc-2.jpg, pp-family-ugc-6.jpg, pp-family-ugc-13.jpg, pp-family-ugc-15.jpg, pp-family-ugc-19.jpg",
             "alt": "ParaPatrol with fennel, anise, licorice root and aloe vera",
             "asset": "pp-how-settle.jpg",
-            "as_h2": false
+            "as_h2": false,
+            "hide_button": true
           }
         },
         "threat": {

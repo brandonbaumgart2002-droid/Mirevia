@@ -53,8 +53,10 @@
                   {%- endif -%}
                 {%- endfor -%}
               </ul>
+              {%- unless bs.hide_button -%}
               <a href="{{ lp_url }}" class="mt-7 flex w-full sm:w-auto sm:inline-flex items-center justify-center gap-2 min-h-[58px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors" data-pp-adv-cta>{{ bs.button_label | default: s.cta_label }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
               {%- if s.cta_note != blank -%}<p class="mt-2.5 text-[13px] font-semibold text-muted sm:pl-4">✓ {{ s.cta_note }}</p>{%- endif -%}
+              {%- endunless -%}
             </div>
             <div class="relative mx-auto w-full max-w-[520px] aspect-square">
               {%- assign photos = bs.photos | split: ',' -%}
@@ -865,6 +867,7 @@
   ],
   "blocks": [
     { "type": "hero", "name": "Hero", "limit": 1, "settings": [
+      { "type": "checkbox", "id": "hide_button", "label": "Hide the button", "default": false },
       { "type": "text", "id": "rating_text", "label": "Line beside the stars", "info": "Your real rating only." },
       { "type": "textarea", "id": "headline", "label": "Headline (start)" },
       { "type": "text", "id": "highlight", "label": "Headline (green words)" },
