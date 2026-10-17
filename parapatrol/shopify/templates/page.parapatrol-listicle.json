@@ -82,16 +82,21 @@
           }
         },
         "monthly": {
-          "type": "story",
+          "type": "maintenance",
           "settings": {
-            "anchor": "monthly",
-            "green_heading": true,
             "heading": "Clear Parasites in 30 Days. Keep Them Gone with Monthly Use",
             "asset": "pp-clear-monthly.jpg",
             "alt": "Illustration of a child with a calm, glowing brain and a soothed, healthy gut",
-            "text": "<p><strong>Month 1: the full cleanse.</strong> One dropper a day works through every stage of the parasite life cycle, eggs, larvae and adults, while calming botanicals soothe the gut as it heals.*</p><p><strong>Every month after: stay protected.</strong> Kids pick up new parasites at school, from pets and at play. A simple monthly routine keeps them from moving back in.*</p><p>A clear gut means more of what you want back: steadier moods, better sleep, a bigger appetite and a kid who feels like themselves again.*</p>",
-            "good": "Clear them out once. Keep them out for good.",
-            "button": true
+            "taller_image": true,
+            "text": "<p><strong>After 30 days:</strong> parasites are eliminated, the gut is healed, and nutrients are restored.</p><p>But exposure is constant:</p><ul><li><strong>Food</strong> (meat, fish, produce)</li><li><strong>Pets</strong> (licking, bedding, outdoor contact)</li><li><strong>School</strong> (bathrooms, shared surfaces)</li><li><strong>Playgrounds and parks</strong></li></ul><p>Without monthly cleansing, parasites slowly rebuild—and symptoms creep back.</p>",
+            "trap_title": "Harsh Cleanses",
+            "trap_steps": "Harsh purge disrupts the gut; Gut takes months to recover; Re-exposure happens daily; Parasites rebuild, symptoms return",
+            "trap_footer": "🔁 Stuck in the same loop",
+            "way_title": "Gentle Monthly Use",
+            "way_steps": "🌱 | First 30 Days: Reset | Eliminate parasites and heal the gut.\n🛡️ | Monthly: Prevent | Keep parasites from rebuilding—even with constant exposure.",
+            "way_footer": "Gentle enough for monthly use. Strong enough to work.",
+            "button_label": "Start Your Child’s Reset",
+            "button_note": "30-Day Money Back Guarantee"
           }
         },
         "routine": {

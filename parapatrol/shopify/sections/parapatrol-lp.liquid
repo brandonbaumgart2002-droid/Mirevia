@@ -571,7 +571,7 @@
           <div class="max-w-[860px] mx-auto px-4">
             <h2 class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-primary">{{ bs.heading }}</h2>
             {%- if bs.image != blank or bs.asset != blank -%}
-              <div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: 'aspect-[16/9] rounded-3xl', sizes: '(min-width: 900px) 828px, 100vw' -%}</div>
+              {%- assign mt_ratio = 'aspect-[16/9] rounded-3xl' -%}{%- if bs.taller_image -%}{%- assign mt_ratio = 'aspect-[4/3] rounded-3xl' -%}{%- endif -%}<div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: mt_ratio, sizes: '(min-width: 900px) 828px, 100vw' -%}</div>
             {%- endif -%}
             {%- if bs.text != blank -%}<div class="pp-adv-copy mt-6">{%- render 'parapatrol-claim', text: bs.text -%}</div>{%- endif -%}
             <div class="mt-7 grid gap-4 md:grid-cols-2">
@@ -590,7 +590,8 @@
                 {%- if bs.way_footer != blank -%}<p class="mt-4 rounded-xl bg-primary px-3 py-2 text-center text-[14px] font-bold text-white">{{ bs.way_footer }}</p>{%- endif -%}
               </div>
             </div>
-            {%- render 'parapatrol-lp-cta', url: lp_url, label: s.cta_label, note: s.cta_note -%}
+            {%- assign mt_label = bs.button_label | default: s.cta_label -%}{%- assign mt_note = bs.button_note | default: s.cta_note -%}
+            {%- render 'parapatrol-lp-cta', url: lp_url, label: mt_label, note: mt_note -%}
           </div>
         </section>
 
@@ -909,6 +910,9 @@
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "maintenance", "name": "Keep it up (maintenance)", "settings": [
+      { "type": "checkbox", "id": "taller_image", "label": "Taller image (4:3)", "default": false },
+      { "type": "text", "id": "button_label", "label": "Button label" },
+      { "type": "text", "id": "button_note", "label": "Line under the button" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "image_picker", "id": "image", "label": "Image" },
       { "type": "text", "id": "asset", "label": "Built-in image file" },
