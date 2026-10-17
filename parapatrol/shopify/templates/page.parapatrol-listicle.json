@@ -71,6 +71,16 @@
             "items": "pp-stat-flower.png | 94% | reported better overall health & wellness\npp-stat-sun.png | 84% | saw calmer moods & fewer meltdowns\npp-stat-apple.png | 86% | experienced easier digestion & fewer tummy aches\npp-stat-moon.png | 89% | experienced better sleep quality"
           }
         },
+        "arsenal": {
+          "type": "arsenal",
+          "settings": {
+            "eyebrow": "Clinically-studied ingredients",
+            "heading": "Nature’s Arsenal Against Parasites",
+            "intro": "Every ingredient is chosen for a specific role: clear parasites, soothe the gut, bind and carry out waste, and restore balance.",
+            "items": "pp-ing-wormwood.png | Wormwood | Targets adults and larvae. A traditional bitter herb, used thujone-free and at a child’s dose.\npp-ing-black-walnut.png | Black Walnut Hull | Targets adult parasites with juglone and helps make the gut an unwelcoming place, while supporting regularity. Contains tree nut.\npp-ing-clove.png | Clove | Targets eggs and larvae, the step that stops a new wave hatching weeks later. The same spice in pumpkin pie.\npp-ing-pumpkin-seed.png | Pumpkin Seed | A traditional seed used alongside cleansing herbs to support a healthy digestive routine.\npp-ing-pau-darco.png | Pau d’Arco Bark | A South American tree bark that supports healthy gut defences while the cleanse works.\npp-ing-oregano.png | Oregano Leaf | A pizza-night herb that supports a balanced gut and helps keep repeat visitors out.\npp-ing-thyme.png | Thyme Leaf | A garden herb that supports healthy gut defences through school season.\npp-ing-fennel.png | Fennel Seed | A classic for little tummies that helps soothe occasional gas and bloating.\npp-ing-anise.png | Anise Seed | A sweet, gentle seed long used to settle tummies after meals.\npp-ing-licorice.png | Licorice Root | A soft, soothing root that supports a comfortable, calm gut lining.\npp-ing-aloe.png | Aloe Vera | A cooling plant that soothes the gut and supports comfortable digestion.",
+            "note": "Alcohol-free · Sugar-free · Gluten-free · Made in the USA"
+          }
+        },
         "routine": {
           "type": "routine",
           "settings": {
@@ -204,6 +214,7 @@
         "signs",
         "solution",
         "stats",
+        "arsenal",
         "routine",
         "timeline",
         "videos",

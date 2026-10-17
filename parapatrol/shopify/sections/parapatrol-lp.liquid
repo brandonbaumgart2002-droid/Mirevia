@@ -433,6 +433,33 @@
           </div>
         </section>
 
+      {%- when 'arsenal' -%}
+        <section class="pp-adv-sec py-12 lg:py-16" {{ block.shopify_attributes }} aria-labelledby="pp-ar-{{ block.id }}">
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-[760px] mx-auto">
+              {%- if bs.eyebrow != blank -%}<p class="text-[13px] font-extrabold uppercase tracking-[.14em] text-primary">{{ bs.eyebrow }}</p>{%- endif -%}
+              <h2 id="pp-ar-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[42px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
+              {%- if bs.intro != blank -%}<p class="mt-3 text-[17px] sm:text-[19px] leading-relaxed text-muted">{{ bs.intro }}</p>{%- endif -%}
+            </div>
+            {%- assign ars = bs.items | newline_to_br | split: '<br />' -%}
+            <div class="mt-8" data-pp-scrollbar>
+              <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 sm:scroll-px-0 flex gap-5 sm:gap-8 overflow-x-auto snap-x snap-mandatory pb-4" data-pp-scrollbar-track role="list" aria-label="Ingredients" tabindex="0">
+                {%- for l in ars -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+                  <li class="snap-start shrink-0 w-[78%] sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)] text-center">
+                    <div class="mr-2 mb-2 aspect-[16/9] rounded-[22px] border-2 border-[#5aa58a] bg-mint shadow-[6px_8px_0_#5aa58a] flex items-center justify-center overflow-hidden">
+                      {%- assign pp_v = f[0] | strip -%}<img src="{{ pp_v | asset_url }}" alt="{{ f[1] | strip | escape }}" width="600" height="600" loading="lazy" class="h-[86%] w-auto object-contain">
+                    </div>
+                    <p class="mt-5 font-display font-bold text-[20px] sm:text-[22px] uppercase tracking-[.02em] text-ink">{{ f[1] | strip }}</p>
+                    <p class="mt-1.5 text-[15px] sm:text-[16px] leading-relaxed text-ink">{%- assign pp_v = f[2] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</p>
+                  </li>
+                {%- endif -%}{%- endfor -%}
+              </ul>
+              <div class="pp-sbar mt-4 mx-auto max-w-[420px]" data-pp-scrollbar-rail aria-hidden="true"><span class="pp-sbar__thumb" data-pp-scrollbar-thumb></span></div>
+            </div>
+            {%- if bs.note != blank -%}<p class="mt-5 text-center text-[13px] text-muted">{{ bs.note }}</p>{%- endif -%}
+          </div>
+        </section>
+
       {%- when 'hook' -%}
         <section class="bg-primary-dark" {{ block.shopify_attributes }} aria-labelledby="pp-lp-hook-{{ block.id }}">
           <div class="max-w-6xl mx-auto px-4 py-8 lg:py-12 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)] lg:items-center">
@@ -1081,6 +1108,13 @@
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "text", "id": "intro", "label": "Intro" },
       { "type": "textarea", "id": "items", "label": "Tiles", "info": "icon file | stat | text, one per line" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "arsenal", "name": "Ingredient carousel", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Ingredients", "info": "image file | name | what it does, one per line" },
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "trust", "name": "Trust row", "settings": [
