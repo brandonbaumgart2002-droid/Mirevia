@@ -81,6 +81,19 @@
             "note": "Alcohol-free · Sugar-free · Gluten-free · Made in the USA"
           }
         },
+        "monthly": {
+          "type": "story",
+          "settings": {
+            "anchor": "monthly",
+            "green_heading": true,
+            "heading": "Clear Parasites in 30 Days. Keep Them Gone with Monthly Use",
+            "asset": "pp-clear-monthly.jpg",
+            "alt": "Illustration of a child with a calm, glowing brain and a soothed, healthy gut",
+            "text": "<p><strong>Month 1: the full cleanse.</strong> One dropper a day works through every stage of the parasite life cycle, eggs, larvae and adults, while calming botanicals soothe the gut as it heals.*</p><p><strong>Every month after: stay protected.</strong> Kids pick up new parasites at school, from pets and at play. A simple monthly routine keeps them from moving back in.*</p><p>A clear gut means more of what you want back: steadier moods, better sleep, a bigger appetite and a kid who feels like themselves again.*</p>",
+            "good": "Clear them out once. Keep them out for good.",
+            "button": true
+          }
+        },
         "routine": {
           "type": "routine",
           "settings": {
@@ -215,6 +228,7 @@
         "solution",
         "stats",
         "arsenal",
+        "monthly",
         "routine",
         "timeline",
         "videos",

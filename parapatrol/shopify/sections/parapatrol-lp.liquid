@@ -88,7 +88,7 @@
         <section class="py-12 lg:py-16 {% if bs.tint %}bg-soft{% else %}pp-adv-sec{% endif %}" {{ block.shopify_attributes }} id="{{ bs.anchor | default: block.id }}">
           <div class="max-w-[760px] mx-auto px-4">
             {%- if bs.eyebrow != blank -%}<p class="text-[13px] font-extrabold uppercase tracking-[.14em] text-primary">{{ bs.eyebrow }}</p>{%- endif -%}
-            <h2 class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ bs.heading }}</h2>
+            <h2 class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] {% if bs.green_heading %}text-primary{% else %}text-ink{% endif %}">{{ bs.heading }}</h2>
             {%- if bs.image != blank or bs.asset != blank -%}
               {%- assign st_ratio = 'aspect-[4/3] rounded-3xl' -%}{%- if bs.square_image -%}{%- assign st_ratio = 'aspect-square rounded-3xl' -%}{%- endif -%}<div class="mt-6">{%- render 'parapatrol-media', image: bs.image, asset: bs.asset, alt: bs.alt, label: bs.heading, class: st_ratio, sizes: '(min-width: 800px) 728px, 100vw' -%}</div>
             {%- endif -%}
@@ -922,6 +922,7 @@
       { "type": "text", "id": "way_footer", "label": "Right card footer" }
     ] },
     { "type": "story", "name": "Story / problem", "settings": [
+      { "type": "checkbox", "id": "green_heading", "label": "Green heading", "default": false },
       { "type": "checkbox", "id": "square_image", "label": "Show the image square (no crop)", "default": false },
       { "type": "text", "id": "anchor", "label": "Anchor id" },
       { "type": "checkbox", "id": "tint", "label": "Tinted background", "default": false },
