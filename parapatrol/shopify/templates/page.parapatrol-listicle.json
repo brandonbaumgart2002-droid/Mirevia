@@ -166,16 +166,19 @@
           }
         },
         "offer": {
-          "type": "offer",
+          "type": "offer2",
           "settings": {
-            "heading": "Start your child’s reset",
-            "subheading": "Free shipping · Limited time only",
-            "checklist": "FREE Happy Tummies, Healthy Kids Parent’s Guide e-book ($21.99 value) with bundles\nFREE Pip’s Little Sips Cup ($14.99 value) with bundles\nFree shipping on every order\n30-day money-back guarantee\nMade in the USA in an FDA-registered cGMP facility\nThird-party tested for purity\nGentle for children ages 3+\nJoin 2000+ happy parents",
+            "heading": "Start Your Child’s 30-Day Reset",
+            "subheading": "Special Offer: Buy 1, Get 1 Free + Free Shipping",
+            "checklist": "30-Day Money-Back Guarantee\nMade in the USA in a cGMP-Certified Facility\n3rd Party Tested for Purity\n11 Natural, Plant-Based Herbs\nNo Diet or Lifestyle Changes Needed\nJoin 2000+ Happy Parents\nGentle & Safe for Children Ages 3+",
             "quote": "Love this brand as it’s USA made, uses clean ingredients and works amazing!",
             "quote_author": "Kelsey",
-            "asset": "pp-ingredients-flatlay.jpg",
-            "alt": "ParaPatrol surrounded by its 11 herbs",
-            "tiers": "Buy 1 | $52.99 |  | 1 bottle · 30 days | \nBuy 1, Get 1 Free | $52.99 | $105.98 | 2 bottles · 60 days · Save 50% | Most popular\nBuy 2, Get 3 Free | $105.98 | $264.95 | 5 bottles · 150 days · Save 60% | Best value"
+            "button_label": "Start Your Child’s Reset",
+            "button_note": "30-Day Money Back Guarantee",
+            "badge": "Free Parent’s Guide Included",
+            "asset": "pp-offer-pair.png",
+            "alt": "Two bottles of ParaPatrol",
+            "tiles": "smile | Calmer Moods\ntummy | Happy Tummy & Appetite\nmoon | Peaceful Sleep"
           }
         },
         "trust": {
