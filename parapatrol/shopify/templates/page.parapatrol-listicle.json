@@ -26,14 +26,15 @@
             "asset": "pp-threat-collage.jpg",
             "alt": "News headlines and studies about parasites in children, with kids playing in mulch, with a dog and at a school water fountain",
             "text": "<p><strong>Your child isn’t “just being a kid.” Something’s off, and you can feel it.</strong></p><ul><li>The meltdowns that come out of nowhere.</li><li>The constant hunt for sugar and carbs.</li><li>The tossing and turning at night.</li><li>The “my tummy hurts” that never quite goes away.</li><li>That nagging sense that your kid just isn’t themselves.</li></ul><p>Everyone tells you it’s a phase. That all kids go through it.</p><p>But when the signs keep stacking up, nothing you try seems to help, and no one can tell you why, it’s worth asking a different question:</p><p><strong>What if it starts in the gut?</strong></p><p>Your child’s gut does far more than digest food. It plays a central role in their immunity, their energy, and even their mood. And one of the most overlooked things that can quietly disrupt it? <strong>Parasites.</strong></p>",
-            "stat": "Pinworm is the most common worm infection in the U.S.",
-            "stat_note": "School-aged and preschool children are the most commonly affected",
+            "stat": "CDC: Pinworms are the #1 worm infection in the U.S., and kids are the most affected",
+            "stat_note": "⚠️ And they spread easily through schools, daycares, and entire households",
             "stat_source": "CDC, About Pinworm",
             "stat_url": "https://www.cdc.gov/pinworm/about/index.html",
-            "warn": "Kids pick things up everywhere: sandpits, school bathrooms, shared toys, pets and playgrounds. And little hands go straight into little mouths.",
-            "good": "When their gut feels clean and settled, kids eat better, mornings get easier, and your happy, hungry kid comes back.*",
+            "warn": "Left unchecked, chronic gut parasites can rob a growing body of the nutrients it needs, during the exact years your child’s brain and body are still being built.",
+            "good": "But when you break the cycle and restore their gut, you give your child the best chance to be their happy, healthy self again.",
             "accordions": "🤔 Why hasn’t my pediatrician mentioned this? | Most check-ups focus on growth and milestones. Mild, everyday gut trouble rarely comes up unless a parent asks, so it’s worth raising if the signs keep showing up.\n🦠 How do kids pick things up? | Through hands and mouths: school bathrooms, sandpits, shared toys, pets, playgrounds and food. It spreads easily between siblings and classmates.\n👩‍⚕️ When should I see a doctor? | See your doctor if your child has ongoing or severe tummy pain, vomiting, blood in their stool, weight loss, itching around the bottom at night, or worms you can see.",
-            "square_image": true
+            "square_image": true,
+            "text2": "<p>Despite how common they are, parasites are rarely the first thing parents think of, because the signs blend right into everyday childhood: restless nights, tummy aches, a kid who just isn’t themselves.</p>"
           }
         },
         "signs": {
