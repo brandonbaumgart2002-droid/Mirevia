@@ -19,7 +19,7 @@
             <span class="flex-1">{{ a_q }}</span>
             <span class="shrink-0 text-primary transition-transform group-open:rotate-180" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span>
           </summary>
-          {%- if a_a != blank -%}<div class="pb-4 {% if a_icon != blank %}pl-12{% endif %} text-[15px] sm:text-[16px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: a_a -%}</div>{%- endif -%}
+          {%- if a_a != blank -%}<div class="pp-lp-acc__body pb-4 {% if a_icon != blank %}pl-12{% endif %} text-[15px] sm:text-[16px] leading-relaxed text-muted">{%- render 'parapatrol-claim', text: a_a -%}</div>{%- endif -%}
         </details>
       {%- endif -%}
     {%- endfor -%}

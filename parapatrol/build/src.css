@@ -219,6 +219,12 @@
 .pp .pp-adv-copy a:not(.fda) { color: var(--brand-primary-dark); text-decoration: underline; text-underline-offset: 3px; }
 .pp .pp-adv-copy ul { list-style: disc; padding-left: 1.3em; margin-top: 12px; }
 .pp .pp-adv-copy li + li { margin-top: 6px; }
+.pp .pp-lp-acc__body p + p, .pp .pp-lp-acc__body p + ul, .pp .pp-lp-acc__body p + ol, .pp .pp-lp-acc__body ul + p, .pp .pp-lp-acc__body ol + p { margin-top: 10px; }
+.pp .pp-lp-acc__body ul { list-style: disc; padding-left: 1.3em; margin-top: 6px; }
+.pp .pp-lp-acc__body ol { list-style: decimal; padding-left: 1.4em; margin-top: 6px; }
+.pp .pp-lp-acc__body ul.pp-plain { list-style: none; padding-left: 0; }
+.pp .pp-lp-acc__body li + li { margin-top: 6px; }
+.pp .pp-lp-acc__body strong { font-weight: 800; color: var(--ink); }
 .pp .pp-adv-copy--sm { font-size: 16px; line-height: 1.65; }
 .pp .pp-adv-copy--light, .pp .pp-adv-copy--light * { color: #fff; }
 .pp.pp .pp-adv-light-h { color: #fff !important; }
