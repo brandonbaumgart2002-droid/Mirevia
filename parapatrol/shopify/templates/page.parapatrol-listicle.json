@@ -81,6 +81,14 @@
             "note": "Alcohol-free · Sugar-free · Gluten-free · Made in the USA"
           }
         },
+        "timeline": {
+          "type": "timeline",
+          "settings": {
+            "heading": "Your child’s reset timeline",
+            "intro": "Most parents notice changes in the first couple of weeks. Repeat each school term to keep things on track.*",
+            "stages": "🌱 | Days 1–7: Settling in | One dropper a day in their morning drink. Start with half a dropper for the first few days. | Fewer tummy complaints*; No fuss at dose time\n☀️ | Weeks 1–2: Appetite returns | Plates come back cleaner and mornings get calmer.* | Bigger appetite*; Calmer mornings*\n💪 | Week 3: Reset complete | Finish the 2–3 week routine, then take a break. | A settled, regular tummy*; Your happy, hungry kid*\n🔄 | Every school term: Stay on track | Repeat the routine each term, and after holidays, trips and party season. | Ready for school, sandpits and sleepovers"
+          }
+        },
         "monthly": {
           "type": "maintenance",
           "settings": {
@@ -108,14 +116,6 @@
             "text": "<p>ParaPatrol is a <strong>gentle, once-a-day dropper</strong>, not a harsh cleanse. No special diets, no days off school, no bathroom emergencies.</p><p>It mixes straight into juice, milk or a smoothie, so it slips into the school-run routine without a fight.</p>",
             "steps": "Shake well and fill the dropper to the 1 mL line.\nMix into juice, milk or a smoothie. Orange juice and berry smoothies hide the herbal taste best.\nGive once a day with food for 2–3 weeks, then take a break.",
             "accordions": "✅ Zero prep | No mixing powders, no pills to hide, no diet changes. Just one dropper in a drink.\n😋 Will my picky eater take it? | It has a natural raspberry flavour and a bitter blocker. Most kids drink it in juice without a fuss. Starting with half a dropper for the first few days helps too.\n📅 How often should we use it? | Use it daily for a 2–3 week routine, then take a break. Many parents keep a bottle on hand for school terms and after holidays or trips.\n🛒 How many bottles do I need? | One 30 mL bottle holds about 30 servings, enough for one child’s full 2–3 week routine. For two kids, or to have a routine ready for the next school term, choose a bundle."
-          }
-        },
-        "timeline": {
-          "type": "timeline",
-          "settings": {
-            "heading": "Your child’s reset timeline",
-            "intro": "Most parents notice changes in the first couple of weeks. Repeat each school term to keep things on track.*",
-            "stages": "🌱 | Days 1–7: Settling in | One dropper a day in their morning drink. Start with half a dropper for the first few days. | Fewer tummy complaints*; No fuss at dose time\n☀️ | Weeks 1–2: Appetite returns | Plates come back cleaner and mornings get calmer.* | Bigger appetite*; Calmer mornings*\n💪 | Week 3: Reset complete | Finish the 2–3 week routine, then take a break. | A settled, regular tummy*; Your happy, hungry kid*\n🔄 | Every school term: Stay on track | Repeat the routine each term, and after holidays, trips and party season. | Ready for school, sandpits and sleepovers"
           }
         },
         "videos": {
@@ -233,9 +233,9 @@
         "solution",
         "stats",
         "arsenal",
+        "timeline",
         "monthly",
         "routine",
-        "timeline",
         "videos",
         "progress",
         "see",
