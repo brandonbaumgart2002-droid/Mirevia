@@ -414,6 +414,25 @@
           </div>
         </section>
 
+      {%- when 'stats' -%}
+        <section class="py-12 lg:py-16" {{ block.shopify_attributes }} aria-labelledby="pp-st-{{ block.id }}">
+          <div class="max-w-[760px] mx-auto px-4">
+            <h2 id="pp-st-{{ block.id }}" class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-primary">{{ bs.heading }}</h2>
+            {%- if bs.intro != blank -%}<p class="mt-3 text-[17px] text-ink">{{ bs.intro }}</p>{%- endif -%}
+            {%- assign sts = bs.items | newline_to_br | split: '<br />' -%}
+            <ul class="mt-6 grid grid-cols-2 gap-4 sm:gap-6 rounded-3xl bg-mint p-4 sm:p-8" role="list">
+              {%- for l in sts -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+                <li class="flex flex-col items-center text-center rounded-[22px] sm:rounded-[28px] border-2 border-[#5aa58a] bg-[#f3f8f6] px-2.5 py-5 sm:px-5 sm:py-8 shadow-[5px_7px_0_#5aa58a] sm:shadow-[8px_10px_0_#5aa58a]">
+                  {%- assign pp_v = f[0] | strip -%}<img src="{{ pp_v | asset_url }}" alt="" width="240" height="240" loading="lazy" class="w-16 h-16 sm:w-28 sm:h-28 object-contain">
+                  <p class="mt-2 sm:mt-4 font-display font-bold text-[34px] sm:text-[54px] leading-none text-ink">{{ f[1] | strip }}</p>
+                  <p class="mt-1.5 sm:mt-2 text-[13px] sm:text-[18px] leading-snug text-ink"><strong class="font-extrabold">{{ f[2] | strip }}</strong></p>
+                </li>
+              {%- endif -%}{%- endfor -%}
+            </ul>
+            {%- if bs.note != blank -%}<p class="mt-3 text-center text-[12px] text-muted">{{ bs.note }}</p>{%- endif -%}
+          </div>
+        </section>
+
       {%- when 'hook' -%}
         <section class="bg-primary-dark" {{ block.shopify_attributes }} aria-labelledby="pp-lp-hook-{{ block.id }}">
           <div class="max-w-6xl mx-auto px-4 py-8 lg:py-12 grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,.8fr)] lg:items-center">
@@ -1057,6 +1076,12 @@
       { "type": "text", "id": "asset", "label": "Built-in image file", "default": "pp-offer-studio.jpg" },
       { "type": "text", "id": "alt", "label": "Image description" },
       { "type": "textarea", "id": "tiles", "label": "Benefit tiles", "info": "icon (smile, tummy, moon) | label, 3 lines" }
+    ] },
+    { "type": "stats", "name": "Stat tiles", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "text", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Tiles", "info": "icon file | stat | text, one per line" },
+      { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "trust", "name": "Trust row", "settings": [
       { "type": "textarea", "id": "items", "label": "Badges", "info": "icon | label" }

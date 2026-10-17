@@ -64,14 +64,11 @@
             "badges": "🌿 | All Natural, No Harsh Chemicals\n⚕️ | Pediatrician Approved\n✅ | GMP-Certified\n🧪 | 3rd Party Tested"
           }
         },
-        "ingredients": {
-          "type": "ingredients",
+        "stats": {
+          "type": "stats",
           "settings": {
-            "eyebrow": "11 herbal specialists",
-            "heading": "Nature’s gentle toolkit",
-            "intro": "Every herb has one job: settle the tummy, reset a regular rhythm, or strengthen healthy gut defences.*",
-            "items": "Fennel seed | Settle | A classic for little tummies that helps soothe occasional gas.*\nAnise seed | Settle | A sweet, gentle seed long used to settle tummies after meals.*\nLicorice root | Settle | A soft, soothing root that supports gut comfort.*\nAloe vera | Settle | A cooling plant that supports a comfortable tummy.*\nBlack walnut hull | Reset | A traditional botanical that supports regularity.* Contains tree nut.\nWhole clove | Reset | A warming kitchen spice that supports healthy digestion.*\nPumpkin seed | Reset | A familiar seed that supports a healthy digestive routine.*\nWormwood herb | Reset | A traditional bitter herb that supports the body’s natural digestive rhythm.*\nPau d’arco bark | Strengthen | A South American tree bark that supports healthy gut defences.*\nThyme leaf | Strengthen | A garden herb that supports healthy gut defences.*\nOregano leaf | Strengthen | A pizza-night herb that supports a balanced gut.*",
-            "note": "Alcohol-free · Sugar-free · Gluten-free · Made in the USA"
+            "heading": "Over 2,000 Parents Have Already Seen the Transformation",
+            "items": "pp-stat-flower.png | 94% | reported better overall health & wellness\npp-stat-sun.png | 84% | saw calmer moods & fewer meltdowns\npp-stat-apple.png | 86% | experienced easier digestion & fewer tummy aches\npp-stat-moon.png | 89% | experienced better sleep quality"
           }
         },
         "routine": {
@@ -91,6 +88,15 @@
             "heading": "Your child’s reset timeline",
             "intro": "Most parents notice changes in the first couple of weeks. Repeat each school term to keep things on track.*",
             "stages": "🌱 | Days 1–7: Settling in | One dropper a day in their morning drink. Start with half a dropper for the first few days. | Fewer tummy complaints*; No fuss at dose time\n☀️ | Weeks 1–2: Appetite returns | Plates come back cleaner and mornings get calmer.* | Bigger appetite*; Calmer mornings*\n💪 | Week 3: Reset complete | Finish the 2–3 week routine, then take a break. | A settled, regular tummy*; Your happy, hungry kid*\n🔄 | Every school term: Stay on track | Repeat the routine each term, and after holidays, trips and party season. | Ready for school, sandpits and sleepovers"
+          }
+        },
+        "videos": {
+          "type": "videos",
+          "settings": {
+            "heading": "Watch one family’s first three weeks",
+            "intro": "Real ParaPatrol parents, filmed at home.",
+            "items": "Day 4 |  |  | \nDay 10 |  |  | \nDay 20 |  |  | ",
+            "note": "Individual results vary."
           }
         },
         "progress": {
@@ -190,15 +196,6 @@
           "settings": {
             "items": "leaf | Natural herbal ingredients\nheart | Kid-approved taste\nshield | 30-day guarantee\ncheck | cGMP facility\nlock | Third-party tested\ntruck | Free shipping"
           }
-        },
-        "videos": {
-          "type": "videos",
-          "settings": {
-            "heading": "Watch one family’s first three weeks",
-            "intro": "Real ParaPatrol parents, filmed at home.",
-            "items": "Day 4 |  |  | \nDay 10 |  |  | \nDay 20 |  |  | ",
-            "note": "Individual results vary."
-          }
         }
       },
       "block_order": [
@@ -206,7 +203,7 @@
         "threat",
         "signs",
         "solution",
-        "ingredients",
+        "stats",
         "routine",
         "timeline",
         "videos",
