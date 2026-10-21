@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -22,14 +13,48 @@
         "rating_score_fallback": "4.8",
         "rating_count_fallback": "237+",
         "rating_label": "parent reviews",
+        "show_hero_price": false,
         "authority": "Paediatrician-approved formula",
+        "authority_note": "Gentle, kid-dosed herbal blend for ages 3+",
         "tick_1": "Settles tummies*",
         "tick_2": "Supports a healthy appetite*",
         "tick_3": "No fuss: mixes into any drink",
         "subscribe_note": "Delivered on your schedule. Skip or cancel anytime.",
+        "trust": "lock|Secure checkout\ntruck|Free shipping\nshield|30-day money-back\nleaf|Alcohol & sugar-free",
+        "payment_icons": true,
         "guarantee": "30-day money-back guarantee. Love it or your money back.",
         "free_shipping": 0,
         "after_add": "drawer",
+        "show_delivery": true,
+        "proc_min": 1,
+        "proc_max": 2,
+        "del_min": 7,
+        "del_max": 15,
+        "delivery_note": "Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days.",
+        "quick_heading": "Quick answers",
+        "ing_tile_label": "Ingredients",
+        "ing_tile_text": "11 gentle herbs in one 1 mL serving. Alcohol-free, no sugar, gluten-free and vegan friendly.",
+        "ing_tile_asset": "pp-supplement-facts.jpg",
+        "ing_tile_link_label": "See every ingredient in the Parent Guide",
+        "ing_tile_link": "/pages/parapatrol-parent-guide",
+        "quick_q1": "Is it safe for my child?",
+        "quick_a1": "ParaPatrol is made and dosed for kids 3 and up: alcohol-free, sugar-free, made in the USA and third-party tested, with a simple 1 mL daily dose. Not for children under 3. If your child takes medication or has a health condition, check with your paediatrician first.",
+        "quick_safety_link": "Read the full safety profile",
+        "quick_q2": "Will my picky eater actually take it?",
+        "quick_a2": "It has a natural raspberry flavour and mixes straight into orange juice, milk or a smoothie, so most kids drink it without a fuss. First time? Start with half a dropper for a few days.",
+        "quick_q3": "How often do they take it, and when will we see results?",
+        "quick_a3": "One dropper (1 mL) a day in their morning juice or milk. Many parents notice a more settled tummy and a better appetite within 1 to 2 weeks.* Follow the 2 to 3 week routine, then take a break, and keep a bottle on hand for school terms and after trips.",
+        "quick_q4": "What if it doesn't work for us?",
+        "quick_a4": "Every child is different, so you're covered by our 30-day money-back guarantee. If ParaPatrol isn't right for your family, contact us within 30 days and we'll refund you. No awkward questions.",
+        "show_stock": true,
+        "stock_manual": 12,
+        "stock_threshold": 15,
+        "stock_label": "Hurry! Only",
+        "stock_suffix": "left in stock",
+        "sale_label": "Back to School Sale ends in",
+        "sale_end_date": "",
+        "sale_end_time": "23:59",
+        "sale_note": "Ends 31 October",
         "show_sticky": true,
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "ph_1": "bottle hero on white",
@@ -46,11 +71,352 @@
         "ink_muted": "#4f5b72",
         "line": "#ece1e5",
         "load_google_fonts": true,
-        "use_theme_fonts": false,
-        "show_hero_price": false,
-        "authority_note": "Gentle, kid-dosed herbal blend for ages 3+",
-        "sale_end_date": "",
-        "stock_manual": 12
+        "use_theme_fonts": false
+      }
+    },
+    "reviews": {
+      "type": "parapatrol-reviews",
+      "blocks": {
+        "rev_3": {
+          "type": "quote",
+          "settings": {
+            "title": "Calmer mornings, no pill battles",
+            "quote": "The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.",
+            "author": "Lisa K.",
+            "detail": "Parent of Leo",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, taste",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-15.jpg",
+            "illus_alt": "A boy in school uniform gives a thumbs up with a ParaPatrol bottle"
+          }
+        },
+        "rev_2": {
+          "type": "quote",
+          "settings": {
+            "title": "Finishing her meals again",
+            "quote": "Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.",
+            "author": "Jennifer T.",
+            "detail": "Parent of Ava",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-3.jpg",
+            "illus_alt": "A mum and daughter smile with a ParaPatrol box"
+          }
+        },
+        "rev_7": {
+          "type": "quote",
+          "settings": {
+            "title": "Asked for lunch (rare!)",
+            "quote": "Right after washing our hands, he asked for lunch (RARE). He ate every bit of his green beans, Mac n cheese and beef jerky… I mixed it up in his juice and water and he drank every bit. He’s a very picky eater too and didn’t notice it.",
+            "author": "Esther",
+            "detail": "Parent of Noah, a picky eater",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, taste",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-6.jpg",
+            "illus_alt": "A mum holds a ParaPatrol bottle while her son laughs on the swing"
+          }
+        },
+        "rev_14": {
+          "type": "quote",
+          "settings": {
+            "title": "Her appetite has greatly increased",
+            "quote": "This is the second bottle I’ve purchased… We are now in week three… she sleeps through the night, her appetite has greatly increased, and even her siblings have noticed a major positive change… so far our experience has been very positive.",
+            "author": "Alex",
+            "detail": "Parent of Mia, age 8",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-10.jpg",
+            "illus_alt": "A mum and daughter in bed with a ParaPatrol bottle and box"
+          }
+        },
+        "rev_5": {
+          "type": "quote",
+          "settings": {
+            "title": "A bigger appetite for our picky eater",
+            "quote": "My son is very picky eater, this product boost his appetite a lot.",
+            "author": "Megan S.",
+            "detail": "Parent of Jack",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-2.jpg",
+            "illus_alt": "A boy holds up a ParaPatrol bottle"
+          }
+        },
+        "rev_8": {
+          "type": "quote",
+          "settings": {
+            "title": "Eating more and trying new foods",
+            "quote": "The dropper makes it super easy to measure the right amount… The taste is mild and not overpowering, and it blends well with water or juice. After using it consistently, my kids are more balanced and overall better in their daily routine, and it helps them eat more and try new foods.",
+            "author": "Thaina",
+            "detail": "Parent of picky eaters",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, easy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-12.jpg",
+            "illus_alt": "A brother and sister on the front steps in school uniform with ParaPatrol"
+          }
+        },
+        "rev_15": {
+          "type": "quote",
+          "settings": {
+            "title": "No more upset-belly complaints",
+            "quote": "We are only on day five, and I cannot believe the difference. She no longer complains of upset belly… her taste buds are expanding… I am so thankful I bought it!!",
+            "author": "Tina",
+            "detail": "Parent of Ella and Grace",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-13.jpg",
+            "illus_alt": "A little girl at the playground points at the ParaPatrol box"
+          }
+        },
+        "rev_9": {
+          "type": "quote",
+          "settings": {
+            "title": "Actually eating their food",
+            "quote": "I absolutely fell in love with this brand so easy to use clean ingredients, great value… my littles didn’t notice the taste as much, no sensitive tummies, after 2 weeks I noticed… actually eating their food.",
+            "author": "Ashley R.",
+            "detail": "Parent of little ones",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "tummy, taste",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-1.jpg",
+            "illus_alt": "A mum takes a garden selfie with her two kids and a ParaPatrol bottle"
+          }
+        },
+        "rev_10": {
+          "type": "quote",
+          "settings": {
+            "title": "“It tastes great,” says our 5-year-old",
+            "quote": "The taste isn’t bad at all. I administered this in apple juice to myself and my 5 year old he said “it tastes great” and water to my 7 year old (per his request) he said “he tastes cloves”.",
+            "author": "Caterina Z.",
+            "detail": "Parent of Max, 5, and Sam, 7",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-8.jpg",
+            "illus_alt": "A boy laughs at the breakfast table next to a ParaPatrol bottle"
+          }
+        },
+        "rev_11": {
+          "type": "quote",
+          "settings": {
+            "title": "In her school water bottle, zero complaints",
+            "quote": "Let me start by saying that you need to be consistent. This is a slow process that takes time… I already bought my second bottle. My Daughter is very picky, but I always put this in the water she takes to school, and she never complains of flavor or anything weird… It mixes well with water.",
+            "author": "Matt R.",
+            "detail": "Parent of Lily, school age",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, taste, routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-4.jpg",
+            "illus_alt": "A girl watches a dropper of ParaPatrol go into her orange juice"
+          }
+        },
+        "rev_1": {
+          "type": "quote",
+          "settings": {
+            "title": "No more fuss at dose time",
+            "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
+            "author": "Adelna E.",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, taste",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-14.jpg",
+            "illus_alt": "A girl brushing her teeth next to a ParaPatrol bottle and box"
+          }
+        },
+        "rev_12": {
+          "type": "quote",
+          "settings": {
+            "title": "Can’t taste it in their milk",
+            "quote": "Great for kids… Just one dropper in a cup of milk, kids can’t taste anything. Kids never have any problems with it at all… Highly recommend.",
+            "author": "Tiffany",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, easy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-17.jpg",
+            "illus_alt": "A girl doing homework holds up a ParaPatrol bottle"
+          }
+        },
+        "rev_13": {
+          "type": "quote",
+          "settings": {
+            "title": "Our go-to when things feel off",
+            "quote": "I turn to this to get his gut back on track. Very mild, not noticed in his smoothies… Good value for the money. I don’t buy it back to back, just when I notice things are off.",
+            "author": "Yandra L.",
+            "detail": "Parent of Ethan",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine, tummy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-7.jpg",
+            "illus_alt": "A mum and her son take a car selfie with a ParaPatrol box"
+          }
+        },
+        "rev_4": {
+          "type": "quote",
+          "settings": {
+            "title": "Our school-season go-to",
+            "quote": "I always keep a bottle on hand now, especially during school season or after family trips.",
+            "author": "Marcus D.",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-5.jpg",
+            "illus_alt": "A dad and son on the sofa with ParaPatrol"
+          }
+        },
+        "rev_6": {
+          "type": "quote",
+          "settings": {
+            "title": "Easy once it’s mixed in",
+            "quote": "The taste is a little bit strong but mixed with something else is just fine.",
+            "author": "Harry T.",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, easy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-19.jpg",
+            "illus_alt": "A dad takes a selfie with his two daughters and ParaPatrol"
+          }
+        },
+        "rev_16": {
+          "type": "quote",
+          "settings": {
+            "title": "She takes it right down",
+            "quote": "She has a taste. She takes it right down. She has no problem with it and I am so glad.",
+            "author": "Martin A.",
+            "detail": "Parent of Chloe, age 9",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, easy",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-11.jpg",
+            "illus_alt": "A girl in the garden holds up a ParaPatrol bottle and box"
+          }
+        },
+        "rev_17": {
+          "type": "quote",
+          "settings": {
+            "title": "Easy to give in the morning",
+            "quote": "The kids take the droppers down easily in the morning so it must not taste bad. Very easy to administer. Kids energy levels seem good and they are sleeping well as always!",
+            "author": "Jeraldith G.",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "easy, routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-9.jpg",
+            "illus_alt": "A grandmother and grandson in the garden with ParaPatrol"
+          }
+        },
+        "rev_18": {
+          "type": "quote",
+          "settings": {
+            "title": "They remind me to give it",
+            "quote": "My children reminded me daily to take their “medicine”, they enjoyed the taste.",
+            "author": "Laina",
+            "detail": "Parent of Oliver and Henry",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "taste, routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-16.jpg",
+            "illus_alt": "A mum and her son at the beach with a ParaPatrol bottle and box"
+          }
+        },
+        "rev_19": {
+          "type": "quote",
+          "settings": {
+            "title": "USA made, clean ingredients",
+            "quote": "Love this brand as it’s USA made, uses clean ingredients and works amazing!",
+            "author": "Kelsey",
+            "detail": "",
+            "badge": "Verified Buyer",
+            "stars": 5,
+            "tags": "routine",
+            "photo_alt": "",
+            "illus_asset": "pp-family-ugc-18.jpg",
+            "illus_alt": "A boy watches a ParaPatrol box come out of a delivery parcel"
+          }
+        }
+      },
+      "block_order": [
+        "rev_3",
+        "rev_2",
+        "rev_7",
+        "rev_14",
+        "rev_5",
+        "rev_8",
+        "rev_15",
+        "rev_9",
+        "rev_10",
+        "rev_11",
+        "rev_1",
+        "rev_12",
+        "rev_13",
+        "rev_4",
+        "rev_6",
+        "rev_16",
+        "rev_17",
+        "rev_18",
+        "rev_19"
+      ],
+      "settings": {
+        "eyebrow": "In parents’ own words",
+        "heading": "“Back to their happy, hungry selves”",
+        "subheading": "Fuller plates, calmer mornings and no fuss at dose time. Here’s what families noticed once ParaPatrol became part of the routine.",
+        "show_breakdown": true,
+        "score_fallback": "4.8",
+        "count_fallback": "237+",
+        "count_label": "parent reviews",
+        "bar_percents": "0,0,0,0,0",
+        "bar_labels": "",
+        "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
+        "filters": "",
+        "quotes_note": "Individual reviews reflect one family’s experience. Results vary. Children’s names have been changed for privacy. Photos are illustrative and don’t show the reviewers or their families."
+      }
+    },
+    "problem": {
+      "type": "parapatrol-problem",
+      "settings": {
+        "eyebrow": "Sound familiar?",
+        "heading": "When their tummy’s off, the whole family feels it.",
+        "intro": "It starts small. A few picked-at dinners, a “my tummy hurts” on a school morning. Then it’s most weeks, and you’re left wondering how to get them back to their normal, happy self.",
+        "problems_asset": "pp-problem-before.jpg",
+        "problems_alt": "A boy pushes peas around a full dinner plate while his mum watches, worried",
+        "problems_title": "What you might be noticing",
+        "problems": "Pushing food around the plate, then hungry for snacks an hour later\n“My tummy hurts” on school mornings\nTummy not quite right after parties, sweets or a holiday\nDinner turning into a nightly negotiation",
+        "cost": "When it drags on, meals become a battle, mornings run late, and you spend the week guessing.",
+        "wins_asset": "pp-problem-after.jpg",
+        "wins_alt": "The same boy happily eating breakfast with his mum, ParaPatrol on the table",
+        "wins_title": "What parents notice with ParaPatrol*",
+        "wins": "Settled, comfortable tummies*\nBigger appetites and cleaner plates*\nEasier mornings: one dropper in their juice, no pills, no fuss\nA gentle routine for school season and after trips",
+        "how": "Fennel, anise and licorice soothe occasional tummy upsets, while black walnut, clove and pau d’arco support their natural digestive rhythm.*",
+        "button_label": "Get them back on track",
+        "note": "Every child is different. If tummy pain is severe, ongoing or comes with other symptoms, talk to your pediatrician."
       }
     },
     "kidlife": {
@@ -338,325 +704,6 @@
         "text": "Small daily habit, big difference. Here's what parents tell us after adding ParaPatrol to their routine.",
         "source": "*Based on 237+ ParaPatrol customer reviews.",
         "confirmed": true
-      }
-    },
-    "reviews": {
-      "type": "parapatrol-reviews",
-      "blocks": {
-        "rev_1": {
-          "type": "quote",
-          "settings": {
-            "quote": "My kids take this without any fuss, which is a big win. The dropper makes it easy to give and the taste is mild.",
-            "author": "Adelna E.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "easy, taste",
-            "photo_alt": "",
-            "title": "No more fuss at dose time",
-            "illus_asset": "pp-family-ugc-14.jpg",
-            "illus_alt": "A girl brushing her teeth next to a ParaPatrol bottle and box"
-          }
-        },
-        "rev_2": {
-          "type": "quote",
-          "settings": {
-            "quote": "Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food.",
-            "author": "Jennifer T.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy",
-            "photo_alt": "",
-            "title": "Finishing her meals again",
-            "detail": "Parent of Ava",
-            "illus_asset": "pp-family-ugc-3.jpg",
-            "illus_alt": "A mum and daughter smile with a ParaPatrol box"
-          }
-        },
-        "rev_3": {
-          "type": "quote",
-          "settings": {
-            "quote": "The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss.",
-            "author": "Lisa K.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "easy, taste",
-            "photo_alt": "",
-            "title": "Calmer mornings, no pill battles",
-            "detail": "Parent of Leo",
-            "illus_asset": "pp-family-ugc-15.jpg",
-            "illus_alt": "A boy in school uniform gives a thumbs up with a ParaPatrol bottle"
-          }
-        },
-        "rev_4": {
-          "type": "quote",
-          "settings": {
-            "quote": "I always keep a bottle on hand now, especially during school season or after family trips.",
-            "author": "Marcus D.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "routine",
-            "photo_alt": "",
-            "title": "Our school-season go-to",
-            "illus_asset": "pp-family-ugc-5.jpg",
-            "illus_alt": "A dad and son on the sofa with ParaPatrol"
-          }
-        },
-        "rev_5": {
-          "type": "quote",
-          "settings": {
-            "quote": "My son is very picky eater, this product boost his appetite a lot.",
-            "author": "Megan S.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy",
-            "photo_alt": "",
-            "title": "A bigger appetite for our picky eater",
-            "detail": "Parent of Jack",
-            "illus_asset": "pp-family-ugc-2.jpg",
-            "illus_alt": "A boy holds up a ParaPatrol bottle"
-          }
-        },
-        "rev_6": {
-          "type": "quote",
-          "settings": {
-            "quote": "The taste is a little bit strong but mixed with something else is just fine.",
-            "author": "Harry T.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "taste, easy",
-            "photo_alt": "",
-            "title": "Easy once it’s mixed in",
-            "illus_asset": "pp-family-ugc-19.jpg",
-            "illus_alt": "A dad takes a selfie with his two daughters and ParaPatrol"
-          }
-        },
-        "rev_7": {
-          "type": "quote",
-          "settings": {
-            "title": "Asked for lunch (rare!)",
-            "quote": "Right after washing our hands, he asked for lunch (RARE). He ate every bit of his green beans, Mac n cheese and beef jerky… I mixed it up in his juice and water and he drank every bit. He’s a very picky eater too and didn’t notice it.",
-            "author": "Esther",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy, taste",
-            "photo_alt": "",
-            "detail": "Parent of Noah, a picky eater",
-            "illus_asset": "pp-family-ugc-6.jpg",
-            "illus_alt": "A mum holds a ParaPatrol bottle while her son laughs on the swing"
-          }
-        },
-        "rev_8": {
-          "type": "quote",
-          "settings": {
-            "title": "Eating more and trying new foods",
-            "quote": "The dropper makes it super easy to measure the right amount… The taste is mild and not overpowering, and it blends well with water or juice. After using it consistently, my kids are more balanced and overall better in their daily routine, and it helps them eat more and try new foods.",
-            "author": "Thaina",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy, easy",
-            "photo_alt": "",
-            "detail": "Parent of picky eaters",
-            "illus_asset": "pp-family-ugc-12.jpg",
-            "illus_alt": "A brother and sister on the front steps in school uniform with ParaPatrol"
-          }
-        },
-        "rev_9": {
-          "type": "quote",
-          "settings": {
-            "title": "Actually eating their food",
-            "quote": "I absolutely fell in love with this brand so easy to use clean ingredients, great value… my littles didn’t notice the taste as much, no sensitive tummies, after 2 weeks I noticed… actually eating their food.",
-            "author": "Ashley R.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy, taste",
-            "photo_alt": "",
-            "detail": "Parent of little ones",
-            "illus_asset": "pp-family-ugc-1.jpg",
-            "illus_alt": "A mum takes a garden selfie with her two kids and a ParaPatrol bottle"
-          }
-        },
-        "rev_10": {
-          "type": "quote",
-          "settings": {
-            "title": "“It tastes great,” says our 5-year-old",
-            "quote": "The taste isn’t bad at all. I administered this in apple juice to myself and my 5 year old he said “it tastes great” and water to my 7 year old (per his request) he said “he tastes cloves”.",
-            "author": "Caterina Z.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "taste",
-            "photo_alt": "",
-            "detail": "Parent of Max, 5, and Sam, 7",
-            "illus_asset": "pp-family-ugc-8.jpg",
-            "illus_alt": "A boy laughs at the breakfast table next to a ParaPatrol bottle"
-          }
-        },
-        "rev_11": {
-          "type": "quote",
-          "settings": {
-            "title": "In her school water bottle, zero complaints",
-            "quote": "Let me start by saying that you need to be consistent. This is a slow process that takes time… I already bought my second bottle. My Daughter is very picky, but I always put this in the water she takes to school, and she never complains of flavor or anything weird… It mixes well with water.",
-            "author": "Matt R.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "easy, taste, routine",
-            "photo_alt": "",
-            "detail": "Parent of Lily, school age",
-            "illus_asset": "pp-family-ugc-4.jpg",
-            "illus_alt": "A girl watches a dropper of ParaPatrol go into her orange juice"
-          }
-        },
-        "rev_12": {
-          "type": "quote",
-          "settings": {
-            "title": "Can’t taste it in their milk",
-            "quote": "Great for kids… Just one dropper in a cup of milk, kids can’t taste anything. Kids never have any problems with it at all… Highly recommend.",
-            "author": "Tiffany",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "taste, easy",
-            "photo_alt": "",
-            "illus_asset": "pp-family-ugc-17.jpg",
-            "illus_alt": "A girl doing homework holds up a ParaPatrol bottle"
-          }
-        },
-        "rev_13": {
-          "type": "quote",
-          "settings": {
-            "title": "Our go-to when things feel off",
-            "quote": "I turn to this to get his gut back on track. Very mild, not noticed in his smoothies… Good value for the money. I don’t buy it back to back, just when I notice things are off.",
-            "author": "Yandra L.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "routine, tummy",
-            "photo_alt": "",
-            "detail": "Parent of Ethan",
-            "illus_asset": "pp-family-ugc-7.jpg",
-            "illus_alt": "A mum and her son take a car selfie with a ParaPatrol box"
-          }
-        },
-        "rev_14": {
-          "type": "quote",
-          "settings": {
-            "title": "Her appetite has greatly increased",
-            "quote": "This is the second bottle I’ve purchased… We are now in week three… she sleeps through the night, her appetite has greatly increased, and even her siblings have noticed a major positive change… so far our experience has been very positive.",
-            "author": "Alex",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy, routine",
-            "photo_alt": "",
-            "detail": "Parent of Mia, age 8",
-            "illus_asset": "pp-family-ugc-10.jpg",
-            "illus_alt": "A mum and daughter in bed with a ParaPatrol bottle and box"
-          }
-        },
-        "rev_15": {
-          "type": "quote",
-          "settings": {
-            "title": "No more upset-belly complaints",
-            "quote": "We are only on day five, and I cannot believe the difference. She no longer complains of upset belly… her taste buds are expanding… I am so thankful I bought it!!",
-            "author": "Tina",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "tummy",
-            "photo_alt": "",
-            "detail": "Parent of Ella and Grace",
-            "illus_asset": "pp-family-ugc-13.jpg",
-            "illus_alt": "A little girl at the playground points at the ParaPatrol box"
-          }
-        },
-        "rev_16": {
-          "type": "quote",
-          "settings": {
-            "title": "She takes it right down",
-            "quote": "She has a taste. She takes it right down. She has no problem with it and I am so glad.",
-            "author": "Martin A.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "taste, easy",
-            "photo_alt": "",
-            "detail": "Parent of Chloe, age 9",
-            "illus_asset": "pp-family-ugc-11.jpg",
-            "illus_alt": "A girl in the garden holds up a ParaPatrol bottle and box"
-          }
-        },
-        "rev_17": {
-          "type": "quote",
-          "settings": {
-            "title": "Easy to give in the morning",
-            "quote": "The kids take the droppers down easily in the morning so it must not taste bad. Very easy to administer. Kids energy levels seem good and they are sleeping well as always!",
-            "author": "Jeraldith G.",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "easy, routine",
-            "photo_alt": "",
-            "illus_asset": "pp-family-ugc-9.jpg",
-            "illus_alt": "A grandmother and grandson in the garden with ParaPatrol"
-          }
-        },
-        "rev_18": {
-          "type": "quote",
-          "settings": {
-            "title": "They remind me to give it",
-            "quote": "My children reminded me daily to take their “medicine”, they enjoyed the taste.",
-            "author": "Laina",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "taste, routine",
-            "photo_alt": "",
-            "detail": "Parent of Oliver and Henry",
-            "illus_asset": "pp-family-ugc-16.jpg",
-            "illus_alt": "A mum and her son at the beach with a ParaPatrol bottle and box"
-          }
-        },
-        "rev_19": {
-          "type": "quote",
-          "settings": {
-            "title": "USA made, clean ingredients",
-            "quote": "Love this brand as it’s USA made, uses clean ingredients and works amazing!",
-            "author": "Kelsey",
-            "badge": "Verified Buyer",
-            "stars": 5,
-            "tags": "routine",
-            "photo_alt": "",
-            "illus_asset": "pp-family-ugc-18.jpg",
-            "illus_alt": "A boy watches a ParaPatrol box come out of a delivery parcel"
-          }
-        }
-      },
-      "block_order": [
-        "rev_3",
-        "rev_2",
-        "rev_7",
-        "rev_14",
-        "rev_5",
-        "rev_8",
-        "rev_15",
-        "rev_9",
-        "rev_10",
-        "rev_11",
-        "rev_1",
-        "rev_12",
-        "rev_13",
-        "rev_4",
-        "rev_6",
-        "rev_16",
-        "rev_17",
-        "rev_18",
-        "rev_19"
-      ],
-      "settings": {
-        "eyebrow": "In parents’ own words",
-        "heading": "“Back to their happy, hungry selves”",
-        "show_breakdown": true,
-        "score_fallback": "4.8",
-        "count_fallback": "237+",
-        "count_label": "parent reviews",
-        "bar_percents": "0,0,0,0,0",
-        "bar_labels": "",
-        "breakdown_note": "Replace the bar widths and counts with your review app's numbers.",
-        "filters": "",
-        "quotes_note": "Individual reviews reflect one family’s experience. Results vary. Children’s names have been changed for privacy. Photos are illustrative and don’t show the reviewers or their families.",
-        "subheading": "Fuller plates, calmer mornings and no fuss at dose time. Here’s what families noticed once ParaPatrol became part of the routine."
       }
     },
     "ingredients": {
@@ -1015,22 +1062,18 @@
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
       }
-    },
-    "problem": {
-      "type": "parapatrol-problem",
-      "settings": {}
     }
   },
   "order": [
     "main",
+    "reviews",
     "problem",
+    "use",
+    "timeline",
     "kidlife",
     "compare",
     "how",
-    "use",
-    "timeline",
     "stats",
-    "reviews",
     "ingredients",
     "safety",
     "guarantee",

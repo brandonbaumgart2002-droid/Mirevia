@@ -17,6 +17,7 @@
 {%- capture wave_down -%}<svg class="block w-full h-[34px] sm:h-[52px]" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v28c-90 22-180 22-270 0s-180-22-270 0-180 22-270 0-180-22-270 0-180 22-270 0-90-11-90-11V0Z" fill="currentColor"/></svg>{%- endcapture -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+{%- if s.brand_primary != blank -%}<style>html:root{--brand-primary:{{ s.brand_primary }};--brand-primary-dark:{{ s.brand_primary_dark | default: s.brand_primary }};{% if s.brand_berry != blank %}--brand-berry:{{ s.brand_berry }};{% endif %}{% if s.bg_mint != blank %}--bg-mint:{{ s.bg_mint }};{% endif %}{% if s.bg_soft != blank %}--bg-soft:{{ s.bg_soft }};{% endif %}{% if s.ink != blank %}--ink:{{ s.ink }};{% endif %}}</style>{%- endif -%}
 <div class="pp">
   {%- comment -%} Hero {%- endcomment -%}
   <header class="bg-mint text-center">
@@ -177,6 +178,12 @@
   "name": "ParaPatrol: parent guide",
   "settings": [
     { "type": "product", "id": "product", "label": "Product (buttons link here)" },
+    { "type": "color", "id": "brand_primary", "label": "Brand colour (blank = ParaPatrol green)" },
+    { "type": "color", "id": "brand_primary_dark", "label": "Brand colour, hover" },
+    { "type": "color", "id": "brand_berry", "label": "Accent colour" },
+    { "type": "color", "id": "bg_mint", "label": "Cool background" },
+    { "type": "color", "id": "bg_soft", "label": "Warm background" },
+    { "type": "color", "id": "ink", "label": "Text colour" },
     { "type": "url", "id": "button_link", "label": "Button link (optional)" },
     { "type": "header", "content": "Top" },
     { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Everything you need to know" },

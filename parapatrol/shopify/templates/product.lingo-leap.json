@@ -46,7 +46,7 @@
         "ing_tile_label": "Ingredients",
         "ing_tile_text": "Zeolite (clinoptilolite), methyl B12 and vitamin D3 in an alcohol-free glycerin base with natural berry flavour.",
         "ing_tile_asset": "ll-angle-sq.jpg",
-        "ing_tile_link_label": "",
+        "ing_tile_link_label": "See every ingredient in the Parent Guide",
         "quick_q1": "Is it safe for my child?",
         "quick_a1": "Lingo Leap is made and dosed for kids 3 and up: alcohol-free, made in the USA in a cGMP facility and third-party tested, with a simple 1 mL daily serving.",
         "quick_safety_link": "Read the full safety profile",
@@ -55,7 +55,8 @@
         "quick_q3": "How often do they take it, and when will we see results?",
         "quick_a3": "One dropper (1 mL) a day with food. Many parents notice changes in focus and daily routines within 2–4 weeks; we recommend 30–45 days of daily use.*",
         "quick_q4": "What if it doesn't work for us?",
-        "quick_a4": "Every child is different, so you're covered by our 30-day money-back guarantee. If Lingo Leap isn't right for your family, contact us within 30 days for a refund."
+        "quick_a4": "Every child is different, so you're covered by our 30-day money-back guarantee. If Lingo Leap isn't right for your family, contact us within 30 days for a refund.",
+        "ing_tile_link": "/pages/lingo-leap-parent-guide"
       }
     },
     "how": {

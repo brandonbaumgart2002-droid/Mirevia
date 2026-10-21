@@ -1,0 +1,56 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-guide-hub",
+      "settings": {
+        "eyebrow": "For Mirevia parents",
+        "title": "The",
+        "title_accent": "Parent Guide",
+        "intro": "Dosage, ingredients, safety and delivery for every Mirevia kids’ product, all in one place, so you can decide what suits your family with confidence.",
+        "choose_label": "Choose your product",
+        "note": ""
+      },
+      "blocks": {
+        "pp": {
+          "type": "card",
+          "settings": {
+            "product": "parapatrol™",
+            "asset": "pp-offer-studio.jpg",
+            "name": "ParaPatrol",
+            "subtitle": "Gentle Herbal Gut Drops",
+            "link": "/pages/parapatrol-parent-guide",
+            "button_label": "View the guide",
+            "button_color": "#3b7560"
+          }
+        },
+        "ll": {
+          "type": "card",
+          "settings": {
+            "product": "lingo-leap",
+            "asset": "ll-hero-sq.jpg",
+            "name": "Lingo Leap",
+            "subtitle": "Zeolite + B12 + D3 Drops",
+            "link": "/pages/lingo-leap-parent-guide",
+            "button_label": "View the guide",
+            "button_color": "#2f3f9c"
+          }
+        }
+      },
+      "block_order": [
+        "pp",
+        "ll"
+      ]
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclaimer"
+  ]
+}

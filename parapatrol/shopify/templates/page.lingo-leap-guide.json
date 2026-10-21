@@ -1,0 +1,285 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-guide",
+      "blocks": {
+        "d1": {
+          "type": "dose",
+          "settings": {
+            "label": "Ages 3+",
+            "amount": "1 mL",
+            "freq": "Once a day",
+            "note": "One full dropper with food, in their favourite drink or straight"
+          }
+        },
+        "g1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "leaf",
+            "name": "Zeolite (clinoptilolite)",
+            "role": "The natural cleanse",
+            "text": "A volcanic mineral with a porous, cage-like structure that supports the body’s natural elimination pathways.*",
+            "note": "It can settle in the bottle, so shake well before each use."
+          }
+        },
+        "g2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "bulb",
+            "name": "Vitamin B12 (as methylcobalamin)",
+            "role": "The brain builder",
+            "text": "The active form of B12, which supports healthy nerve function and natural energy during key developmental years.*",
+            "note": ""
+          }
+        },
+        "g3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "sun",
+            "name": "Vitamin D3 (as cholecalciferol)",
+            "role": "The developmental supporter",
+            "text": "Supports cognitive function, healthy bones and immune function.*",
+            "note": ""
+          }
+        },
+        "c1": {
+          "type": "chip",
+          "settings": {
+            "icon": "heart",
+            "text": "Natural berry flavor"
+          }
+        },
+        "c2": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "Alcohol-free"
+          }
+        },
+        "c3": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "No artificial colors"
+          }
+        },
+        "c4": {
+          "type": "chip",
+          "settings": {
+            "icon": "shield",
+            "text": "Made in the USA"
+          }
+        },
+        "c5": {
+          "type": "chip",
+          "settings": {
+            "icon": "check",
+            "text": "Third-party tested"
+          }
+        },
+        "s1": {
+          "type": "safety",
+          "settings": {
+            "icon": "shield",
+            "title": "Minimum age",
+            "text": "Lingo Leap is made and dosed for children 3 and up. Please don’t give it to children under 3."
+          }
+        },
+        "s2": {
+          "type": "safety",
+          "settings": {
+            "icon": "info",
+            "title": "Don’t exceed 1 mL a day",
+            "text": "More isn’t better. Stick to one dropper a day."
+          }
+        },
+        "s3": {
+          "type": "safety",
+          "settings": {
+            "icon": "heart",
+            "title": "Medication or health conditions",
+            "text": "If your child takes medication or has a health condition, check with your pediatrician first."
+          }
+        },
+        "s4": {
+          "type": "safety",
+          "settings": {
+            "icon": "reset",
+            "title": "Stop if anything seems off",
+            "text": "Stop and call your doctor if your child has vomiting, diarrhea, stomach pain or any unusual reaction."
+          }
+        },
+        "s5": {
+          "type": "safety",
+          "settings": {
+            "icon": "leaf",
+            "title": "Not a medicine",
+            "text": "Lingo Leap is a dietary supplement, not a medicine."
+          }
+        },
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "What does it taste like?",
+            "answer": "<p>A natural berry flavor most kids enjoy. If your child is sensitive to flavors, mix it into their favorite drink.</p>"
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "How long does a bottle last?",
+            "answer": "<p>Each 30 mL (1 fl oz) bottle holds 30 servings at 1 mL a day: one month of daily use.</p>"
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "When is the best time to give it?",
+            "answer": "<p>With food, at any time of day. Consistency matters more than timing, so pick a moment that fits your routine.</p>"
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "When will we notice a difference?",
+            "answer": "<p>Every child is different. Many parents notice changes in focus and daily routines within 2–4 weeks; we recommend 30–45 days of daily use.*</p>"
+          }
+        },
+        "f5": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "The liquid looks cloudy or has separated. Is that okay?",
+            "answer": "<p>Yes. Zeolite is a natural mineral, so it can settle and the color can vary slightly between batches. Shake well before each use.</p>"
+          }
+        },
+        "f6": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "Can my child take it with other supplements or medication?",
+            "answer": "<p>If your child takes any medication or other supplements, please check with your pediatrician or pharmacist before adding Lingo Leap.</p>"
+          }
+        },
+        "f7": {
+          "type": "faq",
+          "settings": {
+            "group": "product",
+            "question": "Is there a money-back guarantee?",
+            "answer": "<p>Yes. Every order is covered by our 30-day money-back guarantee. If Lingo Leap isn’t right for your family, contact us within 30 days at <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> and we’ll refund you.</p>"
+          }
+        },
+        "sf7": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "How long does delivery take?",
+            "answer": "<p>Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days. Shipping is free on all orders.</p>"
+          }
+        },
+        "sf8": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "Will I get a tracking number?",
+            "answer": "<p>Yes. Once your order ships you’ll get a confirmation email with your tracking number.</p>"
+          }
+        },
+        "sf9": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "What is your returns policy?",
+            "answer": "<p>We offer a 30-day money-back guarantee. If you’re not happy, email <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> and we’ll arrange a refund. See our <a href=\"/policies/refund-policy\">refund policy</a> for the details.</p>"
+          }
+        },
+        "sf10": {
+          "type": "faq",
+          "settings": {
+            "group": "shipping",
+            "question": "I put the wrong address. What do I do?",
+            "answer": "<p>Email <a href=\"mailto:Customersupport@mirevia.com.co\">Customersupport@mirevia.com.co</a> as soon as possible with the correct address. Once an order has shipped we may not be able to change it, so please get in touch straight away.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "g1",
+        "g2",
+        "g3",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "sf7",
+        "sf8",
+        "sf9",
+        "sf10"
+      ],
+      "settings": {
+        "product": "lingo-leap",
+        "eyebrow": "Everything you need to know",
+        "title": "The Lingo Leap",
+        "title_accent": "Parent Guide",
+        "intro": "Everything you need to know about Lingo Leap’s ingredients, dosage, safety and shipping, so you can make a fully informed decision for your family.",
+        "jump_links": true,
+        "dose_heading": "How much do I give my child?",
+        "dose_intro": "Shake the bottle well, then fill the dropper (1 mL) and mix it into juice, milk or a smoothie, or give it straight. Here’s the recommended daily serving:",
+        "dose_small": "Each bottle holds 30 mL (1 fl oz): 30 servings at 1 mL a day. Natural supplements take time, so use it daily for 30–45 days.",
+        "dose_warning_title": "Please don’t exceed 1 mL a day",
+        "dose_warning": "The serving is set for children for a reason. If you think your child needs more, or they already take another supplement or medication, speak to your pediatrician or pharmacist first.",
+        "ing_heading": "What’s inside",
+        "ing_accent": "every drop?",
+        "ing_intro": "Three active ingredients, each with a job: zeolite for the natural cleanse, methyl B12 for growing minds and vitamin D3 for growth. See the label for amounts per serving.",
+        "other_heading": "What else is in the bottle?",
+        "other_intro": "The rest of the formula is what carries and flavours the drops:",
+        "other": "Vegetable Glycerin · Purified Water · Natural Berry Flavor.",
+        "safe_heading": "Is it",
+        "safe_accent": "safe",
+        "safe_heading_end": "for my child?",
+        "safe_intro": "Your child’s safety comes first. Here’s what you need to know before you start:",
+        "safe_link_label": "Read the full safety profile",
+        "faq_heading": "Lingo Leap FAQs",
+        "ship_heading": "Shipping FAQs",
+        "cta_heading": "Ready to get started?",
+        "cta_text": "Every order is backed by our 30-day money-back guarantee. Nothing to lose.",
+        "cta_label": "Shop Lingo Leap",
+        "cta_small": "Free shipping on all orders · 30-day guarantee",
+        "brand_primary": "#2f3f9c",
+        "brand_primary_dark": "#232f7a",
+        "brand_berry": "#d9488f",
+        "bg_mint": "#e3f5fd",
+        "bg_soft": "#fdf3f8",
+        "ink": "#1f2a63"
+      }
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclaimer"
+  ]
+}

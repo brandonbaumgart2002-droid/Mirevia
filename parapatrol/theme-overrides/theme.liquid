@@ -398,11 +398,8 @@ src="https://www.facebook.com/tr?id=1260166579525479&ev=PageView&noscript=1"
       endif
 
       comment
-        Also check if the settings contain the page handle directly (fallback)
+        Exact handle matches only: a substring check hid /pages/parent-guide because the list holds parent-guide-little-tummies
       endcomment
-      if settings.pages_without_header_footer contains page.handle
-        assign hide_header_footer = true
-      endif
     -%}
 
     {%- unless hide_header_footer -%}

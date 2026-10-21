@@ -1,0 +1,64 @@
+{%- comment -%}
+  Parent Guide hub: hero plus one card per product ("Choose your product"), each linking to that product's own guide page.
+  Blocks: card (product, image, name, subtitle, guide link, button label).
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp">
+  <section class="bg-mint" aria-labelledby="pp-hub-{{ section.id }}">
+    <div class="max-w-4xl mx-auto px-4 pt-12 pb-14 sm:pt-20 sm:pb-24 text-center">
+      {%- if s.eyebrow != blank -%}<p class="inline-flex rounded-full bg-white px-3.5 py-1 text-[12px] font-extrabold uppercase tracking-[.14em] text-primary-dark">{{ s.eyebrow }}</p>{%- endif -%}
+      <h1 id="pp-hub-{{ section.id }}" class="mt-4 font-display font-bold text-[40px] sm:text-[60px] leading-[1.02] text-ink">{{ s.title }} <span class="text-berry">{{ s.title_accent }}</span></h1>
+      {%- if s.intro != blank -%}<p class="mt-4 mx-auto max-w-[620px] text-[17px] sm:text-[19px] leading-relaxed text-ink">{{ s.intro }}</p>{%- endif -%}
+      {%- if s.choose_label != blank -%}<p class="mt-10 sm:mt-14 text-[13px] sm:text-[14px] font-extrabold uppercase tracking-[.16em] text-primary">{{ s.choose_label }}</p>{%- endif -%}
+      <ul class="mt-5 grid gap-4 sm:gap-6 sm:grid-cols-2 max-w-[760px] mx-auto" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign b = block.settings -%}
+          {%- assign cp = b.product -%}
+          {%- assign c_url = b.link | default: cp.url | default: '#' -%}
+          <li class="rounded-[26px] border-2 border-line bg-white px-6 py-8 sm:py-10 shadow-soft flex flex-col items-center" {{ block.shopify_attributes }}>
+            <a href="{{ c_url }}" class="block w-[150px] sm:w-[170px] aspect-square rounded-2xl overflow-hidden bg-soft" tabindex="-1" aria-hidden="true">
+              {%- if b.image != blank -%}
+                {{ b.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover', alt: '' }}
+              {%- elsif b.asset != blank -%}
+                <img src="{{ b.asset | asset_url }}" alt="" loading="lazy" width="400" height="400" class="w-full h-full object-cover">
+              {%- elsif cp.featured_image -%}
+                {{ cp.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover', alt: '' }}
+              {%- endif -%}
+            </a>
+            <h2 class="mt-5 font-display font-bold text-[24px] sm:text-[26px] leading-tight text-ink">{{ b.name | default: cp.title }}</h2>
+            {%- if b.subtitle != blank -%}<p class="mt-1 text-[15px] font-semibold text-muted">{{ b.subtitle }}</p>{%- endif -%}
+            <a href="{{ c_url }}" class="mt-6 inline-flex items-center justify-center gap-2 min-h-[50px] px-8 rounded-full text-white font-extrabold text-[16px] shadow-lift transition-opacity hover:opacity-90" style="background: {{ b.button_color | default: '#a83f66' }};">{{ b.button_label | default: 'View the guide' }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if s.note != blank -%}<p class="mt-8 text-[14px] text-muted">{{ s.note }}</p>{%- endif -%}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "Parent guide hub",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "For Mirevia parents" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The" },
+    { "type": "text", "id": "title_accent", "label": "Title (coloured part)", "default": "Parent Guide" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "choose_label", "label": "Label above the cards", "default": "Choose your product" },
+    { "type": "text", "id": "note", "label": "Small note under the cards" }
+  ],
+  "blocks": [
+    { "type": "card", "name": "Product card", "settings": [
+      { "type": "product", "id": "product", "label": "Product" },
+      { "type": "image_picker", "id": "image", "label": "Image (defaults to the product image)" },
+      { "type": "text", "id": "asset", "label": "Built-in image file" },
+      { "type": "text", "id": "name", "label": "Name" },
+      { "type": "text", "id": "subtitle", "label": "Subtitle" },
+      { "type": "url", "id": "link", "label": "Guide page" },
+      { "type": "text", "id": "button_label", "label": "Button label", "default": "View the guide" },
+      { "type": "color", "id": "button_color", "label": "Button colour" }
+    ] }
+  ],
+  "presets": [ { "name": "Parent guide hub" } ]
+}
+{% endschema %}
