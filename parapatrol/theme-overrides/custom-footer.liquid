@@ -48,10 +48,10 @@
 {%- liquid
   assign pp_footer = true
   assign pp_copy = false
-  if template.suffix contains 'parapatrol' or template.name == 'index'
+  if template.suffix contains 'parapatrol' or template.suffix == 'lingo-leap' or template.name == 'index'
     assign pp_copy = true
   endif
-  if template.name == 'product' and template.suffix != 'parapatrol'
+  if template.name == 'product' and template.suffix != 'parapatrol' and template.suffix != 'lingo-leap'
     assign pp_footer = false
   endif
   if pp_footer
@@ -59,6 +59,11 @@
     assign newsletter_text_color = '#1e2d4f'
     assign newsletter_button_color = '#3b7560'
     assign footer_bg_color = '#1e2d4f'
+    if template.suffix == 'lingo-leap'
+      assign newsletter_text_color = '#1f2a63'
+      assign newsletter_button_color = '#2f3f9c'
+      assign footer_bg_color = '#1f2a63'
+    endif
     assign footer_text_color = '#c9d1e2'
     assign footer_heading_color = '#ffffff'
     assign footer_border_color = 'rgba(255,255,255,0.14)'
@@ -352,7 +357,7 @@
   <style>
     /* .section-custom-footer .custom-footer beats the Mirevia stylesheet's !important rules on this template */
     .section-custom-footer .custom-footer .newsletter-section { background: #ffffff !important; border-top: 1px solid #ece1e5; }
-    .section-custom-footer .custom-footer .newsletter-title { color: #1e2d4f !important; font-family: 'Baloo 2', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; line-height: 1.1 !important; text-wrap: balance; }
+    .section-custom-footer .custom-footer .newsletter-title { color: {{ newsletter_text_color }} !important; font-family: 'Baloo 2', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif !important; font-weight: 700 !important; letter-spacing: -0.01em !important; line-height: 1.1 !important; text-wrap: balance; }
     .section-custom-footer .custom-footer .newsletter-subtitle { color: #4f5b72 !important; max-width: 520px; margin-left: auto; margin-right: auto; }
     .section-custom-footer .custom-footer .newsletter-subtitle,
     .section-custom-footer .custom-footer .newsletter-form input,
@@ -369,7 +374,7 @@
     .section-custom-footer .custom-footer .footer-text-column__heading,
     .section-custom-footer .custom-footer .footer-social-heading { color: #ffffff !important; font-weight: 700 !important; }
     .section-custom-footer .custom-footer .newsletter-form input { background: #ffffff !important; border-color: #ece1e5 !important; color: #1e2d4f !important; }
-    .section-custom-footer .custom-footer .newsletter-form input:focus { border-color: #3b7560 !important; box-shadow: 0 0 0 3px rgba(59,117,96,0.18) !important; }
+    .section-custom-footer .custom-footer .newsletter-form input:focus { border-color: {{ newsletter_button_color }} !important; box-shadow: 0 0 0 3px rgba(59,117,96,0.18) !important; }
     @media (max-width: 749px) { .section-custom-footer .custom-footer { --newsletter-title-size: 32px; } }
   </style>
 {%- endif -%}
