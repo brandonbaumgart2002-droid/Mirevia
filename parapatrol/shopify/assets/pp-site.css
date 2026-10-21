@@ -263,3 +263,18 @@ body.pp-site .mv-feature .mv-benefits__item { justify-content: flex-start; }
 #CartDrawer .pp-cbadges li { display: flex; align-items: center; gap: 6px; font-family: 'Nunito Sans', sans-serif !important; font-size: 12.5px; font-weight: 700; line-height: 1.25; color: #1e2d4f; }
 #CartDrawer .pp-cbadges svg { flex-shrink: 0; color: #3b7560; }
 #CartDrawer .gb-30day-back { display: none !important; }
+
+/* Main menu: keep the links on one row and the logo centred */
+@media (min-width: 990px) {
+  .pp-site .header__inline-menu .list-menu--inline { flex-wrap: nowrap; }
+  .pp-site .header__inline-menu .header__menu-item { white-space: nowrap; padding-left: 9px; padding-right: 9px; }
+  .pp-site header.header--middle-center { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) !important; }
+  .pp-site .header__inline-menu summary.header__menu-item { padding-right: 24px; }
+  .pp-site .header__inline-menu .mega-menu__content { border-radius: 14px; border-color: #ece1e5; box-shadow: 0 10px 28px rgba(30,45,79,.12); }
+  .pp-site .header__inline-menu .mega-menu__link { font-family: 'Nunito Sans', sans-serif; font-weight: 700; color: #1e2d4f; }
+  .pp-site .header__inline-menu .mega-menu__link:hover { color: #3b7560; }
+}
+@media (min-width: 990px) and (max-width: 1199px) {
+  .pp-site .header__inline-menu .header__menu-item { padding-left: 4px; padding-right: 4px; font-size: 12px; }
+  .pp-site .header__inline-menu summary.header__menu-item { padding-right: 16px; }
+}
