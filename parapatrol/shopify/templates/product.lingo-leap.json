@@ -1,0 +1,561 @@
+{
+  "sections": {
+    "main": {
+      "type": "parapatrol-main",
+      "settings": {
+        "sub_label": "Natural Cleanse for Kids 3+",
+        "headline_a": "Clear, calm and ready to share their voice.",
+        "headline_b": "A gentle daily reset for growing minds.",
+        "headline_c": "One berry dropper. A clearer, brighter day.",
+        "headline_default": "a",
+        "subhead": "Zeolite, methyl B12 and vitamin D3 in kid-friendly berry drops. When daily exposures or picky diets leave their system working harder than it should, this trio helps keep things clear and balanced so growing minds can focus, learn and share more of their voice.*",
+        "badges": "",
+        "rating_score_fallback": "",
+        "rating_count_fallback": "",
+        "rating_label": "parent reviews",
+        "authority": "Made in the USA · cGMP facility",
+        "tick_1": "Supports natural elimination pathways*",
+        "tick_2": "Supports focus, energy and growing minds*",
+        "tick_3": "Berry flavour: mixes into any drink",
+        "subscribe_note": "Delivered on your schedule. Skip or cancel anytime.",
+        "guarantee": "30-day money-back guarantee. Love it or your money back.",
+        "free_shipping": 0,
+        "after_add": "drawer",
+        "show_sticky": true,
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "ph_1": "Lingo Leap bottle and box",
+        "ph_2": "bottle close-up",
+        "ph_3": "kid with drink lifestyle",
+        "ph_4": "supplement facts label",
+        "brand_primary": "#2f3f9c",
+        "brand_primary_dark": "#232f7a",
+        "brand_accent": "#f7a8cb",
+        "brand_berry": "#d9488f",
+        "bg_soft": "#fdf3f8",
+        "bg_mint": "#e3f5fd",
+        "ink": "#1f2a63",
+        "ink_muted": "#4f5b80",
+        "line": "#e2e8f5",
+        "load_google_fonts": true,
+        "use_theme_fonts": false,
+        "show_hero_price": false,
+        "authority_note": "Kid-dosed zeolite + B12 + D3 for ages 3+",
+        "sale_end_date": "",
+        "stock_manual": 0,
+        "hide_tier_images": true,
+        "ing_tile_label": "Ingredients",
+        "ing_tile_text": "Zeolite (clinoptilolite), methyl B12 and vitamin D3 in an alcohol-free glycerin base with natural berry flavour.",
+        "ing_tile_asset": "ll-angle-sq.jpg",
+        "ing_tile_link_label": "",
+        "quick_q1": "Is it safe for my child?",
+        "quick_a1": "Lingo Leap is made and dosed for kids 3 and up: alcohol-free, made in the USA in a cGMP facility and third-party tested, with a simple 1 mL daily serving.",
+        "quick_safety_link": "Read the full safety profile",
+        "quick_q2": "Will my picky eater actually take it?",
+        "quick_a2": "It has a natural berry flavour and mixes straight into juice, milk or a smoothie, so most kids take it without a fuss.",
+        "quick_q3": "How often do they take it, and when will we see results?",
+        "quick_a3": "One dropper (1 mL) a day with food. Many parents notice changes in focus and daily routines within 2–4 weeks; we recommend 30–45 days of daily use.*",
+        "quick_q4": "What if it doesn't work for us?",
+        "quick_a4": "Every child is different, so you're covered by our 30-day money-back guarantee. If Lingo Leap isn't right for your family, contact us within 30 days for a refund."
+      }
+    },
+    "how": {
+      "type": "parapatrol-how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "icon": "leaf",
+            "asset": "ll-character-sq.jpg",
+            "alt": "The Lingo Leap character",
+            "title": "Zeolite",
+            "text": "A volcanic mineral with a porous, cage-like structure that supports the body’s natural process of keeping things clear inside.*"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "icon": "bulb",
+            "asset": "ll-angle-sq.jpg",
+            "alt": "A bottle of Lingo Leap",
+            "title": "Methyl B12",
+            "text": "The brain builder. The active form of B12 supports healthy nerve function and natural energy during key developmental years.*"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "icon": "sun",
+            "asset": "ll-hero-sq.jpg",
+            "alt": "Lingo Leap bottle and box",
+            "title": "Vitamin D3",
+            "text": "The developmental supporter. Plays a role in cognitive function and overall vitality, not just strong bones.*"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "eyebrow": "Key ingredients",
+        "heading": "Nature’s best, nothing less."
+      }
+    },
+    "timeline": {
+      "type": "parapatrol-timeline",
+      "blocks": {
+        "t1": {
+          "type": "stage",
+          "settings": {
+            "when": "Week 1",
+            "title": "An easy start",
+            "text": "One dropper in their morning juice and it goes down without any drama. The berry flavour actually tastes good, so there’s no negotiating before the school run."
+          }
+        },
+        "t2": {
+          "type": "stage",
+          "settings": {
+            "when": "Week 2",
+            "title": "Steady support",
+            "text": "The routine starts to feel easy. Their system has steady daily support, and many parents notice more comfortable focus during play and learning.*"
+          }
+        },
+        "t3": {
+          "type": "stage",
+          "settings": {
+            "when": "Weeks 3–4",
+            "title": "Their voice, more often",
+            "text": "Those little moments where they try new words or share more of themselves start to stand out.*"
+          }
+        },
+        "t4": {
+          "type": "stage",
+          "settings": {
+            "when": "Month 2+",
+            "title": "Part of the routine",
+            "text": "Keep going daily. Natural support works best with consistency, so most families use Lingo Leap for 30–45 days and beyond."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Your first month with Lingo Leap",
+        "intro": "A simple daily routine, not an overnight fix. Here’s how it usually goes.",
+        "note": "Every child is different. This reflects what parents commonly tell us, not a guaranteed result.*"
+      }
+    },
+    "use": {
+      "type": "parapatrol-how-to-use",
+      "blocks": {
+        "use_1": {
+          "type": "step",
+          "settings": {
+            "lead": "Shake well",
+            "text": "and fill 1 dropper (1 mL)."
+          }
+        },
+        "use_2": {
+          "type": "step",
+          "settings": {
+            "lead": "Mix into their favourite drink",
+            "text": "or give it straight. Juice, milk and smoothies all work."
+          }
+        },
+        "use_3": {
+          "type": "step",
+          "settings": {
+            "lead": "Give once daily with food.",
+            "text": "Natural supplements take time, so use daily for the best results."
+          }
+        }
+      },
+      "block_order": [
+        "use_1",
+        "use_2",
+        "use_3"
+      ],
+      "settings": {
+        "eyebrow": "How to use",
+        "heading": "One dropper. Once a day. No fuss.",
+        "image_asset": "ll-angle-sq.jpg",
+        "image_alt": "A bottle of Lingo Leap zeolite drops",
+        "image_label": "",
+        "image_note": "",
+        "expect_heading": "Suggested age",
+        "expect_text": "Made for kids 3+ years old.",
+        "tip_lead": "Tip:",
+        "tip": "Shake well before each use. Natural ingredients can settle."
+      }
+    },
+    "compare": {
+      "type": "parapatrol-compare",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Dosed for",
+            "ours": "Kids 3+ (1 mL)",
+            "theirs": "Adults"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "Format",
+            "ours": "Berry drops for any drink",
+            "theirs": "Powders or capsules"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Extra support",
+            "ours": "Methyl B12 + vitamin D3",
+            "theirs": "Zeolite only"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Taste",
+            "ours": "Natural berry",
+            "theirs": "Chalky or bland"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Base",
+            "ours": "Alcohol-free",
+            "theirs": "Varies"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ],
+      "settings": {
+        "eyebrow": "Why Lingo Leap",
+        "heading": "Made for little bodies, not shrunk-down adult formulas.",
+        "intro": "Most zeolite products on the shelf are made for grown-ups. Here’s what changes when a formula starts with kids.",
+        "col_ours": "Lingo Leap®",
+        "col_theirs": "Typical adult zeolite"
+      }
+    },
+    "ingredients": {
+      "type": "parapatrol-ingredients",
+      "blocks": {
+        "ing_1": {
+          "type": "group",
+          "settings": {
+            "title": "Zeolite (clinoptilolite)",
+            "subtitle": "The natural cleanse",
+            "items": "<ul><li>A volcanic mineral with a porous structure.</li><li>Supports the body’s natural elimination pathways.*</li></ul>",
+            "open": true
+          }
+        },
+        "ing_2": {
+          "type": "group",
+          "settings": {
+            "title": "Vitamin B12 (as methylcobalamin)",
+            "subtitle": "The brain builder",
+            "items": "<ul><li>The active, ready-to-use form of B12.</li><li>Supports healthy nerve function and natural energy.*</li></ul>",
+            "open": false
+          }
+        },
+        "ing_3": {
+          "type": "group",
+          "settings": {
+            "title": "Vitamin D3 (as cholecalciferol)",
+            "subtitle": "The developmental supporter",
+            "items": "<ul><li>Supports cognitive function and overall vitality.*</li><li>Plus healthy bones and immune function.*</li></ul>",
+            "open": false
+          }
+        },
+        "ing_4": {
+          "type": "facts",
+          "settings": {
+            "title": "Supplement facts",
+            "subtitle": "Full panel and other ingredients",
+            "serving_size": "1 mL (one dropper)",
+            "servings": "30",
+            "blend_name": "Zeolite (clinoptilolite), Vitamin B12 (as methylcobalamin), Vitamin D3 (as cholecalciferol)",
+            "blend_amount": "",
+            "blend_list": "",
+            "other": "Vegetable glycerin, purified water, natural berry flavour.",
+            "note": "See the label for amounts per serving.",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4"
+      ],
+      "settings": {
+        "eyebrow": "What’s inside",
+        "heading": "Three ingredients. Each with a job.",
+        "intro": "A simple, clean formula in an alcohol-free glycerin base with natural berry flavour.",
+        "image_asset": "ll-hero-sq.jpg",
+        "image_alt": "Lingo Leap bottle and box",
+        "image_label": "",
+        "allergen": ""
+      }
+    },
+    "safety": {
+      "type": "parapatrol-safety",
+      "blocks": {
+        "p1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "shield",
+            "title": "Dosed for ages 3+",
+            "text": "One 1 mL dropper a day, measured for children, not a halved adult dose."
+          }
+        },
+        "p2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "leaf",
+            "title": "Nothing they don’t need",
+            "text": "Alcohol-free glycerin base with natural berry flavour. No artificial colours or harsh chemicals."
+          }
+        },
+        "p3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "check",
+            "title": "Made and tested properly",
+            "text": "Made in the USA in a cGMP facility, and third-party tested for purity."
+          }
+        },
+        "p4": {
+          "type": "pillar",
+          "settings": {
+            "icon": "reset",
+            "title": "Easy every day",
+            "text": "Mixes into juice, milk or smoothies, or give it straight."
+          }
+        },
+        "g1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Zeolite (clinoptilolite)",
+            "tag": "Cleanse",
+            "text": "<p>A natural volcanic mineral. Its porous structure supports the body’s natural process of keeping things clear inside.* Shake well: it can settle in the bottle, which is normal.</p>"
+          }
+        },
+        "g2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Methyl B12",
+            "tag": "Brain",
+            "text": "<p>The active form of vitamin B12, which the body can use right away. Supports healthy nerve function and natural energy.*</p>"
+          }
+        },
+        "g3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Vitamin D3",
+            "tag": "Growth",
+            "text": "<p>The same form of vitamin D the body makes from sunlight. Supports cognitive function, healthy bones and immune function.*</p>"
+          }
+        },
+        "w1": {
+          "type": "item",
+          "settings": {
+            "lead": "Kids 3 and up",
+            "text": "who need simple, everyday support."
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "lead": "Picky eaters",
+            "text": "whose diets leave gaps in B12 and vitamin D."
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "lead": "Busy families",
+            "text": "who want one easy step in the morning routine."
+          }
+        },
+        "x1": {
+          "type": "stop",
+          "settings": {
+            "text": "Your child has an unusual reaction after taking it"
+          }
+        },
+        "x2": {
+          "type": "stop",
+          "settings": {
+            "text": "They have ongoing tummy pain, vomiting or diarrhea"
+          }
+        },
+        "x3": {
+          "type": "stop",
+          "settings": {
+            "text": "They take prescription medication (check before starting)"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "g1",
+        "g2",
+        "g3",
+        "w1",
+        "w2",
+        "w3",
+        "x1",
+        "x2",
+        "x3"
+      ],
+      "settings": {
+        "eyebrow": "Safety profile",
+        "heading": "Is it gentle enough for my child?",
+        "intro": "<p>Zeolite can sound intimidating for a little one, but most of what you read online is about adult products and adult doses.</p><p><strong>Lingo Leap was made for kids from day one</strong>, with a measured 1 mL serving and just three active ingredients.</p>",
+        "ing_heading": "Ingredient by ingredient",
+        "ing_intro": "What each ingredient is doing in Lingo Leap.",
+        "who_heading": "Who it’s for",
+        "stop_heading": "Stop and call your doctor if",
+        "callout": "If your child has a health condition or takes medication, check with your pediatrician first.",
+        "button_label": "Choose your bundle",
+        "button_note": "30-day money-back guarantee · Free shipping on all orders"
+      }
+    },
+    "guarantee": {
+      "type": "parapatrol-guarantee",
+      "settings": {
+        "heading": "Try it for 30 days, risk-free.",
+        "text": "If Lingo Leap isn't right for your family, contact our team within 30 days and we'll refund you. No awkward questions."
+      }
+    },
+    "faq": {
+      "type": "parapatrol-faq",
+      "blocks": {
+        "q_1": {
+          "type": "question",
+          "settings": {
+            "question": "What age is Lingo Leap for?",
+            "answer": "<p>Lingo Leap is made for children ages 3 and up. If your child has a health condition or takes medication, talk to your pediatrician before starting any new supplement.</p>"
+          }
+        },
+        "q_2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I give Lingo Leap to my child?",
+            "answer": "<p>Shake well, fill one dropper (1 mL) and give it once a day with food. Give it straight or mix it into juice, milk or a smoothie.</p>"
+          }
+        },
+        "q_3": {
+          "type": "question",
+          "settings": {
+            "question": "What does it taste like?",
+            "answer": "<p>A natural berry flavour most kids enjoy. If your child is sensitive to flavours, mixing it into their favourite drink works great.</p>"
+          }
+        },
+        "q_4": {
+          "type": "question",
+          "settings": {
+            "question": "When will I see results?",
+            "answer": "<p>Every child is different. Many parents notice changes in focus and daily routines within 2–4 weeks of consistent daily use. We recommend using Lingo Leap for at least 30–45 days.*</p>"
+          }
+        },
+        "q_5": {
+          "type": "question",
+          "settings": {
+            "question": "The colour looks different or the liquid has separated. Is that okay?",
+            "answer": "<p>Yes. Zeolite is a natural mineral, so there can be slight colour differences between batches and it can settle in the bottle. Shake well before each use.</p>"
+          }
+        },
+        "q_6": {
+          "type": "question",
+          "settings": {
+            "question": "Can my child take it with other supplements or medication?",
+            "answer": "<p>If your child takes prescription medication or other supplements, check with your healthcare provider first.</p>"
+          }
+        },
+        "q_7": {
+          "type": "question",
+          "settings": {
+            "question": "Where is Lingo Leap made?",
+            "answer": "<p>In the USA, in a cGMP-certified facility, and every batch is third-party tested for purity.</p>"
+          }
+        },
+        "q_8": {
+          "type": "question",
+          "settings": {
+            "question": "How does the 30-day money-back guarantee work?",
+            "answer": "<p>Try Lingo Leap for 30 days. If you’re not happy for any reason, contact our team and we’ll refund you.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q_1",
+        "q_2",
+        "q_3",
+        "q_4",
+        "q_5",
+        "q_6",
+        "q_7",
+        "q_8"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Expert answers to your questions",
+        "schema": true
+      }
+    },
+    "final": {
+      "type": "parapatrol-final-cta",
+      "settings": {
+        "heading": "Clear, calm and ready to grow.",
+        "text": "One berry dropper in their favourite drink. Made for kids 3+, alcohol-free and third-party tested.",
+        "image_asset": "ll-hero-sq.jpg",
+        "image_alt": "Lingo Leap bottle and box",
+        "image_label": "",
+        "button_label": "Shop Lingo Leap",
+        "guarantee": "30-day money-back guarantee. Love it or your money back."
+      }
+    },
+    "disclaimer": {
+      "type": "parapatrol-disclaimer",
+      "settings": {
+        "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "how",
+    "timeline",
+    "use",
+    "compare",
+    "ingredients",
+    "safety",
+    "guarantee",
+    "faq",
+    "final",
+    "disclaimer"
+  ]
+}

@@ -13,12 +13,12 @@
 {%- endif -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script>window.ppGiftImages = { 'free shipping': {{ 'pp-gift-free-shipping.jpg' | asset_url | json }} };</script>
-<script>window.ppTierImages = { 1: {{ 'pp-tier-1.png' | asset_url | json }}, 2: {{ 'pp-tier-2.png' | asset_url | json }}, 3: {{ 'pp-tier-3.png' | asset_url | json }}, 4: {{ 'pp-tier-4.png' | asset_url | json }}, 5: {{ 'pp-tier-5.png' | asset_url | json }}, 6: {{ 'pp-tier-6.png' | asset_url | json }} };</script>
+{%- unless section.settings.hide_tier_images -%}<script>window.ppTierImages = { 1: {{ 'pp-tier-1.png' | asset_url | json }}, 2: {{ 'pp-tier-2.png' | asset_url | json }}, 3: {{ 'pp-tier-3.png' | asset_url | json }}, 4: {{ 'pp-tier-4.png' | asset_url | json }}, 5: {{ 'pp-tier-5.png' | asset_url | json }}, 6: {{ 'pp-tier-6.png' | asset_url | json }} };</script>{%- endunless -%}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 
 <style>
   body { background-color: #fff; }
-  :root {
+  html:root {
     --brand-primary: {{ section.settings.brand_primary }};
     --brand-primary-dark: {{ section.settings.brand_primary_dark }};
     --brand-accent: {{ section.settings.brand_accent }};
@@ -323,6 +323,7 @@
     { "type": "select", "id": "headline_default", "label": "Default headline", "default": "a", "options": [ { "value": "a", "label": "A" }, { "value": "b", "label": "B" }, { "value": "c", "label": "C" } ] },
     { "type": "textarea", "id": "subhead", "label": "Subhead", "info": "Every * links to the FDA disclaimer.", "default": "A gentle 11-herb drop made for kids, not adults. One dropper in juice or milk supports gut comfort, healthy digestion and regularity.*" },
     { "type": "text", "id": "badges", "label": "Badges (comma separated)", "default": "Kids 3+, Alcohol-free, Sugar-free, Third-party tested" },
+    { "type": "checkbox", "id": "hide_tier_images", "label": "Don’t swap ParaPatrol bottle images into the bundle cards", "default": false },
     { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "4.8" },
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
