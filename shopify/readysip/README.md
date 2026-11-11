@@ -29,7 +29,7 @@ Files: `sections/` (9 sections), `snippets/readysip-icon.liquid` (icons), `asset
 The pack picker reads your product's variants, so prices, compare-at prices, savings and stock all come from Shopify.
 
 1. Create the product **ReadySip Reserve Straw™ — Emergency Water Filter**.
-2. Add one option called **Pack** with these values, spelled exactly like this: `1 Kit`, `2-Pack`, `4-Pack`, `6-Pack`.
+2. Add one option called **Pack** with these values, spelled exactly like this: `1 Straw Kit`, `2-Pack`, `5-Pack Family Kit`, `10-Pack Extended Family`. (Your store's product already uses these.)
 3. Give each variant a **price** and a **compare-at price**. The "Save X%" badges and the "$X per straw" line are worked out from these.
 4. Turn on **Track quantity** if you want the "Only X left of this pack" note. It only shows when real stock is at or below 20, and you can change that number in the theme editor.
 
@@ -59,14 +59,15 @@ With Shopify CLI instead: `shopify theme pull`, copy these folders into the them
 Everything in **[square brackets]** is a placeholder that shows on the page until you change it.
 
 **Must confirm with your supplier**
-- **Specs accordion → Rated capacity**: put in the number from your supplier's test report. The research says capacity claims run from 1,500 L to 6,800 L for near-identical units, so the page doesn't quote a figure until you have the report.
+- **Rated capacity**: the page now says **up to 1,500 L (about 400 gallons) per straw**, taken from your product description. Keep your supplier's test report on file, because this is the number customers and ad reviewers will question.
 - **0.1 micron, 3 stages (pre-filter, carbon, membrane), 28 mm thread, about 2 oz, about 7.5 in, BPA-free**: check each one against your unit.
-- **What's in each kit**: the page lists straw, squeeze pouch, gravity tube, backflush syringe, lanyard and carabiner, and a soak-and-prime card. Remove anything you don't actually ship. (The soak-and-prime card is worth adding: the research shows it heads off the #1 complaint.)
+- **What's in each kit**: the page lists straw, squeeze pouch, gravity tube, backflush syringe, lanyard and carabiner, and a soak-and-prime card, matching your product description. Remove anything you don't actually ship.
 - **"Filters out" list**: microplastics and the carbon stage are typical for this category. Keep them only if your unit and test report back them up.
-- **Gift section → "Each straw is individually sealed"**: not on the page yet. Add it to the ticks if your packaging is sealed.
+- **Your product description says "Blocks 99.9% of bacteria & parasites."** The page itself doesn't quote a percentage. Keep it in the description only if the test report shows it.
 
 **Your policies**
-- Trust row, guarantee cards, FAQ "What's your guarantee?" and the Shipping accordion: change **[30] days**, **[1–3] business days**, **[5–7] business days** and **[one business day]** to what you actually offer, and make sure they match your refund policy.
+- Filled in from your product description: **60-day peace-of-mind guarantee**, **ships within 24 hours**, **free shipping on 2+ straws** (shown on the 2-, 5- and 10-Pack cards and in the announcement bar). Make sure your refund and shipping policies say the same.
+- Still placeholders: delivery time **[5–7] business days** (Shipping accordion) and support reply time **[one business day]** (guarantee cards).
 
 **Comparison table**
 - "Rarely" and the crosses in the **Basic straw** column describe a typical sip-only straw sold on its own. Check them against the competitors you're really up against, and edit any row that isn't fair.
@@ -85,4 +86,4 @@ Everything in **[square brackets]** is a placeholder that shows on the page unti
 
 ## Ad links
 
-Send each ad to the product link; add `?variant=<id>` to open on a specific pack (for example, the 4-Pack for family-organiser ads). With no variant in the link, the page opens on **Tier 3 (Family 4-Pack)**. You can change that in the Pack picker block.
+Send each ad to the product link; add `?variant=<id>` to open on a specific pack (for example, the 5-Pack for family-organiser ads). With no variant in the link, the page opens on **Tier 3 (Family 5-Pack)**. You can change that in the Pack picker block.

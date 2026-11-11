@@ -4,9 +4,10 @@
       "type": "readysip-announcement",
       "blocks": {
         "storm": { "type": "message", "settings": { "text": "Storm season is here. Sort your family's water plan in 2 minutes.", "link": "" } },
+        "shipping": { "type": "message", "settings": { "text": "Free shipping on 2 or more straws. Ships within 24 hours.", "link": "" } },
         "gift": { "type": "message", "settings": { "text": "Gift idea: for the one who's always prepared.", "link": "" } }
       },
-      "block_order": ["storm", "gift"],
+      "block_order": ["storm", "shipping", "gift"],
       "settings": { "interval": 5 }
     },
     "main": {
@@ -35,7 +36,7 @@
             "subheading": "One per person, plus one for each car",
             "per_unit_label": "per straw",
             "default_tier": "3",
-            "tier_1_variant": "1 Kit",
+            "tier_1_variant": "1 Straw Kit",
             "tier_1_qty": 1,
             "tier_1_title": "1 Straw Kit",
             "tier_1_sub": "For the glovebox or go-bag",
@@ -46,19 +47,19 @@
             "tier_2_title": "2-Pack",
             "tier_2_sub": "One for you, one for the car",
             "tier_2_badge": "",
-            "tier_2_perk": "",
-            "tier_3_variant": "4-Pack",
-            "tier_3_qty": 4,
-            "tier_3_title": "Family 4-Pack",
-            "tier_3_sub": "One for each person in the house",
+            "tier_2_perk": "Free shipping",
+            "tier_3_variant": "5-Pack Family Kit",
+            "tier_3_qty": 5,
+            "tier_3_title": "Family 5-Pack",
+            "tier_3_sub": "One for each person at home, plus the car",
             "tier_3_badge": "Best for families",
-            "tier_3_perk": "",
-            "tier_4_variant": "6-Pack",
-            "tier_4_qty": 6,
-            "tier_4_title": "Household 6-Pack",
-            "tier_4_sub": "Every person, plus every car",
+            "tier_3_perk": "Free shipping",
+            "tier_4_variant": "10-Pack Extended Family",
+            "tier_4_qty": 10,
+            "tier_4_title": "Extended Family 10-Pack",
+            "tier_4_sub": "Cover parents and grandparents, or give a few as gifts",
             "tier_4_badge": "Best value",
-            "tier_4_perk": ""
+            "tier_4_perk": "Free shipping"
           }
         },
         "stock": { "type": "stock", "settings": { "threshold": 20, "text": "Only [count] left of this pack" } },
@@ -67,8 +68,8 @@
         "trust": {
           "type": "trust",
           "settings": {
-            "item_1": "30-day money-back guarantee", "icon_1": "shield",
-            "item_2": "Tracked shipping", "icon_2": "truck",
+            "item_1": "60-day peace-of-mind guarantee", "icon_1": "shield",
+            "item_2": "Ships within 24 hours", "icon_2": "truck",
             "item_3": "Real people on support", "icon_3": "chat"
           }
         },
@@ -100,7 +101,7 @@
             "icon": "list",
             "use_description": false,
             "open": false,
-            "content": "<ul><li><strong>Filter:</strong> hollow-fiber membrane, 0.1 micron</li><li><strong>Stages:</strong> pre-filter, activated carbon, membrane</li><li><strong>Filters:</strong> bacteria, parasites, sediment</li><li><strong>Rated capacity:</strong> [add the figure from your supplier's test report]</li><li><strong>Bottle thread:</strong> standard 28 mm</li><li><strong>Weight:</strong> about 2 oz (57 g)</li><li><strong>Length:</strong> about 7.5 in (19 cm)</li><li><strong>Materials:</strong> BPA-free food-contact plastic</li><li><strong>Storage:</strong> sealed, dry and above freezing</li></ul>"
+            "content": "<ul><li><strong>Filter:</strong> hollow-fiber membrane, 0.1 micron</li><li><strong>Stages:</strong> pre-filter, activated carbon, membrane</li><li><strong>Filters:</strong> bacteria, parasites, sediment</li><li><strong>Rated capacity:</strong> up to 1,500 L (about 400 gallons) per straw</li><li><strong>Bottle thread:</strong> standard 28 mm</li><li><strong>Weight:</strong> about 2 oz (57 g)</li><li><strong>Length:</strong> about 7.5 in (19 cm)</li><li><strong>Materials:</strong> BPA-free food-contact plastic</li><li><strong>Storage:</strong> sealed, dry and above freezing</li></ul>"
           }
         },
         "shipping": {
@@ -110,7 +111,7 @@
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p><strong>Processing:</strong> [1–3] business days.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> [30]-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+            "content": "<p><strong>Dispatch:</strong> ships within 24 hours.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> 60-day peace-of-mind guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
         }
       },
@@ -283,12 +284,12 @@
         "q1": { "type": "question", "settings": { "question": "Why is it hard to suck through the first time?", "answer": "<p>The filter is a bundle of tiny hollow fibers, and they have to be wet before water flows. A brand-new, dry straw can feel blocked. Stand the bottom end in water for 60 seconds, then take 3–5 firm sips, and it opens up. If you'd rather not suck at all, screw it onto a bottle or use the squeeze pouch.</p>" } },
         "q2": { "type": "question", "settings": { "question": "Does it remove viruses? Is it safe for floodwater?", "answer": "<p>No filter straw removes viruses, and ReadySip doesn't either. It filters bacteria, parasites and dirt. For floodwater, or anything that might have sewage in it, filter it and then boil it or use purification tablets as well. It also doesn't remove chemicals, heavy metals, fuel or salt.</p>" } },
         "q3": { "type": "question", "settings": { "question": "Why not just boil water?", "answer": "<p>Boiling needs fuel, a stove that works, and time, and it leaves the sediment in. ReadySip handles bacteria, parasites and dirt with no power at all. When the water could carry viruses, do both.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "How many do I need?", "answer": "<p>One per person, plus one for each car or go-bag. A couple usually goes with the 2-Pack, or the 4-Pack to cover the cars too. A family of four is covered by the 4-Pack, or the 6-Pack if you want spares in both cars.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "How many do I need?", "answer": "<p>One per person, plus one for each car or go-bag. A couple is covered by the 2-Pack. A family of four is covered by the Family 5-Pack, with one left for the car. Covering parents and grandparents too, or giving some as gifts? The 10-Pack is the lowest price per straw.</p>" } },
         "q5": { "type": "question", "settings": { "question": "Can kids and older parents use it?", "answer": "<p>Yes. Fill the squeeze pouch, screw the straw on, and squeeze water into a cup. Nobody has to suck hard, and the gravity tube can fill a bottle with no effort at all.</p>" } },
         "q6": { "type": "question", "settings": { "question": "It clogged. Is it broken?", "answer": "<p>Usually it's just full of silt. Push clean water back through it with the syringe a few times. Next time, let murky water settle first, or pour it through a clean cloth, before you filter it.</p>" } },
-        "q7": { "type": "question", "settings": { "question": "How long does it last? Does it expire?", "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>" } },
+        "q7": { "type": "question", "settings": { "question": "How long does it last? Does it expire?", "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Each straw is rated for up to 1,500 L, about a year of drinking water for one person. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>" } },
         "q8": { "type": "question", "settings": { "question": "Is this just a cheap copy of a big-brand straw?", "answer": "<p>The filter works the same way every hollow-fiber straw does. The difference is everything around it: a squeeze pouch and gravity tube so anyone can use it, a backflush syringe, clear first-use instructions, straight answers about what it can't do, and a guarantee if it doesn't work for you.</p>" } },
-        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>[30]-day money-back guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
+        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>60-day peace-of-mind guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"],
       "settings": { "surface": "soft", "eyebrow": "FAQ", "heading": "Questions, answered straight", "contact_text": "Still not sure? Contact us.", "contact_link": "/pages/contact" }
@@ -296,7 +297,7 @@
     "guarantee": {
       "type": "readysip-guarantee",
       "blocks": {
-        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within [30] days, send it back for a refund.</p>" } },
+        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within 60 days, send it back for a refund.</p>" } },
         "c2": { "type": "card", "settings": { "icon": "chat", "title": "Real support", "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>" } },
         "c3": { "type": "card", "settings": { "icon": "lock", "title": "Secure checkout", "text": "<p>Payments are handled by Shopify. We never see your card details.</p>" } }
       },
