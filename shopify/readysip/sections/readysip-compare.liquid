@@ -1,0 +1,80 @@
+{%- comment -%} Us vs others table. Each row block sets a value per column: yes, no, or short text. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="rs rs-compare rs-surface--{{ section.settings.surface }}">
+  <div class="rs-container">
+    <header class="rs-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.intro != blank -%}<p class="rs-lead">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    </header>
+    <div class="rs-compare__scroll" tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
+      <table class="rs-compare__table">
+        <thead>
+          <tr>
+            <th scope="col"><span class="rs-visually-hidden">Feature</span></th>
+            <th scope="col" class="rs-compare__us">{{ section.settings.col_1 | escape }}</th>
+            <th scope="col">{{ section.settings.col_2 | escape }}</th>
+            {%- if section.settings.col_3 != blank -%}<th scope="col">{{ section.settings.col_3 | escape }}</th>{%- endif -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}>
+              <th scope="row">{{ block.settings.label | escape }}</th>
+              {%- for c in (1..3) -%}
+                {%- liquid
+                  if c == 3 and section.settings.col_3 == blank
+                    continue
+                  endif
+                  assign k = 'col_' | append: c
+                  assign val = block.settings[k] | strip
+                  assign val_down = val | downcase
+                -%}
+                <td{% if c == 1 %} class="rs-compare__us"{% endif %}>
+                  {%- case val_down -%}
+                    {%- when 'yes' -%}
+                      <span class="rs-compare__yes">{% render 'readysip-icon', icon: 'check', size: 24 %}<span class="rs-visually-hidden">Yes</span></span>
+                    {%- when 'no' -%}
+                      <span class="rs-compare__no">{% render 'readysip-icon', icon: 'cross', size: 24 %}<span class="rs-visually-hidden">No</span></span>
+                    {%- else -%}
+                      <span class="rs-compare__text">{{ val | escape }}</span>
+                  {%- endcase -%}
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    {%- if section.settings.footnote != blank -%}<p class="rs-footnote">{{ section.settings.footnote | escape }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ReadySip comparison",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "soft", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Light blue" }, { "value": "brand", "label": "Navy" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Small line above heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "ReadySip vs the usual backup plan" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "col_1", "label": "Column 1 (you)", "default": "ReadySip kit" },
+    { "type": "text", "id": "col_2", "label": "Column 2", "default": "Basic straw" },
+    { "type": "text", "id": "col_3", "label": "Column 3 (optional)", "default": "Bottled water" },
+    { "type": "text", "id": "footnote", "label": "Footnote" }
+  ],
+  "blocks": [
+    {
+      "type": "row", "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Feature", "default": "Feature" },
+        { "type": "text", "id": "col_1", "label": "Column 1", "default": "yes", "info": "Type yes, no, or a short word." },
+        { "type": "text", "id": "col_2", "label": "Column 2", "default": "no" },
+        { "type": "text", "id": "col_3", "label": "Column 3", "default": "no" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ReadySip comparison", "blocks": [ { "type": "row" }, { "type": "row" } ] } ]
+}
+{% endschema %}

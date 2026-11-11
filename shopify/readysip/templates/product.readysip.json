@@ -1,0 +1,314 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "readysip-announcement",
+      "blocks": {
+        "storm": { "type": "message", "settings": { "text": "Storm season is here. Sort your family's water plan in 2 minutes.", "link": "" } },
+        "gift": { "type": "message", "settings": { "text": "Gift idea: for the one who's always prepared.", "link": "" } }
+      },
+      "block_order": ["storm", "gift"],
+      "settings": { "interval": 5 }
+    },
+    "main": {
+      "type": "readysip-product",
+      "blocks": {
+        "rating": { "type": "rating", "settings": { "count_label": "reviews", "reviews_anchor": "#reviews" } },
+        "title": { "type": "title", "settings": { "eyebrow": "Emergency water filter kit" } },
+        "intro": {
+          "type": "intro",
+          "settings": {
+            "text": "Boil-water notice. Burst main. A storm takes out the power, and the water goes with it.",
+            "promise": "Give every person in your house their own clean drinking water, ready in a drawer or glovebox."
+          }
+        },
+        "bullets": {
+          "type": "bullets",
+          "settings": {
+            "lines": "Filters bacteria and parasites | a 0.1-micron membrane blocks E. coli, giardia and crypto\nNo hard sucking | sip direct, screw onto a bottle, or squeeze into a cup for kids and grandparents\nWorks when the grid fails | no power, batteries, chemicals or waiting\nMarker-pen size, about 2 oz | one for every car, go-bag and kitchen drawer\nSet and forget | stays ready for years when kept sealed, dry and above freezing"
+          }
+        },
+        "price": { "type": "price", "settings": {} },
+        "packs": {
+          "type": "packs",
+          "settings": {
+            "heading": "Choose your pack",
+            "subheading": "One per person, plus one for each car",
+            "per_unit_label": "per straw",
+            "default_tier": "3",
+            "tier_1_variant": "1 Kit",
+            "tier_1_qty": 1,
+            "tier_1_title": "1 Straw Kit",
+            "tier_1_sub": "For the glovebox or go-bag",
+            "tier_1_badge": "",
+            "tier_1_perk": "",
+            "tier_2_variant": "2-Pack",
+            "tier_2_qty": 2,
+            "tier_2_title": "2-Pack",
+            "tier_2_sub": "One for you, one for the car",
+            "tier_2_badge": "",
+            "tier_2_perk": "",
+            "tier_3_variant": "4-Pack",
+            "tier_3_qty": 4,
+            "tier_3_title": "Family 4-Pack",
+            "tier_3_sub": "One for each person in the house",
+            "tier_3_badge": "Best for families",
+            "tier_3_perk": "",
+            "tier_4_variant": "6-Pack",
+            "tier_4_qty": 6,
+            "tier_4_title": "Household 6-Pack",
+            "tier_4_sub": "Every person, plus every car",
+            "tier_4_badge": "Best value",
+            "tier_4_perk": ""
+          }
+        },
+        "stock": { "type": "stock", "settings": { "threshold": 20, "text": "Only [count] left of this pack" } },
+        "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to cart", "show_dynamic_checkout": false, "tagline": "Buy once. Store it. Be ready." } },
+        "payments": { "type": "payment_icons", "settings": {} },
+        "trust": {
+          "type": "trust",
+          "settings": {
+            "item_1": "30-day money-back guarantee", "icon_1": "shield",
+            "item_2": "Tracked shipping", "icon_2": "truck",
+            "item_3": "Real people on support", "icon_3": "chat"
+          }
+        },
+        "quote": { "type": "quote", "settings": { "quote": "", "author": "", "stars": 5, "verified": true } },
+        "kit": {
+          "type": "accordion",
+          "settings": {
+            "heading": "What's in each kit",
+            "icon": "box",
+            "use_description": false,
+            "open": true,
+            "content": "<ul><li><strong>Reserve Straw filter</strong> with tethered caps</li><li><strong>Squeeze pouch</strong> for filling a cup or bottle</li><li><strong>Gravity drip tube</strong> so it can fill a bottle hands-free</li><li><strong>Backflush syringe</strong> to clear the filter after use</li><li><strong>Lanyard and carabiner</strong></li><li><strong>Soak-and-prime card</strong> with the 60-second first-use steps</li></ul><p>Packs contain one full kit per straw.</p>"
+          }
+        },
+        "how": {
+          "type": "accordion",
+          "settings": {
+            "heading": "How to use it",
+            "icon": "steps",
+            "use_description": false,
+            "open": false,
+            "content": "<ol><li><strong>Soak and prime.</strong> Stand the bottom end in water for 60 seconds, then take 3–5 firm sips. A dry filter feels blocked; a wet one flows.</li><li><strong>Drink.</strong> Sip straight from the source, screw it onto a standard bottle, or squeeze water through it from the pouch into a cup.</li><li><strong>Murky water?</strong> Let it settle first, or pour it through a clean cloth, so the filter doesn't clog.</li><li><strong>After use,</strong> push clean water back through with the syringe, shake it dry, cap it and store it above freezing.</li></ol>"
+          }
+        },
+        "specs": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Specs",
+            "icon": "list",
+            "use_description": false,
+            "open": false,
+            "content": "<ul><li><strong>Filter:</strong> hollow-fiber membrane, 0.1 micron</li><li><strong>Stages:</strong> pre-filter, activated carbon, membrane</li><li><strong>Filters:</strong> bacteria, parasites, sediment</li><li><strong>Rated capacity:</strong> [add the figure from your supplier's test report]</li><li><strong>Bottle thread:</strong> standard 28 mm</li><li><strong>Weight:</strong> about 2 oz (57 g)</li><li><strong>Length:</strong> about 7.5 in (19 cm)</li><li><strong>Materials:</strong> BPA-free food-contact plastic</li><li><strong>Storage:</strong> sealed, dry and above freezing</li></ul>"
+          }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Shipping and returns",
+            "icon": "truck",
+            "use_description": false,
+            "open": false,
+            "content": "<p><strong>Processing:</strong> [1–3] business days.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> [30]-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+          }
+        }
+      },
+      "block_order": ["rating", "title", "intro", "bullets", "price", "packs", "stock", "buy", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
+      "settings": {
+        "brand": "#0b315d",
+        "cta": "#f2a516",
+        "cta_ink": "#0a1f33",
+        "highlight": "#1f8a4c",
+        "use_theme_fonts": false,
+        "media_ratio": "1",
+        "media_fit": "cover",
+        "after_add": "cart",
+        "sticky_bar": true,
+        "sticky_label": "Add to cart",
+        "sticky_offset": 96
+      }
+    },
+    "ticker": {
+      "type": "readysip-marquee",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "text": "No batteries" } },
+        "t2": { "type": "item", "settings": { "text": "No chemicals" } },
+        "t3": { "type": "item", "settings": { "text": "0.1-micron membrane" } },
+        "t4": { "type": "item", "settings": { "text": "Sip, squeeze or gravity" } },
+        "t5": { "type": "item", "settings": { "text": "Fits a glovebox" } },
+        "t6": { "type": "item", "settings": { "text": "One per person" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"],
+      "settings": { "surface": "brand", "speed": 28 }
+    },
+    "problem": {
+      "type": "readysip-split",
+      "blocks": {
+        "b1": { "type": "tick", "settings": { "title": "No panic-buying.", "text": "You're not fighting over the last pallet of bottles." } },
+        "b2": { "type": "tick", "settings": { "title": "No stockpile.", "text": "A straw the size of a marker pen instead of a cupboard of bottled water." } },
+        "b3": { "type": "tick", "settings": { "title": "No doomsday prepping.", "text": "Just a sensible backup, sorted in two minutes." } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {
+        "image_right": false,
+        "surface": "canvas",
+        "eyebrow": "Why every home needs a backup",
+        "heading": "Your tap depends on things you don't control",
+        "body": "<p>City water needs power, pumps and pipes. A storm, a burst main or a boil-water notice can take any of them out, and when it happens bottled water is the first thing to disappear from the shelves.</p><p>ReadySip gives every person in your house their own drinking-water backup. It lives in a kitchen drawer or glovebox until the day you need it.</p>",
+        "button_label": "Choose your pack",
+        "button_link": "",
+        "anchor": ""
+      }
+    },
+    "how-it-works": {
+      "type": "readysip-steps",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "icon": "drop", "title": "Soak, then prime", "text": "<p>Stand the bottom end in water for 60 seconds, then take 3–5 firm sips. A dry membrane feels blocked; a wet one flows.</p>", "tip": "This one step fixes most \"too hard to suck\" complaints about filter straws." } },
+        "s2": { "type": "step", "settings": { "icon": "sip", "title": "Drink your way", "text": "<p>Sip straight from a creek, rain barrel or boil-notice tap. Or screw it onto a bottle, or squeeze water through it from the pouch into a cup.</p>", "tip": "" } },
+        "s3": { "type": "step", "settings": { "icon": "drop", "title": "Backflush and store", "text": "<p>Push clean water back through with the syringe to clear the pores. Shake it dry, cap it and put it back in the drawer.</p>", "tip": "Keep it above freezing. Ice can crack the fibers without you seeing it." } }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "style": "numbers",
+        "surface": "soft",
+        "eyebrow": "How it works",
+        "heading": "Clean water in three steps",
+        "intro": "Water passes through a pre-filter for sand and silt, carbon for taste and smell, then a membrane with pores about 0.1 micron wide. Bacteria and parasites are too big to fit through.",
+        "footnote": "",
+        "anchor": "how-it-works"
+      }
+    },
+    "ways": {
+      "type": "readysip-steps",
+      "blocks": {
+        "w1": { "type": "step", "settings": { "icon": "sip", "title": "Sip direct", "text": "<p>Drink straight from a creek, rain barrel or tap under a boil notice.</p>", "tip": "" } },
+        "w2": { "type": "step", "settings": { "icon": "bottle", "title": "Screw onto a bottle", "text": "<p>Threads onto standard 28 mm drink bottles. Squeeze the bottle and drink.</p>", "tip": "" } },
+        "w3": { "type": "step", "settings": { "icon": "squeeze", "title": "Squeeze into a cup", "text": "<p>Fill the pouch and squeeze it through the filter into a cup. Easy for small hands and older ones.</p>", "tip": "" } },
+        "w4": { "type": "step", "settings": { "icon": "gravity", "title": "Gravity drip", "text": "<p>Hang the pouch with the tube attached and let it fill a bottle while you do something else.</p>", "tip": "" } }
+      },
+      "block_order": ["w1", "w2", "w3", "w4"],
+      "settings": {
+        "style": "icons",
+        "surface": "canvas",
+        "eyebrow": "Squeeze, don't suck",
+        "heading": "Four ways to drink, so the whole family can use it",
+        "intro": "Filter straws are known for being hard to suck through, especially for kids and older parents. The ReadySip kit gives you three other ways.",
+        "footnote": "",
+        "anchor": ""
+      }
+    },
+    "limits": {
+      "type": "readysip-limits",
+      "settings": {
+        "surface": "soft",
+        "eyebrow": "Honest filtration",
+        "heading": "What it filters, and what it doesn't",
+        "intro": "Plenty of straws claim to make any water safe. None of them do, so here's exactly what ReadySip handles.",
+        "yes_heading": "Filters out",
+        "yes_list": "Bacteria | such as E. coli\nParasites | such as giardia and cryptosporidium\nSand, silt and sediment | caught by the pre-filter\nMicroplastics | blocked by the membrane\nChlorine taste and smell | reduced by the carbon stage",
+        "no_heading": "Does not remove",
+        "no_list": "Viruses | boil or use purification tablets as well\nChemicals and pesticides\nHeavy metals | such as lead\nFuel and oil\nSalt | not for seawater\nDissolved minerals | a TDS meter reading won't drop much",
+        "callout": "<p><strong>Floodwater or sewage?</strong> Filter it with ReadySip, then boil it or treat it with purification tablets too. The straw handles bacteria, parasites and dirt. Boiling or tablets handle viruses.</p>"
+      }
+    },
+    "one-each": {
+      "type": "readysip-split",
+      "blocks": {
+        "p1": { "type": "tick", "settings": { "title": "Every person.", "text": "Kids, partner, parents." } },
+        "p2": { "type": "tick", "settings": { "title": "Every car.", "text": "Glovebox or door pocket." } },
+        "p3": { "type": "tick", "settings": { "title": "Every bag.", "text": "Go-bag, hiking pack, tackle box." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "image_right": true,
+        "surface": "canvas",
+        "eyebrow": "One per person",
+        "heading": "One in the kitchen. One in every glovebox.",
+        "body": "<p>Sharing one straw doesn't work when the water's off. Give everyone their own, then put a spare where you'll actually be when it happens.</p><p>Each straw weighs about 2 oz, so a whole family's backup fits in one drawer. No rotating cases of bottled water, no garage full of jugs.</p>",
+        "button_label": "Choose your pack",
+        "button_link": "",
+        "anchor": ""
+      }
+    },
+    "compare": {
+      "type": "readysip-compare",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "Clean water from a creek, tank or boil-notice tap", "col_1": "yes", "col_2": "yes", "col_3": "no" } },
+        "r2": { "type": "row", "settings": { "label": "Squeeze or gravity mode, no hard sucking", "col_1": "yes", "col_2": "no", "col_3": "—" } },
+        "r3": { "type": "row", "settings": { "label": "Backflush syringe included", "col_1": "yes", "col_2": "Rarely", "col_3": "—" } },
+        "r4": { "type": "row", "settings": { "label": "First-use soak-and-prime card", "col_1": "yes", "col_2": "no", "col_3": "—" } },
+        "r5": { "type": "row", "settings": { "label": "Tells you what it can't remove", "col_1": "yes", "col_2": "Rarely", "col_3": "—" } },
+        "r6": { "type": "row", "settings": { "label": "Fits in a glovebox", "col_1": "yes", "col_2": "yes", "col_3": "no" } },
+        "r7": { "type": "row", "settings": { "label": "No heavy cases to store or rotate", "col_1": "yes", "col_2": "yes", "col_3": "no" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7"],
+      "settings": {
+        "surface": "soft",
+        "eyebrow": "Why the kit",
+        "heading": "ReadySip vs the usual backup plan",
+        "intro": "",
+        "col_1": "ReadySip kit",
+        "col_2": "Basic straw",
+        "col_3": "Bottled water",
+        "footnote": "Compared with a typical sip-only survival straw sold on its own, and a stockpile of bottled water."
+      }
+    },
+    "gift": {
+      "type": "readysip-split",
+      "blocks": {
+        "g1": { "type": "tick", "settings": { "title": "Stocking-stuffer size.", "text": "About as long as a marker pen." } },
+        "g2": { "type": "tick", "settings": { "title": "Useful from day one.", "text": "Camping, hiking, the car kit, or the next boil notice." } },
+        "g3": { "type": "tick", "settings": { "title": "Easy to split.", "text": "Buy a pack, keep one, give the rest to the family." } }
+      },
+      "block_order": ["g1", "g2", "g3"],
+      "settings": {
+        "image_right": false,
+        "surface": "brand",
+        "eyebrow": "Gift season",
+        "heading": "For the one who's always prepared",
+        "body": "<p>Dad, the camper, the friend with the go-bag, the parents who'd never buy one for themselves. ReadySip is a practical gift that shows you care whether they're OK.</p>",
+        "button_label": "Choose your pack",
+        "button_link": "",
+        "anchor": ""
+      }
+    },
+    "reviews": {
+      "type": "readysip-reviews",
+      "settings": { "surface": "canvas", "eyebrow": "Reviews", "heading": "What families say" }
+    },
+    "faq": {
+      "type": "readysip-faq",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "Why is it hard to suck through the first time?", "answer": "<p>The filter is a bundle of tiny hollow fibers, and they have to be wet before water flows. A brand-new, dry straw can feel blocked. Stand the bottom end in water for 60 seconds, then take 3–5 firm sips, and it opens up. If you'd rather not suck at all, screw it onto a bottle or use the squeeze pouch.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "Does it remove viruses? Is it safe for floodwater?", "answer": "<p>No filter straw removes viruses, and ReadySip doesn't either. It filters bacteria, parasites and dirt. For floodwater, or anything that might have sewage in it, filter it and then boil it or use purification tablets as well. It also doesn't remove chemicals, heavy metals, fuel or salt.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "Why not just boil water?", "answer": "<p>Boiling needs fuel, a stove that works, and time, and it leaves the sediment in. ReadySip handles bacteria, parasites and dirt with no power at all. When the water could carry viruses, do both.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "How many do I need?", "answer": "<p>One per person, plus one for each car or go-bag. A couple usually goes with the 2-Pack, or the 4-Pack to cover the cars too. A family of four is covered by the 4-Pack, or the 6-Pack if you want spares in both cars.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "Can kids and older parents use it?", "answer": "<p>Yes. Fill the squeeze pouch, screw the straw on, and squeeze water into a cup. Nobody has to suck hard, and the gravity tube can fill a bottle with no effort at all.</p>" } },
+        "q6": { "type": "question", "settings": { "question": "It clogged. Is it broken?", "answer": "<p>Usually it's just full of silt. Push clean water back through it with the syringe a few times. Next time, let murky water settle first, or pour it through a clean cloth, before you filter it.</p>" } },
+        "q7": { "type": "question", "settings": { "question": "How long does it last? Does it expire?", "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>" } },
+        "q8": { "type": "question", "settings": { "question": "Is this just a cheap copy of a big-brand straw?", "answer": "<p>The filter works the same way every hollow-fiber straw does. The difference is everything around it: a squeeze pouch and gravity tube so anyone can use it, a backflush syringe, clear first-use instructions, straight answers about what it can't do, and a guarantee if it doesn't work for you.</p>" } },
+        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>[30]-day money-back guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"],
+      "settings": { "surface": "soft", "eyebrow": "FAQ", "heading": "Questions, answered straight", "contact_text": "Still not sure? Contact us.", "contact_link": "/pages/contact" }
+    },
+    "guarantee": {
+      "type": "readysip-guarantee",
+      "blocks": {
+        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within [30] days, send it back for a refund.</p>" } },
+        "c2": { "type": "card", "settings": { "icon": "chat", "title": "Real support", "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>" } },
+        "c3": { "type": "card", "settings": { "icon": "lock", "title": "Secure checkout", "text": "<p>Payments are handled by Shopify. We never see your card details.</p>" } }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "surface": "canvas",
+        "heading": "Sort your family's water plan in two minutes",
+        "text": "Better to have it and never need it than need it and not have it.",
+        "button_label": "Choose your pack",
+        "button_link": ""
+      }
+    }
+  },
+  "order": ["announcement", "main", "ticker", "problem", "how-it-works", "ways", "limits", "one-each", "compare", "gift", "reviews", "faq", "guarantee"]
+}

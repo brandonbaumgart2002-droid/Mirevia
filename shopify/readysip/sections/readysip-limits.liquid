@@ -1,0 +1,64 @@
+{%- comment -%} Honest limits: what the straw filters and what it doesn't. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign yes_lines = section.settings.yes_list | newline_to_br | split: '<br />'
+  assign no_lines = section.settings.no_list | newline_to_br | split: '<br />'
+-%}
+
+<section class="rs rs-limits rs-surface--{{ section.settings.surface }}" id="what-it-filters">
+  <div class="rs-container">
+    <header class="rs-head">
+      {%- if section.settings.eyebrow != blank -%}<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.intro != blank -%}<p class="rs-lead">{{ section.settings.intro | escape }}</p>{%- endif -%}
+    </header>
+    <div class="rs-limits__grid">
+      <div class="rs-card rs-limits__col rs-limits__col--yes">
+        <h3 class="rs-h3">{{ section.settings.yes_heading | escape }}</h3>
+        <ul class="rs-limits__list" role="list">
+          {%- for line in yes_lines -%}
+            {%- assign line = line | strip -%}
+            {%- if line != blank -%}
+              {%- assign parts = line | split: '|' -%}
+              <li>{% render 'readysip-icon', icon: 'check', size: 22 %}<span><strong>{{ parts.first | strip | escape }}</strong>{% if parts.size > 1 %} — {{ line | remove_first: parts.first | remove_first: '|' | strip | escape }}{% endif %}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class="rs-card rs-limits__col rs-limits__col--no">
+        <h3 class="rs-h3">{{ section.settings.no_heading | escape }}</h3>
+        <ul class="rs-limits__list" role="list">
+          {%- for line in no_lines -%}
+            {%- assign line = line | strip -%}
+            {%- if line != blank -%}
+              {%- assign parts = line | split: '|' -%}
+              <li>{% render 'readysip-icon', icon: 'cross', size: 22 %}<span><strong>{{ parts.first | strip | escape }}</strong>{% if parts.size > 1 %} — {{ line | remove_first: parts.first | remove_first: '|' | strip | escape }}{% endif %}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+    {%- if section.settings.callout != blank -%}
+      <div class="rs-callout rs-callout--warn rs-rte">{{ section.settings.callout }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ReadySip what it filters",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "canvas", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Light blue" }, { "value": "brand", "label": "Navy" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Small line above heading", "default": "Honest filtration" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What it filters, and what it doesn't" },
+    { "type": "textarea", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "yes_heading", "label": "Left column heading", "default": "Filters out" },
+    { "type": "textarea", "id": "yes_list", "label": "Left column", "info": "One per line. Put a | after the bold part." },
+    { "type": "text", "id": "no_heading", "label": "Right column heading", "default": "Does not remove" },
+    { "type": "textarea", "id": "no_list", "label": "Right column", "info": "One per line. Put a | after the bold part." },
+    { "type": "richtext", "id": "callout", "label": "Safety note under the columns" }
+  ],
+  "presets": [ { "name": "ReadySip what it filters" } ]
+}
+{% endschema %}

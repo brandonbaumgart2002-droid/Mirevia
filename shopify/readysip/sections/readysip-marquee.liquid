@@ -1,0 +1,34 @@
+{%- comment -%} Scrolling strip of short facts. Pauses for reduced motion. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- capture items -%}
+  {%- for block in section.blocks -%}
+    <li class="rs-marquee__item" {{ block.shopify_attributes }}>
+      {% render 'readysip-icon', icon: 'check', size: 18 %}
+      <span>{{ block.settings.text | escape }}</span>
+    </li>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="rs rs-marquee rs-surface--{{ section.settings.surface }}">
+    <div class="rs-marquee__track" style="--rs-marquee-speed: {{ section.settings.speed }}s;">
+      <ul class="rs-marquee__list" role="list">{{ items }}</ul>
+      <ul class="rs-marquee__list" role="list" aria-hidden="true">{{ items }}</ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ReadySip ticker",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "brand", "options": [ { "value": "brand", "label": "Navy" }, { "value": "soft", "label": "Light blue" }, { "value": "canvas", "label": "White" } ] },
+    { "type": "range", "id": "speed", "label": "Loop time", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 }
+  ],
+  "blocks": [
+    { "type": "item", "name": "Item", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "No batteries" } ] }
+  ],
+  "presets": [ { "name": "ReadySip ticker", "blocks": [ { "type": "item" } ] } ]
+}
+{% endschema %}

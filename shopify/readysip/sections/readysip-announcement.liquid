@@ -1,0 +1,38 @@
+{%- comment -%} Thin bar at the top of the product page. Rotates between messages. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'readysip-pdp.js' | asset_url }}" defer></script>
+
+{%- if section.blocks.size > 0 -%}
+  <div class="rs rs-announce" data-rs-announce data-interval="{{ section.settings.interval }}" role="region" aria-label="Announcements">
+    <div class="rs-container rs-announce__inner">
+      {%- for block in section.blocks -%}
+        <p class="rs-announce__msg" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+          {%- else -%}
+            {{ block.settings.text | escape }}
+          {%- endif -%}
+        </p>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ReadySip announcement",
+  "settings": [
+    { "type": "range", "id": "interval", "label": "Seconds per message", "min": 3, "max": 10, "step": 1, "default": 5 }
+  ],
+  "blocks": [
+    {
+      "type": "message", "name": "Message",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Storm season is here. Sort your family's water plan in 2 minutes." },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ReadySip announcement", "blocks": [ { "type": "message" } ] } ]
+}
+{% endschema %}

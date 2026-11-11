@@ -1,0 +1,53 @@
+{%- comment -%} Image beside text. Optional tick list and button. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="rs rs-split rs-surface--{{ section.settings.surface }}" {% if section.settings.anchor != blank %}id="{{ section.settings.anchor | handleize }}"{% endif %}>
+  <div class="rs-container rs-split__grid{% if section.settings.image_right %} rs-split__grid--reverse{% endif %}">
+    <div class="rs-split__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1400', class: 'rs-split__img' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'rs-split__img rs-placeholder' }}
+      {%- endif -%}
+    </div>
+    <div class="rs-split__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.body != blank -%}<div class="rs-rte rs-split__body">{{ section.settings.body }}</div>{%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="rs-checks rs-checks--lg" role="list">
+          {%- for block in section.blocks -%}
+            <li class="rs-checks__item" {{ block.shopify_attributes }}>
+              {% render 'readysip-icon', icon: 'check', size: 24 %}
+              <span><strong>{{ block.settings.title | escape }}</strong>{% if block.settings.text != blank %} {{ block.settings.text | escape }}{% endif %}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="rs-btn rs-btn--cta" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ReadySip image + text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "checkbox", "id": "image_right", "label": "Image on the right", "default": false },
+    { "type": "select", "id": "surface", "label": "Background", "default": "canvas", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Light blue" }, { "value": "brand", "label": "Navy" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Small line above heading" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Heading" },
+    { "type": "richtext", "id": "body", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Leave the link blank to scroll back up to the buy box." },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "anchor", "label": "Section id (optional)" }
+  ],
+  "blocks": [
+    { "type": "tick", "name": "Tick", "settings": [ { "type": "text", "id": "title", "label": "Bold part", "default": "Benefit." }, { "type": "text", "id": "text", "label": "Rest of the line" } ] }
+  ],
+  "presets": [ { "name": "ReadySip image + text" } ]
+}
+{% endschema %}

@@ -1,0 +1,681 @@
+{%- comment -%}
+  ReadySip product page: gallery + buy box (bullets, pack picker, add to cart,
+  trust row, accordions) + floating add-to-cart bar.
+  Layout follows the emergency-straw pages the brand benchmarked; copy follows
+  the ReadySip research (honest limits, one per person, squeeze-don't-suck).
+{%- endcomment -%}
+
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'readysip-pdp.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'rs-form-' | append: section.id
+  assign has_rating = false
+  if product.metafields.reviews.rating.value != blank
+    assign has_rating = true
+  endif
+
+  comment
+    If the shopper didn't arrive on a specific variant, start on the pack the
+    merchant marked as the default in the "Pack picker" block.
+  endcomment
+  if product.selected_variant == blank
+    for block in section.blocks
+      if block.type == 'packs'
+        assign default_tier = block.settings.default_tier
+        assign tier_key = 'tier_' | append: default_tier | append: '_variant'
+        assign wanted = block.settings[tier_key] | downcase | strip
+        for v in product.variants
+          assign v_title = v.title | downcase | strip
+          if v_title == wanted and v.available
+            assign current_variant = v
+          endif
+        endfor
+      endif
+    endfor
+  endif
+-%}
+
+<style>
+  :root {
+    --rs-brand: {{ section.settings.brand }};
+    --rs-cta: {{ section.settings.cta }};
+    --rs-cta-ink: {{ section.settings.cta_ink }};
+    --rs-highlight: {{ section.settings.highlight }};
+    --rs-sticky-offset: {{ section.settings.sticky_offset }}px;
+    {%- if section.settings.use_theme_fonts %}
+      --rs-font-display: var(--font-heading-family);
+      --rs-font-body: var(--font-body-family);
+    {%- endif %}
+  }
+</style>
+
+<section
+  class="rs rs-product"
+  id="rs-product-{{ section.id }}"
+  data-rs-product
+  data-after-add="{{ section.settings.after_add }}"
+>
+  <script type="application/json" data-rs-product-json>
+    {
+      "moneyFormat": {{ shop.money_format | json }},
+      "variants": {{ product.variants | json }},
+      "stock": {
+        {%- for v in product.variants -%}
+          "{{ v.id }}": {% if v.inventory_management == 'shopify' and v.inventory_policy == 'deny' %}{{ v.inventory_quantity | json }}{% else %}null{% endif %}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      }
+    }
+  </script>
+
+  <div class="rs-container rs-product__grid">
+    {%- comment -%} Gallery {%- endcomment -%}
+    <div class="rs-gallery" data-rs-gallery style="--rs-media-ratio: {{ section.settings.media_ratio }}; --rs-media-fit: {{ section.settings.media_fit }};">
+      <div class="rs-gallery__stage">
+        <div class="rs-gallery__track" data-rs-gallery-track tabindex="0" role="region" aria-label="{{ product.title | escape }} images">
+          {%- for media in product.media -%}
+            <figure class="rs-gallery__slide" data-media-id="{{ media.id }}" id="rs-media-{{ section.id }}-{{ media.id }}">
+              {%- if media.media_type == 'image' -%}
+                {%- liquid
+                  if forloop.first
+                    assign loading = 'eager'
+                    assign priority = 'high'
+                  else
+                    assign loading = 'lazy'
+                    assign priority = 'auto'
+                  endif
+                -%}
+                {{
+                  media
+                  | image_url: width: 1600
+                  | image_tag:
+                    loading: loading,
+                    fetchpriority: priority,
+                    sizes: '(min-width: 990px) 52vw, 100vw',
+                    widths: '600, 900, 1200, 1600',
+                    class: 'rs-gallery__img'
+                }}
+              {%- else -%}
+                {{ media | media_tag: image_size: '1600x', class: 'rs-gallery__img' }}
+              {%- endif -%}
+            </figure>
+          {%- else -%}
+            <figure class="rs-gallery__slide">
+              {{ 'product-1' | placeholder_svg_tag: 'rs-gallery__img rs-placeholder' }}
+            </figure>
+          {%- endfor -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <button type="button" class="rs-gallery__arrow rs-gallery__arrow--prev" data-rs-gallery-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="rs-gallery__arrow rs-gallery__arrow--next" data-rs-gallery-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="rs-gallery__count" aria-hidden="true"><span data-rs-gallery-index>1</span> / {{ product.media.size }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="rs-gallery__thumbs" role="group" aria-label="Choose image">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="rs-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+              data-rs-thumb="{{ media.id }}"
+              data-index="{{ forloop.index }}"
+              aria-controls="rs-media-{{ section.id }}-{{ media.id }}"
+              aria-label="Show image {{ forloop.index }} of {{ forloop.length }}"
+              {% if forloop.first %}aria-current="true"{% endif %}
+            >
+              {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '', width: 72, height: 72 }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Buy box {%- endcomment -%}
+    <div class="rs-buybox" id="rs-buy">
+      <div class="rs-buybox__inner">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+
+            {%- when 'rating' -%}
+              {%- if has_rating -%}
+                {%- liquid
+                  assign rating = product.metafields.reviews.rating.value
+                  assign rating_pct = rating.rating | divided_by: rating.scale_max | times: 100
+                  assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+                -%}
+                <a class="rs-rating" href="{{ block.settings.reviews_anchor | default: '#reviews' }}" {{ block.shopify_attributes }}>
+                  <span class="rs-stars" style="--rs-rating: {{ rating_pct }}%;" aria-hidden="true"></span>
+                  <span class="rs-rating__text">
+                    {{ rating.rating | round: 1 }}/{{ rating.scale_max | round }}
+                    <span class="rs-visually-hidden">stars,</span>
+                    {%- if rating_count > 0 %} · {{ rating_count }} {{ block.settings.count_label | escape }}{% endif -%}
+                  </span>
+                </a>
+              {%- endif -%}
+
+            {%- when 'title' -%}
+              <div class="rs-title" {{ block.shopify_attributes }}>
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="rs-eyebrow">{{ block.settings.eyebrow | escape }}</p>
+                {%- endif -%}
+                <h1 class="rs-title__heading">{{ product.title | escape }}</h1>
+              </div>
+
+            {%- when 'intro' -%}
+              <div class="rs-intro" {{ block.shopify_attributes }}>
+                {%- if block.settings.text != blank -%}
+                  <p class="rs-intro__text">{{ block.settings.text | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.promise != blank -%}
+                  <p class="rs-intro__promise">{{ block.settings.promise | escape }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- when 'bullets' -%}
+              {%- assign lines = block.settings.lines | newline_to_br | split: '<br />' -%}
+              <ul class="rs-checks" {{ block.shopify_attributes }}>
+                {%- for line in lines -%}
+                  {%- assign line = line | strip -%}
+                  {%- if line != blank -%}
+                    {%- assign parts = line | split: '|' -%}
+                    <li class="rs-checks__item">
+                      <svg class="rs-checks__icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span>
+                        {%- if parts.size > 1 -%}
+                          <strong>{{ parts.first | strip | escape }}</strong> — {{ line | remove_first: parts.first | remove_first: '|' | strip | escape }}
+                        {%- else -%}
+                          {{ line | escape }}
+                        {%- endif -%}
+                      </span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'price' -%}
+              {%- liquid
+                assign on_sale = false
+                if current_variant.compare_at_price > current_variant.price
+                  assign on_sale = true
+                  assign save_pct = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price | floor
+                endif
+              -%}
+              <div class="rs-price" {{ block.shopify_attributes }}>
+                <p class="rs-price__row">
+                  <span class="rs-visually-hidden">Price</span>
+                  <span class="rs-price__current" data-rs-price>{{ current_variant.price | money }}</span>
+                  <s class="rs-price__compare" data-rs-compare {% unless on_sale %}hidden{% endunless %}>
+                    {%- if on_sale %}{{ current_variant.compare_at_price | money }}{% endif -%}
+                  </s>
+                  <span class="rs-badge rs-badge--save" data-rs-save {% unless on_sale %}hidden{% endunless %}>
+                    Save <span data-rs-save-pct>{% if on_sale %}{{ save_pct }}{% endif %}</span>%
+                  </span>
+                </p>
+              </div>
+
+            {%- when 'packs' -%}
+              {%- liquid
+                assign tiers_found = 0
+                for i in (1..4)
+                  assign key = 'tier_' | append: i | append: '_variant'
+                  assign wanted = block.settings[key] | downcase | strip
+                  if wanted != blank
+                    for v in product.variants
+                      assign v_title = v.title | downcase | strip
+                      if v_title == wanted
+                        assign tiers_found = tiers_found | plus: 1
+                      endif
+                    endfor
+                  endif
+                endfor
+              -%}
+              {%- if tiers_found > 0 -%}
+                <fieldset class="rs-packs" data-rs-packs {{ block.shopify_attributes }}>
+                  <legend class="rs-packs__legend">
+                    {{ block.settings.heading | escape }}
+                    {%- if block.settings.subheading != blank %} <span class="rs-packs__hint">{{ block.settings.subheading | escape }}</span>{% endif -%}
+                  </legend>
+                  {%- for i in (1..4) -%}
+                    {%- liquid
+                      assign prefix = 'tier_' | append: i | append: '_'
+                      assign k_variant = prefix | append: 'variant'
+                      assign k_qty = prefix | append: 'qty'
+                      assign k_title = prefix | append: 'title'
+                      assign k_sub = prefix | append: 'sub'
+                      assign k_badge = prefix | append: 'badge'
+                      assign k_perk = prefix | append: 'perk'
+                      assign wanted = block.settings[k_variant] | downcase | strip
+                      assign tier_variant = nil
+                      if wanted != blank
+                        for v in product.variants
+                          assign v_title = v.title | downcase | strip
+                          if v_title == wanted
+                            assign tier_variant = v
+                          endif
+                        endfor
+                      endif
+                    -%}
+                    {%- if tier_variant -%}
+                      {%- liquid
+                        assign qty = block.settings[k_qty] | default: 1
+                        assign per_unit = tier_variant.price | divided_by: qty | floor
+                        assign tier_sale = false
+                        if tier_variant.compare_at_price > tier_variant.price
+                          assign tier_sale = true
+                          assign tier_pct = tier_variant.compare_at_price | minus: tier_variant.price | times: 100 | divided_by: tier_variant.compare_at_price | floor
+                        endif
+                        assign input_id = 'rs-pack-' | append: section.id | append: '-' | append: i
+                      -%}
+                      <div class="rs-pack{% if block.settings[k_badge] != blank %} rs-pack--badged{% endif %}">
+                        <input
+                          class="rs-pack__input"
+                          type="radio"
+                          id="{{ input_id }}"
+                          name="rs-pack-{{ section.id }}"
+                          value="{{ tier_variant.id }}"
+                          data-rs-pack
+                          {% if tier_variant.id == current_variant.id %}checked{% endif %}
+                          {% unless tier_variant.available %}disabled{% endunless %}
+                        >
+                        <label class="rs-pack__card" for="{{ input_id }}">
+                          {%- if block.settings[k_badge] != blank -%}
+                            <span class="rs-pack__badge">{{ block.settings[k_badge] | escape }}</span>
+                          {%- endif -%}
+                          <span class="rs-pack__radio" aria-hidden="true"></span>
+                          <span class="rs-pack__main">
+                            <span class="rs-pack__title">{{ block.settings[k_title] | default: tier_variant.title | escape }}</span>
+                            {%- if tier_sale -%}<span class="rs-pack__save">Save {{ tier_pct }}%</span>{%- endif -%}
+                            {%- if block.settings[k_sub] != blank -%}
+                              <span class="rs-pack__sub">{{ block.settings[k_sub] | escape }}</span>
+                            {%- endif -%}
+                            {%- if block.settings[k_perk] != blank -%}
+                              <span class="rs-pack__perk">{{ block.settings[k_perk] | escape }}</span>
+                            {%- endif -%}
+                            {%- unless tier_variant.available -%}
+                              <span class="rs-pack__sub">Sold out</span>
+                            {%- endunless -%}
+                          </span>
+                          <span class="rs-pack__pricing">
+                            <span class="rs-pack__price">{{ tier_variant.price | money }}</span>
+                            {%- if tier_sale -%}<s class="rs-pack__compare">{{ tier_variant.compare_at_price | money }}</s>{%- endif -%}
+                            {%- if qty > 1 -%}
+                              <span class="rs-pack__unit">{{ per_unit | money }} {{ block.settings.per_unit_label | escape }}</span>
+                            {%- endif -%}
+                          </span>
+                        </label>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </fieldset>
+              {%- elsif request.design_mode -%}
+                <p class="rs-editor-note" {{ block.shopify_attributes }}>Pack picker: none of the variant names in this block match this product's variants. Check the spelling, e.g. "4-Pack".</p>
+              {%- endif -%}
+
+            {%- when 'variant_picker' -%}
+              {%- unless product.has_only_default_variant -%}
+                <div class="rs-options-group" {{ block.shopify_attributes }}>
+                  {%- for option in product.options_with_values -%}
+                    <fieldset class="rs-options" data-rs-option="{{ forloop.index0 }}">
+                      <legend class="rs-options__legend">
+                        {{ option.name | escape }}: <span data-rs-option-value>{{ option.selected_value | escape }}</span>
+                      </legend>
+                      <div class="rs-options__list">
+                        {%- assign opt_index = option.position | minus: 1 -%}
+                        {%- for value in option.values -%}
+                          {%- assign input_id = section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 -%}
+                          <input
+                            type="radio"
+                            class="rs-options__input"
+                            id="{{ input_id }}"
+                            name="option-{{ section.id }}-{{ option.position }}"
+                            value="{{ value | escape }}"
+                            {% if current_variant.options[opt_index] == value %}checked{% endif %}
+                          >
+                          <label for="{{ input_id }}" class="rs-chip">{{ value | escape }}</label>
+                        {%- endfor -%}
+                      </div>
+                    </fieldset>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+
+            {%- when 'stock' -%}
+              <p
+                class="rs-stock"
+                data-rs-stock
+                data-threshold="{{ block.settings.threshold }}"
+                data-template="{{ block.settings.text | escape }}"
+                hidden
+                {{ block.shopify_attributes }}
+              >
+                <span class="rs-stock__dot" aria-hidden="true"></span>
+                <span data-rs-stock-text></span>
+              </p>
+
+            {%- when 'buy_buttons' -%}
+              <div class="rs-buy" {{ block.shopify_attributes }}>
+                {%- form 'product', product, id: form_id, class: 'rs-form', novalidate: 'novalidate', data-rs-form: '' -%}
+                  <input type="hidden" name="id" value="{{ current_variant.id }}" data-rs-variant-id>
+                  <button
+                    type="submit"
+                    name="add"
+                    class="rs-btn rs-btn--cta rs-btn--block"
+                    data-rs-add
+                    data-rs-label="{{ block.settings.add_label | escape }}"
+                    {% unless current_variant.available %}disabled{% endunless %}
+                  >
+                    <span data-rs-add-label>
+                      {%- if current_variant.available -%}
+                        {{ block.settings.add_label | escape }}
+                      {%- else -%}
+                        Sold out
+                      {%- endif -%}
+                    </span>
+                  </button>
+                  {%- if block.settings.show_dynamic_checkout -%}
+                    <div class="rs-form__dynamic">{{ form | payment_button }}</div>
+                  {%- endif -%}
+                  <p class="rs-form__error" role="alert" data-rs-error hidden></p>
+                  <p class="rs-form__status" aria-live="polite" data-rs-status></p>
+                {%- endform -%}
+                {%- if block.settings.tagline != blank -%}
+                  <p class="rs-buy__tagline">{{ block.settings.tagline | escape }}</p>
+                {%- endif -%}
+              </div>
+
+            {%- when 'payment_icons' -%}
+              {%- if shop.enabled_payment_types.size > 0 -%}
+                <ul class="rs-payments" role="list" {{ block.shopify_attributes }}>
+                  {%- for type in shop.enabled_payment_types -%}
+                    <li>{{ type | payment_type_svg_tag: class: 'rs-payments__icon' }}</li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+            {%- when 'trust' -%}
+              <ul class="rs-trust" role="list" {{ block.shopify_attributes }}>
+                {%- for i in (1..3) -%}
+                  {%- liquid
+                    assign t_key = 'item_' | append: i
+                    assign i_key = 'icon_' | append: i
+                    assign t = block.settings[t_key]
+                    assign ic = block.settings[i_key]
+                  -%}
+                  {%- if t != blank -%}
+                    <li class="rs-trust__item">
+                      {% render 'readysip-icon', icon: ic, size: 26 %}
+                      <span>{{ t | escape }}</span>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'quote' -%}
+              {%- if block.settings.quote != blank -%}
+                <figure class="rs-mini-review" {{ block.shopify_attributes }}>
+                  <span class="rs-stars rs-stars--sm" style="--rs-rating: {{ block.settings.stars | times: 20 }}%;" aria-hidden="true"></span>
+                  <blockquote class="rs-mini-review__quote">{{ block.settings.quote | escape }}</blockquote>
+                  <figcaption class="rs-mini-review__by">
+                    {{ block.settings.author | escape }}
+                    {%- if block.settings.verified %} <span class="rs-verified">Verified buyer</span>{% endif -%}
+                  </figcaption>
+                </figure>
+              {%- elsif request.design_mode -%}
+                <p class="rs-editor-note" {{ block.shopify_attributes }}>Customer quote: paste a real review here. It stays hidden until you do.</p>
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              <div class="rs-rte rs-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+
+            {%- when 'accordion' -%}
+              <details class="rs-acc" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                <summary class="rs-acc__summary">
+                  {% render 'readysip-icon', icon: block.settings.icon, size: 22 %}
+                  <span>{{ block.settings.heading | escape }}</span>
+                </summary>
+                <div class="rs-acc__body rs-rte">
+                  {%- if block.settings.use_description -%}
+                    {{ product.description }}
+                  {%- else -%}
+                    {{ block.settings.content }}
+                  {%- endif -%}
+                </div>
+              </details>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.sticky_bar -%}
+    <div class="rs-sticky" data-rs-sticky inert>
+      <div class="rs-container rs-sticky__inner">
+        {%- if product.featured_media -%}
+          {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: '', width: 44, height: 44, class: 'rs-sticky__thumb' }}
+        {%- endif -%}
+        <div class="rs-sticky__meta">
+          <p class="rs-sticky__title" data-rs-sticky-variant>{{ current_variant.title | escape }}</p>
+          <p class="rs-sticky__price" data-rs-price>{{ current_variant.price | money }}</p>
+        </div>
+        <button type="button" class="rs-btn rs-btn--cta" data-rs-sticky-add data-rs-label="{{ section.settings.sticky_label | escape }}" {% unless current_variant.available %}disabled{% endunless %}>
+          <span data-rs-add-label>{% if current_variant.available %}{{ section.settings.sticky_label | escape }}{% else %}Sold out{% endif %}</span>
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    {%- if product.featured_media %}
+    "image": {{ product.featured_media | image_url: width: 1200 | prepend: 'https:' | json }},
+    {%- endif %}
+    "description": {{ product.description | strip_html | truncate: 500 | json }},
+    "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+    {%- if has_rating %}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": {{ product.metafields.reviews.rating.value.rating | json }},
+      "bestRating": {{ product.metafields.reviews.rating.value.scale_max | json }},
+      "reviewCount": {{ product.metafields.reviews.rating_count.value | default: 1 | json }}
+    },
+    {%- endif %}
+    "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          {%- if variant.sku != blank %}"sku": {{ variant.sku | json }},{% endif %}
+          "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price": {{ variant.price | divided_by: 100.0 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "url": {{ request.origin | append: variant.url | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "ReadySip product",
+  "tag": "div",
+  "class": "rs-section",
+  "settings": [
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "brand", "label": "Brand navy", "default": "#0b315d", "info": "Headings, ticks, stars and selected packs." },
+    { "type": "color", "id": "cta", "label": "Add to cart button", "default": "#f2a516" },
+    { "type": "color", "id": "cta_ink", "label": "Add to cart text", "default": "#0a1f33" },
+    { "type": "color", "id": "highlight", "label": "Pack badge and savings", "default": "#1f8a4c" },
+    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use my theme's fonts", "default": false },
+    { "type": "header", "content": "Gallery" },
+    {
+      "type": "select", "id": "media_ratio", "label": "Image shape", "default": "1",
+      "options": [
+        { "value": "1", "label": "Square" },
+        { "value": "0.8", "label": "Portrait (4:5)" },
+        { "value": "1.333", "label": "Landscape (4:3)" }
+      ]
+    },
+    {
+      "type": "select", "id": "media_fit", "label": "Image fit", "default": "cover",
+      "options": [
+        { "value": "cover", "label": "Fill the frame" },
+        { "value": "contain", "label": "Show whole image" }
+      ]
+    },
+    { "type": "header", "content": "Buying" },
+    {
+      "type": "select", "id": "after_add", "label": "After add to cart", "default": "cart",
+      "options": [
+        { "value": "cart", "label": "Go to cart page" },
+        { "value": "stay", "label": "Stay on this page" }
+      ]
+    },
+    { "type": "checkbox", "id": "sticky_bar", "label": "Show floating add-to-cart bar", "default": true },
+    { "type": "text", "id": "sticky_label", "label": "Floating bar button label", "default": "Add to cart" },
+    { "type": "range", "id": "sticky_offset", "label": "Buy box distance from top", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 96, "info": "Match your theme's sticky header height." }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "rating", "name": "Star rating", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Reads the product's reviews.rating and reviews.rating_count metafields, which Judge.me, Loox, Okendo and Shopify Product Reviews fill in. Hidden until you have real reviews." },
+        { "type": "text", "id": "count_label", "label": "Count label", "default": "reviews" },
+        { "type": "text", "id": "reviews_anchor", "label": "Link to reviews", "default": "#reviews" }
+      ]
+    },
+    {
+      "type": "title", "name": "Title", "limit": 1,
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Small line above title", "default": "Emergency water filter" }
+      ]
+    },
+    {
+      "type": "intro", "name": "Intro", "limit": 1,
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Scenario line", "default": "Boil-water notice. Burst main. Storm knocks the power out." },
+        { "type": "textarea", "id": "promise", "label": "Promise line (bold)", "default": "Every person in your house still has clean drinking water." }
+      ]
+    },
+    {
+      "type": "bullets", "name": "Benefit ticks", "limit": 2,
+      "settings": [
+        { "type": "textarea", "id": "lines", "label": "Ticks", "info": "One per line. Put a | after the bold part, e.g. Works without power | no batteries or chemicals.", "default": "Filters bacteria and parasites | through a 0.1-micron membrane\nNo hard sucking | sip, screw onto a bottle or squeeze into a cup\nWorks when the grid doesn't | no power, batteries or chemicals" }
+      ]
+    },
+    {
+      "type": "price", "name": "Price", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Shows a Save % badge when the selected pack has a compare-at price." }
+      ]
+    },
+    {
+      "type": "packs", "name": "Pack picker", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Each tier points at one of the product's variants by name (e.g. \"4-Pack\"). Prices and savings come from the variant. Leave a tier's variant blank to hide it." },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Choose your pack" },
+        { "type": "text", "id": "subheading", "label": "Hint", "default": "One per person, plus the car" },
+        { "type": "text", "id": "per_unit_label", "label": "Per-straw label", "default": "per straw" },
+        { "type": "select", "id": "default_tier", "label": "Selected when the page opens", "default": "3", "options": [ { "value": "1", "label": "Tier 1" }, { "value": "2", "label": "Tier 2" }, { "value": "3", "label": "Tier 3" }, { "value": "4", "label": "Tier 4" } ] },
+        { "type": "header", "content": "Tier 1" },
+        { "type": "text", "id": "tier_1_variant", "label": "Variant name", "default": "1 Kit" },
+        { "type": "number", "id": "tier_1_qty", "label": "Straws in this pack", "default": 1 },
+        { "type": "text", "id": "tier_1_title", "label": "Title", "default": "1 Straw Kit" },
+        { "type": "text", "id": "tier_1_sub", "label": "Subtitle" },
+        { "type": "text", "id": "tier_1_badge", "label": "Badge" },
+        { "type": "text", "id": "tier_1_perk", "label": "Extra line (e.g. a free gift)" },
+        { "type": "header", "content": "Tier 2" },
+        { "type": "text", "id": "tier_2_variant", "label": "Variant name", "default": "2-Pack" },
+        { "type": "number", "id": "tier_2_qty", "label": "Straws in this pack", "default": 2 },
+        { "type": "text", "id": "tier_2_title", "label": "Title", "default": "2-Pack" },
+        { "type": "text", "id": "tier_2_sub", "label": "Subtitle" },
+        { "type": "text", "id": "tier_2_badge", "label": "Badge" },
+        { "type": "text", "id": "tier_2_perk", "label": "Extra line" },
+        { "type": "header", "content": "Tier 3" },
+        { "type": "text", "id": "tier_3_variant", "label": "Variant name", "default": "4-Pack" },
+        { "type": "number", "id": "tier_3_qty", "label": "Straws in this pack", "default": 4 },
+        { "type": "text", "id": "tier_3_title", "label": "Title", "default": "Family 4-Pack" },
+        { "type": "text", "id": "tier_3_sub", "label": "Subtitle" },
+        { "type": "text", "id": "tier_3_badge", "label": "Badge" },
+        { "type": "text", "id": "tier_3_perk", "label": "Extra line" },
+        { "type": "header", "content": "Tier 4" },
+        { "type": "text", "id": "tier_4_variant", "label": "Variant name", "default": "6-Pack" },
+        { "type": "number", "id": "tier_4_qty", "label": "Straws in this pack", "default": 6 },
+        { "type": "text", "id": "tier_4_title", "label": "Title", "default": "Household 6-Pack" },
+        { "type": "text", "id": "tier_4_sub", "label": "Subtitle" },
+        { "type": "text", "id": "tier_4_badge", "label": "Badge" },
+        { "type": "text", "id": "tier_4_perk", "label": "Extra line" }
+      ]
+    },
+    { "type": "variant_picker", "name": "Variant buttons", "limit": 1, "settings": [ { "type": "paragraph", "content": "Plain option buttons. Use this instead of the pack picker if you prefer." } ] },
+    {
+      "type": "stock", "name": "Low stock note", "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Uses your real inventory. Only shows when Shopify tracks the variant's stock and it's at or below the number you set." },
+        { "type": "number", "id": "threshold", "label": "Show at or below", "default": 20 },
+        { "type": "text", "id": "text", "label": "Text", "default": "Only [count] left of this pack", "info": "[count] becomes the number in stock." }
+      ]
+    },
+    {
+      "type": "buy_buttons", "name": "Buy buttons", "limit": 1,
+      "settings": [
+        { "type": "text", "id": "add_label", "label": "Button label", "default": "Add to cart" },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show express checkout", "default": false },
+        { "type": "text", "id": "tagline", "label": "Line under the button", "default": "Buy once. Store it. Be ready." }
+      ]
+    },
+    { "type": "payment_icons", "name": "Payment icons", "limit": 1, "settings": [] },
+    {
+      "type": "trust", "name": "Trust row", "limit": 1,
+      "settings": [
+        { "type": "text", "id": "item_1", "label": "Item 1", "default": "30-day money-back guarantee" },
+        { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "shield", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] },
+        { "type": "text", "id": "item_2", "label": "Item 2", "default": "Tracked shipping" },
+        { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "truck", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] },
+        { "type": "text", "id": "item_3", "label": "Item 3", "default": "Real people on support" },
+        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "chat", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] }
+      ]
+    },
+    {
+      "type": "quote", "name": "Customer quote", "limit": 2,
+      "settings": [
+        { "type": "paragraph", "content": "Use a real customer review only. Hidden while empty." },
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "author", "label": "Name", "info": "e.g. Sarah M." },
+        { "type": "range", "id": "stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+      ]
+    },
+    {
+      "type": "text", "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Add a short note here.</p>" }
+      ]
+    },
+    {
+      "type": "accordion", "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Details" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "drop", "options": [ { "value": "none", "label": "None" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" }, { "value": "list", "label": "List" }, { "value": "steps", "label": "Steps" }, { "value": "truck", "label": "Truck" }, { "value": "shield", "label": "Shield" } ] },
+        { "type": "checkbox", "id": "use_description", "label": "Show product description", "default": false },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Add content here.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ]
+}
+{% endschema %}

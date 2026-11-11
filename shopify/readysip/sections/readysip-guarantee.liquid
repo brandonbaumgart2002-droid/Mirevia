@@ -1,0 +1,51 @@
+{%- comment -%} Closing section: promise cards + final call to action. {%- endcomment -%}
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="rs rs-guarantee rs-surface--{{ section.settings.surface }}">
+  <div class="rs-container">
+    {%- if section.blocks.size > 0 -%}
+      <ul class="rs-guarantee__cards" role="list">
+        {%- for block in section.blocks -%}
+          <li class="rs-card rs-guarantee__card" {{ block.shopify_attributes }}>
+            {% render 'readysip-icon', icon: block.settings.icon, size: 36 %}
+            <h3 class="rs-guarantee__title">{{ block.settings.title | escape }}</h3>
+            <div class="rs-rte">{{ block.settings.text }}</div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <div class="rs-final">
+        <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="rs-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="rs-btn rs-btn--cta rs-btn--lg" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ReadySip guarantee",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "brand", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Light blue" }, { "value": "brand", "label": "Navy" } ] },
+    { "type": "text", "id": "heading", "label": "Closing heading", "default": "Sort your family's water plan today" },
+    { "type": "textarea", "id": "text", "label": "Closing text" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Choose your pack" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Blank scrolls back up to the buy box." }
+  ],
+  "blocks": [
+    {
+      "type": "card", "name": "Card", "limit": 4,
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "shield", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] },
+        { "type": "text", "id": "title", "label": "Title", "default": "Money-back guarantee" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Describe it.</p>" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "ReadySip guarantee", "blocks": [ { "type": "card" } ] } ]
+}
+{% endschema %}

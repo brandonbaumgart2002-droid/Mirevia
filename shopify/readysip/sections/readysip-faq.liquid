@@ -1,0 +1,62 @@
+{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+
+<section class="rs rs-faq rs-surface--{{ section.settings.surface }}" id="faq">
+  <div class="rs-container rs-faq__grid">
+    <header class="rs-faq__intro">
+      {%- if section.settings.eyebrow != blank -%}<p class="rs-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.contact_text != blank -%}
+        <p class="rs-lead">
+          {%- if section.settings.contact_link != blank -%}
+            <a class="rs-link" href="{{ section.settings.contact_link }}">{{ section.settings.contact_text | escape }}</a>
+          {%- else -%}
+            {{ section.settings.contact_text | escape }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </header>
+    <div class="rs-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="rs-acc" {{ block.shopify_attributes }}>
+          <summary class="rs-acc__summary"><span>{{ block.settings.question | escape }}</span></summary>
+          <div class="rs-acc__body rs-rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {
+            "@type": "Question",
+            "name": {{ block.settings.question | json }},
+            "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ReadySip FAQ",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "soft", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Light blue" }, { "value": "brand", "label": "Navy" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Small line above heading", "default": "FAQ" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered straight" },
+    { "type": "text", "id": "contact_text", "label": "Contact line" },
+    { "type": "url", "id": "contact_link", "label": "Contact link" }
+  ],
+  "blocks": [
+    { "type": "question", "name": "Question", "settings": [ { "type": "text", "id": "question", "label": "Question", "default": "Question?" }, { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer.</p>" } ] }
+  ],
+  "presets": [ { "name": "ReadySip FAQ", "blocks": [ { "type": "question" } ] } ]
+}
+{% endschema %}
