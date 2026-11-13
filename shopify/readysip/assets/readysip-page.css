@@ -533,3 +533,11 @@
 /* Rating line above the title */
 .rs.rs .rs-rating { display: inline-flex; align-items: center; gap: 8px; margin: 0 !important; font-size: 14px !important; font-weight: 600 !important; color: var(--rs-ink) !important; text-decoration: none; }
 .rs.rs .rs-rating__text { font-size: 14px !important; font-weight: 600 !important; color: var(--rs-ink) !important; }
+
+/* Pack cards with the variant's image */
+.rs-pack__card--thumb { grid-template-columns: 22px 60px minmax(0, 1fr) auto; }
+.rs-pack__thumb { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; background: var(--rs-ice); }
+@media (max-width: 480px) {
+  .rs-pack__card--thumb { grid-template-columns: 20px 52px minmax(0, 1fr) auto; gap: 10px; padding: 14px 12px; }
+  .rs-pack__thumb { width: 52px; height: 52px; }
+}
