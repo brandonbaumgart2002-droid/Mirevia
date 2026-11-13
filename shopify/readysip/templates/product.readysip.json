@@ -249,7 +249,8 @@
             "gift_3_min": 5,
             "gift_3_locked_text": "Unlocks with 5 Straws + Charger",
             "gift_3_show_value": true,
-            "gift_3_image": "shopify://shop_images/bb-ref-orange.jpg"
+            "gift_3_image": "shopify://shop_images/readysip-gift-blackout-buddy.png",
+            "gift_2_image": "shopify://shop_images/readysip-gift-purification-tablets.png"
           }
         }
       },
