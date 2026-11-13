@@ -14,7 +14,7 @@
       "type": "readysip-product",
       "blocks": {
         "rating": { "type": "rating", "settings": { "count_label": "reviews", "reviews_anchor": "#reviews" } },
-        "title": { "type": "title", "settings": { "eyebrow": "Emergency water filter kit" } },
+        "title": { "type": "title", "settings": { "eyebrow": "" } },
         "intro": {
           "type": "intro",
           "settings": {
