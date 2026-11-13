@@ -497,7 +497,661 @@
         "heading": "What families say",
         "intro": "",
         "tabs": "families: Families\ngrandparents: Grandparents\nstorm: Storm & flood season\noutdoors: Hikers & campers\nsmall-space: Small-space homes"
-      }
+      },
+      "blocks": {
+        "review_01": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_02": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_03": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_04": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_05": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_06": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_07": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_08": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_09": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_10": {
+          "type": "review",
+          "settings": {
+            "group": "families",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_11": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_12": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_13": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_14": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_15": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_16": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_17": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_18": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_19": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_20": {
+          "type": "review",
+          "settings": {
+            "group": "grandparents",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_21": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_22": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_23": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_24": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_25": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_26": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_27": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_28": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_29": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_30": {
+          "type": "review",
+          "settings": {
+            "group": "storm",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_31": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_32": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_33": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_34": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_35": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_36": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_37": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_38": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_39": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_40": {
+          "type": "review",
+          "settings": {
+            "group": "outdoors",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_41": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_42": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_43": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_44": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_45": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_46": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_47": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_48": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_49": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        },
+        "review_50": {
+          "type": "review",
+          "settings": {
+            "group": "small-space",
+            "stars": 5,
+            "title": "",
+            "text": "",
+            "author": "",
+            "location": "",
+            "verified": false
+          }
+        }
+      },
+      "block_order": [
+        "review_01",
+        "review_02",
+        "review_03",
+        "review_04",
+        "review_05",
+        "review_06",
+        "review_07",
+        "review_08",
+        "review_09",
+        "review_10",
+        "review_11",
+        "review_12",
+        "review_13",
+        "review_14",
+        "review_15",
+        "review_16",
+        "review_17",
+        "review_18",
+        "review_19",
+        "review_20",
+        "review_21",
+        "review_22",
+        "review_23",
+        "review_24",
+        "review_25",
+        "review_26",
+        "review_27",
+        "review_28",
+        "review_29",
+        "review_30",
+        "review_31",
+        "review_32",
+        "review_33",
+        "review_34",
+        "review_35",
+        "review_36",
+        "review_37",
+        "review_38",
+        "review_39",
+        "review_40",
+        "review_41",
+        "review_42",
+        "review_43",
+        "review_44",
+        "review_45",
+        "review_46",
+        "review_47",
+        "review_48",
+        "review_49",
+        "review_50"
+      ]
     },
     "faq": {
       "type": "readysip-faq",

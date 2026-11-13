@@ -121,6 +121,7 @@
 {% schema %}
 {
   "name": "ReadySip reviews",
+  "max_blocks": 50,
   "settings": [
     { "type": "select", "id": "surface", "label": "Background", "default": "canvas", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Off-white" }, { "value": "brand", "label": "Navy" } ] },
     { "type": "text", "id": "eyebrow", "label": "Small line above heading", "default": "Reviews" },
@@ -146,7 +147,7 @@
         { "type": "text", "id": "author", "label": "Name", "info": "First name and initial, e.g. Sarah M." },
         { "type": "text", "id": "location", "label": "Location (optional)" },
         { "type": "image_picker", "id": "photo", "label": "Small avatar (optional)" },
-        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+        {"type": "checkbox", "id": "verified", "label": "Verified buyer", "default": false, "info": "Tick only if this person bought from you (you can match them to an order)."}
       ]
     }
   ],
