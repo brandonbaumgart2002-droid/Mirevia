@@ -757,9 +757,9 @@ html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--
 .rs-gift__media { position: relative; display: grid; place-items: center; width: 100%; height: 84px; border-radius: 10px; background: transparent; color: var(--rs-brand); }
 .rs-gift__img { width: 100%; height: 100%; object-fit: contain; transition: filter 0.3s var(--rs-ease), opacity 0.3s var(--rs-ease); }
 /* The theme sizes and crops images with !important; gift images always show the whole product. */
-.rs.rs .rs-gift__img { display: block !important; width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; object-position: center !important; padding: 0 !important; margin: 0 !important; background: transparent !important; border-radius: 0 !important; aspect-ratio: auto !important; }
+.rs.rs .rs-gift__img { position: absolute !important; inset: 0 !important; display: block !important; width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; object-position: center !important; padding: 0 !important; margin: 0 !important; background: transparent !important; border-radius: 0 !important; aspect-ratio: auto !important; }
 .rs-gift:not(.is-unlocked) .rs-gift__img, .rs-gift:not(.is-unlocked) .rs-gift__media > .rs-icon { filter: blur(3px) grayscale(0.4); opacity: 0.55; }
-.rs-gift__lock { position: absolute; inset: 0; margin: auto; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--rs-brand); color: #fff; transition: opacity 0.2s var(--rs-ease), transform 0.2s var(--rs-ease); }
+.rs-gift__lock { position: absolute; z-index: 1; inset: 0; margin: auto; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--rs-brand); color: #fff; transition: opacity 0.2s var(--rs-ease), transform 0.2s var(--rs-ease); }
 .rs-gift.is-unlocked .rs-gift__lock { opacity: 0; transform: scale(0.6); }
 .rs-gift__title { font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--rs-ink); }
 .rs-gift__state { font-size: 11.5px; font-weight: 600; line-height: 1.25; color: var(--rs-ink-muted); }
