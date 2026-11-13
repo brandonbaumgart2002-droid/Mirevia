@@ -718,3 +718,29 @@ html body #fcf .logo::after { color: #dcad40; }
 @media (max-width: 480px) {
   .rs.rs .rs-news__input { flex: none; width: 100%; height: 52px; }
 }
+
+/* ---------- Theme cart drawer: ReadySip colours (on the ReadySip page) ---------- */
+html body #CartDrawer .drawer__heading { font-family: var(--rs-font-display) !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0.02em; color: var(--rs-brand) !important; }
+html body #CartDrawer .gb-cart-total-item { background: var(--rs-cta) !important; color: #fff !important; font-family: var(--rs-font-body) !important; }
+html body #CartDrawer .pp-ctop { background: var(--rs-ice) !important; border-color: #d6e4f7 !important; }
+html body #CartDrawer .pp-ctop__ship { color: var(--rs-ink) !important; font-family: var(--rs-font-body) !important; }
+html body #CartDrawer :is(.pp-ctop__green, .pp-ctop__red) { color: var(--rs-cta) !important; }
+html body #CartDrawer .pp-ctop__bar { background: #d6e4f7 !important; }
+html body #CartDrawer .pp-ctop__bar span { background: var(--rs-cta) !important; }
+html body #CartDrawer .pp-ctop__banner { background: var(--rs-brand) !important; color: #fff !important; font-family: var(--rs-font-display) !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0.04em; }
+html body #CartDrawer .pp-ctop__banner--readysip::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--rs-gold); vertical-align: middle; }
+html body #CartDrawer .cart-timer-text span { color: var(--rs-ink) !important; }
+html body #CartDrawer .cart-timer-countdown { color: var(--rs-cta) !important; }
+html body #CartDrawer :is(.pp-cart-free, .pp-cup__list svg, .pp-cbadges svg, .social-proof-bar__text) { color: var(--rs-cta) !important; }
+html body #CartDrawer .gb-price-drawer-saving { color: var(--rs-cta) !important; }
+html body #CartDrawer .cart-item__media { border-color: var(--rs-hairline) !important; background: var(--rs-ice) !important; }
+html body #CartDrawer :is(.pp-cart-label, .pp-cart-summary-h, .cart-item__name, .totals__total-value) { color: var(--rs-ink) !important; }
+html body #CartDrawer .pp-cart-summary-h { font-family: var(--rs-font-display) !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: 0.03em; }
+html body #CartDrawer :is(.cart__checkout-button, .pp-cup__btn, .drawer__inner-empty .button) {
+  background: var(--rs-cta) !important; color: #fff !important; box-shadow: 0 4px 0 var(--rs-brand) !important; border-radius: var(--rs-radius) !important;
+  font-family: var(--rs-font-body) !important; font-weight: 800 !important; letter-spacing: 0.06em; text-transform: uppercase;
+}
+html body #CartDrawer :is(.cart__checkout-button, .pp-cup__btn):hover { background: var(--rs-cta-hover) !important; filter: none; }
+html body #CartDrawer .quantity.cart-quantity { border-color: var(--rs-hairline) !important; }
+html body #CartDrawer .quantity__button:hover { background: var(--rs-ice) !important; }
+html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--top) { background: var(--rs-ice) !important; border-color: #d6e4f7 !important; }
