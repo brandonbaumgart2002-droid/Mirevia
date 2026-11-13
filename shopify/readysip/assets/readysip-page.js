@@ -51,6 +51,40 @@
     else { drawer.classList.add('active', 'animate'); document.body.classList.add('overflow-hidden'); }
   }
 
+  // Re-fetches the cart drawer and cart count, then shows them (drawer stays open).
+  async function refreshCartDrawer() {
+    const drawer = document.querySelector('cart-drawer');
+    if (!drawer) return;
+    const res = await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`, { headers: { Accept: 'application/json' } });
+    const sections = await res.json();
+    openCartDrawer(drawer, { sections });
+  }
+
+  // Optional shipping protection switch in the cart drawer (markup comes from the pp-cart-top snippet).
+  function initShippingProtection() {
+    if (window.__rsSp) return;
+    window.__rsSp = true;
+    document.addEventListener('click', async (event) => {
+      const btn = event.target.closest && event.target.closest('[data-rs-sp-switch]');
+      if (!btn || btn.getAttribute('aria-busy') === 'true') return;
+      event.preventDefault();
+      event.stopPropagation();
+      const box = btn.closest('[data-rs-sp]');
+      const on = btn.getAttribute('aria-checked') === 'true';
+      const root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+      btn.setAttribute('aria-busy', 'true');
+      try {
+        const res = on
+          ? await fetch(`${root}cart/change.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ id: box.dataset.key, quantity: 0 }) })
+          : await fetch(`${root}cart/add.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: Number(box.dataset.variant), quantity: 1 }] }) });
+        if (!res.ok) throw new Error('cart');
+        await refreshCartDrawer();
+      } catch (e) {
+        btn.removeAttribute('aria-busy');
+      }
+    }, true);
+  }
+
   /* ---------- Product section ---------- */
 
   class RsProduct {
@@ -349,6 +383,7 @@
   /* ---------- Boot ---------- */
 
   function init(scope = document) {
+    initShippingProtection();
     qsa('[data-rs-product]', scope).forEach((root) => {
       if (!root.__rs) root.__rs = new RsProduct(root);
     });

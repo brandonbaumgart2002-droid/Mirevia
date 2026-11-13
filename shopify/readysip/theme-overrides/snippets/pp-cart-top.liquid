@@ -77,41 +77,6 @@
       </div>
       <button type="button" class="rs-sp__switch disable-global-button-styling" role="switch" aria-checked="{% if sp_key != '' %}true{% else %}false{% endif %}" aria-labelledby="rs-sp-title" aria-describedby="rs-sp-text" data-rs-sp-switch></button>
     </div>
-    <script>
-      (function () {
-        if (window.__rsSp) return; window.__rsSp = true;
-        var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-        function refreshDrawer() {
-          return fetch(window.location.pathname + '?sections=cart-drawer,cart-icon-bubble', { headers: { Accept: 'application/json' } })
-            .then(function (r) { return r.json(); })
-            .then(function (sections) {
-              var doc = new DOMParser().parseFromString(sections['cart-drawer'] || '', 'text/html');
-              var fresh = doc.querySelector('#CartDrawer');
-              var current = document.querySelector('#CartDrawer');
-              if (fresh && current) current.innerHTML = fresh.innerHTML;
-              var bubble = document.querySelector('#cart-icon-bubble');
-              if (bubble && sections['cart-icon-bubble']) {
-                var b = new DOMParser().parseFromString(sections['cart-icon-bubble'], 'text/html').querySelector('.shopify-section');
-                if (b) bubble.innerHTML = b.innerHTML;
-              }
-              var drawer = document.querySelector('cart-drawer');
-              if (drawer) drawer.classList.toggle('is-empty', false);
-            });
-        }
-        document.addEventListener('click', function (e) {
-          var btn = e.target.closest && e.target.closest('[data-rs-sp-switch]');
-          if (!btn || btn.getAttribute('aria-busy') === 'true') return;
-          e.preventDefault();
-          var box = btn.closest('[data-rs-sp]');
-          var on = btn.getAttribute('aria-checked') === 'true';
-          btn.setAttribute('aria-busy', 'true');
-          var req = on
-            ? fetch(root + 'cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ id: box.getAttribute('data-key'), quantity: 0 }) })
-            : fetch(root + 'cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: Number(box.getAttribute('data-variant')), quantity: 1 }] }) });
-          req.then(function (r) { if (!r.ok) throw new Error('cart'); return refreshDrawer(); })
-            .catch(function () { btn.removeAttribute('aria-busy'); });
-        });
-      })();
-    </script>
+    {%- comment -%} Switch behaviour lives in readysip-page.js (scripts inside the drawer don't re-run when it refreshes). {%- endcomment -%}
   {%- endif -%}
 {%- endif -%}
