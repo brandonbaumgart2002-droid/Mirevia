@@ -5,6 +5,11 @@
   the ReadySip research (honest limits, one per person, squeeze-don't-suck).
 {%- endcomment -%}
 
+{%- unless section.settings.use_theme_fonts -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap">
+{%- endunless -%}
 {{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'readysip-pdp.js' | asset_url }}" defer></script>
 
@@ -43,6 +48,7 @@
     --rs-cta: {{ section.settings.cta }};
     --rs-cta-ink: {{ section.settings.cta_ink }};
     --rs-highlight: {{ section.settings.highlight }};
+    --rs-gold: {{ section.settings.gold }};
     --rs-sticky-offset: {{ section.settings.sticky_offset }}px;
     {%- if section.settings.use_theme_fonts %}
       --rs-font-display: var(--font-heading-family);
@@ -515,11 +521,12 @@
   "class": "rs-section",
   "settings": [
     { "type": "header", "content": "Colours" },
-    { "type": "color", "id": "brand", "label": "Brand navy", "default": "#0b315d", "info": "Headings, ticks, stars and selected packs." },
-    { "type": "color", "id": "cta", "label": "Add to cart button", "default": "#f2a516" },
-    { "type": "color", "id": "cta_ink", "label": "Add to cart text", "default": "#0a1f33" },
-    { "type": "color", "id": "highlight", "label": "Pack badge and savings", "default": "#1f8a4c" },
-    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use my theme's fonts", "default": false },
+    { "type": "color", "id": "brand", "label": "Brand navy", "default": "#0a2549", "info": "Headlines, badges and dark text. Matches the product images." },
+    { "type": "color", "id": "cta", "label": "Accent / add to cart button", "default": "#1247ee", "info": "Royal blue from the straw caps. Buttons, ticks, selected pack." },
+    { "type": "color", "id": "cta_ink", "label": "Button text", "default": "#ffffff" },
+    { "type": "color", "id": "highlight", "label": "Savings and perks text", "default": "#1247ee" },
+    { "type": "color", "id": "gold", "label": "Gold (badges, stars)", "default": "#dcad40", "info": "From the guarantee seal. Pack badges, save badge, stars." },
+    { "type": "checkbox", "id": "use_theme_fonts", "label": "Use my theme's fonts", "default": false, "info": "Off: Anton headings and Inter text, matching the product images." },
     { "type": "header", "content": "Gallery" },
     {
       "type": "select", "id": "media_ratio", "label": "Image shape", "default": "1",

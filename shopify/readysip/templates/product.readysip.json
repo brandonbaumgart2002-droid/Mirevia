@@ -117,10 +117,11 @@
       },
       "block_order": ["rating", "title", "intro", "bullets", "price", "packs", "stock", "buy", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
       "settings": {
-        "brand": "#0b315d",
-        "cta": "#f2a516",
-        "cta_ink": "#0a1f33",
-        "highlight": "#1f8a4c",
+        "brand": "#0a2549",
+        "cta": "#1247ee",
+        "cta_ink": "#ffffff",
+        "highlight": "#1247ee",
+        "gold": "#dcad40",
         "use_theme_fonts": false,
         "media_ratio": "1",
         "media_fit": "cover",
@@ -141,7 +142,7 @@
         "t6": { "type": "item", "settings": { "text": "One per person" } }
       },
       "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"],
-      "settings": { "surface": "brand", "speed": 28 }
+      "settings": { "surface": "soft", "speed": 28 }
     },
     "problem": {
       "type": "readysip-split",
@@ -265,7 +266,7 @@
       "block_order": ["g1", "g2", "g3"],
       "settings": {
         "image_right": false,
-        "surface": "brand",
+        "surface": "canvas",
         "eyebrow": "Gift season",
         "heading": "For the one who's always prepared",
         "body": "<p>Dad, the camper, the friend with the go-bag, the parents who'd never buy one for themselves. ReadySip is a practical gift that shows you care whether they're OK.</p>",
