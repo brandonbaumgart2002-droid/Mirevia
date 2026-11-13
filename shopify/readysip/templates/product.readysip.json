@@ -4,7 +4,7 @@
       "type": "readysip-announcement",
       "blocks": {
         "storm": { "type": "message", "settings": { "text": "Storm season is here. Sort your family's water plan in 2 minutes.", "link": "" } },
-        "shipping": { "type": "message", "settings": { "text": "Free shipping on 2 or more straws. Ships within 24 hours.", "link": "" } },
+        "shipping": { "type": "message", "settings": { "text": "Free shipping on 2 or more straws. Delivered in 6–12 days.", "link": "" } },
         "gift": { "type": "message", "settings": { "text": "Gift idea: for the one who's always prepared.", "link": "" } }
       },
       "block_order": ["storm", "shipping", "gift"],
@@ -61,12 +61,14 @@
         },
         "stock": { "type": "stock", "settings": { "threshold": 20, "text": "Only [count] left of this pack" } },
         "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to cart", "show_dynamic_checkout": false, "tagline": "Buy once. Store it. Be ready." } },
-        "payments": { "type": "payment_icons", "settings": {} },
+        "payments": { "type": "payment_icons", "disabled": true, "settings": {} },
+        "trustbox": { "type": "trust_box", "settings": { "heading": "30-Day Money Back Guarantee", "subheading": "Clean water when you need it, or your money back.", "item_1": "Secure Checkout", "icon_1": "shield", "item_2": "Delivered in 6–12 Days", "icon_2": "truck", "item_3": "No Power Needed", "icon_3": "bolt", "show_payments": true } },
         "trust": {
           "type": "trust",
+          "disabled": true,
           "settings": {
             "item_1": "30-day money-back guarantee", "icon_1": "shield",
-            "item_2": "Ships within 24 hours", "icon_2": "truck",
+            "item_2": "Delivered in 6–12 days", "icon_2": "truck",
             "item_3": "Real people on support", "icon_3": "chat"
           }
         },
@@ -108,11 +110,11 @@
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p><strong>Dispatch:</strong> ships within 24 hours.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> 30-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+            "content": "<p><strong>Processing:</strong> orders are processed within 2–4 days.</p><p><strong>Delivery:</strong> 6–12 days, with tracking.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Guarantee:</strong> 30-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
         }
       },
-      "block_order": ["rating", "title", "intro", "benefits", "bullets", "price", "packs", "stock", "buy", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
+      "block_order": ["rating", "title", "intro", "benefits", "bullets", "price", "packs", "stock", "buy", "trustbox", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
       "settings": {
         "brand": "#0a2549",
         "cta": "#1247ee",

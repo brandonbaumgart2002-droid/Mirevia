@@ -448,6 +448,38 @@
                 </ul>
               {%- endif -%}
 
+            {%- when 'trust_box' -%}
+              <div class="rs-tbox" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <p class="rs-tbox__heading">{{ block.settings.heading | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.subheading != blank -%}
+                  <p class="rs-tbox__sub">{{ block.settings.subheading | escape }}</p>
+                {%- endif -%}
+                <ul class="rs-tbox__items" role="list">
+                  {%- for i in (1..3) -%}
+                    {%- liquid
+                      assign t_key = 'item_' | append: i
+                      assign i_key = 'icon_' | append: i
+                      assign t = block.settings[t_key]
+                    -%}
+                    {%- if t != blank -%}
+                      <li class="rs-tbox__item">
+                        {% render 'readysip-icon', icon: block.settings[i_key], size: 32 %}
+                        <span>{{ t | escape }}</span>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+                {%- if block.settings.show_payments and shop.enabled_payment_types.size > 0 -%}
+                  <ul class="rs-tbox__pay" role="list">
+                    {%- for type in shop.enabled_payment_types -%}
+                      <li>{{ type | payment_type_svg_tag: class: 'rs-tbox__pay-icon' }}</li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+
             {%- when 'trust' -%}
               <ul class="rs-trust" role="list" {{ block.shopify_attributes }}>
                 {%- for i in (1..3) -%}
@@ -693,12 +725,13 @@
       ]
     },
     { "type": "payment_icons", "name": "Payment icons", "limit": 1, "settings": [] },
+    {"type": "trust_box", "name": "Guarantee box", "limit": 1, "settings": [{"type": "text", "id": "heading", "label": "Heading", "default": "30-Day Money Back Guarantee"}, {"type": "text", "id": "subheading", "label": "Line under heading", "default": "Clean water when you need it, or your money back."}, {"type": "text", "id": "item_1", "label": "Item 1", "default": "Secure Checkout"}, {"type": "select", "id": "icon_1", "label": "Icon 1", "default": "shield", "options": [{"value": "shield", "label": "Shield"}, {"value": "truck", "label": "Truck"}, {"value": "lock", "label": "Lock"}, {"value": "chat", "label": "Support"}, {"value": "drop", "label": "Water drop"}, {"value": "box", "label": "Box"}, {"value": "bolt", "label": "No power (bolt)"}, {"value": "home", "label": "Home"}]}, {"type": "text", "id": "item_2", "label": "Item 2", "default": "Delivered in 6–12 Days"}, {"type": "select", "id": "icon_2", "label": "Icon 2", "default": "truck", "options": [{"value": "shield", "label": "Shield"}, {"value": "truck", "label": "Truck"}, {"value": "lock", "label": "Lock"}, {"value": "chat", "label": "Support"}, {"value": "drop", "label": "Water drop"}, {"value": "box", "label": "Box"}, {"value": "bolt", "label": "No power (bolt)"}, {"value": "home", "label": "Home"}]}, {"type": "text", "id": "item_3", "label": "Item 3", "default": "No Power Needed"}, {"type": "select", "id": "icon_3", "label": "Icon 3", "default": "bolt", "options": [{"value": "shield", "label": "Shield"}, {"value": "truck", "label": "Truck"}, {"value": "lock", "label": "Lock"}, {"value": "chat", "label": "Support"}, {"value": "drop", "label": "Water drop"}, {"value": "box", "label": "Box"}, {"value": "bolt", "label": "No power (bolt)"}, {"value": "home", "label": "Home"}]}, {"type": "checkbox", "id": "show_payments", "label": "Show payment icons", "default": true}]},
     {
       "type": "trust", "name": "Trust row", "limit": 1,
       "settings": [
         { "type": "text", "id": "item_1", "label": "Item 1", "default": "30-day money-back guarantee" },
         { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "shield", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] },
-        { "type": "text", "id": "item_2", "label": "Item 2", "default": "Ships within 24 hours" },
+        { "type": "text", "id": "item_2", "label": "Item 2", "default": "Delivered in 6–12 days" },
         { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "truck", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] },
         { "type": "text", "id": "item_3", "label": "Item 3", "default": "Real people on support" },
         { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "chat", "options": [ { "value": "shield", "label": "Shield" }, { "value": "truck", "label": "Truck" }, { "value": "lock", "label": "Lock" }, { "value": "chat", "label": "Support" }, { "value": "drop", "label": "Water drop" }, { "value": "box", "label": "Box" } ] }

@@ -67,8 +67,8 @@ Everything in **[square brackets]** is a placeholder that shows on the page unti
 
 **Your policies**
 - **Guarantee: 30-day money-back** (you confirmed this). Your Shopify product description still says 60 days, so change that too.
-- Filled in from your product description: **ships within 24 hours**, **free shipping on 2+ straws** (shown on the 2-, 5- and 10-Pack cards and in the announcement bar). Make sure your refund and shipping policies say the same.
-- Still placeholders: delivery time **[5–7] business days** (Shipping accordion) and support reply time **[one business day]** (guarantee cards).
+- Shipping: **processed within 2–4 days, delivered in 6–12 days**, free on 2+ straws (guarantee box, announcement bar, Shipping accordion, pack cards). Make sure your refund and shipping policies say the same.
+- Still a placeholder: support reply time **[one business day]** (guarantee cards).
 
 **Comparison table**
 - "Rarely" and the crosses in the **Basic straw** column describe a typical sip-only straw sold on its own. Check them against the competitors you're really up against, and edit any row that isn't fair.
