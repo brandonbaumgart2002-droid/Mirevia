@@ -61,13 +61,15 @@
       .rs-sp__title{margin:0;font-size:14px;font-weight:800;line-height:1.25;color:#0a2549}
       .rs-sp__price{margin-left:4px;font-weight:700;color:#1247ee}
       .rs-sp__text{margin:2px 0 0;font-size:12px;line-height:1.35;color:#5a6b82}
-      .rs-sp__switch{all:unset;box-sizing:border-box;position:relative;width:46px;height:26px;border-radius:999px;background:#c9d3df;cursor:pointer;transition:background .2s;flex-shrink:0}
-      .rs-sp__switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
-      .rs-sp__switch[aria-checked="true"]{background:#1247ee}
-      .rs-sp__switch[aria-checked="true"]::after{transform:translateX(20px)}
-      .rs-sp__switch:focus-visible{outline:3px solid #dcad40;outline-offset:2px}
-      .rs-sp__switch[aria-busy="true"]{opacity:.6;cursor:progress}
-      @media (prefers-reduced-motion:reduce){.rs-sp__switch,.rs-sp__switch::after{transition:none}}
+      html body .rs-sp .rs-sp__switch{all:unset;box-sizing:border-box;display:block;position:relative;width:46px;height:26px;min-width:46px;padding:0;border:0;border-radius:999px;background:#c9d3df !important;box-shadow:none !important;cursor:pointer;transition:background .2s;flex-shrink:0}
+      html body .rs-sp .rs-sp__switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+      html body .rs-sp .rs-sp__switch[aria-checked="true"]{background:#1247ee !important}
+      html body .rs-sp .rs-sp__switch[aria-checked="true"]::after{transform:translateX(20px)}
+      html body .rs-sp .rs-sp__switch:focus-visible{outline:3px solid #dcad40;outline-offset:2px}
+      html body .rs-sp .rs-sp__switch[aria-busy="true"]{opacity:.6;cursor:progress}
+      {%- comment -%} The switch is the only control for protection, so its own cart line (with quantity buttons) is hidden in the drawer. {%- endcomment -%}
+      html body #CartDrawer .cart-item:has(a[href*="/products/mirevia-shipping-protection"]){display:none !important}
+      @media (prefers-reduced-motion:reduce){html body .rs-sp .rs-sp__switch,html body .rs-sp .rs-sp__switch::after{transition:none}}
     </style>
     <div class="rs-sp{% if sp_key != '' %} is-on{% endif %}" data-rs-sp data-variant="{{ sp_variant.id }}" data-key="{{ sp_key }}">
       <svg class="rs-sp__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>

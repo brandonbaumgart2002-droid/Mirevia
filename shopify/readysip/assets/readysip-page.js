@@ -32,13 +32,23 @@
 
   /* ---------- Cart drawer ---------- */
 
+  // The theme's "order reserved" cart timer starts from a native add-to-cart submit, which this page
+  // replaces with an AJAX add. Its global cartTimerBar() is called with the new cart instead.
+  async function syncCartTimer() {
+    if (typeof window.cartTimerBar !== 'function') return;
+    try {
+      const cart = await (await fetch(`${(window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/'}cart.js`)).json();
+      window.cartTimerBar(cart);
+    } catch (e) { /* timer is optional */ }
+  }
+
   // Puts the fresh cart drawer (and cart count) from a Section Rendering response on the page and opens it.
   // Uses the theme's own cart-drawer element when it supports it, otherwise swaps the markup in directly.
   function openCartDrawer(drawer, body) {
     const sections = body.sections || {};
     drawer.classList.remove('is-empty');
     if (typeof drawer.renderContents === 'function' && sections['cart-drawer']) {
-      try { drawer.renderContents(body); return; } catch (e) { /* fall back below */ }
+      try { drawer.renderContents(body); syncCartTimer(); return; } catch (e) { /* fall back below */ }
     }
     const parse = (html) => new DOMParser().parseFromString(html || '', 'text/html');
     const fresh = parse(sections['cart-drawer']).querySelector('#CartDrawer');
@@ -49,6 +59,7 @@
     if (bubble && freshBubble) bubble.innerHTML = freshBubble.innerHTML;
     if (typeof drawer.open === 'function') drawer.open();
     else { drawer.classList.add('active', 'animate'); document.body.classList.add('overflow-hidden'); }
+    syncCartTimer();
   }
 
   // Re-fetches the cart drawer and cart count, then shows them (drawer stays open).
@@ -67,6 +78,7 @@
     if (bubble && freshBubble) bubble.innerHTML = freshBubble.innerHTML;
     drawer.classList.remove('is-empty');
     drawer.classList.add('active');
+    syncCartTimer();
   }
 
   // Optional shipping protection switch in the cart drawer (markup comes from the pp-cart-top snippet).
