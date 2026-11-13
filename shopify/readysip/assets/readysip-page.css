@@ -754,8 +754,10 @@ html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--
 .rs-gift__badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: var(--rs-ink-muted); color: #fff; font-size: 11px; font-weight: 800; line-height: 1.2; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: background-color 0.25s var(--rs-ease); }
 .rs-gift.is-unlocked .rs-gift__badge { background: var(--rs-cta); }
 .rs-gift__badge s { font-weight: 600; opacity: 0.8; letter-spacing: 0; }
-.rs-gift__media { position: relative; display: grid; place-items: center; width: 100%; height: 76px; border-radius: 10px; background: #fff; color: var(--rs-brand); overflow: hidden; }
-.rs-gift__img { width: 100%; height: 100%; object-fit: contain; padding: 4px; transition: filter 0.3s var(--rs-ease), opacity 0.3s var(--rs-ease); }
+.rs-gift__media { position: relative; display: grid; place-items: center; width: 100%; height: 84px; border-radius: 10px; background: transparent; color: var(--rs-brand); }
+.rs-gift__img { width: 100%; height: 100%; object-fit: contain; transition: filter 0.3s var(--rs-ease), opacity 0.3s var(--rs-ease); }
+/* The theme sizes and crops images with !important; gift images always show the whole product. */
+.rs.rs .rs-gift__img { display: block !important; width: 100% !important; height: 100% !important; max-width: 100% !important; max-height: 100% !important; object-fit: contain !important; object-position: center !important; padding: 0 !important; margin: 0 !important; background: transparent !important; border-radius: 0 !important; aspect-ratio: auto !important; }
 .rs-gift:not(.is-unlocked) .rs-gift__img, .rs-gift:not(.is-unlocked) .rs-gift__media > .rs-icon { filter: blur(3px) grayscale(0.4); opacity: 0.55; }
 .rs-gift__lock { position: absolute; inset: 0; margin: auto; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--rs-brand); color: #fff; transition: opacity 0.2s var(--rs-ease), transform 0.2s var(--rs-ease); }
 .rs-gift.is-unlocked .rs-gift__lock { opacity: 0; transform: scale(0.6); }
@@ -768,7 +770,7 @@ html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--
 .rs.rs .rs-gift__badge { color: #fff !important; }
 @media (min-width: 750px) {
   .rs-gift { padding: 22px 10px 14px; }
-  .rs-gift__media { height: 92px; }
+  .rs-gift__media { height: 104px; }
   .rs-gift__title { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
