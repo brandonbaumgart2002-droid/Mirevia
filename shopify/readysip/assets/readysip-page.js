@@ -55,7 +55,7 @@
   async function refreshCartDrawer() {
     const drawer = document.querySelector('cart-drawer');
     if (!drawer) return;
-    const res = await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`, { headers: { Accept: 'application/json' } });
+    const res = await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`);
     const sections = await res.json();
     // Swap the markup in directly: the theme's own re-render skips the top of the drawer.
     const parse = (html) => new DOMParser().parseFromString(html || '', 'text/html');
