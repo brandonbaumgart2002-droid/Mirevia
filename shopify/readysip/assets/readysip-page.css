@@ -777,4 +777,3 @@ html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--
 
 /* Gift lines in the cart drawer (marked by readysip-page.js): no quantity or remove controls. */
 html body #CartDrawer .rs-gift-line :is(quantity-input, .quantity, cart-remove-button, .cart-remove-button, [name="remove"]) { display: none !important; }
-html body #CartDrawer .rs-gift-line .rs-gift-tag { display: inline-block; margin-top: 6px; padding: 3px 9px; border-radius: 999px; background: var(--rs-cta); color: #fff; font-family: var(--rs-font-body); font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }

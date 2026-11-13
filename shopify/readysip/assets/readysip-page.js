@@ -164,7 +164,7 @@
     }
   }
 
-  // Labels free gift lines in the cart drawer ("Free gift") and hides their quantity and remove controls.
+  // Marks free gift lines in the cart drawer so their quantity and remove controls are hidden (the theme adds its own "Free Gift" label).
   let markTimer;
   function markGiftLines() {
     clearTimeout(markTimer);
@@ -179,10 +179,6 @@
         if (!row) return;
         const isGift = Boolean(item.properties && item.properties[GIFT_PROP]);
         row.classList.toggle('rs-gift-line', isGift);
-        const name = row.querySelector('.cart-item__name');
-        if (isGift && name && !row.querySelector('.rs-gift-tag')) {
-          name.insertAdjacentHTML('afterend', '<span class="rs-gift-tag">Free gift</span>');
-        }
       });
     }, 150);
   }
