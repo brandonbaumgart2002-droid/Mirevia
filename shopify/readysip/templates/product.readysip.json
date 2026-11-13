@@ -313,47 +313,6 @@
         "speed": 28
       }
     },
-    "problem": {
-      "type": "readysip-split",
-      "blocks": {
-        "b1": {
-          "type": "tick",
-          "settings": {
-            "title": "No panic-buying.",
-            "text": "You're not fighting over the last pallet of bottles."
-          }
-        },
-        "b2": {
-          "type": "tick",
-          "settings": {
-            "title": "No stockpile.",
-            "text": "A straw the size of a marker pen instead of a cupboard of bottled water."
-          }
-        },
-        "b3": {
-          "type": "tick",
-          "settings": {
-            "title": "No doomsday prepping.",
-            "text": "Just a sensible backup, sorted in two minutes."
-          }
-        }
-      },
-      "block_order": [
-        "b1",
-        "b2",
-        "b3"
-      ],
-      "settings": {
-        "image_right": false,
-        "surface": "canvas",
-        "eyebrow": "Why every home needs a backup",
-        "heading": "Your tap depends on things you don't control",
-        "body": "<p>City water needs power, pumps and pipes. A storm, a burst main or a boil-water notice can take any of them out, and when it happens bottled water is the first thing to disappear from the shelves.</p><p>ReadySip gives every person in your house their own drinking-water backup. It lives in a kitchen drawer or glovebox until the day you need it.</p>",
-        "button_label": "Choose your pack",
-        "button_link": "",
-        "anchor": ""
-      }
-    },
     "how-it-works": {
       "type": "readysip-steps",
       "blocks": {
@@ -392,68 +351,12 @@
       ],
       "settings": {
         "style": "numbers",
-        "surface": "soft",
+        "surface": "canvas",
         "eyebrow": "How it works",
         "heading": "Clean water in three steps",
         "intro": "Water passes through a pre-filter for sand and silt, carbon for taste and smell, then a membrane with pores about 0.1 micron wide. Bacteria and parasites are too big to fit through.",
         "footnote": "",
         "anchor": "how-it-works"
-      }
-    },
-    "ways": {
-      "type": "readysip-steps",
-      "blocks": {
-        "w1": {
-          "type": "step",
-          "settings": {
-            "icon": "sip",
-            "title": "Sip direct",
-            "text": "<p>Drink straight from a creek, rain barrel or tap under a boil notice.</p>",
-            "tip": ""
-          }
-        },
-        "w2": {
-          "type": "step",
-          "settings": {
-            "icon": "bottle",
-            "title": "Screw onto a bottle",
-            "text": "<p>Threads onto standard 28 mm drink bottles. Squeeze the bottle and drink.</p>",
-            "tip": ""
-          }
-        },
-        "w3": {
-          "type": "step",
-          "settings": {
-            "icon": "squeeze",
-            "title": "Squeeze into a cup",
-            "text": "<p>Fill the pouch and squeeze it through the filter into a cup. Easy for small hands and older ones.</p>",
-            "tip": ""
-          }
-        },
-        "w4": {
-          "type": "step",
-          "settings": {
-            "icon": "gravity",
-            "title": "Gravity drip",
-            "text": "<p>Hang the pouch with the tube attached and let it fill a bottle while you do something else.</p>",
-            "tip": ""
-          }
-        }
-      },
-      "block_order": [
-        "w1",
-        "w2",
-        "w3",
-        "w4"
-      ],
-      "settings": {
-        "style": "icons",
-        "surface": "canvas",
-        "eyebrow": "Squeeze, don't suck",
-        "heading": "Four ways to drink, so the whole family can use it",
-        "intro": "Filter straws are known for being hard to suck through, especially for kids and older parents. The ReadySip kit gives you three other ways.",
-        "footnote": "",
-        "anchor": ""
       }
     },
     "limits": {
@@ -468,47 +371,6 @@
         "no_heading": "Does not remove",
         "no_list": "Viruses | boil or use purification tablets as well\nChemicals and pesticides\nHeavy metals | such as lead\nFuel and oil\nSalt | not for seawater\nDissolved minerals | a TDS meter reading won't drop much",
         "callout": "<p><strong>Floodwater or sewage?</strong> Filter it with ReadySip, then boil it or treat it with purification tablets too. The straw handles bacteria, parasites and dirt. Boiling or tablets handle viruses.</p>"
-      }
-    },
-    "one-each": {
-      "type": "readysip-split",
-      "blocks": {
-        "p1": {
-          "type": "tick",
-          "settings": {
-            "title": "Every person.",
-            "text": "Kids, partner, parents."
-          }
-        },
-        "p2": {
-          "type": "tick",
-          "settings": {
-            "title": "Every car.",
-            "text": "Glovebox or door pocket."
-          }
-        },
-        "p3": {
-          "type": "tick",
-          "settings": {
-            "title": "Every bag.",
-            "text": "Go-bag, hiking pack, tackle box."
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3"
-      ],
-      "settings": {
-        "image_right": true,
-        "surface": "canvas",
-        "eyebrow": "One per person",
-        "heading": "One in the kitchen. One in every glovebox.",
-        "body": "<p>Sharing one straw doesn't work when the water's off. Give everyone their own, then put a spare where you'll actually be when it happens.</p><p>Each straw weighs about 2 oz, so a whole family's backup fits in one drawer. No rotating cases of bottled water, no garage full of jugs.</p>",
-        "button_label": "Choose your pack",
-        "button_link": "",
-        "anchor": ""
       }
     },
     "compare": {
@@ -596,113 +458,6 @@
         "col_2": "Basic straw",
         "col_3": "Bottled water",
         "footnote": "Compared with a typical sip-only survival straw sold on its own, and a stockpile of bottled water."
-      }
-    },
-    "gift": {
-      "type": "readysip-split",
-      "blocks": {
-        "g1": {
-          "type": "tick",
-          "settings": {
-            "title": "Stocking-stuffer size.",
-            "text": "About as long as a marker pen."
-          }
-        },
-        "g2": {
-          "type": "tick",
-          "settings": {
-            "title": "Useful from day one.",
-            "text": "Camping, hiking, the car kit, or the next boil notice."
-          }
-        },
-        "g3": {
-          "type": "tick",
-          "settings": {
-            "title": "Easy to split.",
-            "text": "Buy a pack, keep one, give the rest to the family."
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3"
-      ],
-      "settings": {
-        "image_right": false,
-        "surface": "soft",
-        "eyebrow": "Gift season",
-        "heading": "For the one who's always prepared",
-        "body": "<p>Dad, the camper, the friend with the go-bag, the parents who'd never buy one for themselves. ReadySip is a practical gift that shows you care whether they're OK.</p>",
-        "button_label": "Choose your pack",
-        "button_link": "",
-        "anchor": ""
-      }
-    },
-    "setups": {
-      "type": "readysip-steps",
-      "blocks": {
-        "f": {
-          "type": "step",
-          "settings": {
-            "icon": "home",
-            "title": "The family setup",
-            "text": "<p>One in the kitchen drawer, one in each glovebox, two in the go-bags.</p>",
-            "tip": "Everyone covered, plus the car. The Family 5-Pack does it in one box."
-          }
-        },
-        "g": {
-          "type": "step",
-          "settings": {
-            "icon": "gift",
-            "title": "The grandparent setup",
-            "text": "<p>One pack at home, one at the grandkids' house.</p>",
-            "tip": "Little ones use the squeeze pouch, so nobody has to suck hard."
-          }
-        },
-        "s": {
-          "type": "step",
-          "settings": {
-            "icon": "bolt",
-            "title": "The storm-season setup",
-            "text": "<p>In the storm kit, the truck and the kitchen, ready for the next outage or boil-water notice.</p>",
-            "tip": "Floodwater: filter it, then boil or treat it too."
-          }
-        },
-        "o": {
-          "type": "step",
-          "settings": {
-            "icon": "sip",
-            "title": "The trail setup",
-            "text": "<p>In the hiking pack, the tackle box and the 4WD.</p>",
-            "tip": "A backup for when the water you carried runs out."
-          }
-        },
-        "a": {
-          "type": "step",
-          "settings": {
-            "icon": "box",
-            "title": "The apartment setup",
-            "text": "<p>In a drawer, instead of a cupboard full of bottled water.</p>",
-            "tip": "No cases to store, rotate or carry up the stairs."
-          }
-        }
-      },
-      "block_order": [
-        "f",
-        "g",
-        "s",
-        "o",
-        "a"
-      ],
-      "settings": {
-        "style": "icons",
-        "surface": "soft",
-        "eyebrow": "Ideas for your setup",
-        "heading": "How families set theirs up",
-        "intro": "Five ways to place your straws so the right person has one when the water stops.",
-        "footnote": "",
-        "anchor": "setups"
       }
     },
     "reviews": {
@@ -847,14 +602,9 @@
     "announcement",
     "main",
     "ticker",
-    "problem",
     "how-it-works",
-    "ways",
     "limits",
-    "one-each",
-    "setups",
     "compare",
-    "gift",
     "reviews",
     "faq",
     "guarantee"

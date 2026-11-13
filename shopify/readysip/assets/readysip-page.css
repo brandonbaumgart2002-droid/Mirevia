@@ -596,3 +596,92 @@
    (beats the site layer's "html .pp-bar" rule; this file only loads on the ReadySip page). */
 html body .pp-bar { --pp-bar-bg: #0a2549; --pp-bar-fg: #ffffff; --pp-pill-bg: #dcad40; --pp-pill-fg: #0a2549; background: #0a2549; color: #ffffff; }
 html body .pp-bar .pp-bar__item::after { background: #dcad40; opacity: 1; }
+
+/* ==========================================================
+   Compact, centred layout (mobile first)
+   ========================================================== */
+:root { --rs-section-y: 36px; }
+@media (min-width: 750px) { :root { --rs-section-y: 56px; } }
+
+.rs-head { margin-bottom: 20px; }
+.rs-head .rs-lead { margin-top: 8px; }
+.rs-eyebrow { margin-bottom: 6px; }
+.rs-h2 { font-size: 28px; }
+.rs-lead { font-size: 15.5px; line-height: 1.5; }
+@media (min-width: 750px) {
+  .rs-h2 { font-size: 40px; }
+  .rs-lead { font-size: 17px; }
+}
+.rs-card { padding: 18px; border-radius: 14px; }
+
+/* Product area */
+.rs-product { padding: 12px 0 28px; }
+@media (min-width: 990px) { .rs-product { padding: 28px 0 48px; } }
+.rs-buybox__inner { gap: 14px; }
+.rs-buybox .rs-rating { align-self: center; }
+.rs-title, .rs-intro { text-align: center; }
+.rs-packs__legend { width: 100%; text-align: center; }
+.rs-igrid { margin: 0; }
+
+/* Ticker */
+.rs-marquee__item { padding: 10px 22px; font-size: 13px; }
+
+/* Card grids */
+.rs-steps__list, .rs-limits__grid, .rs-guarantee__cards, .rs-reviews__list { gap: 12px; }
+.rs-steps__item { align-items: center; text-align: center; gap: 8px; }
+.rs-steps__img { width: calc(100% + 36px); margin: -18px -18px 6px; }
+.rs-steps__tip { margin-top: 4px; text-align: center; }
+.rs-steps__num { width: 38px; height: 38px; font-size: 19px; }
+
+/* What it filters */
+.rs-limits__col { justify-items: center; text-align: center; gap: 12px; }
+.rs-limits__list { gap: 9px; justify-items: center; }
+.rs-limits__list li { grid-template-columns: 20px auto; justify-content: center; text-align: left; }
+.rs-callout { margin-top: 16px; padding: 14px 16px; text-align: center; border-left: 0; border-top: 4px solid var(--rs-cta); }
+.rs-callout--warn { border-top-color: var(--rs-gold); }
+
+/* Comparison table: fits a phone without sideways scrolling */
+.rs-compare__table { min-width: 0; table-layout: fixed; }
+.rs-compare__table th, .rs-compare__table td { padding: 10px 6px; }
+.rs-compare__table thead th { font-size: 11px; letter-spacing: 0.02em; line-height: 1.2; }
+.rs-compare__table tbody th { width: 46%; font-size: 13px; line-height: 1.3; padding-left: 12px; }
+.rs-compare__table .rs-icon { width: 20px; height: 20px; margin: 0 auto; }
+.rs-compare__text { font-size: 12px; }
+.rs-footnote { margin-top: 10px; font-size: 12px; }
+@media (min-width: 750px) {
+  .rs-compare__table th, .rs-compare__table td { padding: 14px 12px; }
+  .rs-compare__table thead th { font-size: 13px; }
+  .rs-compare__table tbody th { width: 52%; font-size: 15px; padding-left: 18px; }
+  .rs-compare__table .rs-icon { width: 24px; height: 24px; }
+  .rs-compare__text { font-size: 14px; }
+}
+
+/* Reviews */
+.rs-review { align-items: center; text-align: center; }
+.rs-review__by { margin-top: 4px; justify-content: center; }
+.rs-tabs { margin-bottom: 18px; }
+
+/* FAQ: one centred column */
+.rs-faq__grid { grid-template-columns: 1fr !important; max-width: 760px; margin: 0 auto; gap: 14px; }
+.rs-faq__intro { position: static !important; text-align: center; }
+.rs-faq__intro .rs-lead { margin-top: 6px; }
+.rs-faq .rs-acc__summary { min-height: 52px; padding: 10px 0; }
+.rs-faq .rs-acc__summary > span { text-align: center; padding-left: 14px; }
+.rs-faq .rs-acc__body { text-align: center; }
+.rs-faq .rs-acc__body :is(ul, ol) { text-align: left; display: inline-block; }
+
+/* Guarantee + closing call to action */
+.rs-guarantee__card { padding: 16px; gap: 6px; }
+.rs-guarantee__card .rs-icon { width: 30px; height: 30px; }
+.rs-guarantee__cards + .rs-final, .rs-final { margin-top: 28px; gap: 12px; }
+@media (max-width: 749px) {
+  .rs-btn--lg { width: 100%; padding: 0 20px; }
+  .rs-guarantee__cards { grid-template-columns: 1fr; }
+}
+
+/* Compact layout fixes */
+.rs-limits__list { width: fit-content; max-width: 100%; margin: 0 auto; justify-items: stretch; }
+.rs-limits__list li { grid-template-columns: 20px minmax(0, 1fr); justify-content: start; }
+.rs-compare__table th:first-child { width: 46%; }
+@media (min-width: 750px) { .rs-compare__table th:first-child { width: 52%; } }
+.rs.rs :is(.rs-guarantee__title, .rs-review__title) { font-family: var(--rs-font-display) !important; font-weight: 400 !important; text-transform: uppercase !important; letter-spacing: 0.03em; color: var(--rs-brand) !important; }
