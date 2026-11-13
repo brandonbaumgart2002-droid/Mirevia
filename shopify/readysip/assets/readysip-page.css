@@ -685,3 +685,36 @@ html body .pp-bar .pp-bar__item::after { background: #dcad40; opacity: 1; }
 .rs-compare__table th:first-child { width: 46%; }
 @media (min-width: 750px) { .rs-compare__table th:first-child { width: 52%; } }
 .rs.rs :is(.rs-guarantee__title, .rs-review__title) { font-family: var(--rs-font-display) !important; font-weight: 400 !important; text-transform: uppercase !important; letter-spacing: 0.03em; color: var(--rs-brand) !important; }
+
+/* ---------- Email sign-up ---------- */
+.rs-news { padding-top: var(--rs-section-y); padding-bottom: var(--rs-section-y); }
+.rs-news__card { max-width: 620px; margin: 0 auto; text-align: center; display: grid; gap: 10px; justify-items: center; }
+.rs-news__card .rs-lead { margin: 0; }
+.rs-news__form { width: 100%; margin-top: 8px; }
+.rs-news__row { display: flex; gap: 8px; width: 100%; }
+.rs.rs .rs-news__input {
+  flex: 1; min-width: 0; height: 52px; padding: 0 16px; border: 2px solid var(--rs-hairline) !important; border-radius: var(--rs-radius) !important;
+  background: #fff !important; color: var(--rs-ink) !important; font-size: 16px !important; box-shadow: none !important; outline: none;
+}
+.rs.rs .rs-news__input:focus { border-color: var(--rs-cta) !important; box-shadow: 0 0 0 3px rgba(18, 71, 238, 0.15) !important; }
+.rs.rs .rs-news__btn { min-height: 52px !important; padding: 0 22px !important; flex-shrink: 0; }
+.rs-news__success { padding: 14px 16px; border-radius: var(--rs-radius); background: var(--rs-ice); color: var(--rs-ink); font-weight: 700; }
+.rs-news__error { margin-top: 8px; color: var(--rs-danger); font-size: 14px; }
+.rs.rs .rs-news__fine { font-size: 13px !important; color: var(--rs-ink-muted) !important; }
+@media (max-width: 480px) {
+  .rs-news__row { flex-direction: column; }
+  .rs.rs .rs-news__btn { width: 100% !important; }
+}
+
+/* ---------- Theme footer: ReadySip colours on this page only ---------- */
+html body #fcf { --ink: #0a2549; --amber: #dcad40; background: #0a2549; color: #c6d3e1; }
+html body #fcf a { color: #e6edf6; }
+html body #fcf a:hover { color: #dcad40; }
+html body #fcf :is(.bottom, .fine) { color: #9fb3cc; }
+html body #fcf .bottom { border-top-color: rgba(255, 255, 255, 0.14); }
+html body #fcf .logo::after { color: #dcad40; }
+.rs-news__card { justify-items: stretch; }
+.rs-news__form { max-width: 520px; margin: 8px auto 0; }
+@media (max-width: 480px) {
+  .rs.rs .rs-news__input { flex: none; width: 100%; height: 52px; }
+}

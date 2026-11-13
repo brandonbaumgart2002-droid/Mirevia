@@ -1,0 +1,106 @@
+{%- comment -%} Mirevia footer (navy + amber). Self-contained, scoped under #fcf.
+  On the ReadySip Reserve Straw page it shows ReadySip links, support points and small print instead
+  of the Blackout Buddy ones (colours for that page come from readysip-page.css). {%- endcomment -%}
+{%- liquid
+  assign purl = all_products['blackout-buddy'].url | default: '/products/blackout-buddy'
+  assign is_readysip = false
+  if template.name == 'product' and product.handle == 'readysip-reserve-straw'
+    assign is_readysip = true
+    assign rs_url = product.url
+  endif
+-%}
+<style>
+#fcf{--ink:#0E1726;--amber:#F5A524;background:var(--ink);color:#AEB8C9;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+#fcf,#fcf *{box-sizing:border-box;margin:0;padding:0;letter-spacing:normal}
+#fcf span,#fcf div,#fcf p,#fcf a,#fcf li,#fcf small{font-family:'Inter',system-ui,sans-serif !important}
+#fcf a{color:#DDE3EC;text-decoration:none}
+#fcf a:hover{color:var(--amber)}
+#fcf .wrap{max-width:1200px;margin:0 auto;padding:52px 20px 26px}
+#fcf .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px}
+#fcf .logo img{width:150px;height:auto;filter:brightness(0) invert(1)}
+#fcf .logo .t{font-family:'Poppins',sans-serif !important;font-weight:700;font-size:24px;color:#fff;letter-spacing:.2em !important}
+#fcf .about{margin-top:14px;max-width:320px}
+#fcf h4{font-family:'Poppins',system-ui,sans-serif !important;font-size:14px;font-weight:700;color:#fff !important;text-transform:uppercase;letter-spacing:.1em !important;margin-bottom:14px}
+#fcf ul{list-style:none;display:grid;gap:8px}
+#fcf .trust li{display:flex;gap:8px;align-items:flex-start}
+#fcf .trust li::before{content:"";flex-shrink:0;width:7px;height:7px;margin-top:8px;border-radius:50%;background:var(--amber)}
+#fcf .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#8C97AB}
+#fcf .pay{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+#fcf .pay svg{width:38px;height:24px;display:block}
+#fcf .fine{margin-top:18px;font-size:12px;color:#8C97AB;max-width:900px}
+@media (max-width:900px){#fcf .top{grid-template-columns:1fr 1fr;gap:28px}#fcf .brand{grid-column:1/-1}}
+@media (max-width:520px){#fcf .wrap{padding:40px 20px 22px;text-align:center}#fcf .top{grid-template-columns:1fr}#fcf .about{margin-left:auto;margin-right:auto}#fcf .trust li{justify-content:center}#fcf .bottom{justify-content:center;text-align:center}#fcf .pay{justify-content:center}}
+</style>
+<footer id="fcf"{% if is_readysip %} class="fcf--readysip"{% endif %}>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <a class="logo" href="{% if is_readysip %}{{ rs_url }}{% else %}{{ purl }}{% endif %}" aria-label="{{ shop.name }}">
+          {%- if settings.logo != blank -%}{{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, loading: 'lazy' }}{%- else -%}<span class="t">MIREVIA</span>{%- endif -%}
+        </a>
+        <p class="about">{% if is_readysip %}{{ section.settings.readysip_about }}{% else %}{{ section.settings.about }}{% endif %}</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          {%- if is_readysip -%}
+            <li><a href="{{ rs_url }}">ReadySip Reserve Straw™</a></li>
+          {%- else -%}
+            <li><a href="{{ purl }}">Blackout Buddy™ Solar Power Bank</a></li>
+          {%- endif -%}
+          <li><a href="{{ routes.account_url }}">Track your order</a></li>
+          <li><a href="/pages/contact">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="/policies/refund-policy">Refund policy</a></li>
+          <li><a href="/policies/shipping-policy">Shipping policy</a></li>
+          <li><a href="/policies/privacy-policy">Privacy policy</a></li>
+          <li><a href="/policies/terms-of-service">Terms of service</a></li>
+          <li><a href="/pages/data-sharing-opt-out">Your privacy choices</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul class="trust">
+          <li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+          <li>30-day money-back guarantee</li>
+          {%- if is_readysip -%}
+            <li>Processed in 2–4 days, delivered in 6–12</li>
+          {%- else -%}
+            <li>12-month warranty</li>
+          {%- endif -%}
+          <li>Secure checkout</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">
+      {%- if is_readysip -%}
+        {{ section.settings.readysip_fine }}
+      {%- else -%}
+        Phone charge counts are estimates for a typical smartphone. Solar is a backup top-up, not the main way to charge; output varies with weather and season. Splash-resistant, not waterproof.
+      {%- endif -%}
+    </p>
+    <div class="bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <ul class="pay" aria-label="Payment methods">
+        {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Mirevia footer",
+  "settings": [
+    { "type": "textarea", "id": "about", "label": "About text", "default": "Mirevia makes Blackout Buddy™, the solar backup power bank with a built-in torch that keeps your phone charged through storms, campsites and long days out." },
+    { "type": "text", "id": "email", "label": "Support email", "default": "Customersupport@mirevia.com.co" },
+    { "type": "header", "content": "On the ReadySip page" },
+    { "type": "textarea", "id": "readysip_about", "label": "About text", "default": "ReadySip makes the Reserve Straw™, a pocket water filter kit so every person in your house has clean drinking water when the tap stops." },
+    { "type": "textarea", "id": "readysip_fine", "label": "Small print", "default": "Filters bacteria, parasites and sediment. Does not remove viruses, chemicals, heavy metals or salt. For floodwater, filter it and then boil it or use purification tablets as well." }
+  ],
+  "presets": [{ "name": "Mirevia footer" }]
+}
+{% endschema %}

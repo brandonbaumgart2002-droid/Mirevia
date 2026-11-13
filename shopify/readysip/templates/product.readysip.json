@@ -556,45 +556,18 @@
         "contact_link": "/pages/contact"
       }
     },
-    "guarantee": {
-      "type": "readysip-guarantee",
-      "blocks": {
-        "c1": {
-          "type": "card",
-          "settings": {
-            "icon": "shield",
-            "title": "Money-back guarantee",
-            "text": "<p>If it doesn't work for you within 30 days, send it back for a refund.</p>"
-          }
-        },
-        "c2": {
-          "type": "card",
-          "settings": {
-            "icon": "chat",
-            "title": "Real support",
-            "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>"
-          }
-        },
-        "c3": {
-          "type": "card",
-          "settings": {
-            "icon": "lock",
-            "title": "Secure checkout",
-            "text": "<p>Payments are handled by Shopify. We never see your card details.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+    "newsletter": {
+      "type": "readysip-newsletter",
       "settings": {
         "surface": "canvas",
-        "heading": "Sort your family's water plan in two minutes",
-        "text": "Better to have it and never need it than need it and not have it.",
-        "button_label": "Choose your pack",
-        "button_link": ""
+        "eyebrow": "Stay ready",
+        "heading": "Join the ReadySip list",
+        "text": "Restock alerts, storm-season prep tips and first word on new packs.",
+        "placeholder": "Your email address",
+        "button": "Sign up",
+        "success": "You're on the list. Check your inbox soon.",
+        "fineprint": "No spam. Unsubscribe anytime.",
+        "tags": "newsletter,readysip"
       }
     }
   },
@@ -607,6 +580,6 @@
     "compare",
     "reviews",
     "faq",
-    "guarantee"
+    "newsletter"
   ]
 }
