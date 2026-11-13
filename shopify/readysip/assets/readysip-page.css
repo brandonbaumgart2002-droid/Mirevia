@@ -460,3 +460,50 @@
 .rs-final { max-width: 720px; margin: 56px auto 0; text-align: center; display: grid; gap: 16px; justify-items: center; }
 .rs-guarantee__cards + .rs-final { margin-top: 56px; }
 .rs-final:first-child { margin-top: 0; }
+
+/* ---------- Theme-proofing ----------
+   Some themes (e.g. Elixir) force fonts, heading colours and button styles on every element with !important.
+   These rules are scoped to the ReadySip page (.rs) and doubled up (.rs.rs) so the page keeps its own look. */
+
+.rs.rs, .rs.rs :is(p, span, div, a, button, input, select, textarea, label, li, blockquote, figcaption, summary, strong, em, small, s, td, th, legend, output, details) {
+  font-family: var(--rs-font-body) !important;
+  letter-spacing: normal;
+}
+.rs.rs :is(h1, h2, .rs-h2, .rs-title__heading, .rs-packs__legend, .rs-buy__tagline, .rs-steps__num, .rs-review__title, .rs-guarantee__title) {
+  font-family: var(--rs-font-display) !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+}
+.rs.rs :is(h3, .rs-h3, .rs-packs__hint, .rs-eyebrow) { font-family: var(--rs-font-body) !important; }
+.rs.rs .rs-h3, .rs.rs h3 { font-weight: 800 !important; text-transform: none !important; }
+.rs.rs .rs-eyebrow { font-weight: 700 !important; letter-spacing: 0.12em !important; }
+.rs.rs .rs-title__heading { letter-spacing: 0.3px !important; }
+
+/* Heading and "title" colours */
+.rs.rs :is(h1, h2, h3, [class*="title"], [class*="heading"]) { color: var(--rs-ink) !important; }
+.rs.rs :is(.rs-h2, .rs-title__heading, .rs-packs__legend, .rs-review__title, .rs-guarantee__title) { color: var(--rs-brand) !important; }
+.rs.rs.rs-surface--brand :is(h1, h2, h3, .rs-h2) { color: var(--rs-on-dark) !important; }
+
+/* Buttons */
+.rs.rs .rs-btn {
+  font-family: var(--rs-font-body) !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border: 0 !important;
+  border-radius: var(--rs-radius) !important;
+  padding: 0 28px !important;
+  min-height: 52px !important;
+  line-height: 1 !important;
+}
+.rs.rs .rs-btn--block { min-height: 60px !important; font-size: 18px !important; width: 100% !important; }
+.rs.rs .rs-btn--lg { min-height: 60px !important; padding: 0 40px !important; font-size: 18px !important; }
+.rs.rs .rs-btn--cta { background: var(--rs-cta) !important; background-color: var(--rs-cta) !important; color: var(--rs-cta-ink) !important; box-shadow: 0 4px 0 var(--rs-brand) !important; }
+.rs.rs .rs-btn--cta:hover { background: var(--rs-cta-hover) !important; background-color: var(--rs-cta-hover) !important; }
+.rs.rs .rs-btn[disabled] { background: #d0d7e0 !important; background-color: #d0d7e0 !important; color: var(--rs-ink-muted) !important; box-shadow: none !important; }
+.rs.rs .rs-sticky .rs-btn { min-height: 48px !important; padding: 0 20px !important; font-size: 15px !important; }
+
+/* Links */
+.rs.rs :is(.rs-rte a, .rs-link) { color: var(--rs-cta) !important; }
+.rs.rs.rs-announce a { color: inherit !important; }
