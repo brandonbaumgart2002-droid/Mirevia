@@ -321,6 +321,7 @@
                           name="rs-pack-{{ section.id }}"
                           value="{{ tier_variant.id }}"
                           data-rs-pack
+                          data-straws="{{ qty }}"
                           {% if tier_variant.id == current_variant.id %}checked{% endif %}
                           {% unless tier_variant.available %}disabled{% endunless %}
                         >
@@ -366,6 +367,104 @@
               {%- elsif request.design_mode -%}
                 <p class="rs-editor-note" {{ block.shopify_attributes }}>Pack picker: none of the variant names in this block match this product's variants. Check the spelling, e.g. "5-Pack Family Kit".</p>
               {%- endif -%}
+
+            {%- when 'gifts' -%}
+              {%- liquid
+                comment
+                  Straws in each pack, read from the Pack picker block, so the cards can tell which gifts a pack unlocks.
+                endcomment
+                assign pack_map = ''
+                assign current_straws = 1
+                for pb in section.blocks
+                  if pb.type == 'packs'
+                    for i in (1..4)
+                      assign k_variant = 'tier_' | append: i | append: '_variant'
+                      assign k_qty = 'tier_' | append: i | append: '_qty'
+                      assign wanted = pb.settings[k_variant] | downcase | strip
+                      if wanted != blank
+                        for v in product.variants
+                          assign v_title = v.title | downcase | strip
+                          if v_title == wanted
+                            assign straws = pb.settings[k_qty] | default: 1
+                            if pack_map != ''
+                              assign pack_map = pack_map | append: ','
+                            endif
+                            assign pack_map = pack_map | append: '"' | append: v.id | append: '":' | append: straws
+                            if v.id == current_variant.id
+                              assign current_straws = straws
+                            endif
+                          endif
+                        endfor
+                      endif
+                    endfor
+                  endif
+                endfor
+                assign gift_json = ''
+              -%}
+              <div class="rs-gifts" data-rs-gifts {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}<p class="rs-gifts__heading">{{ block.settings.heading | escape }}</p>{%- endif -%}
+                <ul class="rs-gifts__list" role="list">
+                  {%- for n in (1..3) -%}
+                    {%- liquid
+                      assign pre = 'gift_' | append: n | append: '_'
+                      assign k_title = pre | append: 'title'
+                      assign k_product = pre | append: 'product'
+                      assign k_image = pre | append: 'image'
+                      assign k_min = pre | append: 'min'
+                      assign k_show_value = pre | append: 'show_value'
+                      assign k_locked_text = pre | append: 'locked_text'
+                      assign k_icon = pre | append: 'icon'
+                      assign g_title = block.settings[k_title]
+                      if g_title == blank
+                        continue
+                      endif
+                      assign g_product = block.settings[k_product]
+                      assign g_variant = nil
+                      if g_product != blank
+                        assign g_variant = g_product.selected_or_first_available_variant
+                      endif
+                      assign g_image = block.settings[k_image]
+                      if g_image == blank and g_product != blank
+                        assign g_image = g_product.featured_image
+                      endif
+                      assign g_min = block.settings[k_min] | default: 1
+                      assign g_unlocked = false
+                      if current_straws >= g_min
+                        assign g_unlocked = true
+                      endif
+                      assign g_value = 0
+                      if block.settings[k_show_value] and g_variant and g_variant.price > 0
+                        assign g_value = g_variant.price
+                      endif
+                      if g_variant
+                        if gift_json != ''
+                          assign gift_json = gift_json | append: ','
+                        endif
+                        assign gift_json = gift_json | append: '{"key":"' | append: g_product.handle | append: '","variant":' | append: g_variant.id | append: ',"min":' | append: g_min | append: '}'
+                      endif
+                      assign g_locked_text = block.settings[k_locked_text]
+                    -%}
+                    <li class="rs-gift{% if g_unlocked %} is-unlocked{% endif %}" data-rs-gift data-min="{{ g_min }}">
+                      <span class="rs-gift__badge">{{ block.settings.free_label | escape }}{% if g_value > 0 %} <s>{{ g_value | money }}</s>{% endif %}</span>
+                      <span class="rs-gift__media">
+                        {%- if g_image != blank -%}
+                          {{ g_image | image_url: width: 240 | image_tag: loading: 'lazy', alt: '', width: 120, height: 120, class: 'rs-gift__img' }}
+                        {%- else -%}
+                          {%- render 'readysip-icon', icon: block.settings[k_icon], size: 40 -%}
+                        {%- endif -%}
+                        <span class="rs-gift__lock" aria-hidden="true">{%- render 'readysip-icon', icon: 'lock', size: 18 -%}</span>
+                      </span>
+                      <span class="rs-gift__title">{{ g_title | escape }}</span>
+                      <span class="rs-gift__state" data-rs-gift-state data-locked="{{ g_locked_text | escape }}" data-unlocked="{{ block.settings.unlocked_text | escape }}">
+                        {%- if g_unlocked -%}{{ block.settings.unlocked_text | escape }}{%- else -%}{{ g_locked_text | escape }}{%- endif -%}
+                      </span>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+                <p class="rs-visually-hidden" aria-live="polite" data-rs-gifts-live></p>
+                {%- if block.settings.note != blank -%}<p class="rs-gifts__note">{{ block.settings.note | escape }}</p>{%- endif -%}
+                <script type="application/json" data-rs-gifts-json>{"packs":{ {{- pack_map -}} },"gifts":[{{ gift_json }}]}</script>
+              </div>
 
             {%- when 'variant_picker' -%}
               {%- unless product.has_only_default_variant -%}
@@ -708,6 +807,7 @@
         { "type": "text", "id": "tier_4_perk", "label": "Extra line" }
       ]
     },
+    {"type": "gifts", "name": "Free gift unlocks", "limit": 1, "settings": [{"type": "paragraph", "content": "Gift cards under the pack picker. Each one unlocks when the chosen pack has at least the set number of straws. Pick a product for a gift and it's added to the cart for free with qualifying packs (a $0 product, or one made free by an automatic discount). Leave the product empty for perks like free shipping."}, {"type": "text", "id": "heading", "label": "Heading", "default": "Unlock Free Gifts With Bundles"}, {"type": "text", "id": "free_label", "label": "Badge text", "default": "Free"}, {"type": "text", "id": "unlocked_text", "label": "Unlocked text", "default": "Unlocked"}, {"type": "text", "id": "note", "label": "Small print under the cards", "default": "Processed in 2–4 days, delivered in 6–12 days"}, {"type": "header", "content": "Gift 1"}, {"type": "text", "id": "gift_1_title", "label": "Title", "default": "Free shipping", "info": "Leave blank to hide this card."}, {"type": "product", "id": "gift_1_product", "label": "Gift product"}, {"type": "image_picker", "id": "gift_1_image", "label": "Image", "info": "Optional. Uses the gift product's image if empty."}, {"type": "select", "id": "gift_1_icon", "label": "Icon (when there's no image)", "default": "truck", "options": [{"value": "truck", "label": "Truck"}, {"value": "gift", "label": "Gift"}, {"value": "box", "label": "Box"}, {"value": "shield", "label": "Shield"}, {"value": "drop", "label": "Water drop"}, {"value": "bolt", "label": "Bolt"}]}, {"type": "number", "id": "gift_1_min", "label": "Unlocks at this many straws", "default": 1}, {"type": "text", "id": "gift_1_locked_text", "label": "Locked text", "default": "Included"}, {"type": "checkbox", "id": "gift_1_show_value", "label": "Show the product's price, crossed out", "default": false, "info": "Uses the gift product's real price in Shopify."}, {"type": "header", "content": "Gift 2"}, {"type": "text", "id": "gift_2_title", "label": "Title", "default": "Purification Tablets", "info": "Leave blank to hide this card."}, {"type": "product", "id": "gift_2_product", "label": "Gift product"}, {"type": "image_picker", "id": "gift_2_image", "label": "Image", "info": "Optional. Uses the gift product's image if empty."}, {"type": "select", "id": "gift_2_icon", "label": "Icon (when there's no image)", "default": "gift", "options": [{"value": "truck", "label": "Truck"}, {"value": "gift", "label": "Gift"}, {"value": "box", "label": "Box"}, {"value": "shield", "label": "Shield"}, {"value": "drop", "label": "Water drop"}, {"value": "bolt", "label": "Bolt"}]}, {"type": "number", "id": "gift_2_min", "label": "Unlocks at this many straws", "default": 2}, {"type": "text", "id": "gift_2_locked_text", "label": "Locked text", "default": "Unlocks with the 2-Pack"}, {"type": "checkbox", "id": "gift_2_show_value", "label": "Show the product's price, crossed out", "default": false, "info": "Uses the gift product's real price in Shopify."}, {"type": "header", "content": "Gift 3"}, {"type": "text", "id": "gift_3_title", "label": "Title", "default": "Blackout Buddy™ Solar Charger", "info": "Leave blank to hide this card."}, {"type": "product", "id": "gift_3_product", "label": "Gift product"}, {"type": "image_picker", "id": "gift_3_image", "label": "Image", "info": "Optional. Uses the gift product's image if empty."}, {"type": "select", "id": "gift_3_icon", "label": "Icon (when there's no image)", "default": "gift", "options": [{"value": "truck", "label": "Truck"}, {"value": "gift", "label": "Gift"}, {"value": "box", "label": "Box"}, {"value": "shield", "label": "Shield"}, {"value": "drop", "label": "Water drop"}, {"value": "bolt", "label": "Bolt"}]}, {"type": "number", "id": "gift_3_min", "label": "Unlocks at this many straws", "default": 5}, {"type": "text", "id": "gift_3_locked_text", "label": "Locked text", "default": "Unlocks with the 5-Pack"}, {"type": "checkbox", "id": "gift_3_show_value", "label": "Show the product's price, crossed out", "default": true, "info": "Uses the gift product's real price in Shopify."}]},
     { "type": "variant_picker", "name": "Variant buttons", "limit": 1, "settings": [ { "type": "paragraph", "content": "Plain option buttons. Use this instead of the pack picker if you prefer." } ] },
     {
       "type": "stock", "name": "Low stock note", "limit": 1,

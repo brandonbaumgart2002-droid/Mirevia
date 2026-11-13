@@ -13,7 +13,7 @@
         "shipping": {
           "type": "message",
           "settings": {
-            "text": "Free shipping on 2 or more straws. Delivered in 6–12 days.",
+            "text": "Free shipping on every order. Delivered in 6–12 days.",
             "link": ""
           }
         },
@@ -108,25 +108,25 @@
             "tier_1_title": "1 Straw Kit",
             "tier_1_sub": "For the glovebox or go-bag",
             "tier_1_badge": "",
-            "tier_1_perk": "",
+            "tier_1_perk": "Free shipping",
             "tier_2_variant": "2-Pack",
             "tier_2_qty": 2,
             "tier_2_title": "2-Pack",
             "tier_2_sub": "One for you, one for the car",
             "tier_2_badge": "",
-            "tier_2_perk": "Free shipping",
+            "tier_2_perk": "Free shipping + free purification tablets",
             "tier_3_variant": "5-Pack Family Kit",
             "tier_3_qty": 5,
             "tier_3_title": "Family 5-Pack",
             "tier_3_sub": "One for each person at home, plus the car",
             "tier_3_badge": "Best for families",
-            "tier_3_perk": "Free shipping",
+            "tier_3_perk": "Free shipping, tablets + Blackout Buddy™ charger",
             "tier_4_variant": "",
             "tier_4_qty": 10,
             "tier_4_title": "Extended Family 10-Pack",
             "tier_4_sub": "Cover parents and grandparents, or give a few as gifts",
             "tier_4_badge": "Best value",
-            "tier_4_perk": "Free shipping"
+            "tier_4_perk": "Free shipping, tablets + Blackout Buddy™ charger"
           }
         },
         "stock": {
@@ -202,7 +202,7 @@
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p><strong>Processing:</strong> orders are processed within 2–4 days.</p><p><strong>Delivery:</strong> 6–12 days, with tracking.</p><p><strong>Cost:</strong> free on orders of 2 or more straws.</p>"
+            "content": "<p><strong>Processing:</strong> orders are processed within 2–4 days.</p><p><strong>Delivery:</strong> 6–12 days, with tracking.</p><p><strong>Cost:</strong> free on every order.</p>"
           }
         },
         "works": {
@@ -224,6 +224,32 @@
             "open": false,
             "content": "<p><strong>30-day money-back guarantee.</strong> If it doesn't work for you, contact us within 30 days and we'll refund you.</p><p><strong>Damaged or faulty?</strong> Email us and we'll replace it or refund you.</p><p>Full details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
+        },
+        "gifts": {
+          "type": "gifts",
+          "settings": {
+            "heading": "Unlock Free Gifts With Bundles",
+            "free_label": "Free",
+            "unlocked_text": "Unlocked",
+            "note": "Processed in 2–4 days, delivered in 6–12 days",
+            "gift_1_title": "Free shipping",
+            "gift_1_icon": "truck",
+            "gift_1_min": 1,
+            "gift_1_locked_text": "Included",
+            "gift_1_show_value": false,
+            "gift_2_title": "Purification Tablets",
+            "gift_2_product": "readysip-purification-tablets-gift",
+            "gift_2_icon": "gift",
+            "gift_2_min": 2,
+            "gift_2_locked_text": "Unlocks with the 2-Pack",
+            "gift_2_show_value": false,
+            "gift_3_title": "Blackout Buddy™ Solar Charger",
+            "gift_3_product": "blackout-buddy",
+            "gift_3_icon": "gift",
+            "gift_3_min": 5,
+            "gift_3_locked_text": "Unlocks with the 5-Pack",
+            "gift_3_show_value": true
+          }
         }
       },
       "block_order": [
@@ -234,6 +260,7 @@
         "bullets",
         "price",
         "packs",
+        "gifts",
         "stock",
         "buy",
         "trustbox",

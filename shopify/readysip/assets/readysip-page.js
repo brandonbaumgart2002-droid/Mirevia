@@ -106,6 +106,119 @@
     }, true);
   }
 
+  /* ---------- Free gifts with packs ---------- */
+
+  // Config written by the "Free gift unlocks" block: straws per pack variant, and each gift's variant and unlock level.
+  function giftConfig() {
+    const el = document.querySelector('[data-rs-gifts-json]');
+    if (!el) return null;
+    try {
+      const cfg = JSON.parse(el.textContent);
+      return cfg.gifts && cfg.gifts.length ? cfg : null;
+    } catch (e) { return null; }
+  }
+  const GIFT_PROP = '_readysip_gift';
+  const cartRoot = () => (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  let giftSyncing = false;
+
+  // Makes the cart's free gift lines match the biggest ReadySip pack in it: adds gifts it has earned, removes ones it no longer has.
+  // Returns true when it changed the cart.
+  async function syncGifts() {
+    const cfg = giftConfig();
+    if (!cfg || giftSyncing) return false;
+    giftSyncing = true;
+    try {
+      const cart = await (await fetch(`${cartRoot()}cart.js`)).json();
+      let straws = 0;
+      cart.items.forEach((item) => {
+        const n = cfg.packs[String(item.variant_id)];
+        if (n && !(item.properties && item.properties[GIFT_PROP])) straws = Math.max(straws, n);
+      });
+      const wanted = cfg.gifts.filter((g) => straws >= g.min);
+      const updates = {};
+      const have = new Set();
+      cart.items.forEach((item) => {
+        const key = item.properties && item.properties[GIFT_PROP];
+        if (!key) return;
+        const keep = wanted.some((g) => g.key === key && g.variant === item.variant_id) && !have.has(key);
+        if (keep) {
+          have.add(key);
+          if (item.quantity !== 1) updates[item.key] = 1;
+        } else {
+          updates[item.key] = 0;
+        }
+      });
+      const adds = wanted.filter((g) => !have.has(g.key)).map((g) => ({ id: g.variant, quantity: 1, properties: { [GIFT_PROP]: g.key } }));
+      const json = { 'Content-Type': 'application/json', Accept: 'application/json' };
+      if (Object.keys(updates).length) {
+        await fetch(`${cartRoot()}cart/update.js?rs=1`, { method: 'POST', headers: json, body: JSON.stringify({ updates }) });
+      }
+      if (adds.length) {
+        await fetch(`${cartRoot()}cart/add.js?rs=1`, { method: 'POST', headers: json, body: JSON.stringify({ items: adds }) });
+      }
+      return Boolean(Object.keys(updates).length || adds.length);
+    } catch (e) {
+      return false;
+    } finally {
+      giftSyncing = false;
+    }
+  }
+
+  // Labels free gift lines in the cart drawer ("Free gift") and hides their quantity and remove controls.
+  let markTimer;
+  function markGiftLines() {
+    clearTimeout(markTimer);
+    markTimer = setTimeout(async () => {
+      if (!giftConfig()) return;
+      const rows = document.querySelectorAll('#CartDrawer [id^="CartDrawer-Item-"]');
+      if (!rows.length) return;
+      let cart;
+      try { cart = await (await fetch(`${cartRoot()}cart.js`)).json(); } catch (e) { return; }
+      cart.items.forEach((item, i) => {
+        const row = document.getElementById(`CartDrawer-Item-${i + 1}`);
+        if (!row) return;
+        const isGift = Boolean(item.properties && item.properties[GIFT_PROP]);
+        row.classList.toggle('rs-gift-line', isGift);
+        const name = row.querySelector('.cart-item__name');
+        if (isGift && name && !row.querySelector('.rs-gift-tag')) {
+          name.insertAdjacentHTML('afterend', '<span class="rs-gift-tag">Free gift</span>');
+        }
+      });
+    }, 150);
+  }
+
+  // Keeps gifts right when the shopper changes quantities or removes a pack in the drawer (the theme's own requests).
+  function watchCartForGifts() {
+    if (window.__rsGiftWatch || !giftConfig()) return;
+    window.__rsGiftWatch = true;
+    let pending;
+    const onCartRequest = () => {
+      clearTimeout(pending);
+      pending = setTimeout(async () => {
+        if (await syncGifts()) await refreshCartDrawer();
+        markGiftLines();
+      }, 700);
+    };
+    if ('PerformanceObserver' in window) {
+      try {
+        new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            if (/\/cart\/(change|update|add|clear)(\.js)?/.test(entry.name) && !/[?&]rs=1/.test(entry.name)) onCartRequest();
+          });
+        }).observe({ type: 'resource', buffered: false });
+      } catch (e) { /* older browsers: gifts still sync on add to cart */ }
+    }
+    const drawerRoot = document.querySelector('cart-drawer');
+    if (drawerRoot && 'MutationObserver' in window) {
+      // Only when cart rows are (re)drawn: the theme's timer rewrites its text every second.
+      const isRow = (n) => n.nodeType === 1 && (n.matches('[id^="CartDrawer-Item-"]') || n.querySelector('[id^="CartDrawer-Item-"]'));
+      new MutationObserver((mutations) => {
+        if (mutations.some((m) => Array.from(m.addedNodes).some(isRow))) markGiftLines();
+      }).observe(drawerRoot, { childList: true, subtree: true });
+    }
+    markGiftLines();
+  }
+
   /* ---------- Product section ---------- */
 
   class RsProduct {
@@ -128,12 +241,14 @@
         input.addEventListener('change', () => this.onOptionChange());
       });
 
+      this.giftsRoot = qs('[data-rs-gifts]', root);
       this.initGallery();
       this.initForm();
       this.initSticky();
       const idInput = qs('[data-rs-variant-id]', root);
       const current = idInput && this.variants.find((v) => String(v.id) === idInput.value);
       this.updateStock(current);
+      this.updateGifts(current);
       this.updateAvailability();
     }
 
@@ -200,6 +315,7 @@
       qsa('[data-rs-sticky-variant]', this.root).forEach((el) => { el.textContent = variant.title; });
 
       this.updateStock(variant);
+      this.updateGifts(variant);
       if (variant.featured_media) this.showMedia(variant.featured_media.id);
       setVariantParam(variant.id);
     }
@@ -269,6 +385,24 @@
     }
 
     /* Add to cart */
+    // Unlocks the gift cards the chosen pack earns.
+    updateGifts(variant) {
+      if (!this.giftsRoot || !variant) return;
+      const cfg = giftConfig();
+      const straws = (cfg && cfg.packs[String(variant.id)]) || 1;
+      let unlocked = 0;
+      const cards = qsa('[data-rs-gift]', this.giftsRoot);
+      cards.forEach((card) => {
+        const on = straws >= Number(card.dataset.min || 1);
+        if (on) unlocked += 1;
+        card.classList.toggle('is-unlocked', on);
+        const state = qs('[data-rs-gift-state]', card);
+        if (state) state.textContent = on ? state.dataset.unlocked : state.dataset.locked;
+      });
+      const live = qs('[data-rs-gifts-live]', this.giftsRoot);
+      if (live) live.textContent = `${unlocked} of ${cards.length} free gifts unlocked with this pack.`;
+    }
+
     initForm() {
       if (!this.form || !this.addButton) return;
       const label = qs('[data-rs-add-label]', this.addButton);
@@ -300,8 +434,16 @@
           const body = await response.json();
           if (!response.ok || body.status) throw new Error(body.description || body.message || 'Could not add to cart.');
           document.dispatchEvent(new CustomEvent('readysip:cart:added', { detail: body }));
+          const giftsChanged = await syncGifts();
           if (useDrawer) {
-            openCartDrawer(drawer, body);
+            if (giftsChanged) {
+              // Re-render with the gifts in the cart too.
+              const fresh = await (await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`)).json();
+              openCartDrawer(drawer, Object.assign({}, body, { sections: fresh }));
+            } else {
+              openCartDrawer(drawer, body);
+            }
+            markGiftLines();
           } else {
             status.innerHTML = `Added to your cart. <a href="${root}cart">View cart</a>`;
           }
@@ -405,6 +547,7 @@
 
   function init(scope = document) {
     initShippingProtection();
+    watchCartForGifts();
     qsa('[data-rs-product]', scope).forEach((root) => {
       if (!root.__rs) root.__rs = new RsProduct(root);
     });

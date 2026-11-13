@@ -469,7 +469,7 @@
   font-family: var(--rs-font-body) !important;
   letter-spacing: normal;
 }
-.rs.rs :is(h1, h2, .rs-h2, .rs-title__heading, .rs-packs__legend, .rs-buy__tagline, .rs-steps__num, .rs-review__title, .rs-guarantee__title) {
+.rs.rs :is(h1, h2, .rs-h2, .rs-title__heading, .rs-packs__legend, .rs-gifts__heading, .rs-buy__tagline, .rs-steps__num, .rs-review__title, .rs-guarantee__title) {
   font-family: var(--rs-font-display) !important;
   font-weight: 400 !important;
   text-transform: uppercase !important;
@@ -481,7 +481,7 @@
 
 /* Heading and "title" colours */
 .rs.rs :is(h1, h2, h3, [class*="title"], [class*="heading"]) { color: var(--rs-ink) !important; }
-.rs.rs :is(.rs-h2, .rs-title__heading, .rs-packs__legend, .rs-review__title, .rs-guarantee__title) { color: var(--rs-brand) !important; }
+.rs.rs :is(.rs-h2, .rs-title__heading, .rs-packs__legend, .rs-gifts__heading, .rs-review__title, .rs-guarantee__title) { color: var(--rs-brand) !important; }
 .rs.rs.rs-surface--brand :is(h1, h2, h3, .rs-h2) { color: var(--rs-on-dark) !important; }
 
 /* Buttons */
@@ -744,3 +744,37 @@ html body #CartDrawer :is(.cart__checkout-button, .pp-cup__btn):hover { backgrou
 html body #CartDrawer .quantity.cart-quantity { border-color: var(--rs-hairline) !important; }
 html body #CartDrawer .quantity__button:hover { background: var(--rs-ice) !important; }
 html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--top) { background: var(--rs-ice) !important; border-color: #d6e4f7 !important; }
+
+/* ---------- Free gift unlocks (under the pack picker) ---------- */
+.rs-gifts { display: grid; gap: 14px; margin-top: 4px; }
+.rs-gifts__heading { margin: 0; text-align: center; font-family: var(--rs-font-display); font-size: 20px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.03em; color: var(--rs-brand); }
+.rs-gifts__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.rs-gift { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0 0; padding: 20px 8px 12px; border: 2px solid var(--rs-hairline); border-radius: 14px; background: var(--rs-canvas); text-align: center; transition: border-color 0.25s var(--rs-ease), background-color 0.25s var(--rs-ease); }
+.rs-gift.is-unlocked { border-color: var(--rs-cta); background: var(--rs-ice); }
+.rs-gift__badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: var(--rs-ink-muted); color: #fff; font-size: 11px; font-weight: 800; line-height: 1.2; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: background-color 0.25s var(--rs-ease); }
+.rs-gift.is-unlocked .rs-gift__badge { background: var(--rs-cta); }
+.rs-gift__badge s { font-weight: 600; opacity: 0.8; letter-spacing: 0; }
+.rs-gift__media { position: relative; display: grid; place-items: center; width: 100%; height: 76px; border-radius: 10px; background: #fff; color: var(--rs-brand); overflow: hidden; }
+.rs-gift__img { width: 100%; height: 100%; object-fit: contain; padding: 4px; transition: filter 0.3s var(--rs-ease), opacity 0.3s var(--rs-ease); }
+.rs-gift:not(.is-unlocked) .rs-gift__img, .rs-gift:not(.is-unlocked) .rs-gift__media > .rs-icon { filter: blur(3px) grayscale(0.4); opacity: 0.55; }
+.rs-gift__lock { position: absolute; inset: 0; margin: auto; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--rs-brand); color: #fff; transition: opacity 0.2s var(--rs-ease), transform 0.2s var(--rs-ease); }
+.rs-gift.is-unlocked .rs-gift__lock { opacity: 0; transform: scale(0.6); }
+.rs-gift__title { font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--rs-ink); }
+.rs-gift__state { font-size: 11.5px; font-weight: 600; line-height: 1.25; color: var(--rs-ink-muted); }
+.rs-gift.is-unlocked .rs-gift__state { color: var(--rs-cta); }
+.rs-gift.is-unlocked .rs-gift__state::before { content: "\2713\00a0"; }
+.rs-gifts__note { margin: 0; text-align: center; font-size: 13px; color: var(--rs-ink-muted); }
+.rs.rs .rs-gift__title { color: var(--rs-ink) !important; }
+.rs.rs .rs-gift__badge { color: #fff !important; }
+@media (min-width: 750px) {
+  .rs-gift { padding: 22px 10px 14px; }
+  .rs-gift__media { height: 92px; }
+  .rs-gift__title { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rs-gift, .rs-gift__badge, .rs-gift__img, .rs-gift__lock { transition: none; }
+}
+
+/* Gift lines in the cart drawer (marked by readysip-page.js): no quantity or remove controls. */
+html body #CartDrawer .rs-gift-line :is(quantity-input, .quantity, cart-remove-button, .cart-remove-button, [name="remove"]) { display: none !important; }
+html body #CartDrawer .rs-gift-line .rs-gift-tag { display: inline-block; margin-top: 6px; padding: 3px 9px; border-radius: 999px; background: var(--rs-cta); color: #fff; font-family: var(--rs-font-body); font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
