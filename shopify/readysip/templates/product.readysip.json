@@ -18,17 +18,13 @@
         "intro": {
           "type": "intro",
           "settings": {
-            "text": "Boil-water notice. Burst main. A storm takes out the power, and the water goes with it.",
-            "promise": "Give every person in your house their own clean drinking water, ready in a drawer or glovebox."
+            "text": "",
+            "promise": "The last straw you'll need for clean water, whenever the tap stops."
           }
         },
-        "bullets": {
-          "type": "bullets",
-          "settings": {
-            "lines": "Filters bacteria and parasites | a 0.1-micron membrane blocks E. coli, giardia and crypto\nNo hard sucking | sip direct, screw onto a bottle, or squeeze into a cup for kids and grandparents\nWorks when the grid fails | no power, batteries, chemicals or waiting\nMarker-pen size, about 2 oz | one for every car, go-bag and kitchen drawer\nSet and forget | stays ready for years when kept sealed, dry and above freezing"
-          }
-        },
-        "price": { "type": "price", "settings": {} },
+        "benefits": {"type": "icon_grid", "settings": {"item_1_icon": "drop", "item_1_title": "Filters bacteria & parasites", "item_1_text": "0.1-micron membrane", "item_2_icon": "squeeze", "item_2_title": "No hard sucking", "item_2_text": "Sip, bottle or squeeze", "item_3_icon": "bolt", "item_3_title": "Works when the grid fails", "item_3_text": "No power or chemicals", "item_4_icon": "car", "item_4_title": "Glovebox size, 2 oz", "item_4_text": "One for every car and bag", "item_5_icon": "shield", "item_5_title": "Set and forget", "item_5_text": "Ready for years, sealed", "item_6_icon": "home", "item_6_title": "One per person", "item_6_text": "Kids and grandparents too"}},
+        "bullets": {"type": "bullets", "disabled": true, "settings": {"lines": "Filters bacteria and parasites | a 0.1-micron membrane blocks E. coli, giardia and crypto\nNo hard sucking | sip direct, screw onto a bottle, or squeeze into a cup for kids and grandparents\nWorks when the grid fails | no power, batteries, chemicals or waiting\nMarker-pen size, about 2 oz | one for every car, go-bag and kitchen drawer\nSet and forget | stays ready for years when kept sealed, dry and above freezing"}},
+        "price": { "type": "price", "disabled": true, "settings": {} },
         "packs": {
           "type": "packs",
           "settings": {
@@ -115,7 +111,7 @@
           }
         }
       },
-      "block_order": ["rating", "title", "intro", "bullets", "price", "packs", "stock", "buy", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
+      "block_order": ["rating", "title", "intro", "benefits", "bullets", "price", "packs", "stock", "buy", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
       "settings": {
         "brand": "#0a2549",
         "cta": "#1247ee",
