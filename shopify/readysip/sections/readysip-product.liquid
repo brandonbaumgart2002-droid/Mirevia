@@ -166,6 +166,15 @@
                     {%- if rating_count > 0 %} · {{ rating_count }} {{ block.settings.count_label | escape }}{% endif -%}
                   </span>
                 </a>
+              {%- elsif block.settings.manual_text != blank -%}
+                {%- liquid
+                  assign manual_score = block.settings.manual_score | default: '5' | plus: 0
+                  assign manual_pct = manual_score | times: 20
+                -%}
+                <p class="rs-rating rs-rating--manual" {{ block.shopify_attributes }}>
+                  <span class="rs-stars" style="--rs-rating: {{ manual_pct }}%;" aria-hidden="true"></span>
+                  <span class="rs-rating__text">{{ block.settings.manual_text | escape }}</span>
+                </p>
               {%- endif -%}
 
             {%- when 'title' -%}
@@ -585,7 +594,11 @@
       "settings": [
         { "type": "paragraph", "content": "Reads the product's reviews.rating and reviews.rating_count metafields, which Judge.me, Loox, Okendo and Shopify Product Reviews fill in. Hidden until you have real reviews." },
         { "type": "text", "id": "count_label", "label": "Count label", "default": "reviews" },
-        { "type": "text", "id": "reviews_anchor", "label": "Link to reviews", "default": "#reviews" }
+        { "type": "text", "id": "reviews_anchor", "label": "Link to reviews", "default": "#reviews" },
+        { "type": "header", "content": "Reviews from another platform" },
+        { "type": "paragraph", "content": "Shown only while the review app has no ratings for this product. Use it only for real reviews of this product (e.g. from your previous store), and keep the numbers accurate. Import those reviews into your review app so shoppers can read them; then this line is replaced automatically." },
+        { "type": "text", "id": "manual_score", "label": "Star score (out of 5)", "info": "e.g. 4.7" },
+        { "type": "text", "id": "manual_text", "label": "Rating text", "info": "e.g. 4.7/5 Stars from 2,800+ Verified Reviews" }
       ]
     },
     {

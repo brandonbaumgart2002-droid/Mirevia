@@ -529,3 +529,7 @@
 }
 .rs.rs .rs-title__heading { margin: 0 !important; }
 .rs.rs .rs-intro__promise { font-weight: 700 !important; font-size: 18px !important; line-height: 1.4 !important; color: var(--rs-ink) !important; margin: 0 !important; }
+
+/* Rating line above the title */
+.rs.rs .rs-rating { display: inline-flex; align-items: center; gap: 8px; margin: 0 !important; font-size: 14px !important; font-weight: 600 !important; color: var(--rs-ink) !important; text-decoration: none; }
+.rs.rs .rs-rating__text { font-size: 14px !important; font-weight: 600 !important; color: var(--rs-ink) !important; }

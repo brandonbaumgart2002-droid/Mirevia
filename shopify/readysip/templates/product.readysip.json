@@ -13,7 +13,7 @@
     "main": {
       "type": "readysip-product",
       "blocks": {
-        "rating": { "type": "rating", "settings": { "count_label": "reviews", "reviews_anchor": "#reviews" } },
+        "rating": { "type": "rating", "settings": { "count_label": "reviews", "reviews_anchor": "#reviews", "manual_score": "4.7", "manual_text": "4.7/5 Stars from 2,800+ Verified Reviews" } },
         "title": { "type": "title", "settings": { "eyebrow": "" } },
         "intro": {
           "type": "intro",
