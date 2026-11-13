@@ -25,7 +25,7 @@
         </ul>
       {%- endif -%}
       {%- if section.settings.button_label != blank -%}
-        <a class="rs-btn rs-btn--cta" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
+        <a class="rs-btn disable-global-button-styling rs-btn--cta" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
       {%- endif -%}
     </div>
   </div>

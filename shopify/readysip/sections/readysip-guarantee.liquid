@@ -19,7 +19,7 @@
         <h2 class="rs-h2">{{ section.settings.heading | escape }}</h2>
         {%- if section.settings.text != blank -%}<p class="rs-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a class="rs-btn rs-btn--cta rs-btn--lg" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
+          <a class="rs-btn disable-global-button-styling rs-btn--cta rs-btn--lg" href="{{ section.settings.button_link | default: '#rs-buy' }}" data-rs-scroll-buy>{{ section.settings.button_label | escape }}</a>
         {%- endif -%}
       </div>
     {%- endif -%}

@@ -374,7 +374,7 @@
                   <button
                     type="submit"
                     name="add"
-                    class="rs-btn rs-btn--cta rs-btn--block"
+                    class="rs-btn disable-global-button-styling rs-btn--cta rs-btn--block"
                     data-rs-add
                     data-rs-label="{{ block.settings.add_label | escape }}"
                     {% unless current_variant.available %}disabled{% endunless %}
@@ -472,7 +472,7 @@
           <p class="rs-sticky__title" data-rs-sticky-variant>{{ current_variant.title | escape }}</p>
           <p class="rs-sticky__price" data-rs-price>{{ current_variant.price | money }}</p>
         </div>
-        <button type="button" class="rs-btn rs-btn--cta" data-rs-sticky-add data-rs-label="{{ section.settings.sticky_label | escape }}" {% unless current_variant.available %}disabled{% endunless %}>
+        <button type="button" class="rs-btn disable-global-button-styling rs-btn--cta" data-rs-sticky-add data-rs-label="{{ section.settings.sticky_label | escape }}" {% unless current_variant.available %}disabled{% endunless %}>
           <span data-rs-add-label>{% if current_variant.available %}{{ section.settings.sticky_label | escape }}{% else %}Sold out{% endif %}</span>
         </button>
       </div>
