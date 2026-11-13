@@ -30,6 +30,27 @@
     window.history.replaceState(window.history.state, '', url.toString());
   }
 
+  /* ---------- Cart drawer ---------- */
+
+  // Puts the fresh cart drawer (and cart count) from a Section Rendering response on the page and opens it.
+  // Uses the theme's own cart-drawer element when it supports it, otherwise swaps the markup in directly.
+  function openCartDrawer(drawer, body) {
+    const sections = body.sections || {};
+    drawer.classList.remove('is-empty');
+    if (typeof drawer.renderContents === 'function' && sections['cart-drawer']) {
+      try { drawer.renderContents(body); return; } catch (e) { /* fall back below */ }
+    }
+    const parse = (html) => new DOMParser().parseFromString(html || '', 'text/html');
+    const fresh = parse(sections['cart-drawer']).querySelector('#CartDrawer');
+    const current = document.querySelector('#CartDrawer');
+    if (fresh && current) current.innerHTML = fresh.innerHTML;
+    const bubble = document.querySelector('#cart-icon-bubble');
+    const freshBubble = parse(sections['cart-icon-bubble']).querySelector('.shopify-section');
+    if (bubble && freshBubble) bubble.innerHTML = freshBubble.innerHTML;
+    if (typeof drawer.open === 'function') drawer.open();
+    else { drawer.classList.add('active', 'animate'); document.body.classList.add('overflow-hidden'); }
+  }
+
   /* ---------- Product section ---------- */
 
   class RsProduct {
@@ -41,7 +62,7 @@
       this.moneyFormat = data.moneyFormat;
       this.form = qs('[data-rs-form]', root);
       this.addButton = qs('[data-rs-add]', root);
-      this.stayOnPage = root.dataset.afterAdd === 'stay';
+      this.afterAdd = root.dataset.afterAdd || 'drawer'; // drawer | stay | cart
 
       qsa('[data-rs-pack]', root).forEach((input) => {
         input.addEventListener('change', () => {
@@ -203,20 +224,32 @@
         error.hidden = true;
         this.addButton.setAttribute('aria-busy', 'true');
         label.textContent = 'Adding…';
-        if (!this.stayOnPage) return; // native submit goes to the cart page
+        if (this.afterAdd === 'cart') return; // native submit goes to the cart page
 
         event.preventDefault();
+        event.stopImmediatePropagation();
         const root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+        const drawer = document.querySelector('cart-drawer');
+        const useDrawer = this.afterAdd === 'drawer' && drawer;
         try {
+          const data = new FormData(this.form);
+          if (useDrawer) {
+            data.append('sections', 'cart-drawer,cart-icon-bubble');
+            data.append('sections_url', window.location.pathname);
+          }
           const response = await fetch(`${root}cart/add.js`, {
             method: 'POST',
             headers: { Accept: 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-            body: new FormData(this.form),
+            body: data,
           });
           const body = await response.json();
-          if (!response.ok) throw new Error(body.description || body.message || 'Could not add to cart.');
-          status.innerHTML = `Added to your cart. <a href="${root}cart">View cart</a>`;
+          if (!response.ok || body.status) throw new Error(body.description || body.message || 'Could not add to cart.');
           document.dispatchEvent(new CustomEvent('readysip:cart:added', { detail: body }));
+          if (useDrawer) {
+            openCartDrawer(drawer, body);
+          } else {
+            status.innerHTML = `Added to your cart. <a href="${root}cart">View cart</a>`;
+          }
         } catch (err) {
           error.textContent = `${err.message} Please try again.`;
           error.hidden = false;
@@ -224,7 +257,7 @@
           this.addButton.removeAttribute('aria-busy');
           label.textContent = this.addButton.dataset.rsLabel;
         }
-      });
+      }, true);
 
       window.addEventListener('pageshow', () => {
         this.addButton.removeAttribute('aria-busy');
