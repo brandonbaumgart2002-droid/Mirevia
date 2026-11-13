@@ -591,3 +591,8 @@
   .rs-tbox__pay { margin-top: 10px; gap: 4px; }
   .rs-tbox__pay-icon { width: 34px; height: 22px; }
 }
+
+/* Theme's scrolling announcement bar: ReadySip colours on this page only
+   (beats the site layer's "html .pp-bar" rule; this file only loads on the ReadySip page). */
+html body .pp-bar { --pp-bar-bg: #0a2549; --pp-bar-fg: #ffffff; --pp-pill-bg: #dcad40; --pp-pill-fg: #0a2549; background: #0a2549; color: #ffffff; }
+html body .pp-bar .pp-bar__item::after { background: #dcad40; opacity: 1; }
