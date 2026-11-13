@@ -527,3 +527,5 @@
   .rs-igrid__icon .rs-icon { width: 24px; height: 24px; }
   .rs.rs .rs-igrid__title { font-size: 15px; }
 }
+.rs.rs .rs-title__heading { margin: 0 !important; }
+.rs.rs .rs-intro__promise { font-weight: 700 !important; font-size: 18px !important; line-height: 1.4 !important; color: var(--rs-ink) !important; margin: 0 !important; }
