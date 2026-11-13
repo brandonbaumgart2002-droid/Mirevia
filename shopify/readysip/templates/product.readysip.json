@@ -243,7 +243,7 @@
       },
       "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7"],
       "settings": {
-        "surface": "soft",
+        "surface": "canvas",
         "eyebrow": "Why the kit",
         "heading": "ReadySip vs the usual backup plan",
         "intro": "",
@@ -263,7 +263,7 @@
       "block_order": ["g1", "g2", "g3"],
       "settings": {
         "image_right": false,
-        "surface": "canvas",
+        "surface": "soft",
         "eyebrow": "Gift season",
         "heading": "For the one who's always prepared",
         "body": "<p>Dad, the camper, the friend with the go-bag, the parents who'd never buy one for themselves. ReadySip is a practical gift that shows you care whether they're OK.</p>",
@@ -272,9 +272,10 @@
         "anchor": ""
       }
     },
+    "setups": {"type": "readysip-steps", "blocks": {"f": {"type": "step", "settings": {"icon": "home", "title": "The family setup", "text": "<p>One in the kitchen drawer, one in each glovebox, two in the go-bags.</p>", "tip": "Everyone covered, plus the car. The Family 5-Pack does it in one box."}}, "g": {"type": "step", "settings": {"icon": "gift", "title": "The grandparent setup", "text": "<p>One pack at home, one at the grandkids' house.</p>", "tip": "Little ones use the squeeze pouch, so nobody has to suck hard."}}, "s": {"type": "step", "settings": {"icon": "bolt", "title": "The storm-season setup", "text": "<p>In the storm kit, the truck and the kitchen, ready for the next outage or boil-water notice.</p>", "tip": "Floodwater: filter it, then boil or treat it too."}}, "o": {"type": "step", "settings": {"icon": "sip", "title": "The trail setup", "text": "<p>In the hiking pack, the tackle box and the 4WD.</p>", "tip": "A backup for when the water you carried runs out."}}, "a": {"type": "step", "settings": {"icon": "box", "title": "The apartment setup", "text": "<p>In a drawer, instead of a cupboard full of bottled water.</p>", "tip": "No cases to store, rotate or carry up the stairs."}}}, "block_order": ["f", "g", "s", "o", "a"], "settings": {"style": "icons", "surface": "soft", "eyebrow": "Ideas for your setup", "heading": "How families set theirs up", "intro": "Five ways to place your straws so the right person has one when the water stops.", "footnote": "", "anchor": "setups"}},
     "reviews": {
       "type": "readysip-reviews",
-      "settings": { "surface": "canvas", "eyebrow": "Reviews", "heading": "What families say" }
+      "settings": { "surface": "canvas", "eyebrow": "Reviews", "heading": "What families say", "intro": "", "tabs": "families: Families\ngrandparents: Grandparents\nstorm: Storm & flood season\noutdoors: Hikers & campers\nsmall-space: Small-space homes" }
     },
     "faq": {
       "type": "readysip-faq",
@@ -309,5 +310,5 @@
       }
     }
   },
-  "order": ["announcement", "main", "ticker", "problem", "how-it-works", "ways", "limits", "one-each", "compare", "gift", "reviews", "faq", "guarantee"]
+  "order": ["announcement", "main", "ticker", "problem", "how-it-works", "ways", "limits", "one-each", "setups", "compare", "gift", "reviews", "faq", "guarantee"]
 }

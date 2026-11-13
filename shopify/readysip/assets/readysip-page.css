@@ -541,3 +541,24 @@
   .rs-pack__card--thumb { grid-template-columns: 20px 52px minmax(0, 1fr) auto; gap: 10px; padding: 14px 12px; }
   .rs-pack__thumb { width: 52px; height: 52px; }
 }
+
+/* Review tabs + photo testimonials */
+.rs-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto 28px; }
+.rs.rs .rs-tabs__tab {
+  min-height: 44px; padding: 0 18px; border: 2px solid var(--rs-hairline) !important; border-radius: 999px !important;
+  background: var(--rs-canvas) !important; color: var(--rs-ink) !important; font-size: 15px !important; font-weight: 700 !important;
+  cursor: pointer; text-transform: none !important; letter-spacing: 0 !important; box-shadow: none !important;
+}
+.rs.rs .rs-tabs__tab[aria-selected="true"] { background: var(--rs-brand) !important; border-color: var(--rs-brand) !important; color: #fff !important; }
+.rs-tabs__tab:focus-visible { outline: 3px solid var(--rs-cta); outline-offset: 3px; }
+.rs-review--photo { padding-top: 0; overflow: hidden; }
+.rs-review__image { width: calc(100% + 48px); max-width: none; margin: 0 -24px 6px; aspect-ratio: 4 / 5; object-fit: cover; }
+.rs-reviews__app { margin-top: 40px; }
+
+/* Five or six cards (setups section) */
+@media (min-width: 750px) {
+  .rs-steps__list--5, .rs-steps__list--6 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1100px) {
+  .rs-steps__list--5 { grid-template-columns: repeat(5, 1fr); }
+}
