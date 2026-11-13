@@ -1,8 +1,8 @@
 {%- comment -%}
   Top of the cart drawer: shipping progress (unlocked, since shipping is free on every order) and the
   auto-applied discount banner. Params: ship_text, banner (blank hides it), threshold (cents, 0 = free on every order)
-  ReadySip: when a ReadySip straw is in the cart (or the shopper is on its page) the banner shows the
-  ReadySip message instead; colours come from readysip-page.css.
+  ReadySip: when a ReadySip straw is in the cart (or the shopper is on its page) neither the shipping
+  bar nor the banner is shown.
 {%- endcomment -%}
 {%- liquid
   assign rs_mode = false
@@ -14,9 +14,6 @@
       assign rs_mode = true
     endif
   endfor
-  if rs_mode
-    assign banner = 'November Restock – Selling Fast'
-  endif
 
   assign t_threshold = threshold | default: 0 | plus: 0
   assign t_left = t_threshold | minus: cart.total_price
@@ -31,7 +28,8 @@
     endif
   endif
 -%}
-<div class="pp-ctop{% if rs_mode %} pp-ctop--readysip{% endif %}">
+{%- unless rs_mode -%}
+<div class="pp-ctop">
   <p class="pp-ctop__ship">
     {%- if t_left > 0 -%}
       You’re <strong class="pp-ctop__red">{{ t_left | money }}</strong> away from <strong class="pp-ctop__green">FREE SHIPPING!</strong>
@@ -41,4 +39,5 @@
   </p>
   <div class="pp-ctop__bar" aria-hidden="true"><span style="width: {{ t_pct }}%"></span></div>
 </div>
-{%- if banner != blank -%}<p class="pp-ctop__banner{% if rs_mode %} pp-ctop__banner--readysip{% endif %}">{{ banner }}</p>{%- endif -%}
+{%- if banner != blank -%}<p class="pp-ctop__banner">{{ banner }}</p>{%- endif -%}
+{%- endunless -%}
