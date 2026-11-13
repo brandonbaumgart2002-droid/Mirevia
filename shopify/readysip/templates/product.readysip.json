@@ -32,7 +32,8 @@
       ],
       "settings": {
         "interval": 5
-      }
+      },
+      "disabled": true
     },
     "main": {
       "type": "readysip-product",
