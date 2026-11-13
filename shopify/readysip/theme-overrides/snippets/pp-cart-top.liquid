@@ -2,7 +2,7 @@
   Top of the cart drawer: shipping progress (unlocked, since shipping is free on every order) and the
   auto-applied discount banner. Params: ship_text, banner (blank hides it), threshold (cents, 0 = free on every order)
   ReadySip: when a ReadySip straw is in the cart (or the shopper is on its page) neither the shipping
-  bar nor the banner is shown.
+  bar nor the banner is shown; an opt-in Shipping Protection switch is shown instead.
 {%- endcomment -%}
 {%- liquid
   assign rs_mode = false
@@ -41,3 +41,77 @@
 </div>
 {%- if banner != blank -%}<p class="pp-ctop__banner">{{ banner }}</p>{%- endif -%}
 {%- endunless -%}
+{%- if rs_mode -%}
+  {%- comment -%} ReadySip: optional shipping protection (opt-in; adds the Shipping Protection product). {%- endcomment -%}
+  {%- liquid
+    assign sp_product = all_products['mirevia-shipping-protection']
+    assign sp_variant = sp_product.selected_or_first_available_variant
+    assign sp_key = ''
+    for item in cart.items
+      if item.variant_id == sp_variant.id
+        assign sp_key = item.key
+      endif
+    endfor
+  -%}
+  {%- if sp_variant and sp_variant.available -%}
+    <style>
+      .rs-sp{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;margin:12px 16px 4px;padding:12px 14px;border:1.5px solid #d6e4f7;border-radius:12px;background:#eaf3fd;color:#0a2549;font-family:"Inter",system-ui,sans-serif}
+      .rs-sp.is-on{border-color:#1247ee;background:#fff}
+      .rs-sp__icon{color:#1247ee;display:block}
+      .rs-sp__title{margin:0;font-size:14px;font-weight:800;line-height:1.25;color:#0a2549}
+      .rs-sp__price{margin-left:4px;font-weight:700;color:#1247ee}
+      .rs-sp__text{margin:2px 0 0;font-size:12px;line-height:1.35;color:#5a6b82}
+      .rs-sp__switch{all:unset;box-sizing:border-box;position:relative;width:46px;height:26px;border-radius:999px;background:#c9d3df;cursor:pointer;transition:background .2s;flex-shrink:0}
+      .rs-sp__switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+      .rs-sp__switch[aria-checked="true"]{background:#1247ee}
+      .rs-sp__switch[aria-checked="true"]::after{transform:translateX(20px)}
+      .rs-sp__switch:focus-visible{outline:3px solid #dcad40;outline-offset:2px}
+      .rs-sp__switch[aria-busy="true"]{opacity:.6;cursor:progress}
+      @media (prefers-reduced-motion:reduce){.rs-sp__switch,.rs-sp__switch::after{transition:none}}
+    </style>
+    <div class="rs-sp{% if sp_key != '' %} is-on{% endif %}" data-rs-sp data-variant="{{ sp_variant.id }}" data-key="{{ sp_key }}">
+      <svg class="rs-sp__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div>
+        <p class="rs-sp__title" id="rs-sp-title">Shipping Protection<span class="rs-sp__price">{{ sp_variant.price | money }}</span></p>
+        <p class="rs-sp__text" id="rs-sp-text">Covers loss, theft or damage in transit. If your parcel goes missing or arrives damaged, we'll replace it free.</p>
+      </div>
+      <button type="button" class="rs-sp__switch disable-global-button-styling" role="switch" aria-checked="{% if sp_key != '' %}true{% else %}false{% endif %}" aria-labelledby="rs-sp-title" aria-describedby="rs-sp-text" data-rs-sp-switch></button>
+    </div>
+    <script>
+      (function () {
+        if (window.__rsSp) return; window.__rsSp = true;
+        var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+        function refreshDrawer() {
+          return fetch(window.location.pathname + '?sections=cart-drawer,cart-icon-bubble', { headers: { Accept: 'application/json' } })
+            .then(function (r) { return r.json(); })
+            .then(function (sections) {
+              var doc = new DOMParser().parseFromString(sections['cart-drawer'] || '', 'text/html');
+              var fresh = doc.querySelector('#CartDrawer');
+              var current = document.querySelector('#CartDrawer');
+              if (fresh && current) current.innerHTML = fresh.innerHTML;
+              var bubble = document.querySelector('#cart-icon-bubble');
+              if (bubble && sections['cart-icon-bubble']) {
+                var b = new DOMParser().parseFromString(sections['cart-icon-bubble'], 'text/html').querySelector('.shopify-section');
+                if (b) bubble.innerHTML = b.innerHTML;
+              }
+              var drawer = document.querySelector('cart-drawer');
+              if (drawer) drawer.classList.toggle('is-empty', false);
+            });
+        }
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest && e.target.closest('[data-rs-sp-switch]');
+          if (!btn || btn.getAttribute('aria-busy') === 'true') return;
+          e.preventDefault();
+          var box = btn.closest('[data-rs-sp]');
+          var on = btn.getAttribute('aria-checked') === 'true';
+          btn.setAttribute('aria-busy', 'true');
+          var req = on
+            ? fetch(root + 'cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ id: box.getAttribute('data-key'), quantity: 0 }) })
+            : fetch(root + 'cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: Number(box.getAttribute('data-variant')), quantity: 1 }] }) });
+          req.then(function (r) { if (!r.ok) throw new Error('cart'); return refreshDrawer(); })
+            .catch(function () { btn.removeAttribute('aria-busy'); });
+        });
+      })();
+    </script>
+  {%- endif -%}
+{%- endif -%}
