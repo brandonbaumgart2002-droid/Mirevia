@@ -66,7 +66,8 @@ Everything in **[square brackets]** is a placeholder that shows on the page unti
 - **Your product description says "Blocks 99.9% of bacteria & parasites."** The page itself doesn't quote a percentage. Keep it in the description only if the test report shows it.
 
 **Your policies**
-- Filled in from your product description: **60-day peace-of-mind guarantee**, **ships within 24 hours**, **free shipping on 2+ straws** (shown on the 2-, 5- and 10-Pack cards and in the announcement bar). Make sure your refund and shipping policies say the same.
+- **Guarantee: 30-day money-back** (you confirmed this). Your Shopify product description still says 60 days, so change that too.
+- Filled in from your product description: **ships within 24 hours**, **free shipping on 2+ straws** (shown on the 2-, 5- and 10-Pack cards and in the announcement bar). Make sure your refund and shipping policies say the same.
 - Still placeholders: delivery time **[5–7] business days** (Shipping accordion) and support reply time **[one business day]** (guarantee cards).
 
 **Comparison table**

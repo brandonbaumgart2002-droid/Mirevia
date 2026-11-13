@@ -68,7 +68,7 @@
         "trust": {
           "type": "trust",
           "settings": {
-            "item_1": "60-day peace-of-mind guarantee", "icon_1": "shield",
+            "item_1": "30-day money-back guarantee", "icon_1": "shield",
             "item_2": "Ships within 24 hours", "icon_2": "truck",
             "item_3": "Real people on support", "icon_3": "chat"
           }
@@ -111,7 +111,7 @@
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p><strong>Dispatch:</strong> ships within 24 hours.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> 60-day peace-of-mind guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+            "content": "<p><strong>Dispatch:</strong> ships within 24 hours.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Delivery:</strong> [5–7] business days after dispatch, with tracking.</p><p><strong>Guarantee:</strong> 30-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
         }
       },
@@ -289,7 +289,7 @@
         "q6": { "type": "question", "settings": { "question": "It clogged. Is it broken?", "answer": "<p>Usually it's just full of silt. Push clean water back through it with the syringe a few times. Next time, let murky water settle first, or pour it through a clean cloth, before you filter it.</p>" } },
         "q7": { "type": "question", "settings": { "question": "How long does it last? Does it expire?", "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Each straw is rated for up to 1,500 L, about a year of drinking water for one person. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>" } },
         "q8": { "type": "question", "settings": { "question": "Is this just a cheap copy of a big-brand straw?", "answer": "<p>The filter works the same way every hollow-fiber straw does. The difference is everything around it: a squeeze pouch and gravity tube so anyone can use it, a backflush syringe, clear first-use instructions, straight answers about what it can't do, and a guarantee if it doesn't work for you.</p>" } },
-        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>60-day peace-of-mind guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
+        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>30-day money-back guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"],
       "settings": { "surface": "soft", "eyebrow": "FAQ", "heading": "Questions, answered straight", "contact_text": "Still not sure? Contact us.", "contact_link": "/pages/contact" }
@@ -297,7 +297,7 @@
     "guarantee": {
       "type": "readysip-guarantee",
       "blocks": {
-        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within 60 days, send it back for a refund.</p>" } },
+        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within 30 days, send it back for a refund.</p>" } },
         "c2": { "type": "card", "settings": { "icon": "chat", "title": "Real support", "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>" } },
         "c3": { "type": "card", "settings": { "icon": "lock", "title": "Secure checkout", "text": "<p>Payments are handled by Shopify. We never see your card details.</p>" } }
       },
