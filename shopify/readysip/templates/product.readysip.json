@@ -3,18 +3,55 @@
     "announcement": {
       "type": "readysip-announcement",
       "blocks": {
-        "storm": { "type": "message", "settings": { "text": "Storm season is here. Sort your family's water plan in 2 minutes.", "link": "" } },
-        "shipping": { "type": "message", "settings": { "text": "Free shipping on 2 or more straws. Delivered in 6–12 days.", "link": "" } },
-        "gift": { "type": "message", "settings": { "text": "Gift idea: for the one who's always prepared.", "link": "" } }
+        "storm": {
+          "type": "message",
+          "settings": {
+            "text": "Storm season is here. Sort your family's water plan in 2 minutes.",
+            "link": ""
+          }
+        },
+        "shipping": {
+          "type": "message",
+          "settings": {
+            "text": "Free shipping on 2 or more straws. Delivered in 6–12 days.",
+            "link": ""
+          }
+        },
+        "gift": {
+          "type": "message",
+          "settings": {
+            "text": "Gift idea: for the one who's always prepared.",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["storm", "shipping", "gift"],
-      "settings": { "interval": 5 }
+      "block_order": [
+        "storm",
+        "shipping",
+        "gift"
+      ],
+      "settings": {
+        "interval": 5
+      }
     },
     "main": {
       "type": "readysip-product",
       "blocks": {
-        "rating": { "type": "rating", "settings": { "count_label": "reviews", "reviews_anchor": "#reviews", "manual_score": "", "manual_text": "" } },
-        "title": { "type": "title", "settings": { "eyebrow": "" } },
+        "rating": {
+          "type": "rating",
+          "settings": {
+            "count_label": "reviews",
+            "reviews_anchor": "#reviews",
+            "manual_score": "",
+            "manual_text": ""
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "eyebrow": ""
+          }
+        },
         "intro": {
           "type": "intro",
           "settings": {
@@ -22,9 +59,41 @@
             "promise": "The last straw you'll need for clean water, whenever the tap stops."
           }
         },
-        "benefits": {"type": "icon_grid", "settings": {"item_1_icon": "drop", "item_1_title": "Filters bacteria & parasites", "item_1_text": "0.1-micron membrane", "item_2_icon": "squeeze", "item_2_title": "No hard sucking", "item_2_text": "Sip, bottle or squeeze", "item_3_icon": "bolt", "item_3_title": "Works when the grid fails", "item_3_text": "No power or chemicals", "item_4_icon": "car", "item_4_title": "Glovebox size, 2 oz", "item_4_text": "One for every car and bag", "item_5_icon": "shield", "item_5_title": "Set and forget", "item_5_text": "Ready for years, sealed", "item_6_icon": "home", "item_6_title": "One per person", "item_6_text": "Kids and grandparents too"}},
-        "bullets": {"type": "bullets", "disabled": true, "settings": {"lines": "Filters bacteria and parasites | a 0.1-micron membrane blocks E. coli, giardia and crypto\nNo hard sucking | sip direct, screw onto a bottle, or squeeze into a cup for kids and grandparents\nWorks when the grid fails | no power, batteries, chemicals or waiting\nMarker-pen size, about 2 oz | one for every car, go-bag and kitchen drawer\nSet and forget | stays ready for years when kept sealed, dry and above freezing"}},
-        "price": { "type": "price", "disabled": true, "settings": {} },
+        "benefits": {
+          "type": "icon_grid",
+          "settings": {
+            "item_1_icon": "drop",
+            "item_1_title": "Filters bacteria & parasites",
+            "item_1_text": "0.1-micron membrane",
+            "item_2_icon": "squeeze",
+            "item_2_title": "No hard sucking",
+            "item_2_text": "Sip, bottle or squeeze",
+            "item_3_icon": "bolt",
+            "item_3_title": "Works when the grid fails",
+            "item_3_text": "No power or chemicals",
+            "item_4_icon": "car",
+            "item_4_title": "Glovebox size, 2 oz",
+            "item_4_text": "One for every car and bag",
+            "item_5_icon": "shield",
+            "item_5_title": "Set and forget",
+            "item_5_text": "Ready for years, sealed",
+            "item_6_icon": "home",
+            "item_6_title": "One per person",
+            "item_6_text": "Kids and grandparents too"
+          }
+        },
+        "bullets": {
+          "type": "bullets",
+          "disabled": true,
+          "settings": {
+            "lines": "Filters bacteria and parasites | a 0.1-micron membrane blocks E. coli, giardia and crypto\nNo hard sucking | sip direct, screw onto a bottle, or squeeze into a cup for kids and grandparents\nWorks when the grid fails | no power, batteries, chemicals or waiting\nMarker-pen size, about 2 oz | one for every car, go-bag and kitchen drawer\nSet and forget | stays ready for years when kept sealed, dry and above freezing"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {}
+        },
         "packs": {
           "type": "packs",
           "settings": {
@@ -59,34 +128,56 @@
             "tier_4_perk": "Free shipping"
           }
         },
-        "stock": { "type": "stock", "settings": { "threshold": 20, "text": "Only [count] left of this pack" } },
-        "buy": { "type": "buy_buttons", "settings": { "add_label": "Add to cart", "show_dynamic_checkout": false, "tagline": "Buy once. Store it. Be ready." } },
-        "payments": { "type": "payment_icons", "disabled": true, "settings": {} },
-        "trustbox": { "type": "trust_box", "settings": { "heading": "30-Day Money Back Guarantee", "subheading": "Clean water when you need it, or your money back.", "item_1": "Secure Checkout", "icon_1": "shield", "item_2": "Delivered in 6–12 Days", "icon_2": "truck", "item_3": "No Power Needed", "icon_3": "bolt", "show_payments": true } },
+        "stock": {
+          "type": "stock",
+          "settings": {
+            "threshold": 20,
+            "text": "Only [count] left of this pack"
+          }
+        },
+        "buy": {
+          "type": "buy_buttons",
+          "settings": {
+            "add_label": "Add to cart",
+            "show_dynamic_checkout": false,
+            "tagline": "Buy once. Store it. Be ready."
+          }
+        },
+        "payments": {
+          "type": "payment_icons",
+          "disabled": true,
+          "settings": {}
+        },
+        "trustbox": {
+          "type": "trust_box",
+          "settings": {
+            "heading": "30-Day Money Back Guarantee",
+            "subheading": "Clean water when you need it, or your money back.",
+            "item_1": "Secure Checkout",
+            "icon_1": "shield",
+            "item_2": "Delivered in 6–⁠12 Days",
+            "icon_2": "truck",
+            "item_3": "No Power Needed",
+            "icon_3": "bolt",
+            "show_payments": true
+          }
+        },
         "trust": {
           "type": "trust",
           "disabled": true,
           "settings": {
-            "item_1": "30-day money-back guarantee", "icon_1": "shield",
-            "item_2": "Delivered in 6–12 days", "icon_2": "truck",
-            "item_3": "Real people on support", "icon_3": "chat"
-          }
-        },
-        "quote": { "type": "quote", "settings": { "quote": "", "author": "", "stars": 5, "verified": true } },
-        "kit": {
-          "type": "accordion",
-          "settings": {
-            "heading": "What's in each kit",
-            "icon": "box",
-            "use_description": false,
-            "open": true,
-            "content": "<ul><li><strong>Reserve Straw filter</strong> with tethered caps</li><li><strong>Squeeze pouch</strong> for filling a cup or bottle</li><li><strong>Gravity drip tube</strong> so it can fill a bottle hands-free</li><li><strong>Backflush syringe</strong> to clear the filter after use</li><li><strong>Lanyard and carabiner</strong></li><li><strong>Soak-and-prime card</strong> with the 60-second first-use steps</li></ul><p>Packs contain one full kit per straw.</p>"
+            "item_1": "30-day money-back guarantee",
+            "icon_1": "shield",
+            "item_2": "Delivered in 6–12 days",
+            "icon_2": "truck",
+            "item_3": "Real people on support",
+            "icon_3": "chat"
           }
         },
         "how": {
           "type": "accordion",
           "settings": {
-            "heading": "How to use it",
+            "heading": "How to use",
             "icon": "steps",
             "use_description": false,
             "open": false,
@@ -100,21 +191,59 @@
             "icon": "list",
             "use_description": false,
             "open": false,
-            "content": "<ul><li><strong>Filter:</strong> hollow-fiber membrane, 0.1 micron</li><li><strong>Stages:</strong> pre-filter, activated carbon, membrane</li><li><strong>Filters:</strong> bacteria, parasites, sediment</li><li><strong>Rated capacity:</strong> up to 1,500 L (about 400 gallons) per straw</li><li><strong>Bottle thread:</strong> standard 28 mm</li><li><strong>Weight:</strong> about 2 oz (57 g)</li><li><strong>Length:</strong> about 7.5 in (19 cm)</li><li><strong>Materials:</strong> BPA-free food-contact plastic</li><li><strong>Storage:</strong> sealed, dry and above freezing</li></ul>"
+            "content": "<ul><li><strong>Filter:</strong> hollow-fiber membrane, 0.1 micron</li><li><strong>Stages:</strong> pre-filter, activated carbon, membrane</li><li><strong>Filters:</strong> bacteria, parasites, sediment</li><li><strong>Rated capacity:</strong> up to 1,500 L (about 400 gallons) per straw</li><li><strong>Bottle thread:</strong> standard 28 mm</li><li><strong>Weight:</strong> about 2 oz (57 g)</li><li><strong>Length:</strong> about 7.5 in (19 cm)</li><li><strong>Materials:</strong> BPA-free food-contact plastic</li><li><strong>Storage:</strong> sealed, dry and above freezing</li></ul><p><strong>In each kit:</strong> Reserve Straw filter with tethered caps, squeeze pouch, gravity drip tube, backflush syringe, lanyard and carabiner, and a soak-and-prime card. Packs contain one full kit per straw.</p>"
           }
         },
         "shipping": {
           "type": "accordion",
           "settings": {
-            "heading": "Shipping and returns",
+            "heading": "Shipping",
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p><strong>Processing:</strong> orders are processed within 2–4 days.</p><p><strong>Delivery:</strong> 6–12 days, with tracking.</p><p><strong>Shipping:</strong> free on orders of 2 or more straws.</p><p><strong>Guarantee:</strong> 30-day money-back guarantee. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+            "content": "<p><strong>Processing:</strong> orders are processed within 2–4 days.</p><p><strong>Delivery:</strong> 6–12 days, with tracking.</p><p><strong>Cost:</strong> free on orders of 2 or more straws.</p>"
+          }
+        },
+        "works": {
+          "type": "accordion",
+          "settings": {
+            "heading": "How does it work",
+            "icon": "drop",
+            "use_description": false,
+            "open": false,
+            "content": "<p>Water is drawn through three stages:</p><ol><li><strong>Pre-filter</strong> catches sand, silt and grit.</li><li><strong>Activated carbon</strong> reduces chlorine taste and smell.</li><li><strong>Hollow-fiber membrane</strong> with pores about 0.1 micron wide blocks bacteria and parasites, which are too big to fit through.</li></ol><p>No power, batteries or chemicals. It doesn't remove viruses, chemicals, heavy metals or salt, so for floodwater or anything that might contain sewage, filter it and then boil it or use purification tablets as well.</p>"
+          }
+        },
+        "refunds": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Guarantees and refunds",
+            "icon": "shield",
+            "use_description": false,
+            "open": false,
+            "content": "<p><strong>30-day money-back guarantee.</strong> If it doesn't work for you, contact us within 30 days and we'll refund you.</p><p><strong>Damaged or faulty?</strong> Email us and we'll replace it or refund you.</p><p>Full details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
           }
         }
       },
-      "block_order": ["rating", "title", "intro", "benefits", "bullets", "price", "packs", "stock", "buy", "trustbox", "payments", "trust", "quote", "kit", "how", "specs", "shipping"],
+      "block_order": [
+        "rating",
+        "title",
+        "intro",
+        "benefits",
+        "bullets",
+        "price",
+        "packs",
+        "stock",
+        "buy",
+        "trustbox",
+        "payments",
+        "trust",
+        "how",
+        "specs",
+        "works",
+        "shipping",
+        "refunds"
+      ],
       "settings": {
         "brand": "#0a2549",
         "cta": "#1247ee",
@@ -133,24 +262,86 @@
     "ticker": {
       "type": "readysip-marquee",
       "blocks": {
-        "t1": { "type": "item", "settings": { "text": "No batteries" } },
-        "t2": { "type": "item", "settings": { "text": "No chemicals" } },
-        "t3": { "type": "item", "settings": { "text": "0.1-micron membrane" } },
-        "t4": { "type": "item", "settings": { "text": "Sip, squeeze or gravity" } },
-        "t5": { "type": "item", "settings": { "text": "Fits a glovebox" } },
-        "t6": { "type": "item", "settings": { "text": "One per person" } }
+        "t1": {
+          "type": "item",
+          "settings": {
+            "text": "No batteries"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "text": "No chemicals"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "text": "0.1-micron membrane"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "text": "Sip, squeeze or gravity"
+          }
+        },
+        "t5": {
+          "type": "item",
+          "settings": {
+            "text": "Fits a glovebox"
+          }
+        },
+        "t6": {
+          "type": "item",
+          "settings": {
+            "text": "One per person"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6"],
-      "settings": { "surface": "soft", "speed": 28 }
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+      ],
+      "settings": {
+        "surface": "soft",
+        "speed": 28
+      }
     },
     "problem": {
       "type": "readysip-split",
       "blocks": {
-        "b1": { "type": "tick", "settings": { "title": "No panic-buying.", "text": "You're not fighting over the last pallet of bottles." } },
-        "b2": { "type": "tick", "settings": { "title": "No stockpile.", "text": "A straw the size of a marker pen instead of a cupboard of bottled water." } },
-        "b3": { "type": "tick", "settings": { "title": "No doomsday prepping.", "text": "Just a sensible backup, sorted in two minutes." } }
+        "b1": {
+          "type": "tick",
+          "settings": {
+            "title": "No panic-buying.",
+            "text": "You're not fighting over the last pallet of bottles."
+          }
+        },
+        "b2": {
+          "type": "tick",
+          "settings": {
+            "title": "No stockpile.",
+            "text": "A straw the size of a marker pen instead of a cupboard of bottled water."
+          }
+        },
+        "b3": {
+          "type": "tick",
+          "settings": {
+            "title": "No doomsday prepping.",
+            "text": "Just a sensible backup, sorted in two minutes."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
       "settings": {
         "image_right": false,
         "surface": "canvas",
@@ -165,11 +356,39 @@
     "how-it-works": {
       "type": "readysip-steps",
       "blocks": {
-        "s1": { "type": "step", "settings": { "icon": "drop", "title": "Soak, then prime", "text": "<p>Stand the bottom end in water for 60 seconds, then take 3–5 firm sips. A dry membrane feels blocked; a wet one flows.</p>", "tip": "This one step fixes most \"too hard to suck\" complaints about filter straws." } },
-        "s2": { "type": "step", "settings": { "icon": "sip", "title": "Drink your way", "text": "<p>Sip straight from a creek, rain barrel or boil-notice tap. Or screw it onto a bottle, or squeeze water through it from the pouch into a cup.</p>", "tip": "" } },
-        "s3": { "type": "step", "settings": { "icon": "drop", "title": "Backflush and store", "text": "<p>Push clean water back through with the syringe to clear the pores. Shake it dry, cap it and put it back in the drawer.</p>", "tip": "Keep it above freezing. Ice can crack the fibers without you seeing it." } }
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "drop",
+            "title": "Soak, then prime",
+            "text": "<p>Stand the bottom end in water for 60 seconds, then take 3–5 firm sips. A dry membrane feels blocked; a wet one flows.</p>",
+            "tip": "This one step fixes most \"too hard to suck\" complaints about filter straws."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "sip",
+            "title": "Drink your way",
+            "text": "<p>Sip straight from a creek, rain barrel or boil-notice tap. Or screw it onto a bottle, or squeeze water through it from the pouch into a cup.</p>",
+            "tip": ""
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "drop",
+            "title": "Backflush and store",
+            "text": "<p>Push clean water back through with the syringe to clear the pores. Shake it dry, cap it and put it back in the drawer.</p>",
+            "tip": "Keep it above freezing. Ice can crack the fibers without you seeing it."
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "style": "numbers",
         "surface": "soft",
@@ -183,12 +402,49 @@
     "ways": {
       "type": "readysip-steps",
       "blocks": {
-        "w1": { "type": "step", "settings": { "icon": "sip", "title": "Sip direct", "text": "<p>Drink straight from a creek, rain barrel or tap under a boil notice.</p>", "tip": "" } },
-        "w2": { "type": "step", "settings": { "icon": "bottle", "title": "Screw onto a bottle", "text": "<p>Threads onto standard 28 mm drink bottles. Squeeze the bottle and drink.</p>", "tip": "" } },
-        "w3": { "type": "step", "settings": { "icon": "squeeze", "title": "Squeeze into a cup", "text": "<p>Fill the pouch and squeeze it through the filter into a cup. Easy for small hands and older ones.</p>", "tip": "" } },
-        "w4": { "type": "step", "settings": { "icon": "gravity", "title": "Gravity drip", "text": "<p>Hang the pouch with the tube attached and let it fill a bottle while you do something else.</p>", "tip": "" } }
+        "w1": {
+          "type": "step",
+          "settings": {
+            "icon": "sip",
+            "title": "Sip direct",
+            "text": "<p>Drink straight from a creek, rain barrel or tap under a boil notice.</p>",
+            "tip": ""
+          }
+        },
+        "w2": {
+          "type": "step",
+          "settings": {
+            "icon": "bottle",
+            "title": "Screw onto a bottle",
+            "text": "<p>Threads onto standard 28 mm drink bottles. Squeeze the bottle and drink.</p>",
+            "tip": ""
+          }
+        },
+        "w3": {
+          "type": "step",
+          "settings": {
+            "icon": "squeeze",
+            "title": "Squeeze into a cup",
+            "text": "<p>Fill the pouch and squeeze it through the filter into a cup. Easy for small hands and older ones.</p>",
+            "tip": ""
+          }
+        },
+        "w4": {
+          "type": "step",
+          "settings": {
+            "icon": "gravity",
+            "title": "Gravity drip",
+            "text": "<p>Hang the pouch with the tube attached and let it fill a bottle while you do something else.</p>",
+            "tip": ""
+          }
+        }
       },
-      "block_order": ["w1", "w2", "w3", "w4"],
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
       "settings": {
         "style": "icons",
         "surface": "canvas",
@@ -216,11 +472,33 @@
     "one-each": {
       "type": "readysip-split",
       "blocks": {
-        "p1": { "type": "tick", "settings": { "title": "Every person.", "text": "Kids, partner, parents." } },
-        "p2": { "type": "tick", "settings": { "title": "Every car.", "text": "Glovebox or door pocket." } },
-        "p3": { "type": "tick", "settings": { "title": "Every bag.", "text": "Go-bag, hiking pack, tackle box." } }
+        "p1": {
+          "type": "tick",
+          "settings": {
+            "title": "Every person.",
+            "text": "Kids, partner, parents."
+          }
+        },
+        "p2": {
+          "type": "tick",
+          "settings": {
+            "title": "Every car.",
+            "text": "Glovebox or door pocket."
+          }
+        },
+        "p3": {
+          "type": "tick",
+          "settings": {
+            "title": "Every bag.",
+            "text": "Go-bag, hiking pack, tackle box."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "image_right": true,
         "surface": "canvas",
@@ -235,15 +513,79 @@
     "compare": {
       "type": "readysip-compare",
       "blocks": {
-        "r1": { "type": "row", "settings": { "label": "Clean water from a creek, tank or boil-notice tap", "col_1": "yes", "col_2": "yes", "col_3": "no" } },
-        "r2": { "type": "row", "settings": { "label": "Squeeze or gravity mode, no hard sucking", "col_1": "yes", "col_2": "no", "col_3": "—" } },
-        "r3": { "type": "row", "settings": { "label": "Backflush syringe included", "col_1": "yes", "col_2": "Rarely", "col_3": "—" } },
-        "r4": { "type": "row", "settings": { "label": "First-use soak-and-prime card", "col_1": "yes", "col_2": "no", "col_3": "—" } },
-        "r5": { "type": "row", "settings": { "label": "Tells you what it can't remove", "col_1": "yes", "col_2": "Rarely", "col_3": "—" } },
-        "r6": { "type": "row", "settings": { "label": "Fits in a glovebox", "col_1": "yes", "col_2": "yes", "col_3": "no" } },
-        "r7": { "type": "row", "settings": { "label": "No heavy cases to store or rotate", "col_1": "yes", "col_2": "yes", "col_3": "no" } }
+        "r1": {
+          "type": "row",
+          "settings": {
+            "label": "Clean water from a creek, tank or boil-notice tap",
+            "col_1": "yes",
+            "col_2": "yes",
+            "col_3": "no"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "label": "Squeeze or gravity mode, no hard sucking",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "—"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "label": "Backflush syringe included",
+            "col_1": "yes",
+            "col_2": "Rarely",
+            "col_3": "—"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "label": "First-use soak-and-prime card",
+            "col_1": "yes",
+            "col_2": "no",
+            "col_3": "—"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "label": "Tells you what it can't remove",
+            "col_1": "yes",
+            "col_2": "Rarely",
+            "col_3": "—"
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "label": "Fits in a glovebox",
+            "col_1": "yes",
+            "col_2": "yes",
+            "col_3": "no"
+          }
+        },
+        "r7": {
+          "type": "row",
+          "settings": {
+            "label": "No heavy cases to store or rotate",
+            "col_1": "yes",
+            "col_2": "yes",
+            "col_3": "no"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7"],
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7"
+      ],
       "settings": {
         "surface": "canvas",
         "eyebrow": "Why the kit",
@@ -258,11 +600,33 @@
     "gift": {
       "type": "readysip-split",
       "blocks": {
-        "g1": { "type": "tick", "settings": { "title": "Stocking-stuffer size.", "text": "About as long as a marker pen." } },
-        "g2": { "type": "tick", "settings": { "title": "Useful from day one.", "text": "Camping, hiking, the car kit, or the next boil notice." } },
-        "g3": { "type": "tick", "settings": { "title": "Easy to split.", "text": "Buy a pack, keep one, give the rest to the family." } }
+        "g1": {
+          "type": "tick",
+          "settings": {
+            "title": "Stocking-stuffer size.",
+            "text": "About as long as a marker pen."
+          }
+        },
+        "g2": {
+          "type": "tick",
+          "settings": {
+            "title": "Useful from day one.",
+            "text": "Camping, hiking, the car kit, or the next boil notice."
+          }
+        },
+        "g3": {
+          "type": "tick",
+          "settings": {
+            "title": "Easy to split.",
+            "text": "Buy a pack, keep one, give the rest to the family."
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3"],
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
       "settings": {
         "image_right": false,
         "surface": "soft",
@@ -274,35 +638,201 @@
         "anchor": ""
       }
     },
-    "setups": {"type": "readysip-steps", "blocks": {"f": {"type": "step", "settings": {"icon": "home", "title": "The family setup", "text": "<p>One in the kitchen drawer, one in each glovebox, two in the go-bags.</p>", "tip": "Everyone covered, plus the car. The Family 5-Pack does it in one box."}}, "g": {"type": "step", "settings": {"icon": "gift", "title": "The grandparent setup", "text": "<p>One pack at home, one at the grandkids' house.</p>", "tip": "Little ones use the squeeze pouch, so nobody has to suck hard."}}, "s": {"type": "step", "settings": {"icon": "bolt", "title": "The storm-season setup", "text": "<p>In the storm kit, the truck and the kitchen, ready for the next outage or boil-water notice.</p>", "tip": "Floodwater: filter it, then boil or treat it too."}}, "o": {"type": "step", "settings": {"icon": "sip", "title": "The trail setup", "text": "<p>In the hiking pack, the tackle box and the 4WD.</p>", "tip": "A backup for when the water you carried runs out."}}, "a": {"type": "step", "settings": {"icon": "box", "title": "The apartment setup", "text": "<p>In a drawer, instead of a cupboard full of bottled water.</p>", "tip": "No cases to store, rotate or carry up the stairs."}}}, "block_order": ["f", "g", "s", "o", "a"], "settings": {"style": "icons", "surface": "soft", "eyebrow": "Ideas for your setup", "heading": "How families set theirs up", "intro": "Five ways to place your straws so the right person has one when the water stops.", "footnote": "", "anchor": "setups"}},
+    "setups": {
+      "type": "readysip-steps",
+      "blocks": {
+        "f": {
+          "type": "step",
+          "settings": {
+            "icon": "home",
+            "title": "The family setup",
+            "text": "<p>One in the kitchen drawer, one in each glovebox, two in the go-bags.</p>",
+            "tip": "Everyone covered, plus the car. The Family 5-Pack does it in one box."
+          }
+        },
+        "g": {
+          "type": "step",
+          "settings": {
+            "icon": "gift",
+            "title": "The grandparent setup",
+            "text": "<p>One pack at home, one at the grandkids' house.</p>",
+            "tip": "Little ones use the squeeze pouch, so nobody has to suck hard."
+          }
+        },
+        "s": {
+          "type": "step",
+          "settings": {
+            "icon": "bolt",
+            "title": "The storm-season setup",
+            "text": "<p>In the storm kit, the truck and the kitchen, ready for the next outage or boil-water notice.</p>",
+            "tip": "Floodwater: filter it, then boil or treat it too."
+          }
+        },
+        "o": {
+          "type": "step",
+          "settings": {
+            "icon": "sip",
+            "title": "The trail setup",
+            "text": "<p>In the hiking pack, the tackle box and the 4WD.</p>",
+            "tip": "A backup for when the water you carried runs out."
+          }
+        },
+        "a": {
+          "type": "step",
+          "settings": {
+            "icon": "box",
+            "title": "The apartment setup",
+            "text": "<p>In a drawer, instead of a cupboard full of bottled water.</p>",
+            "tip": "No cases to store, rotate or carry up the stairs."
+          }
+        }
+      },
+      "block_order": [
+        "f",
+        "g",
+        "s",
+        "o",
+        "a"
+      ],
+      "settings": {
+        "style": "icons",
+        "surface": "soft",
+        "eyebrow": "Ideas for your setup",
+        "heading": "How families set theirs up",
+        "intro": "Five ways to place your straws so the right person has one when the water stops.",
+        "footnote": "",
+        "anchor": "setups"
+      }
+    },
     "reviews": {
       "type": "readysip-reviews",
-      "settings": { "surface": "canvas", "eyebrow": "Reviews", "heading": "What families say", "intro": "", "tabs": "families: Families\ngrandparents: Grandparents\nstorm: Storm & flood season\noutdoors: Hikers & campers\nsmall-space: Small-space homes" }
+      "settings": {
+        "surface": "canvas",
+        "eyebrow": "Reviews",
+        "heading": "What families say",
+        "intro": "",
+        "tabs": "families: Families\ngrandparents: Grandparents\nstorm: Storm & flood season\noutdoors: Hikers & campers\nsmall-space: Small-space homes"
+      }
     },
     "faq": {
       "type": "readysip-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "Why is it hard to suck through the first time?", "answer": "<p>The filter is a bundle of tiny hollow fibers, and they have to be wet before water flows. A brand-new, dry straw can feel blocked. Stand the bottom end in water for 60 seconds, then take 3–5 firm sips, and it opens up. If you'd rather not suck at all, screw it onto a bottle or use the squeeze pouch.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "Does it remove viruses? Is it safe for floodwater?", "answer": "<p>No filter straw removes viruses, and ReadySip doesn't either. It filters bacteria, parasites and dirt. For floodwater, or anything that might have sewage in it, filter it and then boil it or use purification tablets as well. It also doesn't remove chemicals, heavy metals, fuel or salt.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Why not just boil water?", "answer": "<p>Boiling needs fuel, a stove that works, and time, and it leaves the sediment in. ReadySip handles bacteria, parasites and dirt with no power at all. When the water could carry viruses, do both.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "How many do I need?", "answer": "<p>One per person, plus one for each car or go-bag. A couple is covered by the 2-Pack. A family of four is covered by the Family 5-Pack, with one left for the car. Bigger household, or covering the grandparents too? Add a 2-Pack to your 5-Pack.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "Can kids and older parents use it?", "answer": "<p>Yes. Fill the squeeze pouch, screw the straw on, and squeeze water into a cup. Nobody has to suck hard, and the gravity tube can fill a bottle with no effort at all.</p>" } },
-        "q6": { "type": "question", "settings": { "question": "It clogged. Is it broken?", "answer": "<p>Usually it's just full of silt. Push clean water back through it with the syringe a few times. Next time, let murky water settle first, or pour it through a clean cloth, before you filter it.</p>" } },
-        "q7": { "type": "question", "settings": { "question": "How long does it last? Does it expire?", "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Each straw is rated for up to 1,500 L, about a year of drinking water for one person. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>" } },
-        "q8": { "type": "question", "settings": { "question": "Is this just a cheap copy of a big-brand straw?", "answer": "<p>The filter works the same way every hollow-fiber straw does. The difference is everything around it: a squeeze pouch and gravity tube so anyone can use it, a backflush syringe, clear first-use instructions, straight answers about what it can't do, and a guarantee if it doesn't work for you.</p>" } },
-        "q9": { "type": "question", "settings": { "question": "What's your guarantee?", "answer": "<p>30-day money-back guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Why is it hard to suck through the first time?",
+            "answer": "<p>The filter is a bundle of tiny hollow fibers, and they have to be wet before water flows. A brand-new, dry straw can feel blocked. Stand the bottom end in water for 60 seconds, then take 3–5 firm sips, and it opens up. If you'd rather not suck at all, screw it onto a bottle or use the squeeze pouch.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Does it remove viruses? Is it safe for floodwater?",
+            "answer": "<p>No filter straw removes viruses, and ReadySip doesn't either. It filters bacteria, parasites and dirt. For floodwater, or anything that might have sewage in it, filter it and then boil it or use purification tablets as well. It also doesn't remove chemicals, heavy metals, fuel or salt.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Why not just boil water?",
+            "answer": "<p>Boiling needs fuel, a stove that works, and time, and it leaves the sediment in. ReadySip handles bacteria, parasites and dirt with no power at all. When the water could carry viruses, do both.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How many do I need?",
+            "answer": "<p>One per person, plus one for each car or go-bag. A couple is covered by the 2-Pack. A family of four is covered by the Family 5-Pack, with one left for the car. Bigger household, or covering the grandparents too? Add a 2-Pack to your 5-Pack.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can kids and older parents use it?",
+            "answer": "<p>Yes. Fill the squeeze pouch, screw the straw on, and squeeze water into a cup. Nobody has to suck hard, and the gravity tube can fill a bottle with no effort at all.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "It clogged. Is it broken?",
+            "answer": "<p>Usually it's just full of silt. Push clean water back through it with the syringe a few times. Next time, let murky water settle first, or pour it through a clean cloth, before you filter it.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "How long does it last? Does it expire?",
+            "answer": "<p>Sealed, dry and kept above freezing, it stays ready for years. Freezing can crack the fibers without you seeing it, so don't leave a used, wet straw in a freezing car. Each straw is rated for up to 1,500 L, about a year of drinking water for one person. Once it's been used, you'll know it's finished when the flow slows right down and backflushing no longer brings it back. Then replace it.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Is this just a cheap copy of a big-brand straw?",
+            "answer": "<p>The filter works the same way every hollow-fiber straw does. The difference is everything around it: a squeeze pouch and gravity tube so anyone can use it, a backflush syringe, clear first-use instructions, straight answers about what it can't do, and a guarantee if it doesn't work for you.</p>"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "What's your guarantee?",
+            "answer": "<p>30-day money-back guarantee. If it arrives damaged or doesn't work, email us and we'll replace it or refund you. See our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9"],
-      "settings": { "surface": "soft", "eyebrow": "FAQ", "heading": "Questions, answered straight", "contact_text": "Still not sure? Contact us.", "contact_link": "/pages/contact" }
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9"
+      ],
+      "settings": {
+        "surface": "soft",
+        "eyebrow": "FAQ",
+        "heading": "Questions, answered straight",
+        "contact_text": "Still not sure? Contact us.",
+        "contact_link": "/pages/contact"
+      }
     },
     "guarantee": {
       "type": "readysip-guarantee",
       "blocks": {
-        "c1": { "type": "card", "settings": { "icon": "shield", "title": "Money-back guarantee", "text": "<p>If it doesn't work for you within 30 days, send it back for a refund.</p>" } },
-        "c2": { "type": "card", "settings": { "icon": "chat", "title": "Real support", "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>" } },
-        "c3": { "type": "card", "settings": { "icon": "lock", "title": "Secure checkout", "text": "<p>Payments are handled by Shopify. We never see your card details.</p>" } }
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "shield",
+            "title": "Money-back guarantee",
+            "text": "<p>If it doesn't work for you within 30 days, send it back for a refund.</p>"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "chat",
+            "title": "Real support",
+            "text": "<p>Questions about using it? Email us and a person replies within [one business day].</p>"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "<p>Payments are handled by Shopify. We never see your card details.</p>"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
       "settings": {
         "surface": "canvas",
         "heading": "Sort your family's water plan in two minutes",
@@ -312,5 +842,20 @@
       }
     }
   },
-  "order": ["announcement", "main", "ticker", "problem", "how-it-works", "ways", "limits", "one-each", "setups", "compare", "gift", "reviews", "faq", "guarantee"]
+  "order": [
+    "announcement",
+    "main",
+    "ticker",
+    "problem",
+    "how-it-works",
+    "ways",
+    "limits",
+    "one-each",
+    "setups",
+    "compare",
+    "gift",
+    "reviews",
+    "faq",
+    "guarantee"
+  ]
 }

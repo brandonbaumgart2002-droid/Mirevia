@@ -578,3 +578,16 @@
   .rs.rs .rs-tbox__heading { font-size: 30px !important; }
   .rs.rs .rs-tbox__item span { font-size: 16px !important; }
 }
+
+/* Guarantee box: slimmer on phones */
+@media (max-width: 749px) {
+  .rs-tbox { padding: 14px 12px 12px; border-radius: 16px; border-width: 1.5px; }
+  .rs.rs .rs-tbox__heading { font-size: 20px !important; }
+  .rs.rs .rs-tbox__sub { font-size: 13.5px !important; margin-top: 4px !important; }
+  .rs-tbox__items { margin-top: 10px; padding: 10px 0; gap: 6px; border-top-width: 1px; border-bottom-width: 1px; }
+  .rs-tbox__item { grid-template-columns: auto auto; justify-content: center; align-items: center; gap: 5px; }
+  .rs-tbox__item .rs-icon { width: 18px; height: 18px; flex-shrink: 0; }
+  .rs.rs .rs-tbox__item span { font-size: 11.5px !important; line-height: 1.15; text-align: left; }
+  .rs-tbox__pay { margin-top: 10px; gap: 4px; }
+  .rs-tbox__pay-icon { width: 34px; height: 22px; }
+}
