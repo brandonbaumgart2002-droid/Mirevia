@@ -57,7 +57,16 @@
     if (!drawer) return;
     const res = await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`, { headers: { Accept: 'application/json' } });
     const sections = await res.json();
-    openCartDrawer(drawer, { sections });
+    // Swap the markup in directly: the theme's own re-render skips the top of the drawer.
+    const parse = (html) => new DOMParser().parseFromString(html || '', 'text/html');
+    const fresh = parse(sections['cart-drawer']).querySelector('#CartDrawer');
+    const current = document.querySelector('#CartDrawer');
+    if (fresh && current) current.innerHTML = fresh.innerHTML;
+    const bubble = document.querySelector('#cart-icon-bubble');
+    const freshBubble = parse(sections['cart-icon-bubble']).querySelector('.shopify-section');
+    if (bubble && freshBubble) bubble.innerHTML = freshBubble.innerHTML;
+    drawer.classList.remove('is-empty');
+    drawer.classList.add('active');
   }
 
   // Optional shipping protection switch in the cart drawer (markup comes from the pp-cart-top snippet).
