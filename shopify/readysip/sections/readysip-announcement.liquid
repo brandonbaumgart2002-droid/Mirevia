@@ -1,6 +1,6 @@
 {%- comment -%} Thin bar at the top of the product page. Rotates between messages. {%- endcomment -%}
-{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'readysip-pdp.js' | asset_url }}" defer></script>
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'readysip-page.js' | asset_url }}" defer></script>
 
 {%- if section.blocks.size > 0 -%}
   <div class="rs rs-announce" data-rs-announce data-interval="{{ section.settings.interval }}" role="region" aria-label="Announcements">

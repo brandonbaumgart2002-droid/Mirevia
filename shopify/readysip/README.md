@@ -22,7 +22,7 @@ It works alongside your current theme: your header, footer and cart stay as they
 | FAQ | `readysip-faq` | The 9 big objections, marked up for Google |
 | Guarantee | `readysip-guarantee` | Guarantee, support and secure-checkout cards, then a final "Choose your pack" |
 
-Files: `sections/` (9 sections), `snippets/readysip-icon.liquid` (icons), `assets/readysip-pdp.css` and `assets/readysip-pdp.js` (no apps or libraries), and `templates/product.readysip.json` (puts it together with the copy).
+Files: `sections/` (9 sections), `snippets/readysip-icon.liquid` (icons), `assets/readysip-page.css` and `assets/readysip-page.js` (no apps or libraries), and `templates/product.readysip.json` (puts it together with the copy).
 
 ## 1. Set up the product first
 
@@ -41,7 +41,7 @@ If you want different pack sizes, rename the variants and update the matching **
 2. On the copy click **… → Edit code**.
 3. **Sections**: for each file in `sections/`, click **Add a new section**, choose **liquid**, give it the same name (e.g. `readysip-product`), paste the file's contents over what's there, and save.
 4. **Snippets**: click **Add a new snippet**, name it `readysip-icon`, paste `snippets/readysip-icon.liquid`, and save.
-5. **Assets**: click **Add a new asset → Create a blank file**, make `readysip-pdp.css` and `readysip-pdp.js`, paste each one, and save.
+5. **Assets**: click **Add a new asset → Create a blank file**, make `readysip-page.css` and `readysip-page.js`, paste each one, and save.
 6. **Templates**: click **Add a new template**, choose **product**, type **JSON**, name it `readysip`, paste `templates/product.readysip.json`, and save.
 7. Open the product in **Products**, set **Theme template** to `readysip`, and save.
 8. Back in **Themes**, click **Customize** on the copy, open the product page, and add your images (see below). When you're happy, **Publish**.

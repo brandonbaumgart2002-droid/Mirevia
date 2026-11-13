@@ -1,5 +1,5 @@
 {%- comment -%} Numbered steps or icon cards (how it works, ways to drink). {%- endcomment -%}
-{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
 
 <section class="rs rs-steps rs-surface--{{ section.settings.surface }}" {% if section.settings.anchor != blank %}id="{{ section.settings.anchor | handleize }}"{% endif %}>
   <div class="rs-container">

@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap">
 {%- endunless -%}
-{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'readysip-pdp.js' | asset_url }}" defer></script>
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'readysip-page.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant

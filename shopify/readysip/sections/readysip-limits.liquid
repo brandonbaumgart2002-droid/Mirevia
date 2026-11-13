@@ -1,5 +1,5 @@
 {%- comment -%} Honest limits: what the straw filters and what it doesn't. {%- endcomment -%}
-{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign yes_lines = section.settings.yes_list | newline_to_br | split: '<br />'

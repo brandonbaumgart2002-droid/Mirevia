@@ -1,5 +1,5 @@
 {%- comment -%} Image beside text. Optional tick list and button. {%- endcomment -%}
-{{ 'readysip-pdp.css' | asset_url | stylesheet_tag }}
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
 
 <section class="rs rs-split rs-surface--{{ section.settings.surface }}" {% if section.settings.anchor != blank %}id="{{ section.settings.anchor | handleize }}"{% endif %}>
   <div class="rs-container rs-split__grid{% if section.settings.image_right %} rs-split__grid--reverse{% endif %}">
