@@ -215,6 +215,132 @@
     markGiftLines();
   }
 
+  /* ---------- Video testimonials slider ---------- */
+
+  function initVideoSlider(root) {
+    const track = qs('[data-rs-vids-track]', root);
+    if (!track) return;
+    const cards = qsa('[data-rs-vid]', track);
+    const prev = qs('[data-rs-vids-prev]', root);
+    const next = qs('[data-rs-vids-next]', root);
+    const nav = prev && prev.parentElement;
+    const autoplayOK = () => !reducedMotion() && !(navigator.connection && navigator.connection.saveData);
+
+    // Arrows move one screenful of cards; they're disabled at the ends and hidden when everything fits.
+    const step = () => {
+      const card = cards[0];
+      if (!card) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const per = Math.max(1, Math.floor((track.clientWidth + gap) / (card.offsetWidth + gap)));
+      return per * (card.offsetWidth + gap);
+    };
+    const updateNav = () => {
+      if (!nav) return;
+      const max = track.scrollWidth - track.clientWidth;
+      nav.hidden = max <= 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+    };
+    const behavior = () => (reducedMotion() ? 'auto' : 'smooth');
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: behavior() }));
+    if (next) next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: behavior() }));
+    track.addEventListener('scroll', () => window.requestAnimationFrame(updateNav), { passive: true });
+    window.addEventListener('resize', updateNav);
+    updateNav();
+
+    const videoOf = (card) => qs('video', card);
+    const setLabels = (card) => {
+      const v = videoOf(card);
+      const play = qs('[data-rs-vid-play]', card);
+      const sound = qs('[data-rs-vid-sound]', card);
+      const playing = card.classList.contains('is-playing');
+      if (play) {
+        play.setAttribute('aria-pressed', playing ? 'true' : 'false');
+        if (!play.dataset.label) play.dataset.label = play.getAttribute('aria-label');
+        play.setAttribute('aria-label', playing ? 'Pause video' : play.dataset.label);
+      }
+      if (sound && v) {
+        sound.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
+        sound.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+        card.classList.toggle('has-sound', !v.muted);
+      }
+    };
+    const muteOthers = (keep) => cards.forEach((card) => {
+      if (card === keep) return;
+      const v = videoOf(card);
+      if (!v) return;
+      v.muted = true;
+      if (card.classList.contains('is-playing')) {
+        card.classList.remove('is-playing');
+        if (!card.classList.contains('is-previewing')) v.pause();
+      }
+      setLabels(card);
+    });
+    const playWithSound = (card) => {
+      const v = videoOf(card);
+      if (!v) return;
+      muteOthers(card);
+      if (!card.classList.contains('is-playing') && card.classList.contains('is-previewing')) v.currentTime = 0;
+      v.preload = 'auto';
+      v.muted = false;
+      card.classList.add('is-playing');
+      delete card.dataset.userPaused;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => { card.classList.remove('is-playing'); setLabels(card); });
+      setLabels(card);
+    };
+
+    cards.forEach((card) => {
+      const v = videoOf(card);
+      if (!v) return;
+      v.muted = true;
+      v.setAttribute('playsinline', '');
+      v.removeAttribute('controls');
+      const play = qs('[data-rs-vid-play]', card);
+      const sound = qs('[data-rs-vid-sound]', card);
+      if (play) play.addEventListener('click', () => {
+        if (card.classList.contains('is-playing') && !v.paused) {
+          v.pause();
+          card.classList.remove('is-playing', 'is-previewing');
+          card.dataset.userPaused = '1';
+          setLabels(card);
+        } else {
+          playWithSound(card);
+        }
+      });
+      if (sound) sound.addEventListener('click', () => {
+        if (v.muted) playWithSound(card);
+        else { v.muted = true; setLabels(card); }
+      });
+      setLabels(card);
+    });
+
+    // Muted previews play while a card is on screen, and stop when it scrolls away.
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const card = entry.target;
+          const v = videoOf(card);
+          if (!v) return;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            if (!autoplayOK() || card.dataset.userPaused || card.classList.contains('is-playing')) return;
+            v.preload = 'auto';
+            v.muted = true;
+            const p = v.play();
+            if (p && p.then) p.then(() => card.classList.add('is-previewing')).catch(() => {});
+            setLabels(card);
+          } else {
+            v.pause();
+            v.muted = true;
+            card.classList.remove('is-playing', 'is-previewing');
+            setLabels(card);
+          }
+        });
+      }, { threshold: [0, 0.6] });
+      cards.forEach((card) => { if (videoOf(card)) io.observe(card); });
+    }
+  }
+
   /* ---------- Product section ---------- */
 
   class RsProduct {
@@ -549,6 +675,9 @@
     });
     qsa('[data-rs-reviews-tabs]', scope).forEach((root) => {
       if (!root.__rs) { root.__rs = true; initTabs(root); }
+    });
+    qsa('[data-rs-vids]', scope).forEach((root) => {
+      if (!root.__rs) { root.__rs = true; initVideoSlider(root); }
     });
     qsa('[data-rs-announce]', scope).forEach((root) => {
       if (!root.__rs) { root.__rs = true; initAnnounce(root); }

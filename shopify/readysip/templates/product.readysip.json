@@ -598,11 +598,85 @@
         "fineprint": "No spam. Unsubscribe anytime.",
         "tags": "newsletter,readysip"
       }
+    },
+    "video-reviews": {
+      "type": "readysip-video-reviews",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        },
+        "video_6": {
+          "type": "video",
+          "settings": {
+            "name": "",
+            "detail": "",
+            "quote": "",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5",
+        "video_6"
+      ],
+      "settings": {
+        "surface": "canvas",
+        "heading_1": "When the Tap Water Wasn’t Safe,",
+        "heading_2": "Their Family Was",
+        "subheading": "For boil-water notices, burst mains and storm outages, and for everyone at home who counts on you to keep them safe."
+      }
     }
   },
   "order": [
     "announcement",
     "main",
+    "video-reviews",
     "ticker",
     "how-it-works",
     "limits",

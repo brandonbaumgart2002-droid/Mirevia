@@ -779,3 +779,60 @@ html body #CartDrawer :is(.pp-ctop, .pp-cup, .social-proof-bar, .pp-cart-trust--
 
 /* Gift lines in the cart drawer (marked by readysip-page.js): no quantity or remove controls. */
 html body #CartDrawer .rs-gift-line :is(quantity-input, .quantity, cart-remove-button, .cart-remove-button, [name="remove"]) { display: none !important; }
+
+/* ---------- Video testimonials slider ---------- */
+.rs-vids__head { max-width: 860px; }
+.rs-vids__heading { margin: 0; display: grid; gap: 2px; font-family: var(--rs-font-body); font-weight: 800; font-size: clamp(28px, 7.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: var(--rs-brand); text-wrap: balance; }
+.rs-vids__accent { color: var(--rs-cta); font-style: italic; }
+.rs-vids__sub { max-width: 640px; margin: 14px auto 0; font-size: 16px; line-height: 1.55; color: var(--rs-body); text-wrap: pretty; }
+/* Beat the page's theme-proofing (Anton + uppercase on every h2) for this two-line headline. */
+.rs.rs h2.rs-vids__heading, .rs.rs h2.rs-vids__heading span { font-family: var(--rs-font-body) !important; font-weight: 800 !important; text-transform: none !important; letter-spacing: -0.02em !important; }
+.rs.rs h2.rs-vids__heading { color: var(--rs-brand) !important; }
+.rs.rs h2.rs-vids__heading .rs-vids__accent { color: var(--rs-cta) !important; font-style: italic !important; }
+
+.rs-vids__slider { position: relative; }
+.rs-vids__track { --rs-vid-w: 64%; list-style: none; margin: 0 calc(var(--rs-gutter) * -1); padding: 4px var(--rs-gutter) 8px; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--rs-gutter); overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.rs-vids__track::-webkit-scrollbar { display: none; }
+.rs-vids__track:focus-visible { outline: 3px solid var(--rs-gold); outline-offset: 2px; border-radius: 12px; }
+.rs-vid { flex: 0 0 var(--rs-vid-w); scroll-snap-align: start; }
+.rs-vid__frame { position: relative; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; background: var(--rs-brand); box-shadow: 0 6px 20px rgba(10, 37, 73, 0.14); isolation: isolate; }
+.rs.rs .rs-vid__video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover !important; display: block !important; border-radius: 0 !important; }
+.rs-vid__empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--rs-on-dark-muted); font-size: 14px; font-weight: 600; background: repeating-linear-gradient(135deg, #0d2c55 0 12px, #0a2549 12px 24px); }
+.rs-vid__play { all: unset; position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; cursor: pointer; }
+.rs-vid__play:focus-visible .rs-vid__play-icon { outline: 3px solid var(--rs-gold); outline-offset: 3px; }
+.rs-vid__play-icon { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: rgba(255, 255, 255, 0.94); color: var(--rs-brand); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); transition: opacity 0.2s var(--rs-ease), transform 0.2s var(--rs-ease); }
+.rs-vid .rs-vid__play-icon svg, .rs-vid .rs-vid__sound svg { display: block !important; }
+.rs-vid .rs-vid__play-icon .rs-vid__icon-pause, .rs-vid.is-playing .rs-vid__play-icon .rs-vid__icon-play { display: none !important; }
+.rs-vid.is-playing .rs-vid__play-icon .rs-vid__icon-pause { display: block !important; }
+.rs-vid.is-playing .rs-vid__play-icon { opacity: 0; transform: scale(0.85); }
+.rs-vid.is-playing .rs-vid__play:hover .rs-vid__play-icon, .rs-vid.is-playing .rs-vid__play:focus-visible .rs-vid__play-icon { opacity: 1; transform: none; }
+.rs-vid.is-previewing:not(.is-playing) .rs-vid__play-icon { width: 50px; height: 50px; }
+.rs-vid__sound { all: unset; position: absolute; top: 10px; right: 10px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(10, 37, 73, 0.72); color: #fff; cursor: pointer; }
+.rs-vid__sound:focus-visible { outline: 3px solid var(--rs-gold); outline-offset: 2px; }
+.rs-vid .rs-vid__sound .rs-vid__icon-sound, .rs-vid.has-sound .rs-vid__sound .rs-vid__icon-muted { display: none !important; }
+.rs-vid.has-sound .rs-vid__sound .rs-vid__icon-sound { display: block !important; }
+.rs-vid__label { position: absolute; top: 12px; left: 12px; z-index: 2; padding: 4px 9px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: var(--rs-brand); font-size: 11px; font-weight: 700; line-height: 1.2; }
+.rs-vid__caption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 44px 14px 14px; background: linear-gradient(to top, rgba(7, 27, 54, 0.88), rgba(7, 27, 54, 0)); color: #fff; pointer-events: none; text-align: left; }
+.rs-vid__quote { margin: 0 0 6px; font-size: 14px; font-weight: 600; line-height: 1.35; color: #fff; }
+.rs-vid__name { margin: 0; font-size: 13px; font-weight: 800; color: #fff; }
+.rs-vid__detail { font-weight: 500; color: var(--rs-on-dark-muted); }
+.rs.rs .rs-vid__caption :is(p, span) { color: inherit; }
+.rs.rs .rs-vid__quote, .rs.rs .rs-vid__name { color: #fff !important; }
+.rs.rs .rs-vid__detail { color: var(--rs-on-dark-muted) !important; }
+
+.rs-vids__nav { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+.rs-vids__arrow { all: unset; box-sizing: border-box; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--rs-hairline); background: var(--rs-canvas); color: var(--rs-brand); cursor: pointer; transition: background-color 0.2s var(--rs-ease), border-color 0.2s var(--rs-ease), opacity 0.2s var(--rs-ease); }
+.rs-vids__arrow:hover { background: var(--rs-ice); border-color: var(--rs-cta); }
+.rs-vids__arrow:focus-visible { outline: 3px solid var(--rs-gold); outline-offset: 2px; }
+.rs-vids__arrow[disabled] { opacity: 0.35; cursor: default; }
+.rs-vids__nav[hidden] { display: none; }
+
+@media (min-width: 600px) { .rs-vids__track { --rs-vid-w: calc((100% - 2 * 12px) / 2.6); } }
+@media (min-width: 990px) {
+  .rs-vids__track { --rs-vid-w: calc((100% - 3 * 16px) / 4); gap: 16px; margin: 0; padding-left: 0; padding-right: 0; scroll-padding-inline: 0; }
+  .rs-vids__sub { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rs-vids__track { scroll-behavior: auto; }
+  .rs-vid__play-icon, .rs-vids__arrow { transition: none; }
+}

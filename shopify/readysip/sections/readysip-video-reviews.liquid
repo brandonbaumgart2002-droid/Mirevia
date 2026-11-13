@@ -1,0 +1,114 @@
+{%- comment -%}
+  Video testimonials in a swipeable slider (9:16 cards). Add each customer's video as a block.
+  Videos play muted while on screen; tapping one plays it with sound (and mutes the others).
+  The section stays hidden on the live store until at least one block has a video.
+{%- endcomment -%}
+{{ 'readysip-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'readysip-page.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign video_count = 0
+  for block in section.blocks
+    if block.settings.video != blank
+      assign video_count = video_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if video_count > 0 or request.design_mode -%}
+  <section class="rs rs-vids rs-surface--{{ section.settings.surface }}" id="video-reviews" data-rs-vids aria-labelledby="rs-vids-{{ section.id }}">
+    <div class="rs-container">
+      <header class="rs-head rs-vids__head">
+        <h2 class="rs-vids__heading" id="rs-vids-{{ section.id }}">
+          <span class="rs-vids__line">{{ section.settings.heading_1 | escape }}</span>
+          {%- if section.settings.heading_2 != blank -%}<span class="rs-vids__accent">{{ section.settings.heading_2 | escape }}</span>{%- endif -%}
+        </h2>
+        {%- if section.settings.subheading != blank -%}<p class="rs-vids__sub">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+      </header>
+
+      {%- if video_count == 0 -%}
+        <p class="rs-editor-note">Video testimonials: add each customer's video to a block. This section stays hidden on the live store until at least one block has a video.</p>
+      {%- endif -%}
+
+      <div class="rs-vids__slider">
+        <ul class="rs-vids__track" role="list" data-rs-vids-track tabindex="0" aria-label="Customer videos">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.video != blank or request.design_mode -%}
+              {%- liquid
+                assign who = block.settings.name | default: 'a customer'
+              -%}
+              <li class="rs-vid" {{ block.shopify_attributes }} data-rs-vid>
+                <div class="rs-vid__frame">
+                  {%- if block.settings.video != blank -%}
+                    {%- liquid
+                      assign poster = block.settings.poster | default: block.settings.video.preview_image
+                    -%}
+                    {{ block.settings.video | video_tag: muted: true, loop: true, controls: false, playsinline: true, preload: 'none', class: 'rs-vid__video', image_size: '720x', poster: poster }}
+                    <button type="button" class="rs-vid__play disable-global-button-styling" data-rs-vid-play aria-label="Play video from {{ who | escape }} with sound" aria-pressed="false">
+                      <span class="rs-vid__play-icon" aria-hidden="true">
+                        <svg class="rs-vid__icon-play" viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg>
+                        <svg class="rs-vid__icon-pause" viewBox="0 0 24 24" width="22" height="22"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                    <button type="button" class="rs-vid__sound disable-global-button-styling" data-rs-vid-sound aria-label="Turn sound on" aria-pressed="false">
+                      <svg class="rs-vid__icon-muted" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h3l5-4v14l-5-4H4z" fill="currentColor"/><path d="m16 9 5 6m0-6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      <svg class="rs-vid__icon-sound" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h3l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                  {%- else -%}
+                    <div class="rs-vid__empty">Add a video</div>
+                  {%- endif -%}
+                  {%- if block.settings.label != blank -%}<span class="rs-vid__label">{{ block.settings.label | escape }}</span>{%- endif -%}
+                  {%- if block.settings.name != blank or block.settings.quote != blank -%}
+                    <div class="rs-vid__caption">
+                      {%- if block.settings.quote != blank -%}<p class="rs-vid__quote">{{ block.settings.quote | escape }}</p>{%- endif -%}
+                      {%- if block.settings.name != blank -%}
+                        <p class="rs-vid__name">{{ block.settings.name | escape }}{% if block.settings.detail != blank %}<span class="rs-vid__detail"> · {{ block.settings.detail | escape }}</span>{% endif %}</p>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <div class="rs-vids__nav">
+          <button type="button" class="rs-vids__arrow disable-global-button-styling" data-rs-vids-prev aria-label="Previous videos">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="rs-vids__arrow disable-global-button-styling" data-rs-vids-next aria-label="Next videos">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ReadySip video reviews",
+  "settings": [
+    { "type": "select", "id": "surface", "label": "Background", "default": "canvas", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Off-white" } ] },
+    { "type": "text", "id": "heading_1", "label": "Heading, first line", "default": "When the Tap Water Wasn’t Safe," },
+    { "type": "text", "id": "heading_2", "label": "Heading, second line (blue italic)", "default": "Their Family Was" },
+    { "type": "textarea", "id": "subheading", "label": "Text under the heading", "default": "For boil-water notices, burst mains and storm outages, and for everyone at home who counts on you to keep them safe." }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video", "info": "Upright (9:16) phone videos work best." },
+        { "type": "image_picker", "id": "poster", "label": "Cover image", "info": "Optional. Uses the video's own preview frame if empty." },
+        { "type": "text", "id": "name", "label": "Customer name", "info": "First name and initial, e.g. Sarah M." },
+        { "type": "text", "id": "detail", "label": "Detail", "info": "Optional, e.g. a location or 'mum of three'." },
+        { "type": "text", "id": "quote", "label": "Short quote", "info": "Optional. Their own words from the video." },
+        { "type": "text", "id": "label", "label": "Label", "info": "Optional tag in the corner. If the customer was paid or given free product for the video, say so here, e.g. 'Received free product'." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "ReadySip video reviews", "blocks": [ { "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" } ] }
+  ]
+}
+{% endschema %}
