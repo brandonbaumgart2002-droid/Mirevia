@@ -1,0 +1,111 @@
+{%- comment -%}
+  Mirevia single-product site layer. Sits first in the header group, so it renders on every page:
+  - sends the homepage to the ReadySip Reserve Straw product page, and points the header logo and any
+    "Home" links straight at that page (so clicking the logo always loads the ReadySip page fresh)
+  - sends any other product, collection, catalogue or search page to the Blackout Buddy product page
+  - except the ReadySip and Blackout Buddy product pages themselves, which stay reachable in this theme
+  - loads Poppins / Inter and fc-site.css (navy + amber restyle of pages, policies and the theme cart drawer)
+  - swaps the image logo (header + footer) for the StreetStar text wordmark: "Mirevia." in navy Poppins 800 with an orange full stop
+{%- endcomment -%}
+{%- liquid
+  assign bb_handle = 'blackout-buddy'
+  assign rs_handle = 'readysip-reserve-straw'
+  assign bb = all_products[bb_handle]
+  assign bb_url = bb.url | default: '/products/blackout-buddy'
+  assign rs_root = routes.root_url
+  if rs_root == '/'
+    assign rs_root = ''
+  endif
+  assign rs_url = rs_root | append: '/products/' | append: rs_handle
+  assign go_url = ''
+  assign own_page = false
+  if template.name == 'product'
+    if product.handle == bb_handle or product.handle == rs_handle
+      assign own_page = true
+    endif
+  endif
+  unless request.design_mode
+    case template.name
+      when 'index'
+        assign go_url = rs_url
+      when 'product'
+        unless own_page
+          assign go_url = bb_url
+        endunless
+      when 'collection', 'list-collections', 'search', 'blog', 'article'
+        assign go_url = bb_url
+    endcase
+  endunless
+-%}
+{%- if go_url != '' -%}
+  <script>location.replace({{ go_url | json }} + location.search);</script>
+  <noscript><meta http-equiv="refresh" content="0;url={{ go_url }}"></noscript>
+{%- endif -%}
+<script>
+  {%- comment -%} Logo and "Home" links go straight to the ReadySip page (a full page load, so it always reloads). {%- endcomment -%}
+  (function () {
+    if (window.__rsHomeLinks) return;
+    window.__rsHomeLinks = true;
+    var RS = {{ rs_url | json }};
+    var ROOT = ({{ routes.root_url | json }}).replace(/\/$/, '') || '/';
+    function target() {
+      var m = location.search.match(/[?&]preview_theme_id=\d+/);
+      return RS + (m ? '?' + m[0].slice(1) : '');
+    }
+    function isHome(a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#') return false;
+      try {
+        var u = new URL(href, location.href);
+        if (u.origin !== location.origin) return false;
+        return (u.pathname.replace(/\/$/, '') || '/') === ROOT;
+      } catch (e) { return false; }
+    }
+    function rewrite() {
+      var links = document.querySelectorAll('a[href]');
+      for (var i = 0; i < links.length; i++) if (isHome(links[i])) links[i].setAttribute('href', target());
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (!isHome(a) && !a.closest('.header__heading, .header__heading-link')) return;
+      e.preventDefault();
+      location.assign(target());
+    }, true);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rewrite);
+    else rewrite();
+  })();
+</script>
+{%- unless own_page -%}
+  {%- comment -%} Send cart clicks on other pages to the Blackout Buddy page's Mirevia drawer. {%- endcomment -%}
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('#cart-icon-bubble, .header__icon--cart');
+      if (!a) return;
+      e.preventDefault(); e.stopPropagation();
+      location.href = {{ bb_url | json }} + '#cart';
+    }, true);
+  </script>
+{%- endunless -%}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+{{ 'fc-site.css' | asset_url | stylesheet_tag }}
+<style>
+  /* StreetStar wordmark logo: "Mirevia." navy #1b2552, orange full stop #f28c38, Poppins 800 */
+  .header__heading-logo-wrapper{width:auto !important;display:inline-flex !important;align-items:baseline;line-height:1}
+  .header__heading-logo-wrapper img{display:none !important}
+  .header__heading-logo-wrapper::before{content:"Mirevia";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#1b2552;white-space:nowrap}
+  .header__heading-logo-wrapper::after{content:".";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#f28c38}
+  #fcf .logo img{display:none !important}
+  #fcf .logo .t{display:none !important}
+  #fcf .logo{display:inline-flex;align-items:baseline;line-height:1}
+  #fcf .logo::before{content:"Mirevia";font-family:"Poppins",system-ui,sans-serif;font-weight:800;font-size:30.4px;letter-spacing:-.03em;color:#fff}
+  #fcf .logo::after{content:".";font-family:"Poppins",system-ui,sans-serif;font-weight:800;font-size:30.4px;color:#f28c38}
+  @media (max-width:600px){
+    .header__heading-logo-wrapper::before,.header__heading-logo-wrapper::after{font-size:22.4px}
+    #fcf .logo::before,#fcf .logo::after{font-size:25.6px}
+  }
+</style>
+{% schema %}
+{ "name": "Mirevia site layer", "settings": [] }
+{% endschema %}
