@@ -5,7 +5,8 @@
   - sends any other product, collection, catalogue or search page to the Blackout Buddy product page
   - except the ReadySip and Blackout Buddy product pages themselves, which stay reachable in this theme
   - loads Poppins / Inter and fc-site.css (navy + amber restyle of pages, policies and the theme cart drawer)
-  - swaps the image logo (header + footer) for the StreetStar text wordmark: "Mirevia." in navy Poppins 800 with an orange full stop
+  - swaps the image logo (header + footer) for the text wordmark "Mirevia." in navy Poppins 800 (blue full stop in the header, gold in the footer)
+  - cart icon clicks on other pages open the ReadySip page with its cart drawer
 {%- endcomment -%}
 {%- liquid
   assign bb_handle = 'blackout-buddy'
@@ -77,30 +78,31 @@
   })();
 </script>
 {%- unless own_page -%}
-  {%- comment -%} Send cart clicks on other pages to the Blackout Buddy page's Mirevia drawer. {%- endcomment -%}
+  {%- comment -%} Cart clicks on other pages open the ReadySip page with its cart drawer open (#cart). {%- endcomment -%}
   <script>
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('#cart-icon-bubble, .header__icon--cart');
       if (!a) return;
       e.preventDefault(); e.stopPropagation();
-      location.href = {{ bb_url | json }} + '#cart';
+      var m = location.search.match(/[?&]preview_theme_id=\d+/);
+      location.href = {{ rs_url | json }} + (m ? '?' + m[0].slice(1) : '') + '#cart';
     }, true);
   </script>
 {%- endunless -%}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 {{ 'fc-site.css' | asset_url | stylesheet_tag }}
 <style>
-  /* StreetStar wordmark logo: "Mirevia." navy #1b2552, orange full stop #f28c38, Poppins 800 */
+  /* Wordmark logo: "Mirevia." in navy Poppins 800 with a ReadySip-blue full stop */
   .header__heading-logo-wrapper{width:auto !important;display:inline-flex !important;align-items:baseline;line-height:1}
   .header__heading-logo-wrapper img{display:none !important}
-  .header__heading-logo-wrapper::before{content:"Mirevia";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#1b2552;white-space:nowrap}
-  .header__heading-logo-wrapper::after{content:".";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#f28c38}
+  .header__heading-logo-wrapper::before{content:"Mirevia";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#0a2549;white-space:nowrap}
+  .header__heading-logo-wrapper::after{content:".";font-family:"Poppins","Plus Jakarta Sans",system-ui,sans-serif;font-weight:800;font-size:27.2px;letter-spacing:-.03em;line-height:1;color:#1247ee}
   #fcf .logo img{display:none !important}
   #fcf .logo .t{display:none !important}
   #fcf .logo{display:inline-flex;align-items:baseline;line-height:1}
   #fcf .logo::before{content:"Mirevia";font-family:"Poppins",system-ui,sans-serif;font-weight:800;font-size:30.4px;letter-spacing:-.03em;color:#fff}
-  #fcf .logo::after{content:".";font-family:"Poppins",system-ui,sans-serif;font-weight:800;font-size:30.4px;color:#f28c38}
+  #fcf .logo::after{content:".";font-family:"Poppins",system-ui,sans-serif;font-weight:800;font-size:30.4px;color:#dcad40}
   @media (max-width:600px){
     .header__heading-logo-wrapper::before,.header__heading-logo-wrapper::after{font-size:22.4px}
     #fcf .logo::before,#fcf .logo::after{font-size:25.6px}

@@ -1,12 +1,12 @@
-{%- comment -%} Mirevia footer (navy + amber). Self-contained, scoped under #fcf.
-  On the ReadySip Reserve Straw page it shows ReadySip links, support points and small print instead
-  of the Blackout Buddy ones (colours for that page come from readysip-page.css). {%- endcomment -%}
+{%- comment -%} Mirevia footer. Self-contained, scoped under #fcf.
+  Shows ReadySip links, support points and small print on every page except the Blackout Buddy
+  product page, which keeps its own (ReadySip colours come from fc-site.css and readysip-page.css). {%- endcomment -%}
 {%- liquid
   assign purl = all_products['blackout-buddy'].url | default: '/products/blackout-buddy'
-  assign is_readysip = false
-  if template.name == 'product' and product.handle == 'readysip-reserve-straw'
-    assign is_readysip = true
-    assign rs_url = product.url
+  assign rs_url = all_products['readysip-reserve-straw'].url | default: '/products/readysip-reserve-straw'
+  assign is_readysip = true
+  if template.name == 'product' and product.handle == 'blackout-buddy'
+    assign is_readysip = false
   endif
 -%}
 <style>

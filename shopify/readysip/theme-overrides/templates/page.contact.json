@@ -1,0 +1,113 @@
+{
+  "sections": {
+    "header": {
+      "type": "mirevia-page-header",
+      "settings": {
+        "eyebrow": "Contact",
+        "heading": "We're here to help",
+        "text": "Questions about your ReadySip order, or not sure which pack suits your household? Send us a note and a real person will write back, usually within one business day.",
+        "surface": "parchment"
+      }
+    },
+    "form": {
+      "type": "mirevia-contact",
+      "settings": {
+        "button_label": "Send message",
+        "success_text": "Thanks. We've got your message and will be in touch soon.",
+        "small_print": "We only use your details to reply to you.",
+        "aside_heading": "Before you write",
+        "surface": "canvas"
+      },
+      "blocks": {
+        "returns": {
+          "type": "link",
+          "settings": {
+            "title": "Returns and refunds",
+            "text": "30-day money-back guarantee.",
+            "link": "/policies/refund-policy"
+          }
+        },
+        "shipping": {
+          "type": "link",
+          "settings": {
+            "title": "Shipping",
+            "text": "Free on every order. Processed in 2–4 days, delivered in 6–12.",
+            "link": "/policies/shipping-policy"
+          }
+        },
+        "order": {
+          "type": "link",
+          "settings": {
+            "title": "Track your order",
+            "text": "Sign in to see your orders and their status.",
+            "link": "/account/login"
+          }
+        },
+        "shop": {
+          "type": "link",
+          "settings": {
+            "title": "ReadySip Reserve Straw™",
+            "text": "See the packs, free gifts and what's in every kit.",
+            "link": "shopify://products/readysip-reserve-straw"
+          }
+        }
+      },
+      "block_order": [
+        "returns",
+        "shipping",
+        "order",
+        "shop"
+      ]
+    },
+    "faq": {
+      "type": "mirevia-faq",
+      "blocks": {
+        "ship": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Shipping is free on every order. Orders are processed in 2–4 days and delivered in 6–12 days. You'll get a tracking link by email once your order ships.</p>"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's not right for me?",
+            "answer": "<p>Contact us within 30 days and we'll refund you. If it arrives damaged or faulty, email us and we'll replace it or refund you. The details are in our <a href=\"/policies/refund-policy\">refund policy</a>.</p>"
+          }
+        },
+        "howmany": {
+          "type": "question",
+          "settings": {
+            "question": "How many straws do I need?",
+            "answer": "<p>One per person, plus one for each car or go-bag. A couple is covered by 2 Straws. A family of four is covered by 5 Straws + Charger, with one left for the car.</p>"
+          }
+        },
+        "viruses": {
+          "type": "question",
+          "settings": {
+            "question": "Does it remove viruses? Is it safe for floodwater?",
+            "answer": "<p>No filter straw removes viruses, and ReadySip doesn't either. It filters bacteria, parasites and dirt. For floodwater, or anything that might have sewage in it, filter it and then boil it or use purification tablets as well.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ship",
+        "returns",
+        "howmany",
+        "viruses"
+      ],
+      "settings": {
+        "heading": "Quick answers",
+        "contact_text": "",
+        "contact_link": "/pages/contact",
+        "surface": "parchment"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "form",
+    "faq"
+  ]
+}

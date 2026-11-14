@@ -348,6 +348,20 @@
     }
   }
 
+  // Arriving from another page's cart icon (…/readysip-reserve-straw#cart): open the cart drawer straight away.
+  function openCartFromHash() {
+    if (window.__rsCartHash || window.location.hash !== '#cart') return;
+    window.__rsCartHash = true;
+    const drawer = document.querySelector('cart-drawer');
+    if (!drawer) return;
+    window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
+    refreshCartDrawer().then(() => {
+      if (typeof drawer.open === 'function') {
+        try { drawer.open(); } catch (e) { /* the drawer is already showing via its active class */ }
+      }
+    });
+  }
+
   /* ---------- Horizontal scroll rows (reviews) ---------- */
 
   // Prev/next arrows move one screenful of cards; they're disabled at the ends and hidden when everything fits.
@@ -707,6 +721,7 @@
   function init(scope = document) {
     initShippingProtection();
     watchCartForGifts();
+    openCartFromHash();
     qsa('[data-rs-product]', scope).forEach((root) => {
       if (!root.__rs) root.__rs = new RsProduct(root);
     });
