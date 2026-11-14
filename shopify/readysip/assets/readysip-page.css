@@ -918,3 +918,4 @@ html body #CartDrawer .pp-cart-label { margin-top: 0 !important; }
   .rs.rs .rs-btn--block[data-rs-add] { font-size: 15.5px !important; letter-spacing: 0.02em !important; padding: 0 12px !important; white-space: nowrap; }
   .rs.rs .rs-btn .rs-btn__icon { margin-right: 8px; width: 16px; height: 16px; }
 }
+.rs.rs .rs-pack__title { font-weight: 800 !important; color: var(--rs-ink) !important; }
