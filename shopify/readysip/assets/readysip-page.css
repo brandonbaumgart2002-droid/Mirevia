@@ -836,3 +836,42 @@ html body #CartDrawer .rs-gift-line :is(quantity-input, .quantity, cart-remove-b
   .rs-vids__track { scroll-behavior: auto; }
   .rs-vid__play-icon, .rs-vids__arrow { transition: none; }
 }
+
+/* ==========================================================
+   Tighter spacing and slightly smaller type (second pass)
+   ========================================================== */
+:root { --rs-section-y: 26px; }
+@media (min-width: 750px) { :root { --rs-section-y: 40px; } }
+.rs-vids { padding-top: var(--rs-section-y); padding-bottom: var(--rs-section-y); }
+.rs { font-size: 15px; line-height: 1.5; }
+
+.rs-head { margin-bottom: 14px; }
+.rs-head .rs-lead { margin-top: 6px; }
+.rs-eyebrow { margin-bottom: 4px; font-size: 12px; }
+.rs-h2 { font-size: 25px; }
+.rs-lead { font-size: 15px; line-height: 1.45; }
+@media (min-width: 750px) {
+  .rs-h2 { font-size: 34px; }
+  .rs-lead { font-size: 16px; }
+}
+.rs-card { padding: 15px; }
+
+/* Product area */
+.rs-product { padding: 8px 0 20px; }
+@media (min-width: 990px) { .rs-product { padding: 20px 0 36px; } }
+.rs-buybox__inner { gap: 11px; }
+
+/* Gifts */
+.rs-gifts { gap: 10px; }
+.rs-gift { padding: 17px 6px 10px; gap: 4px; }
+
+/* Video reviews */
+.rs-vids__heading { font-size: clamp(25px, 6.6vw, 44px); }
+.rs-vids__sub { margin-top: 8px; font-size: 15px; line-height: 1.45; }
+.rs-vids__nav { margin-top: 12px; }
+@media (min-width: 990px) { .rs-vids__sub { font-size: 16px; } }
+
+/* Lists, cards, FAQ */
+.rs-steps__list, .rs-limits__grid, .rs-guarantee__cards, .rs-reviews__list { gap: 10px; }
+.rs-callout { margin-top: 12px; padding: 12px 14px; }
+.rs-faq .rs-acc__summary { min-height: 46px; padding: 8px 0; font-size: 16px; }

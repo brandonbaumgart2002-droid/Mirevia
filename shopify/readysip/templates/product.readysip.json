@@ -237,7 +237,7 @@
             "gift_1_min": 1,
             "gift_1_locked_text": "Included",
             "gift_1_show_value": false,
-            "gift_2_title": "Purification Tablets",
+            "gift_2_title": "Water Purification Tablets",
             "gift_2_product": "water-purification-tablets",
             "gift_2_icon": "gift",
             "gift_2_min": 2,
@@ -1259,6 +1259,7 @@
         "video_1": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/tiktok-winwithnick-7656530669492833549.mp4",
             "name": "",
             "detail": "",
             "quote": "",
@@ -1268,6 +1269,7 @@
         "video_2": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/tiktok-roadski.mama-7424242776105159979.mp4",
             "name": "",
             "detail": "",
             "quote": "",
@@ -1277,6 +1279,7 @@
         "video_3": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/tiktok-winwithnick-7688444117524794637.mp4",
             "name": "",
             "detail": "",
             "quote": "",
@@ -1286,6 +1289,7 @@
         "video_4": {
           "type": "video",
           "settings": {
+            "video": "shopify://files/videos/tiktok-honestly_maggie-7458070009701502238.mp4",
             "name": "",
             "detail": "",
             "quote": "",
@@ -1295,15 +1299,7 @@
         "video_5": {
           "type": "video",
           "settings": {
-            "name": "",
-            "detail": "",
-            "quote": "",
-            "label": ""
-          }
-        },
-        "video_6": {
-          "type": "video",
-          "settings": {
+            "video": "shopify://files/videos/tiktok-lucketings-7348174403944959275.mp4",
             "name": "",
             "detail": "",
             "quote": "",
@@ -1316,8 +1312,7 @@
         "video_2",
         "video_3",
         "video_4",
-        "video_5",
-        "video_6"
+        "video_5"
       ],
       "settings": {
         "surface": "canvas",
