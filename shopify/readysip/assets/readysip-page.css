@@ -919,3 +919,22 @@ html body #CartDrawer .pp-cart-label { margin-top: 0 !important; }
   .rs.rs .rs-btn .rs-btn__icon { margin-right: 8px; width: 16px; height: 16px; }
 }
 .rs.rs .rs-pack__title { font-weight: 800 !important; color: var(--rs-ink) !important; }
+
+/* ---------- Reviews: one scrollable row of compact cards ---------- */
+.rs-rv__track { list-style: none; margin: 0 calc(var(--rs-gutter) * -1); padding: 4px var(--rs-gutter) 10px; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--rs-gutter); overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.rs-rv__track::-webkit-scrollbar { display: none; }
+.rs-rv__track:focus-visible { outline: 3px solid var(--rs-gold); outline-offset: 2px; border-radius: 12px; }
+.rs-rv__track > .rs-review { flex: 0 0 72%; scroll-snap-align: start; padding: 14px 14px 16px; gap: 6px; border-radius: 14px; font-size: 14px; line-height: 1.45; }
+.rs-rv .rs-review__title { font-size: 16px; line-height: 1.2; }
+.rs-rv .rs-review__text { font-size: 14px; line-height: 1.45; }
+.rs-rv .rs-review__by { font-size: 13px; gap: 8px; }
+.rs-rv .rs-review__avatar { width: 32px; height: 32px; }
+.rs-rv .rs-stars { width: 80px; height: 15px; -webkit-mask-size: 16px 15px; mask-size: 16px 15px; }
+.rs-rv .rs-review--photo { padding-top: 0; }
+.rs-rv .rs-review__image { width: calc(100% + 28px); margin: 0 -14px 4px; aspect-ratio: 1 / 1; }
+@media (min-width: 600px) { .rs-rv__track > .rs-review { flex-basis: calc((100% - 2 * 12px) / 2.6); } }
+@media (min-width: 990px) {
+  .rs-rv__track { margin: 0; padding-left: 0; padding-right: 0; scroll-padding-inline: 0; gap: 14px; }
+  .rs-rv__track > .rs-review { flex-basis: calc((100% - 3 * 14px) / 4); }
+}
+.rs-rv__track, .rs-rv__track > .rs-review { position: relative; }

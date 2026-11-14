@@ -1,5 +1,6 @@
 {%- comment -%}
-  Customer reviews, grouped into tabs by type of customer (sub-avatar).
+  Customer reviews. Layout "One scrollable row" (default) shows every review as a compact card in one
+  swipeable row; layout "Tabs" groups them by type of customer (sub-avatar) instead.
   Add real reviews as blocks (the customer's own words, with their photo if you have it) and set
   each one's "Tab" to a key from the section's tab list. Your review app's block can sit underneath
   for the full list. The section hides itself on the live store while it has no reviews.
@@ -37,7 +38,26 @@
         <p class="rs-editor-note">Reviews: add real customer reviews as blocks (their own words) and pick a tab for each, or add your review app's block. This section stays hidden on the live store until you do.</p>
       {%- endunless -%}
 
-      {%- if card_count > 0 -%}
+      {%- if card_count > 0 and section.settings.layout != 'tabs' -%}
+        {%- comment -%} All reviews in one swipeable row of compact cards. {%- endcomment -%}
+        <div class="rs-rv" data-rs-hscroll>
+          <ul class="rs-rv__track" role="list" data-rs-hscroll-track tabindex="0" aria-label="{{ section.settings.heading | escape }}">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'review' and block.settings.text != blank -%}
+                {% render 'readysip-review-card', block: block %}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+          <div class="rs-vids__nav" data-rs-hscroll-nav>
+            <button type="button" class="rs-vids__arrow disable-global-button-styling" data-rs-hscroll-prev aria-label="Previous reviews">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="rs-vids__arrow disable-global-button-styling" data-rs-hscroll-next aria-label="Next reviews">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      {%- elsif card_count > 0 -%}
         {%- comment -%} Work out which tabs actually have reviews, in the order listed. {%- endcomment -%}
         {%- capture used_keys -%}
           {%- for line in tab_lines -%}
@@ -85,25 +105,7 @@
               {%- for block in section.blocks -%}
                 {%- assign bkey = block.settings.group | strip | handleize -%}
                 {%- if block.type == 'review' and block.settings.text != blank and bkey == key -%}
-                  <li class="rs-card rs-review{% if block.settings.image != blank %} rs-review--photo{% endif %}" {{ block.shopify_attributes }}>
-                    {%- if block.settings.image != blank -%}
-                      {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rs-review__image', sizes: '(min-width: 1100px) 33vw, (min-width: 750px) 50vw, 100vw', widths: '450, 700, 900', alt: block.settings.image.alt | default: '' }}
-                    {%- endif -%}
-                    <span class="rs-stars" style="--rs-rating: {{ block.settings.stars | times: 20 }}%;" aria-hidden="true"></span>
-                    <span class="rs-visually-hidden">{{ block.settings.stars }} out of 5 stars</span>
-                    {%- if block.settings.title != blank -%}<h3 class="rs-review__title">{{ block.settings.title | escape }}</h3>{%- endif -%}
-                    <blockquote class="rs-review__text">{{ block.settings.text | escape }}</blockquote>
-                    <p class="rs-review__by">
-                      {%- if block.settings.photo != blank -%}
-                        {{ block.settings.photo | image_url: width: 96 | image_tag: loading: 'lazy', alt: '', width: 40, height: 40, class: 'rs-review__avatar' }}
-                      {%- endif -%}
-                      <span>
-                        <strong>{{ block.settings.author | escape }}</strong>
-                        {%- if block.settings.location != blank %} · {{ block.settings.location | escape }}{% endif -%}
-                        {%- if block.settings.verified %}<span class="rs-verified">Verified buyer</span>{% endif -%}
-                      </span>
-                    </p>
-                  </li>
+                  {% render 'readysip-review-card', block: block %}
                 {%- endif -%}
               {%- endfor -%}
             </ul>
@@ -123,6 +125,7 @@
   "name": "ReadySip reviews",
   "max_blocks": 50,
   "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "slider", "options": [ { "value": "slider", "label": "One scrollable row" }, { "value": "tabs", "label": "Tabs by type of customer" } ] },
     { "type": "select", "id": "surface", "label": "Background", "default": "canvas", "options": [ { "value": "canvas", "label": "White" }, { "value": "soft", "label": "Off-white" }, { "value": "brand", "label": "Navy" } ] },
     { "type": "text", "id": "eyebrow", "label": "Small line above heading", "default": "Reviews" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "What families say" },

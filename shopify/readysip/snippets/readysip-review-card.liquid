@@ -1,0 +1,20 @@
+{%- comment -%} One review card. Param: block (a "review" block of the ReadySip reviews section). {%- endcomment -%}
+<li class="rs-card rs-review{% if block.settings.image != blank %} rs-review--photo{% endif %}" {{ block.shopify_attributes }}>
+  {%- if block.settings.image != blank -%}
+    {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'rs-review__image', sizes: '(min-width: 1100px) 33vw, (min-width: 750px) 50vw, 100vw', widths: '450, 700, 900', alt: block.settings.image.alt | default: '' }}
+  {%- endif -%}
+  <span class="rs-stars" style="--rs-rating: {{ block.settings.stars | times: 20 }}%;" aria-hidden="true"></span>
+  <span class="rs-visually-hidden">{{ block.settings.stars }} out of 5 stars</span>
+  {%- if block.settings.title != blank -%}<h3 class="rs-review__title">{{ block.settings.title | escape }}</h3>{%- endif -%}
+  <blockquote class="rs-review__text">{{ block.settings.text | escape }}</blockquote>
+  <p class="rs-review__by">
+    {%- if block.settings.photo != blank -%}
+      {{ block.settings.photo | image_url: width: 96 | image_tag: loading: 'lazy', alt: '', width: 40, height: 40, class: 'rs-review__avatar' }}
+    {%- endif -%}
+    <span>
+      <strong>{{ block.settings.author | escape }}</strong>
+      {%- if block.settings.location != blank %} · {{ block.settings.location | escape }}{% endif -%}
+      {%- if block.settings.verified %}<span class="rs-verified">Verified buyer</span>{% endif -%}
+    </span>
+  </p>
+</li>

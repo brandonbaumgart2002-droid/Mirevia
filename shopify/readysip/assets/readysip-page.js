@@ -348,6 +348,36 @@
     }
   }
 
+  /* ---------- Horizontal scroll rows (reviews) ---------- */
+
+  // Prev/next arrows move one screenful of cards; they're disabled at the ends and hidden when everything fits.
+  function initHScroll(root) {
+    const track = qs('[data-rs-hscroll-track]', root);
+    if (!track) return;
+    const prev = qs('[data-rs-hscroll-prev]', root);
+    const next = qs('[data-rs-hscroll-next]', root);
+    const nav = qs('[data-rs-hscroll-nav]', root);
+    const step = () => {
+      const card = track.firstElementChild;
+      if (!card) return track.clientWidth;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const per = Math.max(1, Math.floor((track.clientWidth + gap) / (card.offsetWidth + gap)));
+      return per * (card.offsetWidth + gap);
+    };
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (nav) nav.hidden = max <= 2;
+      if (prev) prev.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= max - 2;
+    };
+    const behavior = () => (reducedMotion() ? 'auto' : 'smooth');
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: behavior() }));
+    if (next) next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: behavior() }));
+    track.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
   /* ---------- Product section ---------- */
 
   class RsProduct {
@@ -682,6 +712,9 @@
     });
     qsa('[data-rs-reviews-tabs]', scope).forEach((root) => {
       if (!root.__rs) { root.__rs = true; initTabs(root); }
+    });
+    qsa('[data-rs-hscroll]', scope).forEach((root) => {
+      if (!root.__rs) { root.__rs = true; initHScroll(root); }
     });
     qsa('[data-rs-vids]', scope).forEach((root) => {
       if (!root.__rs) { root.__rs = true; initVideoSlider(root); }
