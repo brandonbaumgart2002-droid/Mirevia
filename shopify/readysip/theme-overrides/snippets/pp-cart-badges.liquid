@@ -1,6 +1,7 @@
 {%- comment -%} Three trust badges under the checkout button. Param: trust (text for the first badge)
   ReadySip: when a ReadySip straw is in the cart (or the shopper is on its page) the badges show ReadySip's
-  own terms instead. {%- endcomment -%}
+  own terms instead. 
+  ReadySip mode also shows the opt-in Shipping Protection switch, placed just above the checkout button. {%- endcomment -%}
 {%- liquid
   assign rs_mode = false
   if template.name == 'product' and product.handle == 'readysip-reserve-straw'
@@ -13,6 +14,49 @@
   endfor
 -%}
 {%- if rs_mode -%}
+  {%- comment -%} ReadySip: optional shipping protection (opt-in; adds the Shipping Protection product). {%- endcomment -%}
+  {%- liquid
+    assign sp_product = all_products['mirevia-shipping-protection']
+    assign sp_variant = sp_product.selected_or_first_available_variant
+    assign sp_key = ''
+    for item in cart.items
+      if item.variant_id == sp_variant.id
+        assign sp_key = item.key
+      endif
+    endfor
+  -%}
+  {%- if sp_variant and sp_variant.available -%}
+    <style>
+      .rs-sp{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;margin:10px 0 12px;padding:12px 14px;border:1.5px solid #d6e4f7;border-radius:12px;background:#eaf3fd;color:#0a2549;font-family:"Inter",system-ui,sans-serif}
+      .rs-sp.is-on{border-color:#1247ee;background:#fff}
+      .rs-sp__icon{color:#1247ee;display:block}
+      html body .rs-sp .rs-sp__title{margin:0;font-size:14px;font-weight:800 !important;line-height:1.25;color:#0a2549 !important}
+      .rs-sp__price{margin-left:4px;font-weight:700;color:#1247ee}
+      .rs-sp__text{margin:2px 0 0;font-size:12px;line-height:1.35;color:#5a6b82}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch{all:unset;box-sizing:border-box;display:block !important;position:relative !important;width:46px !important;height:26px !important;min-width:46px;padding:0 !important;border:0 !important;overflow:hidden;border-radius:999px;background:#c9d3df !important;box-shadow:none !important;cursor:pointer;transition:background .2s;flex-shrink:0}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch .rs-sp__knob{display:block !important;position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff !important;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch[aria-checked="true"]{background:#1247ee !important}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch[aria-checked="true"] .rs-sp__knob{transform:translateX(20px)}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch:focus-visible{outline:3px solid #dcad40;outline-offset:2px}
+      html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch[aria-busy="true"]{cursor:progress}
+      {%- comment -%} The switch is the only control for protection, so its own cart line (with quantity buttons) is hidden in the drawer. {%- endcomment -%}
+      html body #CartDrawer .cart-item:has(a[href*="/products/mirevia-shipping-protection"]){display:none !important}
+      @media (prefers-reduced-motion:reduce){html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch,html body .rs-sp.rs-sp .rs-sp__switch.rs-sp__switch .rs-sp__knob{transition:none}}
+      {%- comment -%} The checkout area becomes a column so the switch can sit straight above the checkout button. {%- endcomment -%}
+      html body #CartDrawer .drawer__footer:has(> .rs-sp){display:flex !important;flex-direction:column}
+      html body #CartDrawer .drawer__footer:has(> .rs-sp) > .cart__ctas, html body #CartDrawer .drawer__footer:has(> .rs-sp) > .cart__ctas ~ *{order:2}
+      html body #CartDrawer .drawer__footer > .rs-sp.rs-sp{order:1;margin:10px 0 12px}
+    </style>
+    <div class="rs-sp{% if sp_key != '' %} is-on{% endif %}" data-rs-sp data-variant="{{ sp_variant.id }}" data-key="{{ sp_key }}">
+      <svg class="rs-sp__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div>
+        <p class="rs-sp__title" id="rs-sp-title">Shipping Protection<span class="rs-sp__price">{{ sp_variant.price | money }}</span></p>
+        <p class="rs-sp__text" id="rs-sp-text">Covers loss, theft or damage in transit. If your parcel goes missing or arrives damaged, we'll replace it free.</p>
+      </div>
+      <button type="button" class="rs-sp__switch disable-global-button-styling" role="switch" aria-checked="{% if sp_key != '' %}true{% else %}false{% endif %}" aria-labelledby="rs-sp-title" aria-describedby="rs-sp-text" data-rs-sp-switch><span class="rs-sp__knob"></span></button>
+    </div>
+    {%- comment -%} Switch behaviour lives in readysip-page.js (scripts inside the drawer don't re-run when it refreshes). {%- endcomment -%}
+  {%- endif -%}
 <ul class="pp-cbadges pp-cbadges--readysip" role="list">
   <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span>Secure checkout</span></li>
   <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 6h11v10H3zM14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg><span>Delivered in 6–12 days</span></li>

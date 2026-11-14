@@ -1,6 +1,7 @@
 {%- comment -%}
   Video testimonials in a swipeable slider (9:16 cards). Add each customer's video as a block.
-  Videos play muted while on screen; tapping one plays it with sound (and mutes the others).
+  Every video starts muted and plays on a loop while on screen. The speaker button turns sound on for one
+  video at a time (the others mute); tapping a video pauses or resumes it.
   The section stays hidden on the live store until at least one block has a video.
 {%- endcomment -%}
 {{ 'readysip-page.css' | asset_url | stylesheet_tag }}
@@ -43,8 +44,8 @@
                     {%- liquid
                       assign poster = block.settings.poster | default: block.settings.video.preview_image
                     -%}
-                    {{ block.settings.video | video_tag: muted: true, loop: true, controls: false, playsinline: true, preload: 'none', class: 'rs-vid__video', image_size: '720x', poster: poster }}
-                    <button type="button" class="rs-vid__play disable-global-button-styling" data-rs-vid-play aria-label="Play video from {{ who | escape }} with sound" aria-pressed="false">
+                    {{ block.settings.video | video_tag: muted: true, loop: true, autoplay: false, controls: false, playsinline: true, preload: 'none', class: 'rs-vid__video', image_size: '720x', poster: poster }}
+                    <button type="button" class="rs-vid__play disable-global-button-styling" data-rs-vid-play aria-label="Play video" aria-pressed="true">
                       <span class="rs-vid__play-icon" aria-hidden="true">
                         <svg class="rs-vid__icon-play" viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" fill="currentColor"/></svg>
                         <svg class="rs-vid__icon-pause" viewBox="0 0 24 24" width="22" height="22"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>

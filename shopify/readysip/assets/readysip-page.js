@@ -63,11 +63,10 @@
   }
 
   // Re-fetches the cart drawer and cart count, then shows them (drawer stays open).
-  async function refreshCartDrawer() {
+  async function refreshCartDrawer(given) {
     const drawer = document.querySelector('cart-drawer');
     if (!drawer) return;
-    const res = await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`);
-    const sections = await res.json();
+    const sections = given || await (await fetch(`${window.location.pathname}?sections=cart-drawer,cart-icon-bubble`)).json();
     // Swap the markup in directly: the theme's own re-render skips the top of the drawer.
     const parse = (html) => new DOMParser().parseFromString(html || '', 'text/html');
     const fresh = parse(sections['cart-drawer']).querySelector('#CartDrawer');
@@ -93,14 +92,28 @@
       const box = btn.closest('[data-rs-sp]');
       const on = btn.getAttribute('aria-checked') === 'true';
       const root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+      const show = (state) => {
+        btn.setAttribute('aria-checked', state ? 'true' : 'false');
+        box.classList.toggle('is-on', state);
+      };
+      // Flip the switch straight away; one request then updates the cart and returns the redrawn drawer.
+      show(!on);
       btn.setAttribute('aria-busy', 'true');
+      const sections = { sections: 'cart-drawer,cart-icon-bubble', sections_url: window.location.pathname };
+      const body = on
+        ? Object.assign({ id: box.dataset.key, quantity: 0 }, sections)
+        : Object.assign({ items: [{ id: Number(box.dataset.variant), quantity: 1 }] }, sections);
       try {
-        const res = on
-          ? await fetch(`${root}cart/change.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ id: box.dataset.key, quantity: 0 }) })
-          : await fetch(`${root}cart/add.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: Number(box.dataset.variant), quantity: 1 }] }) });
+        const res = await fetch(`${root}cart/${on ? 'change' : 'add'}.js?rs=1`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+        });
         if (!res.ok) throw new Error('cart');
-        await refreshCartDrawer();
+        const data = await res.json();
+        await refreshCartDrawer(data.sections && data.sections['cart-drawer'] ? data.sections : null);
       } catch (e) {
+        show(on);
         btn.removeAttribute('aria-busy');
       }
     }, true);
@@ -248,45 +261,46 @@
     window.addEventListener('resize', updateNav);
     updateNav();
 
+    // Every video starts muted and plays on a loop while it's on screen. The speaker button turns sound
+    // on for that video and off for all the others, so only one is ever heard. Tapping a video pauses or resumes it.
     const videoOf = (card) => qs('video', card);
     const setLabels = (card) => {
       const v = videoOf(card);
+      if (!v) return;
       const play = qs('[data-rs-vid-play]', card);
       const sound = qs('[data-rs-vid-sound]', card);
-      const playing = card.classList.contains('is-playing');
+      const playing = !v.paused;
+      card.classList.toggle('is-playing', playing);
+      card.classList.toggle('has-sound', !v.muted);
       if (play) {
-        play.setAttribute('aria-pressed', playing ? 'true' : 'false');
-        if (!play.dataset.label) play.dataset.label = play.getAttribute('aria-label');
-        play.setAttribute('aria-label', playing ? 'Pause video' : play.dataset.label);
+        play.setAttribute('aria-pressed', playing ? 'false' : 'true');
+        play.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
       }
-      if (sound && v) {
+      if (sound) {
         sound.setAttribute('aria-pressed', v.muted ? 'false' : 'true');
         sound.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
-        card.classList.toggle('has-sound', !v.muted);
       }
     };
-    const muteOthers = (keep) => cards.forEach((card) => {
-      if (card === keep) return;
+    const start = (card) => {
       const v = videoOf(card);
       if (!v) return;
-      v.muted = true;
-      if (card.classList.contains('is-playing')) {
-        card.classList.remove('is-playing');
-        if (!card.classList.contains('is-previewing')) v.pause();
-      }
-      setLabels(card);
-    });
-    const playWithSound = (card) => {
-      const v = videoOf(card);
-      if (!v) return;
-      muteOthers(card);
-      if (!card.classList.contains('is-playing') && card.classList.contains('is-previewing')) v.currentTime = 0;
       v.preload = 'auto';
-      v.muted = false;
-      card.classList.add('is-playing');
-      delete card.dataset.userPaused;
       const p = v.play();
-      if (p && p.catch) p.catch(() => { card.classList.remove('is-playing'); setLabels(card); });
+      if (p && p.catch) p.catch(() => {
+        // A browser that won't play with sound without a tap falls back to muted.
+        if (!v.muted) { v.muted = true; v.play().catch(() => {}); }
+        setLabels(card);
+      });
+    };
+    const soundOn = (card) => {
+      cards.forEach((other) => {
+        const ov = videoOf(other);
+        if (ov && other !== card && !ov.muted) { ov.muted = true; setLabels(other); }
+      });
+      const v = videoOf(card);
+      v.muted = false;
+      delete card.dataset.userPaused;
+      if (v.paused) start(card);
       setLabels(card);
     };
 
@@ -294,50 +308,43 @@
       const v = videoOf(card);
       if (!v) return;
       v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.setAttribute('muted', '');
       v.setAttribute('playsinline', '');
       v.removeAttribute('controls');
+      ['play', 'pause', 'volumechange'].forEach((type) => v.addEventListener(type, () => setLabels(card)));
       const play = qs('[data-rs-vid-play]', card);
       const sound = qs('[data-rs-vid-sound]', card);
       if (play) play.addEventListener('click', () => {
-        if (card.classList.contains('is-playing') && !v.paused) {
-          v.pause();
-          card.classList.remove('is-playing', 'is-previewing');
-          card.dataset.userPaused = '1';
-          setLabels(card);
-        } else {
-          playWithSound(card);
-        }
+        if (v.paused) { delete card.dataset.userPaused; start(card); }
+        else { card.dataset.userPaused = '1'; v.pause(); }
       });
       if (sound) sound.addEventListener('click', () => {
-        if (v.muted) playWithSound(card);
+        if (v.muted) soundOn(card);
         else { v.muted = true; setLabels(card); }
       });
       setLabels(card);
     });
 
-    // Muted previews play while a card is on screen, and stop when it scrolls away.
+    // Autoplay while on screen (muted), pause when scrolled away to save data and battery.
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const card = entry.target;
           const v = videoOf(card);
           if (!v) return;
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-            if (!autoplayOK() || card.dataset.userPaused || card.classList.contains('is-playing')) return;
-            v.preload = 'auto';
-            v.muted = true;
-            const p = v.play();
-            if (p && p.then) p.then(() => card.classList.add('is-previewing')).catch(() => {});
-            setLabels(card);
-          } else {
+          if (entry.isIntersecting) {
+            if (!autoplayOK() || card.dataset.userPaused) return;
+            start(card);
+          } else if (!v.paused) {
             v.pause();
-            v.muted = true;
-            card.classList.remove('is-playing', 'is-previewing');
-            setLabels(card);
           }
         });
-      }, { threshold: [0, 0.6] });
+      }, { threshold: 0.35 });
       cards.forEach((card) => { if (videoOf(card)) io.observe(card); });
+    } else if (autoplayOK()) {
+      cards.forEach(start);
     }
   }
 
