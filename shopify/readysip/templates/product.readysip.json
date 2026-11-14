@@ -43,8 +43,8 @@
           "settings": {
             "count_label": "reviews",
             "reviews_anchor": "#reviews",
-            "manual_score": "",
-            "manual_text": ""
+            "manual_score": "4.7",
+            "manual_text": "4.7/5 2800+ Trusted Reviews"
           }
         },
         "title": {
@@ -99,34 +99,42 @@
           "type": "packs",
           "settings": {
             "heading": "November Restock – Selling Fast",
-            "subheading": "One per person, plus one for each car",
+            "subheading": "",
             "per_unit_label": "per straw",
             "show_images": true,
             "default_tier": "3",
             "tier_1_variant": "1 Straw",
             "tier_1_qty": 1,
             "tier_1_title": "1 Straw",
-            "tier_1_sub": "For the glovebox or go-bag",
+            "tier_1_sub": "",
             "tier_1_badge": "",
-            "tier_1_perk": "Free shipping",
+            "tier_1_perk": "",
             "tier_2_variant": "2 Straws",
             "tier_2_qty": 2,
             "tier_2_title": "2 Straws",
-            "tier_2_sub": "One for you, one for the car",
-            "tier_2_badge": "",
-            "tier_2_perk": "Free shipping + free purification tablets",
+            "tier_2_sub": "",
+            "tier_2_badge": "Recommended",
+            "tier_2_perk": "",
             "tier_3_variant": "5 Straws + Charger",
             "tier_3_qty": 5,
             "tier_3_title": "5 Straws + Charger",
-            "tier_3_sub": "One for each person at home, plus the car",
-            "tier_3_badge": "Best for families",
-            "tier_3_perk": "Free shipping + free purification tablets",
+            "tier_3_sub": "",
+            "tier_3_badge": "Best Value",
+            "tier_3_perk": "",
             "tier_4_variant": "",
             "tier_4_qty": 10,
             "tier_4_title": "Extended Family 10-Pack",
             "tier_4_sub": "Cover parents and grandparents, or give a few as gifts",
             "tier_4_badge": "Best value",
-            "tier_4_perk": "Free shipping, tablets + Blackout Buddy™ charger"
+            "tier_4_perk": "Free shipping, tablets + Blackout Buddy™ charger",
+            "show_save": false,
+            "show_compare": true,
+            "tier_1_chip": "1 Filtration Kit",
+            "tier_1_badge_style": "gold",
+            "tier_2_chip": "2 Filtration Kits",
+            "tier_2_badge_style": "blue",
+            "tier_3_chip": "5 Filtration Kits",
+            "tier_3_badge_style": "gold"
           }
         },
         "stock": {
@@ -139,7 +147,7 @@
         "buy": {
           "type": "buy_buttons",
           "settings": {
-            "add_label": "Add to cart",
+            "add_label": "Secure Checkout – Buy Now",
             "show_dynamic_checkout": false,
             "tagline": "Buy once. Store it. Be ready."
           }
@@ -231,7 +239,7 @@
             "heading": "Unlock Free Gifts With Bundles",
             "free_label": "Free",
             "unlocked_text": "Unlocked",
-            "note": "Processed in 2–4 days, delivered in 6–12 days",
+            "note": "Ships in 1-3 Business Days",
             "gift_1_title": "Free shipping",
             "gift_1_icon": "truck",
             "gift_1_min": 1,
@@ -285,7 +293,7 @@
         "media_fit": "cover",
         "after_add": "drawer",
         "sticky_bar": true,
-        "sticky_label": "Add to cart",
+        "sticky_label": "Buy Now",
         "sticky_offset": 96
       }
     },

@@ -886,3 +886,35 @@ html body #CartDrawer .rs-gift-line :is(quantity-input, .quantity, cart-remove-b
 /* Cart drawer: tighter gap under the timer now that Shipping Protection sits above the checkout button. */
 html body #CartDrawer .drawer__contents { margin-top: 0 !important; padding-top: 12px !important; }
 html body #CartDrawer .pp-cart-label { margin-top: 0 !important; }
+
+/* ---------- Pack cards, v2: title + contents tag, price / compare / per-straw on the right ---------- */
+.rs-pack__card { padding: 16px 14px; }
+.rs-pack__main { gap: 6px 8px; }
+.rs-pack__title { font-size: 18px; line-height: 1.2; }
+.rs-pack__chip { flex-basis: auto; display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 999px; background: #dde9fb; color: var(--rs-brand); font-size: 13px; font-weight: 700; line-height: 1.25; }
+.rs-pack__input:checked + .rs-pack__card .rs-pack__chip { background: #cbdcf8; }
+.rs-pack__pricing { gap: 1px; }
+.rs-pack__price { font-size: 20px; }
+.rs-pack__compare { font-size: 14px; }
+.rs-pack__unit { font-size: 12.5px; font-weight: 700; color: var(--rs-cta); }
+.rs-pack__badge { top: -12px; padding: 4px 12px; font-size: 12px; box-shadow: 0 2px 6px rgba(10, 37, 73, 0.18); }
+.rs-pack__badge--gold { background: var(--rs-gold); color: var(--rs-brand); }
+.rs-pack__badge--blue { background: var(--rs-cta); color: #fff; }
+.rs-pack__badge--navy { background: var(--rs-brand); color: #fff; }
+.rs.rs .rs-pack__badge--blue, .rs.rs .rs-pack__badge--navy { color: #fff !important; }
+.rs.rs .rs-pack__badge--gold { color: var(--rs-brand) !important; }
+@media (max-width: 400px) {
+  .rs-pack__title { font-size: 16.5px; }
+  .rs-pack__chip { font-size: 12px; padding: 3px 9px; }
+  .rs-pack__price { font-size: 18px; }
+}
+
+/* Lock icon on the buy button */
+.rs.rs .rs-btn .rs-btn__icon { display: inline-block; flex: 0 0 auto; margin-right: 10px; vertical-align: -2px; }
+.rs-btn[data-rs-add] { display: inline-flex; align-items: center; justify-content: center; }
+
+.rs-pack__chip { white-space: nowrap; }
+@media (max-width: 480px) {
+  .rs.rs .rs-btn--block[data-rs-add] { font-size: 15.5px !important; letter-spacing: 0.02em !important; padding: 0 12px !important; white-space: nowrap; }
+  .rs.rs .rs-btn .rs-btn__icon { margin-right: 8px; width: 16px; height: 16px; }
+}
