@@ -43,7 +43,7 @@
   <noscript><meta http-equiv="refresh" content="0;url={{ go_url }}"></noscript>
 {%- endif -%}
 <script>
-  {%- comment -%} Logo and "Home" links go straight to the ReadySip page (a full page load, so it always reloads). {%- endcomment -%}
+  {%- comment -%} Header and footer logos and "Home" links go straight to the ReadySip page (a full page load, so it always reloads). {%- endcomment -%}
   (function () {
     if (window.__rsHomeLinks) return;
     window.__rsHomeLinks = true;
@@ -54,6 +54,9 @@
       return RS + (m ? '?' + m[0].slice(1) : '');
     }
     function isHome(a) {
+      // The header and footer logos, and any menu link labelled "Home" (the store menu points it at another product).
+      if (a.matches('.header__heading-link, #fcf .logo')) return true;
+      if (/^\s*home\s*$/i.test(a.textContent || '')) return true;
       var href = a.getAttribute('href');
       if (!href || href.charAt(0) === '#') return false;
       try {
@@ -69,12 +72,13 @@
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href]');
       if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (!isHome(a) && !a.closest('.header__heading, .header__heading-link')) return;
+      if (!isHome(a) && !a.closest('.header__heading, .header__heading-link, #fcf .logo')) return;
       e.preventDefault();
       location.assign(target());
     }, true);
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', rewrite);
     else rewrite();
+    window.addEventListener('load', rewrite);
   })();
 </script>
 {%- unless own_page -%}
