@@ -938,3 +938,4 @@ html body #CartDrawer .pp-cart-label { margin-top: 0 !important; }
   .rs-rv__track > .rs-review { flex-basis: calc((100% - 3 * 14px) / 4); }
 }
 .rs-rv__track, .rs-rv__track > .rs-review { position: relative; }
+.rs.rs .rs-rv .rs-review__image { height: auto !important; aspect-ratio: 1 / 1 !important; object-fit: cover; }
