@@ -939,3 +939,13 @@ html body #CartDrawer .pp-cart-label { margin-top: 0 !important; }
 }
 .rs-rv__track, .rs-rv__track > .rs-review { position: relative; }
 .rs.rs .rs-rv .rs-review__image { height: auto !important; aspect-ratio: 1 / 1 !important; object-fit: cover; }
+
+/* Buy-box dropdowns: compact rows */
+.rs-buybox .rs-acc__summary { min-height: 46px; padding: 7px 0; gap: 10px; font-size: 15px; }
+.rs-buybox .rs-acc__summary .rs-icon { width: 19px; height: 19px; }
+.rs-buybox .rs-acc__summary::after { width: 8px; height: 8px; }
+.rs-buybox .rs-acc__body { padding: 0 0 12px; font-size: 14px; line-height: 1.5; }
+.rs-buybox .rs-acc__body :is(ul, ol) { padding-left: 18px; margin: 4px 0; }
+.rs-buybox .rs-acc__body li + li { margin-top: 3px; }
+.rs-buybox .rs-acc__body p + p { margin-top: 6px; }
+.rs.rs .rs-buybox .rs-acc__summary, .rs.rs .rs-buybox .rs-acc__summary span { font-size: 15px !important; }

@@ -146,7 +146,20 @@
     {%- comment -%} Buy box {%- endcomment -%}
     <div class="rs-buybox" id="rs-buy">
       <div class="rs-buybox__inner">
+        {%- assign kit_done = false -%}
         {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' and kit_done == false -%}
+            {%- assign kit_done = true -%}
+            {%- if section.settings.kit_show and section.settings.kit_content != blank -%}
+              <details class="rs-acc rs-acc--kit">
+                <summary class="rs-acc__summary">
+                  {% render 'readysip-icon', icon: 'box', size: 22 %}
+                  <span>{{ section.settings.kit_heading | escape }}</span>
+                </summary>
+                <div class="rs-acc__body rs-rte">{{ section.settings.kit_content }}</div>
+              </details>
+            {%- endif -%}
+          {%- endif -%}
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
@@ -828,6 +841,28 @@
       "unit": "px",
       "default": 96,
       "info": "Match your theme's sticky header height."
+    },
+    {
+      "type": "header",
+      "content": "What's in the kit"
+    },
+    {
+      "type": "checkbox",
+      "id": "kit_show",
+      "label": "Show a \"What's in the kit\" dropdown above the other dropdowns",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "kit_heading",
+      "label": "Heading",
+      "default": "What's in the kit"
+    },
+    {
+      "type": "richtext",
+      "id": "kit_content",
+      "label": "Content",
+      "default": "<p>Every straw comes with all 7 pieces:</p><ul><li><strong>Reserve Straw filter</strong> with tethered caps</li><li><strong>Squeeze pouch</strong>: fill it, then squeeze clean water into a cup</li><li><strong>Drinking &amp; gravity tube</strong> for bottles or drip filtering</li><li><strong>Backflush syringe</strong> to keep the filter flowing</li><li><strong>Lanyard</strong></li><li><strong>Carabiner clip</strong></li><li><strong>Step-by-step instructions</strong></li></ul><p>Packs contain one full kit per straw.</p>"
     }
   ],
   "blocks": [
