@@ -594,8 +594,9 @@
 
 /* Theme's scrolling announcement bar: ReadySip colours on this page only
    (beats the site layer's "html .pp-bar" rule; this file only loads on the ReadySip page). */
-html body .pp-bar { --pp-bar-bg: #0a2549; --pp-bar-fg: #ffffff; --pp-pill-bg: #dcad40; --pp-pill-fg: #0a2549; background: #0a2549; color: #ffffff; }
-html body .pp-bar .pp-bar__item::after { background: #dcad40; opacity: 1; }
+html body .pp-bar { --pp-bar-bg: #1247ee; --pp-bar-fg: #ffffff; --pp-pill-bg: #ffffff; --pp-pill-fg: #1247ee; background: #1247ee; color: #ffffff; }
+html body .pp-bar .pp-rot__item { color: #ffffff !important; }
+html body .pp-bar .pp-bar__item::after { background: #ffffff; opacity: 0.7; }
 
 /* ==========================================================
    Compact, centred layout (mobile first)

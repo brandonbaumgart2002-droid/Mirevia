@@ -3,6 +3,8 @@
   header group on every page without loading the PDP stylesheet or script.
   The items are repeated so the loop is seamless on wide screens; only the first copy is read by screen readers.
   It pauses on hover, on keyboard focus and with the pause button, and stays still when the visitor prefers reduced motion.
+  Layout 'Rotating' shows one message at a time instead, sliding up to the next every few seconds; screen readers
+  get the full list rather than the moving text.
 {%- endcomment -%}
 {%- liquid
   assign items = section.settings.text | split: '|'
@@ -23,6 +25,11 @@
       assign pill_bg = '#F5A524'
       assign pill_fg = '#0E1726'
       assign accent_dots = true
+    when 'readysip_blue'
+      assign bar_bg = '#1247ee'
+      assign bar_fg = '#ffffff'
+      assign pill_bg = '#ffffff'
+      assign pill_fg = '#1247ee'
     when 'readysip'
       assign bar_bg = '#0a2549'
       assign bar_fg = '#ffffff'
@@ -48,6 +55,14 @@
   .pp-bar__toggle svg { display: block; }
   .pp-bar__toggle .pp-bar__play, .pp-bar.is-paused .pp-bar__toggle .pp-bar__pause { display: none; }
   .pp-bar.is-paused .pp-bar__toggle .pp-bar__play { display: block; }
+  .pp-bar--rotate { justify-content: center; min-height: 34px; }
+  .pp-rot { position: relative; width: 100%; height: 34px; overflow: hidden; }
+  .pp-rot__item { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0 52px; font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif !important; font-style: italic; font-weight: 800; font-size: 13px; line-height: 1.2; letter-spacing: 0.01em; color: var(--pp-bar-fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.35s ease; }
+  .pp-rot__item.is-active { opacity: 1; transform: none; }
+  .pp-rot__item.is-leaving { opacity: 0; transform: translateY(-100%); }
+  .pp-rot__item--caps { text-transform: uppercase; }
+  .pp-bar__sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  @media (min-width: 640px) { .pp-rot__item { font-size: 14px; } .pp-bar--rotate, .pp-rot { min-height: 36px; height: 36px; } }
   @keyframes pp-bar { to { transform: translateX(calc(-100% / {{ copies }})); } }
   @media (prefers-reduced-motion: reduce) {
     .pp-bar { justify-content: center; }
@@ -57,9 +72,67 @@
     .pp-bar__item { padding: 4px 0; }
     .pp-bar__item::after { margin: 0 12px; }
     .pp-bar__item:last-child::after { display: none; }
+    .pp-rot__item { transition: none; }
   }
 </style>
-{%- if items.size > 0 -%}
+{%- if items.size > 0 and section.settings.layout == 'rotate' -%}
+  <div class="pp-bar pp-bar--rotate" data-pp-bar data-pp-rotate data-interval="{{ section.settings.interval }}" role="region" aria-label="Offers">
+    <ul class="pp-bar__sr">
+      {%- for item in items -%}{%- assign t = item | strip | remove_first: '!' | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}
+    </ul>
+    <div class="pp-rot" aria-hidden="true">
+      {%- assign shown = 0 -%}
+      {%- for item in items -%}
+        {%- assign t = item | strip -%}
+        {%- if t != blank -%}
+          {%- assign first = t | slice: 0 -%}
+          <p class="pp-rot__item{% if first == '!' %} pp-rot__item--caps{% endif %}{% if shown == 0 %} is-active{% endif %}">{{ t | remove_first: '!' | strip }}</p>
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if shown > 1 -%}
+    <button type="button" class="disable-global-button-styling pp-bar__toggle" data-pp-bar-toggle aria-pressed="false" aria-label="Pause rotating offers">
+      <svg class="pp-bar__pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><rect x="2" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/><rect x="7.5" y="1.5" width="2.5" height="9" rx="1" fill="currentColor"/></svg>
+      <svg class="pp-bar__play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
+    </button>
+    {%- endif -%}
+  </div>
+  <script>
+    (function () {
+      function start(bar) {
+        if (bar.__ppRot) return;
+        bar.__ppRot = true;
+        var items = bar.querySelectorAll('.pp-rot__item');
+        if (items.length < 2) return;
+        var i = 0, held = false;
+        var ms = Math.max(2, parseFloat(bar.getAttribute('data-interval')) || 3.5) * 1000;
+        ['mouseenter', 'focusin'].forEach(function (t) { bar.addEventListener(t, function () { held = true; }); });
+        ['mouseleave', 'focusout'].forEach(function (t) { bar.addEventListener(t, function () { held = false; }); });
+        setInterval(function () {
+          if (held || bar.classList.contains('is-paused') || document.hidden) return;
+          var cur = items[i];
+          i = (i + 1) % items.length;
+          var next = items[i];
+          next.style.transition = 'none';
+          next.classList.remove('is-leaving', 'is-active');
+          void next.offsetHeight;
+          next.style.transition = '';
+          cur.classList.remove('is-active');
+          cur.classList.add('is-leaving');
+          next.classList.add('is-active');
+          setTimeout(function () {
+            cur.style.transition = 'none';
+            cur.classList.remove('is-leaving');
+            void cur.offsetHeight;
+            cur.style.transition = '';
+          }, 400);
+        }, ms);
+      }
+      document.querySelectorAll('[data-pp-rotate]').forEach(start);
+    })();
+  </script>
+{%- elsif items.size > 0 -%}
   <div class="pp-bar" data-pp-bar role="region" aria-label="Offers" style="--pp-bar-duration: {{ section.settings.speed }}s;">
     <div class="pp-bar__track">
       {%- for copy in (1..copies) -%}
@@ -83,6 +156,8 @@
       <svg class="pp-bar__play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 1.8v8.4a.6.6 0 0 0 .9.5l6.6-4.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5Z" fill="currentColor"/></svg>
     </button>
   </div>
+{%- endif -%}
+{%- if items.size > 0 -%}
   <script>
     (function () {
       if (window.__ppBar) return;
@@ -92,7 +167,7 @@
         if (!btn) return;
         var paused = btn.closest('[data-pp-bar]').classList.toggle('is-paused');
         btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-        btn.setAttribute('aria-label', paused ? 'Play scrolling offers' : 'Pause scrolling offers');
+        btn.setAttribute('aria-label', (paused ? 'Play ' : 'Pause ') + (btn.closest('[data-pp-rotate]') ? 'rotating' : 'scrolling') + ' offers');
       });
     })();
   </script>
@@ -102,13 +177,16 @@
   "name": "ParaPatrol: announcement",
   "settings": [
     { "type": "text", "id": "text", "label": "Text (separate items with |)", "info": "Start an item with ! to show it as a highlighted pill, e.g. !Back to School Sale", "default": "!Back to School Sale | Free shipping on all orders | 30-day money-back guarantee" },
-    { "type": "range", "id": "speed", "label": "Seconds per loop", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "scroll", "options": [ { "value": "scroll", "label": "Scrolling" }, { "value": "rotate", "label": "Rotating (one message at a time)" } ] },
+    { "type": "range", "id": "speed", "label": "Seconds per loop (scrolling)", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
+    { "type": "range", "id": "interval", "label": "Seconds per message (rotating)", "min": 2, "max": 8, "step": 0.5, "unit": "s", "default": 3.5 },
     { "type": "select", "id": "style", "label": "Colour", "default": "primary", "options": [
       { "value": "primary", "label": "Brand green" },
       { "value": "ink", "label": "Navy" },
       { "value": "soft", "label": "Soft sage" },
       { "value": "fetchcam", "label": "FetchCam navy + amber" },
-      { "value": "readysip", "label": "ReadySip navy + gold" }
+      { "value": "readysip", "label": "ReadySip navy + gold" },
+      { "value": "readysip_blue", "label": "ReadySip royal blue" }
     ] }
   ],
   "presets": [ { "name": "ParaPatrol: announcement" } ]

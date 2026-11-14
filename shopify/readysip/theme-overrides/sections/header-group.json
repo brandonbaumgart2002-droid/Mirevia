@@ -9,9 +9,11 @@
     "parapatrol_announcement": {
       "type": "parapatrol-announcement",
       "settings": {
-        "text": "!November Restock – Selling Fast | Free Global Shipping | 30-Day Money Back Guarantee",
+        "text": "!November Restock – Selling Fast | FREE Gifts With 2 & 5 Straw Bundles | Free Global Shipping | 30-Day Money Back Guarantee",
         "speed": 28,
-        "style": "readysip"
+        "style": "readysip_blue",
+        "layout": "rotate",
+        "interval": 3.5
       }
     },
     "custom_announcement_bar_8N79qg": {
