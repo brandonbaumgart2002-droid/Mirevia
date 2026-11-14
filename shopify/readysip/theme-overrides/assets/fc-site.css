@@ -173,3 +173,5 @@ html #fcf a:hover { color: #dcad40; }
 html #fcf :is(.bottom, .fine) { color: #9fb3cc; }
 html #fcf .bottom { border-top-color: rgba(255, 255, 255, 0.14); }
 html #fcf .logo::after { color: #dcad40 !important; }
+body.pp-site .shopify-section:has(.main-page-title),
+body.pp-site .shopify-section:has(.shopify-policy__container) { background: #f3f8fe !important; }
