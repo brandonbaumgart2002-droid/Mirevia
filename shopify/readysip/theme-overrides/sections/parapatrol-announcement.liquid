@@ -61,6 +61,7 @@
   .pp-rot__item.is-active { opacity: 1; transform: none; }
   .pp-rot__item.is-leaving { opacity: 0; transform: translateY(-100%); }
   .pp-rot__item--caps { text-transform: uppercase; }
+  html body .pp-bar .pp-rot .pp-rot__item { font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif !important; font-weight: 800 !important; font-style: italic !important; letter-spacing: 0.01em !important; color: var(--pp-bar-fg) !important; }
   .pp-bar__sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
   @media (min-width: 640px) { .pp-rot__item { font-size: 14px; } .pp-bar--rotate, .pp-rot { min-height: 36px; height: 36px; } }
   @keyframes pp-bar { to { transform: translateX(calc(-100% / {{ copies }})); } }
@@ -107,8 +108,11 @@
         if (items.length < 2) return;
         var i = 0, held = false;
         var ms = Math.max(2, parseFloat(bar.getAttribute('data-interval')) || 3.5) * 1000;
-        ['mouseenter', 'focusin'].forEach(function (t) { bar.addEventListener(t, function () { held = true; }); });
-        ['mouseleave', 'focusout'].forEach(function (t) { bar.addEventListener(t, function () { held = false; }); });
+        // Pause while a mouse is over it or it has keyboard focus (touch taps don't leave it stuck on hover).
+        bar.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') held = true; });
+        bar.addEventListener('pointerleave', function () { held = false; });
+        bar.addEventListener('focusin', function () { held = true; });
+        bar.addEventListener('focusout', function () { held = false; });
         setInterval(function () {
           if (held || bar.classList.contains('is-paused') || document.hidden) return;
           var cur = items[i];
