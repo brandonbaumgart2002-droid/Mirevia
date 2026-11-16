@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PlugPal Outlet Extender</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="PlugPal™ turns one crowded wall outlet into 5 outlets, 4 USB ports and a night light. It screws in, in 30 seconds. No electrician.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&display=swap">
+<link rel="stylesheet" href="assets/plugpal.css">
+</head>
+<!-- "draft" highlights every claim that needs checking against your sample (yellow).
+     Remove class="draft" before launch. See README.md. -->
+<body class="draft">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-outlet" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 8v3M15 8v3M10.5 17v-1.5a1.5 1.5 0 0 1 3 0V17z"/></symbol>
+  <symbol id="i-usb" viewBox="0 0 24 24"><path d="M12 3v14M12 13l-4-3V7.5M12 11l4-3V6"/><circle cx="12" cy="19" r="2"/><circle cx="8" cy="6" r="1.5"/><path d="M14.8 3.8h2.5v2.5h-2.5z"/></symbol>
+  <symbol id="i-screw" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="3.5"/><path d="M10.3 6.5h3.4M10.5 10v8.5l1.5 2.5 1.5-2.5V10M10.5 13.5h3M10.5 16.5h3"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.5 3.5l6 6-2.5 2.5-6-6zM12 6L4.5 13.5a2.1 2.1 0 0 0 0 3l3 3a2.1 2.1 0 0 0 3 0L18 12"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h14V9.5M10 20v-6h4v6"/></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M4 9h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 11h1.5a2.5 2.5 0 0 1 0 5H16M8 3v3M12 3v3"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 19V6M3 14h18v5M21 14a3 3 0 0 0-3-3h-8v3"/><circle cx="6.5" cy="11" r="1.5"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 8h18v8H3zM7 8v3M11 8v4M15 8v3M19 8v4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.4L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.4L20 16M20 20v-4h-4"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h11l2-8H6.3"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M3 9h18v4H3zM5 13v8h14v-8M12 9v12M12 9C10.5 5 6 5 6 7.5S10 9 12 9M12 9c1.5-4 6-4 6-1.5S14 9 12 9"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M7 4h10v6a5 5 0 0 1-10 0zM12 15v6M10 8h4"/></symbol>
+  <symbol id="i-sensor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c3 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-7 1 2 2 3 3 3 0-3-1-5 0-7z"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
+</svg>
+
+<!-- ============ ANNOUNCEMENT + HEADER ============ -->
+<div class="announce" role="region" aria-label="Offers">
+  <div class="wrap announce__track" data-rotate>
+    <p class="announce__msg is-on" style="margin:0">Free gifts with 2 &amp; 4 packs</p>
+    <p class="announce__msg" style="margin:0">The most useful gift under $40</p>
+    <p class="announce__msg" style="margin:0">30-day money back guarantee</p>
+  </div>
+</div>
+
+<header class="header" data-header>
+  <div class="wrap header__row">
+    <nav class="nav" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="/pages/track-your-order">Track Your Order</a>
+      <a href="/pages/contact">Contact</a>
+    </nav>
+    <button class="icon-btn menu-btn" type="button" aria-label="Open menu"><svg class="icon"><use href="#i-menu"/></svg></button>
+    <a class="logo" href="#top" aria-label="Mirevia home">Mirevia<span>.</span></a>
+    <div class="header__tools">
+      <span class="region"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg>US / CA</span>
+      <a class="icon-btn" href="/account" aria-label="Account"><svg class="icon"><use href="#i-user"/></svg></a>
+      <a class="icon-btn" href="/cart" aria-label="Cart"><svg class="icon"><use href="#i-cart"/></svg><span class="cart-count" data-cart-count hidden>0</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ PRODUCT HERO ============ -->
+<section class="pdp">
+  <div class="wrap pdp__grid">
+
+    <!-- gallery: drop photos into /images with these file names and they replace the briefs -->
+    <div class="gallery" data-gallery>
+      <div class="gallery__stage">
+        <span class="gallery__count" data-gallery-count>1 / 8</span>
+        <button class="gallery__arrow gallery__arrow--prev" type="button" aria-label="Previous image" data-gallery-prev><svg class="icon"><use href="#i-left"/></svg></button>
+        <button class="gallery__arrow gallery__arrow--next" type="button" aria-label="Next image" data-gallery-next><svg class="icon"><use href="#i-right"/></svg></button>
+
+        <div class="gallery__slide is-on">
+          <div class="media" data-src="images/gallery-1.jpg" data-alt="PlugPal on a wall outlet with phones and a lamp plugged in">
+            <div class="hero-tile">
+              <div class="hero-tile__top">
+                <div class="hero-tile__kicker">No electrician · No wiring · No power strip</div>
+                <div class="hero-tile__title">One outlet.<br><span>Nine ports.</span></div>
+              </div>
+              <div class="hero-tile__chips">
+                <span class="hero-chip"><svg class="icon"><use href="#i-outlet"/></svg>5 outlets</span>
+                <span class="hero-chip"><svg class="icon"><use href="#i-usb"/></svg>4 USB</span>
+                <span class="hero-chip"><svg class="icon"><use href="#i-moon"/></svg>Night light</span>
+              </div>
+            </div>
+            <div class="ph" style="justify-content:center;padding-top:40px"><svg class="icon ph__icon" style="font-size:96px"><use href="#i-outlet"/></svg><span class="ph__tag">Photo: gallery-1.jpg</span></div>
+          </div>
+        </div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-2.jpg" data-alt="Before and after: a crowded two-socket outlet, then PlugPal with nine ports"><div class="ph"><svg class="icon ph__icon"><use href="#i-plug"/></svg><span class="ph__tag">Before / after</span><span class="ph__text">Crowded 2-socket outlet with an adapter pile, then PlugPal with 5 plugs and 4 cables in use.</span></div></div></div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-3.jpg" data-alt="Three-step install: remove the screw, plug in, screw it in"><div class="ph"><svg class="icon ph__icon"><use href="#i-tool"/></svg><span class="ph__tag">Install in 3 frames</span><span class="ph__text">Screwdriver removes the centre screw. Unit plugs in. Long screw locks it flat.</span></div></div></div>
+        <div class="gallery__slide"><div class="media media--dark" data-src="images/gallery-4.jpg" data-alt="PlugPal night light glowing in a dark hallway"><div class="ph"><svg class="icon ph__icon"><use href="#i-moon"/></svg><span class="ph__tag">Night light</span><span class="ph__text">Dark hallway at 3am. Soft glow from the outlet lights the floor to the bathroom.</span></div></div></div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-5.jpg" data-alt="A cheap cube adapter sagging out of the wall next to a screw-locked PlugPal"><div class="ph"><svg class="icon ph__icon"><use href="#i-screw"/></svg><span class="ph__tag">Wobbly cube vs screw-locked</span><span class="ph__text">A cheap cube sagging out of a worn outlet, next to PlugPal sitting flat and screwed in.</span></div></div></div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-6.jpg" data-alt="Kitchen coffee station with coffee maker and two phones charging"><div class="ph"><svg class="icon ph__icon"><use href="#i-coffee"/></svg><span class="ph__tag">Coffee station</span><span class="ph__text">Coffee maker, toaster and two phones charging from one counter outlet. Clean counter, no strip.</span></div></div></div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-7.jpg" data-alt="PlugPal dimensions shown on a combination plate next to a light switch"><div class="ph"><svg class="icon ph__icon"><use href="#i-ruler"/></svg><span class="ph__tag">Size and fit</span><span class="ph__text">Dimensions drawn on, mounted next to a light switch so buyers see it doesn't block it.</span></div></div></div>
+        <div class="gallery__slide"><div class="media" data-src="images/gallery-8.jpg" data-alt="What's in the box: PlugPal, long screw and install card"><div class="ph"><svg class="icon ph__icon"><use href="#i-box"/></svg><span class="ph__tag">In the box</span><span class="ph__text">PlugPal, long 6-32 mounting screw and the install and load-guide card.</span></div></div></div>
+      </div>
+      <div class="gallery__thumbs" role="tablist" aria-label="Product images" data-gallery-thumbs></div>
+    </div>
+
+    <!-- buy box -->
+    <div class="buy">
+      <div class="rating" id="rating">
+        <div class="draft-only draft-note"><svg class="icon"><use href="#i-image"/></svg>Your real star rating goes here once your review app is connected.</div>
+      </div>
+
+      <h1 class="display buy__title">PlugPal™ — 9-Port Outlet Extender with Night Light</h1>
+      <p class="buy__sub">Turn one crowded outlet into a charging station. It screws in, in 30 seconds. No electrician.</p>
+
+      <ul class="benefits">
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-outlet"/></svg></span><span><b>5 grounded outlets</b><small>Spread over 3 sides for bulky plugs</small></span></li>
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-usb"/></svg></span><span><b>2 USB-C + 2 USB-A</b><small>Delete the charger-brick pile</small></span></li>
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-screw"/></svg></span><span><b>Screw-locked to the wall</b><small>No sag, no wobble, no pulling out</small></span></li>
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-moon"/></svg></span><span><b>Dusk-to-dawn night light</b><small>Soft glow for 3am trips</small></span></li>
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-shield"/></svg></span><span><b>Surge protected</b><small>For TVs, consoles and chargers</small></span></li>
+        <li class="benefit"><span class="benefit__ico"><svg class="icon"><use href="#i-tool"/></svg></span><span><b>No electrician</b><small>One screwdriver. Renter-friendly.</small></span></li>
+      </ul>
+
+      <p class="picker-label">Colour</p>
+      <div class="swatches" role="radiogroup" aria-label="Colour" data-colours>
+        <button class="swatch" type="button" role="radio" aria-checked="true" data-colour="white"><i style="background:#f7f8fa"></i>White</button>
+        <button class="swatch" type="button" role="radio" aria-checked="false" data-colour="black"><i style="background:#1d2230"></i>Black</button>
+      </div>
+
+      <p class="picker-label">One for every room</p>
+      <div class="bundles" role="radiogroup" aria-label="Choose a pack" data-bundles>
+        <button class="bundle" type="button" role="radio" aria-checked="false" data-qty="1">
+          <span class="bundle__radio" aria-hidden="true"></span>
+          <span class="bundle__img" aria-hidden="true">×1</span>
+          <span class="bundle__name">1 PlugPal <span class="bundle__pill">1 room</span></span>
+          <span class="bundle__price"><span class="bundle__now verify">$34.99</span><span class="bundle__per">$34.99 per room</span></span>
+        </button>
+        <button class="bundle" type="button" role="radio" aria-checked="false" data-qty="2">
+          <span class="bundle__badge">Most popular</span>
+          <span class="bundle__radio" aria-hidden="true"></span>
+          <span class="bundle__img" aria-hidden="true">×2</span>
+          <span class="bundle__name">2 PlugPals <span class="bundle__pill">Kitchen + bedroom</span></span>
+          <span class="bundle__price"><span class="bundle__now verify">$59.99</span><span class="bundle__was">$69.98</span><span class="bundle__per">$29.99 per room</span></span>
+        </button>
+        <button class="bundle" type="button" role="radio" aria-checked="true" data-qty="4">
+          <span class="bundle__badge bundle__badge--gold">Best value</span>
+          <span class="bundle__radio" aria-hidden="true"></span>
+          <span class="bundle__img" aria-hidden="true">×4</span>
+          <span class="bundle__name">4 PlugPals <span class="bundle__pill">Whole-home pack</span></span>
+          <span class="bundle__price"><span class="bundle__now verify">$99.99</span><span class="bundle__was">$139.96</span><span class="bundle__per">$24.99 per room</span></span>
+        </button>
+      </div>
+
+      <div>
+        <p class="gifts__title">Unlock free gifts with bundles</p>
+        <div class="gifts" data-gifts>
+          <div class="gift" data-min="2"><span class="gift__tag">Free</span><span class="gift__ico"><svg class="icon"><use href="#i-truck"/></svg></span><b>Free shipping</b><span class="gift__state" data-state></span></div>
+          <div class="gift" data-min="2"><span class="gift__tag">Free <s class="verify">$6.99</s></span><span class="gift__ico"><svg class="icon"><use href="#i-screw"/></svg></span><b class="verify">Deep-plate long-screw kit</b><span class="gift__state" data-state></span></div>
+          <div class="gift" data-min="4"><span class="gift__tag">Free <s class="verify">$9.99</s></span><span class="gift__ico"><svg class="icon"><use href="#i-clip"/></svg></span><b class="verify">Cord-tidy clip set</b><span class="gift__state" data-state></span></div>
+        </div>
+        <p class="gifts__note" data-gifts-note aria-live="polite"></p>
+      </div>
+
+      <p class="ships verify">Ships in 1–3 business days</p>
+      <button class="btn btn--block" type="button" data-buy><svg class="icon"><use href="#i-lock"/></svg>Secure checkout – Buy now</button>
+      <p class="tagline">Screw it in. Plug it all in.</p>
+
+      <div class="guarantee">
+        <h2 class="guarantee__title">30-day money back guarantee</h2>
+        <p>More outlets in 30 seconds, or your money back.</p>
+        <div class="trust">
+          <div><svg class="icon"><use href="#i-shield"/></svg>Secure checkout</div>
+          <div><svg class="icon"><use href="#i-truck"/></svg><span class="verify">Delivered in 6–12 days</span></div>
+          <div><svg class="icon"><use href="#i-tool"/></svg>No electrician needed</div>
+        </div>
+        <div class="pay" aria-label="Payment methods"><span>AMEX</span><span>Apple Pay</span><span>G Pay</span><span>Mastercard</span><span>PayPal</span><span>Shop Pay</span><span>VISA</span></div>
+      </div>
+
+      <div class="acc" data-acc>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-box"/></svg>What's in the box<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden><ul><li>PlugPal outlet extender</li><li>Long 6-32 mounting screw (replaces your cover-plate screw)</li><li>Install card with the load guide on the back</li></ul></div>
+        </div>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-tool"/></svg>How to install<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden><ol><li>Unscrew the centre screw from your outlet's cover plate. Leave the plate on.</li><li>Plug PlugPal into the outlet so it sits flat against the plate.</li><li>Screw it in with the long screw from the box until it's snug. Don't over-tighten.</li></ol><p style="margin-top:10px">No wiring and no power switched off at the breaker. To remove it, reverse the steps and put your old screw back.</p></div>
+        </div>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-list"/></svg>Specs<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden>
+            <dl class="spec">
+              <dt>AC outlets</dt><dd>5 × 3-prong grounded, on 3 sides</dd>
+              <dt>USB</dt><dd><span class="verify">2 × USB-C (20W PD)</span> + 2 × USB-A, shared output</dd>
+              <dt>Rating</dt><dd>125V · 15A · 1,875W total, shared with the wall outlet</dd>
+              <dt>Surge</dt><dd><span class="verify">1,050 joules</span>, TVS + MOV + GDT, protected-indicator light</dd>
+              <dt>Night light</dt><dd>Dusk-to-dawn sensor, <span class="verify">touch control with 3 brightness levels</span></dd>
+              <dt>Mount</dt><dd>Centre cover-plate screw, long 6-32 screw included</dd>
+              <dt>Housing</dt><dd class="verify">Flame-retardant PC</dd>
+              <dt>Certification</dt><dd class="verify">ETL listed · FCC</dd>
+              <dt>Size</dt><dd class="verify">Add measurements from your sample</dd>
+              <dt>Fits</dt><dd>Standard US/Canada (Type B) 3-prong duplex outlets</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-ruler"/></svg>Will it fit my outlet?<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden><p>It fits a standard two-socket, 3-prong grounded outlet with a centre screw holding the cover plate. If your plate is extra deep, use the long screw in the box.</p><p>It won't fit 2-prong outlets, and it needs a solid outlet. If yours is loose, cracked or pushes into the wall, get that fixed first.</p></div>
+        </div>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-truck"/></svg>Shipping<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden><p class="verify">Orders are processed in 1–3 business days and delivered in 6–12. You'll get a tracking link by email as soon as it ships.</p></div>
+        </div>
+        <div class="acc__item">
+          <button class="acc__btn" type="button" aria-expanded="false"><svg class="icon"><use href="#i-shield"/></svg>Guarantees and refunds<svg class="icon chev"><use href="#i-down"/></svg></button>
+          <div class="acc__panel" hidden><p>Try it for 30 days. If it doesn't fit your outlet or you're not happy with it, contact us for a refund. If a night light or USB port arrives faulty, we'll replace it. Full details in our <a href="/policies/refund-policy">refund policy</a>.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO REEL ============ -->
+<section class="section" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="split-head">Two Plugs. Seven Things.<em>Now Everything's Plugged In.</em></h2>
+      <p class="lede">For old houses with two outlets a room, crowded coffee stations, bedside charger fights and the dark trip to the bathroom.</p>
+    </div>
+    <div class="reel" data-reel>
+      <div class="reel__track" data-reel-track>
+        <div class="reel__item"><div class="media media--dark" data-src="images/video-1.jpg" data-alt="Install demo video"><span class="reel__cap">Modernise your old outlets</span><span class="reel__play"><svg class="icon icon--fill"><use href="#i-play"/></svg></span><div class="ph"><span class="ph__tag">UGC: install demo</span><span class="ph__text">Remove screw, plug in, re-screw. "From 2 old outlets to 9 ports."</span></div></div></div>
+        <div class="reel__item"><div class="media media--dark" data-src="images/video-2.jpg" data-alt="Coffee station video"><span class="reel__cap">Coffee station, sorted</span><span class="reel__play"><svg class="icon icon--fill"><use href="#i-play"/></svg></span><div class="ph"><span class="ph__tag">UGC: kitchen</span><span class="ph__text">Crowded counter before, clean counter after. Coffee maker and phones only.</span></div></div></div>
+        <div class="reel__item"><div class="media media--dark" data-src="images/video-3.jpg" data-alt="Charger fight video"><span class="reel__cap">"Who took my charger?"</span><span class="reel__play"><svg class="icon icon--fill"><use href="#i-play"/></svg></span><div class="ph"><span class="ph__tag">UGC: family</span><span class="ph__text">9pm bedroom. Four phones, one outlet, everyone charging.</span></div></div></div>
+        <div class="reel__item"><div class="media media--dark" data-src="images/video-4.jpg" data-alt="Night light video"><span class="reel__cap">The 3am hallway</span><span class="reel__play"><svg class="icon icon--fill"><use href="#i-play"/></svg></span><div class="ph"><span class="ph__tag">UGC: night light</span><span class="ph__text">Lights off. The outlet glows. Mum gets to the bathroom without the big light.</span></div></div></div>
+        <div class="reel__item"><div class="media media--dark" data-src="images/video-5.jpg" data-alt="Power strip versus PlugPal video"><span class="reel__cap">Delete the power strip</span><span class="reel__play"><svg class="icon icon--fill"><use href="#i-play"/></svg></span><div class="ph"><span class="ph__tag">UGC: clean look</span><span class="ph__text">Cord nest behind the TV, then one flush outlet and a robot vacuum rolling past.</span></div></div></div>
+      </div>
+      <div class="ctrls">
+        <button class="ctrl" type="button" aria-label="Previous videos" data-reel-prev><svg class="icon"><use href="#i-left"/></svg></button>
+        <button class="ctrl" type="button" aria-label="Next videos" data-reel-next><svg class="icon"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <div class="ticker__group">
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>5 grounded outlets</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>2 USB-C + 2 USB-A</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Night light</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Surge protected</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Screws to the wall</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>No electrician</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Renter-friendly</span>
+    </div>
+    <div class="ticker__group">
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>5 grounded outlets</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>2 USB-C + 2 USB-A</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Night light</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Surge protected</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Screws to the wall</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>No electrician</span>
+      <span class="ticker__item"><svg class="icon"><use href="#i-check"/></svg>Renter-friendly</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="display h-section">From 2 old outlets to 9 ports in 30 seconds</h2>
+      <p class="lede">PlugPal uses the screw that already holds your cover plate. Swap it for the longer one in the box and the whole unit locks flat to the wall, so pulling out a plug never drags it out with it.</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <div class="step__num">1</div>
+        <h3>Take out the centre screw</h3>
+        <div class="media" data-src="images/step-1.jpg" data-alt="Screwdriver removing the cover-plate screw"><div class="ph"><svg class="icon ph__icon"><use href="#i-screw"/></svg><span class="ph__text">Close-up: screwdriver on the cover-plate screw</span></div></div>
+        <p>Unscrew the one screw in the middle of your outlet's cover plate. The plate stays where it is.</p>
+      </article>
+      <article class="step">
+        <div class="step__num">2</div>
+        <h3>Plug it in</h3>
+        <div class="media" data-src="images/step-2.jpg" data-alt="PlugPal being plugged into the outlet"><div class="ph"><svg class="icon ph__icon"><use href="#i-plug"/></svg><span class="ph__text">PlugPal going into the outlet, flat to the plate</span></div></div>
+        <p>Push PlugPal into the outlet until it sits flat against the plate. Its prongs use both sockets.</p>
+      </article>
+      <article class="step">
+        <div class="step__num">3</div>
+        <h3>Screw it in</h3>
+        <div class="media" data-src="images/step-3.jpg" data-alt="Long screw locking PlugPal to the wall"><div class="ph"><svg class="icon ph__icon"><use href="#i-check"/></svg><span class="ph__text">Long screw going through PlugPal into the box</span></div></div>
+        <p>Use the long screw from the box to fix it through the centre. Snug, not tight.</p>
+        <div class="step__tip">Cheap cube adapters sag out of worn outlets. The screw is what stops that.</div>
+      </article>
+    </div>
+    <div class="tally" aria-label="What one outlet becomes">
+      <div><b>5</b><span>grounded AC outlets</span></div>
+      <div><b>2</b><span>USB-C ports</span></div>
+      <div><b>2</b><span>USB-A ports</span></div>
+      <div><b>1</b><span>night light</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROOMS ============ -->
+<section class="section section--wash" id="rooms">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Where it goes</p>
+      <h2 class="display h-section">One outlet. Every room.</h2>
+      <p class="lede">Most people start with the worst outlet in the house, then come back for the rest.</p>
+    </div>
+    <div class="rooms">
+      <article class="room">
+        <div class="media" data-src="images/room-kitchen.jpg" data-alt="Kitchen coffee station"><div class="ph"><svg class="icon ph__icon"><use href="#i-coffee"/></svg><span class="ph__text">Coffee station on a clean counter</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-coffee"/></svg>Kitchen</span><h3>The coffee station</h3><p>Coffee maker, grinder and both phones on one counter outlet, with no unplugging in the morning.</p></div>
+      </article>
+      <article class="room">
+        <div class="media" data-src="images/room-bedside.jpg" data-alt="Bedside table with phones charging"><div class="ph"><svg class="icon ph__icon"><use href="#i-bed"/></svg><span class="ph__text">Bedside: lamp plus two phones charging</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-bed"/></svg>Bedroom</span><h3>Both sides of the bed</h3><p>Lamp, phones, watch and earbuds, with USB-C built in. No more fighting over charging blocks.</p></div>
+      </article>
+      <article class="room">
+        <div class="media" data-src="images/room-bathroom.jpg" data-alt="Bathroom vanity outlet"><div class="ph"><svg class="icon ph__icon"><use href="#i-bath"/></svg><span class="ph__text">Bathroom vanity with toothbrush and shaver</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-bath"/></svg>Bathroom</span><h3>The one-outlet vanity</h3><p>Toothbrush, shaver and a night light for the 3am trip. Keep the hair dryer in the wall.</p></div>
+      </article>
+      <article class="room">
+        <div class="media" data-src="images/room-tv.jpg" data-alt="TV and gaming setup"><div class="ph"><svg class="icon ph__icon"><use href="#i-tv"/></svg><span class="ph__text">TV wall, no power strip behind it</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-tv"/></svg>Living room</span><h3>TV and gaming</h3><p>TV, streaming box, console and controllers with surge protection and no strip on the floor.</p></div>
+      </article>
+      <article class="room">
+        <div class="media media--dark" data-src="images/room-hallway.jpg" data-alt="Hallway night light"><div class="ph"><svg class="icon ph__icon"><use href="#i-moon"/></svg><span class="ph__text">Hallway or nursery at night</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-moon"/></svg>Hallway &amp; nursery</span><h3>A light on the way</h3><p>The glow comes on by itself at dusk, for night feeds, toddlers and older parents.</p></div>
+      </article>
+      <article class="room">
+        <div class="media" data-src="images/room-rental.jpg" data-alt="Rental or dorm room desk"><div class="ph"><svg class="icon ph__icon"><use href="#i-key"/></svg><span class="ph__text">Rental flat or dorm desk</span></div></div>
+        <div class="room__body"><span class="room__label"><svg class="icon"><use href="#i-key"/></svg>Rental &amp; dorm</span><h3>Comes with you when you move</h3><p>No wiring and nothing to ask the landlord. Unscrew it and take it to the next place.</p></div>
+      </article>
+    </div>
+    <div class="rooms__cta"><a class="btn btn--sm" href="#top" data-pick="4">Get the whole-home pack – $24.99 a room</a></div>
+  </div>
+</section>
+
+<!-- ============ NIGHT LIGHT ============ -->
+<section class="section section--navy night" data-night>
+  <div class="wrap night__grid">
+    <div class="night__copy">
+      <p class="eyebrow">Built-in night light</p>
+      <h2 class="display">The 3am hallway, sorted.</h2>
+      <p class="lede">When the room goes dark, a soft light comes on by itself. Nobody needs the big light to get to the bathroom, and nobody stumbles on the way.</p>
+      <ul class="night__list">
+        <li><svg class="icon"><use href="#i-sensor"/></svg><span><b>Dusk-to-dawn sensor</b>On when it's dark, off when it's light. Nothing to remember.</span></li>
+        <li><svg class="icon"><use href="#i-moon"/></svg><span><b class="verify">3 brightness levels</b>Tap to set it. Bright for the stairs, low for the nursery.</span></li>
+        <li><svg class="icon"><use href="#i-home"/></svg><span><b>Good for older parents</b>A safer walk at night, set up in 30 seconds on your next visit.</span></li>
+      </ul>
+      <button class="toggle" type="button" aria-pressed="false" data-night-toggle><span class="toggle__knob" aria-hidden="true"></span><span data-night-label>Turn the lights off</span></button>
+    </div>
+    <div class="hallway" aria-hidden="true">
+      <div class="hallway__wall"></div>
+      <div class="hallway__glow"></div>
+      <div class="hallway__floor"></div>
+      <div class="hallway__plate"><i class="hallway__strip"></i><i></i><i></i></div>
+      <div class="hallway__caption" data-night-caption>Daytime. The light stays off.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOAD GUIDE ============ -->
+<section class="section section--wash" id="safety">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Honest safety</p>
+      <h2 class="display h-section">It adds sockets, not power</h2>
+      <p class="lede">Every outlet extender shares one wall circuit. Most sellers skip that part. Here's what belongs in PlugPal and what goes straight into the wall.</p>
+    </div>
+    <div class="load">
+      <div class="load__card">
+        <h3>Plug into PlugPal</h3>
+        <p>Everyday electronics and small appliances</p>
+        <ul class="load__list">
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>Phones, tablets, watches, earbuds</b> — on the USB ports</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>Lamps and routers</b></span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>TV, streaming box, game console</b></span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>Coffee maker</b> — one heating appliance at a time</span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>Robot vacuum dock, litter robot</b></span></li>
+          <li><svg class="icon"><use href="#i-check"/></svg><span><b>Toothbrush and shaver chargers</b></span></li>
+        </ul>
+      </div>
+      <div class="load__card load__card--no">
+        <h3>Plug straight into the wall</h3>
+        <p>High-heat and high-power appliances</p>
+        <ul class="load__list">
+          <li><svg class="icon"><use href="#i-x"/></svg><span><b>Space heaters</b> — always straight into the wall</span></li>
+          <li><svg class="icon"><use href="#i-x"/></svg><span><b>Two heat appliances at once</b> — kettle + toaster, air fryer + microwave</span></li>
+          <li><svg class="icon"><use href="#i-x"/></svg><span><b>Hair dryers and straighteners</b></span></li>
+          <li><svg class="icon"><use href="#i-x"/></svg><span><b>Window AC units</b></span></li>
+          <li><svg class="icon"><use href="#i-laptop"/></svg><span><b>Laptops</b> — USB-C is for phones and earbuds. Use your laptop's own charger.</span></li>
+          <li><svg class="icon"><use href="#i-outlet"/></svg><span><b>Loose or damaged outlets</b> — fix the outlet first</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="callout"><b>Everything on PlugPal shares one 15A / 1,875W wall circuit.</b> If two heaters trip your breaker today, they'll trip it on PlugPal too. PlugPal isn't a GFCI, and its surge protection wears down over big surges. The indicator light shows it's still protecting.</p>
+  </div>
+</section>
+
+<!-- ============ ELECTRICIAN BAND ============ -->
+<section class="section section--navy">
+  <div class="wrap quote-band">
+    <div>
+      <p class="eyebrow">No electrician</p>
+      <h2 class="display">Skip the <span>$280-per-outlet</span> quote.</h2>
+      <p class="lede">Adding a real outlet means a call-out fee, a booking weeks away and someone cutting into your wall. If you rent, you can't do it at all.</p>
+    </div>
+    <div class="vs">
+      <div class="vs__row vs__row--them"><b>New outlet from an electrician</b><small>Per outlet, plus a call-out or estimate fee</small><span class="vs__price">$245–280</span></div>
+      <div class="vs__row vs__row--us"><b>PlugPal, whole-home pack</b><small>Per room. A screwdriver and 30 seconds.</small><span class="vs__price verify">$24.99</span></div>
+      <p class="vs__src">Electrician prices are quotes homeowners shared on home-improvement forums. Your area may differ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="section" id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Why PlugPal</p>
+      <h2 class="display h-section">PlugPal vs the usual fix</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead><tr><th scope="col">Feature</th><th scope="col" class="us">PlugPal</th><th scope="col">Power strip</th><th scope="col">Cube adapter</th></tr></thead>
+        <tbody>
+          <tr><td>No cord on the floor to trip on</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td><td><span class="tick tick--blue"><svg class="icon"><use href="#i-check"/></svg></span></td></tr>
+          <tr><td>Screws to the wall, won't sag or pull out</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td>—</td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td></tr>
+          <tr><td>USB-C and USB-A built in</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td>Some</td><td>Rarely</td></tr>
+          <tr><td>Wide spacing for bulky plugs</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td><span class="tick tick--blue"><svg class="icon"><use href="#i-check"/></svg></span></td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td></tr>
+          <tr><td>Built-in night light</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td></tr>
+          <tr><td>Surge protection</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td>Some</td><td>Rarely</td></tr>
+          <tr><td>Furniture sits close to the wall</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td><span class="tick tick--no"><svg class="icon"><use href="#i-x"/></svg></span></td><td><span class="tick tick--blue"><svg class="icon"><use href="#i-check"/></svg></span></td></tr>
+          <tr><td>Tells you what not to plug in</td><td class="us"><span class="tick tick--gold"><svg class="icon"><use href="#i-check"/></svg></span></td><td>Rarely</td><td>Rarely</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare__note">Compared with a typical floor power strip and an unmounted 3-way cube adapter.</p>
+  </div>
+</section>
+
+<!-- ============ VOICES ============ -->
+<section class="section section--wash" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Sound familiar?</p>
+      <h2 class="display h-section">Old houses, new gadgets</h2>
+      <p class="lede">What homeowners and renters say about their outlets.</p>
+    </div>
+    <div class="voices">
+      <figure class="voice"><span class="voice__tag">Old house</span><blockquote>"It's an old house, July of 1952. The typical two outlets per room."</blockquote><p>Homeowner</p></figure>
+      <figure class="voice"><span class="voice__tag">Electrician quotes</span><blockquote>"4 outlets were going to be $1,120 plus tax."</blockquote><p>Homeowner</p></figure>
+      <figure class="voice"><span class="voice__tag">Bathroom</span><blockquote>"I have one outlet in my bathroom and am constantly unplugging one item to plug in another."</blockquote><p>Outlet extender buyer</p></figure>
+      <figure class="voice"><span class="voice__tag">Renting</span><blockquote>"I'm just renting… I'll just avoid using this plug until I move out."</blockquote><p>Renter</p></figure>
+      <figure class="voice"><span class="voice__tag">Night time</span><blockquote>"I am 70+ and need a nightlight while stumbling around at night."</blockquote><p>Outlet extender buyer</p></figure>
+      <figure class="voice"><span class="voice__tag">Putting it off</span><blockquote>"I still have an outlet behind our couch I was 'going to get to' 2 years ago."</blockquote><p>Homeowner</p></figure>
+    </div>
+    <p class="voices__src">Quotes from public home-improvement forums and outlet-extender reviews. They describe the problem, not PlugPal.</p>
+    <div class="draft-only draft-note">PlugPal customer reviews go here. Add your review app's widget (Judge.me, Loox, Okendo) to this section once you have real reviews.</div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:24px">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="display h-section">Questions, answered straight</h2>
+      <a class="faq__contact" href="/pages/contact">Still not sure? Contact us.</a>
+    </div>
+    <div class="acc faq" data-acc>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Is it safe to plug this much into one outlet?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>For everyday electronics, yes. PlugPal has a surge circuit, a flame-retardant housing and a screw mount that keeps it from sagging out of the wall. What matters is total load: everything shares one 15A / 1,875W circuit. Phones, lamps, TVs and a coffee maker are fine. Space heaters and pairs of heat appliances go straight into the wall.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Will it fit my outlet?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>It fits standard US and Canadian two-socket, 3-prong grounded outlets with a centre screw in the cover plate. Deep plates may need the longer 6-32 screw, which is in the box.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">My outlets are 2-prong. Will it work?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>No. PlugPal has a 3-prong grounded plug, so it needs a 3-prong outlet. Older homes often have 2-prong outlets in some rooms, so check before you order.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Does it block the light switch or the other socket?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>It covers both sockets of the outlet and turns them into nine ports. On a combined switch-and-outlet plate it sits beside the switch. <span class="verify">Add the exact dimensions from your sample here.</span></p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Will the USB-C port charge my laptop?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>No. The USB ports are for phones, earbuds, watches and controllers. They share their power, so charging slows a little when all four are in use. Laptops and large tablets need their own charger, which you can plug into one of the five AC outlets.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Is the night light bright enough? Does it stay on all night?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>It's a soft glow made for hallways, bathrooms and nurseries, not a room light. The sensor turns it on at dusk and off when the room gets light. <span class="verify">Tap the light icon to set the brightness.</span></p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Do I need an electrician?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>No. There's no wiring. You need a flat-head or Phillips screwdriver and about 30 seconds.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">I rent. Can I use it?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>Yes. It doesn't change your wiring and it leaves no marks. When you move, unscrew it, put your old cover-plate screw back and take PlugPal with you.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">My outlet is loose. Will PlugPal hold it?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>No, and you shouldn't try. If an outlet is loose, cracked, sunken into the wall or won't hold a screw, have it repaired first. PlugPal needs a solid outlet.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">How long does the surge protection last?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>Surge protection is rated in joules, and each big surge uses some of it up. The protected-indicator light shows it's still working. If the light goes out, the outlets still work but surge protection doesn't, so replace the unit.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Why not buy a $12 one from Amazon?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>Many cheap extenders list joule ratings that don't match their own boxes, and some don't screw in at all. PlugPal publishes its <span class="verify">certification and joule rating</span>, includes the long screw and load guide, and comes with a 30-day guarantee and real support.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">Does it work in my country?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>PlugPal is made for US and Canadian outlets (Type B, 120V). It won't fit outlets in the UK, Europe or Australia.</p></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false">What's your guarantee?<svg class="icon chev"><use href="#i-down"/></svg></button>
+        <div class="acc__panel" hidden><p>30 days. If it doesn't fit or you're not happy, contact us for a refund. Faulty night lights or USB ports are replaced.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNUP ============ -->
+<section class="section section--wash signup">
+  <div class="wrap">
+    <p class="eyebrow">Stay sorted</p>
+    <h2 class="display h-section">Join the PlugPal list</h2>
+    <p class="lede">Restock alerts, holiday gift deals and first word on new packs.</p>
+    <form data-signup novalidate>
+      <label class="sr" for="email" style="position:absolute;left:-9999px">Email address</label>
+      <input id="email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
+      <button class="btn btn--sm" type="submit">Sign up</button>
+    </form>
+    <p class="signup__ok" data-signup-ok hidden>You're on the list.</p>
+    <small>No spam. Unsubscribe anytime.</small>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="#top">Mirevia<span>.</span></a>
+        <p>PlugPal turns one crowded wall outlet into five outlets, four USB ports and a night light, so every room in your home has enough plugs.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul><li><a href="#top">PlugPal™ Outlet Extender</a></li><li><a href="/pages/track-your-order">Track your order</a></li><li><a href="/pages/contact">Contact us</a></li></ul>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <ul><li><a href="/policies/refund-policy">Refund policy</a></li><li><a href="/policies/shipping-policy">Shipping policy</a></li><li><a href="/policies/privacy-policy">Privacy policy</a></li><li><a href="/policies/terms-of-service">Terms of service</a></li></ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul class="footer__support"><li>Customersupport@mirevia.com.co</li><li>30-day money-back guarantee</li><li class="verify">Processed in 1–3 days, delivered in 6–12</li><li>Secure checkout</li></ul>
+      </div>
+    </div>
+    <p class="footer__legal">PlugPal adds outlets, not power. Everything plugged in shares the wall outlet's 15A / 1,875W circuit. Don't use it for space heaters or more than one high-heat appliance at a time. Not a GFCI. For standard US/Canada 3-prong grounded outlets in good condition. USB ports are not for laptops.</p>
+    <div class="footer__bottom">
+      <span>© 2026 Mirevia. All rights reserved.</span>
+      <div class="pay" aria-label="Payment methods"><span>AMEX</span><span>Apple Pay</span><span>G Pay</span><span>Mastercard</span><span>PayPal</span><span>Shop Pay</span><span>VISA</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky buy bar -->
+<div class="sticky-bar" data-sticky aria-hidden="true">
+  <div class="wrap sticky-bar__row">
+    <span class="sticky-bar__thumb"><svg class="icon"><use href="#i-outlet"/></svg></span>
+    <div class="sticky-bar__info"><b data-sticky-name>4 PlugPals – Whole-home pack</b><span data-sticky-price>$99.99</span></div>
+    <button class="btn btn--sm" type="button" data-buy tabindex="-1">Buy now</button>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" hidden></div>
+
+<script src="assets/plugpal.js"></script>
+</body>
+</html>
