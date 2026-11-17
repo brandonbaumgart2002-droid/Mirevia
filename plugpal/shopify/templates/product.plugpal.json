@@ -3,10 +3,32 @@
     "main": {
       "type": "plugpal-product",
       "settings": {
-        "draft_mode": true,
-        "after_add": "checkout"
+        "draft_mode": false,
+        "title_suffix": "9-Port Outlet Extender with Night Light",
+        "after_add": "cart",
+        "offer_title": "Early Black Friday Sale – Limited Stock",
+        "offer_text": "Black Friday prices are on now, ahead of the rush. Stock at these prices is limited.",
+        "offer_sold": 84,
+        "reviews_full_widget": true,
+        "price_1": "$36.99",
+        "price_2": "$73.99",
+        "was_2": "$110.97",
+        "price_4": "$114.99",
+        "was_4": "$221.94",
+        "gift_2_name": "Deep-plate long-screw kit",
+        "gift_2_value": "$6.99",
+        "gift_3_name": "Cord-tidy clip set",
+        "gift_3_value": "$9.99",
+        "ships_text": "Ships in 1–3 Business Days",
+        "delivery_text": "Delivered in 6–12 Days",
+        "shipping_detail": "Orders are processed in 1–3 business days and delivered in 6–12. You'll get a tracking link by email as soon as it ships.",
+        "video_1": "shopify://files/videos/tiktok-carpe_diem19860-7708038180611624223.mp4",
+        "video_2": "shopify://files/videos/tiktok-dynamitefinds-7464633942449196331.mp4",
+        "video_3": "shopify://files/videos/Amazon.com Multi Plug Outlet Surge Protector - POWSAF 5 Outlet E (1).mp4"
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
