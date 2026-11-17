@@ -350,3 +350,11 @@
 #plugpal .pp-bundle__badge{letter-spacing: .03em !important}
 
 .header__heading-logo-wrapper::before{color:#111 !important}.header__heading-logo-wrapper::after{color:#f5a524 !important}
+/* Judge.me widget inside #plugpal: give back its icon fonts (the font guard above overrides them) and use the PlugPal palette instead of Judge.me's teal. */
+#plugpal .jdgm-star{font-family: JudgemeStar !important;color: var(--gold) !important}
+#plugpal .jdgm-paginate__next-page,#plugpal .jdgm-paginate__last-page,#plugpal .jdgm-paginate__prev-page,#plugpal .jdgm-paginate__first-page{font-family: JudgemeIcons !important}
+#plugpal .jdgm-rev__author{color: var(--navy) !important}
+#plugpal .jdgm-rev__icon::before{color: var(--amber-ink) !important}
+#plugpal .jdgm-histogram__bar-content{background: var(--gold) !important}
+#plugpal .jdgm-write-rev-link,#plugpal .jdgm-ask-question-btn{background: var(--navy) !important;border-color: var(--navy) !important;color: #fff !important}
+#plugpal .jdgm-paginate__page.jdgm-curt{color: var(--amber-ink) !important}
