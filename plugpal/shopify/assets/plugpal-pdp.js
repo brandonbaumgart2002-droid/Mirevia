@@ -111,29 +111,6 @@
     mo.observe(area, { childList: true, subtree: true });
   }
 
-  /* ---------- cart drawer countdown ----------
-     The theme's countdown (cart-timer-bar) only restarts after its own add-to-cart forms. When the drawer is
-     redrawn by our buy button or the shipping-protection switch, restart it with the fresh cart. */
-  (function () {
-    var cd = document.querySelector('cart-drawer');
-    if (!cd || !('MutationObserver' in window)) return;
-    var pending = null, last = 0;
-    function restart() {
-      if (typeof window.cartTimerBar !== 'function') return;
-      last = Date.now();
-      fetch('/cart.js', { headers: { Accept: 'application/json' } })
-        .then(function (r) { return r.json(); })
-        .then(function (c) { window.cartTimerBar(c); })
-        .catch(function () {});
-    }
-    new MutationObserver(function () {
-      var el = cd.querySelector('.cart-timer-countdown');
-      var empty = cd.querySelector('.drawer__inner.is-empty') || cd.classList.contains('is-empty');
-      if (!el || el.textContent.trim() || empty || pending || Date.now() - last < 1500) return;
-      pending = setTimeout(function () { pending = null; restart(); }, 150);
-    }).observe(cd, { childList: true, subtree: true });
-  })();
-
   function init() {
   initReels();
   var root = document.getElementById('plugpal');
