@@ -436,3 +436,12 @@
 #plugpal .pp-compare th,#plugpal .pp-compare td{padding: 12px 10px}
 #plugpal .pp-faq .pp-acc__btn{font-size: 15.5px;padding: 14px 30px}
 }
+/* Blomar-layout fixes */
+#plugpal .pp-cmp .pp-cmp__table thead th.pp-cmp__us{white-space: nowrap}
+#plugpal .jdgm-rev-widg__title{display: none !important}
+@media (max-width: 600px){#plugpal .pp-cmp .pp-cmp__table thead th.pp-cmp__us{font-size: 14px !important}
+#plugpal .pp-offer .pp-offer__title{font-size: 13px;letter-spacing: 0}
+#plugpal .pp-buy .pp-guarantee .pp-guarantee__lead{font-size: 18px !important}
+#plugpal .pp-buy .pp-guarantee .pp-trust div{font-size: 11.5px}
+#plugpal .pp-buy .pp-guarantee .pp-trust .pp-icon{font-size: 18px}
+}
