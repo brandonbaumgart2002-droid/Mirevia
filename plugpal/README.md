@@ -38,7 +38,7 @@ The page opens with `class="draft"` on `<body>`. Every claim to check against yo
 What's highlighted:
 
 - **Prices**: $34.99 / $59.99 / $99.99 (so the 4-pack works out to $24.99 a room), and the $24.99 in the electrician section
-- **Free gifts**: long-screw kit ($6.99) and cord-tidy clip set ($9.99). Swap them for gifts you can actually ship.
+- **Free gifts**: the e-guide (digital, delivered by Shopify Digital Products) and the USB-C cable 5-pack. Make sure you have the cables in stock to ship with 6-pack orders.
 - **Shipping times**: 1–3 days to process, 6–12 to deliver
 - **Specs**: USB-C wattage, joule rating (1,050J, the lowest claim in the research), 3 brightness levels, flame-retardant housing, **ETL listing**, dimensions
 - **Night light**: "tap the light icon" in the FAQ
@@ -123,9 +123,28 @@ The buy button (and the sticky bar's) adds the pack and opens the theme's cart d
 
 Shipping protection is the theme's own **Shipping Protection** block in the cart drawer (Theme settings > Cart Drawer), switched on and linked to the *Shipping Protection* product (US $2.99, Canada $3.99 from the market price lists). It sits above the order summary, off by default, like Blomar's. In `config/settings_data.json` the block was enabled with dark text, bold heading, 13px description, and the drawer banner text changed from "Back to School Discount Auto-Applied" to "Join Our Happy Customers!".
 
+### Free gifts
+
+The gift row under the packs (**Plug-Pal fold > Free gifts**) has three cards:
+
+- **Free shipping**: a perk, unlocked on every pack.
+- **The Every Room Power Guide**: a 13-page PDF sold through Shopify Digital Products. Unlocked by the 3 pack and the 6 pack. Prices: US $15.99, Canada $21.99 CAD, UK £12.99, other markets $15.99 USD.
+- **USB-C Charging Cables (5 Pack)**: unlocked by the 6 pack only. Prices: US $19.99, Canada $27.99 CAD, UK £15.99, other markets $19.99 USD.
+
+Each gift card is a product picker, so the title, picture and the struck-out "FREE ~~$15.99~~" price all come from the product, in the shopper's currency. Locked gifts show a blurred picture behind a lock icon. Unlocked gifts get the tinted card with an amber border. You can change, per card, the name, the picture and which pack unlocks it.
+
+When someone buys, the buy button adds every unlocked gift to the cart with the pack, once per cart. Two automatic discounts make the gifts free at checkout (Shopify admin > Discounts):
+
+- **Free gift**: buy a 3 pack, get the guide free.
+- **Free gifts**: buy a 6 pack, get the guide and the cables free (up to 2 items).
+
+Shopify lets one item trigger only one Buy X Get Y discount. That is why the 6 pack has a single discount covering both gifts, instead of one discount per gift.
+
+The pack variants have compare-at prices equal to the 1-pack price times the pack size: US $110.97 / $221.94, Canada $155.97 / $311.94. The cart drawer uses these to show each line the Blomar way: the struck-out price, a "Save $x" pill, gifts as "~~$15.99~~ FREE" with a Free gift tag, a Savings row and a struck-out total.
+
 ### Currency by market
 
-Prices are rendered on the server in the shopper's market currency with the code shown: USD in the US, CAD in Canada. That covers the pack prices, was-prices, per-outlet prices, sticky bar and the per-outlet buttons further down. Text figures that aren't product prices have a US and a Canada field: the gift values (fold section) and the surge device prices, total and small print (surge section). The Canadian surge figures are approximate conversions of the US ranges; check them before launch. Markets other than the US and Canada see those text figures hidden rather than in the wrong currency.
+Prices are rendered on the server in the shopper's market currency with the code shown: USD in the US, CAD in Canada. That covers the pack prices, was-prices, per-outlet prices, sticky bar and the per-outlet buttons further down. Text figures that aren't product prices have a US and a Canada field: the surge device prices, total and small print (surge section). The Canadian surge figures are approximate conversions of the US ranges; check them before launch. Markets other than the US and Canada see those text figures hidden rather than in the wrong currency.
 
 ### Preview it now
 

@@ -346,26 +346,21 @@
       if (priceEl) priceEl.textContent = b.querySelector('.pp-bundle__now').textContent;
     }
     var gifts = $$('[data-gifts] .pp-gift');
-    var unlocked = 0;
-    var mins = gifts.map(function (g) { return parseInt(g.getAttribute('data-min'), 10) || 0; });
-    var minGift = Math.min.apply(null, mins.concat([99])), maxGift = Math.max.apply(null, mins.concat([0]));
+    var unlocked = 0, next = 99;
     gifts.forEach(function (g) {
-      var min = parseInt(g.getAttribute('data-min'), 10);
+      var min = parseInt(g.getAttribute('data-min'), 10) || 0;
       var ok = state.qty >= min;
-      if (ok) unlocked++;
+      if (ok) unlocked++; else if (min < next) next = min;
       g.classList.toggle('pp-is-locked', !ok);
-      var s = g.querySelector('[data-state]');
-      if (s) s.innerHTML = ok
-        ? '<svg class="pp-icon" aria-hidden="true"><use href="#i-check"/></svg>Unlocked'
-        : '<svg class="pp-icon" aria-hidden="true"><use href="#i-lock"/></svg>With ' + (min >= 6 ? min + '-pack' : min + '+ pack');
     });
     var note = $('[data-gifts-note]');
     if (note) {
-      note.textContent = unlocked === gifts.length
-        ? 'All ' + gifts.length + ' free gifts unlocked with this pack.'
-        : unlocked === 0
-          ? 'Pick a ' + minGift + '-pack or bigger to unlock free gifts.'
-          : unlocked + ' of ' + gifts.length + ' free gifts unlocked. Go to the ' + maxGift + '-pack for all ' + gifts.length + '.';
+      var names = gifts.filter(function (g) { return (parseInt(g.getAttribute('data-min'), 10) || 0) === next; })
+        .map(function (g) { return g.getAttribute('data-name'); });
+      note.textContent = !gifts.length ? ''
+        : unlocked === gifts.length
+          ? (gifts.length > 1 ? 'All ' + gifts.length + ' free gifts unlocked with this pack.' : 'Free gift unlocked with this pack.')
+          : 'Go to the ' + next + ' pack to also get ' + names.join(' and ') + ' free.';
     }
   }
   update();
@@ -386,12 +381,30 @@
       payload.sections = drawer.getSectionsToRender().map(function (s) { return s.id; });
       payload.sections_url = window.location.pathname;
     }
-    fetch(data.cartAdd || '/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload)
-    })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
+    var post = function (body) {
+      return fetch(data.cartAdd || '/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body)
+      }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); });
+    };
+    // unlocked gift products go in with the pack (once per cart); automatic discounts make them free
+    var giftIds = $$('[data-gifts][data-gifts-add] .pp-gift[data-gift-variant]').filter(function (g) {
+      return state.qty >= (parseInt(g.getAttribute('data-min'), 10) || 0);
+    }).map(function (g) { return parseInt(g.getAttribute('data-gift-variant'), 10); });
+    var inCart = giftIds.length
+      ? fetch((data.cartUrl || '/cart') + '.js', { headers: { Accept: 'application/json' } }).then(function (r) { return r.json(); }).catch(function () { return {}; })
+      : Promise.resolve({});
+    inCart
+      .then(function (cart) {
+        var have = {};
+        (cart.items || []).forEach(function (it) { have[it.variant_id] = true; });
+        var withGifts = JSON.parse(JSON.stringify(payload));
+        giftIds.forEach(function (id) { if (!have[id]) withGifts.items.push({ id: id, quantity: 1 }); });
+        if (withGifts.items.length === payload.items.length) return post(payload);
+        // if a gift can't be added (sold out, unpublished), still add the pack
+        return post(withGifts).catch(function () { return post(payload); });
+      })
       .then(function (res) {
         if (drawer && res.sections) {
           btn.disabled = false;
