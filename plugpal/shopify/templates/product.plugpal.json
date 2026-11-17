@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "plugpal-product",
+      "settings": {
+        "draft_mode": true,
+        "title": "PlugPal™ — 9-Port Outlet Extender with Night Light",
+        "after_add": "checkout"
+      }
+    }
+  },
+  "order": ["main"]
+}

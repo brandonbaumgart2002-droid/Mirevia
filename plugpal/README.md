@@ -77,6 +77,37 @@ Each image slot shows a brief until a file with that name exists. Square for the
 
 Keep the kitchen shots to chargers and one heating appliance. The research is clear that "run all your appliances" is the claim to avoid.
 
-## Moving it into Shopify
+## On Shopify
 
-The Shopify theme tools couldn't be used from this session (the connector needs reconnecting with theme permissions). To put this on the store, duplicate the live theme, add a `product.plugpal` template, and port each section of `index.html` into a section file, the way the FetchCam and Blackout Buddy drafts were done. Reconnect the Shopify connector and ask Claude to do it.
+It's on the theme **Mirevia live + PlugPal PDP** (unpublished). That theme is a copy of the live ReadySip theme, so the live store hasn't changed.
+
+What was added or changed on that theme (copies in `shopify/`):
+
+| File | What it does |
+|---|---|
+| `templates/product.plugpal.json` | The PlugPal product template |
+| `sections/plugpal-product.liquid` | The whole page as one section: images, videos, prices, gifts and shipping lines are editable in the theme editor |
+| `snippets/plugpal-media.liquid` | One image or video slot (shows the written shot brief until you add a file) |
+| `assets/plugpal-pdp.css` | Styles, all scoped under `#plugpal`. It includes guards against the theme's global `!important` font, heading, radius and letter-spacing rules |
+| `assets/plugpal-pdp.js` | Gallery, packs, buy button, sticky bar, accordions, videos, night-light demo |
+| `patches/fc-site-layer.liquid` | Stops the site layer redirecting the PlugPal page to Blackout Buddy |
+| `patches/parapatrol-announcement.liquid` | Adds a "Text on the PlugPal page" setting to the announcement bar |
+| `patches/fc-footer.liquid` | PlugPal links, shipping line and small print in the footer on the PlugPal page |
+
+The copies of the section and script on the theme are the same code with indentation and comments stripped.
+
+### Preview it now
+
+There's no PlugPal product in the store yet, so preview the template on any product:
+
+`https://mirevia.com.co/products/readysip-reserve-straw?view=plugpal&preview_theme_id=191185879320`
+
+(It shows ReadySip's photos and prices there because the page reads whichever product it's on.)
+
+### To finish
+
+1. Create the PlugPal product. Give it a **Colour** option (White, Black) and a **Pack** option (1 Pack, 2 Pack, 4 Pack), with the pack prices and compare-at prices. The page reads those prices and adds the matching variant to the cart. One variant per colour also works; then the pack size becomes the quantity.
+2. Set the product's **Theme template** to `plugpal`.
+3. In the theme editor (PlugPal page section), add images and videos, check the gifts and shipping lines, and untick **Highlight claims to check** once everything in yellow is verified.
+4. Add your review app's block to the page section when you have real reviews. The star rating at the top fills itself from the review app's metafields.
+5. Publish the theme when you're ready. The home page and logo in this theme still go to ReadySip, as on the live site.

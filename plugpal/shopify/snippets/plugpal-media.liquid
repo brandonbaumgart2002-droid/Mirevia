@@ -1,0 +1,20 @@
+{%- comment -%}
+  PlugPal image slot. Opens a .pp-media box with the image (or video) inside; the caller adds the
+  written shot brief and closes the </div>. Params: img, fallback, vid, width, alt, dark, eager.
+{%- endcomment -%}
+{%- liquid
+  assign pimg = img
+  if pimg == blank and fallback != blank
+    assign pimg = fallback
+  endif
+  assign load = 'lazy'
+  if eager
+    assign load = 'eager'
+  endif
+-%}
+<div class="pp-media{% if dark %} pp-media--dark{% endif %}{% if pimg != blank or vid != blank %} pp-has-img{% endif %}{% if vid != blank %} pp-has-video{% endif %}">
+{%- if vid != blank -%}
+  {{ vid | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, image_size: '700x' }}
+{%- elsif pimg != blank -%}
+  {{ pimg | image_url: width: width | image_tag: loading: load, alt: alt }}
+{%- endif -%}
