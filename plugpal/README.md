@@ -47,7 +47,7 @@ Don't publish a safety certification you haven't seen the certificate for.
 
 ### Reviews and rating
 
-There's no star rating or customer review on the page yet, on purpose. Add your review app's star badge at `#rating` in the buy box and its widget in the `#reviews` section once PlugPal has real reviews. The forum quotes in that section describe the problem and say so; don't relabel them as PlugPal reviews.
+This static page has no star rating or customer reviews. The Shopify version reads both from Judge.me (see below). The forum quotes describe the problem and say so; don't relabel them as PlugPal reviews.
 
 ### Checkout
 
@@ -109,5 +109,5 @@ There's no PlugPal product in the store yet, so preview the template on any prod
 1. Create the PlugPal product. Give it a **Colour** option (White, Black) and a **Pack** option (1 Pack, 2 Pack, 4 Pack), with the pack prices and compare-at prices. The page reads those prices and adds the matching variant to the cart. One variant per colour also works; then the pack size becomes the quantity.
 2. Set the product's **Theme template** to `plugpal`.
 3. In the theme editor (PlugPal page section), add images and videos, check the gifts and shipping lines, and untick **Highlight claims to check** once everything in yellow is verified.
-4. Add your review app's block to the page section when you have real reviews. The star rating at the top fills itself from the review app's metafields.
+4. Reviews come from Judge.me; turn on its app embed in **Theme settings > App embeds**. The buy-box star rating reads the `reviews.rating` and `reviews.rating_count` metafields. The `#reviews` section turns the reviews in Judge.me's widget into a card carousel (first 12, in Judge.me's sort order), with the full Judge.me widget below it. Each card keeps Judge.me's "Verified buyer" and "collected from another provider" labels. Nothing is hard-coded: if Judge.me has no reviews, the carousel stays hidden. The heading and the full-widget switch are in the section's **Reviews** settings.
 5. Publish the theme when you're ready. The home page and logo in this theme still go to ReadySip, as on the live site.
