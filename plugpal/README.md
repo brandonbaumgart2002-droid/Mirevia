@@ -103,6 +103,7 @@ What was added or changed on that theme (copies in `shopify/`):
 | `patches/fc-site-layer.liquid` | Stops the site layer redirecting the PlugPal page to Blackout Buddy |
 | `patches/parapatrol-announcement.liquid` | Adds a "Text on the PlugPal page" setting to the announcement bar |
 | `patches/fc-footer.liquid` | PlugPal links, shipping line and small print in the footer on the PlugPal page |
+| `patches/pp-cart-top.liquid` | Top of the cart drawer: the free-shipping tile is switched off (it only shows when the snippet is given `show_ship: true`); the banner under it stays |
 | `patches/cart-timer-bar.liquid` | The theme's cart countdown, plus two small scripts: restart the countdown whenever the drawer is redrawn (buy buttons, the protection switch, the theme editor), and in the theme editor open the drawer when its section or a block is selected |
 | `patches/cart_shipping_protection_style.liquid` | The theme's shipping-protection style snippet, plus: hides the switch in ReadySip carts (they have their own) and draws a shield icon, because the theme's built-in icon PNG is corrupt |
 
