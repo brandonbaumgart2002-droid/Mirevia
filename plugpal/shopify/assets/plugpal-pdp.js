@@ -1,5 +1,5 @@
 /* PlugPal product page (sections/plugpal-product.liquid). No libraries.
-   Packs: finds the variant whose options match the chosen colour and pack size (1 / 2 / 4).
+   Packs: finds the variant whose options match the chosen colour and pack size (1 / 3 / 6).
    If the product has no pack option, it adds the colour variant with quantity = pack size. */
 (function () {
   'use strict';
@@ -131,7 +131,7 @@
   }
 
   /* ---------- colour + pack pickers ---------- */
-  var state = { colour: 'white', qty: 4 };
+  var state = { colour: 'white', qty: 6 };
   function radioGroup(container, attr, key) {
     if (!container) return null;
     var opts = $$('[role="radio"]', container).filter(function (o) { return !o.hidden; });
@@ -193,8 +193,26 @@
     });
   }
 
+  function imgSrc(v) {
+    var fi = v && (v.featured_image || (v.featured_media && v.featured_media.preview_image));
+    var src = fi && fi.src;
+    if (!src) return null;
+    return src + (src.indexOf('?') > -1 ? '&' : '?') + 'width=160';
+  }
+  function renderColour() {
+    var nameEl = $('[data-colour-name]');
+    if (nameEl) nameEl.textContent = state.colour.charAt(0).toUpperCase() + state.colour.slice(1);
+    $$('.pp-bundle', bundlesEl).forEach(function (b) {
+      var img = b.querySelector('[data-pack-img]');
+      var line = lineFor(state.colour, parseInt(b.getAttribute('data-qty'), 10));
+      var src = line && imgSrc(line.variant);
+      if (img && src) img.src = src;
+    });
+  }
+
   function update() {
     renderPrices();
+    renderColour();
     var b = bundlesEl && $('[data-qty="' + state.qty + '"]', bundlesEl);
     if (b) {
       var name = b.querySelector('.pp-bundle__name').firstChild.textContent.trim();
@@ -207,6 +225,8 @@
     }
     var gifts = $$('[data-gifts] .pp-gift');
     var unlocked = 0;
+    var mins = gifts.map(function (g) { return parseInt(g.getAttribute('data-min'), 10) || 0; });
+    var minGift = Math.min.apply(null, mins.concat([99])), maxGift = Math.max.apply(null, mins.concat([0]));
     gifts.forEach(function (g) {
       var min = parseInt(g.getAttribute('data-min'), 10);
       var ok = state.qty >= min;
@@ -215,15 +235,15 @@
       var s = g.querySelector('[data-state]');
       if (s) s.innerHTML = ok
         ? '<svg class="pp-icon" aria-hidden="true"><use href="#i-check"/></svg>Unlocked'
-        : '<svg class="pp-icon" aria-hidden="true"><use href="#i-lock"/></svg>With ' + (min === 4 ? '4-pack' : '2+ pack');
+        : '<svg class="pp-icon" aria-hidden="true"><use href="#i-lock"/></svg>With ' + (min >= 6 ? min + '-pack' : min + '+ pack');
     });
     var note = $('[data-gifts-note]');
     if (note) {
       note.textContent = unlocked === gifts.length
         ? 'All ' + gifts.length + ' free gifts unlocked with this pack.'
         : unlocked === 0
-          ? 'Pick a 2-pack or bigger to unlock free gifts.'
-          : unlocked + ' of ' + gifts.length + ' free gifts unlocked. Go to the 4-pack for all ' + gifts.length + '.';
+          ? 'Pick a ' + minGift + '-pack or bigger to unlock free gifts.'
+          : unlocked + ' of ' + gifts.length + ' free gifts unlocked. Go to the ' + maxGift + '-pack for all ' + gifts.length + '.';
     }
   }
   update();

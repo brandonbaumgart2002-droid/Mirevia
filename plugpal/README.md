@@ -106,7 +106,8 @@ There's no PlugPal product in the store yet, so preview the template on any prod
 
 ### To finish
 
-1. Create the PlugPal product. Give it a **Colour** option (White, Black) and a **Pack** option (1 Pack, 2 Pack, 4 Pack), with the pack prices and compare-at prices. The page reads those prices and adds the matching variant to the cart. One variant per colour also works; then the pack size becomes the quantity.
+1. The PlugPal product has a **Colour** option (White, Black) and a **Pack** option (1 Pack, 3 Pack, 6 Pack). Prices: US $36.99 / $73.99 / $114.99 (variant price and the United States price list) and Canada CA$51.99 / CA$99.99 / CA$164.99 (fixed prices on the Canada CAD price list). The page reads the shopper's market price, adds the matching variant to the cart, shows the cost of buying that many singles struck through, and works out the per-room price. Each variant has its own pack photo; the bundle cards show the photo for the chosen colour.
+   The static mock-up in this folder (`index.html`) still shows the earlier 1 / 2 / 4 packs and draft prices.
 2. Set the product's **Theme template** to `plugpal`.
 3. In the theme editor (PlugPal page section), add images and videos, check the gifts and shipping lines, and untick **Highlight claims to check** once everything in yellow is verified.
 4. Reviews come from Judge.me; turn on its app embed in **Theme settings > App embeds**. The buy-box star rating reads the `reviews.rating` and `reviews.rating_count` metafields. The `#reviews` section turns the reviews in Judge.me's widget into a card carousel (first 12, in Judge.me's sort order), with the full Judge.me widget below it. Each card keeps Judge.me's "Verified buyer" and "collected from another provider" labels. Nothing is hard-coded: if Judge.me has no reviews, the carousel stays hidden. The heading and the full-widget switch are in the section's **Reviews** settings.
