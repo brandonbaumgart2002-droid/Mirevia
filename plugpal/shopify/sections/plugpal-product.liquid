@@ -10,9 +10,9 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&display=swap">
 {%- style -%}
-#plugpal .pp-colour-head{margin:6px 0 0;font-size:17px;font-weight:800 !important;color:var(--navy);text-align:left}
+#plugpal .pp-colour-head{margin:4px 0 0;font-size:17px;font-weight:800 !important;color:var(--navy);text-align:center}
 #plugpal .pp-colour-head span{font-weight:600 !important;color:var(--amber-ink)}
-#plugpal .pp-swatches--circles{justify-content:flex-start;gap:18px;margin-top:-4px}
+#plugpal .pp-swatches--circles{justify-content:center;gap:18px;margin-top:-4px}
 #plugpal .pp-swatches--circles .pp-swatch{flex-direction:column;gap:6px;padding:0;border:0;background:none;border-radius:0;box-shadow:none;font-size:13.5px;font-weight:700 !important;color:var(--navy);cursor:pointer}
 #plugpal .pp-swatch__dot{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--sw);border:1.5px solid #d8d3cb;box-shadow:0 0 0 3px #fff,0 0 0 4.5px transparent;transition:box-shadow .15s}
 #plugpal .pp-swatch__dot img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);border-radius:0}
@@ -69,6 +69,10 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol>
 <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></symbol>
 <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a4 4 0 0 1 4 4l.5 4a2.5 2.5 0 0 1-4.5 1.5L15.5 16h-7L7 17.5A2.5 2.5 0 0 1 2.5 16L3 12a4 4 0 0 1 4-4z"/><path d="M7.5 11v3M6 12.5h3M15.5 12h.01M17.5 13.5h.01"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
 <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></symbol>
 </svg>
 <section class="pp-pdp" id="plugpal-top">
@@ -114,14 +118,12 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 {%- endif -%}
 </div>
 <h1 class="pp-display pp-buy__name">{{ section.settings.title | default: product.title | escape }}</h1>
-<p class="pp-buy__sub">Turn one crowded outlet into a charging station. It screws in, in 30 seconds. No electrician.</p>
+<p class="pp-buy__sub">Your outlets were built for a lamp, not today's phones, TV and coffee maker. PlugPal upgrades any outdated outlet to 9 surge-protected ports in 30 seconds, so everything stays plugged in, charged and protected. No electrician.</p>
 <ul class="pp-benefits">
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-outlet"/></svg></span><span><b>5 grounded outlets</b><small>Spread over 3 sides for bulky plugs</small></span></li>
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-usb"/></svg></span><span><b>2 USB-C + 2 USB-A</b><small>Delete the charger-brick pile</small></span></li>
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-screw"/></svg></span><span><b>Screw-locked to the wall</b><small>No sag, no wobble, no pulling out</small></span></li>
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-moon"/></svg></span><span><b>Dusk-to-dawn night light</b><small>Soft glow for 3am trips</small></span></li>
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-shield"/></svg></span><span><b>Surge protected</b><small>For TVs, consoles and chargers</small></span></li>
-<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-tool"/></svg></span><span><b>No electrician</b><small>One screwdriver. Renter-friendly.</small></span></li>
+<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-outlet"/></svg></span><span><b>9 ports, 1 outlet</b><small>5 AC outlets + 4 USB</small></span></li>
+<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-shield"/></svg></span><span><b>Surge protected</b><small>Guards your TV, laptop and phones</small></span></li>
+<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-screw"/></svg></span><span><b>Screws to the wall</b><small>Flush and solid, no sagging</small></span></li>
+<li class="pp-benefit"><span class="pp-benefit__ico"><svg class="pp-icon"><use href="#i-moon"/></svg></span><span><b>Auto night light</b><small>Glows on at dusk</small></span></li>
 </ul>
 {%- liquid
   assign sw_white = nil
@@ -152,9 +154,9 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
     endif
   endfor
   if v6 != blank
-    assign per_room = v6.price | times: 1.0 | divided_by: 6 | round | money
+    assign per_outlet = v6.price | times: 1.0 | divided_by: 6 | round | money
   else
-    assign per_room = section.settings.price_4
+    assign per_outlet = section.settings.price_4
   endif
 -%}
 <p class="pp-colour-head">Choose your colour: <span data-colour-name>White</span></p>
@@ -162,26 +164,26 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <button class="pp-swatch" type="button" role="radio" aria-checked="true" data-colour="white"><span class="pp-swatch__dot" style="--sw:#f7f8fa">{%- if sw_white -%}<img src="{{ sw_white | image_url: width: 160 }}" alt="" width="58" height="58" loading="eager">{%- endif -%}</span><span class="pp-swatch__name">White</span></button>
 <button class="pp-swatch" type="button" role="radio" aria-checked="false" data-colour="black"><span class="pp-swatch__dot" style="--sw:#1d2230">{%- if sw_black -%}<img src="{{ sw_black | image_url: width: 160 }}" alt="" width="58" height="58" loading="eager">{%- endif -%}</span><span class="pp-swatch__name">Black</span></button>
 </div>
-<p class="pp-picker-label">One for every room</p>
+<p class="pp-picker-label">Upgrade every outlet</p>
 <div class="pp-bundles" role="radiogroup" aria-label="Choose a pack" data-bundles>
 <button class="pp-bundle" type="button" role="radio" aria-checked="false" data-qty="1">
 <span class="pp-bundle__radio" aria-hidden="true"></span>
 <span class="pp-bundle__img" aria-hidden="true">{%- if pk_1 -%}<img src="{{ pk_1 | image_url: width: 160 }}" alt="" data-pack-img>{%- else -%}×1{%- endif -%}</span>
-<span class="pp-bundle__name">1 PlugPal <span class="pp-bundle__pill">1 room</span></span>
+<span class="pp-bundle__name">1 PlugPal</span>
 <span class="pp-bundle__price"><span class="pp-bundle__now">{{ section.settings.price_1 }}</span><span class="pp-bundle__was" hidden></span><span class="pp-bundle__per"></span></span>
 </button>
 <button class="pp-bundle" type="button" role="radio" aria-checked="false" data-qty="3">
 <span class="pp-bundle__badge">Most popular</span>
 <span class="pp-bundle__radio" aria-hidden="true"></span>
 <span class="pp-bundle__img" aria-hidden="true">{%- if pk_3 -%}<img src="{{ pk_3 | image_url: width: 160 }}" alt="" data-pack-img>{%- else -%}×3{%- endif -%}</span>
-<span class="pp-bundle__name">3 PlugPals <span class="pp-bundle__pill">3 rooms</span></span>
+<span class="pp-bundle__name">3 PlugPals</span>
 <span class="pp-bundle__price"><span class="pp-bundle__now">{{ section.settings.price_2 }}</span><span class="pp-bundle__was">{{ section.settings.was_2 }}</span><span class="pp-bundle__per"></span></span>
 </button>
 <button class="pp-bundle" type="button" role="radio" aria-checked="true" data-qty="6">
 <span class="pp-bundle__badge pp-bundle__badge--gold">Best value</span>
 <span class="pp-bundle__radio" aria-hidden="true"></span>
 <span class="pp-bundle__img" aria-hidden="true">{%- if pk_6 -%}<img src="{{ pk_6 | image_url: width: 160 }}" alt="" data-pack-img>{%- else -%}×6{%- endif -%}</span>
-<span class="pp-bundle__name">6 PlugPals <span class="pp-bundle__pill">Whole-home pack</span></span>
+<span class="pp-bundle__name">6 PlugPals</span>
 <span class="pp-bundle__price"><span class="pp-bundle__now">{{ section.settings.price_4 }}</span><span class="pp-bundle__was">{{ section.settings.was_4 }}</span><span class="pp-bundle__per"></span></span>
 </button>
 </div>
@@ -195,7 +197,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <p class="pp-gifts__note" data-gifts-note aria-live="polite"></p>
 </div>
 <p class="pp-ships pp-verify">{{ section.settings.ships_text }}</p>
-<button class="pp-btn pp-btn--block" type="button" data-buy><svg class="pp-icon"><use href="#i-lock"/></svg>Secure checkout – Buy now</button>
+<button class="pp-btn pp-btn--block" type="button" data-buy><svg class="pp-icon"><use href="#i-lock"/></svg>Upgrade my outlets</button>
 <p class="pp-tagline">Screw it in. Plug it all in.</p>
 <div class="pp-guarantee">
 <h2 class="pp-guarantee__lead">30-day money back guarantee</h2>
@@ -253,7 +255,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <div class="pp-wrap">
 <div class="pp-section-head">
 <h2 class="pp-split-head">Two Plugs. Seven Things.<em>Now Everything's Plugged In.</em></h2>
-<p class="pp-lede">For old houses with two outlets a room, crowded coffee stations, bedside charger fights and the dark trip to the bathroom.</p>
+<p class="pp-lede">Upgrade the outdated outlets behind crowded coffee stations, bedside charger fights and the dark trip to the bathroom.</p>
 </div>
 <div class="pp-reel" data-reel>
 <div class="pp-reel__track" data-reel-track>
@@ -292,10 +294,35 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 </div>
 </div>
 </div>
+<section class="pp-section pp-section--navy pp-surge" id="surge">
+<div class="pp-wrap">
+<div class="pp-section-head">
+<p class="pp-eyebrow">Built-in surge protection</p>
+<h2 class="pp-display pp-h-section">Your outlet powers <span>thousands of dollars</span> of electronics</h2>
+<p class="pp-lede">The TV, the laptop, the console, the router and everyone's phones all draw from the same old outlet. One surge from a storm, a grid switch or a big appliance kicking on can fry them. PlugPal puts a surge protector between the wall and everything you plug in.</p>
+</div>
+<div class="pp-surge__grid">
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-tv"/></svg><b>TV</b><span>$400–1,500</span></div>
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-laptop"/></svg><b>Laptop</b><span>$800–2,000</span></div>
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-game"/></svg><b>Game console</b><span>$450–700</span></div>
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-phone"/></svg><b>Two phones</b><span>$1,200–2,400</span></div>
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-wifi"/></svg><b>Wi-Fi router</b><span>$100–300</span></div>
+<div class="pp-surge__item"><svg class="pp-icon"><use href="#i-coffee"/></svg><b>Coffee maker</b><span>$100–500</span></div>
+</div>
+<div class="pp-surge__total"><span>On one outlet, that's</span><b>$3,000+</b><span>of electronics worth protecting</span></div>
+<ul class="pp-surge__specs">
+<li><svg class="pp-icon"><use href="#i-bolt"/></svg><span class="pp-verify">1,050-joule surge rating</span></li>
+<li><svg class="pp-icon"><use href="#i-shield"/></svg><span class="pp-verify">3-layer TVS + MOV + GDT circuit</span></li>
+<li><svg class="pp-icon"><use href="#i-check"/></svg><span>Protected light shows it's working</span></li>
+</ul>
+<div class="pp-surge__cta"><a class="pp-btn pp-btn--sm" href="#plugpal-top" data-pick="6">Protect every outlet – {{ per_outlet }} per outlet</a></div>
+<p class="pp-surge__note">Typical US retail prices. Surge protection lowers the risk from everyday power surges; no plug-in protector can stop a direct lightning strike. Each big surge wears it down, so replace PlugPal when the protected light goes out.</p>
+</div>
+</section>
 <section class="pp-section" id="how">
 <div class="pp-wrap">
 <div class="pp-section-head">
-<p class="pp-eyebrow">How it works</p>
+<p class="pp-eyebrow">The 30-second upgrade</p>
 <h2 class="pp-display pp-h-section">From 2 old outlets to 9 ports in 30 seconds</h2>
 <p class="pp-lede">PlugPal uses the screw that already holds your cover plate. Swap it for the longer one in the box and the whole unit locks flat to the wall, so pulling out a plug never drags it out with it.</p>
 </div>
@@ -333,7 +360,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <div class="pp-section-head">
 <p class="pp-eyebrow">Where it goes</p>
 <h2 class="pp-display pp-h-section">One outlet. Every room.</h2>
-<p class="pp-lede">Most people start with the worst outlet in the house, then come back for the rest.</p>
+<p class="pp-lede">Start with your most crowded outlet, then upgrade the rest of the house.</p>
 </div>
 <div class="pp-rooms">
 <article class="pp-room">
@@ -361,7 +388,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <div class="pp-room__body"><span class="pp-room__label"><svg class="pp-icon"><use href="#i-key"/></svg>Rental &amp; dorm</span><h3>Comes with you when you move</h3><p>No wiring and nothing to ask the landlord. Unscrew it and take it to the next place.</p></div>
 </article>
 </div>
-<div class="pp-rooms__cta"><a class="pp-btn pp-btn--sm" href="#plugpal-top" data-pick="6">Get the whole-home pack – {{ per_room }} a room</a></div>
+<div class="pp-rooms__cta"><a class="pp-btn pp-btn--sm" href="#plugpal-top" data-pick="6">Upgrade 6 outlets – {{ per_outlet }} per outlet</a></div>
 </div>
 </section>
 <section class="pp-section pp-section--navy pp-night" data-night>
@@ -431,7 +458,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 </div>
 <div class="pp-vs">
 <div class="pp-vs__row pp-vs__row--them"><b>New outlet from an electrician</b><small>Per outlet, plus a call-out or estimate fee</small><span class="pp-vs__price">$245–280</span></div>
-<div class="pp-vs__row pp-vs__row--us"><b>PlugPal, whole-home pack</b><small>Per room. A screwdriver and 30 seconds.</small><span class="pp-vs__price">{{ per_room }}</span></div>
+<div class="pp-vs__row pp-vs__row--us"><b>PlugPal 6-pack</b><small>Per outlet. A screwdriver and 30 seconds.</small><span class="pp-vs__price">{{ per_outlet }}</span></div>
 <p class="pp-vs__src">Electrician prices are quotes homeowners shared on home-improvement forums. Your area may differ.</p>
 </div>
 </div>
@@ -562,7 +589,7 @@ Reviews: the testimonial carousel is built from the Judge.me review widget rende
 <div class="pp-sticky-bar" data-sticky aria-hidden="true">
 <div class="pp-wrap pp-sticky-bar__row">
 <span class="pp-sticky-bar__thumb"><svg class="pp-icon"><use href="#i-outlet"/></svg></span>
-<div class="pp-sticky-bar__info"><b data-sticky-name>6 PlugPals – Whole-home pack</b><span data-sticky-price>{% if v6 != blank %}{{ v6.price | money }}{% else %}{{ section.settings.price_4 }}{% endif %}</span></div>
+<div class="pp-sticky-bar__info"><b data-sticky-name>6 PlugPals</b><span data-sticky-price>{% if v6 != blank %}{{ v6.price | money }}{% else %}{{ section.settings.price_4 }}{% endif %}</span></div>
 <button class="pp-btn pp-btn--sm" type="button" data-buy tabindex="-1">Buy now</button>
 </div>
 </div>

@@ -120,7 +120,7 @@
     if (colourIdx < 0) {
       colourWrap.hidden = true;
       var lbl = colourWrap.previousElementSibling;
-      if (lbl && lbl.classList.contains('pp-picker-label')) lbl.hidden = true;
+      if (lbl && (lbl.classList.contains('pp-picker-label') || lbl.classList.contains('pp-colour-head'))) lbl.hidden = true;
     } else {
       $$('[data-colour]', colourWrap).forEach(function (b) {
         var c = b.getAttribute('data-colour');
@@ -189,7 +189,7 @@
         price = parsePrice(nowEl.textContent);
         if (wasEl) wasEl.hidden = !wasEl.textContent.trim();
       }
-      if (perEl) perEl.textContent = price ? money(Math.round(price / qty)) + ' per room' : '';
+      if (perEl) perEl.textContent = price ? money(Math.round(price / qty)) + ' per outlet' : '';
     });
   }
 
@@ -216,11 +216,12 @@
     var b = bundlesEl && $('[data-qty="' + state.qty + '"]', bundlesEl);
     if (b) {
       var name = b.querySelector('.pp-bundle__name').firstChild.textContent.trim();
-      var pill = b.querySelector('.pp-bundle__pill').textContent.trim();
+      var pillEl = b.querySelector('.pp-bundle__pill');
+      var pill = pillEl ? pillEl.textContent.trim() : '';
       var nameEl = $('[data-sticky-name]'), priceEl = $('[data-sticky-price]');
       var colourShown = colourWrap && !colourWrap.hidden;
       var colour = state.colour.charAt(0).toUpperCase() + state.colour.slice(1);
-      if (nameEl) nameEl.textContent = name + ' – ' + pill + (colourShown ? ' · ' + colour : '');
+      if (nameEl) nameEl.textContent = name + (pill ? ' – ' + pill : '') + (colourShown ? ' · ' + colour : '');
       if (priceEl) priceEl.textContent = b.querySelector('.pp-bundle__now').textContent;
     }
     var gifts = $$('[data-gifts] .pp-gift');
