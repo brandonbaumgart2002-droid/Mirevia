@@ -111,6 +111,29 @@
     mo.observe(area, { childList: true, subtree: true });
   }
 
+  /* ---------- cart drawer countdown ----------
+     The theme's countdown (cart-timer-bar) only restarts after its own add-to-cart forms. When the drawer is
+     redrawn by our buy button or the shipping-protection switch, restart it with the fresh cart. */
+  (function () {
+    var cd = document.querySelector('cart-drawer');
+    if (!cd || !('MutationObserver' in window)) return;
+    var pending = null, last = 0;
+    function restart() {
+      if (typeof window.cartTimerBar !== 'function') return;
+      last = Date.now();
+      fetch('/cart.js', { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (c) { window.cartTimerBar(c); })
+        .catch(function () {});
+    }
+    new MutationObserver(function () {
+      var el = cd.querySelector('.cart-timer-countdown');
+      var empty = cd.querySelector('.drawer__inner.is-empty') || cd.classList.contains('is-empty');
+      if (!el || el.textContent.trim() || empty || pending || Date.now() - last < 1500) return;
+      pending = setTimeout(function () { pending = null; restart(); }, 150);
+    }).observe(cd, { childList: true, subtree: true });
+  })();
+
   function init() {
   initReels();
   var root = document.getElementById('plugpal');
@@ -168,6 +191,7 @@
     if (thumbsWrap) thumbsWrap.appendChild(b);
     return b;
   });
+  if (countEl) countEl.textContent = slides.length ? '1 / ' + slides.length : '';
   function show(i) {
     if (!slides.length) return;
     current = (i + slides.length) % slides.length;
@@ -253,6 +277,7 @@
       state[key] = key === 'qty' ? parseInt(v, 10) : v;
       if (focus) o.focus();
       update();
+      showVariantImage();
     }
     opts.forEach(function (o) {
       o.addEventListener('click', function () { select(o); });
@@ -319,6 +344,16 @@
     });
   }
 
+  // show the gallery photo of the chosen colour + pack (only when the shopper picks, not on load)
+  function showVariantImage() {
+    var line = lineFor(state.colour, state.qty);
+    var fi = line && line.variant && line.variant.featured_image;
+    if (!fi) return;
+    for (var k = 0; k < slides.length; k++) {
+      if (slides[k].getAttribute('data-img-id') === String(fi.id)) { if (k !== current) show(k); return; }
+    }
+  }
+
   function update() {
     renderPrices();
     renderColour();
@@ -366,14 +401,28 @@
     if (!line.variant.available) { toast('That pack is sold out right now.'); return; }
     btn.disabled = true;
     btn.setAttribute('aria-busy', 'true');
+    // 'drawer': the theme's <cart-drawer> renders the sections returned with the add and opens itself
+    var drawer = data.afterAdd === 'drawer' ? document.querySelector('cart-drawer') : null;
+    if (drawer && typeof drawer.renderContents !== 'function') drawer = null;
+    var payload = { items: [{ id: line.variant.id, quantity: line.quantity }] };
+    if (drawer) {
+      payload.sections = drawer.getSectionsToRender().map(function (s) { return s.id; });
+      payload.sections_url = window.location.pathname;
+    }
     fetch(data.cartAdd || '/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ items: [{ id: line.variant.id, quantity: line.quantity }] })
+      body: JSON.stringify(payload)
     })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
-      .then(function () {
-        window.location.href = data.afterAdd === 'cart' ? (data.cartUrl || '/cart') : (data.checkout || '/checkout');
+      .then(function (res) {
+        if (drawer && res.sections) {
+          btn.disabled = false;
+          btn.removeAttribute('aria-busy');
+          drawer.renderContents(res);
+          return;
+        }
+        window.location.href = data.afterAdd === 'checkout' ? (data.checkout || '/checkout') : (data.cartUrl || '/cart');
       })
       .catch(function (err) {
         toast((err && (err.description || err.message)) || 'Couldn’t add that to your cart. Try again.');

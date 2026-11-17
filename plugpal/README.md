@@ -103,6 +103,7 @@ What was added or changed on that theme (copies in `shopify/`):
 | `patches/fc-site-layer.liquid` | Stops the site layer redirecting the PlugPal page to Blackout Buddy |
 | `patches/parapatrol-announcement.liquid` | Adds a "Text on the PlugPal page" setting to the announcement bar |
 | `patches/fc-footer.liquid` | PlugPal links, shipping line and small print in the footer on the PlugPal page |
+| `patches/cart_shipping_protection_style.liquid` | The theme's shipping-protection style snippet, plus: hides the switch in ReadySip carts (they have their own) and draws a shield icon, because the theme's built-in icon PNG is corrupt |
 
 The script on the theme is the same code with indentation and comments stripped.
 
@@ -111,6 +112,14 @@ The script on the theme is the same code with indentation and comments stripped.
 Every section on the page is its own section in the theme editor, so you can edit, hide, reorder or delete each one, and add more from **Add section** (they're listed under the Plug-Pal names). Headings use italic for the amber words. Button text can include `[per_outlet]`, which fills in the 6-pack price per outlet.
 
 The rating tile above the product name is in **Plug-Pal fold > Review rating above the name**: show or hide it and the stars, edit the wording (`[rating]` and `[count]` are filled in from Judge.me so they always match your real reviews), and choose where it links. The review card's "Verified buyer" label is under **Review card**; reviews that aren't from verified buyers show no label.
+
+### Gallery and cart drawer
+
+The gallery shows the first 6 product images (setting: **Plug-Pal fold > Gallery**), then one photo per variant. Picking a colour or pack switches the gallery to that variant's photo.
+
+The buy button (and the sticky bar's) adds the pack and opens the theme's cart drawer (setting: **Plug-Pal fold > Buy button**; it can also go straight to checkout or to the cart page). On the PlugPal page the drawer is recoloured black and amber; the rules are in the fold section's style block, so other pages keep their colours. The drawer's countdown is unchanged; the page restarts it when the drawer redraws.
+
+Shipping protection is the theme's own **Shipping Protection** block in the cart drawer (Theme settings > Cart Drawer), switched on and linked to the *Shipping Protection* product (US $2.99, Canada $3.99 from the market price lists). It sits above the order summary, off by default, like Blomar's. In `config/settings_data.json` the block was enabled with dark text, bold heading, 13px description, and the drawer banner text changed from "Back to School Discount Auto-Applied" to "Join Our Happy Customers!".
 
 ### Currency by market
 
