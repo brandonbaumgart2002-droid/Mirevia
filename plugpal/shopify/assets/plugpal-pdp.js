@@ -111,8 +111,27 @@
     mo.observe(area, { childList: true, subtree: true });
   }
 
+  /* ---------- cart drawer bottom (rating + guarantee from the fold section) ---------- */
+  function placeDrawerBottom(fresh) {
+    var tpl = document.getElementById('pp-drawer-bottom');
+    var ctas = document.querySelector('#CartDrawer .cart__ctas');
+    if (!ctas) return;
+    var have = ctas.parentNode.querySelector('.pp-dbot');
+    if (have && (fresh || !tpl)) { have.remove(); have = null; }
+    if (have || !tpl || !tpl.content) return;
+    ctas.parentNode.insertBefore(tpl.content.cloneNode(true), ctas.nextSibling);
+  }
+  function watchDrawer() {
+    var d = document.querySelector('cart-drawer');
+    if (!d || d.__ppBottom || !('MutationObserver' in window)) return;
+    d.__ppBottom = true;
+    new MutationObserver(function () { placeDrawerBottom(false); }).observe(d, { childList: true, subtree: true });
+  }
+
   function init() {
   initReels();
+  placeDrawerBottom(true);
+  watchDrawer();
   var root = document.getElementById('plugpal');
   if (!root || root.__pp) return;
   root.__pp = true;
@@ -334,6 +353,8 @@
   function update() {
     renderPrices();
     renderColour();
+    var sImg = $('[data-sticky-img]'), sLine = lineFor(state.colour, state.qty), sSrc = sLine && imgSrc(sLine.variant);
+    if (sImg && sSrc) sImg.src = sSrc;
     var b = bundlesEl && $('[data-qty="' + state.qty + '"]', bundlesEl);
     if (b) {
       var name = b.querySelector('.pp-bundle__name').firstChild.textContent.trim();
@@ -421,6 +442,13 @@
       });
   }
   $$('[data-buy]').forEach(function (btn) { btn.addEventListener('click', function () { buy(btn); }); });
+  // sticky bar button: back up to the packs
+  $$('[data-sticky-go]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = $('[data-bundles]') || $('.pp-buy');
+      if (t) t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    });
+  });
 
   /* ---------- sticky bar ---------- */
   var sticky = $('[data-sticky]');
@@ -432,7 +460,7 @@
       var on = pastBuy && !atFooter;
       sticky.classList.toggle('pp-is-on', on);
       sticky.setAttribute('aria-hidden', on ? 'false' : 'true');
-      var sb = sticky.querySelector('[data-buy]');
+      var sb = sticky.querySelector('[data-buy], [data-sticky-go]');
       if (sb) sb.tabIndex = on ? 0 : -1;
     };
     new IntersectionObserver(function (es) {

@@ -142,6 +142,25 @@ Shopify lets one item trigger only one Buy X Get Y discount. That is why the 6 p
 
 The pack variants have compare-at prices equal to the 1-pack price times the pack size: US $110.97 / $221.94, Canada $155.97 / $311.94. The cart drawer uses these to show each line the Blomar way: the struck-out price, a "Save $x" pill, gifts as "~~$15.99~~ FREE" with a Free gift tag, a Savings row and a struck-out total.
 
+### Cart drawer look (Plug-Pal page only)
+
+**Plug-Pal fold > Cart drawer on this page** restyles the theme's drawer on this page only. Other pages keep the theme's own drawer.
+
+- **Items:** Blomar-style white cards on a light background (**Background behind the items**). The store's Judge.me "Customers rate this store" widget and the "One-Time Purchase" label are hidden.
+- **Prices and savings:** one red (**Savings, sale prices and gifts**) for the sale price, "FREE", the "Save $x" pills, the filled "Free Gift" pill, the discount tag and the Savings row.
+- **Checkout button:** amber with dark uppercase text (**Checkout button** colours).
+- **Under the button:** a rating tile like the page's ("Excellent [rating]/5" from Judge.me) and a "30-Day Money Back Guarantee" line. These replace the drawer's three badges. `plugpal-pdp.js` puts them back each time the drawer redraws.
+
+### Sticky bar
+
+- The thumbnail shows the chosen colour and pack's photo.
+- The button scrolls back up to the packs by default. **Sticky bar button action** can make it add to cart instead.
+
+### Header and footer (theme patches in `patches/`)
+
+- `fc-site-layer.liquid`: on the Plug-Pal page, the Mirevia logo and "Home" links reload the Plug-Pal page. Other pages still send them to ReadySip, as before.
+- `fc-footer.liquid`: on the Plug-Pal page the footer is black with an amber top line, Anton amber headings and an amber "Shop Plug-Pal" button that scrolls to the buy box. The Shop link uses the product title.
+
 ### Currency by market
 
 Prices are rendered on the server in the shopper's market currency with the code shown: USD in the US, CAD in Canada. That covers the pack prices, was-prices, per-outlet prices, sticky bar and the per-outlet buttons further down. Text figures that aren't product prices have a US and a Canada field: the surge device prices, total and small print (surge section). The Canadian surge figures are approximate conversions of the US ranges; check them before launch. Markets other than the US and Canada see those text figures hidden rather than in the wrong currency.

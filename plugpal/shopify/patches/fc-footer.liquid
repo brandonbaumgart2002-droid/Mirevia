@@ -1,6 +1,6 @@
 {%- comment -%} Mirevia footer. Self-contained, scoped under #fcf.
   Shows ReadySip links, support points and small print on every page except the Blackout Buddy
-  product page, which keeps its own (ReadySip colours come from fc-site.css and readysip-page.css). {%- endcomment -%}
+  product page and the PlugPal page (black and amber, PlugPal links and small print), which keep their own (ReadySip colours come from fc-site.css and readysip-page.css). {%- endcomment -%}
 {%- liquid
   assign purl = all_products['blackout-buddy'].url | default: '/products/blackout-buddy'
   assign rs_url = all_products['readysip-reserve-straw'].url | default: '/products/readysip-reserve-straw'
@@ -33,6 +33,15 @@
 #fcf .pay{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
 #fcf .pay svg{width:38px;height:24px;display:block}
 #fcf .fine{margin-top:18px;font-size:12px;color:#8C97AB;max-width:900px}
+#fcf.fcf--plugpal{--ink:#0b0b0b;--amber:#F5A524;background:#0b0b0b;color:#B8B2A9;border-top:4px solid #F5A524}
+#fcf.fcf--plugpal a{color:#fff}
+#fcf.fcf--plugpal a:hover{color:#F5A524}
+#fcf.fcf--plugpal h4{font-family:'Anton',Impact,sans-serif !important;font-weight:400;font-size:19px;letter-spacing:.04em !important;color:#F5A524 !important}
+#fcf.fcf--plugpal .logo::after{color:#F5A524}
+#fcf.fcf--plugpal .fine,#fcf.fcf--plugpal .bottom{color:#8F8981}
+#fcf.fcf--plugpal .bottom{border-top-color:rgba(255,255,255,.1)}
+#fcf.fcf--plugpal .cta{display:inline-flex;align-items:center;justify-content:center;margin-top:20px;background:#F5A524;color:#111 !important;font-family:'Inter',system-ui,sans-serif !important;font-weight:800;font-size:15px;line-height:1;padding:14px 26px;border-radius:999px;box-shadow:0 4px 0 #A35A00;transition:background .15s}
+#fcf.fcf--plugpal .cta:hover{background:#FFC35C;color:#111 !important}
 @media (max-width:900px){#fcf .top{grid-template-columns:1fr 1fr;gap:28px}#fcf .brand{grid-column:1/-1}}
 @media (max-width:520px){#fcf .wrap{padding:40px 20px 22px;text-align:center}#fcf .top{grid-template-columns:1fr}#fcf .about{margin-left:auto;margin-right:auto}#fcf .trust li{justify-content:center}#fcf .bottom{justify-content:center;text-align:center}#fcf .pay{justify-content:center}}
 </style>
@@ -44,12 +53,13 @@
           {%- if settings.logo != blank -%}{{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, loading: 'lazy' }}{%- else -%}<span class="t">MIREVIA</span>{%- endif -%}
         </a>
         <p class="about">{% if is_plugpal %}{{ section.settings.plugpal_about }}{% elsif is_readysip %}{{ section.settings.readysip_about }}{% else %}{{ section.settings.about }}{% endif %}</p>
+        {%- if is_plugpal and section.settings.plugpal_cta != blank -%}<a class="cta" href="#plugpal-top">{{ section.settings.plugpal_cta | escape }}</a>{%- endif -%}
       </div>
       <div>
         <h4>Shop</h4>
         <ul>
           {%- if is_plugpal -%}
-            <li><a href="{{ product.url }}">PlugPal™ Outlet Extender</a></li>
+            <li><a href="{{ product.url }}">{{ product.title | escape }}</a></li>
           {%- elsif is_readysip -%}
             <li><a href="{{ rs_url }}">ReadySip Reserve Straw™</a></li>
           {%- else -%}
@@ -109,9 +119,11 @@
     { "type": "textarea", "id": "about", "label": "About text", "default": "Mirevia makes Blackout Buddy™, the solar backup power bank with a built-in torch that keeps your phone charged through storms, campsites and long days out." },
     { "type": "text", "id": "email", "label": "Support email", "default": "Customersupport@mirevia.com.co" },
     { "type": "header", "content": "On the PlugPal page" },
-    { "type": "textarea", "id": "plugpal_about", "label": "About text", "default": "PlugPal turns one crowded wall outlet into five outlets, four USB ports and a night light, so every room in your home has enough plugs." },
+    { "type": "paragraph", "content": "The footer is black with amber headings on the PlugPal page, to match it. The Shop link uses the product title." },
+    { "type": "textarea", "id": "plugpal_about", "label": "About text", "default": "Plug-Pal turns one crowded wall outlet into five outlets, four USB ports and a night light, so every room in your home has enough plugs." },
+    { "type": "text", "id": "plugpal_cta", "label": "Button under the about text", "default": "Shop Plug-Pal", "info": "Scrolls back up to the buy box. Leave blank to hide it." },
     { "type": "text", "id": "plugpal_shipping", "label": "Shipping line", "default": "Processed in 1–3 days, delivered in 6–12" },
-    { "type": "textarea", "id": "plugpal_fine", "label": "Small print", "default": "PlugPal adds outlets, not power. Everything plugged in shares the wall outlet's 15A / 1,875W circuit. Don't use it for space heaters or more than one high-heat appliance at a time. Not a GFCI. For standard US/Canada 3-prong grounded outlets in good condition. USB ports are not for laptops." },
+    { "type": "textarea", "id": "plugpal_fine", "label": "Small print", "default": "Plug-Pal adds outlets, not power. Everything plugged in shares the wall outlet's 15A / 1,875W circuit. Don't use it for space heaters or more than one high-heat appliance at a time. Not a GFCI. For standard US/Canada 3-prong grounded outlets in good condition. USB ports are not for laptops." },
     { "type": "header", "content": "On the ReadySip page" },
     { "type": "textarea", "id": "readysip_about", "label": "About text", "default": "ReadySip makes the Reserve Straw™, a pocket water filter kit so every person in your house has clean drinking water when the tap stops." },
     { "type": "textarea", "id": "readysip_fine", "label": "Small print", "default": "Filters bacteria, parasites and sediment. Does not remove viruses, chemicals, heavy metals or salt. For floodwater, filter it and then boil it or use purification tablets as well." }

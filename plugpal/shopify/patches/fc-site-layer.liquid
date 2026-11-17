@@ -1,7 +1,8 @@
 {%- comment -%}
   Mirevia single-product site layer. Sits first in the header group, so it renders on every page:
   - sends the homepage to the ReadySip Reserve Straw product page, and points the header logo and any
-    "Home" links straight at that page (so clicking the logo always loads the ReadySip page fresh)
+    "Home" links straight at that page (so clicking the logo always loads the ReadySip page fresh).
+    On the PlugPal page (product.plugpal template) the logo and "Home" links reload the PlugPal page instead
   - sends any other product, collection, catalogue or search page to the Blackout Buddy product page
   - except the ReadySip and Blackout Buddy product pages themselves, which stay reachable in this theme
   - loads Poppins / Inter and fc-site.css (navy + amber restyle of pages, policies and the theme cart drawer)
@@ -18,6 +19,10 @@
     assign rs_root = ''
   endif
   assign rs_url = rs_root | append: '/products/' | append: rs_handle
+  assign home_url = rs_url
+  if template.name == 'product' and template.suffix == 'plugpal'
+    assign home_url = rs_root | append: '/products/' | append: product.handle
+  endif
   assign go_url = ''
   assign own_page = false
   if template.name == 'product'
@@ -53,7 +58,7 @@
   (function () {
     if (window.__rsHomeLinks) return;
     window.__rsHomeLinks = true;
-    var RS = {{ rs_url | json }};
+    var RS = {{ home_url | json }};
     var ROOT = ({{ routes.root_url | json }}).replace(/\/$/, '') || '/';
     function target() {
       var m = location.search.match(/[?&]preview_theme_id=\d+/);
