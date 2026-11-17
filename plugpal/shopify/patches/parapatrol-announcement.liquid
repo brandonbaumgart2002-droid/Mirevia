@@ -44,10 +44,20 @@
       assign bar_bg = '#3b7560'
       assign bar_fg = '#ffffff'
   endcase
+  if template.suffix == 'plugpal'
+    assign bar_bg = '#111111'
+    assign bar_fg = '#ffffff'
+    assign pill_bg = '#f5a524'
+    assign pill_fg = '#111111'
+    assign accent_dots = true
+  endif
 -%}
 <style>
   .pp-bar { --pp-bar-bg: {{ bar_bg }}; --pp-bar-fg: {{ bar_fg }}; --pp-pill-bg: {{ pill_bg }}; --pp-pill-fg: {{ pill_fg }}; position: relative; display: flex; align-items: center; overflow: hidden; min-height: 38px; background: var(--pp-bar-bg); color: var(--pp-bar-fg); font-size: 13px; font-weight: 500; line-height: 1.35; letter-spacing: .01em; }
   @media (min-width: 640px) { .pp-bar { font-size: 14px; } }
+  {%- if template.suffix == 'plugpal' %}
+  html body .pp-bar { --pp-bar-bg: {{ bar_bg }}; --pp-bar-fg: {{ bar_fg }}; --pp-pill-bg: {{ pill_bg }}; --pp-pill-fg: {{ pill_fg }}; background: {{ bar_bg }}; color: {{ bar_fg }}; }
+  {%- endif %}
   .pp-bar__track { display: flex; width: max-content; animation: pp-bar var(--pp-bar-duration, 28s) linear infinite; will-change: transform; }
   .pp-bar__group { display: flex; flex-shrink: 0; align-items: center; margin: 0; padding: 0; list-style: none; }
   .pp-bar__item { display: inline-flex; align-items: center; margin: 0; padding: 9px 0; white-space: nowrap; }
@@ -179,7 +189,7 @@
   "name": "ParaPatrol: announcement",
   "settings": [
     { "type": "text", "id": "text", "label": "Text (separate items with |)", "info": "Start an item with ! to show it as a highlighted pill, e.g. !Back to School Sale", "default": "!Back to School Sale | Free shipping on all orders | 30-day money-back guarantee" },
-    { "type": "text", "id": "plugpal_text", "label": "Text on the PlugPal page", "info": "Used on products with the plugpal template. Separate items with |", "default": "!Free gifts with 2 & 4 packs | The most useful gift under $40 | 30-Day Money Back Guarantee" },
+    { "type": "text", "id": "plugpal_text", "label": "Text on the PlugPal page", "info": "Used on products with the plugpal template, in black and amber. Separate items with |", "default": "!Free gifts with 3 & 6 packs | One outlet, nine ports | 30-Day Money Back Guarantee" },
     { "type": "select", "id": "layout", "label": "Layout", "default": "scroll", "options": [ { "value": "scroll", "label": "Scrolling" }, { "value": "rotate", "label": "Rotating (one message at a time)" } ] },
     { "type": "range", "id": "speed", "label": "Seconds per loop (scrolling)", "info": "Higher is slower.", "min": 10, "max": 60, "step": 2, "unit": "s", "default": 28 },
     { "type": "range", "id": "interval", "label": "Seconds per message (rotating)", "min": 2, "max": 8, "step": 0.5, "unit": "s", "default": 3.5 },

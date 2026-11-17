@@ -104,6 +104,10 @@ There's no PlugPal product in the store yet, so preview the template on any prod
 
 (It shows ReadySip's photos and prices there because the page reads whichever product it's on.)
 
+### Colours
+
+The Shopify page matches the product: black, white and the warm amber of the night light. The palette lives in the `#plugpal` variables at the top of `assets/plugpal-pdp.css` (`--navy` near-black, `--gold` amber, `--glow` light amber, `--amber-ink` amber text on white, `--glow-soft` the soft glow behind the selected pack and buttons). On the PlugPal page the announcement bar is black with an amber pill, and the logo dot is amber.
+
 ### To finish
 
 1. The PlugPal product has a **Colour** option (White, Black) and a **Pack** option (1 Pack, 3 Pack, 6 Pack). Prices: US $36.99 / $73.99 / $114.99 (variant price and the United States price list) and Canada CA$51.99 / CA$99.99 / CA$164.99 (fixed prices on the Canada CAD price list). The page reads the shopper's market price, adds the matching variant to the cart, shows the cost of buying that many singles struck through, and works out the per-room price. Each variant has its own pack photo; the bundle cards show the photo for the chosen colour.
