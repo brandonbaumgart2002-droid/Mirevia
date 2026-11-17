@@ -1,16 +1,125 @@
-/* PlugPal product page (sections/plugpal-product.liquid). No libraries.
+/* PlugPal product page (sections/plugpal-*.liquid). No libraries.
+   The fold section (#plugpal) holds the gallery, pickers, buy button and sticky bar. Accordions, the video row and
+   "pick a pack" buttons work in every Plug-Pal section, and everything re-binds when the theme editor re-renders a section.
    Packs: finds the variant whose options match the chosen colour and pack size (1 / 3 / 6).
    If the product has no pack option, it adds the colour variant with quantity = pack size. */
 (function () {
   'use strict';
+  if (window.__plugpal) return;
+  window.__plugpal = true;
 
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var all = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- accordions (every section) ---------- */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-acc] .pp-acc__btn');
+    if (!btn) return;
+    var panel = btn.nextElementSibling;
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    if (panel) panel.hidden = open;
+  });
+
+  /* ---------- "pick a pack" buttons (every section) ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-pick]');
+    if (!a) return;
+    var target = document.querySelector('#plugpal [data-bundles] [data-qty="' + a.getAttribute('data-pick') + '"]');
+    if (target) target.click();
+  });
+
+  /* ---------- video rows (every section) ---------- */
+  function initReels() {
+    all('[data-reel]').forEach(function (reel) {
+      if (reel.__pp) return;
+      reel.__pp = true;
+      var track = reel.querySelector('[data-reel-track]');
+      var rPrev = reel.querySelector('[data-reel-prev]'), rNext = reel.querySelector('[data-reel-next]');
+      if (!track) return;
+      var buttons = function () {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        if (rPrev) rPrev.disabled = track.scrollLeft <= 2;
+        if (rNext) rNext.disabled = track.scrollLeft >= max;
+      };
+      var step = function (dir) {
+        var item = track.querySelector('.pp-reel__item');
+        if (!item) return;
+        track.scrollBy({ left: dir * (item.getBoundingClientRect().width + 16), behavior: reduceMotion ? 'auto' : 'smooth' });
+      };
+      if (rPrev) rPrev.addEventListener('click', function () { step(-1); });
+      if (rNext) rNext.addEventListener('click', function () { step(1); });
+      track.addEventListener('scroll', buttons, { passive: true });
+      window.addEventListener('resize', buttons);
+      buttons();
+      // tap a video to turn its sound on or off
+      all('.pp-reel__item video', track).forEach(function (v) {
+        v.addEventListener('click', function () { v.muted = !v.muted; if (v.paused) v.play(); });
+      });
+    });
+  }
+
+  /* ---------- review card (fold): Judge.me reviews, one at a time ---------- */
+  function initReviewCard(root) {
+    var card = root.querySelector('[data-rv]');
+    if (!card) return;
+    var revs = [], i = 0;
+    function txt(el, sel) { var n = el.querySelector(sel); return n ? n.textContent.trim() : ''; }
+    function collect(scope) {
+      revs = [];
+      Array.prototype.slice.call(scope.querySelectorAll('.jdgm-rev'), 0, 12).forEach(function (r) {
+        var body = txt(r, '.jdgm-rev__body');
+        if (!body) return;
+        var sc = r.querySelector('[data-score]');
+        revs.push({
+          name: txt(r, '.jdgm-rev__author') || 'Customer',
+          score: sc ? Math.round(parseFloat(sc.getAttribute('data-score'))) : 5,
+          body: body.length > 240 ? body.slice(0, 237).replace(/\s+\S*$/, '') + '…' : body,
+          verified: r.getAttribute('data-verified-buyer') === 'true'
+        });
+      });
+    }
+    function render() {
+      var r = revs[i];
+      card.querySelector('[data-rv-name]').textContent = r.name;
+      var stars = card.querySelector('[data-rv-stars]');
+      stars.innerHTML = '';
+      stars.setAttribute('aria-label', r.score + ' out of 5 stars');
+      for (var k = 0; k < 5; k++) { var s = document.createElement('i'); s.textContent = '★'; if (k >= r.score) s.className = 'pp-off'; stars.appendChild(s); }
+      card.querySelector('[data-rv-quote]').textContent = '“' + r.body + '”';
+      var foot = card.querySelector('[data-rv-foot]');
+      foot.innerHTML = '';
+      var label = r.verified ? (card.getAttribute('data-verified-label') || '') : '';
+      if (label) { foot.innerHTML = '<svg class="pp-icon" aria-hidden="true"><use href="#i-check"/></svg>'; foot.appendChild(document.createTextNode(label)); }
+    }
+    function start() {
+      if (!revs.length) return false;
+      card.hidden = false;
+      render();
+      card.querySelector('[data-rv-prev]').addEventListener('click', function () { i = (i - 1 + revs.length) % revs.length; render(); });
+      card.querySelector('[data-rv-next]').addEventListener('click', function () { i = (i + 1) % revs.length; render(); });
+      return true;
+    }
+    var tpl = root.querySelector('template[data-rv-src]');
+    if (tpl && tpl.content) collect(tpl.content);
+    if (start()) return;
+    var area = document.getElementById('reviews');
+    if (!area) return;
+    collect(area);
+    if (start()) return;
+    var mo = new MutationObserver(function () { collect(area); if (start()) mo.disconnect(); });
+    mo.observe(area, { childList: true, subtree: true });
+  }
+
+  function init() {
+  initReels();
   var root = document.getElementById('plugpal');
   if (!root || root.__pp) return;
   root.__pp = true;
+  initReviewCard(root);
 
   var $ = function (s, r) { return (r || root).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || root).querySelectorAll(s)); };
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var data = {};
   try { data = JSON.parse(document.getElementById('plugpal-data').textContent); } catch (e) {}
@@ -182,7 +291,7 @@
         var v = line.variant;
         if (v.compare_at_price && v.compare_at_price > v.price) was = v.compare_at_price * line.quantity;
         else if (qty > 1 && line.single && line.single.price * qty > price) was = line.single.price * qty;
-        nowEl.textContent = money(price);
+        nowEl.innerHTML = money(price) + (data.currency ? ' <small class="pp-cur">' + data.currency + '</small>' : '');
         if (wasEl) { wasEl.textContent = was ? money(was) : ''; wasEl.hidden = !was; }
         b.classList.toggle('pp-is-soldout', !v.available);
       } else {
@@ -249,12 +358,6 @@
   }
   update();
 
-  $$('[data-pick]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var target = bundlesEl && $('[data-qty="' + a.getAttribute('data-pick') + '"]', bundlesEl);
-      if (target && selectBundle) selectBundle(target);
-    });
-  });
 
   /* ---------- buy ---------- */
   function buy(btn) {
@@ -303,42 +406,6 @@
     }).observe(footer);
   }
 
-  /* ---------- accordions ---------- */
-  $$('[data-acc] .pp-acc__btn').forEach(function (btn) {
-    var panel = btn.nextElementSibling;
-    btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-      panel.hidden = open;
-    });
-  });
-
-  /* ---------- video row ---------- */
-  var track = $('[data-reel-track]');
-  var rPrev = $('[data-reel-prev]'), rNext = $('[data-reel-next]');
-  function reelButtons() {
-    if (!track) return;
-    var max = track.scrollWidth - track.clientWidth - 2;
-    if (rPrev) rPrev.disabled = track.scrollLeft <= 2;
-    if (rNext) rNext.disabled = track.scrollLeft >= max;
-  }
-  function reelStep(dir) {
-    var item = track && track.querySelector('.pp-reel__item');
-    if (!item) return;
-    track.scrollBy({ left: dir * (item.getBoundingClientRect().width + 16), behavior: reduceMotion ? 'auto' : 'smooth' });
-  }
-  if (track) {
-    if (rPrev) rPrev.addEventListener('click', function () { reelStep(-1); });
-    if (rNext) rNext.addEventListener('click', function () { reelStep(1); });
-    track.addEventListener('scroll', reelButtons, { passive: true });
-    window.addEventListener('resize', reelButtons);
-    reelButtons();
-    // tap a video to turn its sound on or off
-    $$('.pp-reel__item video', track).forEach(function (v) {
-      v.addEventListener('click', function () { v.muted = !v.muted; if (v.paused) v.play(); });
-    });
-  }
-
   /* ---------- night light demo ---------- */
   var night = $('[data-night]');
   var nToggle = $('[data-night-toggle]');
@@ -353,4 +420,8 @@
         : 'Daytime. The light stays off.';
     });
   }
+  }
+
+  init();
+  document.addEventListener('shopify:section:load', init);
 })();

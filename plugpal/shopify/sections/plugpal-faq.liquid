@@ -1,0 +1,23 @@
+{%- comment -%}
+  Plug-Pal page, FAQ. Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }}" id="faq">
+<div class="pp-wrap">
+<div class="pp-section-head">
+{%- if section.settings.eyebrow != blank -%}<p class="pp-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+</div>
+<div class="pp-acc pp-faq" data-acc>
+{%- for block in section.blocks -%}
+<div class="pp-acc__item" {{ block.shopify_attributes }}><button class="pp-acc__btn" type="button" aria-expanded="false">{{ block.settings.question | escape }}<svg class="pp-icon pp-chev"><use href="#i-down"/></svg></button>
+<div class="pp-acc__panel" hidden>{{ block.settings.answer }}</div></div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal FAQ","tag":"div","class":"plugpal-section","settings":[{"type":"select","id":"style","label":"Background","default":"wash","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"text","id":"eyebrow","label":"Small line above the heading"},{"type":"inline_richtext","id":"heading","label":"Heading","default":"Frequently Asked <em>Questions</em>","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text"}],"blocks":[{"type":"question","name":"Question","settings":[{"type":"text","id":"question","label":"Question","default":"Question"},{"type":"richtext","id":"answer","label":"Answer","default":"<p>Answer</p>"}]}],"presets":[{"name":"Plug-Pal FAQ","blocks":[{"type":"question"},{"type":"question"},{"type":"question"}]}],"enabled_on":{"templates":["product"]}}
+{% endschema %}

@@ -1,0 +1,27 @@
+{%- comment -%}
+  Plug-Pal page, email signup. Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }} pp-signup">
+<div class="pp-wrap">
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+{%- form 'customer', class: 'pp-sub__form', id: 'plugpal-signup' -%}
+<input type="hidden" name="contact[tags]" value="newsletter,plugpal">
+{%- if form.posted_successfully? -%}
+<p class="pp-signup__ok">{{ section.settings.success | escape }}</p>
+{%- else -%}
+<div class="pp-sub__row">
+<label for="plugpal-email" class="pp-sr">Email address</label>
+<input id="plugpal-email" name="contact[email]" type="email" placeholder="{{ section.settings.placeholder | escape }}" autocomplete="email" required>
+<button class="disable-global-button-styling" type="submit" aria-label="Subscribe"><svg class="pp-icon"><use href="#i-right"/></svg></button>
+</div>
+{%- if form.errors -%}<p class="pp-signup__err">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+{%- endif -%}
+{%- endform -%}
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal email signup","tag":"div","class":"plugpal-section","settings":[{"type":"select","id":"style","label":"Background","default":"white","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"inline_richtext","id":"heading","label":"Heading","default":"Subscribe to our emails","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text","default":"Get the latest updates and special offers."},{"type":"text","id":"placeholder","label":"Email box placeholder","default":"Enter your email address"},{"type":"text","id":"success","label":"Message after signing up","default":"You're on the list."}],"presets":[{"name":"Plug-Pal email signup"}],"enabled_on":{"templates":["product"]}}
+{% endschema %}

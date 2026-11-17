@@ -1,0 +1,15 @@
+{%- comment -%}
+  Prints the 6-pack price per outlet (6-pack price / 6) in the shopper's market currency, with its code (e.g. $27.50 CAD). Prints nothing if there's no 6-pack variant.
+{%- endcomment -%}
+{%- liquid
+  assign pp_v6 = nil
+  for v in product.variants
+    assign vt = v.title | downcase
+    if vt contains '6 pack' and pp_v6 == blank
+      assign pp_v6 = v
+    endif
+  endfor
+  if pp_v6 != blank
+    echo pp_v6.price | times: 1.0 | divided_by: 6 | round | money | append: ' ' | append: cart.currency.iso_code
+  endif
+-%}

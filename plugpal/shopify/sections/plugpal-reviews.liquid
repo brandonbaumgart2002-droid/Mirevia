@@ -1,0 +1,25 @@
+{%- comment -%}
+  Plug-Pal page, review list (Judge.me). The rating link above the name and the review card scroll here. Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }} pp-reviews" id="reviews">
+<div class="pp-wrap">
+<div class="pp-section-head">
+{%- if section.settings.eyebrow != blank -%}<p class="pp-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+</div>
+<div class="pp-tm__all">
+{%- assign apps = section.blocks | where: 'type', '@app' -%}
+{%- if apps.size > 0 -%}
+{%- for block in apps -%}<div class="pp-app">{% render block %}</div>{%- endfor -%}
+{%- else -%}
+<div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}">{{ product.metafields.judgeme.widget }}</div>
+{%- endif -%}
+</div>
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal reviews","tag":"div","class":"plugpal-section","settings":[{"type":"select","id":"style","label":"Background","default":"white","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"text","id":"eyebrow","label":"Small line above the heading"},{"type":"inline_richtext","id":"heading","label":"Heading","default":"Customer <em>Reviews</em>","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text"},{"type":"paragraph","content":"Shows your Judge.me reviews for this product (turn on the Judge.me app embed in Theme settings > App embeds). To use a Judge.me app block instead, add it here."}],"blocks":[{"type":"@app"}],"presets":[{"name":"Plug-Pal reviews"}],"enabled_on":{"templates":["product"]}}
+{% endschema %}

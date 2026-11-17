@@ -1,0 +1,33 @@
+{%- comment -%}
+  Plug-Pal page, video slider. No text is drawn over the videos. Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+{%- if section.settings.show_band -%}<div class="pp-scope"><div class="pp-band" aria-hidden="true"></div></div>{%- endif -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }}" id="videos">
+<div class="pp-wrap">
+<div class="pp-section-head">
+{%- if section.settings.eyebrow != blank -%}<p class="pp-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+</div>
+<div class="pp-reel" data-reel>
+<div class="pp-reel__track" data-reel-track>
+{%- for block in section.blocks -%}
+{%- if block.settings.video != blank or block.settings.poster != blank or request.design_mode -%}
+<div class="pp-reel__item" {{ block.shopify_attributes }}>{%- render 'plugpal-media', img: block.settings.poster, vid: block.settings.video, width: 700, dark: true, alt: block.settings.alt -%}
+{%- if block.settings.video == blank and block.settings.poster != blank -%}<span class="pp-reel__play" aria-hidden="true"><svg class="pp-icon pp-icon--fill"><use href="#i-play"/></svg></span>{%- endif -%}
+</div></div>
+{%- endif -%}
+{%- endfor -%}
+</div>
+<div class="pp-ctrls">
+<button class="pp-ctrl" type="button" aria-label="Previous videos" data-reel-prev><svg class="pp-icon"><use href="#i-left"/></svg></button>
+<button class="pp-ctrl" type="button" aria-label="Next videos" data-reel-next><svg class="pp-icon"><use href="#i-right"/></svg></button>
+</div>
+</div>
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal videos","tag":"div","class":"plugpal-section","settings":[{"type":"checkbox","id":"show_band","label":"Amber band above the section","default":true},{"type":"select","id":"style","label":"Background","default":"white","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"text","id":"eyebrow","label":"Small line above the heading"},{"type":"inline_richtext","id":"heading","label":"Heading","default":"Two Plugs. Seven Things. <em>Now Everything's Plugged In.</em>","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text","default":"For crowded coffee stations, bedside charger fights and the dark trip to the bathroom, and for everyone who's tired of unplugging one thing to use another."}],"blocks":[{"type":"video","name":"Video","settings":[{"type":"video","id":"video","label":"Video","info":"Plays muted on a loop. Tap a video to turn its sound on."},{"type":"image_picker","id":"poster","label":"Image (used if there is no video)"},{"type":"text","id":"alt","label":"Description for screen readers","default":"Plug-Pal customer video"}]}],"presets":[{"name":"Plug-Pal videos","blocks":[{"type":"video"},{"type":"video"},{"type":"video"}]}],"enabled_on":{"templates":["product"]}}
+{% endschema %}

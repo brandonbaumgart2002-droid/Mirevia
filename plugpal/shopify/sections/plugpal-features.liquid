@@ -1,0 +1,26 @@
+{%- comment -%}
+  Plug-Pal page, icon grid (How it works, Every room). Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handleize }}"{% endif %}>
+<div class="pp-wrap">
+<div class="pp-section-head">
+{%- if section.settings.eyebrow != blank -%}<p class="pp-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+</div>
+<ul class="pp-feats">
+{%- for block in section.blocks -%}
+<li class="pp-feat" {{ block.shopify_attributes }}><span class="pp-feat__ico"><svg class="pp-icon"><use href="#i-{{ block.settings.icon }}"/></svg></span>{%- if block.settings.title != blank -%}<h3>{{ block.settings.title | escape }}</h3>{%- endif -%}{%- if block.settings.text != blank -%}<p>{{ block.settings.text }}</p>{%- endif -%}</li>
+{%- endfor -%}
+</ul>
+{%- if section.settings.button_label != blank -%}
+{%- capture po -%}{%- render 'plugpal-per-outlet' -%}{%- endcapture -%}
+<div class="pp-rooms__cta"><a class="pp-btn pp-btn--sm" href="#plugpal-top" data-pick="{{ section.settings.button_pack }}">{{ section.settings.button_label | escape | replace: '[per_outlet]', po }}</a></div>
+{%- endif -%}
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal icon grid","tag":"div","class":"plugpal-section","settings":[{"type":"select","id":"style","label":"Background","default":"white","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"text","id":"anchor","label":"Link name (optional)","info":"Lets other buttons link here with #name."},{"type":"text","id":"eyebrow","label":"Small line above the heading"},{"type":"inline_richtext","id":"heading","label":"Heading","default":"How It <em>Works</em>","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text"},{"type":"header","content":"Button"},{"type":"text","id":"button_label","label":"Button text","info":"Write [per_outlet] to show the 6-pack price per outlet. The button selects that pack and scrolls up to the buy box."},{"type":"select","id":"button_pack","label":"Pack the button selects","default":"6","options":[{"value":"1","label":"1 Pack"},{"value":"3","label":"3 Pack"},{"value":"6","label":"6 Pack"}]}],"blocks":[{"type":"feature","name":"Feature","settings":[{"type":"select","id":"icon","label":"Icon","default":"outlet","options":[{"value":"outlet","label":"Outlet"},{"value":"usb","label":"USB"},{"value":"plug","label":"Plug"},{"value":"screw","label":"Screw"},{"value":"tool","label":"Tool"},{"value":"shield","label":"Shield"},{"value":"bolt","label":"Bolt"},{"value":"moon","label":"Moon"},{"value":"sensor","label":"Sensor"},{"value":"truck","label":"Truck"},{"value":"check","label":"Check"},{"value":"lock","label":"Lock"},{"value":"home","label":"Home"},{"value":"coffee","label":"Coffee"},{"value":"bed","label":"Bed"},{"value":"bath","label":"Bath"},{"value":"tv","label":"TV"},{"value":"laptop","label":"Laptop"},{"value":"phone","label":"Phone"},{"value":"game","label":"Game"},{"value":"wifi","label":"Wi-Fi"},{"value":"box","label":"Box"},{"value":"ruler","label":"Ruler"},{"value":"clip","label":"Clip"},{"value":"key","label":"Key"},{"value":"cart","label":"Cart"},{"value":"list","label":"List"}]},{"type":"text","id":"title","label":"Title","default":"Feature"},{"type":"inline_richtext","id":"text","label":"Text","default":"Describe the feature."}]}],"presets":[{"name":"Plug-Pal icon grid","blocks":[{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"}]}],"enabled_on":{"templates":["product"]}}
+{% endschema %}

@@ -1,0 +1,16 @@
+{%- comment -%}
+  Spec table from a textarea: one "Label: value" per line.
+{%- endcomment -%}
+{%- if specs != blank -%}
+{%- assign pp_lines = specs | newline_to_br | split: '<br />' -%}
+<dl class="pp-spec">
+{%- for pp_line in pp_lines -%}
+{%- assign pp_l = pp_line | strip -%}
+{%- if pp_l != blank -%}
+{%- assign pp_k = pp_l | split: ':' | first -%}
+{%- assign pp_v = pp_l | remove_first: pp_k | remove_first: ':' | strip -%}
+<dt>{{ pp_k | strip | escape }}</dt><dd>{{ pp_v | escape }}</dd>
+{%- endif -%}
+{%- endfor -%}
+</dl>
+{%- endif -%}

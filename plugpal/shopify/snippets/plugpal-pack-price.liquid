@@ -1,0 +1,22 @@
+{%- comment -%}
+  Pack price in the shopper's market currency, rendered on the server (the script keeps it in step when the colour changes).
+  Params: variant, single (the 1-pack of the same colour), qty, fallback_now, fallback_was.
+{%- endcomment -%}
+{%- if variant -%}
+{%- liquid
+  assign pp_now = variant.price
+  assign pp_was = 0
+  if variant.compare_at_price > variant.price
+    assign pp_was = variant.compare_at_price
+  elsif qty > 1 and single
+    assign pp_s = single.price | times: qty
+    if pp_s > pp_now
+      assign pp_was = pp_s
+    endif
+  endif
+  assign pp_per = pp_now | times: 1.0 | divided_by: qty | round
+-%}
+<span class="pp-bundle__price"><span class="pp-bundle__now">{{ pp_now | money }} <small class="pp-cur">{{ cart.currency.iso_code }}</small></span><span class="pp-bundle__was"{% if pp_was == 0 %} hidden{% endif %}>{% if pp_was > 0 %}{{ pp_was | money }}{% endif %}</span><span class="pp-bundle__per">{{ pp_per | money }} per outlet</span></span>
+{%- else -%}
+<span class="pp-bundle__price"><span class="pp-bundle__now">{{ fallback_now }}</span><span class="pp-bundle__was"{% if fallback_was == blank %} hidden{% endif %}>{{ fallback_was }}</span><span class="pp-bundle__per"></span></span>
+{%- endif -%}

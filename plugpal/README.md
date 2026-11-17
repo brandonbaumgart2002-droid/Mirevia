@@ -85,16 +85,36 @@ What was added or changed on that theme (copies in `shopify/`):
 
 | File | What it does |
 |---|---|
-| `templates/product.plugpal.json` | The PlugPal product template |
-| `sections/plugpal-product.liquid` | The whole page as one section: images, videos, prices, gifts and shipping lines are editable in the theme editor |
-| `snippets/plugpal-media.liquid` | One image or video slot (shows the written shot brief until you add a file) |
-| `assets/plugpal-pdp.css` | Styles, all scoped under `#plugpal`. It includes guards against the theme's global `!important` font, heading, radius and letter-spacing rules |
-| `assets/plugpal-pdp.js` | Gallery, packs, buy button, sticky bar, accordions, videos, night-light demo |
+| `templates/product.plugpal.json` | The PlugPal product template: which sections are on the page, in what order, with their text |
+| `sections/plugpal-product.liquid` | **Plug-Pal fold**: gallery, rating tile, name, sub-text, perks (blocks), offer box, colour, packs, gifts, buy button, guarantee, drop-downs (blocks), review card, sticky bar. Loads the styles, icons and script, so the other sections need it on the page |
+| `sections/plugpal-videos.liquid` | **Plug-Pal videos**: amber band and video slider (one block per video, no text over the videos) |
+| `sections/plugpal-features.liquid` | **Plug-Pal icon grid**: used twice, for How It Works and One Outlet. Every Room |
+| `sections/plugpal-surge.liquid` | **Plug-Pal surge**: device prices (US and Canada figures), total, spec lines, button |
+| `sections/plugpal-compare.liquid` | **Plug-Pal comparison**: table rows are blocks |
+| `sections/plugpal-faq.liquid` | **Plug-Pal FAQ**: one block per question |
+| `sections/plugpal-signup.liquid` | **Plug-Pal email signup** |
+| `sections/plugpal-reviews.liquid` | **Plug-Pal reviews**: the full Judge.me list. Not on the page; add it back from **Add section** if you want it |
+| `snippets/plugpal-media.liquid` | One image or video slot |
+| `snippets/plugpal-pack-price.liquid` | A pack's price, was-price and per-outlet price in the shopper's market currency |
+| `snippets/plugpal-per-outlet.liquid` | The 6-pack price per outlet with its currency code, for the `[per_outlet]` button text |
+| `snippets/plugpal-specs.liquid` | Turns a drop-down's "Label: value" lines into the spec table |
+| `assets/plugpal-pdp.css` | Styles, scoped to `:is(#plugpal,.pp-scope)` so they apply in every Plug-Pal section. It includes guards against the theme's global `!important` font, heading, radius and letter-spacing rules |
+| `assets/plugpal-pdp.js` | Gallery, packs, buy button, sticky bar, review card, accordions and video slider; re-binds when the theme editor reloads a section |
 | `patches/fc-site-layer.liquid` | Stops the site layer redirecting the PlugPal page to Blackout Buddy |
 | `patches/parapatrol-announcement.liquid` | Adds a "Text on the PlugPal page" setting to the announcement bar |
 | `patches/fc-footer.liquid` | PlugPal links, shipping line and small print in the footer on the PlugPal page |
 
-The copies of the section and script on the theme are the same code with indentation and comments stripped.
+The script on the theme is the same code with indentation and comments stripped.
+
+### Editing in the theme editor
+
+Every section on the page is its own section in the theme editor, so you can edit, hide, reorder or delete each one, and add more from **Add section** (they're listed under the Plug-Pal names). Headings use italic for the amber words. Button text can include `[per_outlet]`, which fills in the 6-pack price per outlet.
+
+The rating tile above the product name is in **Plug-Pal fold > Review rating above the name**: show or hide it and the stars, edit the wording (`[rating]` and `[count]` are filled in from Judge.me so they always match your real reviews), and choose where it links. The review card's "Verified buyer" label is under **Review card**; reviews that aren't from verified buyers show no label.
+
+### Currency by market
+
+Prices are rendered on the server in the shopper's market currency with the code shown: USD in the US, CAD in Canada. That covers the pack prices, was-prices, per-outlet prices, sticky bar and the per-outlet buttons further down. Text figures that aren't product prices have a US and a Canada field: the gift values (fold section) and the surge device prices, total and small print (surge section). The Canadian surge figures are approximate conversions of the US ranges; check them before launch. Markets other than the US and Canada see those text figures hidden rather than in the wrong currency.
 
 ### Preview it now
 
@@ -113,6 +133,6 @@ The Shopify page matches the product: black, white and the warm amber of the nig
 1. The PlugPal product has a **Colour** option (White, Black) and a **Pack** option (1 Pack, 3 Pack, 6 Pack). Prices: US $36.99 / $73.99 / $114.99 (variant price and the United States price list) and Canada CA$51.99 / CA$99.99 / CA$164.99 (fixed prices on the Canada CAD price list). The page reads the shopper's market price, adds the matching variant to the cart, shows the cost of buying that many singles struck through, and works out the per-room price. Each variant has its own pack photo; the bundle cards show the photo for the chosen colour.
    The static mock-up in this folder (`index.html`) still shows the earlier 1 / 2 / 4 packs and draft prices.
 2. Set the product's **Theme template** to `plugpal`.
-3. In the theme editor (PlugPal page section), add images and videos, check the gifts and shipping lines, and untick **Highlight claims to check** once everything in yellow is verified.
-4. Reviews come from Judge.me; turn on its app embed in **Theme settings > App embeds**. The buy-box star rating reads the `reviews.rating` and `reviews.rating_count` metafields. The `#reviews` section turns the reviews in Judge.me's widget into a card carousel (first 12, in Judge.me's sort order), with the full Judge.me widget below it. Each card keeps Judge.me's "Verified buyer" and "collected from another provider" labels. Nothing is hard-coded: if Judge.me has no reviews, the carousel stays hidden. The heading and the full-widget switch are in the section's **Reviews** settings.
+3. In the theme editor, check the gifts and shipping lines, the spec table in **Details** (the size line still says to add measurements) and the FAQ answer about dimensions.
+4. Reviews come from Judge.me; turn on its app embed in **Theme settings > App embeds**. The rating tile reads the `reviews.rating` and `reviews.rating_count` metafields, and the review card in the buy box shows the first 12 Judge.me reviews one at a time. Nothing is hard-coded: with no reviews the tile shows the Judge.me badge and the card stays hidden.
 5. PlugPal is on the Online Store sales channel, so `/products/plugpal-outlet-extender` works in the theme preview. On the live theme (ReadySip PDP) its site layer sends that link to Blackout Buddy, so shoppers only see the PlugPal page once the PlugPal theme copy is published. Publish the theme when you're ready. The home page and logo in this theme still go to ReadySip, as on the live site.

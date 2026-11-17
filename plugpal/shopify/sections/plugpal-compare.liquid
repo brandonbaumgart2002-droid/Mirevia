@@ -1,0 +1,29 @@
+{%- comment -%}
+  Plug-Pal page, comparison table. Styles: assets/plugpal-pdp.css (loaded by the Plug-Pal fold section). Every word is editable in the theme editor.
+{%- endcomment -%}
+<div class="pp-scope">
+<section class="pp-section pp-section--{{ section.settings.style }}" id="compare">
+<div class="pp-wrap pp-cmp">
+<div class="pp-cmp__head">
+{%- if section.settings.heading != blank -%}<h2 class="pp-h2">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.text != blank -%}<p class="pp-lede">{{ section.settings.text }}</p>{%- endif -%}
+</div>
+<div>
+<table class="pp-cmp__table">
+<thead><tr><th scope="col"><span class="pp-sr">Feature</span></th><th scope="col" class="pp-cmp__us">{{ section.settings.us_label | escape }}</th><th scope="col">{{ section.settings.them_label | escape }}</th></tr></thead>
+<tbody>
+{%- for block in section.blocks -%}
+<tr {{ block.shopify_attributes }}><th scope="row"><b>{{ block.settings.title | escape }}</b>{%- if block.settings.text != blank -%}<span>{{ block.settings.text | escape }}</span>{%- endif -%}</th>
+<td class="pp-cmp__us">{%- if block.settings.us -%}<svg class="pp-icon" aria-label="Yes"><use href="#i-check"/></svg>{%- else -%}<svg class="pp-icon" aria-label="No"><use href="#i-x"/></svg>{%- endif -%}</td>
+<td>{%- if block.settings.them -%}<svg class="pp-icon" aria-label="Yes"><use href="#i-check"/></svg>{%- else -%}<svg class="pp-icon" aria-label="No"><use href="#i-x"/></svg>{%- endif -%}</td></tr>
+{%- endfor -%}
+</tbody>
+</table>
+{%- if section.settings.note != blank -%}<p class="pp-cmp__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+</div>
+</div>
+</section>
+</div>
+{% schema %}
+{"name":"Plug-Pal comparison","tag":"div","class":"plugpal-section","settings":[{"type":"select","id":"style","label":"Background","default":"wash","options":[{"value":"white","label":"White"},{"value":"wash","label":"Warm grey"},{"value":"navy","label":"Black"}]},{"type":"inline_richtext","id":"heading","label":"Heading","default":"Plugged In <em>Without the Wobble</em>","info":"Italic words show in amber."},{"type":"inline_richtext","id":"text","label":"Text"},{"type":"text","id":"us_label","label":"Our column","default":"Plug-Pal"},{"type":"text","id":"them_label","label":"Their column","default":"Cube adapter"},{"type":"text","id":"note","label":"Note under the table","default":"Compared with a typical unmounted 3-way cube adapter."}],"blocks":[{"type":"row","name":"Row","settings":[{"type":"text","id":"title","label":"Feature","default":"Screws to the wall"},{"type":"text","id":"text","label":"Detail"},{"type":"checkbox","id":"us","label":"Plug-Pal has it","default":true},{"type":"checkbox","id":"them","label":"The other one has it","default":false}]}],"presets":[{"name":"Plug-Pal comparison","blocks":[{"type":"row"},{"type":"row"},{"type":"row"}]}],"enabled_on":{"templates":["product"]}}
+{% endschema %}
