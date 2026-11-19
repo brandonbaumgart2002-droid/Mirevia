@@ -15,6 +15,7 @@
     proc_min/proc_max business days to process an order (e.g. 1 and 2)
     del_min/del_max   days from order to delivery (e.g. 7 and 15)
     delivery_note     small line under the delivery estimate
+    tier_heading      line above the bundle cards (shown when the product has a "Bundle" option)
     subscribe_note    small line under the subscribe price
 
   Subscriptions come from the product's selling plans (Shopify Subscriptions,
@@ -65,7 +66,58 @@
   {%- form 'product', product, data-pp-form: '', novalidate: 'novalidate' -%}
     <input type="hidden" name="id" value="{{ v.id }}" data-pp-variant-input>
 
-    {%- unless product.has_only_default_variant -%}
+    {%- if product.options.first == 'Bundle' and product.variants.size > 1 -%}
+      {%- comment -%}
+        Native bundle tiers (replaces the Kaching app). One card per "Bundle" variant; the price and
+        compare-at come from the variant, so each market's price list applies. Bottle count is read
+        from the variant title ("2 Bottles"); 2nd card is "Most popular", the last is "Best value".
+      {%- endcomment -%}
+      {%- assign one_price = product.variants.first.price -%}
+      <div class="pp-tiers" data-pp-tiers>
+        {%- if tier_heading != blank -%}
+          <p class="pp-tiers__head"><span>{{ tier_heading }}</span></p>
+        {%- endif -%}
+        <div class="pp-tiers__grid" role="radiogroup" aria-label="Choose your bundle">
+          {%- for variant in product.variants -%}
+            {%- liquid
+              assign n = variant.title | split: ' ' | first | plus: 0
+              if n < 1
+                assign n = forloop.index
+              endif
+              assign days = n | times: 30
+              assign was = variant.compare_at_price
+              if was == blank or was <= variant.price
+                assign was = one_price | times: n
+              endif
+              assign save_pct = 0
+              if was > variant.price
+                assign save_pct = was | minus: variant.price | times: 1000 | divided_by: was | plus: 5 | divided_by: 10
+              endif
+              assign badge = ''
+              if forloop.index == 2
+                assign badge = 'Most popular'
+              elsif forloop.last and forloop.length > 2
+                assign badge = 'Best value'
+              endif
+              assign img = 'pp-tier-' | append: n | append: '.png'
+            -%}
+            <label class="pp-tier{% if badge != '' %} pp-tier--badged{% endif %}" data-pp-tier-card>
+              <input type="radio" name="pp-tier-{{ uid }}" value="{{ variant.id }}" class="sr-only" data-pp-tier{% if variant.id == v.id %} checked{% endif %}{% unless variant.available %} disabled{% endunless %}>
+              {%- if badge != '' -%}<span class="pp-tier__badge">{{ badge }}</span>{%- endif -%}
+              <img src="{{ img | asset_url }}" alt="" width="200" height="200" loading="lazy" class="pp-tier__img">
+              <span class="pp-tier__title">{{ variant.title }}</span>
+              <span class="pp-tier__size">{{ n }} &times; 30 mL<br>{{ days }} days</span>
+              {%- if save_pct > 0 -%}<span class="pp-tier__save">Save {{ save_pct }}%</span>{%- endif -%}
+              <span class="pp-tier__pricing">
+                <span class="pp-tier__price">{{ variant.price | money }}</span>
+                {%- if save_pct > 0 -%}<s class="pp-tier__was">{{ was | money }}</s>{%- endif -%}
+              </span>
+              <span class="pp-tier__each">{{ variant.price | divided_by: n | money }} / bottle</span>
+            </label>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- elsif product.has_only_default_variant == false -%}
       <div class="mb-3">
         <label for="pp-variant-{{ uid }}" class="block text-[13px] font-bold mb-1">{{ product.options.first }}</label>
         <select id="pp-variant-{{ uid }}" data-pp-variant class="w-full rounded-xl border border-line bg-white px-3 py-2.5 text-[15px] font-medium">
@@ -74,9 +126,9 @@
           {%- endfor -%}
         </select>
       </div>
-    {%- endunless -%}
+    {%- endif -%}
 
-    <fieldset data-pp-plans>
+    <fieldset data-pp-plans{% if has_plans == false and product.options.first == 'Bundle' and product.variants.size > 1 %} hidden{% endif %}>
       <legend class="sr-only">Purchase option</legend>
       <div class="grid gap-2.5">
         {%- if has_plans -%}
@@ -129,7 +181,7 @@
     {%- endif -%}
 
     <div class="mt-4 flex items-stretch gap-3">
-      <div class="flex items-center rounded-full border-2 border-line" role="group" aria-label="Quantity" data-pp-qty-group>
+      <div class="flex items-center rounded-full border-2 border-line{% if product.options.first == 'Bundle' and product.variants.size > 1 %} hidden{% endif %}" role="group" aria-label="Quantity" data-pp-qty-group>
         <button type="button" data-pp-qty="-1" class="disable-global-button-styling w-11 h-[52px] rounded-l-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Decrease quantity" disabled>&minus;</button>
         <label for="pp-qty-{{ uid }}" class="sr-only">Quantity</label>
         <input id="pp-qty-{{ uid }}" name="quantity" data-pp-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="pp-qty w-10 text-center font-bold text-[16px] bg-transparent">

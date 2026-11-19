@@ -243,7 +243,7 @@
         {%- if section.settings.sale_end_date != blank -%}
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
-        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading -%}
 
         {%- if section.settings.gcard_title != blank -%}
           {%- assign gc_items = section.settings.gcard_items | newline_to_br | split: '<br />' -%}
@@ -395,6 +395,7 @@
     { "type": "text", "id": "tick_3", "label": "Benefit 3", "default": "No fuss: mixes into any drink" },
 
     { "type": "header", "content": "Purchase box" },
+    { "type": "text", "id": "tier_heading", "label": "Bundle cards heading", "default": "Free shipping on every bundle" },
     { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
     { "type": "textarea", "id": "trust", "label": "Trust badges under the button", "info": "One per line as icon|text. Icons: lock, truck, shield, leaf, heart, check. Only claims you can back up. Clear to show the guarantee line instead.", "default": "lock|Secure checkout\ntruck|Free shipping\nshield|30-day money-back\nleaf|Alcohol & sugar-free" },
     { "type": "checkbox", "id": "payment_icons", "label": "Show payment icons", "info": "Shows the payment methods switched on in Shopify Payments / your checkout.", "default": true },

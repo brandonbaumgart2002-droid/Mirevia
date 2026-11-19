@@ -144,6 +144,15 @@
     });
     var freq = $('[data-pp-freq]', box);
     if (freq) freq.addEventListener('change', function () { state.planId = Number(freq.value); state.plan = 'sub'; renderBoxes(); });
+    $$('[data-pp-tier]', box).forEach(function (r) {
+      r.addEventListener('change', function () {
+        if (!r.checked) return;
+        state.variantId = Number(r.value); state.qty = 1;
+        var v = variant();
+        if (!v.plans.length && !data.requiresPlan) state.plan = 'once';
+        renderBoxes();
+      });
+    });
     var vsel = $('[data-pp-variant]', box);
     if (vsel) vsel.addEventListener('change', function () {
       state.variantId = Number(vsel.value);
@@ -185,6 +194,7 @@
       box.classList.toggle('pp-has-bundles', bundled);
       var vi = $('[data-pp-variant-input]', box); if (vi) vi.value = v.id;
       var vs = $('[data-pp-variant]', box); if (vs) vs.value = v.id;
+      $$('[data-pp-tier]', box).forEach(function (r) { r.checked = Number(r.value) === v.id; });
 
       $$('[data-pp-plan]', box).forEach(function (r) {
         var kind = r.getAttribute('data-pp-plan');
@@ -230,7 +240,8 @@
       var freqLabel = '';
       var fq0 = $('[data-pp-freq]');
       if (sub && fq0 && fq0.selectedIndex > -1) freqLabel = ' · ' + fq0.options[fq0.selectedIndex].text;
-      meta.textContent = (sub ? 'Subscribe' + freqLabel : 'One-time') + ' · ' + money(total());
+      var tierLabel = data.variants.length > 1 && document.querySelector('[data-pp-tier]') ? v.title + ' · ' : '';
+      meta.textContent = tierLabel + (sub ? 'Subscribe' + freqLabel : 'One-time') + ' · ' + money(total());
     }
     var sAdd = $('[data-pp-sticky-add]');
     if (sAdd) { sAdd.disabled = !v.available; sAdd.setAttribute('aria-label', v.available ? 'Add to Bag, ' + money(total()) : 'Sold out'); }
@@ -710,8 +721,25 @@
 
   /* ---------------- "Stock up" offer rows: mirror the live Kaching tiers, and pick one in the buy box ---------------- */
   function kachingBars() { return $$('.kaching-bundles__bar'); }
+  function nativeTiers() {
+    var hero = $$('[data-pp-hero-box] [data-pp-tier-card]');
+    return hero.length ? hero : $$('[data-pp-tier-card]');
+  }
   function syncOfferRepeat() {
-    var bars = kachingBars(); if (!bars.length) return false;
+    var bars = kachingBars();
+    if (!bars.length) {
+      var cards = nativeTiers(); if (!cards.length) return false;
+      $$('[data-pp-offer-repeat] [data-pp-pick-tier]').forEach(function (row) {
+        var c = cards[+row.getAttribute('data-pp-pick-tier')];
+        if (!c) { row.parentNode.style.display = 'none'; return; }
+        var get = function (sel) { var el = c.querySelector(sel); return el ? el.textContent.trim() : ''; };
+        var set = function (sel, v) { var el = row.querySelector(sel); if (el && v) el.textContent = v; };
+        set('[data-pp-tier-title]', get('.pp-tier__title')); set('[data-pp-tier-price]', get('.pp-tier__price'));
+        var w = row.querySelector('[data-pp-tier-was]'), was = get('.pp-tier__was');
+        if (w) { if (was) { w.textContent = was; w.style.display = ''; } else w.style.display = 'none'; }
+      });
+      return true;
+    }
     $$('[data-pp-offer-repeat] [data-pp-pick-tier]').forEach(function (row) {
       var bar = bars[+row.getAttribute('data-pp-pick-tier')];
       if (!bar) { row.parentNode.style.display = 'none'; return; }
@@ -731,7 +759,14 @@
   document.addEventListener('click', function (e) {
     var row = e.target.closest && e.target.closest('[data-pp-pick-tier]');
     if (!row) return;
-    var bar = kachingBars()[+row.getAttribute('data-pp-pick-tier')];
+    var idx = +row.getAttribute('data-pp-pick-tier');
+    var card = !kachingBars().length && nativeTiers()[idx];
+    if (card) {
+      var inp = card.querySelector('[data-pp-tier]');
+      if (inp && !inp.disabled) { inp.checked = true; inp.dispatchEvent(new Event('change', { bubbles: true })); }
+      return;
+    }
+    var bar = kachingBars()[idx];
     if (bar) setTimeout(function () { (bar.querySelector('input') || bar).click(); }, 350);
   });
 
