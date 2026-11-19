@@ -229,13 +229,26 @@
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
 
-        {%- if section.settings.mandatory != blank -%}<p class="mt-2.5 text-center text-[13px] font-bold text-ink">{{ section.settings.mandatory }}</p>{%- endif -%}
         {%- if section.settings.gcard_title != blank -%}
-          <div class="mt-4 flex items-center gap-4 rounded-2xl border border-[#d6e7dd] bg-mint px-4 py-3.5">
-            <span class="w-12 h-12 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 24 -%}</span>
-            <span><span class="block font-display font-bold text-[18px] leading-tight text-primary-dark">{{ section.settings.gcard_title }}</span><span class="block text-[14px] text-ink">{{ section.settings.gcard_text }}</span></span>
+          {%- assign gc_items = section.settings.gcard_items | newline_to_br | split: '<br />' -%}
+          <div class="mt-4 rounded-3xl border-2 border-ink bg-white px-4 sm:px-6 py-5 text-center">
+            <p class="font-display font-bold text-[22px] sm:text-[24px] leading-tight text-primary">{{ section.settings.gcard_title }}</p>
+            {%- if section.settings.gcard_text != blank -%}<p class="mt-1 text-[15px] text-ink">{{ section.settings.gcard_text }}</p>{%- endif -%}
+            {%- if section.settings.gcard_items != blank -%}
+              <ul class="mt-4 pt-4 border-t border-[#1e2d4f] grid grid-cols-3 gap-2" role="list">
+                {%- for l in gc_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                  <li class="flex flex-col items-center gap-1.5"><span class="text-primary" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 24 -%}</span><span class="text-[13px] sm:text-[14px] font-extrabold leading-tight text-ink">{{ f[1] | strip }}</span></li>
+                {%- endif -%}{%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {%- if shop.enabled_payment_types.size > 0 -%}
+              <ul class="pp-payments mt-4 pt-4 border-t border-[#1e2d4f] flex flex-wrap justify-center gap-1.5" role="list" aria-label="Payment methods">
+                {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'pp-payment-icon' }}</li>{%- endfor -%}
+              </ul>
+            {%- endif -%}
           </div>
         {%- endif -%}
+        {%- if section.settings.mandatory != blank -%}<p class="mt-3 text-center text-[13px] font-bold text-ink">{{ section.settings.mandatory }}</p>{%- endif -%}
 
         {%- comment -%} Quick answers: the biggest objections (safety, taste, dosing and results, guarantee), for shoppers who never reach the full FAQ {%- endcomment -%}
         {%- if section.settings.ing_tile_label != blank or section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
@@ -356,6 +369,7 @@
     { "type": "text", "id": "rating_avatars", "label": "Customer photos beside the stars", "info": "Up to 3 built-in image files, comma separated. Blank hides them." },
     { "type": "text", "id": "gcard_title", "label": "Guarantee card under the buy box: title", "info": "Blank hides the card." },
     { "type": "text", "id": "gcard_text", "label": "Guarantee card: text" },
+    { "type": "textarea", "id": "gcard_items", "label": "Guarantee card: icon row", "info": "icon | text, 3 lines. Payment icons show under it." },
     { "type": "checkbox", "id": "show_hero_price", "label": "Show price under the title", "info": "Off: the expert line below shows as a larger badge in its place. Prices still show in the buy box.", "default": true },
     { "type": "text", "id": "authority", "label": "Expert line under the price", "info": "Links to the Expert section. Only use if a real practitioner recommends it. Clear to hide.", "default": "Paediatrician recommended" },
     { "type": "text", "id": "authority_note", "label": "Small line under the expert badge", "info": "Shows when the price under the title is hidden.", "default": "Gentle, kid-dosed herbal blend for ages 3+" },

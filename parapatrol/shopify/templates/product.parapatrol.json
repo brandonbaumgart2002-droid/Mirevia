@@ -21,7 +21,7 @@
         "tick_3": "",
         "subscribe_note": "Delivered on your schedule. Skip or cancel anytime.",
         "trust": "lock|Secure checkout\ntruck|Free shipping\nshield|30-day money-back\nleaf|Alcohol & sugar-free",
-        "payment_icons": true,
+        "payment_icons": false,
         "guarantee": "30-day money-back guarantee",
         "free_shipping": 0,
         "after_add": "drawer",
@@ -73,11 +73,12 @@
         "load_google_fonts": true,
         "use_theme_fonts": false,
         "rating_avatars": "",
-        "gcard_title": "30-day money-back guarantee",
+        "gcard_title": "30-Day Money-Back Guarantee",
         "gcard_text": "Try it for 30 days. If you’re not happy, we’ll refund you.",
         "eyebrow": "For mums who know their kid",
         "mandatory": "Always read the label and follow directions for use.",
-        "benefit_grid": "kid | Made for kids 3+\nno-alcohol | No alcohol\nno-sugar | No sugar\nberry | Raspberry flavour\nguarantee | 30-day money-back guarantee"
+        "benefit_grid": "kid | Made for kids 3+\nno-alcohol | No alcohol\nno-sugar | No sugar\nberry | Raspberry flavour\nguarantee | 30-day money-back guarantee",
+        "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+"
       }
     },
     "belief": {
