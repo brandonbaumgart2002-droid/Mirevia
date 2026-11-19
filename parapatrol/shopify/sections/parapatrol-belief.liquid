@@ -212,6 +212,15 @@
     function stars(n, sz) { var h = ''; for (var i = 1; i <= 5; i++) h += STAR.replace(/SZ/g, sz).replace('FILL', i <= Math.round(n) ? '#e27aa3' : '#f0dbe3'); return h; }
     function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
     function strip(h) { var d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent.trim(); }
+    // Imported bodies end with "Mother of Harry age 5. Verified Buyer." Move that sign-off into the name line.
+    var SIGN = /\s*((?:Mother|Father|Mum|Mom|Dad|Parent|Grandmother|Grandfather|Nan|Grandma|Grandpa|Aunt|Uncle|Guardian) of [^.]+?)\.?\s*(?:Verified Buyer\.?)?\s*$/i;
+    function split(text) {
+      var t = text.replace(/\s*Verified Buyer\.?\s*$/i, '');
+      var m = t.match(SIGN);
+      if (!m) return { body: t, by: '' };
+      var by = m[1].replace(/\s+age\s+(\d+)/gi, ', age $1');
+      return { body: t.slice(0, m.index).trim(), by: by.charAt(0).toUpperCase() + by.slice(1) };
+    }
     document.querySelectorAll('[data-pp-jm]').forEach(function (box) {
       if (box.__ppJm) return; box.__ppJm = true;
       var shop = box.dataset.shop, pid = box.dataset.pid, per = +box.dataset.per || 6, page = 1, total = 0, shown = 0;
@@ -233,11 +242,13 @@
             var li = document.createElement('li');
             li.className = 'rounded-3xl bg-soft border border-line p-5 flex flex-col';
             var pics = (r.pictures_urls || []).slice(0, 3).map(function (p) { var u = p.compact || p.small || p.original || p; return '<img src="' + esc(u) + '" alt="" loading="lazy" class="w-16 h-16 rounded-xl object-cover">'; }).join('');
+            var parts = split(strip(r.body_html));
+            var who = parts.by || r.reviewer_name || '';
             li.innerHTML = '<div class="flex">' + stars(r.rating, 16) + '</div>' +
               (r.title ? '<p class="mt-2.5 font-display font-bold text-[18px] leading-snug text-primary-dark">' + esc(r.title) + '</p>' : '') +
-              '<p class="mt-1.5 flex-1 text-[15px] leading-relaxed text-ink">' + esc(strip(r.body_html)) + '</p>' +
+              '<p class="mt-1.5 flex-1 text-[15px] leading-relaxed text-ink">' + esc(parts.body) + '</p>' +
               (pics ? '<div class="mt-3 flex gap-2">' + pics + '</div>' : '') +
-              '<p class="mt-4 flex items-center gap-2 text-[14px] font-bold text-ink"><span class="w-8 h-8 rounded-full bg-mint text-primary-dark inline-flex items-center justify-center text-[13px]">' + esc(r.reviewer_initial || (r.reviewer_name || '?').charAt(0)) + '</span>' + esc(r.reviewer_name) + (r.verified_buyer ? ' <span class="text-primary text-[12px]">✓ Verified buyer</span>' : '') + '</p>';
+              '<p class="mt-4 flex items-center gap-2 text-[14px] font-bold text-ink"><span class="w-8 h-8 rounded-full bg-mint text-primary-dark inline-flex items-center justify-center text-[13px]">' + esc(r.reviewer_initial || (r.reviewer_name || '?').charAt(0)) + '</span>' + esc(who) + (r.verified_buyer ? ' <span class="text-primary text-[12px]">✓ Verified buyer</span>' : '') + '</p>';
             list.appendChild(li); shown++;
           });
           more.classList.toggle('hidden', shown >= total);
