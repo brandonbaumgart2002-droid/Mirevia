@@ -178,6 +178,7 @@
               assign headline = section.settings.headline_a
           endcase
         -%}
+        {%- if section.settings.eyebrow != blank -%}<p class="mb-1.5 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
         <p class="font-display font-semibold text-[26px] leading-[1.1] sm:text-[38px] lg:text-[44px] tracking-tight" data-pp-headline
            data-a="{{ section.settings.headline_a | escape }}" data-b="{{ section.settings.headline_b | escape }}" data-c="{{ section.settings.headline_c | escape }}">{{ headline }}</p>
 
@@ -218,6 +219,7 @@
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
 
+        {%- if section.settings.mandatory != blank -%}<p class="mt-2.5 text-center text-[13px] font-bold text-ink">{{ section.settings.mandatory }}</p>{%- endif -%}
         {%- if section.settings.gcard_title != blank -%}
           <div class="mt-4 flex items-center gap-4 rounded-2xl border border-[#d6e7dd] bg-mint px-4 py-3.5">
             <span class="w-12 h-12 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 24 -%}</span>
@@ -338,6 +340,8 @@
     { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "4.8" },
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
+    { "type": "text", "id": "eyebrow", "label": "Small line above the headline" },
+    { "type": "text", "id": "mandatory", "label": "Statement under the buy box", "info": "e.g. Always read the label and follow directions for use." },
     { "type": "text", "id": "rating_avatars", "label": "Customer photos beside the stars", "info": "Up to 3 built-in image files, comma separated. Blank hides them." },
     { "type": "text", "id": "gcard_title", "label": "Guarantee card under the buy box: title", "info": "Blank hides the card." },
     { "type": "text", "id": "gcard_text", "label": "Guarantee card: text" },

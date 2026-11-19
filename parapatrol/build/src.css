@@ -343,3 +343,6 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp-zoom__stage.is-zoomed { display: block; }
 .pp-zoom__stage.is-zoomed .pp-zoom__img { max-width: none; max-height: none; width: 250%; cursor: zoom-out; }
 @media (min-width: 640px) { .pp-zoom__stage.is-zoomed .pp-zoom__img { width: 200%; } }
+
+/* Unfilled [[PLACEHOLDER]] values: loud on purpose so nothing ships unfilled */
+.pp .pp-ph { background: #fff3a8; color: #5c4a00; outline: 2px dashed #d9b200; outline-offset: 1px; border-radius: 4px; padding: 0 4px; font-weight: 700; font-style: normal; }

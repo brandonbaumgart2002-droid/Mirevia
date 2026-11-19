@@ -1,0 +1,294 @@
+{%- comment -%}
+  Belief-led product page sections (Para Patrol AU belief brief, Nov 2026). Each block does one belief job:
+  story (you know your kid), logic (why adult cleanses aren't for kids), compare (chemist tablet vs daily support),
+  label (every ingredient on the label + testing), reviews (real reviews grouped by the belief they answer),
+  howto (demonstration + dose table), close (guarantee, offer, price per day, mandatory statement).
+  Anything still to confirm is written as [[PLACEHOLDER]] and renders highlighted so it can't ship unnoticed.
+  Optional elements (AUST L, practitioner, binder line, test certificate) stay hidden while their setting is blank.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+{%- capture ph_open -%}<mark class="pp-ph">[[{%- endcapture -%}
+{%- capture ph_close -%}]]</mark>{%- endcapture -%}
+<div class="pp pp-belief">
+{%- for block in section.blocks -%}
+  {%- assign b = block.settings -%}
+  {%- case block.type -%}
+
+    {%- when 'story' -%}
+      <section class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-st-{{ block.id }}">
+        <div class="max-w-[720px] mx-auto px-4">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-st-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          <figure class="mt-6 rounded-3xl bg-white border border-line p-6 sm:p-8 shadow-soft">
+            <blockquote class="pp-adv-copy">{{ b.story | replace: '[[', ph_open | replace: ']]', ph_close }}</blockquote>
+            {%- if b.attribution != blank -%}<figcaption class="mt-4 text-[14px] font-bold text-muted">{{ b.attribution | replace: '[[', ph_open | replace: ']]', ph_close }}</figcaption>{%- endif -%}
+          </figure>
+          {%- if b.closing != blank -%}<p class="mt-6 text-center font-display font-bold text-[22px] sm:text-[26px] leading-snug text-primary-dark">{{ b.closing }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'logic' -%}
+      {%- assign steps = b.steps | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-lg-{{ block.id }}">
+        <div class="max-w-[720px] mx-auto px-4">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-lg-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          <ol class="mt-7 grid gap-3" role="list">
+            {%- for l in steps -%}{%- assign t = l | strip -%}{%- if t != blank -%}
+              <li class="flex gap-4 rounded-2xl {% if forloop.last %}bg-mint border-2 border-primary{% else %}bg-soft{% endif %} p-4 sm:p-5">
+                <span class="w-9 h-9 shrink-0 rounded-full {% if forloop.last %}bg-primary text-white{% else %}bg-white text-primary-dark{% endif %} inline-flex items-center justify-center font-display font-bold text-[17px]" aria-hidden="true">{{ forloop.index }}</span>
+                <span class="pt-1 text-[16px] sm:text-[17px] leading-relaxed text-ink {% if forloop.last %}font-bold{% endif %}">{{ t | replace: '[[', ph_open | replace: ']]', ph_close }}</span>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ol>
+          {%- if b.binder_line != blank -%}<p class="mt-5 text-center font-display font-bold text-[20px] text-primary-dark">{{ b.binder_line }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'compare' -%}
+      {%- assign rows = b.rows | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }} aria-labelledby="pp-cp-{{ block.id }}">
+        <div class="max-w-[820px] mx-auto px-4">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-cp-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          <div class="mt-6 rounded-3xl bg-white overflow-hidden shadow-soft">
+            <table class="w-full text-left text-[14px] sm:text-[15px]">
+              <thead><tr><th class="p-3 sm:p-4 w-[30%]"><span class="sr-only">Compare</span></th><th class="p-3 sm:p-4 font-extrabold text-muted">{{ b.col_a }}</th><th class="p-3 sm:p-4 bg-primary text-white font-extrabold">{{ b.col_b }}</th></tr></thead>
+              <tbody>
+                {%- for l in rows -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+                  <tr class="border-t border-line"><th scope="row" class="p-3 sm:p-4 font-bold text-ink">{{ f[0] | strip }}</th><td class="p-3 sm:p-4 text-muted">{{ f[1] | strip }}</td><td class="p-3 sm:p-4 bg-mint font-bold text-primary-dark">{{ f[2] | strip }}</td></tr>
+                {%- endif -%}{%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+          {%- if b.note != blank -%}<p class="mt-5 rounded-2xl border-2 border-primary bg-white px-5 py-4 text-center font-bold text-[16px] sm:text-[17px] text-ink">{{ b.note }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'label' -%}
+      {%- assign ings = b.ingredients | newline_to_br | split: '<br />' -%}
+      <section id="whats-in-it" class="py-12 lg:py-16 bg-white scroll-mt-24" {{ block.shopify_attributes }} aria-labelledby="pp-lb-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="max-w-[720px]">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-lb-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+          </div>
+          <div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:items-start">
+            <div class="min-w-0">
+              {%- if b.label_asset != blank -%}
+                <button type="button" class="block w-full cursor-zoom-in rounded-3xl overflow-hidden border border-line" data-pp-zoom="{{ b.label_asset | asset_url }}" data-pp-zoom-alt="{{ b.label_alt | escape }}" aria-label="Zoom in on the label">
+                  <img src="{{ b.label_asset | asset_url }}" alt="{{ b.label_alt | escape }}" loading="lazy" width="1400" height="1400" class="w-full h-auto">
+                </button>
+                <p class="mt-2 text-center text-[13px] text-muted">Tap to zoom</p>
+              {%- endif -%}
+              {%- if b.other != blank -%}<p class="mt-4 text-[14px] text-ink"><strong>Other ingredients:</strong> {{ b.other }}</p>{%- endif -%}
+              {%- if b.allergen != blank -%}<p class="mt-2 inline-flex rounded-full bg-soft px-3 py-1 text-[13px] font-bold text-berry">{{ b.allergen }}</p>{%- endif -%}
+            </div>
+            <div class="min-w-0">
+              <ul class="grid gap-2.5 sm:grid-cols-2" role="list">
+                {%- for l in ings -%}{%- assign f = l | strip | split: '|' -%}{%- if f[0] != blank -%}
+                  <li class="rounded-2xl border border-line bg-soft p-4"><p class="font-display font-bold text-[17px] text-ink">{{ f[0] | strip | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- if f[1] -%}<p class="mt-1 text-[14px] leading-relaxed text-muted">{{ f[1] | strip | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}</li>
+                {%- endif -%}{%- endfor -%}
+              </ul>
+              <div class="mt-5 rounded-2xl bg-mint border border-[#d6e7dd] p-5">
+                <p class="flex items-center gap-2 font-display font-bold text-[18px] text-primary-dark"><span aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 18 -%}</span>{{ b.test_heading }}</p>
+                <p class="mt-1.5 text-[15px] text-ink">{{ b.test_text | replace: '[[', ph_open | replace: ']]', ph_close }}</p>
+                {%- if b.cert_label != blank -%}
+                  {%- if b.cert_url != blank -%}<a href="{{ b.cert_url }}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 font-extrabold text-primary-dark underline underline-offset-4">{{ b.cert_label }} →</a>
+                  {%- else -%}<p class="mt-3 text-[14px]">{{ b.cert_label | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+                {%- endif -%}
+                {%- if b.aust_l != blank -%}<p class="mt-3 text-[14px] font-bold text-ink">{{ b.aust_l }}</p>{%- endif -%}
+                {%- if b.practitioner != blank -%}<p class="mt-3 text-[14px] text-ink">{{ b.practitioner }}</p>{%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {%- when 'reviews' -%}
+      {%- assign rv = b.reviews | newline_to_br | split: '<br />' -%}
+      {%- assign tabs = b.tabs | newline_to_br | split: '<br />' -%}
+      <section id="reviews" class="py-12 lg:py-16 bg-soft scroll-mt-24" {{ block.shopify_attributes }} aria-labelledby="pp-rv-{{ block.id }}" data-pp-rtabs>
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 id="pp-rv-{{ block.id }}" class="text-center font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-center text-[16px] text-muted">{{ b.intro }}</p>{%- endif -%}
+          {%- assign total = 0 -%}
+          {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 6 -%}{%- assign total = total | plus: 1 -%}{%- endif -%}{%- endfor -%}
+          {%- if total == 0 -%}
+            <p class="mt-8 mx-auto max-w-[620px] rounded-2xl border-2 border-dashed border-[#d9b200] bg-[#fff8d6] p-5 text-center text-[15px] font-bold text-ink">{{ b.empty | default: '[[REAL REVIEWS — first name, state, child’s age, stars, text. From the review app, with permission.]]' | replace: '[[', ph_open | replace: ']]', ph_close }}</p>
+          {%- else -%}
+            <div class="mt-6 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Filter reviews">
+              {%- for t in tabs -%}{%- assign tn = t | strip -%}{%- if tn != blank -%}
+                {%- assign has = false -%}
+                {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- assign ft = f[0] | strip -%}{%- if ft == tn and f.size >= 6 -%}{%- assign has = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
+                {%- if has -%}<button type="button" role="tab" class="rounded-full border-2 border-primary px-4 py-2 text-[14px] font-extrabold text-primary-dark aria-selected:bg-primary aria-selected:text-white" aria-selected="false" data-pp-rtab="{{ tn | escape }}">{{ tn }}</button>{%- endif -%}
+              {%- endif -%}{%- endfor -%}
+            </div>
+            <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
+              {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 6 -%}
+                {%- assign stars = f[4] | strip | plus: 0 -%}
+                <li class="rounded-3xl bg-white border border-line p-5 flex flex-col" data-pp-rcard="{{ f[0] | strip | escape }}">
+                  {%- render 'parapatrol-stars', score: stars, size: 16 -%}
+                  <p class="mt-3 flex-1 text-[15.5px] leading-relaxed text-ink">“{{ f[5] | strip }}”</p>
+                  <p class="mt-4 text-[14px] font-bold text-ink">{{ f[1] | strip }}, {{ f[2] | strip }} <span class="font-semibold text-muted">· {{ f[3] | strip }}</span></p>
+                </li>
+              {%- endif -%}{%- endfor -%}
+            </ul>
+          {%- endif -%}
+          {%- if b.note != blank -%}<p class="mt-4 text-center text-[12px] text-muted">{{ b.note }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'howto' -%}
+      {%- assign dose = b.dose | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-ht-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div class="min-w-0">
+            {%- if b.video_url != blank -%}
+              <video class="w-full aspect-square rounded-3xl object-cover bg-soft" src="{{ b.video_url }}" {% if b.poster != blank %}poster="{{ b.poster | asset_url }}"{% endif %} autoplay muted loop playsinline aria-label="{{ b.video_alt | escape }}"></video>
+            {%- else -%}
+              <div class="relative">
+                {%- render 'parapatrol-media', asset: b.poster, alt: b.video_alt, label: '', class: 'aspect-square rounded-3xl', sizes: '(min-width: 1024px) 560px, 100vw' -%}
+                <p class="absolute inset-x-3 bottom-3"><mark class="pp-ph">[[VIDEO — 10-second loop: one dropper into juice, child drinks it]]</mark></p>
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="min-w-0">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-ht-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            <div class="mt-6 rounded-2xl border border-line overflow-hidden">
+              <table class="w-full text-left text-[15px]">
+                <thead class="bg-mint"><tr><th class="p-3 font-extrabold text-primary-dark">Age</th><th class="p-3 font-extrabold text-primary-dark">Dose</th><th class="p-3 font-extrabold text-primary-dark">How often</th></tr></thead>
+                <tbody>
+                  {%- assign n_dose = 0 -%}
+                  {%- for l in dose -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}{%- assign n_dose = n_dose | plus: 1 -%}
+                    <tr class="border-t border-line"><td class="p-3 font-bold text-ink">{{ f[0] | strip }}</td><td class="p-3 text-ink">{{ f[1] | strip }}</td><td class="p-3 text-ink">{{ f[2] | strip }}</td></tr>
+                  {%- endif -%}{%- endfor -%}
+                  {%- if n_dose == 0 -%}<tr><td colspan="3" class="p-3"><mark class="pp-ph">[[DOSE TABLE FROM LABEL — age | dose | how often]]</mark></td></tr>{%- endif -%}
+                </tbody>
+              </table>
+            </div>
+            {%- if b.line != blank -%}<p class="mt-5 font-display font-bold text-[22px] leading-snug text-primary-dark">{{ b.line }}</p>{%- endif -%}
+            {%- if b.small != blank -%}<p class="mt-2 text-[14px] text-muted">{{ b.small }}</p>{%- endif -%}
+          </div>
+        </div>
+      </section>
+
+    {%- when 'close' -%}
+      {%- assign pp_prod = all_products[b.product] | default: product -%}
+      {%- assign pp_v = pp_prod.selected_or_first_available_variant -%}
+      <section class="py-12 lg:py-16 bg-primary-dark text-white" {{ block.shopify_attributes }} aria-labelledby="pp-cl-{{ block.id }}">
+        <div class="max-w-[640px] mx-auto px-4 text-center">
+          <span class="w-16 h-16 rounded-full bg-[#7fd1ae] text-primary-dark inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 30 -%}</span>
+          <h2 id="pp-cl-{{ block.id }}" class="pp-adv-light-h mt-4 font-display font-bold text-[32px] sm:text-[42px] leading-[1.08]">{{ b.heading }}</h2>
+          {%- if b.text != blank -%}<p class="mt-3 text-[17px] text-white/90">{{ b.text }}</p>{%- endif -%}
+          {%- if b.terms_label != blank -%}<a href="{{ b.terms_url | default: '/policies/refund-policy' }}" class="mt-2 inline-block text-[14px] font-bold text-white underline underline-offset-4">{{ b.terms_label }}</a>{%- endif -%}
+          <div class="mt-7 rounded-3xl bg-white text-ink p-5 sm:p-6">
+            {%- if b.offer != blank -%}<p class="font-display font-bold text-[24px] text-primary-dark">{{ b.offer | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+            {%- if pp_v -%}
+              <p class="mt-1 text-[15px] text-muted">One bottle: <strong class="text-ink">{{ pp_v.price | money }}</strong>
+              {%- assign serv = b.servings | plus: 0 -%}
+              {%- if serv > 0 %} · about <strong class="text-ink">{{ pp_v.price | divided_by: serv | money }}</strong> a day{%- else %} · <mark class="pp-ph">[[$ PER DAY — needs servings per bottle]]</mark>{%- endif -%}</p>
+            {%- endif -%}
+            <a href="#pp-buy" data-pp-to-buy class="mt-5 flex w-full items-center justify-center gap-2 min-h-[56px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors">{{ b.cta_label | default: 'Add to cart' }}</a>
+            {%- if s.mandatory != blank -%}<p class="mt-3 text-[13px] font-bold text-muted">{{ s.mandatory }}</p>{%- endif -%}
+          </div>
+        </div>
+      </section>
+
+  {%- endcase -%}
+{%- endfor -%}
+</div>
+<script>
+  (function () {
+    document.querySelectorAll('[data-pp-rtabs]').forEach(function (sec) {
+      var tabs = sec.querySelectorAll('[data-pp-rtab]'), cards = sec.querySelectorAll('[data-pp-rcard]');
+      function show(name) {
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-pp-rtab') === name ? 'true' : 'false'); });
+        cards.forEach(function (c) { c.style.display = (!name || c.getAttribute('data-pp-rcard') === name) ? '' : 'none'; });
+      }
+      tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('aria-selected') === 'true' ? null : t.getAttribute('data-pp-rtab')); }); });
+    });
+  })();
+</script>
+{% schema %}
+{
+  "name": "ParaPatrol: belief blocks",
+  "settings": [
+    { "type": "text", "id": "mandatory", "label": "Mandatory statement", "default": "Always read the label and follow directions for use." }
+  ],
+  "blocks": [
+    { "type": "story", "name": "Real customer story", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "richtext", "id": "story", "label": "Story (real customer, with permission)" },
+      { "type": "text", "id": "attribution", "label": "First name, state, child’s age" },
+      { "type": "text", "id": "closing", "label": "Closing line" }
+    ] },
+    { "type": "logic", "name": "Logic chain", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "steps", "label": "Steps (one per line; the last one is the conclusion)" },
+      { "type": "text", "id": "binder_line", "label": "Binder line", "info": "Only if it matches the label word for word. Blank hides it." }
+    ] },
+    { "type": "compare", "name": "Tablet vs daily support", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "text", "id": "col_a", "label": "Column 1" },
+      { "type": "text", "id": "col_b", "label": "Column 2" },
+      { "type": "textarea", "id": "rows", "label": "Rows", "info": "row label | column 1 | column 2" },
+      { "type": "textarea", "id": "note", "label": "Line under the table" }
+    ] },
+    { "type": "label", "name": "Ingredients on the label", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "text", "id": "label_asset", "label": "Label image file (zoomable)" },
+      { "type": "text", "id": "label_alt", "label": "Label image description" },
+      { "type": "textarea", "id": "ingredients", "label": "Ingredient cards", "info": "name | one plain-English line (traditional use, no treatment claims)" },
+      { "type": "text", "id": "other", "label": "Other ingredients" },
+      { "type": "text", "id": "allergen", "label": "Allergen line" },
+      { "type": "text", "id": "test_heading", "label": "Testing heading" },
+      { "type": "textarea", "id": "test_text", "label": "Testing text" },
+      { "type": "text", "id": "cert_label", "label": "Certificate link label" },
+      { "type": "url", "id": "cert_url", "label": "Certificate PDF" },
+      { "type": "text", "id": "aust_l", "label": "AUST L number", "info": "Hidden while blank. Only once confirmed." },
+      { "type": "text", "id": "practitioner", "label": "Practitioner credit", "info": "Hidden while blank. Only a real reviewer: name, qualification, what they reviewed." }
+    ] },
+    { "type": "reviews", "name": "Reviews by belief", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "text", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "tabs", "label": "Tabs (one per line)", "info": "A tab only shows when it has at least one review." },
+      { "type": "textarea", "id": "reviews", "label": "Reviews", "info": "tab | first name | state | child’s age | stars (1-5) | review text. Real reviews only, with permission." },
+      { "type": "text", "id": "empty", "label": "Shown while there are no reviews" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "howto", "name": "How to use", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "url", "id": "video_url", "label": "Video file URL (mp4)" },
+      { "type": "text", "id": "poster", "label": "Image file shown until the video is added" },
+      { "type": "text", "id": "video_alt", "label": "Video description" },
+      { "type": "textarea", "id": "dose", "label": "Dose table", "info": "age | dose | how often. From the label only." },
+      { "type": "text", "id": "line", "label": "Line under the table" },
+      { "type": "text", "id": "small", "label": "Small print" }
+    ] },
+    { "type": "close", "name": "Guarantee and offer", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "text", "id": "terms_label", "label": "Terms link label" },
+      { "type": "url", "id": "terms_url", "label": "Terms link" },
+      { "type": "text", "id": "offer", "label": "Offer line" },
+      { "type": "text", "id": "product", "label": "Product handle (for the price)" },
+      { "type": "number", "id": "servings", "label": "Servings per bottle (for the price per day)" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: belief blocks" } ]
+}
+{% endschema %}
