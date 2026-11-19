@@ -78,7 +78,8 @@
         "eyebrow": "For mums who know their kid",
         "mandatory": "Always read the label and follow directions for use.",
         "benefit_grid": "kid | Made for kids 3+\nno-alcohol | No alcohol\nno-sugar | No sugar\nberry | Raspberry flavour\nguarantee | 30-day money-back guarantee",
-        "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+"
+        "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+",
+        "judgeme_badge": true
       }
     },
     "belief": {
@@ -140,11 +141,9 @@
         "reviews": {
           "type": "reviews",
           "settings": {
-            "heading": "Mums like you",
-            "intro": "Real reviews from real Para Patrol™ customers.",
-            "tabs": "I rolled my eyes too\nShe actually takes it\nOur GP was fine with it\nPicky eater\n2am wake-ups",
-            "reviews": "",
-            "empty": "",
+            "eyebrow": "Mums like you",
+            "heading": "What other mums are saying",
+            "intro": "Real reviews from Para Patrol™ customers.",
             "note": "Individual results vary."
           }
         },

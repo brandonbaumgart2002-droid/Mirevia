@@ -110,35 +110,26 @@
       </section>
 
     {%- when 'reviews' -%}
-      {%- assign rv = b.reviews | newline_to_br | split: '<br />' -%}
-      {%- assign tabs = b.tabs | newline_to_br | split: '<br />' -%}
-      <section id="reviews" class="py-12 lg:py-16 bg-soft scroll-mt-24" {{ block.shopify_attributes }} aria-labelledby="pp-rv-{{ block.id }}" data-pp-rtabs>
+      {%- assign jm = product.metafields.judgeme.review_widget_data.value -%}
+      <section id="reviews" class="py-12 lg:py-16 bg-soft scroll-mt-24" {{ block.shopify_attributes }} aria-labelledby="pp-rv-{{ block.id }}">
         <div class="max-w-6xl mx-auto px-4">
-          <h2 id="pp-rv-{{ block.id }}" class="text-center font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
-          {%- if b.intro != blank -%}<p class="mt-3 text-center text-[16px] text-muted">{{ b.intro }}</p>{%- endif -%}
-          {%- assign total = 0 -%}
-          {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 6 -%}{%- assign total = total | plus: 1 -%}{%- endif -%}{%- endfor -%}
-          {%- if total == 0 -%}
-            <p class="mt-8 mx-auto max-w-[620px] rounded-2xl border-2 border-dashed border-[#d9b200] bg-[#fff8d6] p-5 text-center text-[15px] font-bold text-ink">{{ b.empty | default: '[[REAL REVIEWS — first name, state, child’s age, stars, text. From the review app, with permission.]]' | replace: '[[', ph_open | replace: ']]', ph_close }}</p>
-          {%- else -%}
-            <div class="mt-6 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Filter reviews">
-              {%- for t in tabs -%}{%- assign tn = t | strip -%}{%- if tn != blank -%}
-                {%- assign has = false -%}
-                {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- assign ft = f[0] | strip -%}{%- if ft == tn and f.size >= 6 -%}{%- assign has = true -%}{%- break -%}{%- endif -%}{%- endfor -%}
-                {%- if has -%}<button type="button" role="tab" class="rounded-full border-2 border-primary px-4 py-2 text-[14px] font-extrabold text-primary-dark aria-selected:bg-primary aria-selected:text-white" aria-selected="false" data-pp-rtab="{{ tn | escape }}">{{ tn }}</button>{%- endif -%}
-              {%- endif -%}{%- endfor -%}
+          <div class="text-center max-w-[680px] mx-auto">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-rv-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-muted">{{ b.intro }}</p>{%- endif -%}
+          </div>
+          <div class="mt-8 rounded-[28px] bg-white border border-line p-5 sm:p-8 shadow-soft" data-pp-jm data-shop="{{ shop.permanent_domain }}" data-pid="{{ product.id }}" data-per="{{ b.per_page | default: 6 }}">
+            <div class="grid gap-6 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] md:items-center pb-6 border-b border-line">
+              <div class="text-center md:text-left">
+                <p class="font-display font-bold text-[56px] leading-none text-ink" data-pp-jm-avg>–</p>
+                <p class="mt-2 flex justify-center md:justify-start" data-pp-jm-stars aria-hidden="true"></p>
+                <p class="mt-1.5 text-[15px] font-bold text-muted" data-pp-jm-count>Loading reviews…</p>
+              </div>
+              <ul class="grid gap-2" role="list" data-pp-jm-hist></ul>
             </div>
-            <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
-              {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 6 -%}
-                {%- assign stars = f[4] | strip | plus: 0 -%}
-                <li class="rounded-3xl bg-white border border-line p-5 flex flex-col" data-pp-rcard="{{ f[0] | strip | escape }}">
-                  {%- render 'parapatrol-stars', score: stars, size: 16 -%}
-                  <p class="mt-3 flex-1 text-[15.5px] leading-relaxed text-ink">“{{ f[5] | strip }}”</p>
-                  <p class="mt-4 text-[14px] font-bold text-ink">{{ f[1] | strip }}, {{ f[2] | strip }} <span class="font-semibold text-muted">· {{ f[3] | strip }}</span></p>
-                </li>
-              {%- endif -%}{%- endfor -%}
-            </ul>
-          {%- endif -%}
+            <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list" data-pp-jm-list></ul>
+            <div class="mt-6 text-center"><button type="button" class="hidden min-h-[50px] px-8 rounded-full border-2 border-primary text-primary-dark font-extrabold text-[15px] hover:bg-mint" data-pp-jm-more>Show more reviews</button></div>
+          </div>
           {%- if b.note != blank -%}<p class="mt-4 text-center text-[12px] text-muted">{{ b.note }}</p>{%- endif -%}
         </div>
       </section>
@@ -215,6 +206,49 @@
     });
   })();
 </script>
+<script>
+  (function () {
+    var STAR = '<svg width="SZ" height="SZ" viewBox="0 0 24 24" aria-hidden="true"><path fill="FILL" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
+    function stars(n, sz) { var h = ''; for (var i = 1; i <= 5; i++) h += STAR.replace(/SZ/g, sz).replace('FILL', i <= Math.round(n) ? '#e27aa3' : '#f0dbe3'); return h; }
+    function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
+    function strip(h) { var d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent.trim(); }
+    document.querySelectorAll('[data-pp-jm]').forEach(function (box) {
+      if (box.__ppJm) return; box.__ppJm = true;
+      var shop = box.dataset.shop, pid = box.dataset.pid, per = +box.dataset.per || 6, page = 1, total = 0, shown = 0;
+      var list = box.querySelector('[data-pp-jm-list]'), more = box.querySelector('[data-pp-jm-more]');
+      function url(p) { return 'https://api.judge.me/reviews/reviews_for_widget?url=' + shop + '&shop_domain=' + shop + '&platform=shopify&page=' + p + '&per_page=' + per + '&product_id=' + pid; }
+      function load() {
+        more.disabled = true;
+        fetch(url(page)).then(function (r) { return r.json(); }).then(function (d) {
+          if (page === 1) {
+            total = d.number_of_reviews || 0;
+            box.querySelector('[data-pp-jm-avg]').textContent = total ? String(+(+d.average_rating).toFixed(2)) : '–';
+            box.querySelector('[data-pp-jm-stars]').innerHTML = stars(+d.average_rating || 0, 26);
+            box.querySelector('[data-pp-jm-count]').textContent = total ? 'Based on ' + total + ' review' + (total === 1 ? '' : 's') : 'No reviews yet';
+            box.querySelector('[data-pp-jm-hist]').innerHTML = (d.histogram || []).map(function (h) {
+              return '<li class="flex items-center gap-3 text-[13px] font-bold text-muted"><span class="w-10 shrink-0">' + h.rating + ' ★</span><span class="flex-1 h-2 rounded-full bg-[#f3e8ec] overflow-hidden"><span class="block h-full rounded-full bg-primary" style="width:' + h.percentage + '%"></span></span><span class="w-8 text-right">' + h.frequency + '</span></li>';
+            }).join('');
+          }
+          (d.reviews || []).forEach(function (r) {
+            var li = document.createElement('li');
+            li.className = 'rounded-3xl bg-soft border border-line p-5 flex flex-col';
+            var pics = (r.pictures_urls || []).slice(0, 3).map(function (p) { var u = p.compact || p.small || p.original || p; return '<img src="' + esc(u) + '" alt="" loading="lazy" class="w-16 h-16 rounded-xl object-cover">'; }).join('');
+            li.innerHTML = '<div class="flex">' + stars(r.rating, 16) + '</div>' +
+              (r.title ? '<p class="mt-2.5 font-display font-bold text-[18px] leading-snug text-primary-dark">' + esc(r.title) + '</p>' : '') +
+              '<p class="mt-1.5 flex-1 text-[15px] leading-relaxed text-ink">' + esc(strip(r.body_html)) + '</p>' +
+              (pics ? '<div class="mt-3 flex gap-2">' + pics + '</div>' : '') +
+              '<p class="mt-4 flex items-center gap-2 text-[14px] font-bold text-ink"><span class="w-8 h-8 rounded-full bg-mint text-primary-dark inline-flex items-center justify-center text-[13px]">' + esc(r.reviewer_initial || (r.reviewer_name || '?').charAt(0)) + '</span>' + esc(r.reviewer_name) + (r.verified_buyer ? ' <span class="text-primary text-[12px]">✓ Verified buyer</span>' : '') + '</p>';
+            list.appendChild(li); shown++;
+          });
+          more.classList.toggle('hidden', shown >= total);
+          more.disabled = false; page++;
+        }).catch(function () { box.querySelector('[data-pp-jm-count]').textContent = 'Reviews could not load. Please refresh.'; });
+      }
+      more.addEventListener('click', load);
+      load();
+    });
+  })();
+</script>
 {% schema %}
 {
   "name": "ParaPatrol: belief blocks",
@@ -260,12 +294,11 @@
       { "type": "text", "id": "aust_l", "label": "AUST L number", "info": "Hidden while blank. Only once confirmed." },
       { "type": "text", "id": "practitioner", "label": "Practitioner credit", "info": "Hidden while blank. Only a real reviewer: name, qualification, what they reviewed." }
     ] },
-    { "type": "reviews", "name": "Reviews by belief", "settings": [
+    { "type": "reviews", "name": "Reviews (Judge.me)", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "text", "id": "intro", "label": "Intro" },
-      { "type": "textarea", "id": "tabs", "label": "Tabs (one per line)", "info": "A tab only shows when it has at least one review." },
-      { "type": "textarea", "id": "reviews", "label": "Reviews", "info": "tab | first name | state | child’s age | stars (1-5) | review text. Real reviews only, with permission." },
-      { "type": "text", "id": "empty", "label": "Shown while there are no reviews" },
+      { "type": "number", "id": "per_page", "label": "Reviews per load", "default": 6 },
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "howto", "name": "How to use", "settings": [

@@ -122,6 +122,22 @@
             assign review_count = section.settings.rating_count_fallback
           endif
         -%}
+        {%- if score == blank and section.settings.judgeme_badge -%}
+          <a href="#reviews" data-pp-scroll data-pp-jm-badge data-shop="{{ shop.permanent_domain }}" data-pid="{{ product.id }}" class="mt-1.5 hidden items-center gap-2 text-[14px] text-ink"><span data-pp-jm-badge-stars class="flex"></span><span class="font-bold" data-pp-jm-badge-avg></span><span class="underline underline-offset-2" data-pp-jm-badge-count></span></a>
+          <script>
+            (function () {
+              var a = document.currentScript.previousElementSibling;
+              fetch('https://api.judge.me/reviews/reviews_for_widget?url=' + a.dataset.shop + '&shop_domain=' + a.dataset.shop + '&platform=shopify&page=1&per_page=1&product_id=' + a.dataset.pid).then(function (r) { return r.json(); }).then(function (d) {
+                if (!d.number_of_reviews) return;
+                var h = ''; for (var i = 1; i <= 5; i++) h += '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="' + (i <= Math.round(+d.average_rating) ? '#e27aa3' : '#f0dbe3') + '" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
+                a.querySelector('[data-pp-jm-badge-stars]').innerHTML = h;
+                a.querySelector('[data-pp-jm-badge-avg]').textContent = String(+(+d.average_rating).toFixed(2));
+                a.querySelector('[data-pp-jm-badge-count]').textContent = '(' + d.number_of_reviews + ' reviews)';
+                a.classList.remove('hidden'); a.classList.add('flex');
+              }).catch(function () {});
+            })();
+          </script>
+        {%- endif -%}
         {%- if score != blank -%}
           <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
             {%- if section.settings.rating_avatars != blank -%}
@@ -366,6 +382,7 @@
     { "type": "text", "id": "eyebrow", "label": "Small line above the headline" },
     { "type": "textarea", "id": "benefit_grid", "label": "Benefit icon grid", "info": "icon | text, one per line. Icons: kid, no-alcohol, no-sugar, berry, guarantee, leaf, heart, shield, check. Replaces the badge pills." },
     { "type": "text", "id": "mandatory", "label": "Statement under the buy box", "info": "e.g. Always read the label and follow directions for use." },
+    { "type": "checkbox", "id": "judgeme_badge", "label": "Show Judge.me star rating under the title", "default": false },
     { "type": "text", "id": "rating_avatars", "label": "Customer photos beside the stars", "info": "Up to 3 built-in image files, comma separated. Blank hides them." },
     { "type": "text", "id": "gcard_title", "label": "Guarantee card under the buy box: title", "info": "Blank hides the card." },
     { "type": "text", "id": "gcard_text", "label": "Guarantee card: text" },

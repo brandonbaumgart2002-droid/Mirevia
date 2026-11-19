@@ -346,3 +346,22 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 
 /* Unfilled [[PLACEHOLDER]] values: loud on purpose so nothing ships unfilled */
 .pp .pp-ph { background: #fff3a8; color: #5c4a00; outline: 2px dashed #d9b200; outline-offset: 1px; border-radius: 4px; padding: 0 4px; font-weight: 700; font-style: normal; }
+
+/* Judge.me review widget, in the ParaPatrol style */
+.pp .pp-jdgm .jdgm-rev-widg { padding: 0 !important; border: 0 !important; font-family: var(--pp-font-body, 'Nunito Sans', sans-serif) !important; color: var(--ink) !important; }
+.pp .pp-jdgm .jdgm-rev-widg__title { display: none !important; }
+.pp .pp-jdgm .jdgm-rev-widg__header { padding-bottom: 20px !important; border-bottom: 1px solid var(--line) !important; }
+.pp .pp-jdgm .jdgm-rev-widg__summary-stars, .pp .pp-jdgm .jdgm-rev-widg__summary-text { font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; color: var(--ink) !important; font-size: 18px !important; }
+.pp .pp-jdgm .jdgm-star { color: #e27aa3 !important; }
+.pp .pp-jdgm .jdgm-histogram__bar { background: #f3e8ec !important; border-radius: 999px !important; height: 8px !important; }
+.pp .pp-jdgm .jdgm-histogram__bar-content { background: var(--brand-primary) !important; border-radius: 999px !important; }
+.pp .pp-jdgm .jdgm-histogram__percentage, .pp .pp-jdgm .jdgm-histogram__frequency { color: var(--ink-muted) !important; font-size: 13px !important; }
+.pp .pp-jdgm .jdgm-write-rev-link, .pp .pp-jdgm .jdgm-ask-question-btn, .pp .pp-jdgm .jdgm-btn--solid { background: var(--brand-primary) !important; color: #fff !important; border: 0 !important; border-radius: 999px !important; padding: 12px 24px !important; font-weight: 800 !important; font-family: 'Nunito Sans', sans-serif !important; }
+.pp .pp-jdgm .jdgm-rev { margin-top: 14px !important; padding: 18px 20px !important; border: 1px solid var(--line) !important; border-radius: 20px !important; background: var(--bg-soft) !important; }
+.pp .pp-jdgm .jdgm-rev__title { font-family: 'Baloo 2', ui-rounded, sans-serif !important; font-weight: 700 !important; font-size: 18px !important; color: var(--brand-primary-dark) !important; }
+.pp .pp-jdgm .jdgm-rev__body { font-size: 15.5px !important; line-height: 1.6 !important; color: var(--ink) !important; }
+.pp .pp-jdgm .jdgm-rev__author { font-weight: 800 !important; color: var(--ink) !important; }
+.pp .pp-jdgm .jdgm-rev__icon { background: var(--bg-mint) !important; color: var(--brand-primary-dark) !important; }
+.pp .pp-jdgm .jdgm-rev__timestamp { color: var(--ink-muted) !important; }
+.pp .pp-jdgm .jdgm-paginate__page { border-radius: 999px !important; }
+.pp .pp-jdgm .jdgm-paginate__page.jdgm-curt { background: var(--brand-primary) !important; color: #fff !important; }
