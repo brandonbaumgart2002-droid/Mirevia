@@ -240,8 +240,8 @@
       var freqLabel = '';
       var fq0 = $('[data-pp-freq]');
       if (sub && fq0 && fq0.selectedIndex > -1) freqLabel = ' · ' + fq0.options[fq0.selectedIndex].text;
-      var tierLabel = data.variants.length > 1 && document.querySelector('[data-pp-tier]') ? v.title + ' · ' : '';
-      meta.textContent = tierLabel + (sub ? 'Subscribe' + freqLabel : 'One-time') + ' · ' + money(total());
+      var tiers = data.variants.length > 1 && document.querySelector('[data-pp-tier]');
+      meta.textContent = (tiers && !sub ? v.title : (tiers ? v.title + ' · ' : '') + (sub ? 'Subscribe' + freqLabel : 'One-time')) + ' · ' + money(total());
     }
     var sAdd = $('[data-pp-sticky-add]');
     if (sAdd) { sAdd.disabled = !v.available; sAdd.setAttribute('aria-label', v.available ? 'Add to Bag, ' + money(total()) : 'Sold out'); }
