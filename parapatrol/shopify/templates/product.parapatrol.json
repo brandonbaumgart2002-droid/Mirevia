@@ -71,7 +71,10 @@
         "ink_muted": "#4f5b72",
         "line": "#ece1e5",
         "load_google_fonts": true,
-        "use_theme_fonts": false
+        "use_theme_fonts": false,
+        "rating_avatars": "pp-family-ugc-3.jpg, pp-family-ugc-13.jpg, pp-family-ugc-6.jpg",
+        "gcard_title": "30-Day Guarantee",
+        "gcard_text": "Give it a full 30 days. If it's not right for your family, we'll refund you."
       }
     },
     "reviews": {
@@ -605,7 +608,8 @@
         "expect_text": "",
         "tip_lead": "First time?",
         "tip": "Start with half a dropper for the first few days."
-      }
+      },
+      "disabled": true
     },
     "timeline": {
       "type": "parapatrol-timeline",
@@ -958,7 +962,8 @@
       "settings": {
         "heading": "Try it for 30 days, risk-free.",
         "text": "If ParaPatrol isn't right for your family, contact our team within 30 days and we'll refund you. No awkward questions."
-      }
+      },
+      "disabled": true
     },
     "faq": {
       "type": "parapatrol-faq",
@@ -1054,7 +1059,8 @@
         "image_label": "kids at the pool, lifestyle",
         "button_label": "Shop ParaPatrol",
         "guarantee": "30-day money-back guarantee. Love it or your money back."
-      }
+      },
+      "disabled": true
     },
     "disclaimer": {
       "type": "parapatrol-disclaimer",
@@ -1062,22 +1068,141 @@
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
       }
+    },
+    "cro_ritual": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "#pp-buy",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "ritual",
+          "settings": {
+            "eyebrow": "How to use",
+            "heading": "The 30-second morning ritual",
+            "intro": "No pills to swallow, nothing to measure out. One dropper and you’re done.",
+            "items": "pp-kids-dropper-juice.jpg | Fill the dropper | Shake well and fill to the 1 mL line. That’s one full serving.\npp-dad-smoothie.jpg | Hide it in their drink | Stir it into juice, milk or a smoothie. Natural raspberry and a bitter blocker mean no fuss.\npp-kids-school-morning.jpg | Make it a habit | Once a day with breakfast for 2–3 weeks, then take a break. Repeat each school term.",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_trust": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "#pp-buy",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "trust_band",
+          "settings": {
+            "eyebrow": "Made with care",
+            "heading": "Made for kids, down to the last drop",
+            "intro": "Every bottle is made in the USA to cGMP standards and third-party tested, with 11 traditional herbs dosed for children 3 and up.",
+            "asset": "pp-ingredients-flatlay.jpg",
+            "alt": "ParaPatrol surrounded by its 11 herbs",
+            "tiles": "check | Third-party tested\nshield | Made in the USA\nheart | Dosed for kids 3+\nleaf | 11 traditional herbs",
+            "checks": "Alcohol-free\nSugar-free\nGluten-free\nVegan friendly\nNatural raspberry flavour\nBitter blocker",
+            "link_label": "See every ingredient in the Parent Guide",
+            "link_url": "/pages/parapatrol-parent-guide",
+            "cta_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_reasons": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "#pp-buy",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "reasons",
+          "settings": {
+            "heading": "5 reasons parents choose ParaPatrol",
+            "intro": "Gentle formula. Kid-sized dose. A routine that actually sticks.",
+            "items": "pp-family-ugc-15.jpg | Kids actually take it | Natural raspberry flavour with a bitter blocker, hidden in the drink they already love.\npp-how-settle.jpg | 11 herbs, gentle ones first | Fennel, anise and licorice soothe, while traditional botanicals support a steady digestive rhythm.*\npp-kids-park.jpg | No harsh purge | No days off school and no bathroom emergencies. Life carries on as normal.\npp-kids-school-morning.jpg | 30 seconds a day | One dropper at breakfast. No pills, no battles, no measuring powders.\npp-family-ugc-6.jpg | Risk-free to try | Every order is backed by our 30-day money-back guarantee.",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_offer": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "#pp-buy",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "offer_repeat",
+          "settings": {
+            "heading": "Stock up. Save more.",
+            "intro": "Pick a bundle and we’ll set it up in your cart. One bottle lasts one child about a month.",
+            "tiers": "Buy 1 | $55.99 | $82.00 | 1 bottle · 30 days | | \nBuy 1, Get 1 Free | $55.99 | $164.00 | 2 bottles · 60 days | | Most popular\nBuy 2, Get 2 Free | $79.99 | $328.00 | 4 bottles · 120 days | | Best value",
+            "delivery": "Order today: ships within 1–2 business days",
+            "cta_label": "Choose my bundle"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_guarantee": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "#pp-buy",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "guarantee_card",
+          "settings": {
+            "heading": "30-day money-back guarantee",
+            "text": "Give ParaPatrol a full 30 days. If it isn’t right for your family, contact us and we’ll refund you. No forms, no awkward questions.",
+            "asset": "pp-offer-studio.jpg",
+            "alt": "Two bottles of ParaPatrol",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
     }
   },
   "order": [
     "main",
     "reviews",
     "problem",
-    "use",
+    "cro_ritual",
     "timeline",
-    "kidlife",
-    "compare",
+    "cro_trust",
     "how",
+    "kidlife",
+    "cro_reasons",
     "stats",
+    "compare",
     "ingredients",
     "safety",
-    "guarantee",
+    "cro_offer",
     "faq",
+    "cro_guarantee",
+    "use",
+    "guarantee",
     "final",
     "disclaimer"
   ]

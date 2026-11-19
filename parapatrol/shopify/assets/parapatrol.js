@@ -708,6 +708,33 @@
     }, reduce ? 0 : 900);
   });
 
+  /* ---------------- "Stock up" offer rows: mirror the live Kaching tiers, and pick one in the buy box ---------------- */
+  function kachingBars() { return $$('.kaching-bundles__bar'); }
+  function syncOfferRepeat() {
+    var bars = kachingBars(); if (!bars.length) return false;
+    $$('[data-pp-offer-repeat] [data-pp-pick-tier]').forEach(function (row) {
+      var bar = bars[+row.getAttribute('data-pp-pick-tier')];
+      if (!bar) { row.parentNode.style.display = 'none'; return; }
+      var get = function (sel) { var el = bar.querySelector(sel); return el ? el.textContent.trim() : ''; };
+      var t = get('.kaching-bundles__bar-title'), pr = get('.kaching-bundles__bar-price'), was = get('.kaching-bundles__bar-full-price');
+      var set = function (sel, v) { var el = row.querySelector(sel); if (el && v) el.textContent = v; };
+      set('[data-pp-tier-title]', t); set('[data-pp-tier-price]', pr);
+      var w = row.querySelector('[data-pp-tier-was]');
+      if (w) { if (was && was !== pr) { w.textContent = was; w.style.display = ''; } else w.style.display = 'none'; }
+    });
+    return true;
+  }
+  function watchOfferRepeat() {
+    if (!document.querySelector('[data-pp-offer-repeat]')) return;
+    var tries = 0, iv = setInterval(function () { if (syncOfferRepeat() || ++tries > 40) clearInterval(iv); }, 500);
+  }
+  document.addEventListener('click', function (e) {
+    var row = e.target.closest && e.target.closest('[data-pp-pick-tier]');
+    if (!row) return;
+    var bar = kachingBars()[+row.getAttribute('data-pp-pick-tier')];
+    if (bar) setTimeout(function () { (bar.querySelector('input') || bar).click(); }, 350);
+  });
+
   /* ---------------- boot ---------------- */
   function initAll(root) {
     root = root || document;
@@ -725,6 +752,7 @@
     initBuyBoxes();
     watchBundles();
     initSticky();
+    watchOfferRepeat();
   }
 
   function boot() { initHeadline(); initAll(document); }

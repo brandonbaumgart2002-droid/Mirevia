@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -190,14 +181,16 @@
           "pips-clean-hands-interactive-e-book"
         ],
         "surface": "canvas"
-      }
+      },
+      "disabled": true
     },
     "guarantee": {
       "type": "parapatrol-guarantee",
       "settings": {
         "heading": "Try it for 30 days, risk-free.",
         "text": "If ParaPatrol isn't right for your family, contact our team within 30 days and we'll refund you. No awkward questions."
-      }
+      },
+      "disabled": true
     },
     "faq": {
       "type": "parapatrol-faq",
@@ -295,7 +288,8 @@
           "mirevia™-washable-sleep-liner"
         ],
         "surface": "parchment"
-      }
+      },
+      "disabled": true
     },
     "disclaimer": {
       "type": "parapatrol-disclaimer",
@@ -303,17 +297,112 @@
         "fda_text": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "small_print": "Always read the label. Talk to your pediatrician before use if your child takes medication or has a health condition."
       }
+    },
+    "cro_reviews": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "/products/parapatrol%E2%84%A2",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "review_strip",
+          "settings": {
+            "heading": "Rated 4.8/5 · 237+ parent reviews",
+            "bg": "bg-white",
+            "note": "Individual reviews reflect one family’s experience. Results vary.",
+            "items": "Calmer mornings | The liquid format saved us. My son refuses pills, but this mixes into his morning orange juice and he drinks it without a fuss. | Lisa K. | Easy to give, Pill-free\nFinishing meals again | Her stomach settled down after about ten days, and she started finishing her meals again instead of picking at her food. | Jennifer T. | Happy tummy\nCan’t taste it | Great for kids… Just one dropper in a cup of milk, kids can’t taste anything. Highly recommend. | Tiffany | Taste\nBigger appetite | My son is very picky eater, this product boost his appetite a lot. | Megan S. | Picky eater\nSchool-season go-to | I always keep a bottle on hand now, especially during school season or after family trips. | Marcus D. | Routine\nThey remind me | My children reminded me daily to take their “medicine”, they enjoyed the taste. | Laina | Taste, Routine"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_trust": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "/products/parapatrol%E2%84%A2",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "trust_band",
+          "settings": {
+            "eyebrow": "Made with care",
+            "heading": "Made for kids, down to the last drop",
+            "intro": "Every bottle is made in the USA to cGMP standards and third-party tested, with 11 traditional herbs dosed for children 3 and up.",
+            "asset": "pp-ingredients-flatlay.jpg",
+            "alt": "ParaPatrol surrounded by its 11 herbs",
+            "tiles": "check | Third-party tested\nshield | Made in the USA\nheart | Dosed for kids 3+\nleaf | 11 traditional herbs",
+            "checks": "Alcohol-free\nSugar-free\nGluten-free\nVegan friendly\nNatural raspberry flavour\nBitter blocker",
+            "link_label": "Read the Parent Guide",
+            "link_url": "/pages/parent-guide",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_reasons": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "/products/parapatrol%E2%84%A2",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "reasons",
+          "settings": {
+            "heading": "5 reasons parents choose ParaPatrol",
+            "intro": "Gentle formula. Kid-sized dose. A routine that actually sticks.",
+            "items": "pp-family-ugc-15.jpg | Kids actually take it | Natural raspberry flavour with a bitter blocker, hidden in the drink they already love.\npp-how-settle.jpg | 11 herbs, gentle ones first | Fennel, anise and licorice soothe, while traditional botanicals support a steady digestive rhythm.*\npp-kids-park.jpg | No harsh purge | No days off school and no bathroom emergencies. Life carries on as normal.\npp-kids-school-morning.jpg | 30 seconds a day | One dropper at breakfast. No pills, no battles, no measuring powders.\npp-family-ugc-6.jpg | Risk-free to try | Every order is backed by our 30-day money-back guarantee.",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "cro_guarantee": {
+      "type": "parapatrol-cro",
+      "settings": {
+        "cta_url": "/products/parapatrol%E2%84%A2",
+        "cta_note": "30-day money-back guarantee · Free shipping"
+      },
+      "blocks": {
+        "b1": {
+          "type": "guarantee_card",
+          "settings": {
+            "heading": "30-day money-back guarantee",
+            "text": "Give ParaPatrol a full 30 days. If it isn’t right for your family, contact us and we’ll refund you. No forms, no awkward questions.",
+            "asset": "pp-offer-studio.jpg",
+            "alt": "Two bottles of ParaPatrol",
+            "cta_label": "Try ParaPatrol risk-free"
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
     }
   },
   "order": [
     "hero",
-    "feature",
+    "cro_reviews",
     "kidlife",
     "how",
+    "cro_trust",
+    "cro_reasons",
     "stats",
+    "feature",
+    "faq",
+    "cro_guarantee",
     "shelf",
     "guarantee",
-    "faq",
     "grownups",
     "disclaimer"
   ]

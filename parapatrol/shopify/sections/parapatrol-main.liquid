@@ -124,6 +124,10 @@
         -%}
         {%- if score != blank -%}
           <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
+            {%- if section.settings.rating_avatars != blank -%}
+              {%- assign avs = section.settings.rating_avatars | split: ',' -%}
+              <span class="flex -space-x-2 mr-0.5" aria-hidden="true">{%- for a in avs limit: 3 -%}{%- assign a_f = a | strip -%}<img src="{{ a_f | asset_img_url: '64x64', crop: 'center' }}" alt="" width="28" height="28" loading="lazy" class="w-7 h-7 rounded-full object-cover border-2 border-white">{%- endfor -%}</span>
+            {%- endif -%}
             {%- render 'parapatrol-stars', score: score, size: 18 -%}
             <span class="font-bold text-ink">{{ score }}</span>
             <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">({% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.rating_label }})</a>
@@ -213,6 +217,13 @@
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note -%}
+
+        {%- if section.settings.gcard_title != blank -%}
+          <div class="mt-4 flex items-center gap-4 rounded-2xl border border-[#d6e7dd] bg-mint px-4 py-3.5">
+            <span class="w-12 h-12 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 24 -%}</span>
+            <span><span class="block font-display font-bold text-[18px] leading-tight text-primary-dark">{{ section.settings.gcard_title }}</span><span class="block text-[14px] text-ink">{{ section.settings.gcard_text }}</span></span>
+          </div>
+        {%- endif -%}
 
         {%- comment -%} Quick answers: the biggest objections (safety, taste, dosing and results, guarantee), for shoppers who never reach the full FAQ {%- endcomment -%}
         {%- if section.settings.ing_tile_label != blank or section.settings.quick_q1 != blank or section.settings.quick_q2 != blank or section.settings.quick_q3 != blank or section.settings.quick_q4 != blank -%}
@@ -327,6 +338,9 @@
     { "type": "text", "id": "rating_score_fallback", "label": "Star score when no reviews app data", "info": "e.g. 4.8. Used only if the product has no reviews.rating metafield. Must match your real reviews. Clear it to hide the rating line.", "default": "4.8" },
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
+    { "type": "text", "id": "rating_avatars", "label": "Customer photos beside the stars", "info": "Up to 3 built-in image files, comma separated. Blank hides them." },
+    { "type": "text", "id": "gcard_title", "label": "Guarantee card under the buy box: title", "info": "Blank hides the card." },
+    { "type": "text", "id": "gcard_text", "label": "Guarantee card: text" },
     { "type": "checkbox", "id": "show_hero_price", "label": "Show price under the title", "info": "Off: the expert line below shows as a larger badge in its place. Prices still show in the buy box.", "default": true },
     { "type": "text", "id": "authority", "label": "Expert line under the price", "info": "Links to the Expert section. Only use if a real practitioner recommends it. Clear to hide.", "default": "Paediatrician recommended" },
     { "type": "text", "id": "authority_note", "label": "Small line under the expert badge", "info": "Shows when the price under the title is hidden.", "default": "Gentle, kid-dosed herbal blend for ages 3+" },

@@ -1,0 +1,231 @@
+{%- comment -%}
+  Conversion blocks modelled on high-converting supplement stores (Lymphoria, Resilia, Grüns, Ryze):
+  review_strip (short review cards with tags, right under the buy box), ritual (3 photo step cards),
+  trust_band (dark "made with care" band with icon tiles + checklist), reasons (photo reason cards),
+  offer_repeat ("Stock up. Save more": mirrors the Kaching tiers and selects one in the buy box),
+  guarantee_card (product + guarantee card). Every block can end with a CTA + guarantee line.
+  Lists: one item per line, fields split with |. Add each block to its own section instance to place it anywhere.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{%- assign cta_url = s.cta_url | default: '#pp-buy' -%}
+{%- assign cta_scroll = false -%}{%- if cta_url contains '#' -%}{%- assign cta_scroll = true -%}{%- endif -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
+<div class="pp pp-cro">
+{%- for block in section.blocks -%}
+  {%- assign b = block.settings -%}
+  {%- capture cta -%}
+    {%- if b.cta_label != blank -%}
+      <div class="mt-8 text-center">
+        <a href="{{ cta_url }}" {% if cta_scroll %}data-pp-scroll{% endif %} class="flex w-full sm:inline-flex sm:w-auto sm:min-w-[340px] items-center justify-center gap-2 min-h-[56px] px-8 rounded-full {% if b.dark %}bg-white text-primary-dark hover:bg-mint{% else %}bg-primary text-white hover:bg-primary-dark{% endif %} font-extrabold text-[17px] shadow-lift transition-colors">{{ b.cta_label }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        {%- if s.cta_note != blank -%}<p class="mt-2.5 flex items-center justify-center gap-1.5 text-[13px] font-bold {% if b.dark %}text-white/90{% else %}text-muted{% endif %}"><span aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 15 -%}</span>{{ s.cta_note }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- case block.type -%}
+
+    {%- when 'review_strip' -%}
+      {%- assign rv = b.items | newline_to_br | split: '<br />' -%}
+      <section class="py-8 lg:py-10 {{ b.bg | default: 'bg-white' }}" {{ block.shopify_attributes }} aria-label="{{ b.heading | default: 'Parent reviews' | escape }}">
+        <div class="max-w-6xl mx-auto px-4">
+          {%- if b.heading != blank -%}<p class="text-center text-[14px] font-extrabold text-ink flex items-center justify-center gap-2">{%- render 'parapatrol-stars', score: 5, size: 16 -%}{{ b.heading }}</p>{%- endif -%}
+          <div class="mt-4" data-pp-scrollbar>
+            <ul class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2" data-pp-scrollbar-track role="list" tabindex="0" aria-label="Reviews">
+              {%- for l in rv -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                <li class="snap-start shrink-0 w-[84%] sm:w-[calc(50%-6px)] lg:w-[calc(25%-9px)] rounded-2xl border border-line bg-white p-4 flex flex-col">
+                  <p class="flex items-center gap-2 text-[13px] font-extrabold text-ink">{{ f[0] | strip }} {%- render 'parapatrol-stars', score: 5, size: 14 -%}</p>
+                  <p class="mt-2 flex-1 text-[14.5px] leading-relaxed text-ink">“{{ f[1] | strip }}”</p>
+                  <p class="mt-3 flex items-center gap-2 text-[13px]"><span class="w-7 h-7 rounded-full bg-mint text-primary-dark inline-flex items-center justify-center font-extrabold text-[12px]" aria-hidden="true">{{ f[2] | strip | slice: 0, 2 | upcase }}</span><span class="font-bold text-ink">{{ f[2] | strip }}</span><span class="text-primary font-bold">✓ Verified</span></p>
+                  {%- assign tg = f[3] | split: ',' -%}
+                  {%- if f[3] != blank -%}<p class="mt-2.5 flex flex-wrap gap-1.5">{%- for t in tg -%}<span class="rounded-full border border-line px-2.5 py-0.5 text-[12px] font-semibold text-muted">{{ t | strip }}</span>{%- endfor -%}</p>{%- endif -%}
+                </li>
+              {%- endif -%}{%- endfor -%}
+            </ul>
+            <div class="pp-sbar mt-3 mx-auto max-w-[360px]" data-pp-scrollbar-rail aria-hidden="true"><span class="pp-sbar__thumb" data-pp-scrollbar-thumb></span></div>
+          </div>
+          {%- if b.note != blank -%}<p class="mt-2 text-center text-[11.5px] text-muted">{{ b.note }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'ritual' -%}
+      {%- assign st = b.items | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-primary-dark text-white" {{ block.shopify_attributes }} aria-labelledby="pp-rit-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-[#cfe6da]">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-rit-{{ block.id }}" class="pp-adv-light-h mt-2 font-display font-bold text-[32px] sm:text-[42px] leading-[1.08]">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-white/85">{{ b.intro }}</p>{%- endif -%}
+          </div>
+          <ol class="mt-8 grid gap-4 md:grid-cols-3" role="list">
+            {%- for l in st -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+              <li class="rounded-3xl bg-white/[.07] border border-white/15 overflow-hidden">
+                <div class="relative">
+                  {%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-media', asset: pp_v, alt: '', label: '', class: 'aspect-[4/3]', sizes: '(min-width: 768px) 360px, 100vw' -%}
+                  <span class="absolute top-3 left-3 rounded-full bg-[#7fd1ae] px-3.5 py-1 text-[13px] font-extrabold text-primary-dark">Step {{ forloop.index }}</span>
+                </div>
+                <div class="p-5">
+                  <p class="font-display font-bold text-[21px] leading-tight text-white">{{ f[1] | strip }}</p>
+                  <p class="mt-1.5 text-[15px] leading-relaxed text-white/85">{%- assign pp_v = f[2] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</p>
+                </div>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ol>
+          {%- assign b_dark = true -%}
+          {{ cta | replace: 'bg-primary text-white hover:bg-primary-dark', 'bg-white text-primary-dark hover:bg-mint' | replace: 'text-muted', 'text-white/90' }}
+        </div>
+      </section>
+
+    {%- when 'trust_band' -%}
+      {%- assign tl = b.tiles | newline_to_br | split: '<br />' -%}
+      {%- assign ck = b.checks | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }} aria-labelledby="pp-tb-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:items-center">
+          <div class="min-w-0">{%- render 'parapatrol-media', asset: b.asset, alt: b.alt, label: '', class: 'aspect-square rounded-3xl shadow-lift', sizes: '(min-width: 1024px) 500px, 100vw' -%}</div>
+          <div class="min-w-0">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-tb-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-ink">{{ b.intro }}</p>{%- endif -%}
+            <ul class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="list">
+              {%- for l in tl -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                <li class="rounded-2xl bg-primary-dark text-white px-2 py-4 flex flex-col items-center text-center gap-2"><span class="text-[#7fd1ae]" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 26 -%}</span><span class="text-[13px] font-extrabold leading-tight">{{ f[1] | strip }}</span></li>
+              {%- endif -%}{%- endfor -%}
+            </ul>
+            {%- if b.checks != blank -%}
+              <ul class="mt-5 grid grid-cols-2 gap-x-4 gap-y-2" role="list">
+                {%- for l in ck -%}{%- assign t = l | strip -%}{%- if t != blank -%}<li class="flex items-center gap-2 text-[15px] font-semibold text-ink"><span class="w-5 h-5 shrink-0 rounded-full bg-primary text-white inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span>{{ t }}</li>{%- endif -%}{%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {%- if b.link_label != blank -%}<a href="{{ b.link_url }}" class="mt-5 inline-flex items-center gap-1.5 font-extrabold text-primary-dark underline underline-offset-4">{{ b.link_label }} →</a>{%- endif -%}
+            {{ cta | replace: 'mt-8 text-center', 'mt-7 text-center lg:text-left' }}
+          </div>
+        </div>
+      </section>
+
+    {%- when 'reasons' -%}
+      {%- assign rs = b.items | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-rs-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-2xl mx-auto">
+            <h2 id="pp-rs-{{ block.id }}" class="font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-muted">{{ b.intro }}</p>{%- endif -%}
+          </div>
+          <div class="mt-8" data-pp-scrollbar>
+            <ol class="pp-slider -mx-4 px-4 scroll-px-4 sm:mx-0 sm:px-0 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" data-pp-scrollbar-track role="list" tabindex="0" aria-label="Reasons">
+              {%- for l in rs -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+                <li class="snap-start shrink-0 w-[78%] sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)] rounded-3xl border border-line bg-white overflow-hidden flex flex-col">
+                  {%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-media', asset: pp_v, alt: '', label: '', class: 'aspect-[4/3]', sizes: '(min-width: 1024px) 290px, 78vw' -%}
+                  <div class="p-5 flex-1">
+                    <span class="inline-flex rounded-full bg-primary px-3 py-0.5 text-[12px] font-extrabold text-white">Reason {{ forloop.index }}</span>
+                    <p class="mt-3 font-display font-bold text-[21px] leading-tight text-ink">{{ f[1] | strip }}</p>
+                    <p class="mt-2 text-[15px] leading-relaxed text-muted">{%- assign pp_v = f[2] | strip -%}{%- render 'parapatrol-claim', text: pp_v -%}</p>
+                  </div>
+                </li>
+              {%- endif -%}{%- endfor -%}
+            </ol>
+            <div class="pp-sbar mt-3 mx-auto max-w-[360px]" data-pp-scrollbar-rail aria-hidden="true"><span class="pp-sbar__thumb" data-pp-scrollbar-thumb></span></div>
+          </div>
+          {{ cta }}
+        </div>
+      </section>
+
+    {%- when 'offer_repeat' -%}
+      {%- assign tr = b.tiers | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-or-{{ block.id }}" data-pp-offer-repeat>
+        <div class="max-w-[560px] mx-auto px-4">
+          <h2 id="pp-or-{{ block.id }}" class="text-center font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-2 text-center text-[16px] text-muted">{{ b.intro }}</p>{%- endif -%}
+          <ul class="mt-6 grid gap-3" role="list">
+            {%- for l in tr -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+              {%- assign t_badge = f[5] | strip -%}{%- assign t_gift = f[4] | strip -%}
+              <li>
+                <a href="{{ cta_url }}" {% if cta_scroll %}data-pp-scroll{% endif %} data-pp-pick-tier="{{ forloop.index0 }}" class="relative block rounded-2xl border-2 {% if t_badge != blank and forloop.index == 2 %}border-primary bg-mint{% else %}border-line bg-white{% endif %} px-4 py-3.5 hover:border-primary transition-colors">
+                  {%- if t_badge != blank -%}<span class="absolute -top-3 right-4 rounded-md bg-primary px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[.06em] text-white">{{ t_badge }}</span>{%- endif -%}
+                  <span class="flex items-center justify-between gap-3">
+                    <span class="min-w-0"><span class="block font-display font-bold text-[18px] text-ink" data-pp-tier-title>{{ f[0] | strip }}</span><span class="block text-[13px] font-bold text-berry" data-pp-tier-sub>{{ f[3] | strip }}</span></span>
+                    <span class="text-right shrink-0"><span class="block font-display font-bold text-[20px] text-ink" data-pp-tier-price>{{ f[1] | strip }}</span>{%- assign w = f[2] | strip -%}{%- if w != blank -%}<s class="block text-[13px] text-muted" data-pp-tier-was>{{ w }}</s>{%- endif -%}</span>
+                  </span>
+                  {%- if t_gift != blank -%}<span class="mt-2 flex items-center gap-1.5 text-[13px] font-bold text-primary-dark"><span aria-hidden="true">🎁</span>{{ t_gift }}</span>{%- endif -%}
+                </a>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ul>
+          {%- if b.delivery != blank -%}<p class="mt-4 flex items-center justify-center gap-2 text-[14px] font-bold text-ink"><span class="w-2 h-2 rounded-full bg-primary" aria-hidden="true"></span>{{ b.delivery }}</p>{%- endif -%}
+          {{ cta }}
+        </div>
+      </section>
+
+    {%- when 'guarantee_card' -%}
+      <section class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }}>
+        <div class="max-w-4xl mx-auto px-4">
+          <div class="relative rounded-[28px] bg-primary-dark text-white overflow-hidden grid sm:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] items-center">
+            <div class="min-w-0 p-5 sm:p-0">{%- render 'parapatrol-media', asset: b.asset, alt: b.alt, label: '', class: 'aspect-square rounded-2xl sm:rounded-none', sizes: '(min-width: 640px) 360px, 100vw' -%}</div>
+            <div class="min-w-0 px-6 pb-8 sm:p-10">
+              <span class="w-14 h-14 rounded-full bg-[#7fd1ae] text-primary-dark inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 28 -%}</span>
+              <h2 class="pp-adv-light-h mt-4 font-display font-bold text-[30px] sm:text-[38px] leading-[1.08]">{{ b.heading }}</h2>
+              {%- if b.text != blank -%}<p class="mt-3 text-[16px] leading-relaxed text-white/90">{{ b.text }}</p>{%- endif -%}
+              {{ cta | replace: 'bg-primary text-white hover:bg-primary-dark', 'bg-white text-primary-dark hover:bg-mint' | replace: 'text-muted', 'text-white/90' | replace: 'mt-8 text-center', 'mt-6 text-left' }}
+            </div>
+          </div>
+        </div>
+      </section>
+
+  {%- endcase -%}
+{%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "ParaPatrol: CRO blocks",
+  "settings": [
+    { "type": "text", "id": "cta_url", "label": "Button link", "info": "#pp-buy scrolls to the buy box on the product page. Use the product URL elsewhere.", "default": "#pp-buy" },
+    { "type": "text", "id": "cta_note", "label": "Line under buttons", "default": "30-day money-back guarantee" }
+  ],
+  "blocks": [
+    { "type": "review_strip", "name": "Review strip", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "items", "label": "Reviews", "info": "title | real customer quote | name | tag, tag" },
+      { "type": "text", "id": "note", "label": "Small note" },
+      { "type": "text", "id": "bg", "label": "Background class", "default": "bg-white" }
+    ] },
+    { "type": "ritual", "name": "Daily ritual steps", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Steps", "info": "photo file | title | text" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] },
+    { "type": "trust_band", "name": "Made with care", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "text", "id": "asset", "label": "Image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "textarea", "id": "tiles", "label": "Icon tiles", "info": "icon | label (4 lines)" },
+      { "type": "textarea", "id": "checks", "label": "Checklist (one per line)" },
+      { "type": "text", "id": "link_label", "label": "Link label" },
+      { "type": "text", "id": "link_url", "label": "Link URL" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] },
+    { "type": "reasons", "name": "Reasons carousel", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "items", "label": "Reasons", "info": "photo file | title | text" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] },
+    { "type": "offer_repeat", "name": "Stock up offer", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "tiers", "label": "Tiers (fallback)", "info": "name | price | was | sub line | gift | badge. On the product page these refresh from the live bundle offer and clicking one selects it in the buy box." },
+      { "type": "text", "id": "delivery", "label": "Delivery line" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] },
+    { "type": "guarantee_card", "name": "Guarantee card", "settings": [
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "text", "id": "asset", "label": "Image file" },
+      { "type": "text", "id": "alt", "label": "Image description" },
+      { "type": "text", "id": "cta_label", "label": "Button label" }
+    ] }
+  ],
+  "presets": [ { "name": "ParaPatrol: CRO blocks" } ]
+}
+{% endschema %}
