@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   {%- comment -%} Loaded without blocking first paint; text shows in the fallback font until it arrives {%- endcomment -%}
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap" rel="stylesheet"></noscript>
 {%- endif -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script>window.ppGiftImages = { 'free shipping': {{ 'pp-gift-free-shipping.jpg' | asset_url | json }} };</script>
@@ -17,8 +17,13 @@
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 
 <style>
-  body { background-color: #fff; }
+  body { background-color: {{ section.settings.pp_cream }}; }
   html:root {
+    --pp-cream: {{ section.settings.pp_cream }};
+    --pp-mint: {{ section.settings.pp_mint }};
+    --pp-mint-deep: {{ section.settings.pp_mint_deep }};
+    --pp-raspberry: {{ section.settings.pp_raspberry }};
+    --pp-blush: {{ section.settings.pp_blush }};
     --brand-primary: {{ section.settings.brand_primary }};
     --brand-primary-dark: {{ section.settings.brand_primary_dark }};
     --brand-accent: {{ section.settings.brand_accent }};
@@ -172,7 +177,7 @@
             </p>
           {%- else -%}
             {%- comment -%} Price hidden: the expert line takes its place as a fuller badge {%- endcomment -%}
-            <div class="mt-3 inline-flex items-center gap-3 rounded-2xl bg-mint border border-[#cfe3d8] pl-2 pr-4 py-2">
+            <div class="mt-3 inline-flex items-center gap-3 rounded-2xl bg-mint border border-line pl-2 pr-4 py-2">
               <span class="w-10 h-10 shrink-0 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 20 -%}</span>
               <span class="leading-tight">
                 <span class="block font-display font-bold text-[17px] sm:text-[18px] text-primary-dark">{{ section.settings.authority }}</span>
@@ -206,7 +211,7 @@
           {%- assign bg_items = section.settings.benefit_grid | newline_to_br | split: '<br />' -%}
           <ul class="mt-4 grid grid-cols-6 gap-2" aria-label="Product highlights">
             {%- for l in bg_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
-              <li class="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-mint border border-[#d6e7dd] px-1.5 py-3 text-center {% if bg_items.size == 5 and forloop.index > 3 %}col-span-3{% else %}col-span-2{% endif %}">
+              <li class="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-mint border border-line px-1.5 py-3 text-center {% if bg_items.size == 4 or bg_items.size == 2 %}col-span-3{% elsif bg_items.size == 5 and forloop.index > 3 %}col-span-3{% else %}col-span-2{% endif %}">
                 <span class="w-10 h-10 rounded-full bg-white text-primary inline-flex items-center justify-center shadow-soft" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 22 -%}</span>
                 <span class="text-[12.5px] sm:text-[13px] font-extrabold leading-tight text-primary-dark">{{ f[1] | strip }}</span>
               </li>
@@ -245,20 +250,34 @@
         {%- endif -%}
         {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading -%}
 
+        {%- if section.settings.trust_chips != blank -%}
+          {%- assign tc_items = section.settings.trust_chips | newline_to_br | split: '<br />' -%}
+          <ul class="mt-3 flex flex-wrap justify-center gap-2" role="list" aria-label="Why parents trust Para Patrol">
+            {%- for l in tc_items -%}{%- assign f = l | strip | split: '|' -%}{%- assign tc_icon = f[0] | strip -%}
+              {%- if f.size >= 2 -%}{%- unless tc_icon == 'lab' and section.settings.coa_url == blank -%}
+                <li class="inline-flex items-center gap-1.5 rounded-full bg-mint border border-line px-3 py-1.5 text-[13px] font-bold text-ink">
+                  <span class="text-mintdeep" aria-hidden="true">{%- render 'parapatrol-icon', name: tc_icon, icon_size: 16 -%}</span>
+                  {%- if tc_icon == 'lab' -%}<a href="{{ section.settings.coa_url }}" target="_blank" rel="noopener" class="underline underline-offset-2">{%- render 'parapatrol-claim', text: f[1] -%}</a>{%- else -%}<span>{{ f[1] | strip | replace: '[[', '<mark class="pp-ph">[[' | replace: ']]', ']]</mark>' }}</span>{%- endif -%}
+                </li>
+              {%- endunless -%}{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
         {%- if section.settings.gcard_title != blank -%}
           {%- assign gc_items = section.settings.gcard_items | newline_to_br | split: '<br />' -%}
           <div class="mt-4 rounded-3xl border-2 border-ink bg-white px-4 sm:px-6 py-5 text-center">
             <p class="font-display font-bold text-[22px] sm:text-[24px] leading-tight text-primary">{{ section.settings.gcard_title }}</p>
             {%- if section.settings.gcard_text != blank -%}<p class="mt-1 text-[15px] text-ink">{{ section.settings.gcard_text }}</p>{%- endif -%}
             {%- if section.settings.gcard_items != blank -%}
-              <ul class="mt-4 pt-4 border-t border-[#1e2d4f] grid grid-cols-3 gap-2" role="list">
+              <ul class="mt-4 pt-4 border-t border-ink grid grid-cols-3 gap-2" role="list">
                 {%- for l in gc_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
                   <li class="flex flex-col items-center gap-1.5"><span class="text-primary" aria-hidden="true">{%- assign pp_v = f[0] | strip -%}{%- render 'parapatrol-icon', name: pp_v, icon_size: 24 -%}</span><span class="text-[13px] sm:text-[14px] font-extrabold leading-tight text-ink">{{ f[1] | strip }}</span></li>
                 {%- endif -%}{%- endfor -%}
               </ul>
             {%- endif -%}
             {%- if shop.enabled_payment_types.size > 0 -%}
-              <ul class="pp-payments mt-4 pt-4 border-t border-[#1e2d4f] flex flex-wrap justify-center gap-1.5" role="list" aria-label="Payment methods">
+              <ul class="pp-payments mt-4 pt-4 border-t border-ink flex flex-wrap justify-center gap-1.5" role="list" aria-label="Payment methods">
                 {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'pp-payment-icon' }}</li>{%- endfor -%}
               </ul>
             {%- endif -%}
@@ -351,7 +370,7 @@
           <p class="font-display font-semibold text-[15px] lg:text-[18px] leading-tight truncate">{{ product.title }}</p>
           <p class="text-[13px] text-muted leading-tight" data-pp-sticky-meta></p>
         </div>
-        <button type="button" data-pp-sticky-add class="disable-global-button-styling min-h-[46px] px-5 lg:min-h-[50px] lg:px-10 rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] lg:text-[16px] whitespace-nowrap">Add to Bag</button>
+        <button type="button" data-pp-sticky-add class="disable-global-button-styling min-h-[46px] px-5 lg:min-h-[50px] lg:px-10 rounded-xl bg-raspberry hover:brightness-95 text-white font-bold text-[15px] lg:text-[16px] whitespace-nowrap">Add to Bag</button>
       </div>
     </div>
   {%- endif -%}
@@ -395,6 +414,8 @@
     { "type": "text", "id": "tick_3", "label": "Benefit 3", "default": "No fuss: mixes into any drink" },
 
     { "type": "header", "content": "Purchase box" },
+    { "type": "textarea", "id": "trust_chips", "label": "Trust strip under the button", "info": "icon | text, one per line. Use the icon name 'lab' for the lab-tested chip: it links to the COA and stays hidden until a COA link is set." },
+    { "type": "url", "id": "coa_url", "label": "Certificate of analysis (COA) link" },
     { "type": "text", "id": "tier_heading", "label": "Bundle cards heading", "default": "Free shipping on every bundle" },
     { "type": "text", "id": "subscribe_note", "label": "Subscribe note", "default": "Delivered on your schedule. Skip or cancel anytime." },
     { "type": "textarea", "id": "trust", "label": "Trust badges under the button", "info": "One per line as icon|text. Icons: lock, truck, shield, leaf, heart, check. Only claims you can back up. Clear to show the guarantee line instead.", "default": "lock|Secure checkout\ntruck|Free shipping\nshield|30-day money-back\nleaf|Alcohol & sugar-free" },
@@ -451,6 +472,11 @@
     { "type": "text", "id": "ph_4", "label": "Image 4", "default": "supplement facts label" },
 
     { "type": "header", "content": "Brand colours (all ParaPatrol sections)" },
+    { "type": "color", "id": "pp_cream", "label": "Cream (page background)", "default": "#FBF6EE" },
+    { "type": "color", "id": "pp_mint", "label": "Mint (bands, chips)", "default": "#9FE0C9" },
+    { "type": "color", "id": "pp_mint_deep", "label": "Mint deep (ticks, links, selected bundle)", "default": "#1F7F66" },
+    { "type": "color", "id": "pp_raspberry", "label": "Raspberry (add to cart)", "default": "#C73862" },
+    { "type": "color", "id": "pp_blush", "label": "Blush (offer bar, Best value tag)", "default": "#FBE3EA" },
     { "type": "color", "id": "brand_primary", "label": "Primary (buttons, white text on it)", "default": "#3b7560" },
     { "type": "color", "id": "brand_primary_dark", "label": "Primary hover", "default": "#2c5a4a" },
     { "type": "color", "id": "brand_accent", "label": "Accent (soft highlight)", "default": "#f4c7d5" },

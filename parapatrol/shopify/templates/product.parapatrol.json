@@ -31,7 +31,7 @@
         "del_min": 7,
         "del_max": 15,
         "delivery_note": "Orders are processed within 1–2 business days. Most orders are shipped and delivered within 7–15 days.",
-        "quick_heading": "Quick answers",
+        "quick_heading": "Quick questions",
         "ing_tile_label": "What’s in it",
         "ing_tile_text": "Every ingredient is on the label: 11 herbal extracts in a raspberry glycerin base. No alcohol, no sugar.",
         "ing_tile_asset": "pp-supplement-facts.jpg",
@@ -40,12 +40,12 @@
         "quick_q1": "Is it safe for my 3-year-old?",
         "quick_a1": "Para Patrol™ is made for kids 3+. Always read the label and follow directions for use, and check with your GP or pharmacist if your child has a health condition or takes medication.",
         "quick_safety_link": "",
-        "quick_q2": "Do I still need to see a doctor?",
-        "quick_a2": "Yes, if you’re worried. Para Patrol™ is everyday tummy support and works alongside your GP’s advice, not instead of it. If you’ve seen worms, see your pharmacist or GP first.",
-        "quick_q3": "What does it taste like?",
-        "quick_a3": "Raspberry. Most parents mix one dropper into juice.",
-        "quick_q4": "How long until I notice anything?",
-        "quick_a4": "Every child is different. That’s why you have 30 days to try it, with your money back if you’re not happy.",
+        "quick_q2": "Will she actually take it?",
+        "quick_a2": "It’s raspberry flavoured, and most parents stir one dropper into juice. No chewing and no tablet to swallow.",
+        "quick_q3": "Is it a worm treatment?",
+        "quick_a3": "No. It’s gentle daily tummy support made with herbs. For worms, your pharmacist has treatments.",
+        "quick_q4": "",
+        "quick_a4": "",
         "show_stock": true,
         "stock_manual": 0,
         "stock_threshold": 15,
@@ -61,15 +61,15 @@
         "ph_2": "drop-into-juice shot",
         "ph_3": "kid-at-play lifestyle, sandpit or park",
         "ph_4": "supplement facts label",
-        "brand_primary": "#3b7560",
-        "brand_primary_dark": "#2c5a4a",
-        "brand_accent": "#f4c7d5",
-        "brand_berry": "#a83f66",
-        "bg_soft": "#fdf6f3",
-        "bg_mint": "#ebf4ef",
-        "ink": "#1e2d4f",
-        "ink_muted": "#4f5b72",
-        "line": "#ece1e5",
+        "brand_primary": "#1F2A5A",
+        "brand_primary_dark": "#1F2A5A",
+        "brand_accent": "#FBE3EA",
+        "brand_berry": "#C73862",
+        "bg_soft": "#FBF6EE",
+        "bg_mint": "#E7F7F1",
+        "ink": "#1F2A5A",
+        "ink_muted": "#5F6673",
+        "line": "#E4E6EE",
         "load_google_fonts": true,
         "use_theme_fonts": false,
         "rating_avatars": "",
@@ -77,9 +77,16 @@
         "gcard_text": "Try it for 30 days. If you’re not happy, we’ll refund you.",
         "eyebrow": "For mums who know their kid",
         "mandatory": "Always read the label and follow directions for use.",
-        "benefit_grid": "kid | Made for kids 3+\nno-alcohol | No alcohol\nno-sugar | No sugar\nberry | Raspberry flavour\nguarantee | 30-day money-back guarantee",
+        "benefit_grid": "kid | Made for kids 3+\nberry | One raspberry dropper in juice\nno-alcohol | No alcohol, no sugar\nguarantee | 30-day money-back guarantee",
         "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+",
-        "judgeme_badge": true
+        "judgeme_badge": true,
+        "trust_chips": "lab | Independently lab tested · View COA\nguarantee | 30-day money-back guarantee\ntruck | Ships from [[location]]",
+        "coa_url": "",
+        "pp_cream": "#FBF6EE",
+        "pp_mint": "#9FE0C9",
+        "pp_mint_deep": "#1F7F66",
+        "pp_raspberry": "#C73862",
+        "pp_blush": "#FBE3EA"
       }
     },
     "belief": {
@@ -96,7 +103,8 @@
             "story": "<p>[[REAL CUSTOMER STORY — 120–200 words, first person, names exact moments: the 2am doorway, the plate pushed away, “she’s just not herself”. Child’s age. Customer first name + state. Written permission on file.]]</p>",
             "attribution": "[[First name, state · child’s age]]",
             "closing": "You’re not imagining it. And you’re not doing anything wrong."
-          }
+          },
+          "disabled": true
         },
         "logic": {
           "type": "logic",
@@ -116,7 +124,8 @@
             "col_a": "Chemist worm tablet",
             "col_b": "Para Patrol™",
             "rows": "What it’s for | A one-off treatment | Gentle everyday tummy support\nHow it’s taken | A tablet or chewable dose | One raspberry dropper in juice\nMade for | Adults and kids (check the pack) | Kids 3+\nWhere to start | Your pharmacist or GP | Alongside your GP’s advice",
-            "note": "If you’ve seen worms, see your pharmacist or GP first. Para Patrol™ is for the everyday tummy support in between."
+            "note": "If you’ve seen worms, see your pharmacist or GP first. Para Patrol™ is for the everyday tummy support in between.",
+            "media_pos": 3
           }
         },
         "label": {
@@ -144,7 +153,8 @@
             "eyebrow": "Mums like you",
             "heading": "What other mums are saying",
             "intro": "Real reviews from Para Patrol™ customers.",
-            "note": "Individual results vary."
+            "note": "Individual results vary.",
+            "filters": "I rolled my eyes too | text:scept|skept|doubt|wasn.t sure|rolled my eyes|hesitant|wary\nShe actually takes it | text:taste|flavou?r|takes it|no fuss|without (a|any) fuss|never notice|doesn.t even realise\nOur GP was fine with it | text:\\bGP\\b|doctor|paediatrician|pediatrician|pharmacist\nPicky eater | text:picky|fussy|appetite\n2am wake-ups | text:night|sleep|2am|wake\nAges 3–5 | age:3-5\nAges 6–8 | age:6-8\nAges 9+ | age:9-99"
           }
         },
         "howto": {
@@ -158,32 +168,91 @@
             "line": "One dropper in her juice. Most kids don’t even notice.",
             "small": "Always read the label and follow directions for use."
           }
+        },
+        "profiles": {
+          "type": "profiles",
+          "settings": {
+            "eyebrow": "Who it’s for",
+            "heading": "Sound like your house?",
+            "intro": "Para Patrol™ was made for the mum who knows something’s not quite right, and wants something gentle.",
+            "profiles": "plate | The picky eater | Three bites in, she pushes the plate away and says her tummy’s full. | Gentle daily tummy support in one raspberry dropper she won’t notice in her juice.\nmoon | The 2am tummy aches | He’s in our doorway at 2am, holding his tummy again. | Fennel, anise and licorice, herbs traditionally used to soothe little tummies, in one daily dropper.\ntablet | The tablet refuser | We tried the chewable. It ended up on the floor. | No chewing, no swallowing. One raspberry dropper stirred into juice.\nheart | The mum who wants gentle | I don’t want harsh adult stuff. I want something made for her. | Made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.",
+            "link_label": "Para Patrol™ was made for this"
+          }
+        },
+        "videos": {
+          "type": "videos",
+          "settings": {
+            "eyebrow": "Straight from mums",
+            "heading": "Hear it from mums first.",
+            "intro": "Short clips from parents, each one labelled."
+          }
+        },
+        "notice": {
+          "type": "notice",
+          "settings": {
+            "eyebrow": "Real reviews",
+            "heading": "What mums notice",
+            "quotes": "I rolled my eyes too | I was skeptical but decided to try it. Within two weeks my son’s appetite improved and he stopped leaving half his food. | Father of Benjamin, age 8\nShe actually takes it | The liquid format saved us. Oscar used to refuse anything that looked like medicine, but one dropper in juice and it’s done without a fuss. | Father of Oscar, age 5\nPicky eater | Picky eater who used to leave half his food. Now he finishes most meals. Mixed in milk — he never notices. | Father of George, age 5",
+            "note": "Individual reviews from parents. Every child is different."
+          }
+        },
+        "timeline": {
+          "type": "timeline",
+          "settings": {
+            "eyebrow": "What to expect",
+            "heading": "Your first 30 days",
+            "intro": "A simple routine, with 30 days to decide.",
+            "steps": "Day 1 | One dropper | One dropper in her morning juice. That’s the whole routine.\nDay 7 | Part of breakfast | It’s just part of the morning now, same glass, same time.\nDay 14 | Keep going daily | Keep it next to the juice so it’s never forgotten.\nDay 30 | Your call | Keep going, or ask for your money back. It’s your decision.",
+            "end_label": "30-day money-back guarantee ends here",
+            "note": "Every child is different. Always read the label and follow directions for use."
+          }
+        },
+        "rewards": {
+          "type": "rewards",
+          "settings": {
+            "enabled": false,
+            "eyebrow": "Routine Rewards",
+            "heading": "Rewards that grow with every delivery",
+            "intro": "Subscribe & save [[X]]% on every delivery, ships every [[30]] days. Skip or cancel anytime.",
+            "ladder": "1st | [[X]]% off\n2nd | Free shipping\n3rd | [[A free bottle]]\n4th | [[Extra 5% off]]\n5th+ | [[Extra 10% off]]",
+            "button": "Subscribe & save"
+          }
         }
       },
       "block_order": [
-        "story",
+        "profiles",
+        "videos",
         "logic",
         "compare",
         "label",
-        "reviews",
-        "howto"
+        "notice",
+        "howto",
+        "timeline",
+        "rewards",
+        "reviews"
       ]
     },
     "faq": {
       "type": "parapatrol-faq",
       "blocks": {
+        "g1": {
+          "type": "group",
+          "settings": {
+            "heading": "About Para Patrol™"
+          }
+        },
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Is it safe for my 3-year-old?",
-            "answer": "<p>Para Patrol™ is made for kids 3+. Always read the label and follow directions for use, and check with your GP or pharmacist if your child has a health condition or takes medication.</p>"
+            "question": "What is Para Patrol™?",
+            "answer": "<p>Gentle daily tummy support made for kids 3+, in a raspberry dropper. One dropper goes into juice once a day.</p>"
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Do I still need to see a doctor?",
-            "answer": "<p>Yes, if you’re worried. Para Patrol™ is everyday tummy support and works alongside your GP’s advice, not instead of it. If you’ve seen worms, see your pharmacist or GP first.</p>"
+            "question": "Who is it for?",
+            "answer": "<p>Kids aged 3 and up, and the mums who want something gentle and made for them, not an adult formula.</p>"
           }
         },
         "q3": {
@@ -196,32 +265,235 @@
         "q4": {
           "type": "question",
           "settings": {
+            "question": "How is it different from a chemist worm tablet?",
+            "answer": "<p>A worm tablet is a one-off treatment. Para Patrol™ is gentle everyday tummy support, taken as one raspberry dropper in juice. If you’ve seen worms, see your pharmacist or GP first.</p>"
+          }
+        },
+        "g2": {
+          "type": "group",
+          "settings": {
+            "heading": "Safety"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe for my 3-year-old?",
+            "answer": "<p>Para Patrol™ is made for kids 3+. Always read the label and follow directions for use, and check with your GP or pharmacist if your child has a health condition or takes medication.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Can kids under 3 take it?",
+            "answer": "<p>Para Patrol™ is made for kids 3 and over. For younger children, speak to your GP or pharmacist.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Do I still need to see a doctor?",
+            "answer": "<p>Yes, if you’re worried. Para Patrol™ is everyday tummy support and works alongside your GP’s advice, not instead of it. If you’ve seen worms, see your pharmacist or GP first.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Can my child take it with other medicines?",
+            "answer": "<p>Check with your GP or pharmacist first if your child takes any medication or other supplements.</p>"
+          }
+        },
+        "g3": {
+          "type": "group",
+          "settings": {
+            "heading": "Ingredients"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "What’s in it?",
+            "answer": "<p>Every ingredient is on the label, in a raspberry glycerin base. <a href=\"#whats-in-it\">See every ingredient</a>.</p>"
+          }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "Does it contain alcohol or sugar?",
+            "answer": "<p>No. Para Patrol™ is made with no alcohol and no sugar.</p>"
+          }
+        },
+        "q11": {
+          "type": "question",
+          "settings": {
+            "question": "Does it contain any allergens?",
+            "answer": "<p>The label says it may contain tree nuts (walnuts). Always read the label before use.</p>"
+          }
+        },
+        "q12": {
+          "type": "question",
+          "settings": {
+            "question": "Is it tested?",
+            "answer": "<p>[[Third-party tested by LAB for WHAT. Batch NUMBER. Add the certificate link once the COA is in.]]</p>"
+          }
+        },
+        "g4": {
+          "type": "group",
+          "settings": {
+            "heading": "Taste and giving it"
+          }
+        },
+        "q13": {
+          "type": "question",
+          "settings": {
             "question": "What does it taste like?",
             "answer": "<p>Raspberry. Most parents mix one dropper into juice.</p>"
           }
         },
-        "q5": {
+        "q14": {
+          "type": "question",
+          "settings": {
+            "question": "How do I give it?",
+            "answer": "<p>Fill the dropper, stir it into her juice, and she drinks it as normal. One dropper in her juice. Most kids don’t even notice.</p>"
+          }
+        },
+        "q15": {
+          "type": "question",
+          "settings": {
+            "question": "What if my child won’t take it?",
+            "answer": "<p>Try a smaller glass of juice so it’s finished in a few sips. If it’s still not for her, the 30-day money-back guarantee has you covered.</p>"
+          }
+        },
+        "q16": {
+          "type": "question",
+          "settings": {
+            "question": "Can I mix it into something other than juice?",
+            "answer": "<p>Many parents use juice. Some reviewers mix it into milk. Always read the label and follow directions for use.</p>"
+          }
+        },
+        "g5": {
+          "type": "group",
+          "settings": {
+            "heading": "Dosing and routine"
+          }
+        },
+        "q17": {
+          "type": "question",
+          "settings": {
+            "question": "How much do I give?",
+            "answer": "<p>Follow the directions on the label. [[Dose-by-age from the label.]]</p>"
+          }
+        },
+        "q18": {
+          "type": "question",
+          "settings": {
+            "question": "How long does a bottle last?",
+            "answer": "<p>A bottle holds about 30 servings of one dropper (1 mL), so about a month at one dropper a day.</p>"
+          }
+        },
+        "q19": {
+          "type": "question",
+          "settings": {
+            "question": "What if we miss a day?",
+            "answer": "<p>Just carry on the next morning as normal. Don’t double up.</p>"
+          }
+        },
+        "q20": {
+          "type": "question",
+          "settings": {
+            "question": "How long should we use it for?",
+            "answer": "<p>[[From the label directions.]] Always read the label and follow directions for use.</p>"
+          }
+        },
+        "g6": {
+          "type": "group",
+          "settings": {
+            "heading": "Results and the guarantee"
+          }
+        },
+        "q21": {
           "type": "question",
           "settings": {
             "question": "How long until I notice anything?",
             "answer": "<p>Every child is different. That’s why you have 30 days to try it, with your money back if you’re not happy.</p>"
           }
         },
-        "q6": {
+        "q22": {
           "type": "question",
           "settings": {
-            "question": "What’s in it?",
-            "answer": "<p>Every ingredient is listed on the label. <a href=\"#whats-in-it\">See the full list and what each one is there for</a>.</p>"
+            "question": "What if it doesn’t work for us?",
+            "answer": "<p>Try it for 30 days. If you’re not happy, we’ll refund you.</p>"
+          }
+        },
+        "g7": {
+          "type": "group",
+          "settings": {
+            "heading": "Orders and shipping"
+          }
+        },
+        "q23": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you ship from?",
+            "answer": "<p>[[Ships-from location]]</p>"
+          }
+        },
+        "q24": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>[[Delivery times to each state]]</p>"
+          }
+        },
+        "q25": {
+          "type": "question",
+          "settings": {
+            "question": "How does the 30-day guarantee work?",
+            "answer": "<p>Try it for 30 days. If you’re not happy, contact us and we’ll refund you. [[Link to the full guarantee terms]]</p>"
+          }
+        },
+        "q26": {
+          "type": "question",
+          "settings": {
+            "question": "Can I subscribe?",
+            "answer": "<p>[[Not yet. Update this once a subscription app is set up.]]</p>"
           }
         }
       },
       "block_order": [
+        "g1",
         "q1",
         "q2",
         "q3",
         "q4",
+        "g2",
         "q5",
-        "q6"
+        "q6",
+        "q7",
+        "q8",
+        "g3",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "g4",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "g5",
+        "q17",
+        "q18",
+        "q19",
+        "q20",
+        "g6",
+        "q21",
+        "q22",
+        "g7",
+        "q23",
+        "q24",
+        "q25",
+        "q26"
       ],
       "settings": {
         "eyebrow": "FAQ",
@@ -259,9 +531,19 @@
         "fda_text": "Always read the label and follow directions for use.",
         "small_print": "Para Patrol™ is gentle daily tummy support, not a medicine or a worm treatment. If you’ve seen worms or your child is unwell, see your pharmacist or GP. Talk to your GP or pharmacist before use if your child takes medication or has a health condition."
       }
+    },
+    "offer": {
+      "type": "parapatrol-offer-bar",
+      "settings": {
+        "text": "Save up to 45% on bundles · 30-day money-back guarantee",
+        "end_date": "",
+        "end_time": "23:59",
+        "utc_offset": "+11:00"
+      }
     }
   },
   "order": [
+    "offer",
     "main",
     "belief",
     "faq",

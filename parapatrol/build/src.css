@@ -3,19 +3,25 @@
 /* ===== Brand tokens: defaults. The main ParaPatrol section can override them in the theme editor. ===== */
 :root {
   /* Matched to the ParaPatrol pack: sage label, navy lettering, soft pink mascot. All text pairs pass WCAG AA. */
-  --brand-primary: #3b7560;
-  --brand-primary-dark: #2c5a4a;
-  --brand-accent: #f4c7d5;
-  --brand-berry: #a83f66;
-  --bg-soft: #fdf6f3;
-  --bg-mint: #ebf4ef;
-  --ink: #1e2d4f;
-  --ink-muted: #4f5b72;
-  --line: #ece1e5;
+  /* Para Patrol brand theme (VigorNatura rebuild brief): navy wordmark, mint label, pink mascot on warm cream */
+  --pp-cream: #FBF6EE;
+  --pp-mint: #9FE0C9;
+  --pp-mint-deep: #1F7F66;
+  --pp-raspberry: #C73862;
+  --pp-blush: #FBE3EA;
+  --brand-primary: #1F2A5A;
+  --brand-primary-dark: #1F2A5A;
+  --brand-accent: #FBE3EA;
+  --brand-berry: #C73862;
+  --bg-soft: #FBF6EE;
+  --bg-mint: #E7F7F1;
+  --ink: #1F2A5A;
+  --ink-muted: #5F6673;
+  --line: #E4E6EE;
   --pp-star: #e27aa3;       /* mascot pink, deepened so the stars read */
   --pp-star-empty: #f7d6e3;
   /* Baloo 2 echoes the chunky rounded ParaPatrol lettering on the pack; Nunito Sans is a soft, very legible body face */
-  --pp-font-display: 'Baloo 2', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --pp-font-display: 'Nunito', ui-rounded, 'Arial Rounded MT Bold', system-ui, sans-serif;
   --pp-font-body: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -141,6 +147,13 @@
 .pp.pp button { text-transform: none !important; letter-spacing: normal !important; box-shadow: none !important; }
 .pp.pp button[type="submit"] { border: 0 !important; padding-left: 24px !important; padding-right: 24px !important; }
 .pp.pp .bg-primary { background-color: var(--brand-primary) !important; }
+.pp.pp .bg-raspberry { background-color: var(--pp-raspberry) !important; }
+.pp.pp .bg-ink { background-color: var(--ink) !important; }
+.pp.pp .bg-white.disable-global-button-styling { background-color: #fff !important; }
+.pp.pp .pp-chip { background-color: #fff !important; }
+.pp.pp .pp-chip[aria-pressed="true"] { background-color: var(--ink) !important; }
+.pp.pp .pp-prof-tab { background-color: #fff !important; }
+.pp.pp .pp-prof-tab[aria-selected="true"] { background-color: var(--bg-mint) !important; }
 .pp.pp .hover\:bg-primary-dark:hover { background-color: var(--brand-primary-dark) !important; }
 .pp.pp .bg-white { background-color: #fff !important; }
 .pp.pp .bg-berry { background-color: var(--brand-berry) !important; }
@@ -372,15 +385,17 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp .pp-tiers__head::before, .pp .pp-tiers__head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .pp .pp-tiers__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: stretch; margin-top: 16px; }
 .pp .pp-tier { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; height: 100%; padding: 14px 6px 12px; border: 2px solid var(--line); border-radius: 16px; background: #fff; cursor: pointer; box-shadow: 0 6px 16px -12px rgba(30,45,79,.45); transition: border-color .15s, background-color .15s; }
-.pp .pp-tier:hover { border-color: var(--brand-primary); }
-.pp .pp-tier:has(input:checked) { border-color: var(--brand-primary); background: var(--bg-mint); box-shadow: 0 0 0 2px var(--brand-primary), 0 8px 20px -12px rgba(30,45,79,.5); }
+.pp .pp-tier:hover { border-color: var(--pp-mint-deep); }
+.pp .pp-tier:has(input:checked) { border-color: var(--pp-mint-deep); background: var(--bg-mint); box-shadow: 0 0 0 2px var(--pp-mint-deep), 0 8px 20px -12px rgba(30,45,79,.5); }
 .pp .pp-tier:has(input:focus-visible) { outline: 3px solid var(--brand-berry); outline-offset: 3px; }
 .pp .pp-tier:has(input:disabled) { opacity: .5; cursor: not-allowed; }
-.pp .pp-tier__badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 3px 10px; border-radius: 999px; background: var(--brand-primary); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1.4; }
+.pp .pp-tier__badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 3px 10px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1.4; }
 .pp .pp-tier__img { height: 84px; width: auto; max-width: 100%; object-fit: contain; margin: 4px auto 0; }
 .pp .pp-tier__title { font-family: var(--pp-font-display); font-weight: 700; font-size: 17px; line-height: 1.15; color: var(--brand-primary-dark); }
 .pp .pp-tier__size { font-size: 12px; line-height: 1.35; color: var(--ink-muted); }
-.pp .pp-tier__save { font-size: 10.5px; font-weight: 700; line-height: 1.25; padding: 3px 8px; border-radius: 999px; background: var(--brand-berry); color: #fff; }
+.pp .pp-tier__save { font-size: 10.5px; font-weight: 800; line-height: 1.25; padding: 3px 8px; border-radius: 999px; background: var(--pp-blush); color: var(--ink); }
+.pp .pp-tier__badge--value { background: var(--pp-blush); color: var(--ink); }
+.pp .pp-tier { border-width: 1px; border-color: var(--line); }
 .pp .pp-tier__pricing { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 6px; margin-top: auto; }
 .pp .pp-tier__price { font-family: var(--pp-font-display); font-weight: 700; font-size: 18px; color: var(--ink); }
 .pp .pp-tier__was { font-size: 13px; color: var(--ink-muted); }
@@ -392,3 +407,12 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
   .pp .pp-tier__price { font-size: 20px; }
   .pp .pp-tier__save { font-size: 11px; }
 }
+
+/* ===== VigorNatura-model rebuild: chips, profiles, timeline, offer bar ===== */
+.pp .pp-chip { display: inline-flex; align-items: center; min-height: 38px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 14px; font-weight: 700; }
+.pp .pp-chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.pp .pp-chip:focus-visible, .pp .pp-prof-tab:focus-visible { outline: 3px solid var(--pp-mint-deep); outline-offset: 2px; }
+.pp .pp-prof-tab[aria-selected="true"] { border-color: var(--pp-mint-deep); box-shadow: 0 0 0 2px var(--pp-mint-deep); background: var(--bg-mint); }
+.pp .pp-tl__step + .pp-tl__step::before { content: ""; position: absolute; left: 27px; top: -16px; height: 16px; width: 2px; background: var(--ink); opacity: .25; }
+.pp .pp-tl__step:not(:last-child)::after { content: ""; position: absolute; left: 27px; top: 56px; bottom: 0; width: 2px; background: var(--ink); opacity: .25; }
+.pp.pp-offer { background: var(--pp-blush); color: var(--ink); }

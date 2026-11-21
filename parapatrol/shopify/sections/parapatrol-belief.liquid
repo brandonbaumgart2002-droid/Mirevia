@@ -54,6 +54,10 @@
           {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-primary">{{ b.eyebrow }}</p>{%- endif -%}
           <h2 id="pp-cp-{{ block.id }}" class="mt-1 font-display font-bold text-[30px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
           {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          {%- if b.media_pos > 0 -%}
+            {%- assign cmp_i = b.media_pos | minus: 1 -%}{%- assign cmp_m = product.media[cmp_i] -%}
+            {%- if cmp_m -%}<div class="mt-6 rounded-3xl overflow-hidden bg-white">{{ cmp_m.preview_image | image_url: width: 1200 | image_tag: alt: cmp_m.alt, loading: 'lazy', sizes: '(min-width: 860px) 788px, calc(100vw - 32px)', widths: '400,600,800,1200', class: 'w-full h-auto' }}</div>{%- endif -%}
+          {%- endif -%}
           <div class="mt-6 rounded-3xl bg-white overflow-hidden shadow-soft">
             <table class="w-full text-left text-[14px] sm:text-[15px]">
               <thead><tr><th class="p-3 sm:p-4 w-[30%]"><span class="sr-only">Compare</span></th><th class="p-3 sm:p-4 font-extrabold text-muted">{{ b.col_a }}</th><th class="p-3 sm:p-4 bg-primary text-white font-extrabold">{{ b.col_b }}</th></tr></thead>
@@ -94,7 +98,7 @@
                   <li class="rounded-2xl border border-line bg-soft p-4"><p class="font-display font-bold text-[17px] text-ink">{{ f[0] | strip | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- if f[1] -%}<p class="mt-1 text-[14px] leading-relaxed text-muted">{{ f[1] | strip | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}</li>
                 {%- endif -%}{%- endfor -%}
               </ul>
-              <div class="mt-5 rounded-2xl bg-mint border border-[#d6e7dd] p-5">
+              <div class="mt-5 rounded-2xl bg-mint border border-line p-5">
                 <p class="flex items-center gap-2 font-display font-bold text-[18px] text-primary-dark"><span aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 18 -%}</span>{{ b.test_heading }}</p>
                 <p class="mt-1.5 text-[15px] text-ink">{{ b.test_text | replace: '[[', ph_open | replace: ']]', ph_close }}</p>
                 {%- if b.cert_label != blank -%}
@@ -127,6 +131,16 @@
               </div>
               <ul class="grid gap-2" role="list" data-pp-jm-hist></ul>
             </div>
+            {%- if b.filters != blank -%}
+              <div class="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filter reviews" data-pp-jm-filters>
+                <button type="button" class="disable-global-button-styling pp-chip" aria-pressed="true" data-pp-jm-f="">All</button>
+                {%- assign fl = b.filters | newline_to_br | split: '<br />' -%}
+                {%- for l in fl -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+                  <button type="button" class="disable-global-button-styling pp-chip" aria-pressed="false" data-pp-jm-f="{{ l | strip | remove_first: f[0] | remove_first: '|' | strip | escape }}" hidden>{{ f[0] | strip }}</button>
+                {%- endif -%}{%- endfor -%}
+              </div>
+              <p class="mt-3 text-[14px] font-bold text-muted" data-pp-jm-fcount aria-live="polite" hidden></p>
+            {%- endif -%}
             <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list" data-pp-jm-list></ul>
             <div class="mt-6 text-center"><button type="button" class="hidden min-h-[50px] px-8 rounded-full border-2 border-primary text-primary-dark font-extrabold text-[15px] hover:bg-mint" data-pp-jm-more>Show more reviews</button></div>
           </div>
@@ -174,7 +188,7 @@
       {%- assign pp_v = pp_prod.selected_or_first_available_variant -%}
       <section class="py-12 lg:py-16 bg-primary-dark text-white" {{ block.shopify_attributes }} aria-labelledby="pp-cl-{{ block.id }}">
         <div class="max-w-[640px] mx-auto px-4 text-center">
-          <span class="w-16 h-16 rounded-full bg-[#7fd1ae] text-primary-dark inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 30 -%}</span>
+          <span class="w-16 h-16 rounded-full bg-mintfill text-primary-dark inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 30 -%}</span>
           <h2 id="pp-cl-{{ block.id }}" class="pp-adv-light-h mt-4 font-display font-bold text-[32px] sm:text-[42px] leading-[1.08]">{{ b.heading }}</h2>
           {%- if b.text != blank -%}<p class="mt-3 text-[17px] text-white/90">{{ b.text }}</p>{%- endif -%}
           {%- if b.terms_label != blank -%}<a href="{{ b.terms_url | default: '/policies/refund-policy' }}" class="mt-2 inline-block text-[14px] font-bold text-white underline underline-offset-4">{{ b.terms_label }}</a>{%- endif -%}
@@ -191,25 +205,172 @@
         </div>
       </section>
 
+
+    {%- when 'profiles' -%}
+      {%- assign profs = b.profiles | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-pf-{{ block.id }}" data-pp-profiles>
+        <div class="max-w-[820px] mx-auto px-4">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-pf-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2.5" role="tablist" aria-label="{{ b.heading | escape }}">
+            {%- assign pn = 0 -%}
+            {%- for l in profs -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 4 -%}
+              <button type="button" role="tab" id="pp-pft-{{ block.id }}-{{ pn }}" aria-controls="pp-pfp-{{ block.id }}-{{ pn }}" aria-selected="{% if pn == 0 %}true{% else %}false{% endif %}" tabindex="{% if pn == 0 %}0{% else %}-1{% endif %}" data-pp-prof-tab="{{ pn }}" class="disable-global-button-styling pp-prof-tab flex flex-col items-center gap-2 rounded-2xl bg-white border border-line px-2 py-4 text-center">
+                <span class="w-11 h-11 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- assign pi = f[0] | strip -%}{%- render 'parapatrol-icon', name: pi, icon_size: 24 -%}</span>
+                <span class="text-[13px] sm:text-[14px] font-extrabold leading-tight text-ink">{{ f[1] | strip }}</span>
+              </button>
+              {%- assign pn = pn | plus: 1 -%}
+            {%- endif -%}{%- endfor -%}
+          </div>
+          {%- assign pn = 0 -%}
+          {%- for l in profs -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 4 -%}
+            <div role="tabpanel" id="pp-pfp-{{ block.id }}-{{ pn }}" aria-labelledby="pp-pft-{{ block.id }}-{{ pn }}" data-pp-prof-panel="{{ pn }}" class="mt-4 rounded-2xl bg-white border border-line p-5 sm:p-6"{% if pn > 0 %} hidden{% endif %}>
+              <p class="font-display font-extrabold text-[20px] sm:text-[22px] text-ink">{{ f[1] | strip }}</p>
+              <p class="mt-2 text-[16px] sm:text-[17px] italic text-ink">“{{ f[2] | strip }}”</p>
+              <p class="mt-3 flex gap-2.5 text-[16px] text-ink"><span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-mintdeep text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span><span>{%- render 'parapatrol-claim', text: f[3] -%}</span></p>
+              {%- if b.link_label != blank -%}<a href="#pp-buy" data-pp-to-buy class="mt-4 inline-block font-extrabold text-mintdeep underline underline-offset-4">{{ b.link_label }} &rarr;</a>{%- endif -%}
+            </div>
+            {%- assign pn = pn | plus: 1 -%}
+          {%- endif -%}{%- endfor -%}
+        </div>
+      </section>
+
+    {%- when 'videos' -%}
+      {%- liquid
+        assign vids = 0
+        for i in (1..8)
+          assign vk = 'video_' | append: i
+          if b[vk] != blank
+            assign vids = vids | plus: 1
+          endif
+        endfor
+      -%}
+      {%- if vids > 0 or request.design_mode -%}
+      <section class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-vd-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="max-w-[720px] mx-auto text-center">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-vd-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          </div>
+          {%- if vids > 0 -%}
+            <ul class="pp-slider mt-7 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2" role="list">
+              {%- for i in (1..8) -%}
+                {%- assign vk = 'video_' | append: i -%}{%- assign lk = 'label_' | append: i -%}
+                {%- if b[vk] != blank -%}
+                  <li class="snap-start shrink-0 w-[62%] sm:w-[240px]">
+                    <div class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-soft">
+                      {{ b[vk] | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: true, preload: 'none', image_size: '480x', class: 'w-full h-full object-cover' }}
+                    </div>
+                    {%- if b[lk] != blank -%}<p class="mt-2 text-[13px] font-bold text-ink">{{ b[lk] }}</p>{%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- else -%}
+            <p class="mt-6 text-center"><mark class="pp-ph">[[Add parent video clips in the theme editor. This section is hidden on the live page until one is added.]]</mark></p>
+          {%- endif -%}
+        </div>
+      </section>
+      {%- endif -%}
+
+    {%- when 'notice' -%}
+      {%- assign quotes = b.quotes | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }} aria-labelledby="pp-nt-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="max-w-[720px]">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-nt-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          </div>
+          <ul class="mt-7 grid gap-3 md:grid-cols-3" role="list">
+            {%- for l in quotes -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 3 -%}
+              <li class="flex flex-col rounded-2xl bg-white border border-line p-5 sm:p-6">
+                <span class="self-start rounded-full bg-blush px-3 py-1 text-[12px] font-extrabold text-ink">{{ f[0] | strip }}</span>
+                <div class="mt-3 flex" aria-label="5 out of 5 stars">{%- for s5 in (1..5) -%}<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="var(--pp-star)" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>{%- endfor -%}</div>
+                <blockquote class="mt-2 flex-1 text-[16px] leading-relaxed text-ink">“{{ f[1] | strip }}”</blockquote>
+                <p class="mt-3 text-[14px] font-bold text-muted">{{ f[2] | strip }}</p>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ul>
+          {%- if b.note != blank -%}<p class="mt-4 text-[13px] text-muted">{{ b.note }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'timeline' -%}
+      {%- assign tsteps = b.steps | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-tl-{{ block.id }}">
+        <div class="max-w-[720px] mx-auto px-4">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-tl-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          <ol class="pp-tl mt-7 grid gap-4" role="list">
+            {%- for l in tsteps -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+              {%- assign dnum = f[0] | strip | remove: 'Day ' | remove: 'day ' -%}
+              <li class="pp-tl__step relative flex gap-4">
+                <span class="relative z-[1] w-14 h-14 shrink-0 rounded-full {% if forloop.last %}bg-ink text-white{% else %}bg-white text-ink border-2 border-ink{% endif %} inline-flex flex-col items-center justify-center leading-none" aria-hidden="true"><span class="text-[10px] font-extrabold uppercase tracking-wide">Day</span><span class="font-display font-extrabold text-[20px]">{{ dnum }}</span></span>
+                <div class="flex-1 rounded-2xl bg-white border border-line p-4 sm:p-5">
+                  <p class="font-display font-extrabold text-[18px] text-ink">{{ f[0] | strip }}{% if f.size >= 3 %} · {{ f[1] | strip }}{% endif %}</p>
+                  <p class="mt-1 text-[16px] leading-relaxed text-ink">{% if f.size >= 3 %}{{ f[2] | strip }}{% else %}{{ f[1] | strip }}{% endif %}</p>
+                </div>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ol>
+          {%- if b.end_label != blank -%}<p class="mt-5 flex justify-end"><span class="rounded-full bg-ink px-4 py-1.5 text-[12px] font-extrabold uppercase tracking-wide text-white">{{ b.end_label }}</span></p>{%- endif -%}
+          {%- if b.note != blank -%}<p class="mt-4 text-[13px] text-muted">{{ b.note }}</p>{%- endif -%}
+        </div>
+      </section>
+
+    {%- when 'rewards' -%}
+      {%- if b.enabled or request.design_mode -%}
+      {%- assign rsteps = b.ladder | newline_to_br | split: '<br />' -%}
+      <section class="py-12 lg:py-16 bg-mint" {{ block.shopify_attributes }} aria-labelledby="pp-rw-{{ block.id }}">
+        <div class="max-w-[820px] mx-auto px-4 text-center">
+          {%- unless b.enabled -%}<p class="mb-4"><mark class="pp-ph">[[Hidden on the live page: turn on "Show rewards ladder" once a subscription app is set up.]]</mark></p>{%- endunless -%}
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-rw-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+          <ol class="mt-7 grid grid-cols-5 gap-1.5 sm:gap-3" role="list">
+            {%- for l in rsteps -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
+              <li class="flex flex-col items-center gap-2 rounded-2xl bg-white border border-line px-1.5 py-4">
+                <span class="w-9 h-9 rounded-full bg-ink text-white inline-flex items-center justify-center font-display font-extrabold text-[15px]" aria-hidden="true">{{ forloop.index }}</span>
+                <span class="text-[11px] sm:text-[12px] font-extrabold uppercase tracking-wide text-muted">{{ f[0] | strip }}</span>
+                <span class="text-[13px] sm:text-[15px] font-extrabold leading-tight text-ink">{{ f[1] | strip | replace: '[[', ph_open | replace: ']]', ph_close }}</span>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ol>
+          {%- if b.button != blank -%}<a href="#pp-buy" data-pp-to-buy class="mt-7 inline-flex min-h-[56px] items-center justify-center rounded-xl border-2 border-ink px-8 font-bold text-[16px] text-ink hover:bg-white">{{ b.button }}</a>{%- endif -%}
+        </div>
+      </section>
+      {%- endif -%}
+
   {%- endcase -%}
 {%- endfor -%}
 </div>
 <script>
   (function () {
-    document.querySelectorAll('[data-pp-rtabs]').forEach(function (sec) {
-      var tabs = sec.querySelectorAll('[data-pp-rtab]'), cards = sec.querySelectorAll('[data-pp-rcard]');
-      function show(name) {
-        tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-pp-rtab') === name ? 'true' : 'false'); });
-        cards.forEach(function (c) { c.style.display = (!name || c.getAttribute('data-pp-rcard') === name) ? '' : 'none'; });
+    // "Sound like your house?" tiles: one tab open at a time, arrow keys move between tiles
+    document.querySelectorAll('[data-pp-profiles]').forEach(function (sec) {
+      if (sec.__ppPf) return; sec.__ppPf = true;
+      var tabs = [].slice.call(sec.querySelectorAll('[data-pp-prof-tab]'));
+      function show(i) {
+        tabs.forEach(function (t, k) { var on = k === i; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+        sec.querySelectorAll('[data-pp-prof-panel]').forEach(function (p) { p.hidden = +p.getAttribute('data-pp-prof-panel') !== i; });
       }
-      tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('aria-selected') === 'true' ? null : t.getAttribute('data-pp-rtab')); }); });
+      tabs.forEach(function (t, k) {
+        t.addEventListener('click', function () { show(k); });
+        t.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+          e.preventDefault(); var n = (k + d + tabs.length) % tabs.length; show(n); tabs[n].focus();
+        });
+      });
     });
   })();
 </script>
 <script>
   (function () {
     var STAR = '<svg width="SZ" height="SZ" viewBox="0 0 24 24" aria-hidden="true"><path fill="FILL" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
-    function stars(n, sz) { var h = ''; for (var i = 1; i <= 5; i++) h += STAR.replace(/SZ/g, sz).replace('FILL', i <= Math.round(n) ? '#e27aa3' : '#f0dbe3'); return h; }
+    function stars(n, sz) { var h = ''; for (var i = 1; i <= 5; i++) h += STAR.replace(/SZ/g, sz).replace('FILL', i <= Math.round(n) ? 'var(--pp-star)' : 'var(--pp-star-empty)'); return h; }
     function esc(t) { var d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
     function strip(h) { var d = document.createElement('div'); d.innerHTML = h || ''; return d.textContent.trim(); }
     // Imported bodies end with "Mother of Harry age 5. Verified Buyer." Move that sign-off into the name line.
@@ -217,46 +378,99 @@
     function split(text) {
       var t = text.replace(/\s*Verified Buyer\.?\s*$/i, '');
       var m = t.match(SIGN);
-      if (!m) return { body: t, by: '' };
+      if (!m) return { body: t, by: '', ages: [] };
+      var ages = (m[1].match(/age\s+(\d+)/gi) || []).map(function (a) { return +a.replace(/\D/g, ''); });
       var by = m[1].replace(/\s+age\s+(\d+)/gi, ', age $1');
-      return { body: t.slice(0, m.index).trim(), by: by.charAt(0).toUpperCase() + by.slice(1) };
+      return { body: t.slice(0, m.index).trim(), by: by.charAt(0).toUpperCase() + by.slice(1), ages: ages };
+    }
+    function prep(r) { if (!r.__pp) { r.__pp = split(strip(r.body_html)); } return r; }
+    // Filter value "text:word|word" matches the review text; "age:3-5" matches a child's age in the sign-off
+    function matches(r, f) {
+      if (!f) return true;
+      var i = f.indexOf(':'), kind = f.slice(0, i), arg = f.slice(i + 1), p = prep(r).__pp;
+      if (kind === 'age') { var lo = +arg.split('-')[0], hi = +(arg.split('-')[1] || 99); return p.ages.some(function (a) { return a >= lo && a <= hi; }); }
+      try { return new RegExp(arg, 'i').test((r.title || '') + ' ' + p.body); } catch (e) { return false; }
+    }
+    function card(r) {
+      var p = prep(r).__pp, li = document.createElement('li');
+      li.className = 'rounded-2xl bg-white border border-line p-5 flex flex-col';
+      var pics = (r.pictures_urls || []).slice(0, 3).map(function (x) { var u = x.compact || x.small || x.original || x; return '<img src="' + esc(u) + '" alt="" loading="lazy" class="w-16 h-16 rounded-xl object-cover">'; }).join('');
+      li.innerHTML = '<div class="flex">' + stars(r.rating, 16) + '</div>' +
+        (r.title ? '<p class="mt-2.5 font-display font-extrabold text-[18px] leading-snug text-ink">' + esc(r.title) + '</p>' : '') +
+        '<p class="mt-1.5 flex-1 text-[15px] leading-relaxed text-ink">' + esc(p.body) + '</p>' +
+        (pics ? '<div class="mt-3 flex gap-2">' + pics + '</div>' : '') +
+        '<p class="mt-4 flex items-center gap-2 text-[14px] font-bold text-ink"><span class="w-8 h-8 shrink-0 rounded-full bg-mint text-ink inline-flex items-center justify-center text-[13px]">' + esc(r.reviewer_initial || (r.reviewer_name || '?').charAt(0)) + '</span>' + esc(p.by || r.reviewer_name || '') + (r.verified_buyer ? ' <span class="text-mintdeep text-[12px]">✓ Verified buyer</span>' : '') + '</p>';
+      return li;
     }
     document.querySelectorAll('[data-pp-jm]').forEach(function (box) {
       if (box.__ppJm) return; box.__ppJm = true;
       var shop = box.dataset.shop, pid = box.dataset.pid, per = +box.dataset.per || 6, page = 1, total = 0, shown = 0;
       var list = box.querySelector('[data-pp-jm-list]'), more = box.querySelector('[data-pp-jm-more]');
-      function url(p) { return 'https://api.judge.me/reviews/reviews_for_widget?url=' + shop + '&shop_domain=' + shop + '&platform=shopify&page=' + p + '&per_page=' + per + '&product_id=' + pid; }
+      var chips = [].slice.call(box.querySelectorAll('[data-pp-jm-f]')), fcount = box.querySelector('[data-pp-jm-fcount]');
+      var filter = '', all = null, fshown = 0;
+      function url(p, n) { return 'https://api.judge.me/reviews/reviews_for_widget?url=' + shop + '&shop_domain=' + shop + '&platform=shopify&page=' + p + '&per_page=' + n + '&product_id=' + pid; }
+      function get(p, n) { return fetch(url(p, n)).then(function (r) { return r.json(); }); }
+      function header(d) {
+        total = d.number_of_reviews || 0;
+        box.querySelector('[data-pp-jm-avg]').textContent = total ? String(+(+d.average_rating).toFixed(2)) : '–';
+        box.querySelector('[data-pp-jm-stars]').innerHTML = stars(+d.average_rating || 0, 26);
+        box.querySelector('[data-pp-jm-count]').textContent = total ? 'Based on ' + total + ' review' + (total === 1 ? '' : 's') : 'No reviews yet';
+        box.querySelector('[data-pp-jm-hist]').innerHTML = (d.histogram || []).map(function (h) {
+          return '<li class="flex items-center gap-3 text-[13px] font-bold text-muted"><span class="w-10 shrink-0">' + h.rating + ' ★</span><span class="flex-1 h-2 rounded-full bg-mint overflow-hidden"><span class="block h-full rounded-full bg-ink" style="width:' + h.percentage + '%"></span></span><span class="w-8 text-right">' + h.frequency + '</span></li>';
+        }).join('');
+      }
+      // Unfiltered: page through the API as before
       function load() {
         more.disabled = true;
-        fetch(url(page)).then(function (r) { return r.json(); }).then(function (d) {
-          if (page === 1) {
-            total = d.number_of_reviews || 0;
-            box.querySelector('[data-pp-jm-avg]').textContent = total ? String(+(+d.average_rating).toFixed(2)) : '–';
-            box.querySelector('[data-pp-jm-stars]').innerHTML = stars(+d.average_rating || 0, 26);
-            box.querySelector('[data-pp-jm-count]').textContent = total ? 'Based on ' + total + ' review' + (total === 1 ? '' : 's') : 'No reviews yet';
-            box.querySelector('[data-pp-jm-hist]').innerHTML = (d.histogram || []).map(function (h) {
-              return '<li class="flex items-center gap-3 text-[13px] font-bold text-muted"><span class="w-10 shrink-0">' + h.rating + ' ★</span><span class="flex-1 h-2 rounded-full bg-[#f3e8ec] overflow-hidden"><span class="block h-full rounded-full bg-primary" style="width:' + h.percentage + '%"></span></span><span class="w-8 text-right">' + h.frequency + '</span></li>';
-            }).join('');
-          }
-          (d.reviews || []).forEach(function (r) {
-            var li = document.createElement('li');
-            li.className = 'rounded-3xl bg-soft border border-line p-5 flex flex-col';
-            var pics = (r.pictures_urls || []).slice(0, 3).map(function (p) { var u = p.compact || p.small || p.original || p; return '<img src="' + esc(u) + '" alt="" loading="lazy" class="w-16 h-16 rounded-xl object-cover">'; }).join('');
-            var parts = split(strip(r.body_html));
-            var who = parts.by || r.reviewer_name || '';
-            li.innerHTML = '<div class="flex">' + stars(r.rating, 16) + '</div>' +
-              (r.title ? '<p class="mt-2.5 font-display font-bold text-[18px] leading-snug text-primary-dark">' + esc(r.title) + '</p>' : '') +
-              '<p class="mt-1.5 flex-1 text-[15px] leading-relaxed text-ink">' + esc(parts.body) + '</p>' +
-              (pics ? '<div class="mt-3 flex gap-2">' + pics + '</div>' : '') +
-              '<p class="mt-4 flex items-center gap-2 text-[14px] font-bold text-ink"><span class="w-8 h-8 rounded-full bg-mint text-primary-dark inline-flex items-center justify-center text-[13px]">' + esc(r.reviewer_initial || (r.reviewer_name || '?').charAt(0)) + '</span>' + esc(who) + (r.verified_buyer ? ' <span class="text-primary text-[12px]">✓ Verified buyer</span>' : '') + '</p>';
-            list.appendChild(li); shown++;
-          });
+        get(page, per).then(function (d) {
+          if (page === 1) header(d);
+          (d.reviews || []).forEach(function (r) { list.appendChild(card(r)); shown++; });
           more.classList.toggle('hidden', shown >= total);
           more.disabled = false; page++;
         }).catch(function () { box.querySelector('[data-pp-jm-count]').textContent = 'Reviews could not load. Please refresh.'; });
       }
-      more.addEventListener('click', load);
+      // Filters need every review: fetch all pages once (30 per call), then show only chips with matches
+      function loadAll() {
+        if (all) return all;
+        all = get(1, 30).then(function (d) {
+          var n = Math.ceil((d.number_of_reviews || 0) / 30), reqs = [];
+          for (var p = 2; p <= n; p++) reqs.push(get(p, 30));
+          return Promise.all(reqs).then(function (rest) {
+            var seen = {}, out = [];
+            [d].concat(rest).forEach(function (x) { (x.reviews || []).forEach(function (r) { var k = r.uuid || (r.created_at + r.reviewer_name); if (!seen[k]) { seen[k] = 1; out.push(r); } }); });
+            return out;
+          });
+        });
+        return all;
+      }
+      function renderFiltered(reset) {
+        loadAll().then(function (rs) {
+          var m = rs.filter(function (r) { return matches(r, filter); });
+          if (reset) { list.innerHTML = ''; fshown = 0; }
+          m.slice(fshown, fshown + per).forEach(function (r) { list.appendChild(card(r)); });
+          fshown = Math.min(m.length, fshown + per);
+          more.classList.toggle('hidden', fshown >= m.length);
+          if (fcount) { fcount.hidden = false; fcount.textContent = m.length + ' review' + (m.length === 1 ? '' : 's') + ' match'; }
+        });
+      }
+      more.addEventListener('click', function () { if (filter) renderFiltered(false); else load(); });
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          var f = c.getAttribute('data-pp-jm-f');
+          chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+          filter = f;
+          if (!f) { list.innerHTML = ''; shown = 0; page = 1; if (fcount) fcount.hidden = true; load(); return; }
+          renderFiltered(true);
+        });
+      });
       load();
+      if (chips.length > 1) {
+        var go = function () { loadAll().then(function (rs) { chips.forEach(function (c) { var f = c.getAttribute('data-pp-jm-f'); if (f) c.hidden = !rs.some(function (r) { return matches(r, f); }); }); }); };
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); go(); } }, { rootMargin: '600px' });
+          io.observe(box);
+        } else go();
+      }
     });
   })();
 </script>
@@ -286,6 +500,7 @@
       { "type": "textarea", "id": "intro", "label": "Intro" },
       { "type": "text", "id": "col_a", "label": "Column 1" },
       { "type": "text", "id": "col_b", "label": "Column 2" },
+      { "type": "number", "id": "media_pos", "label": "Header image: product image number", "info": "e.g. 3 = the third product image. 0 hides it." },
       { "type": "textarea", "id": "rows", "label": "Rows", "info": "row label | column 1 | column 2" },
       { "type": "textarea", "id": "note", "label": "Line under the table" }
     ] },
@@ -310,7 +525,51 @@
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "text", "id": "intro", "label": "Intro" },
       { "type": "number", "id": "per_page", "label": "Reviews per load", "default": 6 },
+      { "type": "textarea", "id": "filters", "label": "Filter chips", "info": "label | text:word|word (matches review text) or label | age:3-5 (child's age). Chips with no matching reviews stay hidden." },
       { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "profiles", "name": "Sound like your house?", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "profiles", "label": "Profiles", "info": "icon | title | her words | how Para Patrol fits, one per line" },
+      { "type": "text", "id": "link_label", "label": "Link to the buy box" }
+    ] },
+    { "type": "videos", "name": "Straight from mums", "settings": [
+      { "type": "paragraph", "content": "Hidden on the live page until at least one video is added." },
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "video", "id": "video_1", "label": "Video 1" }, { "type": "text", "id": "label_1", "label": "Label 1" },
+      { "type": "video", "id": "video_2", "label": "Video 2" }, { "type": "text", "id": "label_2", "label": "Label 2" },
+      { "type": "video", "id": "video_3", "label": "Video 3" }, { "type": "text", "id": "label_3", "label": "Label 3" },
+      { "type": "video", "id": "video_4", "label": "Video 4" }, { "type": "text", "id": "label_4", "label": "Label 4" },
+      { "type": "video", "id": "video_5", "label": "Video 5" }, { "type": "text", "id": "label_5", "label": "Label 5" },
+      { "type": "video", "id": "video_6", "label": "Video 6" }, { "type": "text", "id": "label_6", "label": "Label 6" },
+      { "type": "video", "id": "video_7", "label": "Video 7" }, { "type": "text", "id": "label_7", "label": "Label 7" },
+      { "type": "video", "id": "video_8", "label": "Video 8" }, { "type": "text", "id": "label_8", "label": "Label 8" }
+    ] },
+    { "type": "notice", "name": "What mums notice", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "quotes", "label": "Review quotes", "info": "belief tag | quote | who, one per line. Real reviews only." },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "timeline", "name": "Your first 30 days", "settings": [
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "steps", "label": "Steps", "info": "Day N | title | text, one per line" },
+      { "type": "text", "id": "end_label", "label": "End pill" },
+      { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "rewards", "name": "Rewards ladder", "settings": [
+      { "type": "checkbox", "id": "enabled", "label": "Show rewards ladder", "info": "Turn on once a subscription app supports these rewards.", "default": false },
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading" },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "textarea", "id": "ladder", "label": "Ladder", "info": "delivery | reward, one per line" },
+      { "type": "text", "id": "button", "label": "Button" }
     ] },
     { "type": "howto", "name": "How to use", "settings": [
       { "type": "text", "id": "eyebrow", "label": "Small heading" },

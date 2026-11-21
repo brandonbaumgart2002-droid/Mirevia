@@ -35,7 +35,12 @@ module.exports = {
         mint: 'var(--bg-mint)',
         ink: 'var(--ink)',
         muted: 'var(--ink-muted)',
-        line: 'var(--line)'
+        line: 'var(--line)',
+        cream: 'var(--pp-cream)',
+        mintfill: 'var(--pp-mint)',
+        mintdeep: 'var(--pp-mint-deep)',
+        raspberry: 'var(--pp-raspberry)',
+        blush: 'var(--pp-blush)'
       },
       fontFamily: {
         display: ['var(--pp-font-display)'],

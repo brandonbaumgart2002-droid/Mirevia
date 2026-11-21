@@ -1,0 +1,45 @@
+{%- comment -%}
+  One-line offer bar on blush at the very top of the Para Patrol page.
+  The countdown only shows when a real end date is set, and disappears once it passes.
+{%- endcomment -%}
+{%- if section.settings.text != blank -%}
+{{ 'parapatrol.css' | asset_url | stylesheet_tag }}
+<div class="pp pp-offer" role="region" aria-label="Current offer">
+  <p class="max-w-6xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[14px] font-extrabold leading-snug">
+    <span>{{ section.settings.text }}</span>
+    {%- if section.settings.end_date != blank -%}
+      <span class="inline-flex items-center gap-1.5 font-bold" data-pp-offer-end="{{ section.settings.end_date }}T{{ section.settings.end_time | default: '23:59' }}:00{{ section.settings.utc_offset | default: '+11:00' }}" hidden>Ends in <span class="tabular-nums" data-pp-offer-left></span></span>
+    {%- endif -%}
+  </p>
+</div>
+{%- if section.settings.end_date != blank -%}
+<script>
+  (function () {
+    document.querySelectorAll('[data-pp-offer-end]').forEach(function (el) {
+      var end = Date.parse(el.getAttribute('data-pp-offer-end')), out = el.querySelector('[data-pp-offer-left]');
+      if (isNaN(end)) return;
+      function tick() {
+        var s = Math.floor((end - Date.now()) / 1000);
+        if (s <= 0) { el.hidden = true; clearInterval(iv); return; }
+        var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+        out.textContent = (d ? d + 'd ' : '') + h + 'h ' + m + 'm'; el.hidden = false;
+      }
+      var iv = setInterval(tick, 30000); tick();
+    });
+  })();
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ParaPatrol: offer bar",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Offer line", "default": "30-day money-back guarantee" },
+    { "type": "text", "id": "end_date", "label": "Offer end date (YYYY-MM-DD)", "info": "Only set this if the offer really ends then. Blank hides the countdown." },
+    { "type": "text", "id": "end_time", "label": "End time (HH:MM)", "default": "23:59" },
+    { "type": "text", "id": "utc_offset", "label": "Time zone offset", "default": "+11:00", "info": "+11:00 is AEDT (Sydney/Melbourne summer)." }
+  ],
+  "presets": [{ "name": "ParaPatrol: offer bar" }]
+}
+{% endschema %}

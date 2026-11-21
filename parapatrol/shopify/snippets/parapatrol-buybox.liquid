@@ -23,6 +23,12 @@
 {%- endcomment -%}
 {%- liquid
   assign v = product.selected_or_first_available_variant
+  comment
+    Bundle products open on the middle bundle (the brief's pre-selected offer) unless a variant is in the URL.
+  endcomment
+  if product.selected_variant == blank and product.options.first == 'Bundle' and product.variants.size > 2 and product.variants[1].available
+    assign v = product.variants[1]
+  endif
   assign group = product.selling_plan_groups.first
   assign has_plans = false
   if group and v.selling_plan_allocations.size > 0
@@ -103,7 +109,7 @@
             -%}
             <label class="pp-tier{% if badge != '' %} pp-tier--badged{% endif %}" data-pp-tier-card>
               <input type="radio" name="pp-tier-{{ uid }}" value="{{ variant.id }}" class="sr-only" data-pp-tier{% if variant.id == v.id %} checked{% endif %}{% unless variant.available %} disabled{% endunless %}>
-              {%- if badge != '' -%}<span class="pp-tier__badge">{{ badge }}</span>{%- endif -%}
+              {%- if badge != '' -%}<span class="pp-tier__badge{% if badge == 'Best value' %} pp-tier__badge--value{% endif %}">{{ badge }}</span>{%- endif -%}
               <img src="{{ img | asset_url }}" alt="" width="200" height="200" loading="lazy" class="pp-tier__img">
               <span class="pp-tier__title">{{ variant.title }}</span>
               <span class="pp-tier__size">{{ n }} &times; 30 mL<br>{{ days }} days</span>
@@ -187,7 +193,7 @@
         <input id="pp-qty-{{ uid }}" name="quantity" data-pp-qty-input type="number" inputmode="numeric" min="1" max="10" value="1" class="pp-qty w-10 text-center font-bold text-[16px] bg-transparent">
         <button type="button" data-pp-qty="1" class="disable-global-button-styling w-11 h-[52px] rounded-r-full text-[22px] font-medium hover:bg-soft disabled:opacity-40" aria-label="Increase quantity">+</button>
       </div>
-      <button type="submit" name="add" data-pp-add class="disable-global-button-styling flex-1 min-w-0 min-h-[52px] rounded-full bg-primary hover:bg-primary-dark text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors disabled:opacity-60"{% unless v.available %} disabled{% endunless %}>
+      <button type="submit" name="add" data-pp-add class="disable-global-button-styling flex-1 min-w-0 min-h-[56px] rounded-xl bg-raspberry hover:brightness-95 text-white font-bold text-[15px] sm:text-[16px] px-3 whitespace-nowrap transition-colors disabled:opacity-60"{% unless v.available %} disabled{% endunless %}>
         {%- if v.available -%}Add to Bag · {{ start_price | money }}{%- else -%}Sold out{%- endif -%}
       </button>
     </div>
@@ -224,7 +230,7 @@
           </li>
         </ol>
         {%- if delivery_note != blank -%}
-          <p class="mt-3 pt-2.5 border-t border-[#cfe3d8] text-[12px] leading-snug text-muted text-center">{{ delivery_note }}</p>
+          <p class="mt-3 pt-2.5 border-t border-line text-[12px] leading-snug text-muted text-center">{{ delivery_note }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
