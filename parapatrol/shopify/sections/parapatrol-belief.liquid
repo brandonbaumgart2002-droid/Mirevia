@@ -439,6 +439,39 @@
         </div>
       </section>
 
+    {%- when 'tested' -%}
+      {%- comment -%} Lab-testing proof: photo left, lab + headline + copy + sticker + results button right. {%- endcomment -%}
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-20 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-ts-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 items-center">
+          <div class="pp-tested__photo">
+            {%- if b.image != blank -%}
+              {{ b.image | image_url: width: 1400 | image_tag: alt: b.image.alt, loading: 'lazy', sizes: '(min-width: 1024px) 560px, calc(100vw - 32px)', widths: '480,720,960,1400', class: 'w-full h-full object-cover' }}
+            {%- elsif b.image_asset != blank -%}
+              <img src="{{ b.image_asset | asset_img_url: '1400x' }}" srcset="{{ b.image_asset | asset_img_url: '720x' }} 720w, {{ b.image_asset | asset_img_url: '1400x' }} 1400w" sizes="(min-width: 1024px) 560px, calc(100vw - 32px)" alt="{{ b.image_alt | escape }}" width="1448" height="1086" loading="lazy" class="w-full h-full object-cover">
+            {%- endif -%}
+          </div>
+          <div>
+            <p class="flex flex-wrap items-center gap-3">
+              {%- if b.lab_name != blank -%}<span class="inline-flex items-center gap-2 font-display font-black text-[22px] sm:text-[26px] text-ink"><span class="text-mintdeep" aria-hidden="true">{%- render 'parapatrol-icon', name: 'lab', icon_size: 24 -%}</span>{{ b.lab_name | replace: '[[', ph_open | replace: ']]', ph_close }}</span>{%- endif -%}
+              {%- if b.pill != blank -%}<span class="pp-pill pp-pill--blush text-[12px] uppercase tracking-[.08em]">{{ b.pill }}</span>{%- endif -%}
+            </p>
+            <h2 id="pp-ts-{{ block.id }}" class="mt-4 font-display font-extrabold text-[32px] sm:text-[44px] leading-[1.05] text-ink">
+              {%- assign hh = b.heading | escape | split: '*' -%}{%- for part in hh -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}
+            </h2>
+            {%- if b.text_1 != blank -%}<p class="mt-4 text-[16px] sm:text-[17px] leading-relaxed text-ink">{{ b.text_1 | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+            {%- if b.text_2 != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] leading-relaxed text-ink">{{ b.text_2 | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
+            {%- if b.sticker != blank -%}<p class="mt-6"><span class="pp-sticker">{{ b.sticker }}</span></p>{%- endif -%}
+            {%- if b.button_label != blank -%}
+              {%- if b.results_url != blank -%}
+                <a href="{{ b.results_url }}" target="_blank" rel="noopener" class="mt-6 inline-flex min-h-[54px] items-center justify-center rounded-xl bg-ink px-8 font-extrabold uppercase tracking-[.04em] text-[15px] text-white hover:opacity-90">{{ b.button_label }}</a>
+              {%- elsif request.design_mode or b.show_placeholder -%}
+                <p class="mt-6"><mark class="pp-ph">[[{{ b.button_label }} button shows once the results link is added]]</mark></p>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </section>
+
   {%- endcase -%}
 {%- endfor -%}
 </div>
@@ -677,6 +710,21 @@
       { "type": "number", "id": "per_page", "label": "Reviews per load", "default": 6 },
       { "type": "textarea", "id": "filters", "label": "Filter chips", "info": "label | text:word|word (matches review text) or label | age:3-5 (child's age). Chips with no matching reviews stay hidden." },
       { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "tested", "name": "Tested. Verified. Clean.", "settings": [
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mintsoft", "label": "Light mint" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "image_picker", "id": "image", "label": "Photo" },
+      { "type": "text", "id": "image_asset", "label": "Photo file in theme assets (used when no photo is picked)" },
+      { "type": "text", "id": "image_alt", "label": "Photo description" },
+      { "type": "text", "id": "lab_name", "label": "Lab name", "info": "e.g. the testing lab. Blank hides it." },
+      { "type": "text", "id": "pill", "label": "Pill", "default": "3rd-party tested" },
+      { "type": "text", "id": "heading", "label": "Heading", "info": "Wrap words in *asterisks* for the raspberry accent." },
+      { "type": "textarea", "id": "text_1", "label": "Paragraph 1" },
+      { "type": "textarea", "id": "text_2", "label": "Paragraph 2" },
+      { "type": "text", "id": "sticker", "label": "Sticker" },
+      { "type": "text", "id": "button_label", "label": "Button label", "default": "View recent results" },
+      { "type": "url", "id": "results_url", "label": "Results / COA link", "info": "The button stays hidden until this is set." },
+      { "type": "checkbox", "id": "show_placeholder", "label": "Show the button placeholder on the preview", "default": true }
     ] },
     { "type": "helps", "name": "Who this helps most", "settings": [
       { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mintsoft", "label": "Light mint" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },

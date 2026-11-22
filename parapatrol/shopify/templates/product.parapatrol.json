@@ -120,7 +120,7 @@
             "heading": "Kids aren’t small adults",
             "steps": "Kids’ tummies are smaller and more sensitive than ours.\nMost herbal cleanses are made for adults: adult doses, bitter, and often made with alcohol.\nSo kids spit them out, and mums are right to be wary.\nA kids’ formula needs three things: gentle herbs at a kid’s dose, a taste they’ll accept, and nothing nasty.\nThat’s exactly how Para Patrol™ is made: 11 herbal extracts including fennel, anise and thyme, raspberry flavour, no alcohol, no sugar, for ages 3+. One dropper in juice.",
             "binder_line": "",
-            "band": "white"
+            "band": "mintsoft"
           }
         },
         "compare": {
@@ -135,7 +135,7 @@
             "note": "If you’ve seen worms, see your pharmacist or GP first. Para Patrol™ is for the everyday tummy support in between.",
             "media_pos": 0,
             "header_image": "shopify://shop_images/image2_194b00de-2fd3-4599-9219-f6fc516035cf.png",
-            "band": "mintsoft"
+            "band": "white"
           }
         },
         "label": {
@@ -155,7 +155,7 @@
             "cert_url": "",
             "aust_l": "",
             "practitioner": "",
-            "band": "white"
+            "band": "mintsoft"
           }
         },
         "reviews": {
@@ -166,7 +166,7 @@
             "intro": "Real reviews from Para Patrol™ customers.",
             "note": "Individual results vary.",
             "filters": "I rolled my eyes too | text:scept|skept|doubt|wasn.t sure|rolled my eyes|hesitant|wary\nShe actually takes it | text:taste|flavou?r|takes it|no fuss|without (a|any) fuss|never notice|doesn.t even realise\nOur GP was fine with it | text:\\bGP\\b|doctor|paediatrician|pediatrician|pharmacist\nPicky eater | text:picky|fussy|appetite\n2am wake-ups | text:night|sleep|2am|wake\nAges 3–5 | age:3-5\nAges 6–8 | age:6-8\nAges 9+ | age:9-99",
-            "band": "white"
+            "band": "mintsoft"
           }
         },
         "howto": {
@@ -179,7 +179,7 @@
             "dose": "",
             "line": "One dropper in her juice. Most kids don’t even notice.",
             "small": "Always read the label and follow directions for use.",
-            "band": "white"
+            "band": "mintsoft"
           }
         },
         "profiles": {
@@ -215,7 +215,7 @@
             "heading": "What mums notice",
             "quotes": "I rolled my eyes too | I was skeptical but decided to try it. Within two weeks my son’s appetite improved and he stopped leaving half his food. | Father of Benjamin, age 8\nShe actually takes it | The liquid format saved us. Oscar used to refuse anything that looked like medicine, but one dropper in juice and it’s done without a fuss. | Father of Oscar, age 5\nPicky eater | Picky eater who used to leave half his food. Now he finishes most meals. Mixed in milk — he never notices. | Father of George, age 5",
             "note": "Individual reviews from parents. Every child is different.",
-            "band": "mintsoft"
+            "band": "white"
           }
         },
         "timeline": {
@@ -227,7 +227,7 @@
             "steps": "Day 1 | One dropper | One dropper in her morning juice. That’s the whole routine.\nDay 7 | Part of breakfast | It’s just part of the morning now, same glass, same time.\nDay 14 | Keep going daily | Keep it next to the juice so it’s never forgotten.\nDay 30 | Your call | Keep going, or ask for your money back. It’s your decision.",
             "end_label": "30-day money-back guarantee ends here",
             "note": "Every child is different. Always read the label and follow directions for use.",
-            "band": "mintsoft"
+            "band": "white"
           }
         },
         "rewards": {
@@ -245,7 +245,7 @@
         "helps": {
           "type": "helps",
           "settings": {
-            "band": "mintsoft",
+            "band": "white",
             "eyebrow": "Who this helps most",
             "heading": "Is Para Patrol™ *right for your child?*",
             "intro": "Para Patrol™ is for the mum who knows something’s not quite right with her kid’s tummy, and wants something gentle made for them.",
@@ -259,10 +259,28 @@
             "profile_5": "🙅 | The tablet refuser\nYou tried the chewable. It ended up on the floor, and then the dog was more interested than she was.\nNo chewing and no swallowing. One raspberry dropper stirred into juice, and most kids don’t even notice.\n- No more medicine standoffs\n- Something she’ll take every day\n- A routine done before breakfast\n+ Natural raspberry flavour | Tastes like a treat, not a herb\n+ Licorice root extract | A naturally sweet root\n+ Anise seed extract | A sweet, liquorice-like seed\n+ Bitter blocker | On the label to soften the herbal taste",
             "profile_6": "🌿 | The mum who wants gentle\nAdult cleanse kits are bitter, made with alcohol and come in three steps. You want something made for her.\nAll 11 herbs in one dropper, made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.\n- Made for little bodies\n- Nothing nasty in her glass\n- Knowing exactly what she’s taking\n+ Vegetable glycerin base | No alcohol and no sugar\n+ 11 herbal extracts | One kid-sized dropper, not a 3-product kit\n+ Every ingredient on the label | See the full list below\n+ Third-party tested | Tested for purity"
           }
+        },
+        "tested": {
+          "type": "tested",
+          "settings": {
+            "image_asset": "pp-tested-breakfast.jpg",
+            "image_alt": "A mum adds a dropper of Para Patrol to her daughter’s orange juice at breakfast",
+            "lab_name": "[[Lab name]]",
+            "pill": "3rd-party tested",
+            "heading": "Tested. *Verified.* Clean.",
+            "text_1": "Your child’s daily routine shouldn’t be built on mystery ingredients or harsh adult formulas.",
+            "text_2": "Every batch of Para Patrol™ is independently tested by [[LAB]] for [[purity and safety]]. All 11 herbs are named on the label, in a raspberry base with no alcohol and no sugar.",
+            "sticker": "Every herb on the label",
+            "button_label": "View recent results",
+            "results_url": "",
+            "show_placeholder": true,
+            "band": "mintsoft"
+          }
         }
       },
       "block_order": [
         "videos",
+        "tested",
         "helps",
         "logic",
         "compare",
@@ -541,7 +559,7 @@
         "eyebrow": "FAQ",
         "heading": "Questions mums ask",
         "schema": true,
-        "band": "mintsoft"
+        "band": "white"
       }
     },
     "close": {
@@ -561,7 +579,7 @@
             "product": "",
             "servings": 30,
             "cta_label": "Choose my bundle",
-            "band": "white"
+            "band": "mintsoft"
           }
         }
       },
@@ -574,7 +592,7 @@
       "settings": {
         "fda_text": "Always read the label and follow directions for use.",
         "small_print": "Para Patrol™ is gentle daily tummy support, not a medicine or a worm treatment. If you’ve seen worms or your child is unwell, see your pharmacist or GP. Talk to your GP or pharmacist before use if your child takes medication or has a health condition.",
-        "band": "mintsoft"
+        "band": "white"
       }
     },
     "offer": {

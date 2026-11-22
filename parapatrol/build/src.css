@@ -526,3 +526,8 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 /* Small mint tiles inside a light-mint band turn white so they still stand off it */
 .pp.pp.pp [data-pp-band="mintsoft"] .bg-mint { background-color: #FFFFFF !important; }
 .pp.pp.pp [data-pp-band="mintsoft"] :is(.bg-white, .pp-tier, .pp-help-tab, .pp-prof-tab, .pp-chip) { --line: #BFE3D3; }
+
+/* ===== Tested. Verified. Clean. ===== */
+.pp .pp-tested__photo { aspect-ratio: 4 / 3; border-radius: 26px; overflow: hidden; border: 2px solid var(--ink); padding: 6px; background: #fff; box-shadow: 0 24px 48px -24px rgba(31,42,90,.45); }
+.pp .pp-tested__photo > img { border-radius: 20px; }
+.pp .pp-sticker { display: inline-block; transform: rotate(-3deg); padding: 12px 22px; border-radius: 14px; background: var(--pp-raspberry); color: #fff; border: 2px solid var(--ink); box-shadow: 4px 5px 0 var(--ink); font-family: var(--pp-font-display); font-weight: 900; font-size: 18px; letter-spacing: .02em; text-transform: uppercase; line-height: 1.15; }
