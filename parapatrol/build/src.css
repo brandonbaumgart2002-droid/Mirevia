@@ -487,3 +487,4 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp.pp .pp-help-tab[aria-selected="true"] { border-color: var(--pp-raspberry) !important; box-shadow: 0 0 0 1.5px var(--pp-raspberry), 0 8px 18px -12px rgba(199,56,98,.6); background-color: #fff !important; }
 .pp.pp .pp-help-tab[aria-selected="true"] > span:last-child { color: var(--pp-raspberry); }
 .pp.pp .font-black { font-weight: 900; }
+.pp .pp-emoji { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }

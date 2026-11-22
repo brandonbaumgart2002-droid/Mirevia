@@ -357,6 +357,7 @@
           - text   something she wants to improve (any number)
           + name | traditional use   an ingredient that helps (any number)
       {%- endcomment -%}
+      {%- assign svg_icons = 'sun,plate,backpack,wave,suitcase,leaf,reset,shield,shield-alert,check,lock,truck,info,bulb,heart,kid,no-alcohol,no-sugar,berry,guarantee,moon,tablet,lab' | split: ',' -%}
       <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-hp-{{ block.id }}" data-pp-profiles>
         <div class="max-w-6xl mx-auto px-4">
           <div class="text-center max-w-[760px] mx-auto">
@@ -375,7 +376,7 @@
                 {%- assign pl = b[pk] | newline_to_br | split: '<br />' -%}
                 {%- assign f = pl[0] | strip | split: '|' -%}
                 <button type="button" role="tab" id="pp-hpt-{{ block.id }}-{{ pn }}" aria-controls="pp-hpp-{{ block.id }}-{{ pn }}" aria-selected="{% if pn == 0 %}true{% else %}false{% endif %}" tabindex="{% if pn == 0 %}0{% else %}-1{% endif %}" data-pp-prof-tab="{{ pn }}" class="disable-global-button-styling pp-prof-tab pp-help-tab flex flex-col items-center justify-start gap-2 rounded-2xl border border-line px-1.5 py-3.5 sm:py-4 text-center">
-                  <span class="w-10 h-10 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- assign pi = f[0] | strip -%}{%- render 'parapatrol-icon', name: pi, icon_size: 22 -%}</span>
+                  {%- assign pi = f[0] | strip -%}{%- if svg_icons contains pi -%}<span class="w-10 h-10 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: pi, icon_size: 22 -%}</span>{%- else -%}<span class="pp-emoji text-[28px] sm:text-[30px] leading-none h-10 inline-flex items-center" aria-hidden="true">{{ pi }}</span>{%- endif -%}
                   <span class="text-[10.5px] sm:text-[12px] font-extrabold uppercase tracking-[.06em] leading-tight text-muted">{{ f[1] | strip }}</span>
                 </button>
                 {%- assign pn = pn | plus: 1 -%}
@@ -392,7 +393,7 @@
               <div role="tabpanel" id="pp-hpp-{{ block.id }}-{{ pn }}" aria-labelledby="pp-hpt-{{ block.id }}-{{ pn }}" data-pp-prof-panel="{{ pn }}" class="mt-4 sm:mt-6 rounded-3xl bg-white border border-line p-5 sm:p-10 grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-10"{% if pn > 0 %} hidden{% endif %}>
                 <div>
                   <p class="flex items-center gap-3">
-                    <span class="w-11 h-11 shrink-0 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- assign pi = f[0] | strip -%}{%- render 'parapatrol-icon', name: pi, icon_size: 24 -%}</span>
+                    {%- assign pi = f[0] | strip -%}{%- if svg_icons contains pi -%}<span class="w-11 h-11 shrink-0 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: pi, icon_size: 24 -%}</span>{%- else -%}<span class="pp-emoji shrink-0 text-[32px] sm:text-[36px] leading-none" aria-hidden="true">{{ pi }}</span>{%- endif -%}
                     <span class="font-display font-black text-[22px] sm:text-[28px] leading-[1.1] text-ink">{{ f[1] | strip }}</span>
                   </p>
                   {%- assign story = pl[1] | strip -%}{%- assign fit = pl[2] | strip -%}
@@ -626,7 +627,7 @@
       { "type": "text", "id": "wants_label", "label": "Wants label", "default": "What she wants to improve" },
       { "type": "text", "id": "herbs_label", "label": "Ingredients label", "default": "In the formula" },
       { "type": "text", "id": "link_label", "label": "Link to the buy box" },
-      { "type": "paragraph", "content": "Each profile: line 1 icon | title. Line 2 her moment. Line 3 how Para Patrol fits. Lines starting - are what she wants to improve. Lines starting + are ingredients: name | traditional use. Icons: plate, moon, shield, heart, tablet, kid, leaf, wave, sun." },
+      { "type": "paragraph", "content": "Each profile: line 1 icon | title. Line 2 her moment. Line 3 how Para Patrol fits. Lines starting - are what she wants to improve. Lines starting + are ingredients: name | traditional use. Use an emoji (e.g. 🥦) or an icon name: plate, moon, shield, heart, tablet, kid, leaf." },
       { "type": "textarea", "id": "profile_1", "label": "Profile 1" },
       { "type": "textarea", "id": "profile_2", "label": "Profile 2" },
       { "type": "textarea", "id": "profile_3", "label": "Profile 3" },
