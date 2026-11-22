@@ -145,10 +145,24 @@
               {%- assign avs = section.settings.rating_avatars | split: ',' -%}
               <span class="flex -space-x-2 mr-0.5" aria-hidden="true">{%- for a in avs limit: 3 -%}{%- assign a_f = a | strip -%}<img src="{{ a_f | asset_img_url: '64x64', crop: 'center' }}" alt="" width="28" height="28" loading="lazy" class="w-7 h-7 rounded-full object-cover border-2 border-white">{%- endfor -%}</span>
             {%- endif -%}
-            {%- render 'parapatrol-stars', score: score, size: 18 -%}
-            <span class="font-bold text-ink">{{ score }}</span>
-            <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">({% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.rating_label }})</a>
+            <span data-pp-live-stars class="inline-flex">{%- render 'parapatrol-stars', score: score, size: 18 -%}</span>
+            <span class="font-bold text-ink" data-pp-live-avg>{{ score }}</span>
+            <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">(<span data-pp-live-count>{% if review_count != blank %}{{ review_count }} {% endif %}</span>{{ section.settings.rating_label }})</a>
           </div>
+          {%- comment -%} The stored rating can lag behind Judge.me; refresh the numbers from the live widget data {%- endcomment -%}
+          <script>
+            (function () {
+              var row = document.currentScript.previousElementSibling;
+              fetch('https://api.judge.me/reviews/reviews_for_widget?url={{ shop.permanent_domain }}&shop_domain={{ shop.permanent_domain }}&platform=shopify&page=1&per_page=1&product_id={{ product.id }}')
+                .then(function (r) { return r.json(); }).then(function (d) {
+                  var n = d.number_of_reviews, avg = +d.average_rating; if (!n || !avg) return;
+                  row.querySelector('[data-pp-live-count]').textContent = n + ' ';
+                  row.querySelector('[data-pp-live-avg]').textContent = String(Math.round(avg * 10) / 10);
+                  var h = ''; for (var i = 1; i <= 5; i++) { var f = Math.max(0, Math.min(1, avg - i + 1)); h += '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ppls' + i + '"><stop offset="' + (f * 100) + '%" stop-color="var(--pp-star)"/><stop offset="' + (f * 100) + '%" stop-color="var(--pp-star-empty)"/></linearGradient></defs><path fill="url(#ppls' + i + ')" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>'; }
+                  var st = row.querySelector('[data-pp-live-stars]'); st.innerHTML = h; st.setAttribute('aria-label', (Math.round(avg * 10) / 10) + ' out of 5 stars'); st.style.display = 'inline-flex'; st.style.gap = '2px';
+                }).catch(function () {});
+            })();
+          </script>
         {%- endif -%}
 
         {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank -%}
@@ -515,7 +529,7 @@
     { "type": "text", "id": "ph_4", "label": "Image 4", "default": "supplement facts label" },
 
     { "type": "header", "content": "Brand colours (all ParaPatrol sections)" },
-    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mintsoft", "label": "Light mint" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
     { "type": "color", "id": "pp_cream", "label": "Cream (page background)", "default": "#FBF6EE" },
     { "type": "color", "id": "pp_mint", "label": "Mint (bands, chips)", "default": "#9FE0C9" },
     { "type": "color", "id": "pp_mint_deep", "label": "Mint deep (ticks, links, selected bundle)", "default": "#1F7F66" },

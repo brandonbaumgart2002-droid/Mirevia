@@ -65,7 +65,7 @@
         "brand_primary_dark": "#1F2A5A",
         "brand_accent": "#FBE3EA",
         "brand_berry": "#C73862",
-        "bg_soft": "#FBF6EE",
+        "bg_soft": "#EEF8F3",
         "bg_mint": "#E7F7F1",
         "ink": "#1F2A5A",
         "ink_muted": "#5F6673",
@@ -82,7 +82,7 @@
         "judgeme_badge": true,
         "trust_chips": "",
         "coa_url": "",
-        "pp_cream": "#FBF6EE",
+        "pp_cream": "#FFFFFF",
         "pp_mint": "#9FE0C9",
         "pp_mint_deep": "#1F7F66",
         "pp_raspberry": "#C73862",
@@ -109,7 +109,7 @@
             "story": "<p>[[REAL CUSTOMER STORY — 120–200 words, first person, names exact moments: the 2am doorway, the plate pushed away, “she’s just not herself”. Child’s age. Customer first name + state. Written permission on file.]]</p>",
             "attribution": "[[First name, state · child’s age]]",
             "closing": "You’re not imagining it. And you’re not doing anything wrong.",
-            "band": "cream"
+            "band": "mintsoft"
           },
           "disabled": true
         },
@@ -135,7 +135,7 @@
             "note": "If you’ve seen worms, see your pharmacist or GP first. Para Patrol™ is for the everyday tummy support in between.",
             "media_pos": 0,
             "header_image": "shopify://shop_images/image2_194b00de-2fd3-4599-9219-f6fc516035cf.png",
-            "band": "cream"
+            "band": "mintsoft"
           }
         },
         "label": {
@@ -190,7 +190,7 @@
             "intro": "Para Patrol™ was made for the mum who knows something’s not quite right, and wants something gentle.",
             "profiles": "plate | The picky eater | Three bites in, she pushes the plate away and says her tummy’s full. | Gentle daily tummy support in one raspberry dropper she won’t notice in her juice.\nmoon | The 2am tummy aches | He’s in our doorway at 2am, holding his tummy again. | Fennel, anise and licorice, herbs traditionally used to soothe little tummies, in one daily dropper.\ntablet | The tablet refuser | We tried the chewable. It ended up on the floor. | No chewing, no swallowing. One raspberry dropper stirred into juice.\nheart | The mum who wants gentle | I don’t want harsh adult stuff. I want something made for her. | Made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.",
             "link_label": "Para Patrol™ was made for this",
-            "band": "cream"
+            "band": "mintsoft"
           }
         },
         "videos": {
@@ -215,7 +215,7 @@
             "heading": "What mums notice",
             "quotes": "I rolled my eyes too | I was skeptical but decided to try it. Within two weeks my son’s appetite improved and he stopped leaving half his food. | Father of Benjamin, age 8\nShe actually takes it | The liquid format saved us. Oscar used to refuse anything that looked like medicine, but one dropper in juice and it’s done without a fuss. | Father of Oscar, age 5\nPicky eater | Picky eater who used to leave half his food. Now he finishes most meals. Mixed in milk — he never notices. | Father of George, age 5",
             "note": "Individual reviews from parents. Every child is different.",
-            "band": "cream"
+            "band": "mintsoft"
           }
         },
         "timeline": {
@@ -227,7 +227,7 @@
             "steps": "Day 1 | One dropper | One dropper in her morning juice. That’s the whole routine.\nDay 7 | Part of breakfast | It’s just part of the morning now, same glass, same time.\nDay 14 | Keep going daily | Keep it next to the juice so it’s never forgotten.\nDay 30 | Your call | Keep going, or ask for your money back. It’s your decision.",
             "end_label": "30-day money-back guarantee ends here",
             "note": "Every child is different. Always read the label and follow directions for use.",
-            "band": "cream"
+            "band": "mintsoft"
           }
         },
         "rewards": {
@@ -245,7 +245,7 @@
         "helps": {
           "type": "helps",
           "settings": {
-            "band": "cream",
+            "band": "mintsoft",
             "eyebrow": "Who this helps most",
             "heading": "Is Para Patrol™ *right for your child?*",
             "intro": "Para Patrol™ is for the mum who knows something’s not quite right with her kid’s tummy, and wants something gentle made for them.",
@@ -541,7 +541,7 @@
         "eyebrow": "FAQ",
         "heading": "Questions mums ask",
         "schema": true,
-        "band": "cream"
+        "band": "mintsoft"
       }
     },
     "close": {
@@ -574,7 +574,7 @@
       "settings": {
         "fda_text": "Always read the label and follow directions for use.",
         "small_print": "Para Patrol™ is gentle daily tummy support, not a medicine or a worm treatment. If you’ve seen worms or your child is unwell, see your pharmacist or GP. Talk to your GP or pharmacist before use if your child takes medication or has a health condition.",
-        "band": "cream"
+        "band": "mintsoft"
       }
     },
     "offer": {

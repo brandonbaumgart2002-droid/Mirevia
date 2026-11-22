@@ -519,3 +519,10 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp .pp-qq .acc-btn[aria-expanded="true"] .acc-icon { transform: rotate(45deg); }
 .pp .pp-qq .acc-icon { transition: transform .2s; display: inline-block; }
 .pp.pp .pp-qq-label { font-weight: 800 !important; font-family: var(--pp-font-body); }
+
+/* ===== Light mint bands (replace off-white) ===== */
+.pp.pp.pp [data-pp-band="mintsoft"], .pp.pp.pp[data-pp-band="mintsoft"] { background-color: #DDF3E9 !important; --bg-soft: #FFFFFF; --ink-muted: #4A5568; --line: #BFE3D3; }
+.pp.pp.pp[data-pp-band="mintsoft"] > section { background-color: transparent !important; }
+/* Small mint tiles inside a light-mint band turn white so they still stand off it */
+.pp.pp.pp [data-pp-band="mintsoft"] .bg-mint { background-color: #FFFFFF !important; }
+.pp.pp.pp [data-pp-band="mintsoft"] :is(.bg-white, .pp-tier, .pp-help-tab, .pp-prof-tab, .pp-chip) { --line: #BFE3D3; }
