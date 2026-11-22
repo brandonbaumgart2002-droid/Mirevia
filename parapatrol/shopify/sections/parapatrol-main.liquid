@@ -218,7 +218,7 @@
           {%- assign bl_items = section.settings.benefit_list | newline_to_br | split: '<br />' -%}
           <ul class="mt-4 grid gap-2.5" role="list" aria-label="Product highlights">
             {%- for l in bl_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 1 and f[0] != blank -%}
-              <li class="flex items-start gap-2.5 text-[15px] sm:text-[16px] leading-snug text-ink">
+              <li class="flex items-start gap-2.5 text-[14.5px] sm:text-[16px] leading-snug text-ink">
                 <span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-raspberry text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span>
                 <span><strong class="font-extrabold">{{ f[0] | strip }}</strong>{%- if f.size >= 2 %} <span class="text-muted">· {{ f[1] | strip }}</span>{%- endif -%}</span>
               </li>
