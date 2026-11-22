@@ -482,3 +482,8 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp .pp-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid; font-size: 14px; font-weight: 800; line-height: 1.2; }
 .pp .pp-pill--blush { background: var(--pp-blush); border-color: #F2B9C9; color: #A3284F; }
 .pp .pp-pill--mint { background: #E7F7F1; border-color: #A9DCC8; color: #17634F; }
+/* Who this helps most: tiles */
+.pp.pp .pp-help-tab { background-color: #fff !important; min-height: 104px; }
+.pp.pp .pp-help-tab[aria-selected="true"] { border-color: var(--pp-raspberry) !important; box-shadow: 0 0 0 1.5px var(--pp-raspberry), 0 8px 18px -12px rgba(199,56,98,.6); background-color: #fff !important; }
+.pp.pp .pp-help-tab[aria-selected="true"] > span:last-child { color: var(--pp-raspberry); }
+.pp.pp .font-black { font-weight: 900; }

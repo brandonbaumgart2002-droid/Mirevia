@@ -346,6 +346,88 @@
       </section>
       {%- endif -%}
 
+    {%- when 'helps' -%}
+      {%- comment -%}
+        "Who this helps most": a tile per parent problem; the open panel shows her moment, what she wants
+        to improve, how Para Patrol fits, and the ingredients in the formula that relate to it.
+        Each profile is one textarea:
+          line 1   icon | title
+          line 2   her moment (a short paragraph)
+          line 3   how Para Patrol fits
+          - text   something she wants to improve (any number)
+          + name | traditional use   an ingredient that helps (any number)
+      {%- endcomment -%}
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-hp-{{ block.id }}" data-pp-profiles>
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-[760px] mx-auto">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-hp-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">
+              {%- assign hh = b.heading | escape | split: '*' -%}{%- for part in hh -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}
+            </h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          </div>
+
+          <div class="mt-7 grid grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3" role="tablist" aria-label="{{ b.heading | remove: '*' | escape }}">
+            {%- assign pn = 0 -%}
+            {%- for i in (1..6) -%}
+              {%- assign pk = 'profile_' | append: i -%}
+              {%- if b[pk] != blank -%}
+                {%- assign pl = b[pk] | newline_to_br | split: '<br />' -%}
+                {%- assign f = pl[0] | strip | split: '|' -%}
+                <button type="button" role="tab" id="pp-hpt-{{ block.id }}-{{ pn }}" aria-controls="pp-hpp-{{ block.id }}-{{ pn }}" aria-selected="{% if pn == 0 %}true{% else %}false{% endif %}" tabindex="{% if pn == 0 %}0{% else %}-1{% endif %}" data-pp-prof-tab="{{ pn }}" class="disable-global-button-styling pp-prof-tab pp-help-tab flex flex-col items-center justify-start gap-2 rounded-2xl border border-line px-1.5 py-3.5 sm:py-4 text-center">
+                  <span class="w-10 h-10 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- assign pi = f[0] | strip -%}{%- render 'parapatrol-icon', name: pi, icon_size: 22 -%}</span>
+                  <span class="text-[10.5px] sm:text-[12px] font-extrabold uppercase tracking-[.06em] leading-tight text-muted">{{ f[1] | strip }}</span>
+                </button>
+                {%- assign pn = pn | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          {%- assign pn = 0 -%}
+          {%- for i in (1..6) -%}
+            {%- assign pk = 'profile_' | append: i -%}
+            {%- if b[pk] != blank -%}
+              {%- assign pl = b[pk] | newline_to_br | split: '<br />' -%}
+              {%- assign f = pl[0] | strip | split: '|' -%}
+              <div role="tabpanel" id="pp-hpp-{{ block.id }}-{{ pn }}" aria-labelledby="pp-hpt-{{ block.id }}-{{ pn }}" data-pp-prof-panel="{{ pn }}" class="mt-4 sm:mt-6 rounded-3xl bg-white border border-line p-5 sm:p-10 grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-10"{% if pn > 0 %} hidden{% endif %}>
+                <div>
+                  <p class="flex items-center gap-3">
+                    <span class="w-11 h-11 shrink-0 rounded-full bg-mint text-ink inline-flex items-center justify-center" aria-hidden="true">{%- assign pi = f[0] | strip -%}{%- render 'parapatrol-icon', name: pi, icon_size: 24 -%}</span>
+                    <span class="font-display font-black text-[22px] sm:text-[28px] leading-[1.1] text-ink">{{ f[1] | strip }}</span>
+                  </p>
+                  {%- assign story = pl[1] | strip -%}{%- assign fit = pl[2] | strip -%}
+                  {%- if story != blank -%}<p class="mt-4 text-[16px] sm:text-[17px] leading-relaxed text-ink">{{ story }}</p>{%- endif -%}
+                  {%- assign has_want = false -%}{%- for l in pl -%}{%- assign t = l | strip -%}{%- assign c0 = t | slice: 0 -%}{%- if c0 == '-' -%}{%- assign has_want = true -%}{%- endif -%}{%- endfor -%}
+                  {%- if has_want -%}
+                    <p class="mt-5 text-[11px] font-extrabold uppercase tracking-[.14em] text-raspberry">{{ b.wants_label | default: 'What she wants to improve' }}</p>
+                    <ul class="mt-2 grid gap-1.5" role="list">
+                      {%- for l in pl -%}{%- assign t = l | strip -%}{%- assign c0 = t | slice: 0 -%}{%- if c0 == '-' -%}
+                        <li class="flex items-start gap-2 text-[15px] font-bold text-ink"><span class="mt-0.5 inline-flex w-[18px] h-[18px] shrink-0 rounded-full bg-raspberry text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 11 -%}</span><span>{{ t | remove_first: '-' | strip }}</span></li>
+                      {%- endif -%}{%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                  {%- if fit != blank -%}<p class="mt-5 text-[16px] sm:text-[17px] leading-relaxed text-ink">{%- render 'parapatrol-claim', text: fit -%}</p>{%- endif -%}
+                  {%- if b.link_label != blank -%}<a href="#pp-buy" data-pp-to-buy class="mt-5 inline-block font-extrabold text-raspberry">{{ b.link_label }} &rarr;</a>{%- endif -%}
+                </div>
+                <div>
+                  <p class="text-[11px] font-extrabold uppercase tracking-[.14em] text-muted">{{ b.herbs_label | default: 'In the formula' }}</p>
+                  <ul class="mt-3 grid gap-2.5" role="list">
+                    {%- for l in pl -%}{%- assign t = l | strip -%}{%- assign c0 = t | slice: 0 -%}{%- if c0 == '+' -%}
+                      {%- assign h = t | remove_first: '+' | strip | split: '|' -%}
+                      <li class="flex items-start gap-3 rounded-2xl bg-soft px-4 py-3.5">
+                        <span class="mt-0.5 text-mintdeep shrink-0" aria-hidden="true">{%- render 'parapatrol-icon', name: 'leaf', icon_size: 18 -%}</span>
+                        <span><span class="block text-[15px] font-extrabold text-ink">{{ h[0] | strip }}</span>{%- if h.size > 1 -%}<span class="block mt-0.5 text-[14px] leading-snug text-muted">{{ h[1] | strip }}</span>{%- endif -%}</span>
+                      </li>
+                    {%- endif -%}{%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+              {%- assign pn = pn | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </section>
+
   {%- endcase -%}
 {%- endfor -%}
 </div>
@@ -535,6 +617,22 @@
       { "type": "number", "id": "per_page", "label": "Reviews per load", "default": 6 },
       { "type": "textarea", "id": "filters", "label": "Filter chips", "info": "label | text:word|word (matches review text) or label | age:3-5 (child's age). Chips with no matching reviews stay hidden." },
       { "type": "text", "id": "note", "label": "Small note" }
+    ] },
+    { "type": "helps", "name": "Who this helps most", "settings": [
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "text", "id": "eyebrow", "label": "Small heading" },
+      { "type": "text", "id": "heading", "label": "Heading", "info": "Wrap words in *asterisks* for the raspberry accent." },
+      { "type": "textarea", "id": "intro", "label": "Intro" },
+      { "type": "text", "id": "wants_label", "label": "Wants label", "default": "What she wants to improve" },
+      { "type": "text", "id": "herbs_label", "label": "Ingredients label", "default": "In the formula" },
+      { "type": "text", "id": "link_label", "label": "Link to the buy box" },
+      { "type": "paragraph", "content": "Each profile: line 1 icon | title. Line 2 her moment. Line 3 how Para Patrol fits. Lines starting - are what she wants to improve. Lines starting + are ingredients: name | traditional use. Icons: plate, moon, shield, heart, tablet, kid, leaf, wave, sun." },
+      { "type": "textarea", "id": "profile_1", "label": "Profile 1" },
+      { "type": "textarea", "id": "profile_2", "label": "Profile 2" },
+      { "type": "textarea", "id": "profile_3", "label": "Profile 3" },
+      { "type": "textarea", "id": "profile_4", "label": "Profile 4" },
+      { "type": "textarea", "id": "profile_5", "label": "Profile 5" },
+      { "type": "textarea", "id": "profile_6", "label": "Profile 6" }
     ] },
     { "type": "profiles", "name": "Sound like your house?", "settings": [
       { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
