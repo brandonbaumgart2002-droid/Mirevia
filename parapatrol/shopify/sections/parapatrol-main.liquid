@@ -216,10 +216,10 @@
 
         {%- if section.settings.benefit_list != blank -%}
           {%- assign bl_items = section.settings.benefit_list | newline_to_br | split: '<br />' -%}
-          <ul class="mt-4 grid gap-2.5" role="list" aria-label="Product highlights">
+          <ul class="mt-4 grid gap-2" role="list" aria-label="Product highlights">
             {%- for l in bl_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 1 and f[0] != blank -%}
-              <li class="flex items-start gap-2.5 text-[14.5px] sm:text-[16px] leading-snug text-ink">
-                <span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-raspberry text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span>
+              <li class="flex items-start gap-2 text-[13.5px] sm:text-[15px] leading-[1.4] text-ink">
+                <span class="mt-px inline-flex w-[18px] h-[18px] shrink-0 rounded-full bg-raspberry text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 11 -%}</span>
                 <span><strong class="font-extrabold">{{ f[0] | strip }}</strong>{%- if f.size >= 2 %} <span class="text-muted">· {{ f[1] | strip }}</span>{%- endif -%}</span>
               </li>
             {%- endif -%}{%- endfor -%}
@@ -265,7 +265,7 @@
         {%- if section.settings.sale_end_date != blank -%}
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
-        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading -%}
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading, ship_note: section.settings.ship_note -%}
 
         {%- if section.settings.trust_chips != blank -%}
           {%- assign tc_items = section.settings.trust_chips | newline_to_br | split: '<br />' -%}
@@ -434,6 +434,7 @@
     { "type": "text", "id": "tick_3", "label": "Benefit 3", "default": "No fuss: mixes into any drink" },
 
     { "type": "header", "content": "Purchase box" },
+    { "type": "text", "id": "ship_note", "label": "Line under the button", "info": "e.g. Ships in 1-3 Business Days. Blank shows the free-shipping line." },
     { "type": "textarea", "id": "trust_chips", "label": "Trust strip under the button", "info": "icon | text, one per line. Use the icon name 'lab' for the lab-tested chip: it links to the COA and stays hidden until a COA link is set." },
     { "type": "url", "id": "coa_url", "label": "Certificate of analysis (COA) link" },
     { "type": "text", "id": "tier_heading", "label": "Bundle cards heading", "default": "Free shipping on every bundle" },

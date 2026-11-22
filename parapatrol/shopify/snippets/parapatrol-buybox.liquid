@@ -48,6 +48,7 @@
       "title": {{ product.title | json }},
       "moneyFormat": {{ shop.money_format | json }},
       "freeShipping": {{ free_shipping | default: 0 | json }},
+      "shipNote": {{ ship_note | default: "" | json }},
       "requiresPlan": {{ product.requires_selling_plan | json }},
       "variants": [
         {%- for variant in product.variants -%}
