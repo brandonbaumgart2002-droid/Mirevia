@@ -147,7 +147,7 @@
             {%- endif -%}
             <span data-pp-live-stars class="inline-flex">{%- render 'parapatrol-stars', score: score, size: 18 -%}</span>
             <span class="font-bold text-ink" data-pp-live-avg>{{ score }}</span>
-            <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">(<span data-pp-live-count>{% if review_count != blank %}{{ review_count }} {% endif %}</span>{{ section.settings.rating_label }})</a>
+            {%- if section.settings.rating_text != blank -%}<a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">{{ section.settings.rating_text }}</a>{%- else -%}<a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">(<span data-pp-live-count>{% if review_count != blank %}{{ review_count }} {% endif %}</span>{{ section.settings.rating_label }})</a>{%- endif -%}
           </div>
           {%- comment -%} The stored rating can lag behind Judge.me; refresh the numbers from the live widget data {%- endcomment -%}
           <script>
@@ -156,7 +156,7 @@
               fetch('https://api.judge.me/reviews/reviews_for_widget?url={{ shop.permanent_domain }}&shop_domain={{ shop.permanent_domain }}&platform=shopify&page=1&per_page=1&product_id={{ product.id }}')
                 .then(function (r) { return r.json(); }).then(function (d) {
                   var n = d.number_of_reviews, avg = +d.average_rating; if (!n || !avg) return;
-                  row.querySelector('[data-pp-live-count]').textContent = n + ' ';
+                  var lc = row.querySelector('[data-pp-live-count]'); if (lc) lc.textContent = n + ' ';
                   row.querySelector('[data-pp-live-avg]').textContent = String(Math.round(avg * 10) / 10);
                   var h = ''; for (var i = 1; i <= 5; i++) { var f = Math.max(0, Math.min(1, avg - i + 1)); h += '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ppls' + i + '"><stop offset="' + (f * 100) + '%" stop-color="var(--pp-star)"/><stop offset="' + (f * 100) + '%" stop-color="var(--pp-star-empty)"/></linearGradient></defs><path fill="url(#ppls' + i + ')" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.2 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>'; }
                   var st = row.querySelector('[data-pp-live-stars]'); st.innerHTML = h; st.setAttribute('aria-label', (Math.round(avg * 10) / 10) + ' out of 5 stars'); st.style.display = 'inline-flex'; st.style.gap = '2px';
@@ -166,12 +166,12 @@
         {%- endif -%}
 
         {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank -%}
-          <ul class="mt-2.5 flex flex-wrap gap-2" role="list" aria-label="Formula credentials">
+          <ul class="mt-2 flex flex-wrap gap-1.5" role="list" aria-label="Formula credentials">
             {%- if section.settings.pill_1 != blank -%}<li class="pp-pill pp-pill--blush"><span aria-hidden="true">✦</span> {{ section.settings.pill_1 }}</li>{%- endif -%}
             {%- if section.settings.pill_2 != blank -%}<li class="pp-pill pp-pill--mint"><span aria-hidden="true">+</span> {{ section.settings.pill_2 }}</li>{%- endif -%}
           </ul>
         {%- endif -%}
-        <h1 id="pp-title-{{ section.id }}" class="pp-title mt-3 font-display text-ink leading-[1.02]">
+        <h1 id="pp-title-{{ section.id }}" class="pp-title mt-2 font-display text-ink leading-[1.02]">
           {{- product.title -}}
           {%- if section.settings.sub_label != blank %}<span class="block mt-1 font-sans font-bold text-[15px] sm:text-[17px] text-muted tracking-normal">{{ section.settings.sub_label }}</span>{% endif -%}
         </h1>
@@ -209,7 +209,7 @@
         {%- endif -%}
       </div>
 
-      <div class="order-2 mt-4">
+      <div class="order-2 mt-2.5">
         {%- liquid
           case section.settings.headline_default
             when 'b'
@@ -460,6 +460,7 @@
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
     { "type": "text", "id": "eyebrow", "label": "Small line above the headline" },
+    { "type": "text", "id": "rating_text", "label": "Text next to the stars", "info": "e.g. 500+ Trusted Parent reviews. Blank shows the live review count." },
     { "type": "text", "id": "pill_1", "label": "Credential pill 1 (blush)", "info": "e.g. Paediatrician Reviewed Formula. Blank hides it." },
     { "type": "text", "id": "pill_2", "label": "Credential pill 2 (mint)", "info": "e.g. 3rd-Party Lab Tested. Blank hides it." },
     { "type": "textarea", "id": "benefit_list", "label": "Benefit ticks", "info": "benefit outcome | feature, one per line. Replaces the icon grid." },

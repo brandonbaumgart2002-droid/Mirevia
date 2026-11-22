@@ -557,3 +557,12 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 @media (min-width: 1024px) { .pp .pp-days { margin-top: 84px !important; } }
 .pp.pp .pp-days ~ div p.uppercase { font-weight: 800 !important; }
 .pp.pp .pp-day--goal .pp-day__title, .pp.pp .pp-day--goal .pp-day__text { color: #fff !important; }
+/* Compact hero copy block */
+.pp.pp .pp-title { font-size: 32px; }
+@media (min-width: 640px) { .pp.pp .pp-title { font-size: 42px; } }
+.pp.pp .pp-headline { font-size: 22px; line-height: 1.1; }
+@media (min-width: 640px) { .pp.pp .pp-headline { font-size: 27px; } }
+.pp .pp-pill { padding: 3px 9px; font-size: 12px; gap: 4px; }
+@media (min-width: 640px) { .pp .pp-pill { font-size: 13px; padding: 4px 11px; } }
+@media (max-width: 639px) { .pp.pp .pp-pill { font-size: 10.5px; padding: 3px 7px; gap: 3px; letter-spacing: -.005em; } }
+@media (max-width: 374px) { .pp.pp .pp-pill { font-size: 9.5px; padding: 3px 6px; } }
