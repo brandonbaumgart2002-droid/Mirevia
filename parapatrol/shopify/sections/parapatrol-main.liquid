@@ -54,7 +54,7 @@
     <div class="lg:sticky lg:top-6 self-start min-w-0" data-pp-gallery>
       <div class="gallery-track flex overflow-x-auto rounded-3xl" data-pp-gallery-track tabindex="0" role="region" aria-label="Product images. Use the thumbnails or swipe to browse.">
         {%- if images.size > 0 -%}
-          {%- for media in images limit: 8 -%}
+          {%- for media in images limit: 12 -%}
             {%- liquid
               assign loading = 'lazy'
               assign priority = false
@@ -74,7 +74,7 @@
         {%- endif -%}
       </div>
       {%- liquid
-        assign slide_count = images.size | at_most: 8
+        assign slide_count = images.size | at_most: 12
         if images.size == 0
           assign slide_count = 4
         endif
@@ -85,7 +85,7 @@
         </div>
         <div class="max-sm:hidden sm:grid grid-cols-4 gap-3 mt-3" role="group" aria-label="Choose image">
           {%- if images.size > 0 -%}
-            {%- for media in images limit: 8 -%}
+            {%- for media in images limit: 12 -%}
               <button type="button" data-pp-thumb class="disable-global-button-styling block overflow-hidden aspect-square rounded-2xl bg-mint{% if forloop.first %} ring-2 ring-primary ring-offset-2{% endif %}" aria-label="Show image {{ forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}>
                 {{- media.preview_image | image_url: width: 240 | image_tag: alt: '', loading: 'lazy', class: 'w-full h-full object-cover' -}}
               </button>
