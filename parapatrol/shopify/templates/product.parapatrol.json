@@ -557,7 +557,7 @@
         "eyebrow": "FAQ",
         "heading": "Questions mums ask",
         "schema": true,
-        "band": "mintsoft"
+        "band": "white"
       }
     },
     "close": {
@@ -577,7 +577,7 @@
             "product": "",
             "servings": 30,
             "cta_label": "Choose my bundle",
-            "band": "white"
+            "band": "mintsoft"
           }
         }
       },
@@ -590,7 +590,7 @@
       "settings": {
         "fda_text": "Always read the label and follow directions for use.",
         "small_print": "Para Patrol™ is gentle daily tummy support, not a medicine or a worm treatment. If you’ve seen worms or your child is unwell, see your pharmacist or GP. Talk to your GP or pharmacist before use if your child takes medication or has a health condition.",
-        "band": "mintsoft"
+        "band": "white"
       }
     },
     "offer": {
