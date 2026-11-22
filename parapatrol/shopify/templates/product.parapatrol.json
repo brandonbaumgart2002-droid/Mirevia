@@ -166,7 +166,7 @@
             "intro": "Real reviews from Para Patrol™ customers.",
             "note": "Individual results vary.",
             "filters": "I rolled my eyes too | text:scept|skept|doubt|wasn.t sure|rolled my eyes|hesitant|wary\nShe actually takes it | text:taste|flavou?r|takes it|no fuss|without (a|any) fuss|never notice|doesn.t even realise\nOur GP was fine with it | text:\\bGP\\b|doctor|paediatrician|pediatrician|pharmacist\nPicky eater | text:picky|fussy|appetite\n2am wake-ups | text:night|sleep|2am|wake\nAges 3–5 | age:3-5\nAges 6–8 | age:6-8\nAges 9+ | age:9-99",
-            "band": "mintsoft"
+            "band": "white"
           }
         },
         "howto": {
@@ -222,12 +222,13 @@
           "type": "timeline",
           "settings": {
             "eyebrow": "What to expect",
-            "heading": "Your first 30 days",
-            "intro": "A simple routine, with 30 days to decide.",
-            "steps": "Day 1 | One dropper | One dropper in her morning juice. That’s the whole routine.\nDay 7 | Part of breakfast | It’s just part of the morning now, same glass, same time.\nDay 14 | Keep going daily | Keep it next to the juice so it’s never forgotten.\nDay 30 | Your call | Keep going, or ask for your money back. It’s your decision.",
+            "heading": "The easiest routine *in her whole morning.*",
+            "intro": "Para Patrol™ is made for the mum who wants gentle, everyday tummy support, not just a fix for the hard nights.",
+            "steps": "Day 1 | 🌅 | One dropper | One dropper in her morning juice. That’s the whole routine, done before breakfast.\nDay 7 | 🥣 | Part of breakfast | It’s just part of the morning now. Same glass, same time, no standoff.\nDay 14 | 📅 | Keep going daily | Keep the bottle next to the juice so it’s never forgotten. Consistency is what counts.\nDay 30 | ⭐ | Your call | A full month of the routine. Keep going, or ask for your money back. It’s your decision.",
             "end_label": "30-day money-back guarantee ends here",
             "note": "Every child is different. Always read the label and follow directions for use.",
-            "band": "white"
+            "band": "mintsoft",
+            "bar_label": "One dropper, every morning"
           }
         },
         "rewards": {
@@ -284,7 +285,6 @@
         "helps",
         "logic",
         "compare",
-        "notice",
         "timeline",
         "rewards",
         "reviews"
@@ -557,7 +557,7 @@
         "eyebrow": "FAQ",
         "heading": "Questions mums ask",
         "schema": true,
-        "band": "white"
+        "band": "mintsoft"
       }
     },
     "close": {
@@ -577,7 +577,7 @@
             "product": "",
             "servings": 30,
             "cta_label": "Choose my bundle",
-            "band": "mintsoft"
+            "band": "white"
           }
         }
       },
@@ -590,7 +590,7 @@
       "settings": {
         "fda_text": "Always read the label and follow directions for use.",
         "small_print": "Para Patrol™ is gentle daily tummy support, not a medicine or a worm treatment. If you’ve seen worms or your child is unwell, see your pharmacist or GP. Talk to your GP or pharmacist before use if your child takes medication or has a health condition.",
-        "band": "white"
+        "band": "mintsoft"
       }
     },
     "offer": {

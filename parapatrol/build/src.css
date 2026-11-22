@@ -531,3 +531,29 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp .pp-tested__photo { aspect-ratio: 4 / 3; border-radius: 26px; overflow: hidden; border: 2px solid var(--ink); padding: 6px; background: #fff; box-shadow: 0 24px 48px -24px rgba(31,42,90,.45); }
 .pp .pp-tested__photo > img { border-radius: 20px; }
 .pp .pp-sticker { display: inline-block; transform: rotate(-3deg); padding: 12px 22px; border-radius: 14px; background: var(--pp-raspberry); color: #fff; border: 2px solid var(--ink); box-shadow: 4px 5px 0 var(--ink); font-family: var(--pp-font-display); font-weight: 900; font-size: 18px; letter-spacing: .02em; text-transform: uppercase; line-height: 1.15; }
+
+/* ===== Day cards timeline (mighty&co style) ===== */
+.pp .pp-day { position: relative; display: flex; flex-direction: column; gap: 8px; min-height: 100%; padding: 46px 16px 18px; border: 2px solid var(--ink); border-radius: 18px; background: #fff; box-shadow: 0 6px 0 rgba(31,42,90,.12); }
+@media (min-width: 1024px) { .pp .pp-day { padding: 54px 22px 24px; } .pp .pp-day--2, .pp .pp-day--3, .pp .pp-day--4 { margin-top: -26px; } }
+.pp .pp-day--goal { background: var(--pp-raspberry); color: #fff; }
+.pp .pp-day__badge { position: absolute; top: -30px; left: 14px; width: 66px; height: 66px; border-radius: 999px; border: 2px solid var(--ink); background: var(--pp-label-mint); color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; box-shadow: 0 4px 0 rgba(31,42,90,.18); }
+.pp .pp-day--3 .pp-day__badge { background: var(--pp-raspberry); color: #fff; }
+.pp .pp-day--goal .pp-day__badge { background: var(--pp-blush); color: var(--ink); }
+@media (min-width: 1024px) { .pp .pp-day__badge { width: 80px; height: 80px; top: -38px; left: 18px; } }
+.pp .pp-day__lbl { font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.pp .pp-day__num { font-family: var(--pp-font-display); font-size: 26px; font-weight: 900; margin-top: 2px; }
+@media (min-width: 1024px) { .pp .pp-day__num { font-size: 32px; } }
+.pp .pp-day__emoji { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--ink); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
+.pp .pp-day__title { margin-top: 10px; font-family: var(--pp-font-display); font-weight: 900; font-size: 17px; line-height: 1.15; color: inherit; }
+.pp .pp-day__text { font-size: 14px; line-height: 1.55; color: inherit; opacity: .92; }
+@media (min-width: 640px) { .pp .pp-day__title { font-size: 19px; } .pp .pp-day__text { font-size: 15px; } }
+.pp .pp-days__bar { display: grid; grid-template-columns: repeat(4, 1fr); height: 16px; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden; }
+.pp .pp-days__bar > span { display: block; }
+.pp .pp-days__bar > span + span { border-left: 2px solid var(--ink); }
+.pp .pp-days__bar > span:nth-child(1) { background: #BFEBDB; } .pp .pp-days__bar > span:nth-child(2) { background: var(--pp-label-mint); }
+.pp .pp-days__bar > span:nth-child(3) { background: #E784A2; } .pp .pp-days__bar > span:nth-child(4) { background: var(--pp-raspberry); }
+.pp.pp .pp-day__title { font-weight: 900 !important; }
+.pp.pp .pp-day__lbl { font-weight: 900 !important; }
+@media (min-width: 1024px) { .pp .pp-days { margin-top: 84px !important; } }
+.pp.pp .pp-days ~ div p.uppercase { font-weight: 800 !important; }
+.pp.pp .pp-day--goal .pp-day__title, .pp.pp .pp-day--goal .pp-day__text { color: #fff !important; }

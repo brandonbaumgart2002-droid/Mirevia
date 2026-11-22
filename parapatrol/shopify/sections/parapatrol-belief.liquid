@@ -310,26 +310,52 @@
       </section>
 
     {%- when 'timeline' -%}
+      {%- comment -%} Day cards (mighty&co style): number badge, emoji tile, text; last card filled; progress bar ending at the guarantee.
+        Steps: Day N | emoji | title | text  (emoji optional: Day N | title | text) {%- endcomment -%}
       {%- assign tsteps = b.steps | newline_to_br | split: '<br />' -%}
-      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-tl-{{ block.id }}">
-        <div class="max-w-[720px] mx-auto px-4">
-          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
-          <h2 id="pp-tl-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
-          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
-          <ol class="pp-tl mt-7 grid gap-4" role="list">
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-20 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-tl-{{ block.id }}">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="text-center max-w-[760px] mx-auto">
+            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+            <h2 id="pp-tl-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">
+              {%- assign hh = b.heading | escape | split: '*' -%}{%- for part in hh -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}
+            </h2>
+            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+          </div>
+          <ol class="pp-days mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-10 sm:gap-x-5" role="list">
             {%- for l in tsteps -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
-              {%- assign dnum = f[0] | strip | remove: 'Day ' | remove: 'day ' -%}
-              <li class="pp-tl__step relative flex gap-4">
-                <span class="relative z-[1] w-14 h-14 shrink-0 rounded-full {% if forloop.last %}bg-ink text-white{% else %}bg-white text-ink border-2 border-ink{% endif %} inline-flex flex-col items-center justify-center leading-none" aria-hidden="true"><span class="text-[10px] font-extrabold uppercase tracking-wide">Day</span><span class="font-display font-extrabold text-[20px]">{{ dnum }}</span></span>
-                <div class="flex-1 rounded-2xl bg-white border border-line p-4 sm:p-5">
-                  <p class="font-display font-extrabold text-[18px] text-ink">{{ f[0] | strip }}{% if f.size >= 3 %} · {{ f[1] | strip }}{% endif %}</p>
-                  <p class="mt-1 text-[16px] leading-relaxed text-ink">{% if f.size >= 3 %}{{ f[2] | strip }}{% else %}{{ f[1] | strip }}{% endif %}</p>
-                </div>
+              {%- liquid
+                assign dnum = f[0] | strip | remove: 'Day ' | remove: 'day ' | remove: 'DAY '
+                if f.size >= 4
+                  assign emo = f[1] | strip
+                  assign ttl = f[2] | strip
+                  assign txt = f[3] | strip
+                elsif f.size == 3
+                  assign emo = ''
+                  assign ttl = f[1] | strip
+                  assign txt = f[2] | strip
+                else
+                  assign emo = ''
+                  assign ttl = ''
+                  assign txt = f[1] | strip
+                endif
+                assign step_n = forloop.index
+              -%}
+              <li class="pp-day{% if forloop.last %} pp-day--goal{% endif %} pp-day--{{ step_n }}">
+                <span class="pp-day__badge" aria-hidden="true"><span class="pp-day__lbl">Day</span><span class="pp-day__num">{{ dnum }}</span></span>
+                {%- if emo != '' -%}<span class="pp-day__emoji" aria-hidden="true">{{ emo }}</span>{%- endif -%}
+                <p class="sr-only">Day {{ dnum }}</p>
+                {%- if ttl != '' -%}<p class="pp-day__title">{{ ttl }}</p>{%- endif -%}
+                <p class="pp-day__text">{{ txt }}</p>
               </li>
             {%- endif -%}{%- endfor -%}
           </ol>
-          {%- if b.end_label != blank -%}<p class="mt-5 flex justify-end"><span class="rounded-full bg-ink px-4 py-1.5 text-[12px] font-extrabold uppercase tracking-wide text-white">{{ b.end_label }}</span></p>{%- endif -%}
-          {%- if b.note != blank -%}<p class="mt-4 text-[13px] text-muted">{{ b.note }}</p>{%- endif -%}
+          <div class="pp-days__bar mt-8" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+            {%- if b.bar_label != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-raspberry">{{ b.bar_label }}</p>{%- else -%}<span></span>{%- endif -%}
+            {%- if b.end_label != blank -%}<span class="rounded-full bg-ink px-4 py-2 text-[12px] font-extrabold uppercase tracking-[.08em] text-white">{{ b.end_label }}</span>{%- endif -%}
+          </div>
+          {%- if b.note != blank -%}<p class="mt-5 text-[13px] text-muted">{{ b.note }}</p>{%- endif -%}
         </div>
       </section>
 
@@ -781,7 +807,8 @@
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "intro", "label": "Intro" },
-      { "type": "textarea", "id": "steps", "label": "Steps", "info": "Day N | title | text, one per line" },
+      { "type": "textarea", "id": "steps", "label": "Steps", "info": "Day N | emoji | title | text, one per line (emoji optional). The last step is the filled goal card." },
+      { "type": "text", "id": "bar_label", "label": "Label under the bar (left)" },
       { "type": "text", "id": "end_label", "label": "End pill" },
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
