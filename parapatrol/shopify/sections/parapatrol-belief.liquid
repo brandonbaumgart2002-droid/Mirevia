@@ -188,20 +188,20 @@
     {%- when 'close' -%}
       {%- assign pp_prod = all_products[b.product] | default: product -%}
       {%- assign pp_v = pp_prod.selected_or_first_available_variant -%}
-      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-primary-dark text-white" {{ block.shopify_attributes }} aria-labelledby="pp-cl-{{ block.id }}">
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-soft text-ink" {{ block.shopify_attributes }} aria-labelledby="pp-cl-{{ block.id }}">
         <div class="max-w-[640px] mx-auto px-4 text-center">
           <span class="w-16 h-16 rounded-full bg-mintfill text-primary-dark inline-flex items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'shield', icon_size: 30 -%}</span>
-          <h2 id="pp-cl-{{ block.id }}" class="pp-adv-light-h mt-4 font-display font-bold text-[32px] sm:text-[42px] leading-[1.08]">{{ b.heading }}</h2>
-          {%- if b.text != blank -%}<p class="mt-3 text-[17px] text-white/90">{{ b.text }}</p>{%- endif -%}
-          {%- if b.terms_label != blank -%}<a href="{{ b.terms_url | default: '/policies/refund-policy' }}" class="mt-2 inline-block text-[14px] font-bold text-white underline underline-offset-4">{{ b.terms_label }}</a>{%- endif -%}
-          <div class="mt-7 rounded-3xl bg-white text-ink p-5 sm:p-6">
+          <h2 id="pp-cl-{{ block.id }}" class="mt-4 font-display font-bold text-ink text-[32px] sm:text-[42px] leading-[1.08]">{{ b.heading }}</h2>
+          {%- if b.text != blank -%}<p class="mt-3 text-[17px] text-ink">{{ b.text }}</p>{%- endif -%}
+          {%- if b.terms_label != blank -%}<a href="{{ b.terms_url | default: '/policies/refund-policy' }}" class="mt-2 inline-block text-[14px] font-bold text-mintdeep underline underline-offset-4">{{ b.terms_label }}</a>{%- endif -%}
+          <div class="mt-7 rounded-2xl bg-white text-ink border border-line p-5 sm:p-6">
             {%- if b.offer != blank -%}<p class="font-display font-bold text-[24px] text-primary-dark">{{ b.offer | replace: '[[', ph_open | replace: ']]', ph_close }}</p>{%- endif -%}
             {%- if pp_v -%}
               <p class="mt-1 text-[15px] text-muted">One bottle: <strong class="text-ink">{{ pp_v.price | money }}</strong>
               {%- assign serv = b.servings | plus: 0 -%}
               {%- if serv > 0 %} · about <strong class="text-ink">{{ pp_v.price | divided_by: serv | money }}</strong> a day{%- else %} · <mark class="pp-ph">[[$ PER DAY — needs servings per bottle]]</mark>{%- endif -%}</p>
             {%- endif -%}
-            <a href="#pp-buy" data-pp-to-buy class="mt-5 flex w-full items-center justify-center gap-2 min-h-[56px] px-8 rounded-full bg-primary hover:bg-primary-dark text-white font-extrabold text-[17px] shadow-lift transition-colors">{{ b.cta_label | default: 'Add to cart' }}</a>
+            <a href="#pp-buy" data-pp-to-buy class="mt-5 flex w-full items-center justify-center gap-2 min-h-[56px] px-8 rounded-xl bg-raspberry hover:brightness-95 text-white font-extrabold text-[17px] shadow-lift">{{ b.cta_label | default: 'Add to cart' }}</a>
             {%- if s.mandatory != blank -%}<p class="mt-3 text-[13px] font-bold text-muted">{{ s.mandatory }}</p>{%- endif -%}
           </div>
         </div>
@@ -484,7 +484,7 @@
   ],
   "blocks": [
     { "type": "story", "name": "Real customer story", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "richtext", "id": "story", "label": "Story (real customer, with permission)" },
@@ -492,14 +492,14 @@
       { "type": "text", "id": "closing", "label": "Closing line" }
     ] },
     { "type": "logic", "name": "Logic chain", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "steps", "label": "Steps (one per line; the last one is the conclusion)" },
       { "type": "text", "id": "binder_line", "label": "Binder line", "info": "Only if it matches the label word for word. Blank hides it." }
     ] },
     { "type": "compare", "name": "Tablet vs daily support", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "intro", "label": "Intro" },
@@ -511,7 +511,7 @@
       { "type": "textarea", "id": "note", "label": "Line under the table" }
     ] },
     { "type": "label", "name": "Ingredients on the label", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "intro", "label": "Intro" },
@@ -528,7 +528,7 @@
       { "type": "text", "id": "practitioner", "label": "Practitioner credit", "info": "Hidden while blank. Only a real reviewer: name, qualification, what they reviewed." }
     ] },
     { "type": "reviews", "name": "Reviews (Judge.me)", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "text", "id": "intro", "label": "Intro" },
@@ -537,7 +537,7 @@
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "profiles", "name": "Sound like your house?", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "intro", "label": "Intro" },
@@ -545,7 +545,7 @@
       { "type": "text", "id": "link_label", "label": "Link to the buy box" }
     ] },
     { "type": "videos", "name": "Straight from mums", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "paragraph", "content": "Hidden on the live page until at least one video is added." },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
@@ -560,14 +560,14 @@
       { "type": "video", "id": "video_8", "label": "Video 8" }, { "type": "text", "id": "label_8", "label": "Label 8" }
     ] },
     { "type": "notice", "name": "What mums notice", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "quotes", "label": "Review quotes", "info": "belief tag | quote | who, one per line. Real reviews only." },
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "timeline", "name": "Your first 30 days", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "intro", "label": "Intro" },
@@ -576,7 +576,7 @@
       { "type": "text", "id": "note", "label": "Small note" }
     ] },
     { "type": "rewards", "name": "Rewards ladder", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "checkbox", "id": "enabled", "label": "Show rewards ladder", "info": "Turn on once a subscription app supports these rewards.", "default": false },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
@@ -585,7 +585,7 @@
       { "type": "text", "id": "button", "label": "Button" }
     ] },
     { "type": "howto", "name": "How to use", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "eyebrow", "label": "Small heading" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "url", "id": "video_url", "label": "Video file URL (mp4)" },
@@ -596,7 +596,7 @@
       { "type": "text", "id": "small", "label": "Small print" }
     ] },
     { "type": "close", "name": "Guarantee and offer", "settings": [
-      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
       { "type": "text", "id": "heading", "label": "Heading" },
       { "type": "textarea", "id": "text", "label": "Text" },
       { "type": "text", "id": "terms_label", "label": "Terms link label" },

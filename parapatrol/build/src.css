@@ -458,3 +458,19 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 /* Raspberry text is too faint on mint; outside cards it switches to navy, as on the slides */
 .pp.pp.pp [data-pp-band="mint"] .text-berry:not(:is(.bg-white, .bg-soft, .bg-cream, .bg-blush, .bg-mint) *),
 .pp.pp.pp[data-pp-band="mint"] .text-berry:not(:is(.bg-white, .bg-soft, .bg-cream, .bg-blush, .bg-mint) *) { color: #1F2A5A !important; }
+
+/* ===== Light page, gallery typography =====
+   Backgrounds stay white / off-white; type, buttons and accents follow the gallery slides. */
+.pp.pp.pp [data-pp-band="white"], .pp.pp.pp[data-pp-band="white"] { background-color: #fff !important; }
+.pp.pp.pp[data-pp-band="white"] > section, .pp.pp.pp[data-pp-band="cream"] > section { background-color: transparent !important; }
+/* Section headlines: heavy rounded caps in navy, like the slide headlines */
+.pp.pp .pp-belief h2.font-display, .pp.pp#faq h2.font-display, .pp.pp #faq h2.font-display, .pp.pp .pp-headline {
+  text-transform: uppercase; font-weight: 900 !important; letter-spacing: -.01em; line-height: 1.02 !important; color: var(--ink);
+}
+.pp.pp .pp-headline { font-size: 30px; }
+@media (min-width: 640px) { .pp.pp .pp-headline { font-size: 40px; } }
+/* Product name and card titles in the same heavy rounded face */
+.pp.pp h1.font-display { font-weight: 900 !important; color: var(--ink) !important; }
+.pp.pp .pp-belief :is(h3, p).font-display, .pp.pp .pp-tier__title, .pp.pp .pp-tier__price { font-weight: 900 !important; }
+/* Eyebrows: small spaced caps in raspberry, like the slide sub-labels */
+.pp.pp .pp-belief p.uppercase.tracking-\[\.14em\], .pp.pp #faq p.uppercase.tracking-\[\.14em\] { color: var(--pp-raspberry) !important; }

@@ -199,8 +199,8 @@
               assign headline = section.settings.headline_a
           endcase
         -%}
-        {%- if section.settings.eyebrow != blank -%}<p class="mb-1.5 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-[.14em] text-berry">{{ section.settings.eyebrow }}</p>{%- endif -%}
-        <p class="font-display font-semibold text-[26px] leading-[1.1] sm:text-[38px] lg:text-[44px] tracking-tight" data-pp-headline
+        {%- if section.settings.eyebrow != blank -%}<p class="mb-1.5 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-[.14em] text-raspberry">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <p class="pp-headline font-display font-semibold text-[26px] leading-[1.1] sm:text-[38px] lg:text-[44px] tracking-tight" data-pp-headline
            data-a="{{ section.settings.headline_a | escape }}" data-b="{{ section.settings.headline_b | escape }}" data-c="{{ section.settings.headline_c | escape }}">{{ headline }}</p>
 
         {%- if section.settings.subhead != blank -%}
@@ -472,7 +472,7 @@
     { "type": "text", "id": "ph_4", "label": "Image 4", "default": "supplement facts label" },
 
     { "type": "header", "content": "Brand colours (all ParaPatrol sections)" },
-    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
     { "type": "color", "id": "pp_cream", "label": "Cream (page background)", "default": "#FBF6EE" },
     { "type": "color", "id": "pp_mint", "label": "Mint (bands, chips)", "default": "#9FE0C9" },
     { "type": "color", "id": "pp_mint_deep", "label": "Mint deep (ticks, links, selected bundle)", "default": "#1F7F66" },
