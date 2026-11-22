@@ -514,3 +514,8 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp.pp.pp .pp-vc__arrow { position: absolute !important; top: calc(50% - 40px) !important; transform: none !important; }
 .pp.pp.pp .pp-vc__sound { position: absolute !important; transform: none !important; left: 0 !important; right: 0 !important; top: calc(50% - 21px) !important; margin: 0 auto !important; width: max-content; }
 .pp.pp.pp .pp-vc__sound[aria-pressed="true"] { top: auto !important; bottom: 16px !important; }
+/* Quick questions under the buy box: plain rows with thin dividers */
+.pp .pp-qq__item + .pp-qq__item { border-top: 1px solid var(--line); }
+.pp .pp-qq .acc-btn[aria-expanded="true"] .acc-icon { transform: rotate(45deg); }
+.pp .pp-qq .acc-icon { transition: transform .2s; display: inline-block; }
+.pp.pp .pp-qq-label { font-weight: 800 !important; font-family: var(--pp-font-body); }
