@@ -4,7 +4,7 @@
 {%- endcomment -%}
 {%- if section.settings.text != blank -%}
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
-<div class="pp pp-offer" role="region" aria-label="Current offer">
+<div class="pp pp-offer" data-pp-band="{{ section.settings.band | default: 'auto' }}" role="region" aria-label="Current offer">
   <p class="max-w-6xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[14px] font-extrabold leading-snug">
     <span>{{ section.settings.text }}</span>
     {%- if section.settings.end_date != blank -%}
@@ -35,6 +35,7 @@
 {
   "name": "ParaPatrol: offer bar",
   "settings": [
+    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "navy" },
     { "type": "text", "id": "text", "label": "Offer line", "default": "30-day money-back guarantee" },
     { "type": "text", "id": "end_date", "label": "Offer end date (YYYY-MM-DD)", "info": "Only set this if the offer really ends then. Blank hides the countdown." },
     { "type": "text", "id": "end_time", "label": "End time (HH:MM)", "default": "23:59" },

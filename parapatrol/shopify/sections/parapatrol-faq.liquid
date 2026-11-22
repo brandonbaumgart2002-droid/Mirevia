@@ -5,7 +5,7 @@
 {{ 'parapatrol.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'parapatrol.js' | asset_url }}" defer></script>
 <div class="pp" id="faq">
-  <section class="bg-white py-14 lg:py-20" aria-labelledby="pp-faq-{{ section.id }}">
+  <section data-pp-band="{{ section.settings.band | default: 'auto' }}" class="bg-white py-14 lg:py-20" aria-labelledby="pp-faq-{{ section.id }}">
     <div class="max-w-3xl mx-auto px-4">
       {%- if section.settings.eyebrow != blank -%}<p class="text-sm font-bold uppercase tracking-[.14em] text-primary text-center">{{ section.settings.eyebrow }}</p>{%- endif -%}
       <h2 id="pp-faq-{{ section.id }}" class="font-display font-semibold text-[30px] sm:text-[38px] leading-[1.1] mt-2 text-center">{{ section.settings.heading }}</h2>
@@ -60,6 +60,7 @@
 {
   "name": "ParaPatrol: FAQ",
   "settings": [
+    { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "cream", "label": "Cream" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Questions parents ask" },
     { "type": "checkbox", "id": "schema", "label": "Add FAQ structured data for Google", "default": true }

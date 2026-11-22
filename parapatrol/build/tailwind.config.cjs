@@ -37,7 +37,7 @@ module.exports = {
         muted: 'var(--ink-muted)',
         line: 'var(--line)',
         cream: 'var(--pp-cream)',
-        mintfill: 'var(--pp-mint)',
+        mintfill: 'var(--pp-label-mint)',
         mintdeep: 'var(--pp-mint-deep)',
         raspberry: 'var(--pp-raspberry)',
         blush: 'var(--pp-blush)'

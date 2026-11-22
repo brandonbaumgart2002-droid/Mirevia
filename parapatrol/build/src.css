@@ -5,7 +5,7 @@
   /* Matched to the ParaPatrol pack: sage label, navy lettering, soft pink mascot. All text pairs pass WCAG AA. */
   /* Para Patrol brand theme (VigorNatura rebuild brief): navy wordmark, mint label, pink mascot on warm cream */
   --pp-cream: #FBF6EE;
-  --pp-mint: #9FE0C9;
+  --pp-label-mint: #9FE0C9;
   --pp-mint-deep: #1F7F66;
   --pp-raspberry: #C73862;
   --pp-blush: #FBE3EA;
@@ -416,3 +416,45 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp .pp-tl__step + .pp-tl__step::before { content: ""; position: absolute; left: 27px; top: -16px; height: 16px; width: 2px; background: var(--ink); opacity: .25; }
 .pp .pp-tl__step:not(:last-child)::after { content: ""; position: absolute; left: 27px; top: 56px; bottom: 0; width: 2px; background: var(--ink); opacity: .25; }
 .pp.pp-offer { background: var(--pp-blush); color: var(--ink); }
+
+/* ===== Colour bands (match the gallery: full-bleed mint, navy, raspberry; cream cards with navy outlines) =====
+   A band recolours its own text through the token variables; cards inside a band reset to navy-on-cream. */
+.pp.pp.pp [data-pp-band="cream"], .pp.pp.pp[data-pp-band="cream"] { background-color: var(--pp-cream) !important; }
+.pp.pp.pp [data-pp-band="mint"], .pp.pp.pp[data-pp-band="mint"] {
+  background-color: var(--pp-label-mint) !important;
+  --ink-muted: #2B3768; --pp-mint-deep: #1F2A5A; --line: rgba(31,42,90,.35);
+}
+.pp.pp.pp [data-pp-band="navy"], .pp.pp.pp[data-pp-band="navy"] {
+  background-color: #1F2A5A !important; color: #fff;
+  --ink: #FFFFFF; --ink-muted: #CDD3E6; --brand-primary: #9FE0C9; --brand-primary-dark: #9FE0C9; --pp-mint-deep: #9FE0C9; --line: rgba(255,255,255,.28);
+}
+.pp.pp.pp [data-pp-band="raspberry"], .pp.pp.pp[data-pp-band="raspberry"] {
+  background-color: var(--pp-raspberry) !important; color: #fff;
+  --ink: #FFFFFF; --ink-muted: #FFFFFF; --brand-primary: #FFFFFF; --brand-primary-dark: #FFFFFF; --pp-mint-deep: #FFFFFF; --line: rgba(255,255,255,.35);
+}
+.pp.pp.pp [data-pp-band="navy"] h2, .pp.pp.pp[data-pp-band="navy"] h2 { color: var(--pp-label-mint) !important; }
+/* Cards keep navy text and get the navy outline from the slides */
+.pp [data-pp-band] :is(.bg-white, .bg-soft, .bg-cream, .bg-mint, .bg-blush, .pp-tier, .pp-chip, .pp-prof-tab) {
+  --ink: #1F2A5A; --ink-muted: #5F6673; --brand-primary: #1F2A5A; --brand-primary-dark: #1F2A5A; --pp-mint-deep: #1F7F66; --line: #1F2A5A;
+  color: var(--ink);
+}
+.pp [data-pp-band]:not([data-pp-band="auto"]) :is(.rounded-2xl, .rounded-3xl, .rounded-\[28px\]).border.border-line { border-width: 1.5px; }
+.pp.pp.pp [data-pp-band="mint"] .pp-tier:not(:has(input:checked)), .pp.pp.pp[data-pp-band="mint"] .pp-tier:not(:has(input:checked)) { border-color: #1F2A5A; }
+.pp.pp.pp [data-pp-band="mint"] .pp-tier:has(input:checked), .pp.pp.pp[data-pp-band="mint"] .pp-tier:has(input:checked) { border-color: #1F2A5A; box-shadow: 0 0 0 2px #1F2A5A, 0 8px 20px -12px rgba(30,45,79,.5); background: #fff; }
+/* Light mint tiles inside a mint band read as cream so they stand off the background */
+.pp.pp.pp [data-pp-band="mint"] .bg-mint, .pp.pp.pp[data-pp-band="mint"] .bg-mint { background-color: var(--pp-cream) !important; }
+/* Headlines: heavy rounded caps, like the slides */
+.pp [data-pp-band]:not([data-pp-band="auto"]) h2.font-display, .pp[data-pp-band]:not([data-pp-band="auto"]) h2.font-display {
+  text-transform: uppercase; font-weight: 900 !important; letter-spacing: -.01em; line-height: 1.02 !important;
+}
+.pp [data-pp-to-buy].rounded-full { border-radius: 12px !important; }
+
+/* Navy band: navy-filled pills and circles flip to mint so they stay visible */
+.pp.pp.pp [data-pp-band="navy"] .bg-ink { background-color: var(--pp-label-mint) !important; color: #1F2A5A !important; }
+.pp.pp.pp [data-pp-band="navy"] .bg-ink * { color: #1F2A5A !important; }
+.pp.pp.pp [data-pp-band] .pp-chip[aria-pressed="true"] { color: #fff !important; background-color: #1F2A5A !important; }
+/* The theme paints every <section> cream; let the hero band show through */
+.pp.pp.pp[data-pp-band]:not([data-pp-band="auto"]) > section { background-color: transparent !important; }
+/* Raspberry text is too faint on mint; outside cards it switches to navy, as on the slides */
+.pp.pp.pp [data-pp-band="mint"] .text-berry:not(:is(.bg-white, .bg-soft, .bg-cream, .bg-blush, .bg-mint) *),
+.pp.pp.pp[data-pp-band="mint"] .text-berry:not(:is(.bg-white, .bg-soft, .bg-cream, .bg-blush, .bg-mint) *) { color: #1F2A5A !important; }
