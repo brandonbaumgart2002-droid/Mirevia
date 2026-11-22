@@ -111,10 +111,6 @@
         endif
       -%}
       <div class="order-1">
-        <h1 id="pp-title-{{ section.id }}" class="font-display font-bold text-[24px] sm:text-[28px] text-primary leading-tight">
-          {{- product.title -}}
-          {%- if section.settings.sub_label != blank %}<span class="block mt-0.5 font-body font-semibold text-[14px] sm:text-[15px] text-muted">{{ section.settings.sub_label }}</span>{% endif -%}
-        </h1>
 
         {%- liquid
           assign score = blank
@@ -128,7 +124,7 @@
           endif
         -%}
         {%- if score == blank and section.settings.judgeme_badge -%}
-          <a href="#reviews" data-pp-scroll data-pp-jm-badge data-shop="{{ shop.permanent_domain }}" data-pid="{{ product.id }}" class="mt-1.5 hidden items-center gap-2 text-[14px] text-ink"><span data-pp-jm-badge-stars class="flex"></span><span class="font-bold" data-pp-jm-badge-avg></span><span class="underline underline-offset-2" data-pp-jm-badge-count></span></a>
+          <a href="#reviews" data-pp-scroll data-pp-jm-badge data-shop="{{ shop.permanent_domain }}" data-pid="{{ product.id }}" class="hidden items-center gap-2 text-[15px] text-ink"><span data-pp-jm-badge-stars class="flex"></span><span class="font-bold" data-pp-jm-badge-avg></span><span class="underline underline-offset-2" data-pp-jm-badge-count></span></a>
           <script>
             (function () {
               var a = document.currentScript.previousElementSibling;
@@ -144,7 +140,7 @@
           </script>
         {%- endif -%}
         {%- if score != blank -%}
-          <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px]">
             {%- if section.settings.rating_avatars != blank -%}
               {%- assign avs = section.settings.rating_avatars | split: ',' -%}
               <span class="flex -space-x-2 mr-0.5" aria-hidden="true">{%- for a in avs limit: 3 -%}{%- assign a_f = a | strip -%}<img src="{{ a_f | asset_img_url: '64x64', crop: 'center' }}" alt="" width="28" height="28" loading="lazy" class="w-7 h-7 rounded-full object-cover border-2 border-white">{%- endfor -%}</span>
@@ -154,6 +150,17 @@
             <a href="#reviews" class="text-ink underline underline-offset-2 hover:text-primary">({% if review_count != blank %}{{ review_count }} {% endif %}{{ section.settings.rating_label }})</a>
           </div>
         {%- endif -%}
+
+        {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank -%}
+          <ul class="mt-2.5 flex flex-wrap gap-2" role="list" aria-label="Formula credentials">
+            {%- if section.settings.pill_1 != blank -%}<li class="pp-pill pp-pill--blush"><span aria-hidden="true">✦</span> {{ section.settings.pill_1 }}</li>{%- endif -%}
+            {%- if section.settings.pill_2 != blank -%}<li class="pp-pill pp-pill--mint"><span aria-hidden="true">+</span> {{ section.settings.pill_2 }}</li>{%- endif -%}
+          </ul>
+        {%- endif -%}
+        <h1 id="pp-title-{{ section.id }}" class="pp-title mt-3 font-display text-ink leading-[1.02]">
+          {{- product.title -}}
+          {%- if section.settings.sub_label != blank %}<span class="block mt-1 font-sans font-bold text-[15px] sm:text-[17px] text-muted tracking-normal">{{ section.settings.sub_label }}</span>{% endif -%}
+        </h1>
 
         {%- if section.settings.show_hero_price -%}
           <p class="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1" data-pp-hero-price-row>
@@ -200,14 +207,24 @@
           endcase
         -%}
         {%- if section.settings.eyebrow != blank -%}<p class="mb-1.5 text-[12px] sm:text-[13px] font-extrabold uppercase tracking-[.14em] text-raspberry">{{ section.settings.eyebrow }}</p>{%- endif -%}
-        <p class="pp-headline font-display font-semibold text-[26px] leading-[1.1] sm:text-[38px] lg:text-[44px] tracking-tight" data-pp-headline
-           data-a="{{ section.settings.headline_a | escape }}" data-b="{{ section.settings.headline_b | escape }}" data-c="{{ section.settings.headline_c | escape }}">{{ headline }}</p>
+        <p class="pp-headline font-display text-ink" data-pp-headline
+           data-a="{{ section.settings.headline_a | escape }}" data-b="{{ section.settings.headline_b | escape }}" data-c="{{ section.settings.headline_c | escape }}">{%- assign hl_parts = headline | escape | split: '*' -%}{%- for part in hl_parts -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}</p>
 
         {%- if section.settings.subhead != blank -%}
           <p class="mt-2 text-[15px] sm:text-[17px] leading-relaxed text-ink/90 max-w-[544px]">{%- render 'parapatrol-claim', text: section.settings.subhead -%}</p>
         {%- endif -%}
 
-        {%- if section.settings.benefit_grid != blank -%}
+        {%- if section.settings.benefit_list != blank -%}
+          {%- assign bl_items = section.settings.benefit_list | newline_to_br | split: '<br />' -%}
+          <ul class="mt-4 grid gap-2.5" role="list" aria-label="Product highlights">
+            {%- for l in bl_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 1 and f[0] != blank -%}
+              <li class="flex items-start gap-2.5 text-[15px] sm:text-[16px] leading-snug text-ink">
+                <span class="mt-0.5 inline-flex w-5 h-5 shrink-0 rounded-full bg-raspberry text-white items-center justify-center" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span>
+                <span><strong class="font-extrabold">{{ f[0] | strip }}</strong>{%- if f.size >= 2 %} <span class="text-muted">· {{ f[1] | strip }}</span>{%- endif -%}</span>
+              </li>
+            {%- endif -%}{%- endfor -%}
+          </ul>
+        {%- elsif section.settings.benefit_grid != blank -%}
           {%- assign bg_items = section.settings.benefit_grid | newline_to_br | split: '<br />' -%}
           <ul class="mt-4 grid grid-cols-6 gap-2" aria-label="Product highlights">
             {%- for l in bg_items -%}{%- assign f = l | strip | split: '|' -%}{%- if f.size >= 2 -%}
@@ -399,6 +416,9 @@
     { "type": "text", "id": "rating_count_fallback", "label": "Review count when no reviews app data", "info": "e.g. 237+. Must match your real reviews.", "default": "237+" },
     { "type": "text", "id": "rating_label", "label": "Rating label", "default": "parent reviews" },
     { "type": "text", "id": "eyebrow", "label": "Small line above the headline" },
+    { "type": "text", "id": "pill_1", "label": "Credential pill 1 (blush)", "info": "e.g. Paediatrician Reviewed Formula. Blank hides it." },
+    { "type": "text", "id": "pill_2", "label": "Credential pill 2 (mint)", "info": "e.g. 3rd-Party Lab Tested. Blank hides it." },
+    { "type": "textarea", "id": "benefit_list", "label": "Benefit ticks", "info": "benefit outcome | feature, one per line. Replaces the icon grid." },
     { "type": "textarea", "id": "benefit_grid", "label": "Benefit icon grid", "info": "icon | text, one per line. Icons: kid, no-alcohol, no-sugar, berry, guarantee, leaf, heart, shield, check. Replaces the badge pills." },
     { "type": "text", "id": "mandatory", "label": "Statement under the buy box", "info": "e.g. Always read the label and follow directions for use." },
     { "type": "checkbox", "id": "judgeme_badge", "label": "Show Judge.me star rating under the title", "default": false },

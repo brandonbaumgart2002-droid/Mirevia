@@ -3,12 +3,12 @@
     "main": {
       "type": "parapatrol-main",
       "settings": {
-        "sub_label": "Gentle tummy support for kids 3+",
-        "headline_a": "2am wake-ups. Picky dinners. “My tummy hurts.”",
-        "headline_b": "2am wake-ups. Picky dinners. “My tummy hurts.”",
-        "headline_c": "2am wake-ups. Picky dinners. “My tummy hurts.”",
+        "sub_label": "",
+        "headline_a": "2am wake-ups. Picky dinners. *“My tummy hurts.”*",
+        "headline_b": "2am wake-ups. Picky dinners. *“My tummy hurts.”*",
+        "headline_c": "2am wake-ups. Picky dinners. *“My tummy hurts.”*",
         "headline_default": "a",
-        "subhead": "If you’ve heard “it’s just a phase” one too many times, you’re in the right place. Para Patrol™ is gentle daily tummy support made for kids 3+, in a raspberry dropper she’ll actually take.",
+        "subhead": "",
         "badges": "Made for kids 3+, No alcohol, No sugar, Raspberry flavour, 30-day money-back guarantee",
         "rating_score_fallback": "",
         "rating_count_fallback": "",
@@ -75,7 +75,7 @@
         "rating_avatars": "",
         "gcard_title": "30-Day Money-Back Guarantee",
         "gcard_text": "Try it for 30 days. If you’re not happy, we’ll refund you.",
-        "eyebrow": "For mums who know their kid",
+        "eyebrow": "",
         "mandatory": "Always read the label and follow directions for use.",
         "benefit_grid": "kid | Made for kids 3+\nberry | One raspberry dropper in juice\nno-alcohol | No alcohol, no sugar\nguarantee | 30-day money-back guarantee",
         "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+",
@@ -87,7 +87,10 @@
         "pp_mint_deep": "#1F7F66",
         "pp_raspberry": "#C73862",
         "pp_blush": "#FBE3EA",
-        "band": "white"
+        "band": "white",
+        "pill_1": "Paediatrician Reviewed Formula",
+        "pill_2": "3rd-Party Lab Tested",
+        "benefit_list": "Settled little tummies | fennel, anise and licorice, traditionally used to soothe\nNo more medicine standoffs | one raspberry dropper stirred into juice\nGentle enough for kids 3+ | a kid-sized dose, not an adult formula\nNothing nasty in her glass | no alcohol, no sugar, raspberry glycerin base\nKnow exactly what she's taking | all 11 herbal extracts on the label\nZero risk to try | 30-day money-back guarantee"
       }
     },
     "belief": {

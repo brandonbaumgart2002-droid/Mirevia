@@ -464,13 +464,21 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 .pp.pp.pp [data-pp-band="white"], .pp.pp.pp[data-pp-band="white"] { background-color: #fff !important; }
 .pp.pp.pp[data-pp-band="white"] > section, .pp.pp.pp[data-pp-band="cream"] > section { background-color: transparent !important; }
 /* Section headlines: heavy rounded caps in navy, like the slide headlines */
-.pp.pp .pp-belief h2.font-display, .pp.pp#faq h2.font-display, .pp.pp #faq h2.font-display, .pp.pp .pp-headline {
+.pp.pp .pp-belief h2.font-display, .pp.pp#faq h2.font-display, .pp.pp #faq h2.font-display {
   text-transform: uppercase; font-weight: 900 !important; letter-spacing: -.01em; line-height: 1.02 !important; color: var(--ink);
 }
-.pp.pp .pp-headline { font-size: 30px; }
-@media (min-width: 640px) { .pp.pp .pp-headline { font-size: 40px; } }
 /* Product name and card titles in the same heavy rounded face */
 .pp.pp h1.font-display { font-weight: 900 !important; color: var(--ink) !important; }
 .pp.pp .pp-belief :is(h3, p).font-display, .pp.pp .pp-tier__title, .pp.pp .pp-tier__price { font-weight: 900 !important; }
 /* Eyebrows: small spaced caps in raspberry, like the slide sub-labels */
 .pp.pp .pp-belief p.uppercase.tracking-\[\.14em\], .pp.pp #faq p.uppercase.tracking-\[\.14em\] { color: var(--pp-raspberry) !important; }
+
+/* ===== Hero copy block (Grüns / mighty&co pattern) ===== */
+.pp.pp .pp-title { font-size: 40px; font-weight: 900 !important; letter-spacing: -.02em; color: var(--ink) !important; }
+@media (min-width: 640px) { .pp.pp .pp-title { font-size: 52px; } }
+.pp.pp .pp-headline { font-weight: 900 !important; font-size: 26px; line-height: 1.08; letter-spacing: -.015em; }
+@media (min-width: 640px) { .pp.pp .pp-headline { font-size: 32px; } }
+.pp.pp .pp-accent { font-style: italic; color: var(--pp-raspberry); }
+.pp .pp-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid; font-size: 14px; font-weight: 800; line-height: 1.2; }
+.pp .pp-pill--blush { background: var(--pp-blush); border-color: #F2B9C9; color: #A3284F; }
+.pp .pp-pill--mint { background: #E7F7F1; border-color: #A9DCC8; color: #17634F; }

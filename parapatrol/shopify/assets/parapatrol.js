@@ -630,7 +630,7 @@
     if (!/^[abc]$/.test(h)) return;
     $$('[data-pp-headline]').forEach(function (el) {
       var t = el.getAttribute('data-' + h);
-      if (t) el.textContent = t;
+      if (t) el.innerHTML = t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }).replace(/\*([^*]+)\*/g, '<em class="pp-accent">$1</em>');
     });
   }
 
