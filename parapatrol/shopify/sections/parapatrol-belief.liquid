@@ -241,7 +241,7 @@
     {%- when 'videos' -%}
       {%- liquid
         assign vids = 0
-        for i in (1..8)
+        for i in (1..12)
           assign vk = 'video_' | append: i
           if b[vk] != blank
             assign vids = vids | plus: 1
@@ -249,31 +249,41 @@
         endfor
       -%}
       {%- if vids > 0 or request.design_mode -%}
-      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-white" {{ block.shopify_attributes }} aria-labelledby="pp-vd-{{ block.id }}">
-        <div class="max-w-6xl mx-auto px-4">
-          <div class="max-w-[720px] mx-auto text-center">
-            {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
-            <h2 id="pp-vd-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">{{ b.heading }}</h2>
-            {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
-          </div>
-          {%- if vids > 0 -%}
-            <ul class="pp-slider mt-7 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2" role="list">
-              {%- for i in (1..8) -%}
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-white overflow-hidden" {{ block.shopify_attributes }} aria-labelledby="pp-vd-{{ block.id }}">
+        <div class="max-w-[720px] mx-auto px-4 text-center">
+          {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+          <h2 id="pp-vd-{{ block.id }}" class="mt-1 font-display font-extrabold text-[28px] sm:text-[40px] leading-[1.1] text-ink">
+            {%- assign hh = b.heading | escape | split: '*' -%}{%- for part in hh -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}
+          </h2>
+          {%- if b.intro != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.intro }}</p>{%- endif -%}
+        </div>
+        {%- if vids > 0 -%}
+          <div class="pp-vc relative mt-8" data-pp-vc>
+            <ul class="pp-vc__track" role="list" data-pp-vc-track>
+              {%- for i in (1..12) -%}
                 {%- assign vk = 'video_' | append: i -%}{%- assign lk = 'label_' | append: i -%}
                 {%- if b[vk] != blank -%}
-                  <li class="snap-start shrink-0 w-[62%] sm:w-[240px]">
-                    <div class="relative aspect-[9/16] rounded-2xl overflow-hidden bg-soft">
-                      {{ b[vk] | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, controls: true, preload: 'none', image_size: '480x', class: 'w-full h-full object-cover' }}
+                  <li class="pp-vc__slide" data-pp-vc-slide>
+                    <div class="pp-vc__frame">
+                      {{ b[vk] | video_tag: autoplay: false, loop: false, muted: true, playsinline: true, controls: false, preload: 'metadata', image_size: '540x', class: 'pp-vc__video' }}
+                      <button type="button" class="disable-global-button-styling pp-vc__sound" data-pp-vc-sound aria-pressed="false">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12" data-pp-vc-waves/></svg>
+                        <span data-pp-vc-sound-label>Tap for sound</span>
+                      </button>
+                      <span class="pp-vc__bar" aria-hidden="true"><span data-pp-vc-progress></span></span>
                     </div>
-                    {%- if b[lk] != blank -%}<p class="mt-2 text-[13px] font-bold text-ink">{{ b[lk] }}</p>{%- endif -%}
+                    {%- if b[lk] != blank -%}<p class="pp-vc__label">{{ b[lk] }}</p>{%- endif -%}
                   </li>
                 {%- endif -%}
               {%- endfor -%}
             </ul>
-          {%- else -%}
-            <p class="mt-6 text-center"><mark class="pp-ph">[[Add parent video clips in the theme editor. This section is hidden on the live page until one is added.]]</mark></p>
-          {%- endif -%}
-        </div>
+            <button type="button" class="disable-global-button-styling pp-vc__arrow pp-vc__arrow--prev" data-pp-vc-prev aria-label="Previous clip"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+            <button type="button" class="disable-global-button-styling pp-vc__arrow pp-vc__arrow--next" data-pp-vc-next aria-label="Next clip"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+            <div class="pp-vc__dots" data-pp-vc-dots aria-hidden="true"></div>
+          </div>
+        {%- else -%}
+          <p class="mt-6 text-center"><mark class="pp-ph">[[Add parent video clips in the theme editor. This section is hidden on the live page until one is added.]]</mark></p>
+        {%- endif -%}
       </section>
       {%- endif -%}
 
@@ -434,6 +444,55 @@
 </div>
 <script>
   (function () {
+    // Parent video coverflow: the centred clip plays muted; tap for sound; next clip starts when one ends
+    document.querySelectorAll('[data-pp-vc]').forEach(function (vc) {
+      if (vc.__ppVc) return; vc.__ppVc = true;
+      var track = vc.querySelector('[data-pp-vc-track]'), slides = [].slice.call(vc.querySelectorAll('[data-pp-vc-slide]'));
+      var dots = vc.querySelector('[data-pp-vc-dots]'), active = -1, sound = false, visible = false;
+      slides.forEach(function (s, i) {
+        var d = document.createElement('span'); dots.appendChild(d);
+        var v = s.querySelector('video'); if (!v) return;
+        v.muted = true; v.setAttribute('playsinline', ''); v.removeAttribute('controls');
+        v.addEventListener('timeupdate', function () { var p = s.querySelector('[data-pp-vc-progress]'); if (p && v.duration) p.style.width = (v.currentTime / v.duration * 100) + '%'; });
+        v.addEventListener('ended', function () { go(i + 1 < slides.length ? i + 1 : 0); });
+        s.addEventListener('click', function (e) { if (i !== active && !e.target.closest('[data-pp-vc-sound]')) go(i); });
+        var btn = s.querySelector('[data-pp-vc-sound]');
+        btn.addEventListener('click', function () { sound = !sound; apply(); });
+      });
+      function apply() {
+        slides.forEach(function (s, i) {
+          var on = i === active, v = s.querySelector('video');
+          s.classList.toggle('is-active', on);
+          dots.children[i].classList.toggle('is-active', on);
+          var btn = s.querySelector('[data-pp-vc-sound]');
+          btn.setAttribute('aria-pressed', on && sound ? 'true' : 'false');
+          btn.querySelector('[data-pp-vc-sound-label]').textContent = on && sound ? 'Sound on' : 'Tap for sound';
+          if (!v) return;
+          if (on && visible) { v.muted = !sound; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+          else { v.pause(); v.muted = true; }
+        });
+      }
+      function go(i, smooth) {
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        var s = slides[i];
+        track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: smooth === false ? 'auto' : 'smooth' });
+        if (i !== active) { var v = s.querySelector('video'); if (v) { try { v.currentTime = 0; } catch (e) {} } }
+        active = i; apply();
+      }
+      var t; track.addEventListener('scroll', function () {
+        clearTimeout(t); t = setTimeout(function () {
+          var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = 1e9;
+          slides.forEach(function (s, i) { var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+          if (best !== active) { active = best; var v = slides[best].querySelector('video'); if (v) { try { v.currentTime = 0; } catch (e) {} } apply(); }
+        }, 120);
+      }, { passive: true });
+      vc.querySelector('[data-pp-vc-prev]').addEventListener('click', function () { go(active - 1); });
+      vc.querySelector('[data-pp-vc-next]').addEventListener('click', function () { go(active + 1); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; apply(); }, { threshold: 0.35 }).observe(vc);
+      } else visible = true;
+      go(Math.min(slides.length - 1, Math.floor((slides.length - 1) / 2)), false);
+    });
     // "Sound like your house?" tiles: one tab open at a time, arrow keys move between tiles
     document.querySelectorAll('[data-pp-profiles]').forEach(function (sec) {
       if (sec.__ppPf) return; sec.__ppPf = true;
@@ -656,7 +715,11 @@
       { "type": "video", "id": "video_5", "label": "Video 5" }, { "type": "text", "id": "label_5", "label": "Label 5" },
       { "type": "video", "id": "video_6", "label": "Video 6" }, { "type": "text", "id": "label_6", "label": "Label 6" },
       { "type": "video", "id": "video_7", "label": "Video 7" }, { "type": "text", "id": "label_7", "label": "Label 7" },
-      { "type": "video", "id": "video_8", "label": "Video 8" }, { "type": "text", "id": "label_8", "label": "Label 8" }
+      { "type": "video", "id": "video_8", "label": "Video 8" }, { "type": "text", "id": "label_8", "label": "Label 8" },
+      { "type": "video", "id": "video_9", "label": "Video 9" }, { "type": "text", "id": "label_9", "label": "Label 9" },
+      { "type": "video", "id": "video_10", "label": "Video 10" }, { "type": "text", "id": "label_10", "label": "Label 10" },
+      { "type": "video", "id": "video_11", "label": "Video 11" }, { "type": "text", "id": "label_11", "label": "Label 11" },
+      { "type": "video", "id": "video_12", "label": "Video 12" }, { "type": "text", "id": "label_12", "label": "Label 12" }
     ] },
     { "type": "notice", "name": "What mums notice", "settings": [
       { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },

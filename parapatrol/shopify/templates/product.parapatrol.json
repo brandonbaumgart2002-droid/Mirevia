@@ -195,9 +195,9 @@
         "videos": {
           "type": "videos",
           "settings": {
-            "eyebrow": "Straight from mums",
-            "heading": "Hear it from mums first.",
-            "intro": "Short clips from parents, each one labelled.",
+            "eyebrow": "Straight from parents",
+            "heading": "Hear it from *the parents* first.",
+            "intro": "Short clips from real Para Patrol™ families. This is what the reviews below look like in real life.",
             "band": "white"
           }
         },
