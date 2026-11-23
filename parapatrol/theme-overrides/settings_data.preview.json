@@ -373,14 +373,14 @@
           },
           "cart_social_proof_bar_9cATek": {
             "type": "cart-social_proof_bar",
+            "disabled": true,
             "settings": {
               "social_proof_text": "Free shipping on every order",
               "social_proof_icon": "checkmark",
               "social_proof_bg_color": "#f8f0ec",
               "social_proof_text_color": "#3b2a2e",
               "social_proof_icon_color": "#8a2f52"
-            },
-            "disabled": true
+            }
           },
           "cart_progress_bar_niUx4Q": {
             "type": "cart_progress_bar",
@@ -435,21 +435,21 @@
           },
           "trustpilot_rating_nAcqB8": {
             "type": "trustpilot_rating",
-            "disabled": true,
+            "disabled": false,
             "settings": {
               "rating_text": "Excellent",
-              "rating_score": "4.8 out of 5",
-              "text_color": "#000000",
-              "star_color": "#efc4c0",
+              "rating_score": "4.7/5",
+              "text_color": "#1F2A5A",
+              "star_color": "#C73862",
               "show_single_star_after_text": false,
-              "font_size_desktop": 14,
-              "font_size_tablet": 14,
-              "font_size_mobile": 14,
-              "star_size_desktop": 18,
-              "star_size_tablet": 18,
-              "star_size_mobile": 18,
+              "font_size_desktop": 16,
+              "font_size_tablet": 16,
+              "font_size_mobile": 15,
+              "star_size_desktop": 22,
+              "star_size_tablet": 22,
+              "star_size_mobile": 20,
               "margin_top": 10,
-              "margin_bottom": 10,
+              "margin_bottom": 5,
               "link": "reviews",
               "enable_background": false,
               "background_color": "#f8f8f8",
@@ -457,19 +457,19 @@
               "background_gradient_start": "#fffcfa",
               "background_gradient_end": "#f0f0f0",
               "background_gradient_direction": "to right",
-              "border_color": "#ecdfda",
+              "border_color": "#E8B4C4",
               "border_width": 1,
-              "border_style": "dotted",
-              "border_radius": 4
+              "border_style": "solid",
+              "border_radius": 8
             }
           },
           "cart_money_back_guarantee_LgTUC6": {
             "type": "cart_money_back_guarantee",
             "settings": {
               "show_money_back_guarantee": true,
-              "money_back_guarantee_text": "30-day money-back guarantee",
+              "money_back_guarantee_text": "30-Day Money Back Guarantee",
               "money_back_guarantee_icon": "custom",
-              "money_back_guarantee_color": "#7d6b6e"
+              "money_back_guarantee_color": "#1F2A5A"
             }
           },
           "cart_payment_icon_LNm8HV": {
@@ -485,7 +485,6 @@
           },
           "cart_shipping_protection_mXGeTd": {
             "type": "cart_shipping_protection",
-            "disabled": false,
             "settings": {
               "show_shipping_protection": true,
               "product_shipping_protection": "mirevia-shipping-protection",
@@ -511,10 +510,10 @@
           "cart_timer_bar_HfaHGB",
           "cart_social_proof_bar_9cATek",
           "cart_progress_bar_niUx4Q",
+          "cart_shipping_protection_mXGeTd",
           "trustpilot_rating_nAcqB8",
           "cart_money_back_guarantee_LgTUC6",
-          "cart_payment_icon_LNm8HV",
-          "cart_shipping_protection_mXGeTd"
+          "cart_payment_icon_LNm8HV"
         ],
         "custom_css": [],
         "settings": {

@@ -790,8 +790,6 @@
           </div>
         {% endif %}
         {%- if cart != empty -%}
-          <div class="pp-cart-sumrow"><span>Shipping</span><span class="pp-cart-free">FREE</span></div>
-          <div class="pp-cart-sumrow"><span>Taxes</span><span>Calculated at checkout</span></div>
         {%- endif -%}
 
         <div
@@ -862,7 +860,6 @@
             assign pp_trust_txt = section.settings.pp_trust_fallback
           endif
         -%}
-        {% render 'pp-cart-badges', trust: pp_trust_txt %}
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'cart_money_back_guarantee' %}
