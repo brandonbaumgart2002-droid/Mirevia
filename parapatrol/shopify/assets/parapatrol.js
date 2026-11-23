@@ -123,6 +123,8 @@
   }
 
   /* ---------------- buy boxes ---------------- */
+  var BUY_LABEL = 'Secure Checkout - Buy Now';
+  var BUY_HTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-4px;margin-right:8px"><path d="M3 4h2.2l2.3 11h10.8l2-8H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>' + BUY_LABEL;
   function initState() {
     var box = $('[data-pp-buybox]');
     if (!box) return false;
@@ -227,7 +229,7 @@
       var add = $('[data-pp-add]', box);
       if (add && !add.__ppBusy) {
         add.disabled = !v.available;
-        add.textContent = v.available ? 'Add to Bag' : 'Sold out';
+        if (v.available) add.innerHTML = BUY_HTML; else add.textContent = 'Sold out';
       }
       var ship = $('[data-pp-ship]', box);
       if (ship) {
@@ -246,7 +248,7 @@
       meta.textContent = (tiers && !sub ? v.title : (tiers ? v.title + ' · ' : '') + (sub ? 'Subscribe' + freqLabel : 'One-time')) + ' · ' + money(total());
     }
     var sAdd = $('[data-pp-sticky-add]');
-    if (sAdd) { sAdd.disabled = !v.available; sAdd.setAttribute('aria-label', v.available ? 'Add to Bag, ' + money(total()) : 'Sold out'); }
+    if (sAdd) { sAdd.disabled = !v.available; sAdd.setAttribute('aria-label', v.available ? BUY_LABEL + ', ' + money(total()) : 'Sold out'); }
   }
 
   function addFromState(box) {
@@ -312,7 +314,7 @@
       var selPrice = box.querySelector('.kaching-bundles__bar--selected .kaching-bundles__bar-price');
       cents = selPrice ? priceCents(selPrice.textContent) : null;
     }
-    if (label !== 'Add to Bag' && !/adding/i.test(label)) add.textContent = 'Add to Bag';
+    if (label !== BUY_LABEL && !/adding/i.test(label)) add.innerHTML = BUY_HTML;
     var ship = $('[data-pp-ship]', box);
     if (ship && data && (cents !== null || !(data.freeShipping > 0))) {
       var gap = data.freeShipping > 0 ? data.freeShipping - cents : null;
