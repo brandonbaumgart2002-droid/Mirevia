@@ -263,8 +263,8 @@
 
     var label = 'Added ' + state.qty + ' × ' + (data.title || 'item') + (item.selling_plan ? ' (subscription)' : '') + ' to your bag.';
     var items = [item];
-    if (v.gift) items.push({ id: v.gift, quantity: 1 });
-    if (v.gift && v.giftTitle) label += ' Free gift added: ' + v.giftTitle + '.';
+    (v.gifts || []).forEach(function (g) { items.push({ id: g.id, quantity: 1 }); });
+    if (v.gifts && v.gifts.length) label += ' Free gift' + (v.gifts.length > 1 ? 's' : '') + ' added: ' + v.gifts.map(function (g) { return g.title; }).join(' and ') + '.';
     addItems(items, label)
       .catch(function (e) {
         if (err) { err.textContent = e.message; err.hidden = false; } else toast(e.message);
