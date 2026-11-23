@@ -465,13 +465,6 @@
             "answer": "<p>Just carry on the next morning as normal. Don’t double up.</p>"
           }
         },
-        "q20": {
-          "type": "question",
-          "settings": {
-            "question": "How long should we use it for?",
-            "answer": "<p>[[From the label directions.]] Always read the label and follow directions for use.</p>"
-          }
-        },
         "g6": {
           "type": "group",
           "settings": {
@@ -498,13 +491,6 @@
             "heading": "Orders and shipping"
           }
         },
-        "q23": {
-          "type": "question",
-          "settings": {
-            "question": "Where do you ship from?",
-            "answer": "<p>[[Ships-from location]]</p>"
-          }
-        },
         "q24": {
           "type": "question",
           "settings": {
@@ -517,13 +503,6 @@
           "settings": {
             "question": "How does the 30-day guarantee work?",
             "answer": "<p>Try it for 30 days. If you’re not happy, contact us and we’ll refund you. [[Link to the full guarantee terms]]</p>"
-          }
-        },
-        "q26": {
-          "type": "question",
-          "settings": {
-            "question": "Can I subscribe?",
-            "answer": "<p>[[Not yet. Update this once a subscription app is set up.]]</p>"
           }
         }
       },
@@ -552,15 +531,12 @@
         "q17",
         "q18",
         "q19",
-        "q20",
         "g6",
         "q21",
         "q22",
         "g7",
-        "q23",
         "q24",
-        "q25",
-        "q26"
+        "q25"
       ],
       "settings": {
         "eyebrow": "FAQ",
