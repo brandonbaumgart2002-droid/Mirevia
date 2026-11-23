@@ -92,7 +92,7 @@
         "pill_2": "3rd-Party Lab Tested",
         "benefit_list": "Less picky, more hungry | wormwood & clove are traditional bitters that wake up appetite\nWorry less in worm season | black walnut, pumpkin seed & pau d’arco, staples of traditional cleanses\nCalmer nights for everyone | fennel, anise & licorice settle little tummies before bed\nA full cleanse in one quick squeeze | one dropper of 11 time-honoured herbs, done before breakfast\nTastes like a treat, not a herb | raspberry flavour kids love\nBack to their bouncy selves | comfy tummies and full plates mean more get-up-and-go\nMade for little bodies | kid-friendly formula, third-party tested for purity",
         "ship_note": "Ships in 1-3 Business Days",
-        "quick_list": "What is Para Patrol™? | A raspberry-flavoured herbal drop made for kids 3+. One dropper of 11 traditional herbs, stirred into juice once a day.\nIs it safe for my 3-year-old? | Para Patrol™ is made for kids 3+. Always read the label and follow directions for use, and check with your GP or pharmacist if your child has a health condition or takes medication.\nHow do I give it? | Fill the dropper and stir it into her juice, milk or a smoothie. It’s done before breakfast, and most kids don’t even notice.\nWill my picky eater actually take it? | It tastes like raspberry, with a bitter blocker to soften the herbs. No chewing and no tablets to swallow.\nWhat’s in it? | 11 herbal extracts, including fennel, anise, licorice, black walnut and wormwood, in a raspberry glycerin base with no alcohol and no sugar. Here’s the full label: {label}\nHow long does one bottle last? | About 30 servings, so roughly a month at one dropper a day.\nHow long before I notice a difference? | Every child is different. That’s why you have 30 days to try it, with your money back if you’re not happy.\nWhat about shipping and returns? | Orders are shipped within 1-3 business days and delivered within 6-12 days. Every order is covered by our 30-day money-back guarantee. <a href=\"/policies/refund-policy\" class=\"underline underline-offset-2 font-bold text-ink\">Read the returns policy</a>.",
+        "quick_list": "What is Para Patrol™? | A raspberry-flavoured herbal drop made for kids 3+. One dropper of 11 traditional herbs, stirred into juice once a day.\nIs it safe for my 3-year-old? | Para Patrol™ is made for kids 3+. Always read the label and follow directions for use, and check with your GP or pharmacist if your child has a health condition or takes medication.\nHow do I give it? | Fill the dropper and stir it into their juice, milk or a smoothie. It’s done before breakfast, and most kids don’t even notice.\nWill my picky eater actually take it? | It tastes like raspberry, with a bitter blocker to soften the herbs. No chewing and no tablets to swallow.\nWhat’s in it? | 11 herbal extracts, including fennel, anise, licorice, black walnut and wormwood, in a raspberry glycerin base with no alcohol and no sugar. Here’s the full label: {label}\nHow long does one bottle last? | About 30 servings, so roughly a month at one dropper a day.\nHow long before I notice a difference? | Every child is different. That’s why you have 30 days to try it, with your money back if you’re not happy.\nWhat about shipping and returns? | Orders are shipped within 1-3 business days and delivered within 6-12 days. Every order is covered by our 30-day money-back guarantee. <a href=\"/policies/refund-policy\" class=\"underline underline-offset-2 font-bold text-ink\">Read the returns policy</a>.",
         "rating_text": "500+ Trusted Parent reviews",
         "gifts_heading": "Unlock free gifts with bundles",
         "gift_1_label": "Free shipping",
@@ -115,7 +115,7 @@
           "settings": {
             "eyebrow": "You know your kid",
             "heading": "Something’s off, and you can feel it.",
-            "story": "<p>[[REAL CUSTOMER STORY — 120–200 words, first person, names exact moments: the 2am doorway, the plate pushed away, “she’s just not herself”. Child’s age. Customer first name + state. Written permission on file.]]</p>",
+            "story": "<p>[[REAL CUSTOMER STORY — 120–200 words, first person, names exact moments: the 2am doorway, the plate pushed away, “they’re just not themselves”. Child’s age. Customer first name + state. Written permission on file.]]</p>",
             "attribution": "[[First name, state · child’s age]]",
             "closing": "You’re not imagining it. And you’re not doing anything wrong.",
             "band": "mintsoft"
@@ -174,7 +174,7 @@
             "heading": "What other mums are saying",
             "intro": "Real reviews from Para Patrol™ customers.",
             "note": "Individual results vary.",
-            "filters": "I rolled my eyes too | text:scept|skept|doubt|wasn.t sure|rolled my eyes|hesitant|wary\nShe actually takes it | text:taste|flavou?r|takes it|no fuss|without (a|any) fuss|never notice|doesn.t even realise\nOur GP was fine with it | text:\\bGP\\b|doctor|paediatrician|pediatrician|pharmacist\nPicky eater | text:picky|fussy|appetite\n2am wake-ups | text:night|sleep|2am|wake\nAges 3–5 | age:3-5\nAges 6–8 | age:6-8\nAges 9+ | age:9-99",
+            "filters": "I rolled my eyes too | text:scept|skept|doubt|wasn.t sure|rolled my eyes|hesitant|wary\nThey actually take it | text:taste|flavou?r|takes it|no fuss|without (a|any) fuss|never notice|doesn.t even realise\nOur GP was fine with it | text:\\bGP\\b|doctor|paediatrician|pediatrician|pharmacist\nPicky eater | text:picky|fussy|appetite\n2am wake-ups | text:night|sleep|2am|wake\nAges 3–5 | age:3-5\nAges 6–8 | age:6-8\nAges 9+ | age:9-99",
             "band": "white"
           }
         },
@@ -182,11 +182,11 @@
           "type": "howto",
           "settings": {
             "eyebrow": "How to use",
-            "heading": "One dropper. Into her juice.",
+            "heading": "One dropper. Into their juice.",
             "poster": "pp-kids-dropper-juice.jpg",
             "video_alt": "A dropper of Para Patrol going into a glass of juice",
             "dose": "",
-            "line": "One dropper in her juice. Most kids don’t even notice.",
+            "line": "One dropper in their juice. Most kids don’t even notice.",
             "small": "Always read the label and follow directions for use.",
             "band": "mintsoft"
           }
@@ -197,7 +197,7 @@
             "eyebrow": "Who it’s for",
             "heading": "Sound like your house?",
             "intro": "Para Patrol™ was made for the mum who knows something’s not quite right, and wants something gentle.",
-            "profiles": "plate | The picky eater | Three bites in, she pushes the plate away and says her tummy’s full. | Gentle daily tummy support in one raspberry dropper she won’t notice in her juice.\nmoon | The 2am tummy aches | He’s in our doorway at 2am, holding his tummy again. | Fennel, anise and licorice, herbs traditionally used to soothe little tummies, in one daily dropper.\ntablet | The tablet refuser | We tried the chewable. It ended up on the floor. | No chewing, no swallowing. One raspberry dropper stirred into juice.\nheart | The mum who wants gentle | I don’t want harsh adult stuff. I want something made for her. | Made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.",
+            "profiles": "plate | The picky eater | Three bites in, they push the plate away and say their tummy’s full. | Gentle daily tummy support in one raspberry dropper they won’t notice in their juice.\nmoon | The 2am tummy aches | He’s in our doorway at 2am, holding his tummy again. | Fennel, anise and licorice, herbs traditionally used to soothe little tummies, in one daily dropper.\ntablet | The tablet refuser | We tried the chewable. It ended up on the floor. | No chewing, no swallowing. One raspberry dropper stirred into juice.\nheart | The mum who wants gentle | I don’t want harsh adult stuff. I want something made for them. | Made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.",
             "link_label": "Para Patrol™ was made for this",
             "band": "mintsoft"
           }
@@ -222,7 +222,7 @@
           "settings": {
             "eyebrow": "Real reviews",
             "heading": "What mums notice",
-            "quotes": "I rolled my eyes too | I was skeptical but decided to try it. Within two weeks my son’s appetite improved and he stopped leaving half his food. | Father of Benjamin, age 8\nShe actually takes it | The liquid format saved us. Oscar used to refuse anything that looked like medicine, but one dropper in juice and it’s done without a fuss. | Father of Oscar, age 5\nPicky eater | Picky eater who used to leave half his food. Now he finishes most meals. Mixed in milk — he never notices. | Father of George, age 5",
+            "quotes": "I rolled my eyes too | I was skeptical but decided to try it. Within two weeks my son’s appetite improved and he stopped leaving half his food. | Father of Benjamin, age 8\nThey actually take it | The liquid format saved us. Oscar used to refuse anything that looked like medicine, but one dropper in juice and it’s done without a fuss. | Father of Oscar, age 5\nPicky eater | Picky eater who used to leave half his food. Now he finishes most meals. Mixed in milk — he never notices. | Father of George, age 5",
             "note": "Individual reviews from parents. Every child is different.",
             "band": "mintsoft"
           }
@@ -231,9 +231,9 @@
           "type": "timeline",
           "settings": {
             "eyebrow": "What to expect",
-            "heading": "The easiest routine *in her whole morning.*",
+            "heading": "The easiest routine *in their whole morning.*",
             "intro": "Para Patrol™ is made for the mum who wants gentle, everyday tummy support, not just a fix for the hard nights.",
-            "steps": "Day 1 | 🌅 | One dropper | One dropper in her morning juice. That’s the whole routine, done before breakfast.\nDay 7 | 🥣 | Part of breakfast | It’s just part of the morning now. Same glass, same time, no standoff.\nDay 14 | 📅 | Keep going daily | Keep the bottle next to the juice so it’s never forgotten. Consistency is what counts.\nDay 30 | ⭐ | Your call | A full month of the routine. Keep going, or ask for your money back. It’s your decision.",
+            "steps": "Day 1 | 🌅 | One dropper | One dropper in their morning juice. That’s the whole routine, done before breakfast.\nDay 7 | 🥣 | Part of breakfast | It’s just part of the morning now. Same glass, same time, no standoff.\nDay 14 | 📅 | Keep going daily | Keep the bottle next to the juice so it’s never forgotten. Consistency is what counts.\nDay 30 | ⭐ | Your call | A full month of the routine. Keep going, or ask for your money back. It’s your decision.",
             "end_label": "30-day money-back guarantee ends here",
             "note": "Every child is different. Always read the label and follow directions for use.",
             "band": "mintsoft",
@@ -262,12 +262,12 @@
             "wants_label": "What she wants to improve",
             "herbs_label": "In the formula",
             "link_label": "Para Patrol™ was made for this",
-            "profile_1": "🥦 | The picky eater\nThree bites in, she pushes the plate away and says her tummy’s full. An hour later she wants a snack.\nOne raspberry dropper in her morning juice brings together the traditional bitters for appetite and gentle herbs for a comfortable tummy.\n- Less picky, more hungry\n- Finishing what’s on her plate\n- Dinners that aren’t a negotiation\n+ Wormwood herb extract | The bitter herb behind traditional cleanses, also used to stimulate appetite\n+ Whole clove extract | A warming spice used as a bitter to wake up appetite\n+ Anise seed extract | Traditionally used to ease gas after meals\n+ Thyme leaf extract | Traditionally used to support a healthy gut",
+            "profile_1": "🥦 | The picky eater\nThree bites in, they push the plate away and say their tummy’s full. An hour later they want a snack.\nOne raspberry dropper in their morning juice brings together the traditional bitters for appetite and gentle herbs for a comfortable tummy.\n- Less picky, more hungry\n- Finishing what’s on their plate\n- Dinners that aren’t a negotiation\n+ Wormwood herb extract | The bitter herb behind traditional cleanses, also used to stimulate appetite\n+ Whole clove extract | A warming spice used as a bitter to wake up appetite\n+ Anise seed extract | Traditionally used to ease gas after meals\n+ Thyme leaf extract | Traditionally used to support a healthy gut",
             "profile_2": "🌙 | The 2am tummy aches\nHe’s in your doorway at 2am, holding his tummy again. Everyone’s up, and nobody’s slept.\nFennel, anise and licorice go in the same dropper every morning, the herbs traditionally used to settle little tummies.\n- Calmer nights for everyone\n- Fewer “my tummy hurts” moments\n- A settled tummy before bed\n+ Fennel seed extract | Traditionally used to calm bloating and settle tummy cramps\n+ Anise seed extract | Traditionally used to ease gas\n+ Licorice root extract | A naturally sweet root traditionally used to soothe little tummies\n+ Aloe vera | A soothing plant traditionally used to calm digestion",
-            "profile_3": "🛡️ | The worm-season worrier\nSandpits, daycare, the dog. Every school term you wonder what’s going round.\nPara Patrol™ carries the classic herbs from traditional cleanses, kid-sized, in one raspberry dropper. If you’ve seen worms, see your pharmacist or GP first.\n- Worry less in worm season\n- A clean, balanced gut\n- A simple routine she’ll actually take\n+ Black walnut hull extract | A classic cleanse botanical, traditionally used for a clean, balanced gut\n+ Wormwood herb extract | The bitter herb behind traditional cleanses\n+ Pumpkin seed extract | A long history in traditional kids’ tummy remedies\n+ Pau d’arco bark extract | Traditionally used to support the body’s natural defences in the gut",
-            "profile_4": "😖 | The tummy-trouble kid\nBloated after dinner, all over the place on the toilet, and “my tummy feels funny” most days.\nGentle herbs traditionally used for digestion and regularity, in a raspberry dropper she won’t notice in her juice.\n- Less bloating after meals\n- More regular days\n- Comfy tummies and more get-up-and-go\n+ Fennel seed extract | Traditionally used to calm bloating\n+ Aloe vera | Traditionally used to calm digestion and support regularity\n+ Thyme leaf extract | Rich in thymol, traditionally used to support a healthy gut\n+ Oregano leaf extract | Rich in carvacrol, traditionally used in gut-cleansing blends",
-            "profile_5": "🙅 | The tablet refuser\nYou tried the chewable. It ended up on the floor, and then the dog was more interested than she was.\nNo chewing and no swallowing. One raspberry dropper stirred into juice, and most kids don’t even notice.\n- No more medicine standoffs\n- Something she’ll take every day\n- A routine done before breakfast\n+ Natural raspberry flavour | Tastes like a treat, not a herb\n+ Licorice root extract | A naturally sweet root\n+ Anise seed extract | A sweet, liquorice-like seed\n+ Bitter blocker | On the label to soften the herbal taste",
-            "profile_6": "🌿 | The mum who wants gentle\nAdult cleanse kits are bitter, made with alcohol and come in three steps. You want something made for her.\nAll 11 herbs in one dropper, made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.\n- Made for little bodies\n- Nothing nasty in her glass\n- Knowing exactly what she’s taking\n+ Vegetable glycerin base | No alcohol and no sugar\n+ 11 herbal extracts | One kid-sized dropper, not a 3-product kit\n+ Every ingredient on the label | All 11 herbs listed by name\n+ Third-party tested | Tested for purity"
+            "profile_3": "🛡️ | The worm-season worrier\nSandpits, daycare, the dog. Every school term you wonder what’s going round.\nPara Patrol™ carries the classic herbs from traditional cleanses, kid-sized, in one raspberry dropper. If you’ve seen worms, see your pharmacist or GP first.\n- Worry less in worm season\n- A clean, balanced gut\n- A simple routine they’ll actually take\n+ Black walnut hull extract | A classic cleanse botanical, traditionally used for a clean, balanced gut\n+ Wormwood herb extract | The bitter herb behind traditional cleanses\n+ Pumpkin seed extract | A long history in traditional kids’ tummy remedies\n+ Pau d’arco bark extract | Traditionally used to support the body’s natural defences in the gut",
+            "profile_4": "😖 | The tummy-trouble kid\nBloated after dinner, all over the place on the toilet, and “my tummy feels funny” most days.\nGentle herbs traditionally used for digestion and regularity, in a raspberry dropper they won’t notice in their juice.\n- Less bloating after meals\n- More regular days\n- Comfy tummies and more get-up-and-go\n+ Fennel seed extract | Traditionally used to calm bloating\n+ Aloe vera | Traditionally used to calm digestion and support regularity\n+ Thyme leaf extract | Rich in thymol, traditionally used to support a healthy gut\n+ Oregano leaf extract | Rich in carvacrol, traditionally used in gut-cleansing blends",
+            "profile_5": "🙅 | The tablet refuser\nYou tried the chewable. It ended up on the floor, and then the dog was more interested than they were.\nNo chewing and no swallowing. One raspberry dropper stirred into juice, and most kids don’t even notice.\n- No more medicine standoffs\n- Something they’ll take every day\n- A routine done before breakfast\n+ Natural raspberry flavour | Tastes like a treat, not a herb\n+ Licorice root extract | A naturally sweet root\n+ Anise seed extract | A sweet, liquorice-like seed\n+ Bitter blocker | On the label to soften the herbal taste",
+            "profile_6": "🌿 | The mum who wants gentle\nAdult cleanse kits are bitter, made with alcohol and come in three steps. You want something made for them.\nAll 11 herbs in one dropper, made for kids 3+, with no alcohol and no sugar, and every ingredient on the label.\n- Made for little bodies\n- Nothing nasty in their glass\n- Knowing exactly what they’re taking\n+ Vegetable glycerin base | No alcohol and no sugar\n+ 11 herbal extracts | One kid-sized dropper, not a 3-product kit\n+ Every ingredient on the label | All 11 herbs listed by name\n+ Third-party tested | Tested for purity"
           }
         },
         "tested": {
@@ -421,14 +421,14 @@
           "type": "question",
           "settings": {
             "question": "How do I give it?",
-            "answer": "<p>Fill the dropper, stir it into her juice, and she drinks it as normal. One dropper in her juice. Most kids don’t even notice.</p>"
+            "answer": "<p>Fill the dropper, stir it into their juice, and they drink it as normal. One dropper in their juice. Most kids don’t even notice.</p>"
           }
         },
         "q15": {
           "type": "question",
           "settings": {
             "question": "What if my child won’t take it?",
-            "answer": "<p>Try a smaller glass of juice so it’s finished in a few sips. If it’s still not for her, the 30-day money-back guarantee has you covered.</p>"
+            "answer": "<p>Try a smaller glass of juice so it’s finished in a few sips. If it’s still not for them, the 30-day money-back guarantee has you covered.</p>"
           }
         },
         "q16": {
