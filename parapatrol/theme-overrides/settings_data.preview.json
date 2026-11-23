@@ -435,7 +435,6 @@
           },
           "trustpilot_rating_nAcqB8": {
             "type": "trustpilot_rating",
-            "disabled": false,
             "settings": {
               "rating_text": "Excellent",
               "rating_score": "4.7/5",
@@ -502,7 +501,8 @@
               "shipping_protection_description_font_size": 12,
               "shipping_protection_description_font_size_mobile": 12,
               "shipping_protection_padding_vertical": 14,
-              "shipping_protection_padding_horizontal": 16
+              "shipping_protection_padding_horizontal": 16,
+              "cart_drawer_sp_icon": "shopify://shop_images/shipping-protection.png"
             }
           }
         },

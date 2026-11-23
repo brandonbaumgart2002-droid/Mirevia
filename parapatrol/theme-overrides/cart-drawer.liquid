@@ -254,7 +254,6 @@
 
             <div id="CartDrawer-CartErrors" role="alert"></div>
           </form>
-          {%- if cart != empty -%}{% render 'pp-cart-upgrade', product_handle: section.settings.pp_upgrade_handle, tiers: section.settings.pp_upgrade_tiers, tiers_b: section.settings.pp_upgrade_tiers_b, badge: section.settings.pp_upgrade_badge, bullets: section.settings.pp_upgrade_bullets %}{%- endif -%}
 
           {%- assign upsell_count = 0 -%}
 
@@ -923,6 +922,24 @@
   gift_icon_pixel: gift_icon_pixel
 %}
 
+{%- comment -%} Para Patrol: remove bundle gifts whose bundle has left the cart {%- endcomment -%}
+<script>
+  (function () {
+    if (window.__ppGiftGuard) return; window.__ppGiftGuard = true;
+    // A bundle gift whose bundle is no longer in the cart is removed with the theme's own remove button
+    var busy = false;
+    function sweep() {
+      if (busy) return;
+      var row = document.querySelector('cart-drawer [data-pp-orphan-gift], cart-items [data-pp-orphan-gift]');
+      if (!row) return;
+      var btn = row.querySelector('cart-remove-button button, cart-remove-button');
+      if (!btn) return;
+      busy = true; btn.click(); setTimeout(function () { busy = false; sweep(); }, 1500);
+    }
+    new MutationObserver(function () { setTimeout(sweep, 50); }).observe(document.documentElement, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', sweep); setTimeout(sweep, 500);
+  })();
+</script>
 {% schema %}
 {
   "name": "Cart Drawer",
