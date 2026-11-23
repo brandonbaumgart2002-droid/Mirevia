@@ -132,7 +132,7 @@
                 <span class="pp-tier__price">{{ variant.price | money }}</span>
                 {%- if save_pct > 0 -%}<s class="pp-tier__was">{{ was | money }}</s>{%- endif -%}
               </span>
-              <span class="pp-tier__each">{{ variant.price | divided_by: n | money }} / bottle</span>
+              <span class="pp-tier__each">{{ variant.price | divided_by: days | money }} / day</span>
             </label>
           {%- endfor -%}
         </div>
