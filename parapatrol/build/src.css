@@ -566,3 +566,22 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 @media (min-width: 640px) { .pp .pp-pill { font-size: 13px; padding: 4px 11px; } }
 @media (max-width: 639px) { .pp.pp .pp-pill { font-size: 10.5px; padding: 3px 7px; gap: 3px; letter-spacing: -.005em; } }
 @media (max-width: 374px) { .pp.pp .pp-pill { font-size: 9.5px; padding: 3px 6px; } }
+
+/* ===== Bundle gifts ===== */
+.pp .pp-tier__gift { margin-top: 4px; display: block; font-size: 10.5px; font-weight: 800; line-height: 1.25; color: var(--pp-raspberry); }
+.pp .pp-tier__gift--ship { color: var(--pp-mint-deep); }
+@media (min-width: 640px) { .pp .pp-tier__gift { font-size: 12px; } }
+.pp .pp-gifts { margin-top: 14px; }
+.pp .pp-gifts__head { text-align: center; font-family: var(--pp-font-display); font-weight: 900; font-size: 16px; color: var(--ink); }
+.pp .pp-gifts__row { margin-top: 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pp .pp-gift { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; padding: 14px 6px 10px; border: 1.5px dashed #D7C9D0; border-radius: 14px; background: #FBF7F9; opacity: .6; transition: opacity .2s, border-color .2s, background .2s; }
+.pp .pp-gift.is-on { opacity: 1; border-style: solid; border-color: var(--pp-raspberry); background: #fff; box-shadow: 0 6px 16px -12px rgba(199,56,98,.6); }
+.pp .pp-gift__tag { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); padding: 1px 9px; border-radius: 999px; background: var(--pp-raspberry); color: #fff; font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.pp .pp-gift:not(.is-on) .pp-gift__tag { background: #B9AEB4; }
+.pp .pp-gift__img { width: 64px; height: 64px; object-fit: contain; border-radius: 10px; }
+.pp .pp-gift__name { font-size: 12px; font-weight: 900; line-height: 1.2; color: var(--ink); }
+.pp .pp-gift__worth { font-size: 11px; color: var(--ink-muted); }
+.pp .pp-gift__unlock { font-size: 10.5px; font-weight: 800; color: var(--ink-muted); }
+.pp .pp-gift.is-on .pp-gift__unlock { color: var(--pp-raspberry); }
+@media (min-width: 640px) { .pp .pp-gift__img { width: 76px; height: 76px; } .pp .pp-gift__name { font-size: 13px; } }
+.pp.pp .pp-gifts__head { font-weight: 900 !important; }

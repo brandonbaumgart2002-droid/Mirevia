@@ -195,6 +195,8 @@
       var vi = $('[data-pp-variant-input]', box); if (vi) vi.value = v.id;
       var vs = $('[data-pp-variant]', box); if (vs) vs.value = v.id;
       $$('[data-pp-tier]', box).forEach(function (r) { r.checked = Number(r.value) === v.id; });
+      var tierIdx = data.variants.indexOf(v) + 1;
+      $$('[data-pp-gift-tier]', box).forEach(function (g) { g.classList.toggle('is-on', g.getAttribute('data-pp-gift-tier').split(',').indexOf(String(tierIdx)) > -1); });
 
       $$('[data-pp-plan]', box).forEach(function (r) {
         var kind = r.getAttribute('data-pp-plan');
@@ -260,7 +262,10 @@
     if (btn) { btn.__ppBusy = true; btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Adding…'; }
 
     var label = 'Added ' + state.qty + ' × ' + (data.title || 'item') + (item.selling_plan ? ' (subscription)' : '') + ' to your bag.';
-    addItems([item], label)
+    var items = [item];
+    if (v.gift) items.push({ id: v.gift, quantity: 1 });
+    if (v.gift && v.giftTitle) label += ' Free gift added: ' + v.giftTitle + '.';
+    addItems(items, label)
       .catch(function (e) {
         if (err) { err.textContent = e.message; err.hidden = false; } else toast(e.message);
       })

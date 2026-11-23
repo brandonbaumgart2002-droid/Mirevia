@@ -57,6 +57,18 @@
             "title": {{ variant.title | json }},
             "available": {{ variant.available | json }},
             "price": {{ variant.price | json }},
+            {%- liquid
+              assign gv = blank
+              if product.options.first == 'Bundle'
+                if forloop.index == 2 and gift_2 != blank
+                  assign gv = gift_2.selected_or_first_available_variant
+                elsif forloop.index == 3 and gift_3 != blank
+                  assign gv = gift_3.selected_or_first_available_variant
+                endif
+              endif
+            -%}
+            "gift": {% if gv != blank and gv.available %}{{ gv.id | json }}{% else %}null{% endif %},
+            "giftTitle": {% if gv != blank %}{{ gv.product.title | json }}{% else %}null{% endif %},
             "plans": [
               {%- for alloc in variant.selling_plan_allocations -%}
                 {%- if alloc.selling_plan.group_id == group.id -%}
@@ -120,9 +132,49 @@
                 {%- if save_pct > 0 -%}<s class="pp-tier__was">{{ was | money }}</s>{%- endif -%}
               </span>
               <span class="pp-tier__each">{{ variant.price | divided_by: n | money }} / bottle</span>
+              {%- liquid
+                assign tg = blank
+                if forloop.index == 2
+                  assign tg = gift_2
+                elsif forloop.index == 3
+                  assign tg = gift_3
+                endif
+              -%}
+              {%- if tg != blank -%}
+                <span class="pp-tier__gift"><span aria-hidden="true">🎁</span> + FREE {% if forloop.index == 3 %}{{ gift_short_3 | default: tg.title }}{% else %}{{ gift_short_2 | default: tg.title }}{% endif %}</span>
+              {%- elsif forloop.first and gift_1_label != blank -%}
+                <span class="pp-tier__gift pp-tier__gift--ship"><span aria-hidden="true">🚚</span> {{ gift_1_label }}</span>
+              {%- endif -%}
             </label>
           {%- endfor -%}
         </div>
+        {%- if gift_2 != blank or gift_3 != blank -%}
+          <div class="pp-gifts" data-pp-gifts>
+            <p class="pp-gifts__head">{{ gifts_heading | default: 'Unlock free gifts with bundles' }}</p>
+            <ul class="pp-gifts__row" role="list">
+              {%- if gift_1_label != blank -%}
+                <li class="pp-gift" data-pp-gift-tier="1,2,3">
+                  <span class="pp-gift__tag">Free</span>
+                  <img src="{{ 'pp-gift-free-shipping.jpg' | asset_img_url: '240x' }}" alt="" width="120" height="120" loading="lazy" class="pp-gift__img">
+                  <span class="pp-gift__name">{{ gift_1_label }}</span>
+                  <span class="pp-gift__unlock">Every bundle</span>
+                </li>
+              {%- endif -%}
+              {%- for gp in (2..3) -%}
+                {%- if gp == 2 -%}{%- assign g = gift_2 -%}{%- assign gn = gift_short_2 -%}{%- assign gl = gift_unlock_2 -%}{%- else -%}{%- assign g = gift_3 -%}{%- assign gn = gift_short_3 -%}{%- assign gl = gift_unlock_3 -%}{%- endif -%}
+                {%- if g != blank -%}
+                  <li class="pp-gift" data-pp-gift-tier="{{ gp }}">
+                    <span class="pp-gift__tag">Free</span>
+                    {%- if g.featured_image -%}{{ g.featured_image | image_url: width: 240 | image_tag: alt: '', loading: 'lazy', class: 'pp-gift__img', width: 120, height: 120 }}{%- endif -%}
+                    <span class="pp-gift__name">{{ gn | default: g.title }}</span>
+                    <span class="pp-gift__worth">Worth <s>{{ g.selected_or_first_available_variant.price | money }}</s></span>
+                    <span class="pp-gift__unlock">{{ gl }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
       </div>
     {%- elsif product.has_only_default_variant == false -%}
       <div class="mb-3">

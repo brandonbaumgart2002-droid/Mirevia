@@ -279,7 +279,7 @@
         {%- if section.settings.sale_end_date != blank -%}
           <div class="mb-3">{%- render 'parapatrol-countdown', label: section.settings.sale_label, end_date: section.settings.sale_end_date, end_time: section.settings.sale_end_time, note: section.settings.sale_note -%}</div>
         {%- endif -%}
-        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading, ship_note: section.settings.ship_note -%}
+        {%- render 'parapatrol-buybox', product: product, uid: section.id, free_shipping: free_ship, guarantee: section.settings.guarantee, trust: section.settings.trust, payment_icons: section.settings.payment_icons, subscribe_note: section.settings.subscribe_note, delivery: section.settings.show_delivery, proc_min: section.settings.proc_min, proc_max: section.settings.proc_max, del_min: section.settings.del_min, del_max: section.settings.del_max, delivery_note: section.settings.delivery_note, tier_heading: section.settings.tier_heading, ship_note: section.settings.ship_note, gift_1_label: section.settings.gift_1_label, gift_2: section.settings.gift_2, gift_3: section.settings.gift_3, gift_short_2: section.settings.gift_short_2, gift_short_3: section.settings.gift_short_3, gift_unlock_2: section.settings.gift_unlock_2, gift_unlock_3: section.settings.gift_unlock_3, gifts_heading: section.settings.gifts_heading -%}
 
         {%- if section.settings.trust_chips != blank -%}
           {%- assign tc_items = section.settings.trust_chips | newline_to_br | split: '<br />' -%}
@@ -480,6 +480,15 @@
 
     { "type": "header", "content": "Purchase box" },
     { "type": "textarea", "id": "quick_list", "label": "Quick questions", "info": "question | answer, one per line. Put {label} in an answer to show the zoomable Supplement Facts label there." },
+    { "type": "header", "content": "Bundle gifts" },
+    { "type": "text", "id": "gifts_heading", "label": "Gifts heading", "default": "Unlock free gifts with bundles" },
+    { "type": "text", "id": "gift_1_label", "label": "Bundle 1 perk", "default": "Free shipping" },
+    { "type": "product", "id": "gift_2", "label": "Free gift with bundle 2", "info": "Added to the cart with bundle 2. Needs an automatic discount that makes it free." },
+    { "type": "text", "id": "gift_short_2", "label": "Bundle 2 gift short name" },
+    { "type": "text", "id": "gift_unlock_2", "label": "Bundle 2 unlock line", "default": "With 2 bottles" },
+    { "type": "product", "id": "gift_3", "label": "Free gift with bundle 3", "info": "Added to the cart with bundle 3. Needs an automatic discount that makes it free." },
+    { "type": "text", "id": "gift_short_3", "label": "Bundle 3 gift short name" },
+    { "type": "text", "id": "gift_unlock_3", "label": "Bundle 3 unlock line", "default": "With 4 bottles" },
     { "type": "text", "id": "ship_note", "label": "Line under the button", "info": "e.g. Ships in 1-3 Business Days. Blank shows the free-shipping line." },
     { "type": "textarea", "id": "trust_chips", "label": "Trust strip under the button", "info": "icon | text, one per line. Use the icon name 'lab' for the lab-tested chip: it links to the COA and stays hidden until a COA link is set." },
     { "type": "url", "id": "coa_url", "label": "Certificate of analysis (COA) link" },
