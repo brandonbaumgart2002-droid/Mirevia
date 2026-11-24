@@ -81,7 +81,7 @@
         "gcard_items": "lock | Secure checkout\ntruck | Free shipping\nkid | Made for kids 3+",
         "judgeme_badge": true,
         "trust_chips": "",
-        "coa_url": "https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-MAN20250902.pdf?v=1795502844",
+        "coa_url": "https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-batch-MAN20250902.pdf?v=1795503450",
         "pp_cream": "#FFFFFF",
         "pp_mint": "#9FE0C9",
         "pp_mint_deep": "#1F7F66",
@@ -282,7 +282,7 @@
             "text_2": "Our latest batch of Para Patrol™ (MAN20250902) was tested for heavy metals and microbes and passed every test, with no lead, arsenic, cadmium, mercury, E. coli, Salmonella or Staph detected. All 11 herbs are named on the label.",
             "sticker": "Every herb on the label",
             "button_label": "View the certificate of analysis",
-            "results_url": "https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-MAN20250902.pdf?v=1795502844",
+            "results_url": "https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-batch-MAN20250902.pdf?v=1795503450",
             "show_placeholder": false,
             "band": "mintsoft"
           }
@@ -401,7 +401,7 @@
           "type": "question",
           "settings": {
             "question": "Is it tested?",
-            "answer": "<p>Yes. Our latest batch (MAN20250902) was tested for heavy metals (lead, arsenic, cadmium and mercury) and microbes (including E. coli, Salmonella and Staph), and passed every test. <a href=\"https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-MAN20250902.pdf?v=1795502844\" target=\"_blank\" rel=\"noopener\">View the certificate of analysis (PDF)</a>.</p>"
+            "answer": "<p>Yes. Our latest batch (MAN20250902) was tested for heavy metals (lead, arsenic, cadmium and mercury) and microbes (including E. coli, Salmonella and Staph), and passed every test. <a href=\"https://cdn.shopify.com/s/files/1/0988/2832/1048/files/para-patrol-coa-batch-MAN20250902.pdf?v=1795503450\" target=\"_blank\" rel=\"noopener\">View the certificate of analysis (PDF)</a>.</p>"
           }
         },
         "g4": {
