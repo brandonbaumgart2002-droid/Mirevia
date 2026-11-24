@@ -448,7 +448,7 @@
           "type": "question",
           "settings": {
             "question": "How much do I give?",
-            "answer": "<p>Follow the directions on the label. [[Dose-by-age from the label.]]</p>"
+            "answer": "<p>1 mL once a day, which is one full dropper. It’s the same amount for every age, so there’s nothing to measure or work out. Stir it into their juice and you’re done.</p>"
           }
         },
         "q18": {
@@ -502,7 +502,7 @@
           "type": "question",
           "settings": {
             "question": "How does the 30-day guarantee work?",
-            "answer": "<p>Try it for 30 days. If you’re not happy, contact us and we’ll refund you. [[Link to the full guarantee terms]]</p>"
+            "answer": "<p>Try it for 30 days. If you’re not happy, contact us and we’ll refund you.</p>"
           }
         }
       },
