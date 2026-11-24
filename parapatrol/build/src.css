@@ -623,3 +623,44 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
 @media (min-width: 860px) { .pp .pp-fin__media { align-items: center; padding: 40px 28px; } .pp .pp-fin__bottles { width: min(62%, 300px); } .pp .pp-fin__gift { width: min(42%, 200px); align-self: flex-end; margin-bottom: 12%; } }
 .pp.pp.pp .pp-fin__btn { white-space: nowrap; font-size: 15.5px; padding: 0 14px; }
 @media (min-width: 640px) { .pp.pp.pp .pp-fin__btn { font-size: 17px; } }
+
+/* ---------- Mobile compact pass (< 640px): tighter section rhythm, desktop untouched ---------- */
+@media (max-width: 639px) {
+  /* section bands: 48–56px -> 30px */
+  .pp.pp section[data-pp-band] { padding-top: 30px !important; padding-bottom: 30px !important; }
+  /* hero: trim the gap under the buy box */
+  .pp.pp section[aria-labelledby^="pp-title-"] { padding-bottom: 16px !important; margin-bottom: 0 !important; }
+  /* heading -> content gaps */
+  .pp.pp section[data-pp-band] .mt-12 { margin-top: 24px !important; }
+  .pp.pp section[data-pp-band] .mt-8,
+  .pp.pp section[data-pp-band] .mt-7 { margin-top: 18px !important; }
+  .pp.pp section[data-pp-band] .mt-6 { margin-top: 14px !important; }
+  /* intro paragraphs under headings */
+  .pp.pp section[data-pp-band] h2 + p.mt-3 { margin-top: 8px !important; }
+  /* FAQ rows */
+  .pp.pp [data-pp-accordion] .acc-btn { padding-top: 13px !important; padding-bottom: 13px !important; font-size: 16.5px !important; }
+  .pp.pp [data-pp-accordion] .acc-icon { width: 30px; height: 30px; font-size: 19px; }
+  .pp.pp [data-pp-accordion] h3.pt-8 { padding-top: 20px !important; padding-bottom: 6px !important; }
+  .pp.pp [data-pp-accordion] [role="region"] { padding-bottom: 14px !important; }
+  /* cards: a little less inner padding */
+  .pp.pp section[data-pp-band] .p-6,
+  .pp.pp section[data-pp-band] .p-5 { padding: 16px !important; }
+  /* final offer card */
+  .pp .pp-fin__media { min-height: 0; padding: 22px 16px 16px; }
+  .pp .pp-fin__body { padding: 20px 16px 18px; }
+  .pp.pp .pp-fin__h { font-size: 27px; }
+  /* disclaimer: keep only enough bottom room for the sticky Buy bar */
+  .pp.pp div[data-pp-band].pb-28 { padding-top: 20px !important; padding-bottom: 84px !important; }
+}
+@media (max-width: 639px) {
+  /* guarantee card under the buy button */
+  .pp.pp .pp-gcard { padding-top: 14px !important; padding-bottom: 14px !important; margin-top: 12px !important; }
+  .pp.pp .pp-gcard > p:first-child { font-size: 19px !important; }
+  .pp.pp .pp-gcard > p + p { font-size: 14px !important; }
+  .pp.pp .pp-gcard ul { margin-top: 10px !important; padding-top: 10px !important; }
+  .pp.pp .pp-gcard li span:last-child { font-size: 12px !important; }
+  /* final offer: keep the badge clear of the bottle caps */
+  .pp .pp-fin__media { padding-top: 46px; }
+  .pp .pp-fin__bottles { width: min(52%, 220px); }
+  .pp .pp-fin__badge { top: 12px; left: 12px; }
+}

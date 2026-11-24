@@ -297,7 +297,7 @@
 
         {%- if section.settings.gcard_title != blank -%}
           {%- assign gc_items = section.settings.gcard_items | newline_to_br | split: '<br />' -%}
-          <div class="mt-4 rounded-3xl border-2 border-ink bg-white px-4 sm:px-6 py-5 text-center">
+          <div class="pp-gcard mt-4 rounded-3xl border-2 border-ink bg-white px-4 sm:px-6 py-5 text-center">
             <p class="font-display font-bold text-[22px] sm:text-[24px] leading-tight text-primary">{{ section.settings.gcard_title }}</p>
             {%- if section.settings.gcard_text != blank -%}<p class="mt-1 text-[15px] text-ink">{{ section.settings.gcard_text }}</p>{%- endif -%}
             {%- if section.settings.gcard_items != blank -%}
