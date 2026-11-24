@@ -504,10 +504,25 @@
               "shipping_protection_padding_horizontal": 16,
               "cart_drawer_sp_icon": "shopify://shop_images/shipping-protection.png"
             }
+          },
+          "pp_text_banner_families": {
+            "type": "pp_text_banner",
+            "settings": {
+              "text": "Join 5,600+ Happy Families!",
+              "link": "",
+              "bg": "#1F2A5A",
+              "color": "#FFFFFF",
+              "size": 20,
+              "weight": "600",
+              "padding": 16,
+              "margin": 0,
+              "radius": 0
+            }
           }
         },
         "block_order": [
           "cart_timer_bar_HfaHGB",
+          "pp_text_banner_families",
           "cart_social_proof_bar_9cATek",
           "cart_progress_bar_niUx4Q",
           "cart_shipping_protection_mXGeTd",

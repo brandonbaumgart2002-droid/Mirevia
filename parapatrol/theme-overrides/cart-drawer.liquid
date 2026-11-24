@@ -198,6 +198,13 @@
               <div {{ block.shopify_attributes }}>
                 {% render 'cart-timer-bar', block: block %}
               </div>
+            {% when 'pp_text_banner' %}
+              {%- if block.settings.text != blank -%}
+                {%- capture ppb_style -%}background:{{ block.settings.bg }};color:{{ block.settings.color }};font-size:{{ block.settings.size }}px;padding:{{ block.settings.padding }}px 16px;margin:{{ block.settings.margin }}px 0 0;border-radius:{{ block.settings.radius }}px;text-align:center;font-weight:{{ block.settings.weight }};line-height:1.25;display:block;text-decoration:none;{%- endcapture -%}
+                <div {{ block.shopify_attributes }}>
+                  {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" class="pp-cart-tile" style="{{ ppb_style }}">{{ block.settings.text }}</a>{%- else -%}<p class="pp-cart-tile" style="{{ ppb_style }}">{{ block.settings.text }}</p>{%- endif -%}
+                </div>
+              {%- endif -%}
             {% when 'cart_image_banner' %}
               {% if cart != empty %}
                 <div {{ block.shopify_attributes }}>
@@ -1964,6 +1971,21 @@
           ],
           "default": "solid"
         }
+      ]
+    },
+    {
+      "type": "pp_text_banner",
+      "name": "Text banner",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Join 5,600+ Happy Families!" },
+        { "type": "url", "id": "link", "label": "Link (optional)" },
+        { "type": "color", "id": "bg", "label": "Background", "default": "#1F2A5A" },
+        { "type": "color", "id": "color", "label": "Text colour", "default": "#FFFFFF" },
+        { "type": "range", "id": "size", "label": "Text size", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 20 },
+        { "type": "select", "id": "weight", "label": "Text weight", "options": [{ "value": "400", "label": "Regular" }, { "value": "600", "label": "Semi-bold" }, { "value": "800", "label": "Bold" }], "default": "600" },
+        { "type": "range", "id": "padding", "label": "Padding (top and bottom)", "min": 4, "max": 30, "step": 1, "unit": "px", "default": 16 },
+        { "type": "range", "id": "margin", "label": "Space above", "min": 0, "max": 20, "step": 1, "unit": "px", "default": 0 },
+        { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 20, "step": 1, "unit": "px", "default": 0 }
       ]
     },
     {
