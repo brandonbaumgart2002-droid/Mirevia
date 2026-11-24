@@ -510,11 +510,11 @@
             "settings": {
               "text": "Join 5,600+ Happy Families!",
               "link": "",
-              "bg": "#1F2A5A",
-              "color": "#FFFFFF",
-              "size": 20,
-              "weight": "600",
-              "padding": 16,
+              "bg": "#9FE0C9",
+              "color": "#1F2A5A",
+              "size": 19,
+              "weight": "800",
+              "padding": 14,
               "margin": 0,
               "radius": 0
             }
@@ -582,7 +582,7 @@
           "cart_drawer_secondary_text": "#7d6b6e",
           "cart_drawer_accent_color": "#8a2f52",
           "cart_drawer_divider_color": "#ecdfda",
-          "cart_drawer_checkout_button_bg": "#3b2a2e",
+          "cart_drawer_checkout_button_bg": "#C73862",
           "cart_drawer_checkout_button_text": "#ffffff",
           "cart_drawer_item_saving_text": "#8a2f52",
           "cart_drawer_item_saving_bg": "#fffcfa",
