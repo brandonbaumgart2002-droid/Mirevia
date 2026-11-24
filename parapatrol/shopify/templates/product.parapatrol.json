@@ -551,23 +551,26 @@
         "mandatory": "Always read the label and follow directions for use."
       },
       "blocks": {
-        "close": {
-          "type": "close",
+        "finale": {
+          "type": "finale",
           "settings": {
-            "heading": "Try it for 30 days",
-            "text": "If you’re not happy, we’ll refund you.",
-            "terms_label": "Read the full guarantee terms",
-            "terms_url": "/policies/refund-policy",
-            "offer": "Save up to 45% with a 2 or 4 bottle bundle",
-            "product": "",
+            "band": "mintsoft",
+            "tier": 2,
             "servings": 30,
-            "cta_label": "Choose my bundle",
-            "band": "mintsoft"
+            "gift": "officer-scouts-patrol-pack",
+            "badge": "Most popular",
+            "eyebrow": "Black Friday · Our best-loved bundle",
+            "heading": "Get your happy, hungry kid *back.*",
+            "text": "Full plates at dinner, comfy tummies at bedtime and calmer nights for the whole house. All from one raspberry squeeze before breakfast.",
+            "ticks": "Free shipping, ships in 1-3 business days\n30-day money-back guarantee",
+            "cta_label": "Get Tummy Support - Buy Now",
+            "note": "Not happy within 30 days? Full refund.",
+            "terms_url": "/policies/refund-policy"
           }
         }
       },
       "block_order": [
-        "close"
+        "finale"
       ]
     },
     "disclaimer": {

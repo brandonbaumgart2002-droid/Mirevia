@@ -208,6 +208,61 @@
       </section>
 
 
+    {%- when 'finale' -%}
+      {%- assign fi_n = b.tier | default: 2 | minus: 1 -%}
+      {%- assign fi_v = product.variants[fi_n] | default: product.selected_or_first_available_variant -%}
+      {%- assign fi_gift = all_products[b.gift] -%}
+      {%- assign fi_bottles = fi_n | plus: 1 -%}
+      {%- if fi_n == 2 -%}{%- assign fi_bottles = 4 -%}{%- endif -%}
+      {%- assign fi_days = b.servings | default: 30 | times: fi_bottles -%}
+      <section data-pp-band="{{ b.band | default: 'auto' }}" class="pp-fin py-12 lg:py-16" {{ block.shopify_attributes }} aria-labelledby="pp-fin-{{ block.id }}">
+        <div class="max-w-[1040px] mx-auto px-4">
+          <div class="pp-fin__card">
+            <div class="pp-fin__media">
+              {%- if b.image != blank -%}
+                {{ b.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'pp-fin__bottles', alt: b.image.alt | default: fi_v.title, sizes: '(min-width: 900px) 440px, 80vw' }}
+              {%- else -%}
+                <img src="{{ 'pp-tier-2.png' | asset_url }}" alt="{{ fi_v.title | escape }} of {{ product.title | escape }}" class="pp-fin__bottles" width="239" height="320" loading="lazy">
+              {%- endif -%}
+              {%- if fi_gift and fi_gift.featured_image -%}
+                <div class="pp-fin__gift">
+                  {{ fi_gift.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: fi_gift.title, class: 'pp-fin__giftimg' }}
+                  <span class="pp-fin__free">FREE</span>
+                </div>
+              {%- endif -%}
+              {%- if b.badge != blank -%}<span class="pp-fin__badge">{{ b.badge }}</span>{%- endif -%}
+            </div>
+            <div class="pp-fin__body">
+              {%- if b.eyebrow != blank -%}<p class="text-[12px] font-extrabold uppercase tracking-[.14em] text-mintdeep">{{ b.eyebrow }}</p>{%- endif -%}
+              <h2 id="pp-fin-{{ block.id }}" class="pp-fin__h mt-1 font-display text-ink">{%- assign fh = b.heading | escape | split: '*' -%}{%- for part in fh -%}{%- assign odd = forloop.index0 | modulo: 2 -%}{%- if odd == 1 -%}<em class="pp-accent">{{ part }}</em>{%- else -%}{{ part }}{%- endif -%}{%- endfor -%}</h2>
+              {%- if b.text != blank -%}<p class="mt-3 text-[16px] sm:text-[17px] text-ink">{{ b.text }}</p>{%- endif -%}
+              <div class="pp-fin__price mt-5">
+                <div>
+                  <p class="text-[14px] font-extrabold text-ink">{{ fi_v.title }} · {{ fi_days }} days</p>
+                  <p class="mt-0.5 flex items-baseline gap-2 flex-wrap"><strong class="pp-fin__now">{{ fi_v.price | money }}</strong>{%- if fi_v.compare_at_price > fi_v.price -%}<s class="text-[16px] text-muted">{{ fi_v.compare_at_price | money }}</s>{%- endif -%}</p>
+                  <p class="text-[13px] text-muted">{{ fi_v.price | divided_by: fi_days | money }} / day</p>
+                </div>
+                {%- if fi_v.compare_at_price > fi_v.price -%}
+                  {%- assign fi_save = fi_v.compare_at_price | minus: fi_v.price | times: 100.0 | divided_by: fi_v.compare_at_price | round -%}
+                  <span class="pp-fin__save">Save {{ fi_save }}%</span>
+                {%- endif -%}
+              </div>
+              <ul class="mt-4 grid gap-2" role="list">
+                {%- if fi_gift -%}<li class="pp-fin__tick"><span class="pp-fin__ck" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span><span><strong>FREE {{ fi_gift.title }}</strong> <s class="text-muted">{{ fi_gift.price | money }}</s></span></li>{%- endif -%}
+                {%- assign fticks = b.ticks | newline_to_br | split: '<br />' -%}
+                {%- for t in fticks -%}{%- assign tt = t | strip -%}{%- if tt != blank -%}<li class="pp-fin__tick"><span class="pp-fin__ck" aria-hidden="true">{%- render 'parapatrol-icon', name: 'check', icon_size: 12 -%}</span><span>{{ tt }}</span></li>{%- endif -%}{%- endfor -%}
+              </ul>
+              <button type="button" class="disable-global-button-styling pp-fin__btn mt-6" data-pp-buy-variant="{{ fi_v.id }}"{% unless fi_v.available %} disabled{% endunless %}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+                <span>{{ b.cta_label | default: 'Get my bundle' }}</span>
+              </button>
+              {%- if b.note != blank -%}<p class="mt-3 flex items-center justify-center gap-1.5 text-[13px] font-bold text-ink">{%- render 'parapatrol-icon', name: 'shield', icon_size: 15 -%}<span>{{ b.note }}</span>{%- if b.terms_url != blank %} <a href="{{ b.terms_url }}" class="underline underline-offset-2 text-mintdeep">Terms</a>{%- endif -%}</p>{%- endif -%}
+              {%- if s.mandatory != blank -%}<p class="mt-2 text-center text-[12px] text-muted">{{ s.mandatory }}</p>{%- endif -%}
+            </div>
+          </div>
+        </div>
+      </section>
+
     {%- when 'profiles' -%}
       {%- assign profs = b.profiles | newline_to_br | split: '<br />' -%}
       <section data-pp-band="{{ b.band | default: 'auto' }}" class="py-12 lg:py-16 bg-soft" {{ block.shopify_attributes }} aria-labelledby="pp-pf-{{ block.id }}" data-pp-profiles>
@@ -831,6 +886,21 @@
       { "type": "textarea", "id": "dose", "label": "Dose table", "info": "age | dose | how often. From the label only." },
       { "type": "text", "id": "line", "label": "Line under the table" },
       { "type": "text", "id": "small", "label": "Small print" }
+    ] },
+    { "type": "finale", "name": "Final bundle offer", "settings": [
+      { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mintsoft", "label": "Light mint" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },
+      { "type": "number", "id": "tier", "label": "Bundle to feature (1, 2 or 3)", "default": 2 },
+      { "type": "number", "id": "servings", "label": "Servings per bottle", "default": 30 },
+      { "type": "image_picker", "id": "image", "label": "Bundle image (defaults to the 2-bottle image)" },
+      { "type": "product", "id": "gift", "label": "Free gift shown" },
+      { "type": "text", "id": "badge", "label": "Image badge" },
+      { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+      { "type": "text", "id": "heading", "label": "Heading", "info": "Wrap words in *stars* to highlight them." },
+      { "type": "textarea", "id": "text", "label": "Outcome line" },
+      { "type": "textarea", "id": "ticks", "label": "Included (one per line)" },
+      { "type": "text", "id": "cta_label", "label": "Button label" },
+      { "type": "text", "id": "note", "label": "Guarantee line" },
+      { "type": "url", "id": "terms_url", "label": "Guarantee terms link" }
     ] },
     { "type": "close", "name": "Guarantee and offer", "settings": [
       { "type": "select", "id": "band", "label": "Background", "options": [{ "value": "auto", "label": "Default" }, { "value": "white", "label": "White" }, { "value": "cream", "label": "Off-white" }, { "value": "mintsoft", "label": "Light mint" }, { "value": "mint", "label": "Mint" }, { "value": "navy", "label": "Navy" }, { "value": "raspberry", "label": "Raspberry" }], "default": "auto" },

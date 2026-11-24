@@ -696,6 +696,22 @@
     });
   }
 
+  /* ---------------- final bundle offer: pick that bundle in the hero buy box and add it (gifts included) ---------------- */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('[data-pp-buy-variant]');
+    if (!btn || btn.disabled) return;
+    var id = btn.getAttribute('data-pp-buy-variant');
+    var box = document.querySelector('[data-pp-hero-box]') || document;
+    var radio = box.querySelector('[data-pp-tier][value="' + id + '"]');
+    var add = box.querySelector('[data-pp-add]');
+    if (!radio || !add) return;
+    e.preventDefault();
+    if (!radio.checked) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
+    btn.setAttribute('aria-busy', 'true'); btn.classList.add('is-busy');
+    add.click();
+    setTimeout(function () { btn.removeAttribute('aria-busy'); btn.classList.remove('is-busy'); }, 2500);
+  });
+
   /* ---------------- final CTA: back up to the main buy box ---------------- */
   document.addEventListener('click', function (e) {
     // [data-pp-to-buy] scrolls to the buy box; [data-pp-scroll] scrolls to the section its href points at (e.g. #safety)
