@@ -1,0 +1,5 @@
+{%- comment -%}
+  Turns a COA link into an on-page pop-up (uses the pp-zoom dialog in parapatrol.js).
+  The href stays as a no-JS fallback. Swap the image by replacing assets/pp-coa.jpg.
+{%- endcomment -%}
+data-pp-zoom="{{ 'pp-coa.jpg' | asset_url }}" data-pp-zoom-doc data-pp-zoom-title="Certificate of Analysis · Batch MAN20250902" data-pp-zoom-alt="Certificate of Analysis for Para Patrol batch MAN20250902: all test results pass" aria-haspopup="dialog"

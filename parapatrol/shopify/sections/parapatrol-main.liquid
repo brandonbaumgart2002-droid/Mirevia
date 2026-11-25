@@ -288,7 +288,7 @@
               {%- if f.size >= 2 -%}{%- unless tc_icon == 'lab' and section.settings.coa_url == blank -%}
                 <li class="inline-flex items-center gap-1.5 rounded-full bg-mint border border-line px-3 py-1.5 text-[13px] font-bold text-ink">
                   <span class="text-mintdeep" aria-hidden="true">{%- render 'parapatrol-icon', name: tc_icon, icon_size: 16 -%}</span>
-                  {%- if tc_icon == 'lab' -%}<a href="{{ section.settings.coa_url }}" target="_blank" rel="noopener" class="underline underline-offset-2">{%- render 'parapatrol-claim', text: f[1] -%}</a>{%- else -%}<span>{{ f[1] | strip | replace: '[[', '<mark class="pp-ph">[[' | replace: ']]', ']]</mark>' }}</span>{%- endif -%}
+                  {%- if tc_icon == 'lab' -%}<a href="{{ section.settings.coa_url }}" target="_blank" rel="noopener" {% render 'parapatrol-coa-attrs' %} class="underline underline-offset-2">{%- render 'parapatrol-claim', text: f[1] -%}</a>{%- else -%}<span>{{ f[1] | strip | replace: '[[', '<mark class="pp-ph">[[' | replace: ']]', ']]</mark>' }}</span>{%- endif -%}
                 </li>
               {%- endunless -%}{%- endif -%}
             {%- endfor -%}

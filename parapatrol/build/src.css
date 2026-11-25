@@ -664,3 +664,16 @@ dialog.pp-zoom[open] { display: flex; flex-direction: column; }
   .pp .pp-fin__bottles { width: min(52%, 220px); }
   .pp .pp-fin__badge { top: 12px; left: 12px; }
 }
+
+/* COA pop-up: the zoom dialog in "document" mode (fits the width, scrolls down the page) */
+dialog.pp-zoom.pp-zoom--doc { width: min(96vw, 760px); height: min(94vh, 1100px); }
+dialog.pp-zoom--doc .pp-zoom__bar { background: #1F2A5A; border-bottom: 0; padding: 10px 10px 10px 16px; }
+dialog.pp-zoom--doc .pp-zoom__hint { color: #fff; font-family: Nunito, 'Nunito Sans', sans-serif; font-weight: 900; font-size: 14px; line-height: 1.2; }
+dialog.pp-zoom--doc .pp-zoom__close { background: #fff; color: #1F2A5A; flex-shrink: 0; }
+dialog.pp-zoom--doc .pp-zoom__close:hover { background: #DDF3E9; }
+dialog.pp-zoom--doc .pp-zoom__stage { display: block; align-items: initial; }
+dialog.pp-zoom--doc .pp-zoom__img { width: 100%; max-width: 100%; max-height: none; height: auto; }
+dialog.pp-zoom--doc .pp-zoom__stage.is-zoomed .pp-zoom__img { width: 200%; max-width: none; }
+dialog.pp-zoom.pp-zoom--doc { height: auto; max-height: min(94vh, 1100px); }
+dialog.pp-zoom--doc .pp-zoom__stage { flex: 0 1 auto; }
+dialog.pp-zoom.pp-zoom--doc[open] { height: fit-content !important; min-height: 0 !important; inset-block: 0; margin: auto; }

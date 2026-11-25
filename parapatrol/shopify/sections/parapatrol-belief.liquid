@@ -544,7 +544,7 @@
             {%- if b.sticker != blank -%}<p class="mt-6"><span class="pp-sticker">{{ b.sticker }}</span></p>{%- endif -%}
             {%- if b.button_label != blank -%}
               {%- if b.results_url != blank -%}
-                <a href="{{ b.results_url }}" target="_blank" rel="noopener" class="mt-6 inline-flex min-h-[54px] items-center justify-center rounded-xl bg-ink px-8 font-extrabold uppercase tracking-[.04em] text-[15px] text-white hover:opacity-90">{{ b.button_label }}</a>
+                <a href="{{ b.results_url }}" target="_blank" rel="noopener" {% render 'parapatrol-coa-attrs' %} class="mt-6 inline-flex min-h-[54px] items-center justify-center rounded-xl bg-ink px-8 font-extrabold uppercase tracking-[.04em] text-[15px] text-white hover:opacity-90">{{ b.button_label }}</a>
               {%- elsif request.design_mode or b.show_placeholder -%}
                 <p class="mt-6"><mark class="pp-ph">[[{{ b.button_label }} button shows once the results link is added]]</mark></p>
               {%- endif -%}

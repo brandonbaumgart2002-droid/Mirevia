@@ -561,9 +561,15 @@
     }
     btns.forEach(function (b) {
       if (b.__ppBound) return; b.__ppBound = true;
-      b.addEventListener('click', function () {
+      b.addEventListener('click', function (e) {
+        e.preventDefault(); // COA links keep their PDF href as a no-JS fallback; with JS they open here instead
         var img = dlg.querySelector('.pp-zoom__img');
         img.src = b.getAttribute('data-pp-zoom'); img.alt = b.getAttribute('data-pp-zoom-alt') || '';
+        var doc = b.hasAttribute('data-pp-zoom-doc');
+        dlg.classList.toggle('pp-zoom--doc', doc);
+        dlg.querySelector('.pp-zoom__hint').textContent = b.getAttribute('data-pp-zoom-title') || 'Tap the image to zoom in or out';
+        dlg.setAttribute('aria-label', b.getAttribute('data-pp-zoom-title') || 'Zoomed image');
+        dlg.querySelector('.pp-zoom__stage').scrollTop = 0;
         dlg.querySelector('.pp-zoom__stage').classList.remove('is-zoomed');
         document.documentElement.style.overflow = 'hidden';
         if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
