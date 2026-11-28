@@ -168,7 +168,7 @@
         {%- if section.settings.pill_1 != blank or section.settings.pill_2 != blank -%}
           <ul class="mt-2 flex flex-wrap gap-1.5" role="list" aria-label="Formula credentials">
             {%- if section.settings.pill_1 != blank -%}<li class="pp-pill pp-pill--blush"><span aria-hidden="true">✦</span> {{ section.settings.pill_1 }}</li>{%- endif -%}
-            {%- if section.settings.pill_2 != blank -%}<li class="pp-pill pp-pill--mint"><span aria-hidden="true">+</span> {{ section.settings.pill_2 }}</li>{%- endif -%}
+            {%- if section.settings.pill_2 != blank -%}<li class="pp-pill pp-pill--mint">{%- if section.settings.coa_url != blank -%}<a href="{{ section.settings.coa_url }}" target="_blank" rel="noopener" {% render 'parapatrol-coa-attrs' %} class="pp-pill__link"><span aria-hidden="true">+</span> {{ section.settings.pill_2 }} <span class="pp-pill__go" aria-hidden="true">›</span><span class="sr-only"> (view the certificate of analysis)</span></a>{%- else -%}<span aria-hidden="true">+</span> {{ section.settings.pill_2 }}{%- endif -%}</li>{%- endif -%}
           </ul>
         {%- endif -%}
         <h1 id="pp-title-{{ section.id }}" class="pp-title mt-2 font-display text-ink leading-[1.02]">

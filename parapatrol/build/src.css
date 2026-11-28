@@ -677,3 +677,9 @@ dialog.pp-zoom--doc .pp-zoom__stage.is-zoomed .pp-zoom__img { width: 200%; max-w
 dialog.pp-zoom.pp-zoom--doc { height: auto; max-height: min(94vh, 1100px); }
 dialog.pp-zoom--doc .pp-zoom__stage { flex: 0 1 auto; }
 dialog.pp-zoom.pp-zoom--doc[open] { height: fit-content !important; min-height: 0 !important; inset-block: 0; margin: auto; }
+
+/* hero credential pill that opens the COA pop-up */
+.pp.pp .pp-pill__link { display: inline-flex; align-items: center; gap: inherit; color: inherit !important; text-decoration: none !important; cursor: pointer; }
+.pp.pp .pp-pill__link:hover { text-decoration: underline !important; text-underline-offset: 2px; }
+.pp.pp .pp-pill__go { font-weight: 900; font-size: 1.15em; line-height: 1; margin-left: 1px; }
+.pp.pp .pp-pill:has(.pp-pill__link):hover { filter: brightness(.97); }
